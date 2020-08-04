@@ -57,23 +57,21 @@ To set up the integration workspace for this quick start guide, we will use an i
 Go to the `<MI_QSG_HOME>` directory. The following project files and executable back-end services are available.
 
 - **HealthcareConfigs**: This is the ESB Config module with the integration artifacts for the healthcare service. This service consists of the following REST API:
-  ![Scenario API](../assets/img/quick-start-guide/qsg-api.png)
-  <details>
-            <summary>HealthcareAPI.xml</summary>
-	    ```xml
+
+      <img src="../../assets/img/quick-start-guide/qsg-api.png">
+
+      <details>
+                <summary>HealthcareAPI.xml</summary>
+    	    ```xml
             <?xml version="1.0" encoding="UTF-8"?>
             <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
                 <resource methods="GET" uri-template="/doctor/{doctorType}">
                     <inSequence>
-                        <!-- Invoke Grand Oak service with a GET request -->
-                        <!-- Construct the payload required for Pine Valley service -->
                         <clone>
                             <target>
                                 <sequence>
                                     <call>
-                                        <endpoint>
-                                            <http method="get" uri-template="http://localhost:9090/grandOak/doctors/{uri.var.doctorType}"/>
-                                         </endpoint>
+                                        <endpoint key="GrandOakEndpoint"/>
                                     </call>
                                 </sequence>
                             </target>
@@ -81,35 +79,33 @@ Go to the `<MI_QSG_HOME>` directory. The following project files and executable 
                                 <sequence>
                                     <payloadFactory media-type="json">
                                         <format>{
-                                                  "doctorType": "$1"
-                                                }
-                                        </format>
+                                        "doctorType": "$1"
+                                        }</format>
                                         <args>
                                             <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
                                         </args>
                                     </payloadFactory>
-                                    <!--  Invoke the Pine Valley service with a POST request -->
                                     <call>
-                                        <endpoint>
-                                            <http method="post" uri-template="http://localhost:9091/pineValley/doctors"/>
-                                        </endpoint>
+                                        <endpoint key="PineValleyEndpoint"/>
                                     </call>
                                 </sequence>
                             </target>
                         </clone>
                         <aggregate>
-                            <onComplete expression="json-eval($.doctors.doctor)">
+                            <completeCondition>
+                                <messageCount max="-1" min="-1"/>
+                            </completeCondition>
+                            <onComplete aggregateElementType="root" expression="json-eval($.doctors.doctor)">
                                 <respond/>
                             </onComplete>
                         </aggregate>
                     </inSequence>
-                 </resource>
+                    <outSequence/>
+                    <faultSequence/>
+                </resource>
             </api>
-	    ```    
-  </details>
-
-    !!! Note
-        For this scenario, endpoints are defined inline in the API configuration for better clarity in reading the configuration. However, the best practice is to define them as named endpoint configurations so that they can be externalized to an environment specific entity.
+    	    ```    
+      </details>
 
 - **HealthcareCompositeExporter**: This is the Composite Application Project folder, which contains the packaged CAR file of the healthcare service.
 
@@ -138,7 +134,7 @@ Copy the CAR file of the healthcare service (HealthcareCompositeExporter_1.0.0.c
 
 #### Start the Micro Integrator
 
-If you [set up the product](#before-you-begin) using the **installer**, follow the steps relevant to your OS as shown below.
+If you set up the product using the **installer**, follow the steps relevant to your OS as shown below.
 
 -   On **MacOS/Linux/CentOS**, open a terminal and execute the following command:
 
@@ -148,21 +144,15 @@ If you [set up the product](#before-you-begin) using the **installer**, follow t
     
 -   On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the Micro Integrator.
 
-If you [set up the product](#before-you-begin) using the **binary** file, open a terminal, navigate to the `<MI_HOME>/bin` directory, and execute the command relevant to your OS as shown below.
+If you set up the product using the **binary** file, open a terminal, navigate to the `<MI_HOME>/bin` directory, and execute the command relevant to your OS as shown below.
 
--   On **MacOS/Linux/CentOS**:
+```bash tab='On MacOS/Linux/CentOS'
+sh micro-integrator.sh
+```
 
-    ```bash
-    sh micro-integrator.sh
-    ```
-
--   On **Windows**:
-
-    ```bash
-    micro-integrator.bat
-    ```
-
-Read more about [starting the Micro Integrator](../../setup/installation/install_in_vm_installer/#starting-the-mi-server).
+```bash tab='On Windows'
+micro-integrator.bat
+```
 
 #### Invoke the healthcare service
 
