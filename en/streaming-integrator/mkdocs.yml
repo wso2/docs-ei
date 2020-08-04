@@ -207,6 +207,7 @@ nav:
       - 'Installing in Docker': 'setup/installing-si-using-docker.md'
       - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
       - 'Migrating from WSO2 SP': 'setup/migrating-from-stream-processor.md'
+      - 'Upgrading from Streaming Integrator 1.0.0': 'setup/upgrading-from-previous-version.md'
     - 'Deploying Streaming Integrator':
       - 'Single Deployment': 'setup/deploying-si-as-a-single-deployment.md'
       - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'

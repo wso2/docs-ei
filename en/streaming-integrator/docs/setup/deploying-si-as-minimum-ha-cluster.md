@@ -72,7 +72,7 @@ To configure the HA cluster, follow the steps below:
          enabled: true
          intervalInMin: 1
          revisionsToKeep: 2
-         persistenceStore: org.wso2.carbon.stream.processor.core.persistence.DBPersistenceStore
+         persistenceStore: org.wso2.carbon.streaming.integrator.core.persistence.DBPersistenceStore
          config:
            datasource: PERSISTENCE_DB   # A datasource with this name should be defined in wso2.datasources namespace
            table: PERSISTENCE_TABLE
@@ -262,15 +262,15 @@ If the cluster is correctly configured, the following CLI logs can be viewed wit
 - In the active node:
 
     ```
-        [2018-09-09 23:56:54,272]  INFO {org.wso2.carbon.stream.processor.core.internal.ServiceComponent} - WSO2 Streaming Integrator Starting in Two Node Minimum HA Deployment
-        [2018-09-09 23:56:54,294]  INFO {org.wso2.carbon.stream.processor.core.ha.HAManager} - HA Deployment: Starting up as Active Node
+        [2018-09-09 23:56:54,272]  INFO {org.wso2.carbon.streaming.integrator.core.internal.ServiceComponent} - WSO2 Streaming Integrator Starting in Two Node Minimum HA Deployment
+        [2018-09-09 23:56:54,294]  INFO {org.wso2.carbon.streaming.integrator.core.ha.HAManager} - HA Deployment: Starting up as Active Node
     ```
 
 - In the passive node:
 
     ```
-        [2018-09-09 23:58:44,178]  INFO {org.wso2.carbon.stream.processor.core.internal.ServiceComponent} - WSO2 Streaming Integrator Starting in Two Node Minimum HA Deployment
-        [2018-09-09 23:58:44,199]  INFO {org.wso2.carbon.stream.processor.core.ha.HAManager} - HA Deployment: Starting up as Passive Node
+        [2018-09-09 23:58:44,178]  INFO {org.wso2.carbon.streaming.integrator.core.internal.ServiceComponent} - WSO2 Streaming Integrator Starting in Two Node Minimum HA Deployment
+        [2018-09-09 23:58:44,199]  INFO {org.wso2.carbon.streaming.integrator.core.ha.HAManager} - HA Deployment: Starting up as Passive Node
     ```
         
 !!! info
