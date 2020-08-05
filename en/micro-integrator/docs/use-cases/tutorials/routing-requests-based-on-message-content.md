@@ -15,7 +15,7 @@ To implement this use case, you will add a new REST resource to the existing RES
 
 Set up WSO2 Integration Studio as follows:
 
-1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 2.  Set up the project from the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial:
 
     !!! Note
@@ -178,22 +178,13 @@ You can now start configuring the API resource.
          <td>Enter <code>default</code>.</td>
       </tr>
       <tr class="odd">
-         <td>Value Type</td>
-         <td>Enter <code>EXPRESSION</code>.</td>
-      </tr>
-      <tr class="even">
-         <td>Value Expression</td>
+         <td>Value</td>
          <td>
             <div class="content-wrapper">
               <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the text box of the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-               <li>Select <strong>Expression</strong> from the list.
-                </li>
-               <li>Enter <code>json-eval($.hospital)</code> to overwrite the default expression.</li>
-               <li>Click <strong>OK.</strong> <strong><br />
-                  </strong>
-               </li>
+                <li>Click the <strong>Ex</strong> button in front of the value field.
+               <li>Enter <code>json-eval($.hospital)</code> as the expression value.</li>
             </ol>
                <b>Note</b>:
                This is the JSONPath expression that will extract the hospital from the request payload.
