@@ -143,7 +143,7 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Optional</td>
         </tr>
         <tr>
-            <td>includeSubdirectories</td>
+            <td>includeSubDirectories</td>
             <td>Set to true if you want to include the sub directories.</td>
             <td>Optional</td>
         </tr>
@@ -164,7 +164,7 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-        <includeSubdirectories>{$ctx:includeSubdirectories}</includeSubdirectories>
+        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
     </fileconnector.archives>
     ```
 
@@ -175,7 +175,7 @@ The following operations allow you to work with the File Connector version 2. Cl
     {
         "source":"/home/vive/Desktop/file",
         "destination":"/home/user/test/file.zip",
-        "includeSubdirectories":"true"
+        "includeSubDirectories":"true"
     }
     ```
 
@@ -249,7 +249,7 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Optional</td>
         </tr>
         <tr>
-            <td>includeSubdirectories</td>
+            <td>includeSubDirectories</td>
             <td>Set to true if you want to include the sub directories.</td>
             <td>Optional</td>
         </tr>
@@ -270,7 +270,7 @@ The following operations allow you to work with the File Connector version 2. Cl
 	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
 	    <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
 	    <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
-        <includeSubdirectories>{$ctx:includeSubdirectories}</includeSubdirectories>
+        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
     </fileconnector.copy>
     ```
 
@@ -282,7 +282,7 @@ The following operations allow you to work with the File Connector version 2. Cl
         "destination":"/home/user/test/fileCopy",
         "filePattern":".*\.xml",
         "includeParentDirectory":"false",
-        "includeSubdirectories":"false"
+        "includeSubDirectories":"false"
     }
     ```
 
@@ -423,7 +423,7 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Optional</td>
         </tr>
         <tr>
-            <td>includeSubdirectories</td>
+            <td>includeSubDirectories</td>
             <td>Set to true if you want to include the sub directories.</td>
             <td>Optional</td>
         </tr>
@@ -440,7 +440,7 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-        <includeSubdirectories>{$ctx:includeSubdirectories}</includeSubdirectories>
+        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
     </fileconnector.delete>
     ```
 
@@ -450,7 +450,7 @@ The following operations allow you to work with the File Connector version 2. Cl
     {
         "source":"/home/vive/Desktop/file",
         "filePattern":".*\.txt",
-        "includeSubdirectories":"true"
+        "includeSubDirectories":"true"
     }
     ```
 
@@ -645,7 +645,7 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Optional</td>
         </tr>
         <tr>
-            <td>includeSubdirectories</td>
+            <td>includeSubDirectories</td>
             <td>Set to true if you want to include the sub directories.</td>
             <td>Optional</td>
         </tr>
@@ -664,7 +664,7 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
         <filePattern>{$ctx:filePattern}</filePattern>
 	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
-        <includeSubdirectories>{$ctx:includeSubdirectories}</includeSubdirectories>
+        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
     </fileconnector.move>
     ```
 
@@ -676,7 +676,7 @@ The following operations allow you to work with the File Connector version 2. Cl
         "destination":"/home/vive/Desktop/move",
         "filePattern":".*\.txt",
         "includeParentDirectory":"true",
-        "includeSubdirectories":"true"
+        "includeSubDirectories":"true"
     }
     ```
 
