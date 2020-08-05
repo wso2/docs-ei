@@ -83,7 +83,7 @@ To design the Siddhi application with ETL functionality via the Streaming Integr
         
     2. In the **Configure Schema** section, do the following to define the schema of the events you expect to receive as input data:
     
-        1. Select the **Add log sink for testing** option.
+        1. Click the tick (**✓**) for the **Add log sink for testing** parameter.
         
         2. Under **Enter input stream name**, enter `InsertSweetProductionStream`. Then add two attributes as follows:
         
@@ -95,13 +95,15 @@ To design the Siddhi application with ETL functionality via the Streaming Integr
             
             3. Click **Next**. 
             
-        3. In the **Configure Input Mapping** section, select **keyvalue** as the source mapper type.
+    3. In the **Configure Input Mapping** section, select **keyvalue** as the source mapper type.
         
-            ![select-source-mapper-type](../../images/create-etl-application-via-tooling/select-source-mapper-type.png)
+        ![select-source-mapper-type](../../images/create-etl-application-via-tooling/select-source-mapper-type.png)
+        
+        Then click **Next**.
             
-            Then click **Next**.
-            
-5. In **Step 2 Data Destination**, enter information on how you want the output to be published. In this scenario, let's publish the output in a CSV file named `productioninserts.csv`.
+5. In this scenario, let's do a simple conversion where the names that are received in simple case are converted to upper case when they are published in the file. This is a mapping-related conversion. Therefore, in **Step 2 Process Input Data**, click **Next** without making any change.
+
+6. In **Step 3 Configure Destination**, enter information on how you want the output to be published. In this scenario, let's publish the output in a CSV file named `productioninserts.csv`.
 
     1. Under **Transport Properties**, select **file** as the sink type. Then enter the path to the `productioninserts.csv` file which you saved as an empty CSV file (in this example, `/Users/foo/productioninserts.csv`).
     
@@ -113,7 +115,7 @@ To design the Siddhi application with ETL functionality via the Streaming Integr
     
         ![Configure output schema](../../images/create-etl-application-via-tooling/configure-output-event-schema.png)
     
-        1. Select the **Add log sink for testing** option in order to log the output events in the console.
+        1. Click the tick (**✓**) for the **Add log sink for testing** parameter in order to log the output events in the console.
         
         2. Under **Enter output stream name**, enter `ProductionUpdatesStream`.
         
@@ -128,10 +130,14 @@ To design the Siddhi application with ETL functionality via the Streaming Integr
         ![Configure Output Mapping](../../images/create-etl-application-via-tooling/configure-output-mapping.png)
         
         Then click **Next**.
-        
-4. In this scenario, let's do a simple conversion where the names that are received in simple case are converted to upper case when they are published in the file. This is a mapping-related conversion. Therefore, in **Step 3 Process Input Data**, click **Next** without making any change.
 
-5. In **Step 4 Data Mapping**, follow the procedure below to do the required configurations for the data transformation to be done by your ETL Siddhi application.
+4. In **Step 4 Process Output Data**, move the cursor over the **+** sign under **Group Output by Fields**, and then click **name**. This groups the output events by the name of the product.
+
+    ![Group Events By](../../images/create-etl-application-via-tooling/group-by.png)
+
+    Then click **Next**.
+    
+5. In **Step 5 Data Mapping**, follow the procedure below to do the required configurations for the data transformation to be done by your ETL Siddhi application.
 
     1. Click the following button to map all the attributes.
     
@@ -149,9 +155,9 @@ To design the Siddhi application with ETL functionality via the Streaming Integr
 
         ![Select Name Attribute](../../images/create-etl-application-via-tooling/select-name-attribute.png)
     
-        This opens a dialog box named **Create expression for: name**. 
+        This opens a dialog box named **Create expression for name of ProductionUpdatesStream**. 
     
-    3. In the **Create expression for: name** dialog box, click **Function**. Scroll to find the **str.upper()** function, and then click on it to select it.
+    3. In the **Create expression for name of ProductionUpdatesStream** dialog box, click **Function**. Scroll to find the **str.upper()** function, and then click on it to select it.
     
         ![Select Function](../../images/create-etl-application-via-tooling/select-function.png)
         
@@ -187,13 +193,10 @@ To design the Siddhi application with ETL functionality via the Streaming Integr
     
         ![Matched Attributes](../../images/create-etl-application-via-tooling/joined-attributes.png)
         
-    10. Click **Next**.
+    10. Click **Save**.
+     
     
-6. In **Step 5 Process Output Data**, move the cursor over the **+** sign under **Group Output by Fields**, and then click **name**. This groups the output events by the name of the product.
-  
-    Then click **Save**. 
-    
-7. In **Step 6 Finish**, deploy the Siddhi application you just completed by clicking **Deploy to Worker**.
+7. In **Step 6 Finalize**, deploy the Siddhi application you just completed by clicking **Deploy to Worker**.
 
     ![Complete ETL Application](../../images/create-etl-application-via-tooling/deploy-etl-app-to-worker.png)
     
