@@ -178,21 +178,18 @@ You can now start updating the API resource with the mediation flow.
          <td>Enter <code>               EXPRESSION              </code>.</td>
       </tr>
       <tr class="even">
-         <td>Value Expression</td>
-         <td>
+        <td>Value</td>
+        <td>
             <div class="content-wrapper">
-              <p>Follow the steps given below to specify the expression:</p>
-            <ol>
-                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-               <li>Select <strong>Expression</strong> from the list.
-                </li>
-               <li>Enter <code>json-eval($.cardNo)</code> to overwrite the default expression.</li>
-               <li>Click <strong>OK.</strong> <strong><br />
-                  </strong>
-               </li>
-            </ol>
+                <p>Follow the steps given below to specify the expression:</p>
+                <ol>
+                    <li>Click the <strong>Ex</strong> button in front of the value field.
+                    <li>Enter <code>json-eval($.cardNo)</code> as the expression value.</li>
+                </ol>
+                    <b>Note</b>:
+                    This is the JSONPath expression that will extract the hospital from the request payload.
             </div>
-         </td>
+        </td>
       </tr>
       <tr>
           <td>Description</td>
