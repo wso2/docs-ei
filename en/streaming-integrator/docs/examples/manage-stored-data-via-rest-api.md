@@ -184,7 +184,7 @@ On successful execution of the command, you will get following response on the t
     
 Let's delete the entry `["Almond Cookie",150.0]` from the `SweetProductionTable` by executing following `CURL` command:
 ```
-curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "SweetProduction-Store", "query" : "select 150.0 as amount delete SweetProductionTable on SweetProductionTable2.amount == amount;" }' -k
+curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "SweetProduction-Store", "query" : "select 150.0 as amount delete SweetProductionTable on SweetProductionTable.amount == amount;" }' -k
 ```
 On successful execution of the command, you will get following response on the terminal:
 ```
