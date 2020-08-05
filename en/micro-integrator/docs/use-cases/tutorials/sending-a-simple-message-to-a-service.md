@@ -10,7 +10,7 @@ To implement this use case, you will create a REST API resource and other artifa
 
 ### Step 1: Set up the workspace
 
-Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 
 ### Step 2: Develop the integration artifacts
 
@@ -27,7 +27,7 @@ An Integration project is a maven multi module project, which will contain all t
 
     This will open the <b>New Integration Project</b> dialog box.
 
-3.  Enter `SampleServicesConfigs` as the project name and select the following check boxes to create the required modules.
+3.  Enter `SampleServices` as the project name and select the following check boxes to create the required modules.
     -   **Create ESB Configs**
     -   **Create Registry Resources**
     -   **Create Composite Exporter**
