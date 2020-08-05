@@ -223,7 +223,7 @@ The following features, which are not needed for MSA-based deployments or not us
 	</tr>
 	<tr>
 		<td>
-			Database-based Registry
+			RDBMS-based Registry
 		</td>
 		<td>
 			-
