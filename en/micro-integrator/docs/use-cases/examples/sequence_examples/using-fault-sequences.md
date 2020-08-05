@@ -11,8 +11,8 @@ Following are the integration artifacts that we can used to implement this scena
 
 -   Proxy service:
     ```xml
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="FaultTestProxy" startOnLoad="true" transports="http https">
-        <target>
+    <proxy name="FaultTestProxy" startOnLoad="true" statistics="enable" trace="enable" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+        <target faultSequence="fault">
             <inSequence>
                 <switch source="//m0:getQuote/m0:request/m0:symbol" xmlns:m0="http://services.samples">
                     <case regex="IBM">
@@ -77,6 +77,36 @@ the `get-property` XPath function. The following log mediator logs the actual er
     <property name="message" expression="get-property('ERROR_MESSAGE')"/>
 </log>
 ``` 
+
+The following is a sample of the configurations to use the Fault sequence in an API. Make note of the "faultSequence" attribute in the "resource" element.
+
+```xml
+<api context="/testFault" name="FaultTestAPI">
+    <resource faultSequence="testFault" methods="POST" uri-template="/v1">
+        <inSequence>
+            <switch source="//m0:getQuote/m0:request/m0:symbol" xmlns:m0="http://services.samples">
+                <case regex="IBM">
+                    <send>
+                        <endpoint><address uri="http://localhost:9000/services/SimpleStockQuoteService"/></endpoint>
+                    </send>
+                </case>
+                <case regex="MSFT">
+                    <send>
+                        <endpoint key="bogus"/>
+                    </send>
+                </case>
+                <case regex="SUN">
+                    <sequence key="sunSequence"/>
+                </case>
+            </switch>
+            <drop/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+    </resource>
+</api>
+```
 
 ## Build and run
 
