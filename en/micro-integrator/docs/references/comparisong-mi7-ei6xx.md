@@ -1,6 +1,6 @@
 # WSO2 Micro Integrator vs WSO2 EI 6.x Family
 
-## Comparison: EI 6.x vs EI 7.x
+## Comparison: EI 6.x.x vs EI 7.1.0
 
 [WSO2 Enterprise Integrator](https://wso2.com/platform) consists of two product families:
 
@@ -9,17 +9,11 @@
  
 This [WSO2 EI 6.x product family](http://docs.wso2.com/enterprise-integrator) offers the conventional, centralized integration solution of the WSO2 middleware stack. WSO2 EI 6.x includes the ESB profile and other supporting profiles packaged in a single distribution.
  
-<<<<<<< HEAD
+The new WSO2 Enterprise Integrator (WSO2 EI 7.1.0) is a hybrid platform that enables API-centric integration supporting
+ various integration architecture styles: microservices architecture, cloud-native architecture, or a centralized ESB architecture. This integration platform offers a graphical/configuration-driven approach to developing integrations for any of the architectural styles.
 The new WSO2 Enterprise Integrator (WSO2 EI 7.1.0) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: microservices architecture, cloud-native architecture, or a centralized ESB architecture. This integration platform offers a graphical/configuration-driven approach to developing integrations for any of the architectural styles.
-=======
-The new WSO2 Enterprise Integrator (WSO2 EI 7.x) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: microservices architecture, cloud-native architecture, or a centralized ESB architecture. This integration platform offers a graphical/configuration-driven approach to developing integrations for any of the architectural styles.
->>>>>>> Remove link
  
-<<<<<<< HEAD
 The following are the approaches to integration with EI 7.1.0.
-=======
-The following are the approaches to integration with EI 7.x.
->>>>>>> EI 7.0 to 7.x
  
 -   **Low-code Integration** with **Micro Integrator**
 
@@ -31,9 +25,9 @@ The following are the approaches to integration with EI 7.x.
 
 As explained above, EI 7.1.0 addresses a wider audience that prefers different approaches to integration.
 
-## Advantages of using the Micro Integrator in EI 7.x
+## Advantages of using the Micro Integrator in EI 7.1.0
 
-Compared to the ESB profile of WSO2 Enterprise Integrator 6.x, the Micro Integrator encompasses the following key attributes that are essential for a microservice-ready integration solution.
+Compared to the ESB profile of WSO2 Enterprise Integrator 6.x.x, the Micro Integrator encompasses the following key attributes that are essential for a microservice-ready integration solution.
 
 -	Faster startup time (<5s).
 -	Low memory footprint.
@@ -42,9 +36,9 @@ Compared to the ESB profile of WSO2 Enterprise Integrator 6.x, the Micro Integra
 -	Native Kubernetes support with the integration operator. 
 -	Lightweight, container-native, and supports distributed deployments. 
 
-## Comparison: ESB profile of EI 6.x vs Micro Integrator of EI 7.x
+## Comparison: ESB profile of EI 6.x.x vs Micro Integrator of EI 7.1.0
 
-Given below is a comparision between the Micro Integrator of EI 7.x and the ESB profile of EI 6.x.
+Given below is a comparision between the Micro Integrator of EI 7.1.0 and the ESB profile of EI 6.x.x.
 
 <table>
 	<tr>
@@ -176,7 +170,7 @@ Given below is a comparision between the Micro Integrator of EI 7.x and the ESB 
 	</tr>
 </table>
 
-## Features removed from the Micro Integrator of EI 7.0
+## Features removed from the Micro Integrator of EI 7.1.0
 
 The following features, which are not needed for MSA-based deployments or not used frequently are removed from WSO2 Micro Integrator.
 
