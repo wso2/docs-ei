@@ -65,7 +65,7 @@ To design the Siddhi application with ETL functionality via the Streaming Integr
     
 3. Change the title of the ETL task flow from `UntitledETLTaskFlow` to `SweetFactoryETLTaskFlow`.
 
-4. In **Step 1 Data source**, enter information relating to the data source as follows:
+4. In **Step 1 Configure Source**, enter information relating to the data source as follows:
 
     1. Under **Transport Properties**, select **CDC** as the source. Then enter values for the properties relating to the CDC source as follows.
     
