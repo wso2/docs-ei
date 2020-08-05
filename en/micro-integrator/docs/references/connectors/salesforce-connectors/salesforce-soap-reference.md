@@ -1,4 +1,4 @@
-# SalesforceBulk Connector Reference
+# Salesforce SOAP Connector Reference
 
 The following operations allow you to work with the Salesforce SOAP Connector. Click an operation name to see parameter details and samples on how to use it.
 

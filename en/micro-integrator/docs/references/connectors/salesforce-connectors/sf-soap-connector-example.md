@@ -1,6 +1,6 @@
-# Salesforce Rest API Connector Example
+# Salesforce SOAP Connector Example
 
-The Salesforce REST Connector allows you to work with records in Salesforce, a web-based service that allows organizations to manage contact relationship management (CRM) data. You can use the Salesforce connector to create, query, retrieve, update, and delete records in your organization's Salesforce data. The connector uses the [Salesforce SOAP API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_intro.htm?search_text=SOAP%20API%20Developer%20Guide) to interact with Salesforce.
+The Salesforce SOAP Connector allows you to work with records in Salesforce, a web-based service that allows organizations to manage contact relationship management (CRM) data. You can use the Salesforce connector to create, query, retrieve, update, and delete records in your organization's Salesforce data. The connector uses the [Salesforce SOAP API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_intro.htm?search_text=SOAP%20API%20Developer%20Guide) to interact with Salesforce.
 
 ## What you'll build
 
