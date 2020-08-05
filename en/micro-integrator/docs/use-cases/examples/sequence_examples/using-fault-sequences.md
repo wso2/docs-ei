@@ -11,7 +11,7 @@ Following are the integration artifacts that we can used to implement this scena
 
 -   Proxy service:
     ```xml
-    <proxy name="FaultTestProxy" startOnLoad="true" statistics="enable" trace="enable" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <proxy name="FaultTestProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
         <target faultSequence="fault">
             <inSequence>
                 <switch source="//m0:getQuote/m0:request/m0:symbol" xmlns:m0="http://services.samples">
