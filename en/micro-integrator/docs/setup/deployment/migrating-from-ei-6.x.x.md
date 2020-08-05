@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Migrating from WSO2 EI 6.x to WSO2 EI 7.1
 
 This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.1. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to the Micro Integrator in EI 7.1.
@@ -15,24 +14,6 @@ See the following topics to understand the benefits of moving to EI 7.1 from EI 
 Note that EI 7 is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release.
 
 ## Why migrate to EI 7.1?
-=======
-# Migrating from WSO2 EI 6.x.x to WSO2 EI 7.1.x
-
-This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x.x to WSO2 EI 7.1.x. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x.x to the Micro Integrator in EI 7.1.x.
-
-## Before you begin
-
-See the following topics to understand the benefits of moving to EI 7.1.x from EI 6.x:
-
--   [Comparison: EI 6.x.x vs EI 7.1.x](../../../references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
--   [Advantages of using the Micro Integrator in EI 7.1.x](../../../references/comparisong-mi7-ei6xx/#advantages-of-using-the-micro-integrator-in-ei-70)
--   [Comparison: ESB profile of EI 6.x.x vs Micro Integrator of EI 7.1.x](../../../references/comparisong-mi7-ei6xx/#comparison-esb-profile-of-ei-6x-vs-micro-integrator-of-ei-70)
--   [Features removed from the Micro Integrator of EI 7.1.x](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
-
-Note that EI 7 is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release.
-
-## Why migrate to EI 7.1.x?
->>>>>>> copy edits
 
 If you are an EI 6.x.x user, migration is recommended for the following requirements:
  
@@ -44,7 +25,6 @@ The decision on migration to the new platform needs to be taken by considering s
 
 ## Migrating to the Micro Integrator 
  
-<<<<<<< HEAD
 Both the ESB profile of EI 6.x and the Micro Integrator of EI 7.1 uses the same ESB runtime and the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. Most of the mediation(ESB) and data integration features available in the ESB profile of EI 6.x are available in the Micro Integrator as well. Some of the features are [removed from WSO2 Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not needed for microservice deployments or they are not frequently used.
 
 In summary, all the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes. However, EI 7.1 comes with a [Toml-based configuration strategy](../../../references/config-catalog) to replace XML configurations, which simplifies your product configurations.
@@ -52,41 +32,18 @@ In summary, all the integration capabilities that you used in the ESB can be use
 See the [detailed comparison of EI 6.x and EI 7.0](../../../references/comparisong-mi7-ei6xx) to understand what has 
 changed between the ESB profile of EI 6.x.x and the Micro Integrator of EI 7.0.
 See the [detailed comparison of EI 6.x and EI 7.1](../../../references/comparisong-mi7-ei6xx) to understand what has changed between the ESB profile of EI 6.x.x and the Micro Integrator of EI 7.1.0
-=======
-Both the ESB profile of EI 6.x.x and the Micro Integrator of EI 7.1.x uses the same ESB runtime and the same developer 
-tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. Most of the 
-mediation(ESB) and data integration features available in the ESB profile of EI 6.x.x are available in the Micro 
-Integrator as well. Some of the features are [removed from WSO2 Micro Integrator](../../.
-./references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) to optimize the offering 
-to cater centralized as well as container deployments.
-
-In summary, all the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes. However, EI 7.1.x contains the [Toml-based configuration strategy](../../../references/config-catalog) replacing XML configurations, which simplifies your product configurations.
- 
-See the [detailed comparison of EI 6.x.x and EI 7.1.x](../../../references/comparisong-mi7-ei6xx) to understand what has 
-changed between the ESB profile of EI 6.x.x and the Micro Integrator of EI 7.1.x.
->>>>>>> copy edits
 
 Follow the instructions below to start the migration!
 
 ### Set up the migration
 
 -	Make a backup of the existing database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
-<<<<<<< HEAD
-<<<<<<< HEAD
--	Download and install EI 7.1 in your environment. The home directory of your installation will be referred to as `<MI_HOME>` from hereon.
-	-	[On a VM](../../../setup/installation/install_in_vm)
-	-	[On Docker](../../../setup/installation/run_in_docker)
-	-	[On Kubernetes](../../../setup/installation/run_in_kubernetes)
--	You can [use WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates.
-=======
+
 -	Download and install EI 7.1.0 in your environment. The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
-=======
--	Download and install EI 7.1.x in your environment. The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
->>>>>>> copy edits
 	-	[Using the Installer](../../../setup/installation/install_in_vm_installer)
 	-	[Using the binary distribution](../../../setup/installation/install_in_vm_binary)
 -	You can use [WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates.
->>>>>>> links updated
+
 
 	!!! Info
 		Note that you need a valid [WSO2 subscription](https://wso2.com/subscription) to use updates in a production environment.
