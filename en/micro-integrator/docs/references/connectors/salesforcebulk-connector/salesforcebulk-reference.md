@@ -1,17 +1,27 @@
 # SalesforceBulk Connector Reference
 
-The following operations allow you to work with the Salesforce Bulk Connector. Click an operation name to see parameter details and samples on how to use it.
+The following operations allow you to work with the Salesforce Bulk Connector. Click an operation name to see parameter 
+details and samples on how to use it.
 
 ---
 
 ## Initialize the connector
 
-Salesforce Bulk API uses the OAuth protocol to allow application users to securely access data without having to reveal their user credentials. For more information on how authentication is done in Salesforce, see [Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
+Salesforce Bulk API uses the OAuth protocol to allow application users to securely access data without having to reveal 
+their user credentials. For more information on how authentication is done in Salesforce, see 
+[Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
+You can provide only access token and use it until it expires. After expiry, you will be responsible for getting a new 
+access token and using it. Alternatively, you have the option of providing refresh token, client secret, and client ID 
+which will be used to get access token initially and after every expiry by the connector itself. You will not be 
+required to handle access token expiry in this case.
 
-To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in your configuration before carrying out any other Salesforce Bulk operations. 
+To use the Salesforce Bulk connector, add the `<salesforcebulk.init>` element in your configuration before carrying out 
+any other Salesforce Bulk operations. 
 
 ??? note "salesforcebulk.init"
-    The salesforcerest.init operation initializes the connector to interact with the Salesforce REST API. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm) for more information.
+    The salesforcebulk.init operation initializes the connector to interact with the Salesforce Bulk API. See the 
+    [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm) 
+    for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -26,7 +36,7 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
         <tr>
             <td>accessToken</td>
             <td>The access token to authenticate your API calls.</td>
-            <td>Yes</td>
+            <td>No</td>
         </tr>
         <tr>
             <td>apiUrl</td>
@@ -35,33 +45,25 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
         </tr>
         <tr>
             <td>tokenEndpointHostname</td>
-            <td>The instance url for OAuth 2.0 token endpoint when issuing authentication requests in your application. If you haven't set any token endpoint hostname, the default hostname [https://login.salesforce.com](https://login.salesforce.com) will be set.</td>
+            <td>The instance url for OAuth 2.0 token endpoint when issuing authentication requests in your application. 
+            If you haven't set any token endpoint hostname, the default hostname [https://login.salesforce.com](https://login.salesforce.com) 
+            will be set.</td>
             <td>No</td>
         </tr>
         <tr>
             <td>refreshToken</td>
             <td>The refresh token that you received to refresh the API access token.</td>
-            <td>Yes</td>
+            <td>No</td>
         </tr>
         <tr>
             <td>clientId</td>
             <td>The consumer key of the connected application that you created.</td>
-            <td>Yes</td>
+            <td>No</td>
         </tr>
         <tr>
             <td>clientSecret</td>
             <td>The consumer secret of the connected application that you created.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>intervalTime</td>
-            <td>The time interval in milliseconds, after which you need to check the validity of the access token.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>registryPath</td>
-            <td>The registry path of the connector. You must specify the registry path as follows: registryPath = “connectors/salesforcebulk”</td>
-            <td>Yes</td>
+            <td>No</td>
         </tr>
     </table>
 
@@ -73,11 +75,6 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
         <accessToken>{$ctx:accessToken}</accessToken>
         <apiUrl>{$ctx:apiUrl}</apiUrl>
         <tokenEndpointHostname>{$ctx:tokenEndpointHostname}</tokenEndpointHostname>
-        <refreshToken>{$ctx:refreshToken}</refreshToken>
-        <clientId>{$ctx:clientId}</clientId>
-        <clientSecret>{$ctx:clientSecret}</clientSecret>
-        <intervalTime>{$ctx:intervalTime}</intervalTime>
-        <registryPath>{$ctx:registryPath}</registryPath>
     </salesforcebulk.init>
     ```
 
@@ -86,14 +83,37 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     ```xml
     <salesforcebulk.init>
         <apiVersion>34.0</apiVersion>
-        <accessToken>00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV</accessToken>
+        <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
         <apiUrl>https://ap17.salesforce.com</apiUrl>
         <tokenEndpointHostname>{$ctx:tokenEndpointHostname}</tokenEndpointHostname>
-        <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-        <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-        <clientSecret>5437293348319318299</clientSecret>
-        <intervalTime>1000000</intervalTime>
-        <registryPath>connectors/SalesforceBulk</registryPath>
+    </salesforcebulk.init>
+    ```
+    
+    Or if you want the connector to handle token expiry
+    
+    **Sample configuration**
+    
+    ```xml
+    <salesforcebulk.init>
+        <apiVersion>{$ctx:apiVersion}</apiVersion>
+        <apiUrl>{$ctx:apiUrl}</apiUrl>
+        <tokenEndpointHostname>{$ctx:tokenEndpointHostname}</tokenEndpointHostname>
+        <refreshToken>{$ctx:refreshToken}</refreshToken>
+        <clientId>{$ctx:clientId}</clientId>
+        <clientSecret>{$ctx:clientSecret}</clientSecret>
+    </salesforcebulk.init>
+    ```
+
+    **Sample request**
+
+    ```xml
+    <salesforcebulk.init>
+        <apiVersion>34.0</apiVersion>
+        <apiUrl>https://ap17.salesforce.com</apiUrl>
+        <tokenEndpointHostname>{$ctx:tokenEndpointHostname}</tokenEndpointHostname>
+        <refreshToken>XXXXXXXXXXXX (Replace with your refresh token)</refreshToken>
+        <clientId>XXXXXXXXXXXX (Replace with your client ID)</clientId>
+        <clientSecret>XXXXXXXXXXXX (Replace with your client secret)</clientSecret>
     </salesforcebulk.init>
     ```
 ---
@@ -148,13 +168,8 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     ```xml
     <createJob>
        <apiVersion>34.0</apiVersion>
-       <accessToken>00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV</accessToken>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <operation>insert</operation>
        <contentType>CSV</contentType>
        <object>Contact</object>
@@ -198,13 +213,8 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     ```xml
     <updateJob>
        <apiVersion>34.0</apiVersion>
-       <accessToken>00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV</accessToken>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <jobId>75028000000MCtIAAW</jobId>
        <state>Closed</state>
     </updateJob>
@@ -240,13 +250,8 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     ```xml
     <getJob>
        <apiVersion>34.0</apiVersion>
-       <accessToken>00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV</accessToken>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <jobId>75028000000MCqEAAW</jobId>
     </getJob>
     ```
@@ -300,14 +305,9 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     
     ```xml
     <addBatch>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <apiVersion>34.0</apiVersion>
-       <accessToken>5Aep861TSESvWeug_xOdumSVTdDsD7OrADzhKVu9YrPFLB1zce_I21lnWIBR7uaGvedTTXJ4uPswE676H2pQpCZ</accessToken>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
        <contentType>application/xml</contentType>
        <isQuery>false</isQuery>
        <jobId>75028000000McSwAAK</jobId>
@@ -329,14 +329,9 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     
     ```xml
     <addBatch>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <apiVersion>34.0</apiVersion>
-       <accessToken>5Aep861TSESvWeug_xOdumSVTdDsD7OrADzhKVu9YrPFLB1zce_I21lnWIBR7uaGvedTTXJ4uPswE676H2pQpCZ</accessToken>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
        <contentType>text/csv</contentType>
        <isQuery>false</isQuery>
        <jobId>75028000000McSwAAK</jobId>
@@ -351,14 +346,9 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     
     ```xml
     <addBatch>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <apiVersion>34.0</apiVersion>
-       <accessToken>5Aep861TSESvWeug_xOdumSVTdDsD7OrADzhKVu9YrPFLB1zce_I21lnWIBR7uaGvedTTXJ4uPswE676H2pQpCZ</accessToken>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
        <contentType>application/xml</contentType>
        <isQuery>true</isQuery>
        <jobId>75028000000McSwAAK</jobId>
@@ -403,14 +393,9 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
         
     ```xml
     <getBatchStatus>
-        <apiUrl>https://ap2.salesforce.com</apiUrl>
-        <accessToken>5Aep861TSESvWeug_xOdumSVTdDsD7OrADzhKVu9YrPFLB1zce_I21lnWIBR7uaGvedTTXJ4uPswE676H2pQpCZ</accessToken>
+        <apiUrl>https://(your_instance).salesforce.com</apiUrl>
+        <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
         <apiVersion>34.0</apiVersion>
-        <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-        <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-        <clientSecret>5437293348319318299</clientSecret>
-        <intervalTime>1000000</intervalTime>
-        <registryPath>connectors/SalesforceBulk</registryPath>
         <jobId>75028000000M5X0</jobId>
         <batchId>75128000000OZzq</batchId>
     </getBatchStatus>
@@ -451,14 +436,9 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
         
     ```xml
     <getBatchResults>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <apiVersion>34.0</apiVersion>
-       <accessToken>5Aep861TSESvWeug_xOdumSVTdDsD7OrADzhKVu9YrPFLB1zce_I21lnWIBR7uaGvedTTXJ4uPswE676H2pQpCZ</accessToken>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
        <jobId>75028000000M5X0</jobId>
        <batchId>75128000000OZzq</batchId>
     </getBatchResults>
@@ -500,13 +480,8 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     ```xml
     <getBatchRequest>
        <apiVersion>34.0</apiVersion>
-       <accessToken>00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV</accessToken>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <jobId>75028000000MCtIAAW</jobId>
        <batchId>75128000000OpZFAA0</batchId>
     </getBatchRequest>
@@ -542,13 +517,8 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     ```xml
     <listBatches>
        <apiVersion>34.0</apiVersion>
-       <accessToken>00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV</accessToken>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <jobId>75028000000MCqEAAW</jobId>
     </listBatches>
     ```
@@ -595,13 +565,8 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     ```xml
     <getBulkQueryResults>
        <apiVersion>34.0</apiVersion>
-       <accessToken>00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV</accessToken>
-       <apiUrl>https://ap2.salesforce.com</apiUrl>
-       <refreshToken>5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL</refreshToken>
-       <clientId>3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY</clientId>
-       <clientSecret>5437293348319318299</clientSecret>
-       <intervalTime>1000000</intervalTime>
-       <registryPath>connectors/SalesforceBulk</registryPath>
+       <accessToken>XXXXXXXXXXXX (Replace with your access token)</accessToken>
+       <apiUrl>https://(your_instance).salesforce.com</apiUrl>
        <jobId>75028000000MCqEAAW</jobId>
        <batchId>7510K00000Kzb6XQAR</batchId>
        <resultId>7520K000006xofz</resultId>
@@ -628,7 +593,7 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     **Sample request**
         
     ```xml
-    http://localhost:8280/services/salesforcebulk_uploadBatchFile?apiUrl=https://ap2.salesforce.com&accessToken=00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV&apiVersion=34.0&refreshToken=5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL&clientId=3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY&clientSecret=5437293348319318299&intervalTime=1000000&jobId=75028000000MCv9AAG
+    http://localhost:8280/services/salesforcebulk_uploadBatchFile?apiUrl=https://(your_instance).salesforce.com&accessToken=XXXXXXXXXXXXXXXXX&apiVersion=34.0&refreshToken=XXXXXXXXXXXXXXXXX&clientId=XXXXXXXXXXXXXXXXX&clientSecret=XXXXXXXXXXXXXXXXX&jobId=75028000000MCv9AAG
     ```
     
 ??? note "getBulkQueryResults"
@@ -659,5 +624,5 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     **Sample request**
         
     ```xml
-    http://localhost:8280/services/salesforcebulk_uploadBatchFile?apiUrl=https://ap2.salesforce.com&accessToken=00D280000011oQO!ARwAQFPbKzWInyf.4veB3NY0hiKNQTxaSiZnPh9AybHplDpix34y_UOdwiKcL3e1_IquaUuO3A54A4thmSplNUQei9ARsNFV&apiVersion=34.0&refreshToken=5Aep861TSESvWeug_wHqvFVePrOMjj7CUFncs.cGdlPln68mKYpAbAJ9l7A5FTFsmqFY8Jl0m6fkIMWkIKc4WKL&clientId=3MVG9ZL0ppGP5UrDGNWmP9oSpiNtudQv6b06Ru7K6UPW5xQhd6vakhfjA2HUGsLSpDOQmO8JGozttODpABcnY&clientSecret=5437293348319318299&intervalTime=1000000&jobId=75028000000MCv9AAG
+    http://localhost:8280/services/salesforcebulk_uploadBatchFile?apiUrl=https://(your_instance).salesforce.com&accessToken=XXXXXXXXXXXXXXXXX&apiVersion=34.0&refreshToken=XXXXXXXXXXXXXXXXX&clientId=XXXXXXXXXXXXXXXXX&clientSecret=XXXXXXXXXXXXXXXXX&jobId=75028000000MCv9AAG
     ```

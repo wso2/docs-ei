@@ -553,6 +553,10 @@ nav:
           - 'Salesforce REST API Reference': 'references/connectors/salesforce-connectors/sf-rest-connector-config.md'
           - 'Salesforce Inbound Endpoint Example': 'references/connectors/salesforce-connectors/sf-inbound-endpoint-example.md'
           - 'Salesforce Inbound Endpoint Reference': 'references/connectors/salesforce-connectors/sf-inbound-endpoint-reference-configuration.md'
+          - 'Salesforce Bulk Configuration': 'references/connectors/salesforcebulk-connector/salesforcebulk-connector-configuration.md'
+          - 'Salesforce Bulk API Example': 'references/connectors/salesforcebulk-connector/salesforcebulk-connector-example.md'
+          - 'Salesforce Bulk API Reference': 'references/connectors/salesforcebulk-connector/salesforcebulk-reference.md'
+          - 'Salesforce SOAP API Reference': 'references/connectors/salesforce-soap-connector/salesforce-soap-reference.md'
         - ServiceNow Connector:
           - 'ServiceNow Overview': 'references/connectors/servicenow-connector/servicenow-overview.md'
           - 'Setting up Servicenow': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
