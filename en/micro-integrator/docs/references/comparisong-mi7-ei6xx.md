@@ -9,9 +9,9 @@
  
 This [WSO2 EI 6.x product family](http://docs.wso2.com/enterprise-integrator) offers the conventional, centralized integration solution of the WSO2 middleware stack. WSO2 EI 6.x includes the ESB profile and other supporting profiles packaged in a single distribution.
  
-The new [WSO2 Enterprise Integrator (WSO2 EI 7.0.0)](https://ei.docs.wso2.com/en/latest/) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: microservices architecture, cloud-native architecture, or a centralized ESB architecture. This integration platform offers a graphical/configuration-driven approach to developing integrations for any of the architectural styles.
+The new [WSO2 Enterprise Integrator (WSO2 EI 7.1.0)](https://ei.docs.wso2.com/en/latest/) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: microservices architecture, cloud-native architecture, or a centralized ESB architecture. This integration platform offers a graphical/configuration-driven approach to developing integrations for any of the architectural styles.
  
-The following are the approaches to integration with EI 7.0.0.
+The following are the approaches to integration with EI 7.1.0.
  
 -   **Low-code Integration** with **Micro Integrator**
 
@@ -21,7 +21,7 @@ The following are the approaches to integration with EI 7.0.0.
 
     The [Streaming Integrator](https://ei.docs.wso2.com/en/latest/streaming-integrator/overview/overview/) is a cloud-native, lightweight component that understands, captures, analyzes, processes, and acts upon streaming data and events in real-time. It utilizes the SQL-like query language ‘Siddhi’ to implement the solution.
 
-As explained above, EI 7.0.0 addresses a wider audience that prefers different approaches to integration.
+As explained above, EI 7.1.0 addresses a wider audience that prefers different approaches to integration.
 
 ## Advantages of using the Micro Integrator in EI 7.0
 
