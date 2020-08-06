@@ -37,23 +37,27 @@ Follow the instructions below to start the migration!
 
 ### Set up the migration
 
--	Make a backup of the existing database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
+-	Make a backup of the EI 6.x distribution (`<EI_6.x.x_HOME>` folder) to back up the product configurations.
+-	Make a backup of the database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
+-	Download and install EI 7.1 in your environment:
 
--	Download and install EI 7.1 in your environment. The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
-	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer)
-	-	Install the product [using the binary distribution](../../../setup/installation/install_in_vm_binary)
--	You can use [WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates.
+	!!! Tip
+		The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
 
+	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer).
+	-	Install the product [using the binary distribution](../../../setup/installation/install_in_vm_binary).
+
+-	Use [WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates for your EI 7.0 distribution.
 
 	!!! Info
 		Note that you need a valid [WSO2 subscription](https://wso2.com/subscription) to use updates in a production environment.
 
 ### Migrating the user store
 
-If you are already using a JDBC or LDAP user store with EI 6.x, you can simply connect the same to the Micro Integrator 
-by updating the configuration details in `deployment.toml` file. 
+If you are already using a JDBC or LDAP user store with EI 6.x, you can simply connect the same to the Micro Integrator by updating the configuration details in `deployment.toml` file. Following is a set of high-level configurations. 
 
-Following is a set of high-level configurations. See the instructions on [configuring a user store](../user_stores/setting_up_a_userstore) for more information.
+!!! Tip
+	See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
 
 ```toml tab='RDBMS User Store'
 [user_store]
@@ -74,7 +78,7 @@ data_source = "WSO2_USER_DB"
 enable = false
 ```
 
-```toml tab='Read Only LDAP User Store'
+```toml tab='Read-Only LDAP User Store'
 [user_store]
 connection_url = "ldap://localhost:10389"  
 connection_name = "uid=admin,ou=system"
@@ -86,7 +90,7 @@ type = "read_only_ldap"
 enable = false
 ```
 
-```toml tab='Read Write LDAP User Store'
+```toml tab='Read-Write LDAP User Store'
 [user_store]
 connection_url = "ldap://localhost:10389"  
 connection_name = "uid=admin,ou=system"
@@ -99,29 +103,25 @@ enable = false
 ```
 	
 ### Migrating the registry
-
 The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
 
--	If the artifacts in EI 6.x are added in carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1.
+-	If the artifacts in EI 6.x are added in carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<EI_6.x.x_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder. 
 -	If the artifacts are added through the management console in EI 6.x.x, first download the artifacts from the management console, and then add to the `<MI_HOME>/registry/` folder by maintaining the same resource structure.
 
 ### Migrating artifacts
 
-The recommended way to create integration artifacts (in EI 6.x or EI 7.x ) is to use [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio)
+The recommended way to create integration artifacts (in EI 6.x or EI 7.x ) is to use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio):
 
-- If the artifacts are created in the recommended way, copy the CAR files inside `<EI_6.x
-.x_HOME>/repository/deployment/server/carbonapps` to the 
-`<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the artifacts are created using the management console of EI 6.x, you need to recreate them using WSO2 Integration 
-Studio and package them as a composite application.
+- If the artifacts are created in the recommended way, copy the CAR files inside `<EI_6.x.x_HOME>/repository/deployment/server/carbonapps` to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+- If the artifacts are created using the management console of EI 6.x, you need to recreate them using WSO2 Integration Studio and package them as a composite application. See the instructions on [packaging artifacts](../../../develop/packaging-artifacts).
 
 !!! Tip
      For testing purposes, you can copy the artifacts to the same folder structure inside the `<MI_HOME>/repository/deployment/` directory.
 
 ### Migrating deployed Connectors
 
-- If the connector is added to EI 6.x via a composite application with connector exporter project, the same can be used in EI 7.1 seamlessly. Simply copy the CAR file in EI 6.x to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the connector is added to EI 6.x via the management console, pack them using connector exporter project and deploy via composite application in EI 7.1. For more information, read about the [Connector Exporter Project](../../develop/creating-artifacts/adding-connectors).
+- If the connector is added to EI 6.x via a composite application with the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors), the same can be used in EI 7.1 seamlessly. Simply copy the CAR file in EI 6.x to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+- If the connector is added to EI 6.x via the management console, pack them using connector exporter project and deploy via composite application in EI 7.1. For more information, read about the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors).
 
 ### Migrating custom components
 
@@ -131,11 +131,7 @@ Copy custom OSGI components in the `<EI_6.x.x_HOME>/dropins` folder to the `<MI_
     To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
 
 ### Migrating keystores
-Copy the JKS files in the `<EI_6.x.x_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory.
-
-### Migrating passwords
-
-To migrate the passwords from EI 6.x, the plain text passwords are required. Once you have them, follow the normal procedure of encrypting secrets in EI 7. See [Encrypt Secrets](../security/encrypting_plain_text) for instructions. 
+Copy the JKS files in the `<EI_6.x.x_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory. 
 
 ### Migrating configurations
 WSO2 EI 6.x versions supported multiple configuration files such as `carbon.xml`, `synapse.properties`, and `axis2.xml`. With the new configuration model in the Micro Integrator of EI 7.1, product configurations are primarily handled by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). The log4j2 configurations are handled in the `log4j2.properties`.
@@ -187,3 +183,7 @@ If you have used a custom log4j component in you you older EI version, apply the
 		```
 
 4.	Follow the instructions on [configuring log4j2](../../../administer-and-observe/logs/configuring_log4j_properties) to register the Appenders and Loggers.
+
+### Migrating encrypted passwords
+
+To migrate the encrypted passwords from EI 6.x, you need to first obtain the plain-text passwords. Once you have them, follow the normal procedure of encrypting secrets in EI 7. See [Encrypt Secrets](../../security/encrypting_plain_text) for instructions.

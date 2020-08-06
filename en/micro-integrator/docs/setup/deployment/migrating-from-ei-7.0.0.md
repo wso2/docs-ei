@@ -4,20 +4,72 @@ This guide explains the recommended strategy for migrating from the Micro Integr
 
 ### Set up the migration
 
--	Make a backup of the current EI 7.0.0 deployment. This backup is necessary in case the migration causes any issues.
--	Download and install EI 7.1.0 in your environment. The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
-	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer)
-	-	Install the product [using the binary distribution](../../../setup/installation/install_in_vm_binary)
--	You can use [WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates.
+-	Make a backup of the database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
+-	Download and install EI 7.1 in your environment:
+
+	!!! Tip
+		The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
+
+	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer).
+	-	Install the product [using the binary distribution](../../../setup/installation/install_in_vm_binary).
+
+-	Use [WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates for your EI 7.0 distribution.
 
 	!!! Info
 		Note that you need a valid [WSO2 subscription](https://wso2.com/subscription) to use updates in a production environment.
 
-### Migrating user stores
-You can use the same user stores that you used for the Micro Integrator of EI 7.0.0 with EI 7.1.0. Simply copy the user store configurations in your WSO2 EI 7.0.0 instance to the `<MI_7.1.0_HOME>/conf/deployment.toml` file in EI 7.1.0. See the instructions on [configuring a user store](https://ei.docs.wso2.com/en/7.1.0/micro-integrator/setup/user_stores/setting_up_a_userstore/).
+### Migrating the user store
+
+If you are already using a JDBC or LDAP user store with the Micro Integrator of EI 7.0, you can simply connect the same to the Micro Integrator of EI 7.1 by updating the configuration details in `deployment.toml` file. Following is a set of high-level configurations. 
+
+!!! Tip
+	See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
+
+```toml tab='RDBMS User Store'
+[user_store]
+type = "database"
+read_only = "false"
+
+[[datasource]]
+id = "WSO2_USER_DB"
+url= "jdbc:mysql://localhost:3306/userdb"
+username="root"
+password="root"
+driver="com.mysql.jdbc.Driver"
+
+[realm_manager]
+data_source = "WSO2_USER_DB" 
+
+[internal_apis.file_user_store]
+enable = false
+```
+
+```toml tab='Read-Only LDAP User Store'
+[user_store]
+connection_url = "ldap://localhost:10389"  
+connection_name = "uid=admin,ou=system"
+connection_password = "admin"  
+user_search_base = "ou=Users,dc=wso2,dc=org"
+type = "read_only_ldap"
+   
+[internal_apis.file_user_store]
+enable = false
+```
+
+```toml tab='Read-Write LDAP User Store'
+[user_store]
+connection_url = "ldap://localhost:10389"  
+connection_name = "uid=admin,ou=system"
+connection_password = "admin"  
+user_search_base = "ou=Users,dc=wso2,dc=org"
+type = "read_write_ldap"
+   
+[internal_apis.file_user_store]
+enable = false
+```
 
 ### Migrating the registry
-The Micro Integrator uses a [file based registry](../file_based_registry). You can directly migrate the artifacts to the EI 7.1.0 by adding the carbon applications to the `MI-HOME/repository/deployment/server/carbonapps` folder. 
+The Micro Integrator uses a [file based registry](../file_based_registry). You can directly migrate the artifacts to the EI 7.1.0 by copying the carbon applications from the `<MI_7.0.0_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_7.1.0_HOME>/repository/deployment/server/carbonapps` folder. 
 
 ### Migrating artifacts
 Copy the contents inside `<MI_7.0.0_HOME>/repository/deployment` to the `<MI_7.1.0_HOME>/repository/deployment` folder.
@@ -33,12 +85,11 @@ Copy the configurations in the `deployment.toml` file of EI 7.1.0 (such as datab
 
 ### Migrating encrypted passwords
 
-In version 7.0.0, **secure vault** was used to store sensitive information used in synapse configurations and the **cipher tool** was used for encrypting sensitive server information. In EI 7.1.0, all the sensitive information (in server configurations as well as synapse configuration) can simply be encrypted and stored using the cipher tool, without having to differentiate.
+In version 7.0.0, **secure vault** was used to store sensitive information used in **synapse** configurations and the **cipher tool** was used for sensitive **server** configurations. In EI 7.1.0, all the sensitive information (in server configurations as well as synapse configuration) can simply be encrypted and stored using the cipher tool.
 
-We provide a migration tool, which allows you to decrypt the existing passwords in secure vault as well as cipher tool.The decrypted plain-text values can then be added to the [secrets] section of the `deployment.toml` file of the Micro Integrator of EI 7.1.0 and re-encrypted by running the cipher tool. Follow the instructions given below.
+We provide a migration tool, which allows you to decrypt the existing passwords in secure vault as well as cipher tool. The decrypted plain-text values can then be added to the `[secrets]` section of the `deployment.toml` file of the Micro Integrator of EI 7.1.0 and re-encrypted by running the cipher tool. Follow the instructions given below.
 
 1. Download the [migration tool](https://github.com/wso2-docs/WSO2_EI/tree/master/migration-client).
-
 2. Get the latest update for your existing EI 7.0.0 distribution by using [WSO2 Update Manager](https://docs.wso2.com/display/updates/).
 
 	!!! Info
