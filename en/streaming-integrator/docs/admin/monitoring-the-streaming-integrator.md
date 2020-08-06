@@ -14,7 +14,7 @@ This use case involves running both the Streaming Integrator and the Analytics D
 <tbody>
 <tr class="odd">
 <th>Memory</th>
-<td><p><ul><li>~ 2 GB minimum</li><li>~ 512 MB heap size. This is generally sufficient to process typical SOAP messages but the requirements vary with larger message sizes and  the number of messages processed concurrently.</li></ul></p></td>
+<td><p><ul><li>~ 2 GB minimum. It is recommended to allocate 4 GB<li>2 CPU cores minimum. It is recommended to allocate 4 cores.</li></li><li>~ 512 MB heap size. This is generally sufficient to process typical SOAP messages but the requirements vary with larger message sizes and  the number of messages processed concurrently.</li></ul></p></td>
 </tr>
 <tr class="even">
 <th>Disk</th>
