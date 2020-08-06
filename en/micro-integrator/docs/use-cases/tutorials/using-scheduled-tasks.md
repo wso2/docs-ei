@@ -101,12 +101,7 @@ Shown below is the complete source configuration of the Sequence (i.e., the `Inj
 
     2.  Select **XML** as the **Parameter Type** of the **message** parameter, and enter the following as the XML message in the **Value/Expression** field and click **OK**. 
         ```xml
-        <request xmlns="">
-           <location>
-               <city>London</city>
-               <country>UK</country>
-           </location>
-        </request>
+        <request xmlns="">   <location>   <city>London</city>    <country>UK</country>   </location>    </request>
         ``` 
 
         ![](../../assets/img/tutorials/scheduled-tasks/8-task-properties.png)
