@@ -309,7 +309,8 @@ nav:
         - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
         - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
       - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
-      - 'Production Deployment Guidelines': 'setup/deployment/deployment_checklist.md'
+      - 'Migrating from WSO2 EI 7.0.0': 'setup/deployment/migrating-from-ei-7.0.0.md'
+      - 'Product Deployment Guidelines': 'setup/deployment/deployment_checklist.md'
       - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Security Hardening :
         - Setting up Keystores:
