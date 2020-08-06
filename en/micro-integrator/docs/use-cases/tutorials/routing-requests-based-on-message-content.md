@@ -120,7 +120,7 @@ To implement the routing scenario, let's add a new API resource to the REST API 
 
 1.  Select **API Resource** in the API palette of the REST API and drag it to the canvas just below the previous API resource that was created.  
 
-    ![](../../assets/img/tutorials/119132155/119132165.png)
+    <img src="../../../assets/img/tutorials/119132155/119132165.png">
 
 2.  Click the new API Resource to access the **Properties** tab and enter the following details:
     <table>
@@ -148,7 +148,7 @@ To implement the routing scenario, let's add a new API resource to the REST API 
     </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132155/119132164.png)
+    <img src="../../../assets/img/tutorials/119132155/119132164.png">
 
 #### Define the mediation flow 
 
@@ -196,11 +196,11 @@ You can now start configuring the API resource.
 3.  Add a **Switch** mediator from the **Mediator** palette just after the Property Mediator.
 4.  Right-click the Switch mediator you just added and select **Add/Remove Case** to add the number of cases you want to specify.  
 
-    ![](../../assets/img/tutorials/119132155/119132163.png) 
+    <img src="../../../assets/img/tutorials/119132155/119132163.png">
 
     We have three different hospital endpoints, which corresponds to three switch cases. Enter 3 for **Number of branches** and click **OK**.  
 
-    ![](../../assets/img/tutorials/119132155/switch-cases-dialog.png)
+    <img src="../../../assets/img/tutorials/119132155/switch-cases-dialog.png">
 
 5.  With the Switch mediator selected, go to the **Properties** tab and give the following details:
     <table>
@@ -319,7 +319,7 @@ You can now start configuring the API resource.
 
 8.  Add a **Send** mediator adjoining the Log mediator and add the **GrandOakEP endpoint** from **Defined Endpoints** palette to the empty box adjoining the Send mediator.  
 
-    ![](../../assets/img/tutorials/119132155/119132159.png)
+    <img src="../../../assets/img/tutorials/119132155/119132159.png">
 
 9.  Add **Log mediators** in the other two **Case boxes** in the Switch mediator and then enter the same properties. Make sure to name the two Log mediators as follows:
 
@@ -344,7 +344,7 @@ You can now start configuring the API resource.
 
 The In Sequence of the API resource configuration should now look like this:  
 
-![](../../assets/img/tutorials/119132155/119132158.png?effects=drop-shadow)
+<img src="../../../assets/img/tutorials/119132155/119132158.png?effects=drop-shadow">
 
 You have successfully created all the artifacts that are required for routing messages to a back-end service depending on the content in the request payload. 
 

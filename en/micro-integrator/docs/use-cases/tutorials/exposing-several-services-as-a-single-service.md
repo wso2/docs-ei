@@ -86,7 +86,7 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
 
 4.  Click **Finish**.
 
-    ![](../../assets/img/tutorials/119132228/119132240.png)
+    <img src="../../../assets/img/tutorials/119132228/119132240.png" width="500">
 
 5.  Create another endpoint for the Settle Payment back-end service and specify the details given below:
     <table>
@@ -142,7 +142,7 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
 
 6.  Click **Finish**.
 
-    ![](../../assets/img/tutorials/119132228/119132239.png)
+    <img src="../../../assets/img/tutorials/119132228/119132239.png" width="500">
 
 You have now created the additional endpoints that are required for this tutorial.
 

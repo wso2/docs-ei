@@ -23,7 +23,7 @@ An Integration project is a maven multi module project, which will contain all t
 1.  Open **WSO2 Integration Studio**.
 2.  Click **New Integration Project** in the **Getting Started** tab as shown below. 
 
-    ![](../../assets/img/create_project/create-integration-project.png)
+    <img src="../../../assets/img/create_project/create-integration-project.png" width="700">
 
     This will open the <b>New Integration Project</b> dialog box.
 
@@ -33,13 +33,13 @@ An Integration project is a maven multi module project, which will contain all t
     -   **Create Composite Exporter**
     -   **Create Connector Exporter**
 
-    ![](../../assets/img/tutorials/119132413/create-simple-message-project.png)
+    <img src="../../../assets/img/tutorials/119132413/create-simple-message-project.png" width="500">
 
 4.  Click **Finish**. 
 
     You can see the projects listed in the **Project Explorer** as shown below:
 
-    ![](../../assets/img/tutorials/119132413/project-explorer-simple-service.png)
+    <img src="../../../assets/img/tutorials/119132413/project-explorer-simple-service.png" width="300">
 
 #### Create an Endpoint
 
@@ -97,7 +97,8 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
 
 4.  Click **Finish**.  
     The **QueryDoctorEP** endpoint is saved in the `endpoints` folder within the **ESB Config** module of the integration project.  
-    ![](../../assets/img/tutorials/119132413/endpoint-project-explorer.png)
+    
+    <img src="../../../assets/img/tutorials/119132413/endpoint-project-explorer.png" width="300">
 
 #### Create a REST API
 
@@ -150,7 +151,7 @@ Once the API resource is created, the design view of the `           HealthcareA
     - The middle part of the canvas is the **Out sequence**, which controls how responses are handled. In this case, a **Send** mediator is already in place to send responses back to the requesting client.
     - The bottom part of the canvas is the **Fault sequence**, which allows you to configure how to handle messages when an error occurs (for more information, see [Error Handling](../../../references/error_handling)).
 
-![](../../assets/img/tutorials/119132413/119132425.png)
+<img src="../../../assets/img/tutorials/119132413/119132425.png">
 
 You can now start configuring the API resource.
 
@@ -183,7 +184,7 @@ You can now start configuring the API resource.
       </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132413/119132424.png)
+    <img src="../../../assets/img/tutorials/119132413/119132424.png">
 
 3.  You can now configure the In sequence to handle requests from the client:
 

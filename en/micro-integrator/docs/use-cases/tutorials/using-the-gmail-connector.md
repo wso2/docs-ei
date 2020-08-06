@@ -15,7 +15,7 @@ Set up WSO2 Integration Studio as follows:
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 2.   If you did not try the [asynchronous messaging](storing-and-forwarding-messages.md) tutorial yet:
     1.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/StoreAndForwardTutorial.zip).
+    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/StoreAndForwardTutorial.zip).
 
 ### Step 2: Develop the integration artifacts
 
@@ -24,11 +24,11 @@ Set up WSO2 Integration Studio as follows:
 1. Right click on **Sample Services Configs** module in the Project Explorer and select **Add or Remove Connector/Module**.
 2. Select **Add Connector/module** and click **Next**. You are now connected to the [WSO2 Connector store](https://store.wso2.com).
 3. Find **Email** from the list of connectors and click the **Download** button (for the Email connector). 
-    ![](../../assets/img/tutorials/119132294/import-gmail-connector.png)
+    <img src="../../../assets/img/tutorials/119132294/import-gmail-connector.png" width="500">
 
 4. Click **Finish**.
    The connector is now downloaded to your workspace in WSO2 Integration Studio and the connector operations are available in the Email Connector palette.  
-    ![](../../assets/img/tutorials/119132294/select-connector-dialog.png)
+    <img src="../../../assets/img/tutorials/119132294/select-connector-dialog.png" width="300">
 
 Let's use these connector operations in the configuration.
 
@@ -38,7 +38,7 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
 
 1.  Add a Property Mediator just before the Call mediator to retrieve and store the patient's email address.
 
-    ![](../../assets/img/tutorials/119132294/119132299.png)  
+    <img src="../../../assets/img/tutorials/119132294/119132299.png">
 
 2.  With the Property mediator selected, access the **Property** tab of the mediator and fill in the information in the following table:
 
@@ -87,7 +87,7 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
 
 3.  Add another Property mediator just after the Log mediator to retrieve and store the response sent from SettlePaymentEP. This will be used within the body of the email.
 
-    ![](../../assets/img/tutorials/119132294/119132298.png)
+    <img src="../../../assets/img/tutorials/119132294/119132298.png">
 
 4.  With the Property mediator selected, access the **Property** tab and specify the details given below.
 
@@ -102,11 +102,11 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
 
 5.  Drag and drop the <i>send</i> operation from the **Email Connector** palette adjoining the Property mediator you added in the previous step.
 
-    ![](../../assets/img/tutorials/119132294/119132297.png)
+    <img src="../../../assets/img/tutorials/119132294/119132297.png">
 
 6.  With the <i>send</i> operation selected, access the Property tab and create a connection by clicking on the '+' icon.
     
-    ![](../../assets/img/tutorials/119132294/create-email-connection.png)
+    <img src="../../../assets/img/tutorials/119132294/create-email-connection.png" width="500">
     
     In the pop up window, following parameters must be provided.
 
@@ -158,14 +158,14 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
 
     The updated **PaymentRequestProcessingSequence** should now look like this:  
 
-    ![](../../assets/img/tutorials/119132294/119132296.png)
+    <img src="../../../assets/img/tutorials/119132294/119132296.png">
 
 8.  Save the updated sequence configuration.
 9.  Right click on **SampleServicesConnectorExporter** and navigate to **New →  Add/Remove Connectors** and select **Add connector/module** and click on **Next** . Select **Workspace** to list down the connectors that were added.  
 
-    ![](../../assets/img/tutorials/119132294/add-remove-connectors.png)
+    <img src="../../../assets/img/tutorials/119132294/add-remove-connectors.png" width="500">
 
-    ![](../../assets/img/tutorials/119132294/connector-select-dialog.png)
+    <img src="../../../assets/img/tutorials/119132294/connector-select-dialog.png" width="500">
 
 10. Select the Email connector from the list and click **OK** and then **Finish**.
 
