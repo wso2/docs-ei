@@ -78,11 +78,13 @@ the `get-property` XPath function. The following log mediator logs the actual er
 </log>
 ``` 
 
+
+
 The following is a sample of the configurations to use the Fault sequence in an API. Make note of the "faultSequence" attribute in the "resource" element.
 
 ```xml
 <api context="/testFault" name="FaultTestAPI">
-    <resource faultSequence="testFault" methods="POST" uri-template="/v1">
+    <resource faultSequence="fault" methods="POST" uri-template="/v1">
         <inSequence>
             <switch source="//m0:getQuote/m0:request/m0:symbol" xmlns:m0="http://services.samples">
                 <case regex="IBM">
