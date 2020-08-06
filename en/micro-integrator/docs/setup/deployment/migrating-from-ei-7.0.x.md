@@ -1,4 +1,4 @@
-# Migrating from WSO2 EI 7.0.0 to WSO2 EI 7.1.0
+# Migrating from WSO2 EI 7.0.x to WSO2 EI 7.1.x
 
 This guide explains the recommended strategy for migrating from the Micro Integrator of WSO2 EI 7.0.0 to the Micro Integrator of WSO2 EI 7.1.0.
 
@@ -87,9 +87,11 @@ Copy the configurations in the `deployment.toml` file of EI 7.1.0 (such as datab
 
 In version 7.0.0, **secure vault** was used to store sensitive information used in **synapse** configurations and the **cipher tool** was used for sensitive **server** configurations. In EI 7.1.0, all the sensitive information (in server configurations as well as synapse configuration) can simply be encrypted and stored using the cipher tool.
 
-We provide a migration tool, which allows you to decrypt the existing passwords in secure vault as well as cipher tool. The decrypted plain-text values can then be added to the `[secrets]` section of the `deployment.toml` file of the Micro Integrator of EI 7.1.0 and re-encrypted by running the cipher tool. Follow the instructions given below.
+To migrate the encrypted passwords from EI 7.0.0, you need to first obtain the plain-text passwords. We provide a migration tool, which allows you to decrypt already encrypted passwords in EI 7.0.0.  The plain-text values can then be added to the `[secrets]` section of the `deployment.toml` file of the Micro Integrator of EI 7.1.0 and re-encrypted by running the cipher tool. 
 
-1. Download the [migration tool](https://github.com/wso2-docs/WSO2_EI/tree/master/migration-client).
+Follow the instructions given below.
+
+1. Download the [tool](https://github.com/wso2-docs/WSO2_EI/tree/master/migration-client).
 2. Get the latest update for your existing EI 7.0.0 distribution by using [WSO2 Update Manager](https://docs.wso2.com/display/updates/).
 
 	!!! Info
@@ -107,4 +109,9 @@ We provide a migration tool, which allows you to decrypt the existing passwords 
 	micro-integrator.bat -Dmigrate.from.product.version=110
 	```
 
-5. Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to `MI_7.1.0_HOME/migration/secure-vault-decrypted.properties` file and the `MI_7.1.0_HOME/migration/cipher-text-decrypted.properties` file. 
+	!!! Info
+		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to `MI_7.0.0_HOME/migration/secure-vault-decrypted.properties` file and the `MI_7.0.0_HOME/migration/cipher-text-decrypted.properties` file. 
+
+	The encrypted passwords are now decrypted and you have access to the plain-text password values.
+
+5.	Use the plain-text passwords and follow the normal procedure of encrypting secrets in EI 7.1 See [Encrypt Secrets](../../security/encrypting_plain_text) for instructions.
