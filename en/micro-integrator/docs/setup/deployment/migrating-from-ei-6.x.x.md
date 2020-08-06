@@ -102,8 +102,14 @@ enable = false
 
 The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
 
--	If the artifacts in EI 6.x are added in carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1.
--	If the artifacts are added through the management console in EI 6.x.x, first download the artifacts from the management console, and then add to the `<MI_HOME>/registry/` folder by maintaining the same resource structure.
+-	If the registry resources in EI 6.x are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1.
+-	If the registry resources are added through the management console in EI 6.x.x, you need to convert them in to Registry Resources Project and deploy them via a Carbon Application. You can follow one of the following approach to achieve this.
+    - [Checkout the Registry Resources](../../../develop/creating-artifacts/creating-registry-resources/#check-out-from-registry) from EI 6.x.x server directly into the Registry Resources Project in Integration Studio.
+    - Download the Registry Resources from EI 6.x.x and [import them](../../../develop/creating-artifacts/creating-registry-resources/#import-from-file-system) into the Registry Resources Project in Integration Studio.
+    
+!!! Note
+    When you are importing Registry Resources into Integration Studio, make sure that the media type of the Resource is set properly.
+
 
 ### Migrating artifacts
 

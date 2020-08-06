@@ -1,10 +1,10 @@
-# Creating Registry Resources
+# Creating a Registry Resource
 
-Initially, your registry resources project will contain only a `pom` file. You can create any number of registry resources inside that project.
+Initially, your Registry resources project will contain only a `pom` file. You can create any number of registry resources inside that project.
 
 ## Step 1: Creating the resource artifact
 
-Right-click the [Registry Resource project](../../creating-projects/#registry-resource-project) and click **New** -> **Registry Resource**.
+Right-click on the `Registry Resource project` and click **New** -> **Registry Resource**.
 
 <img src="../../../assets/img/create_artifacts/new_resource/select-resource.png" width="500">
 
