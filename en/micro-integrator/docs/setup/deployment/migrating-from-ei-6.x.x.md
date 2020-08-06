@@ -121,7 +121,7 @@ Studio and package them as a composite application.
 ### Migrating deployed Connectors
 
 - If the connector is added to EI 6.x via a composite application with connector exporter project, the same can be used in EI 7.1 seamlessly. Simply copy the CAR file in EI 6.x to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the connector is added to EI 6.x via the management console, pack them using connector exporter project and deploy via composite application in EI 7.1. For more information, see [Connector Exporter Project](../../develop/creating-artifacts/adding-connectors)
+- If the connector is added to EI 6.x via the management console, pack them using connector exporter project and deploy via composite application in EI 7.1. For more information, read about the [Connector Exporter Project](../../develop/creating-artifacts/adding-connectors).
 
 ### Migrating custom components
 
