@@ -48,9 +48,56 @@ Follow the instructions below to start the migration!
 	!!! Info
 		Note that you need a valid [WSO2 subscription](https://wso2.com/subscription) to use updates in a production environment.
 
-### Migrating databases
-If you are already using a JDBC user store with EI 6.x.x, you can connect the same database to the Micro Integrator of EI 7 by simply updating the user store configurations in the Micro Integrator.
+### Migrating user store
 
+If you are already using a JDBC or LDAP user store with EI 6.x, you can simply plug the same to the Micro Integrator 
+by updating the configuration details in `deployment.toml` file. 
+
+Following is a set of high level configurations, please refer to [Working with User Stores](../user_stores/managing_users) for more information.
+
+```toml tab='RDBMS User Store'
+[user_store]
+type = "database"
+read_only = "false"
+
+[[datasource]]
+id = "WSO2_USER_DB"
+url= "jdbc:mysql://localhost:3306/userdb"
+username="root"
+password="root"
+driver="com.mysql.jdbc.Driver"
+
+[realm_manager]
+data_source = "WSO2_USER_DB" 
+
+[internal_apis.file_user_store]
+enable = false
+```
+
+```toml tab='Read Only LDAP User Store'
+[user_store]
+connection_url = "ldap://localhost:10389"  
+connection_name = "uid=admin,ou=system"
+connection_password = "admin"  
+user_search_base = "ou=Users,dc=wso2,dc=org"
+type = "read_only_ldap"
+   
+[internal_apis.file_user_store]
+enable = false
+```
+
+```toml tab='Read Write LDAP User Store'
+[user_store]
+connection_url = "ldap://localhost:10389"  
+connection_name = "uid=admin,ou=system"
+connection_password = "admin"  
+user_search_base = "ou=Users,dc=wso2,dc=org"
+type = "read_write_ldap"
+   
+[internal_apis.file_user_store]
+enable = false
+```
+	
 ### Migrating the registry
 
 The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x.x). Note the following when migrating the registry:
@@ -65,18 +112,30 @@ The recommended way to create integration artifacts (in EI 6.x.x or EI 7.x.x ) i
 - If the artifacts are created in the recommended way, copy the CAR files inside `<EI_6.x
 .x_HOME>/repository/deployment/server/carbonapps` to the 
 `<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the artifacts are created using the management console of EI 6.x.x, please recreate them using WSO2 Integration Studio and package
-them as carbon application.
+- If the artifacts are created using the management console of EI 6.x.x, please recreate them using WSO2 Integration 
+Studio and package them as composite application.
 
 !!! Tip
      For testing purposes you can copy the artifacts to the same folder structure inside deployment directory.
+
+### Migrating deployed Connectors
+
+- If the connector is added via composite application with connector exporter project, the same can be used in EI 7 seamlessly.
+- If the connector is added via the Management console of EI 6.x, pack them using connector exporter project and  deploy via composite application in EI 7. For more information, refer [Connector Exporter Project](../../develop/creating-artifacts/adding-connectors)
 
 ### Migrating custom components
 
 Copy custom OSGI components in the `<EI_6.x.x_HOME>/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<EI_6.x.x_HOME>/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
 
+!!!note
+    To provide seamless integration with RabbitMQ, the rabbitmq client lib is packed in the default pack. Hence you  don't need to include it.
+
 ### Migrating keystores
 Copy the JKS files in the `<EI_6.x.x_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory.
+
+### Migrating Passwords
+
+To migrate the passwords from EI 6.x, plain text passwords are required. Once you have them, please follow the normal procedure of encrypting the secrets in EI 7. Please refer [Encrypt Secrets](../security/encrypting_plain_text)  section for further details. 
 
 ### Migrating configurations
 WSO2 EI 6.x.x versions supported multiple configuration files such as `carbon.xml`, `synapse.properties`, and `axis2.xml`. With the new configuration model in the Micro Integrator of EI 7.1.0, product configurations are primarily handled by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). The log4j2 configurations are handled in the `log4j2.properties`.
