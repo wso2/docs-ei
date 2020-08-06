@@ -78,7 +78,7 @@ Now, let's create a Message Store artifact to represent the broker.
     </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132268/119132276.png)
+    <img src="../../../assets/img/tutorials/119132268/119132276.png" width="500">
 
 3.  Click **Finish**.
 
@@ -89,7 +89,7 @@ Let's create a Sequence that uses the message in the message store to send the r
 1.  Right click the **SampleServices** project in the Project Explorer and navigate to **New -> Sequence**. 
 2.  Select **Create New Sequence** and give **PaymentRequestProcessingSequence** as the name.
 
-    ![](../../assets/img/tutorials/119132268/119132273.png)  
+    <img src="../../../assets/img/tutorials/119132268/119132273.png" width="500">  
 
 3.  Click **Finish**.
 
@@ -162,7 +162,7 @@ Let's create a **Message Sampling Processor** to dispatch the request message fr
         </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132268/119132269.png)
+    <img src="../../../assets/img/tutorials/119132268/119132269.png" width="500">
 
 2.  Click **Finish**.
 

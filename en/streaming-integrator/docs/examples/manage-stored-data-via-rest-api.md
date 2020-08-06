@@ -218,7 +218,7 @@ First let's create a Siddhi application with an Aggregation, so that we can try 
     define stream RawMaterialStream (name string, amount double);
     
     @store( type="rdbms",
-            jdbc.url="jdbc:mysql://localhost:3306/sweetFactoryDB",
+            jdbc.url="jdbc:mysql://localhost:3306/production?useSSL=false",
             username="wso2si",
             password="wso2" ,
             jdbc.driver.name="com.mysql.jdbc.Driver")
@@ -229,7 +229,7 @@ First let's create a Siddhi application with an Aggregation, so that we can try 
     aggregate every sec...year;
     ```
 
-    Here the `jdbc.url` parameter has the value `jdbc:mysql://localhost:3306/sweetFactoryDB?useSSL=false`. Change it to point to your MySQL server. Similarly change `username` and `password` parameters as well.
+    Here the `jdbc.url` parameter has the value `jdbc:mysql://localhost:3306/production?useSSL=false`. Change it to point to your MySQL server. Similarly change `username` and `password` parameters as well.
 
 2. Save this file as `AggregateDataIncrementally.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
