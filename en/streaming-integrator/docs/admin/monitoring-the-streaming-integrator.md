@@ -6,6 +6,23 @@ metrics relating to the history of a node or the cluster. Both JVM level metric
 
 The following sections cover how to configure the Status Dashboard and analyze statistics relating to your Streaming Integrator deployment in it.
 
+## System requirements
+
+This use case involves running both the Streaming Integrator and the Analytics Dashboard at the same time. Therefore, in addition to the system requirements of the Streaming Integrator, you require the following for the Analytics Dashboard.
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Memory</th>
+<td><p><ul><li>~ 2 GB minimum</li><li>~ 512 MB heap size. This is generally sufficient to process typical SOAP messages but the requirements vary with larger message sizes and  the number of messages processed concurrently.</li></ul></p></td>
+</tr>
+<tr class="even">
+<th>Disk</th>
+<td><p><li>~ 480 MB, excluding space allocated for log files and databases.</li></p></td>
+</tr>
+</tbody>
+</table>
+
 ## Configuring the Status Dashboard
 
 The following sections cover the configurations that need to be done in
