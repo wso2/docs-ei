@@ -556,9 +556,9 @@ nav:
           - 'Salesforce Bulk Configuration': 'references/connectors/salesforcebulk-connector/salesforcebulk-connector-configuration.md'
           - 'Salesforce Bulk API Example': 'references/connectors/salesforcebulk-connector/salesforcebulk-connector-example.md'
           - 'Salesforce Bulk API Reference': 'references/connectors/salesforcebulk-connector/salesforcebulk-reference.md'
-          - 'Salesforce SOAP API Reference': 'references/connectors/salesforce-soap-connector/salesforce-soap-reference.md'
           - 'Salesforce SOAP Connector Configuration': 'references/connectors/salesforce-connectors/sf-soap-connector-config.md'
-          - 'Salesforce SOAP Connector Reference': 'references/connectors/salesforce-connectors/salesforce-soap-reference.md'
+          - 'Salesforce SOAP Connector Example': 'references/connectors/salesforce-connectors/sf-soap-connector-example.md'
+          - 'Salesforce SOAP Connector Reference': 'references/connectors/salesforce-soap-connector/salesforce-soap-reference.md'
         - ServiceNow Connector:
           - 'ServiceNow Overview': 'references/connectors/servicenow-connector/servicenow-overview.md'
           - 'Setting up Servicenow': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
