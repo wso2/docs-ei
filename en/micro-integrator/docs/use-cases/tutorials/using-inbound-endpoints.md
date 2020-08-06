@@ -76,7 +76,7 @@ Set up WSO2 Integration Studio as follows:
         </tr>
     </table>
 
-    ![](https://lh5.googleusercontent.com/KUBGiYXSzSVkZo_mDb0y9yzGFp6Fts7FdUrvrH_QlvpGDtaTiwnivjvCsMBpzhGDyRrJvCeBysYQNBFL3ndpEXwUB-U5TDsBbNS2actK3_8ie2RWULV6-g1LY3Q9XWaWOHsZNc7O)
+    ![](../../assets/img/tutorials/using-inbound-endpoint/configure-inbound-endpoint.png)
 
 The endpoint will now get mapped to any URL that matches the above pattern provided. You will be exposing the health care API on a new port through this inbound endpoint.
 
@@ -88,6 +88,7 @@ Package the artifacts in your composite exporter module (SampleServicesComposite
 2.  Ensure that the following artifacts are selected in the POM file.
 
     -   `HealthcareAPI`
+    -   `QueryDoctorEP`
     -   `QueryDoctorInboundEndpoint`
 
 3.  Save the changes.
@@ -116,7 +117,7 @@ Let's test the use case by sending a simple client request that invokes the serv
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-JDK11.jar
+    java -jar Hospital-Service-JDK11-2.0.0.jar
     ```
 
 #### Send the client request
