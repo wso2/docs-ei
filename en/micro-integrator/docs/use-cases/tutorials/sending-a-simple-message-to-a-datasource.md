@@ -77,12 +77,12 @@ Follow the steps given below to create the data service file:
 1.  Select the already-created **Data Service Config** module in the project
     explorer, right-click and go to **New -> Data Service**.  
     The **New Data Service** window will open as shown below.  
-    ![](../../assets/img/tutorials/data_services/119130577/119130578.png)
+    <img src="../../../assets/img/tutorials/data_services/119130577/119130578.png" width="500">
 2.  To start creating a data service from scratch, select **Create New
     Data Service** and click **Next** to go to the next page.
 3.  Enter a name for the data service and click **Finish**:
 
-    ![](../../assets/img/tutorials/data_services/new_dataservice.png)
+    <img src="../../../assets/img/tutorials/data_services/new_dataservice.png" width="500">
 
     <table>
         <tr>
@@ -100,14 +100,14 @@ Follow the steps given below to create the data service file:
 A data service file (DBS file) will now be created in your data service
 module as shown below.
 
-![](../../assets/img/tutorials/data_services/dataservice_view.png)
+<img src="../../../assets/img/tutorials/data_services/dataservice_view.png">
 
 #### Creating the datasource connection
 
 1.  Click **Data Sources** to expand the section.
-    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
+    <img src="../../../assets/img/tutorials/data_services/data_source_expanded.png">
 2.  Click **Add New** to open the **Create Datasource** page.
-    ![](../../assets/img/tutorials/data_services/add_data_source.png)
+    <img src="../../../assets/img/tutorials/data_services/add_data_source.png" width="500">
 3.  Enter the datasource connection details given below.
 
     |       Property                     |       Description                     |
@@ -122,7 +122,7 @@ module as shown below.
     | Password                           | password                              |
 
 4.  Click **Test Connection** to expand the section.
-    ![](../../assets/img/tutorials/data_services/test_connection.png)
+    <img src="../../../assets/img/tutorials/data_services/test_connection.png">
 
 5.  Click the **Test Connection** button to verify the connectivity between the MySQL datasource and the data service.
 6.  Save the data service.
@@ -133,9 +133,9 @@ Let's write an SQL query to GET data from the MySQL datasource that you
 configured in the previous step:
 
 1.  Click **Queries** to expand the section. 
-    ![](../../assets/img/tutorials/data_services/query_expanded.png)
+    <img src="../../../assets/img/tutorials/data_services/query_expanded.png">
 2.  Click **Add New** to open the **Add Query** page.
-    ![](../../assets/img/tutorials/data_services/add_query.png)
+    <img src="../../../assets/img/tutorials/data_services/add_query.png" width="500">
 3.  Enter the following query details:
 
     | Parameter  |  Description       |
@@ -174,9 +174,9 @@ configured in the previous step:
             </table>
 
 5.  Save the input mapping.
-    ![](../../assets/img/tutorials/data_services/input_mappings.png)
+    <img src="../../../assets/img/tutorials/data_services/input_mappings.png">
 6.  Click **Result (Output Mappings)** to expand the section.
-    ![](../../assets/img/tutorials/data_services/out_mapping_expanded.png)
+    <img src="../../../assets/img/tutorials/data_services/out_mapping_expanded.png">
 7.  Enter the following value to group the output mapping:
 
     <table>
@@ -231,16 +231,16 @@ configured in the previous step:
    
  
 9.  Click **Save** to save the query.
-    ![](../../assets/img/tutorials/data_services/output_mapings.png)
+    <img src="../../../assets/img/tutorials/data_services/output_mapings.png">
 
 #### Creating a resource to invoke the query
 
 Now, let's create a REST resource that can be used to invoke the query.
 
 1.  Click **Resources** to expand the section. 
-    ![](../../assets/img/tutorials/data_services/resource_expanded.png)
+    <img src="../../../assets/img/tutorials/data_services/resource_expanded.png">
 2.  Click **Add New** to open the **Create Resource** page.
-    ![](../../assets/img/tutorials/data_services/create_resource.png)
+    <img src="../../../assets/img/tutorials/data_services/create_resource.png" width="500">
 3.  Enter the following resource details.
 
     <table>
@@ -272,7 +272,7 @@ Create a new composite exporter module
 
 1.  Right-click the **Maven Multi Module Project** go to <b>New -> Composite Exporter</b>.
 2.  In the dialog box that opens, select the data service file, and click **Finish**.  
-    ![Create new CAPP](../../assets/img/tutorials/data_services/composite_app.png)
+    <img src="../../../assets/img/tutorials/data_services/composite_app.png" width="500">
 
 Package the artifacts in your composite exporter to be able to deploy the artifacts in the server.
 

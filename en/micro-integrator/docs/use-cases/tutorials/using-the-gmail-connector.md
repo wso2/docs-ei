@@ -4,7 +4,7 @@
 
 When you integrate the systems in your organizaion, it is also necessary to integrate with third-party systems and its capabilities to enhance your services. WSO2 Micro Integrator uses **Connectors** for the purpose of referring the APIs of third-party systems.
 
-**In this tutorial**, when a client sends an appointment reservation request to the Micro Integrator, the client should receive an email confirming the appointment reservation details. To build this use case, you can add a GMail connector to the mediation flow of the REST resource that you defined in the [previous tutorial](storing-and-forwarding-messages.md).
+**In this tutorial**, when a client sends an appointment reservation request to the Micro Integrator, the client should receive an email confirming the appointment reservation details. To build this use case, you can add an Email connector to the mediation flow of the REST resource that you defined in the [previous tutorial](storing-and-forwarding-messages.md).
 
 ## Let's get started!
 
@@ -15,57 +15,20 @@ Set up WSO2 Integration Studio as follows:
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 2.   If you did not try the [asynchronous messaging](storing-and-forwarding-messages.md) tutorial yet:
     1.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/StoreAndForwardTutorial.zip).
+    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/StoreAndForwardTutorial.zip).
 
 ### Step 2: Develop the integration artifacts
 
-#### Creating a Client ID and Client Secret
+#### Importing the Email Connector into WSO2 Integration Studio
 
-Follow the steps below if you want to use your own email address for sending the emails.
-
-1.  As the email sender, navigate to the [URL](https://console.developers.google.com/projectselector/apis/credentials) and log in to your google account.
-2.  If you do not already have a project, create a new project.
-3.  Now, navigate again to the [URL](https://console.developers.google.com/projectselector/apis/credentials) and click
- **Google APIs -> Credentials -> Create Credential -> OAuth client ID**.
-
-    !!! Note
-        At this point, if the consent screen name is not provided, you will be prompted to do so.
-
-4.  Select **Web Application** and create a client.
-5.  Provide <https://developers.google.com/oauthplayground> as the redirect URL under **Authorized redirect URIs** and click **Create**. The client ID and client secret will then be displayed.
-
-    !!! Info
-        See [Gmail API documentation](https://developers.google.com/gmail/api/auth/web-server) for details on creating the Client ID and Client Secret.
-    
-6.  Click on the Library on the side menu and select **Gmail API**.
-7.  Click **Enable**.
-
-#### Obtaining the Access Token and Refresh Token
-
-Follow these steps to automatically refresh the expired token when connecting to Google API:
-
-1. Navigate to the <https://developers.google.com/oauthplayground> URL, click ![](/assets/img/tutorials/119132294/oauth-credential-icon.png) at the top right corner of the screen and select **Use your own OAuth credentials**.
-
-    ![](../../assets/img/tutorials/using-the-gmail-connector/OAuth2.0Configuration.png)
-    
-2. Provide the client ID and client secret you [previously created](#creating-a-client-id-and-client-secret) and click **Close**.
-3. Now under Step 1, select **Gmail API v1** from the list of APIs, select all the scopes listed under it, and click **Authorize APIs**.
-
-    ![](../../assets/img/tutorials/using-the-gmail-connector/GmailApiV1.png)
-   
-4. You will then be prompted to allow permission, click **Allow**.
-5. Now , click **Exchange authorization code for tokens** to generate and display the access token and refresh token.
-
-#### Importing the Gmail Connector into WSO2 Integration Studio
-
-1. Right click on **Sample Services** in the Project Explorer and select **Add or Remove Connector**.
-2. Select **Add Connector** and click **Next**. You are now connected to the [WSO2 Connector store](https://store.wso2.com).
-3. Find **Gmail** from the list of connectors and click the **Download** button (for the Gmail connector). 
-    ![](../../assets/img/tutorials/119132294/import-gmail-connector.png)
+1. Right click on **Sample Services Configs** module in the Project Explorer and select **Add or Remove Connector/Module**.
+2. Select **Add Connector/module** and click **Next**. You are now connected to the [WSO2 Connector store](https://store.wso2.com).
+3. Find **Email** from the list of connectors and click the **Download** button (for the Email connector). 
+    <img src="../../../assets/img/tutorials/119132294/import-gmail-connector.png" width="500">
 
 4. Click **Finish**.
-   The connector is now downloaded to your workspace in WSO2 Integration Studio and the connector operations are available in the Gmail Connector palette.  
-    ![](../../assets/img/tutorials/119132294/select-connector-dialog.png)
+   The connector is now downloaded to your workspace in WSO2 Integration Studio and the connector operations are available in the Email Connector palette.  
+    <img src="../../../assets/img/tutorials/119132294/select-connector-dialog.png" width="300">
 
 Let's use these connector operations in the configuration.
 
@@ -75,7 +38,7 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
 
 1.  Add a Property Mediator just before the Call mediator to retrieve and store the patient's email address.
 
-    ![](../../assets/img/tutorials/119132294/119132299.png)  
+    <img src="../../../assets/img/tutorials/119132294/119132299.png">
 
 2.  With the Property mediator selected, access the **Property** tab of the mediator and fill in the information in the following table:
 
@@ -124,7 +87,7 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
 
 3.  Add another Property mediator just after the Log mediator to retrieve and store the response sent from SettlePaymentEP. This will be used within the body of the email.
 
-    ![](../../assets/img/tutorials/119132294/119132298.png)
+    <img src="../../../assets/img/tutorials/119132294/119132298.png">
 
 4.  With the Property mediator selected, access the **Property** tab and specify the details given below.
 
@@ -137,23 +100,30 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
     | Value Expression  | json-eval($.)           |
     | Description       | Get Payment Response    |
 
-5.  Drag and drop the init method from the **Gmail Connector** palette adjoining the Property mediator you added in the previous step.
+5.  Drag and drop the <i>send</i> operation from the **Email Connector** palette adjoining the Property mediator you added in the previous step.
 
-    ![](../../assets/img/tutorials/119132294/119132297.png)
+    <img src="../../../assets/img/tutorials/119132294/119132297.png">
 
-6.  With the init method selected, access the Property tab and specify the details given below.
+6.  With the <i>send</i> operation selected, access the Property tab and create a connection by clicking on the '+' icon.
+    
+    <img src="../../../assets/img/tutorials/119132294/create-email-connection.png" width="500">
+    
+    In the pop up window, following parameters must be provided.
 
     | Property               | Value                                                                                                   |
     |-----------------------|---------------------------------------------------------------------------------------------------------|
-    | Parameter Editor Type | Select **inline**                                                                                       |
-    | userId                | The sender's email address (use the email address that you used to configure the client ID and secret.) |
-    | accessToken           | The **access token** you obtained.                           |
-    | apiUrl                | <https://www.googleapis.com/gmail>                                                                      |
-    | clientId              | The **client ID** you created.                                               |
-    | clientSecret          | The **client secret** you created.                             |
-    | refreshToken          | The **refresh token** you obtained.                          |
+    | Connection Name       | smtpconnection                                                                                       |
+    | Connection Type       | Select **SMTP Secured Connection**                           |
+    | Host                  | smtp.gmail.com                           |
+    | Port                  | 465                                                                      |
+    | Username              | Your email address                                               |
+    | Password              | Your email password                          |
 
-7.  Add the sendMail method from the Gmail Connector palette and access the **Property** tab and specify the following details;
+    !!! Tip
+        If you have enabled 2-factor authentication, an app password should be obtained as instructed [here](https://support.google.com/accounts/answer/185833?hl=en).
+
+7.  After the connection is successfully created, select the created connection as 'Connection' from the drop down in the properties window.
+8.  Specify the following details in the Properties tab;
 
     <table>
         <tr>
@@ -161,46 +131,52 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
             <th>Description</th>
         </tr>
         <tr>
-            <td>to</td>
+            <td>From</td>
             <td>
-              Enter `{$ctx:email_id}` as the value. This retrieves the patient email address that was stored in the relevant Property mediator.  
+              Enter your email address as the value. This will be account from which the email is sent.
             </td>
         </tr>
         <tr>
-            <td>subject</td>
+            <td>To</td>
+            <td>
+              Enter `$ctx:email_id` as the value. This retrieves the patient email address that was stored in the relevant Property mediator.  
+            </td>
+        </tr>
+        <tr>
+            <td>Subject</td>
             <td>
                 Enter `Payment Status` as the value. This is the subject line in the email that is sent out.
             </td>
         </tr>
         <tr>
-            <td>messageBody</td>
+            <td>Content</td>
             <td>
-                Enter `{$ctx:payment_response}` as the value. This retrieves the payment response that was stored in the relevant Property mediator.
+                Enter `$ctx:payment_response` as the value. This retrieves the payment response that was stored in the relevant Property mediator.
             </td>
         </tr>
     </table>
 
     The updated **PaymentRequestProcessingSequence** should now look like this:  
 
-    ![](../../assets/img/tutorials/119132294/119132296.png)
+    <img src="../../../assets/img/tutorials/119132294/119132296.png">
 
 8.  Save the updated sequence configuration.
-9.  Right click on **SampleServicesConnectorExporter** and navigate to **New →  Other → Add/Remove Connectors** and select **Add connector** and click on **Next** . Select **Workspace** to list down the connectors that were added.  
+9.  Right click on **SampleServicesConnectorExporter** and navigate to **New →  Add/Remove Connectors** and select **Add connector/module** and click on **Next** . Select **Workspace** to list down the connectors that were added.  
 
-    ![](../../assets/img/tutorials/119132294/add-remove-connectors.png)
+    <img src="../../../assets/img/tutorials/119132294/add-remove-connectors.png" width="500">
 
-    ![](../../assets/img/tutorials/119132294/connector-select-dialog.png)
+    <img src="../../../assets/img/tutorials/119132294/connector-select-dialog.png" width="500">
 
-10. Select the Gmail connector from the list and click **OK** and then **Finish**.
+10. Select the Email connector from the list and click **OK** and then **Finish**.
 
 ### Step 3: Package the artifacts
 
-Package the artifacts in your composite application project (SampleServicesCompositeApplication project), the registry resource project (SampleRegistryResource project), and the Connector project (SampleServicesConnectorExporter project) to be able to deploy the artifacts in the server.
+Package the artifacts in your composite exporter module (SampleServicesCompositeExporter), the registry resource project (SampleRegistryResource project), and the Connector project (SampleServicesConnectorExporter) to be able to deploy the artifacts in the server.
 
-1.  Open the `          pom.xml         ` file in the composite application project POM editor.
-2.  Ensure that the following projects and artifacts are selected in the POM file.
+1.  Open the `          pom.xml         ` file in the composite exporter module.
+2.  Ensure that the following modules and artifacts are selected in the POM file.
 
-    -   SampleServicesCompositeApplicationProject
+    -   SampleServicesConfigs
         -   `HealthcareAPI`
         -   `ClemencyEP`
         -   `GrandOakEP`
@@ -210,17 +186,18 @@ Package the artifacts in your composite application project (SampleServicesCompo
         -   `PaymentRequestMessageStore`
         -   `PaymentRequestProcessingSequence`
         -   `PaymentRequestProcessor`
-    -   SampleServicesRegistryProject
+        -   `Smptpsconnection`
+    -   SampleServicesRegistryResources
     -   SampleServicesConnectorExporter
 
-3.  Save the project.
+3.  Save the file.
 
 ### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+1.  Right-click the Composite Exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog that opens, make sure all the artifacts of the project are selected.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
 
 !!! Warning
@@ -240,73 +217,19 @@ Let's test the use case by sending a simple client request that invokes the serv
     java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
-#### Start the Message Broker runtime
-
-Set up the Message Broker profile of WSO2 EI 6.6.0. This is required because the Message Broker profile is used for guaranteed message delivery in this use case.
-
-1. Download [WSO2 EI 6.6.0](https://wso2.com/enterprise-integrator/6.6.0), which includes the Message Broker profile. The path to this folder is referred to as `EI_6.6.0_HOME` throughout this tutorial.
-
-2. Add the following JAR files from the `EI_6.6.0_HOME/wso2/broker/client-lib/` directory to the 
-`MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/lib` (in Windows/Linux) directory.
-    -   andes-client-*.jar
-    -   geronimo-jms_1.1_spec-*.jar
-    -   org.wso2.securevault-*.jar
-3. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows/Linux) directory and add the configurations given below. This is required for enabling the broker to store messages.
-
-    ```toml
-    [[transport.jms.listener]]
-    name = "myQueueListener"
-    parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-    parameter.broker_name = "wso2mb"
-    parameter.provider_url = "conf/jndi.properties"
-    parameter.connection_factory_name = "QueueConnectionFactory"
-    parameter.connection_factory_type = "queue"
-    parameter.cache_level = "consumer"
-
-    [[transport.jms.sender]]
-    name = "myQueueSender"
-    parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-    parameter.broker_name = "wso2mb"
-    parameter.provider_url = "conf/jndi.properties"
-    parameter.connection_factory_name = "QueueConnectionFactory"
-    parameter.connection_factory_type = "queue"
-    parameter.cache_level = "producer"
-
-    [transport.jndi.connection_factories]
-    'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
-
-    [transport.jndi.queue]
-    PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
-    ```
+#### Start the RabbitMQ Broker
     
-To start the Message Broker:
+Make sure that you have installed and started a RabbitMQ server instance for the Micro-Integrator to communicate with.
 
-1.  Open a terminal and navigate to the `EI_6.6.0_HOME/wso2/broker/bin` directory.
-2.  Execute the following command to run the message broker. 
-    
-    -   On **MacOS/Linux/CentOS**:
-
-        ```bash
-        sh wso2server.sh
-        ```
-
-    -   On **Windows**:
-
-        ```bash
-        wso2server.bat
-        ```
-
-    See the [WSO2 EI 6.6.0 documentation](https://docs.wso2.com/display/EI660/Running+the+Product) for more information on how to run the Message Broker profile.
+See the [RabbitMQ documentation](https://www.rabbitmq.com/download.html) for more information on how to install and run the product.
 
 #### Restart the Micro Integrator
 
 Let's restart the Micro Integrator with the deployed artifacts:
 
-Right-click the composite application project and click **Export Project Artifacts and Run** as shown below.
+Right-click the composite exporter module and click **Export Project Artifacts and Run** as shown below.
 
-<img src="../../../assets/img/tutorials/restart_server.png" width="400">
+<img src="../../../assets/img/tutorials/119132294/restart_server.png" width="400">
 
 #### Send the client request
 
@@ -412,10 +335,6 @@ You will see the response as follows:
 
 An email will be sent to the provided patient email address with the following details:
 
-Note: If you haven't received the mail yet, there are possibilities that your access token might have expired.
-Follow the steps in [obtaining-the-access-token-and-refresh-token](#obtaining-the-access-token-and-refresh-token) to 
-obtain a new access token and update the gmail init operation.
-
 ```bash
 Subject: Payment Status
              
@@ -424,4 +343,4 @@ Message:
     Doe","actualFee":7000.0,"discount":20,"discounted":5600.0,"paymentID":"8458c75a-c8e0-4d49-8da4-5e56043b1a20","status":"Settled"}
 ```
 
-You have now explored how to import the Gmail connector to the Micro Integrator and then use the connector operations to send emails.
+You have now explored how to import the Email connector to the Micro Integrator and then use the connector operations to send emails.

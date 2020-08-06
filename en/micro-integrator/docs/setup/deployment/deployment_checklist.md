@@ -33,7 +33,7 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
                      <strong>Related links</strong>
                   </div>
                   <div class="panelContent">
-                     <p>See <a href="#security-guidelines-and-checklist">Security Guidelines for Production Deployment</a> for the detailed list of security-related recommendations.</p>
+                     <p>See <a href="#security-guidelines">Security Guidelines</a> for the detailed list of security-related recommendations.</p>
                   </div>
                </div>
             </div>
@@ -146,9 +146,9 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
             <div class="content-wrapper">
                <p>The following ports must be accessed when operating within a firewall.</p>
                <ul>
-                  <li>9999 - Used for JMX monitoring.</li>
-                  <li>8290 - Default HTTP port used by the Micro Integrator for proxy services.</li>
-                  <li>8253 - Default HTTPS port used by the Micro Integrator for proxy services.</li>
+                  <li>8290 - Default HTTP port used by the Micro Integrator for proxy services and APIs.</li>
+                  <li>8253 - Default HTTPS port used by the Micro Integrator for proxy services and APIs.</li>
+                  <li>9164 - Default HTTPS port used by the Micro Integrator <a href="../../../administer-and-observe/working-with-management-api">Management APIs</a>.</li>
                </ul>
             </div>
          </td>
@@ -181,8 +181,8 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
          <td>High availability</td>
          <td>
             <div class="content-wrapper">
-               <p>In the cloud native deployment, high availability should be achieved via the container orchestration system ( Ex: Kubernetes ). For readiness and liveness probes, we can use <a href="https://github.com/wso2-docs/WSO2_EI/blob/master/kubernetes/HeartBeatCompositeApplication_1.0.0.car">this</a> sample carbon application which contains a health check API. We can invoke the health check API as follows</p>
-               <p><code>curl -X GET http://localhost:8290/testHealth</code></p>
+               <p>In the cloud native deployment, high availability should be achieved via the container orchestration system ( Ex: Kubernetes ). There are builtin <a href="../../../setup/deployment/health_check/#basic-health-check">readiness and liveness probes</a> available in Micro Integrator. We can invoke the readiness probe as follows</p>
+               <p><code>curl -X GET http://localhost:9201/healthz</code></p>
                <p>In a VM deployment, we can use a load balancer with multiple nodes as described <a href="../deploying_wso2_ei">here</a> to achieve high availability.</p>
             </div>
          </td>
@@ -238,7 +238,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
                   <p>Make sure that WSO2 default certificates do not exist in any of the keystores in your production environment. For example, be sure to delete the default public certificate in the default trust store that is shipped with the product.</p>
                </li>
             </ul>
-            See <a href="../../setup/security/creating_keystores">Creating New Keystores</a> for information on how to create and configure your own keys.
+            See <a href="../../../setup/security/creating_keystores">Creating New Keystores</a> for information on how to create and configure your own keys.
             </p>
          </td>
       </tr>
@@ -255,8 +255,8 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p><br /></p>
          </td>
          <td>
-            <p>All the default ports used by WSO2 products are listed in <a href="../../../setup/changing_default_ports">here</a>. For example, Axis2 services are exposed over the following ports: 8253 and 8290.</p>
-            <p>To change a default port, update the <code>              &lt;Offset&gt;             </code> element in the ei.toml file as explained in <a href="../../../setup/changing_default_ports">Changing the Default Ports</a> .</p>
+            <p>All the default ports used by WSO2 products are listed in <a href="../../../setup/changing_default_ports">here</a>. For example, proxy services are exposed over the following ports: 8253 and 8290.</p>
+            <p>To change a default port, update the <code>offset</code> element in the deployment.toml file as explained in <a href="../../../setup/changing_default_ports">Changing the Default Ports</a> .</p>
          </td>
       </tr>
       <!--
@@ -412,7 +412,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p><br /></p>
          </td>
          <td>
-            <p>The recommended JDK version is JDK 1.8 or 1.11. See the <a href="../../installation/install_in_vm">installation pre-requisites</a> for more information.</p>
+            <p>The recommended JDK version is JDK 1.8 or 1.11. See the <a href="../../../setup/installation/install_prerequisites">installation pre-requisites</a> for more information.</p>
             <p><strong>Tip</strong>: To run the JVM with 2 GB (-Xmx2048m), you should ideally have about 4GB of memory on the physical machine.</p>
          </td>
       </tr>
@@ -571,20 +571,6 @@ This section provides the list of security guidelines for configuring the netwo
          </td>
          <td>
             <p>Firmware updates for your network devices should be applied regularly.</p>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>
-            <p>Block the <code>/services</code> context from the DMZ</p>
-         </td>
-         <td>
-            <p>Access to the "/services" context should be blocked from the DMZ level (i.e., from the proxy server, load balancer and/or firewall).</p>
-            <ul>
-               <li>The "/services" context is used in WSO2 products to expose admin services. These admin services are used for performing administrative operations using SOAP requests.</li>
-               <li>In addition to the "/services" context, be sure to expose only the required applications in your product to users beyond the DMZ level in your network.</li>
-            </ul>
-            <b>Note:</b>
-            <p>It is recommended to use a allowlisting approach when allowing access to resources in your product from the DMZ level.</p>
          </td>
       </tr>
    </tbody>

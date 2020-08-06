@@ -4,7 +4,7 @@
     This page describes the latest publicly-available version of Streaming Integrator Tooling. If you cannot see some of the user interface elements described here, [update your Streaming Integrator Tooling installation](https://docs.wso2.com/display/updates/Getting+Continuous+Updates).
 
 The Streaming Integrator Tooling is a developer tool that is shipped with
-the Streaming Integrator to develop Siddhi applications. It allows provides two
+the Streaming Integrator to develop Siddhi applications. It allows provides three
 interfaces to develop Siddhi applications
 
 -   **Source View** : This allows you to write Siddhi applications
@@ -14,6 +14,8 @@ interfaces to develop Siddhi applications
 -   **Design View** :This interface visualizes the event flow of a
     Siddhi application, and allows you to compose the applications by
     dragging and dropping Siddhi components to a graph.
+    
+-   **Wizard View**: This is a wizard with a page for each component of a Siddhi application that displays the relevant configuration parameters as fields. This wizard can be directly accessed from the [Welcome Page](#welcome-page). Only ETL (Extract, Transform, Load) applications can be created/viewed in this interface. For a Siddhi application to be considered an ETL application, it must include all of the following components:<br/><br/> - A source configuration<br/><br/> - A sink configuration (the sink type can be any of the [supported sink types](https://siddhi.io/en/v5.1/docs/query-guide/#sink) other than `log`)<br/><br/> - A Siddhi query that performs a transformation. <br/><br/> For more information, see [Creating an ETL Application via SI Tooling tutorial](../examples/create-etl-application-via-tooling.md).
 
 Once a Siddhi application is created, you can simulate events via the
 Streaming Integrator Tooling to test whether it works as expected.
