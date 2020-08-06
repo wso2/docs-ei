@@ -86,7 +86,7 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
       </tr>
     </table>
 
-    <img src="../../../assets/img/tutorials/119132196/119132224.png">
+    <img src="../../../assets/img/tutorials/119132196/119132224.png" width="500">
 
 
     Click **OK**. You can view the data mapping editor.  
@@ -114,15 +114,15 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
 
 4.  Right-click on the upper title bar of the **Input** box and click **Load Input** as shown below.
 
-    <img src="../../../assets/img/tutorials/119132196/119132200.png" width="500">
+    <img src="../../../assets/img/tutorials/119132196/119132200.png" width="300">
 
 5.  Select **JSON** as the **Resource Type** as shown below.
 
-    <img src="../../../assets/img/tutorials/119132196/119132203.png" width="500">
+    <img src="../../../assets/img/tutorials/119132196/119132203.png" width="300">
 
 6.  Click the **file system** link in **Select resource from**, select the JSON file (i.e., `input.json` ) you saved in your local file system, and click **Open**. You can view the input format loaded in the **Input** box of the editor as shown below.
 
-    <img src="../../../assets/img/tutorials/119132196/119132211.png" width="500">
+    <img src="../../../assets/img/tutorials/119132196/119132211.png" width="300">
 
 7.  Create another JSON file (e.g., `output.json`) by copying the following sample content of the request message expected by the back-end service and save it in your local file system.
 
@@ -144,12 +144,12 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
 
 8.  Right-click on the top title bar of the **Output** box and click **Load Output** as shown below.  
 
-    <img src="../../../assets/img/tutorials/119132196/119132202.png" width="500">
+    <img src="../../../assets/img/tutorials/119132196/119132202.png" width="300">
 
 9.  Select **JSON** as the resource type.
 10. Click the **file system** link in **Select resource from**, select the JSON file you saved in your local file system, and click **Open**. You can view the input format loaded in the **Output** box in the editor as shown below. 
 
-    <img src="../../../assets/img/tutorials/119132196/119132201.png" width="500"> 
+    <img src="../../../assets/img/tutorials/119132196/119132201.png" width="300"> 
 
     !!! Info
         Check the **Input** and **Output** boxes with the sample messages to see if the element types (i.e. Arrays, Objects and Primitive values) are correctly identified. The following symbols will help you identify them correctly.
