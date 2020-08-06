@@ -2,10 +2,10 @@
 
 ### Set up the migration
 
--	Download and install EI 7.1.0 in your environment. The home directory of your installation will be referred to as `<MI_HOME>` from hereon.
+-	Make a backup of the existing database used by the current EI 7.0.0 deployment. This backup is necessary in case the migration causes any issues in the existing database.
+-	Download and install EI 7.1.0 in your environment. The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
 	-	[Using the Installer](../../../setup/installation/install_in_vm_installer)
 	-	[Using the binary distribution](../../../setup/installation/install_in_vm_binary)
-	
 -	You can [use WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates.
 
 	!!! Info
@@ -18,7 +18,7 @@ You can use the same user stores that you used for the EI 7.0.0 of WSO2 with WSO
 The Micro Integrator uses a [file based registry](../file_based_registry). You can directly migrate the artifacts to the EI 7.1.0 by adding the carbon applications to the `MI-HOME/repository/deployment/server/carbonapps` folder. 
 
 ### Migrating artifacts
-Copy the contents inside `<MI_7.0.0_HOME>/repository/deployment` to the `<MI_HOME>/repository/deployment` folder.
+Copy the contents inside `<MI_7.0.0_HOME>/repository/deployment` to the `<MI_7.1.0_HOME>/repository/deployment` folder.
 
 ### Migrating custom components
 Copy the jars inside the `<MI_7.0.0_HOME>/dropins` folder to the same folder of EI 7.1.0 (`<MI_7.1.0_HOME>/dropins`). The custom JARs can be copied to the `<MI_7.1.0_HOME>/lib` directory.
