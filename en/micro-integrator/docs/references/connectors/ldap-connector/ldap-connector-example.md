@@ -1,14 +1,10 @@
 # LDAP Connector Example
 
-The LDAP connector allows you to connect to any LDAP server through a simple web services interface and perform CRUD 
-(Create, Read, Update, Delete) operations on LDAP entries. This connector uses the JAVA JNDI APIs to connect to a 
-required LDAP server.
-
 Given below is a sample scenario that demonstrates how to perform CRUD operations on LDAP entries using LDAP Connector.
 
 ## What you'll build
 
-This example demonstrates on how to use the ldap connector to create and read ldap entries on a student directory. 
+This example demonstrates on how to use the LDAP connector to create and read LDAP entries on a student directory. 
     ![image](../../../assets/img/connectors/ldap_connector/ldap_connector_usecase.png)
 
 This will have 2 API resources, `create`, `search`.

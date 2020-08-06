@@ -1,4 +1,4 @@
-# File Connector Configuration
+# File Connector Reference
 
 The following operations allow you to work with the File Connector version 2. Click an operation name to see parameter details and samples on how to use it.
 
@@ -231,6 +231,16 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Set to true if you want to include the parent directory.</td>
             <td>Optional</td>
         </tr>
+	<tr>
+            <td>sftpIdentities</td>
+            <td>Location of the private key.</td>
+            <td>Optional</td>
+        </tr>
+	<tr>
+            <td>sftpIdentityPassphrase</td>
+            <td>Passphrase of the private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -246,6 +256,8 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
 	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
+	<sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities> 
+	<sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
     </fileconnector.copy>
     ```
     
@@ -1006,11 +1018,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         "proxyPort":"3128",
         "proxyUsername":"wso2",
         "proxyPassword":"Password",
-        "ftpUsername":"master",
+        "ftpUsername":"primary",
         "ftpPassword":"Password",
         "ftpServer":"192.168.56.6",
         "ftpPort":"21",
-        "targetFile":"/home/master/res"
+        "targetFile":"/home/primary/res"
     }
     ```
 

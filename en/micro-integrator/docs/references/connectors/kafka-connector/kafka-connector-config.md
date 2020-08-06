@@ -1,4 +1,4 @@
-# Kafka Connector Configuration
+# Kafka Connector Reference
 
 The following operations allow you to work with the Kafka Connector. Click an operation name to see parameter details and samples on how to use it.
 
@@ -81,7 +81,12 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
         </tr>
         <tr>
             <td>clientId</td>
-            <td>The client identifier that you pass to the server when making requests. connectionsMaxIdleTime: The duration in milliseconds after which idle connections should be closed.</td>
+            <td>The client identifier that you pass to the server when making requests.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>connectionsMaxIdleTime</td>
+            <td>The duration in milliseconds after which idle connections should be closed.</td>
             <td>Optional</td>
         </tr>
         <tr>

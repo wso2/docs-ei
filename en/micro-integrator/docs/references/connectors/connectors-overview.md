@@ -23,35 +23,35 @@ There are three types of connectors available in WSO2 EI.
 Using connectors provide the following advantages:
 
 <table>
-        <tr>
-            <th>Advantage</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td><b>Integrate fast</b></td>
-            <td>Let's say you need to get some data from Salesforce and return some of it back to users. If you want to do it, first you need to find and analyze the available APIs from Salesforce. Then you need to code to interfaces or use a SDK provided to communicate with the third party. Designing such a module from ground up takes a lot of time. WSO2 EI Connectors make this process simple as you can easily add the connector via WSO2 Integration Studio and drag and drop your connector’s operations onto the canvas and use them to design your integration flow with the help of our detailed documentation.</td>
-        </tr>
-        <tr>
-            <td><b>Easy to use</b></td>
-            <td>Connector operations are designed to hide complexities in communication and expose what is required for the users for integration. Connectors are fully supported by WSO2 Integration Studio so that you can just drag and drop operations and configure the integration flow. There is less code complexity when using connectors as most of the intricacy has already been dealt with. It is also very easy to authenticate with external systems as you only need to configure credentials and access URLs in most cases.</td>
-        </tr>
-        <tr>
-            <td><b>150+ available connectors</b></td>
-            <td>There are numerous connectors available in the store. This provides multiple options on SAAS providers and popular APIs for you to build your integration use cases as required.</td>
-        </tr>
-        <tr>
-            <td><b>Less domain knowledge required</b></td>
-            <td>When integrating with different APIs, WSO2 EI Connector documentation provides detailed information. Less domain knowledge is required when integrating with systems since all the information about operations are available to you and you do not need to know elaborate details of the system you are integrating with. You can spend less time studying the APIs and focus more on business use cases..</td>
-        </tr>
-        <tr>
-            <td><b>Dynamically added to the runtime</b></td>
-            <td>Connectors and most of the extensions can be directly added to and removed from the runtime. It is not required to restart the servers for deployments.</td>
-        </tr>
-        <tr>
-            <td><b>Easy maintenance</b></td>
-            <td>Connectors act as a bridge between main integration logic and the third party application. Even if the application needs to be updated to support new features, the main integration logic of the API version does not need to be changed.</td>
-        </tr>
-    </table>
+    <tr>
+        <th>Advantage</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><b>Integrate fast</b></td>
+        <td>Let's say you need to get some data from Salesforce and return some of it back to users. If you want to do it, first you need to find and analyze the available APIs from Salesforce. Then you need to code to interfaces or use a SDK provided to communicate with the third party. Designing such a module from ground up takes a lot of time. WSO2 EI Connectors make this process simple as you can easily add the connector via WSO2 Integration Studio and drag and drop your connector’s operations onto the canvas and use them to design your integration flow with the help of our detailed documentation.</td>
+    </tr>
+    <tr>
+        <td><b>Easy to use</b></td>
+        <td>Connector operations are designed to hide complexities in communication and expose what is required for the users for integration. Connectors are fully supported by WSO2 Integration Studio so that you can just drag and drop operations and configure the integration flow. There is less code complexity when using connectors as most of the intricacy has already been dealt with. It is also very easy to authenticate with external systems as you only need to configure credentials and access URLs in most cases.</td>
+    </tr>
+    <tr>
+        <td><b>150+ available connectors</b></td>
+        <td>There are numerous connectors available in the store. This provides multiple options on SAAS providers and popular APIs for you to build your integration use cases as required.</td>
+    </tr>
+    <tr>
+        <td><b>Less domain knowledge required</b></td>
+        <td>When integrating with different APIs, WSO2 EI Connector documentation provides detailed information. Less domain knowledge is required when integrating with systems since all the information about operations are available to you and you do not need to know elaborate details of the system you are integrating with. You can spend less time studying the APIs and focus more on business use cases..</td>
+    </tr>
+    <tr>
+        <td><b>Dynamically added to the runtime</b></td>
+        <td>Connectors and most of the extensions can be directly added to and removed from the runtime. It is not required to restart the servers for deployments.</td>
+    </tr>
+    <tr>
+        <td><b>Easy maintenance</b></td>
+        <td>Connectors act as a bridge between main integration logic and the third party application. Even if the application needs to be updated to support new features, the main integration logic of the API version does not need to be changed.</td>
+    </tr>
+</table>
 
 ## How to use connectors
 
@@ -98,6 +98,9 @@ Once the integration logic is done, you can export it along with the dependency 
 ## Example scenarios and operations
 
 Within this documentation, each connector has an example scenario associated with it that illustrates how a simple use case can be done using the connector. It also has a detailed reference guide that lists out the operations and the respective properties of each of these operations, highlighting sample values, required configurations, and even sample requests and responses.
+
+!!! Info
+    For details on connectors not mentioned in this documentation, you can find more details in [WSO2 ESB Connectors documentation](https://docs.wso2.com/display/ESBCONNECTORS/WSO2+ESB+Connectors+Documentation) or in the [GitHub repository of the connector](https://github.com/wso2-extensions) you are looking for.
 
 ## Empowering the developer
 

@@ -1,4 +1,4 @@
-# SMPP Inbound Endpoint Configuration
+# SMPP Inbound Endpoint Reference
 
 The following configurations allow you to configure SMPP Inbound Endpoint for your scenario. 
 
