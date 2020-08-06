@@ -19,7 +19,7 @@ Set up WSO2 Integration Studio as follows:
     !!! Note
         This tutorial is a continuation of the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial.
 
-    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/sending-simple-message-tutorial.zip).
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/service-orchestration-tutorial.zip).
     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
     3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
 
@@ -121,7 +121,7 @@ Set up WSO2 Integration Studio as follows:
 12. Add a **Property** mediator just after the **Log** mediator to store
     the value for uri.var.hospital.
 
-    ![](https://lh6.googleusercontent.com/Q4ulnFRxB7JyfuTexWUkGz_BurFUn8K45OPKrKDy-fZ1dS9fbC3Y0CBTdCMcKanKdPD2Httx-7C6S746QEb96ixJ-y48On_IHgaxqG2FqnAQfM4JemIkN2EnSpoJgqvF2FGztgA-) 
+    ![](../../assets/img/tutorials/using-templates/property-mediator-in-sequence.png) 
 
 13. With the **Property** mediator selected, access the **Properties**
     tab and enter the information given below:
@@ -143,16 +143,12 @@ Set up WSO2 Integration Studio as follows:
             <td>Select set </td>
         </tr>
         <tr>
-            <td>Value Type</td>
-            <td>Select EXPRESSION</td>
-        </tr>
-        <tr>
             <td>Property Data Type</td>
             <td>Select STRING</td>
         </tr>
         <tr>
-            <td>Value Expression</td>
-            <td><code>$func:sethospital</code></td>
+            <td>Value</td>
+            <td><code>Click on the <b>Ex</b> button in front of the label value and add this <code>$func:sethospital</code> as the expression.</td>
         </tr>
         <tr>
             <td>Description</td>
@@ -165,12 +161,12 @@ Set up WSO2 Integration Studio as follows:
 1.  Open the design view of the HealthcareAPI.xml and delete 'GrandOak'
     **Log** mediator by right clicking the mediator and selecting
     **Delete from Model** .  
-    ![](https://lh4.googleusercontent.com/6Lsp6WbAQJwjSbmsyWlKnIMkP6Q3cB9hiwzvGRkyFUtbZKteu--ePnwvaA2LqfD-7AyLqy6U1Im42We67PsSP4JhL41vlZ8nwTC8S2KrF11Hpfu365bBXhCNOZX8cMlgdBgGX7e-)
+    ![](../../assets/img/tutorials/using-templates/delete-log-mediator.png) 
 
 2.  Delete the 'Set Hospital Variable' **Property** mediator.
 
 3.  Add a **Call Template** mediator to the sequence as shown below.  
-    ![](https://lh6.googleusercontent.com/1SUm23IRnOH-vp_o0QWpSS3bhIawxhmsKN_1Y_PYyEaZ2k6_2tuDFeyyJtp18c8Q-p6mubMToqA6v4tyWDtBMgQcJdXet00Vtxa-IDnu7TTh5eSvqnEfSi9YEoxEhuE1yJO62w4B)
+    ![](../../assets/img/tutorials/using-templates/call-template-mediator.png)
 
 4.  Open the **Properties** tab of the **Call Template** mediator and
     select ' HospitalRoutingSeq' from the list of available templates.
@@ -198,13 +194,97 @@ Set up WSO2 Integration Studio as follows:
         </tr>
     </table>
 
-    ![](https://lh5.googleusercontent.com/Pu0UusC_42jmt_VQ2NEA1PdwOI8z2VyC7bDm7HSJ6iJgf9J8Jz4k87PZ2e9UAuT62FEHdpFXXGlXx5n78qtBBvQxEmQbDkMlg3lCfTIn5grDxKDaZW0XGItxqJ72XmC0_uE84gKO)
+    ![](../../assets/img/tutorials/using-templates/set-parameter-value.png)
 
 6.  Repeat the above steps to add **Call Templates** for 'Clemency' and
     'Pine Valley' hospitals. Add **clemency** and **pinevalley** as the
     respective parameter values.
 
 7.  Save the configuration.
+
+    After completion, your API will be similar to this.
+    
+    ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
+            <resource methods="GET" uri-template="/querydoctor/{category}">
+                <inSequence>
+                    <log description="Request Log" level="custom">
+                        <property name="Log Property message" value="&quot;Welcome to HealthcareService&quot;"/>
+                    </log>
+                    <send>
+                        <endpoint key="QueryDoctorEP"/>
+                    </send>
+                </inSequence>
+                <outSequence>
+                    <send/>
+                </outSequence>
+                <faultSequence/>
+            </resource>
+            <resource methods="POST" uri-template="/categories/{category}/reserve">
+                <inSequence>
+                    <property description="Get Hospital" expression="json-eval($.hospital)" name="Hospital" scope="default" type="STRING"/>
+                    <property description="Get Card Number" expression="json-eval($.cardNo)" name="card_number" scope="default" type="STRING"/>
+                    <datamapper config="gov:datamapper/RequestMapping.dmc" inputSchema="gov:datamapper/RequestMapping_inputSchema.json" inputType="JSON" outputSchema="gov:datamapper/RequestMapping_outputSchema.json" outputType="JSON" xsltStyleSheet="gov:datamapper/RequestMapping_xsltStyleSheet.xml"/>
+                    <switch source="get-property('Hospital')">
+                        <case regex="grand oak community hospital">
+                            <call-template target="HospitalRoutingSeq">
+                                <with-param name="sethospital" value="grandoaks"/>
+                            </call-template>
+                            <call>
+                                <endpoint key="GrandOakEP"/>
+                            </call>
+                        </case>
+                        <case regex="clemency medical center">
+                            <call-template target="HospitalRoutingSeq">
+                                <with-param name="sethospital" value="Clemency"/>
+                            </call-template>
+                            <call>
+                                <endpoint key="ClemencyEP"/>
+                            </call>
+                        </case>
+                        <case regex="pine valley community hospital">
+                            <call-template target="HospitalRoutingSeq">
+                                <with-param name="sethospital" value="Pine Valley"/>
+                            </call-template>
+                            <call>
+                                <endpoint key="PineValleyEP"/>
+                            </call>
+                        </case>
+                        <default>
+                            <log description="Fault Log" level="custom">
+                                <property expression="fn:concat('Invalid hospital - ', get-property('Hospital'))" name="message"/>
+                            </log>
+                            <respond/>
+                        </default>
+                    </switch>
+                    <property description="Get Appointment Number" expression="json-eval($.appointmentNumber)" name="uri.var.appointment_id" scope="default" type="STRING"/>
+                    <property description="Get Doctor Details" expression="json-eval($.doctor)" name="doctor_details" scope="default" type="STRING"/>
+                    <property description="Get Patient Details" expression="json-eval($.patient)" name="patient_details" scope="default" type="STRING"/>
+                    <call>
+                        <endpoint key="ChannelingFeeEP"/>
+                    </call>
+                    <property description="Get Actual Fee" expression="json-eval($.actualFee)" name="actual_fee" scope="default" type="STRING"/>
+                    <payloadFactory media-type="json">
+                        <format>{"appointmentNumber":$1, "doctor":$2, "patient":$3, "fee":$4, "confirmed":"false", "card_number":"$5"}</format>
+                        <args>
+                            <arg evaluator="xml" expression="$ctx:uri.var.appointment_id"/>
+                            <arg evaluator="xml" expression="$ctx:doctor_details"/>
+                            <arg evaluator="xml" expression="$ctx:patient_details"/>
+                            <arg evaluator="xml" expression="$ctx:actual_fee"/>
+                            <arg evaluator="xml" expression="$ctx:card_number"/>
+                        </args>
+                    </payloadFactory>
+                    <call>
+                        <endpoint key="SettlePaymentEP"/>
+                    </call>
+                    <respond/>
+                </inSequence>
+                <outSequence/>
+                <faultSequence/>
+            </resource>
+        </api>
+    ```
 
 ### Step 3: Package the artifacts
 
