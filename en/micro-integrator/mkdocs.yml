@@ -277,7 +277,6 @@ nav:
         - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
         - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
         - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
-      - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
     - Install and Setup:
       - 'Overview': 'setup/micro_integrator_deployment_overview.md'
       - Installation Guide:
