@@ -4,7 +4,7 @@
 
 In this sample scenario, you will use a **Sequence Template**
 and reuse it in multiple places of the medation flow. You can reuse the
-mediation flow that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial and then replace its sections with the sequence template. See [Creating Templates](../../develop/creating-artifacts/creating-sequence-templates.md) for details
+mediation flow that was defined in the [Service Orchestration](../exposing-several-services-as-a-single-service) tutorial and then replace its sections with the sequence template. See [Creating Templates](../../develop/creating-artifacts/creating-sequence-templates.md) for details
 on how to work with templates using WSO2 Integration Studio.
 
 ## Let's get started!
@@ -14,10 +14,10 @@ on how to work with templates using WSO2 Integration Studio.
 Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-2.  Set up the project from the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial:
+2.  Set up the project from the [Service Orchestration](../exposing-several-services-as-a-single-service) tutorial:
 
     !!! Note
-        This tutorial is a continuation of the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial.
+        This tutorial is a continuation of the [Service Orchestration](../exposing-several-services-as-a-single-service) tutorial.
 
     1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/service-orchestration-tutorial.zip).
     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
