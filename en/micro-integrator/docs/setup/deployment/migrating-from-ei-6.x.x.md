@@ -1,6 +1,6 @@
 # Migrating from WSO2 EI 6.x to WSO2 EI 7.1
 
-This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.1. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to the Micro Integrator in EI 7.1.
+This guide provides the recommended strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.1. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to the Micro Integrator in EI 7.1.
 
 ## Before you begin
 
@@ -15,7 +15,7 @@ Note that EI 7 is a **WUM-only release**, which means that manual patches are no
 
 ## Why migrate to EI 7.1?
 
-If you are an EI 6.x.x user, migration is recommended for the following requirements:
+If you are an EI 6.x user, migration is recommended for the following requirements:
  
 -   You need to switch to a micro-services architecture from the conventional centralized architecture.
 -   You need a more lightweight, container-friendly runtime in centralized architecture.
@@ -39,21 +39,21 @@ Follow the instructions below to start the migration!
 
 -	Make a backup of the existing database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
 
--	Download and install EI 7.1.0 in your environment. The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
-	-	[Using the Installer](../../../setup/installation/install_in_vm_installer)
-	-	[Using the binary distribution](../../../setup/installation/install_in_vm_binary)
+-	Download and install EI 7.1 in your environment. The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
+	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer)
+	-	Install the product [using the binary distribution](../../../setup/installation/install_in_vm_binary)
 -	You can use [WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates.
 
 
 	!!! Info
 		Note that you need a valid [WSO2 subscription](https://wso2.com/subscription) to use updates in a production environment.
 
-### Migrating user store
+### Migrating the user store
 
-If you are already using a JDBC or LDAP user store with EI 6.x, you can simply plug the same to the Micro Integrator 
+If you are already using a JDBC or LDAP user store with EI 6.x, you can simply connect the same to the Micro Integrator 
 by updating the configuration details in `deployment.toml` file. 
 
-Following is a set of high level configurations, please refer to [Working with User Stores](../user_stores/managing_users) for more information.
+Following is a set of high-level configurations. See the instructions on [configuring a user store](../user_stores/setting_up_a_userstore) for more information.
 
 ```toml tab='RDBMS User Store'
 [user_store]
@@ -100,45 +100,45 @@ enable = false
 	
 ### Migrating the registry
 
-The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x.x). Note the following when migrating the registry:
+The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
 
--	If the artifacts in EI 6.x.x are added in carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1
+-	If the artifacts in EI 6.x are added in carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1.
 -	If the artifacts are added through the management console in EI 6.x.x, first download the artifacts from the management console, and then add to the `<MI_HOME>/registry/` folder by maintaining the same resource structure.
 
 ### Migrating artifacts
 
-The recommended way to create integration artifacts (in EI 6.x.x or EI 7.x.x ) is to use [WSO2 Integration Studio](https://ei.docs.wso2.com/en/7.1.0/micro-integrator/develop/WSO2-Integration-Studio/)
+The recommended way to create integration artifacts (in EI 6.x or EI 7.x ) is to use [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio)
 
 - If the artifacts are created in the recommended way, copy the CAR files inside `<EI_6.x
 .x_HOME>/repository/deployment/server/carbonapps` to the 
 `<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the artifacts are created using the management console of EI 6.x.x, please recreate them using WSO2 Integration 
-Studio and package them as composite application.
+- If the artifacts are created using the management console of EI 6.x, you need to recreate them using WSO2 Integration 
+Studio and package them as a composite application.
 
 !!! Tip
-     For testing purposes you can copy the artifacts to the same folder structure inside deployment directory.
+     For testing purposes, you can copy the artifacts to the same folder structure inside the `<MI_HOME>/repository/deployment/` directory.
 
 ### Migrating deployed Connectors
 
-- If the connector is added via composite application with connector exporter project, the same can be used in EI 7 seamlessly.
-- If the connector is added via the Management console of EI 6.x, pack them using connector exporter project and  deploy via composite application in EI 7. For more information, refer [Connector Exporter Project](../../develop/creating-artifacts/adding-connectors)
+- If the connector is added to EI 6.x via a composite application with connector exporter project, the same can be used in EI 7.1 seamlessly. Simply copy the CAR file in EI 6.x to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+- If the connector is added to EI 6.x via the management console, pack them using connector exporter project and deploy via composite application in EI 7.1. For more information, see [Connector Exporter Project](../../develop/creating-artifacts/adding-connectors)
 
 ### Migrating custom components
 
 Copy custom OSGI components in the `<EI_6.x.x_HOME>/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<EI_6.x.x_HOME>/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
 
-!!!note
-    To provide seamless integration with RabbitMQ, the rabbitmq client lib is packed in the default pack. Hence you  don't need to include it.
+!!! Note
+    To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
 
 ### Migrating keystores
 Copy the JKS files in the `<EI_6.x.x_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory.
 
-### Migrating Passwords
+### Migrating passwords
 
-To migrate the passwords from EI 6.x, plain text passwords are required. Once you have them, please follow the normal procedure of encrypting the secrets in EI 7. Please refer [Encrypt Secrets](../security/encrypting_plain_text)  section for further details. 
+To migrate the passwords from EI 6.x, the plain text passwords are required. Once you have them, follow the normal procedure of encrypting secrets in EI 7. See [Encrypt Secrets](../security/encrypting_plain_text) for instructions. 
 
 ### Migrating configurations
-WSO2 EI 6.x.x versions supported multiple configuration files such as `carbon.xml`, `synapse.properties`, and `axis2.xml`. With the new configuration model in the Micro Integrator of EI 7.1.0, product configurations are primarily handled by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). The log4j2 configurations are handled in the `log4j2.properties`.
+WSO2 EI 6.x versions supported multiple configuration files such as `carbon.xml`, `synapse.properties`, and `axis2.xml`. With the new configuration model in the Micro Integrator of EI 7.1, product configurations are primarily handled by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). The log4j2 configurations are handled in the `log4j2.properties`.
 
 **Migrating to TOML configurations**
 
@@ -149,7 +149,7 @@ See the [product configuration catalog](../../../references/config-catalog) for 
 
 **Migrating Log4j configurations**
 
-Older versions of the WSO2 EI 6.x.x family (EI 6.5.0 and earlier) use log4j. In  WSO2 EI 7 Micro Integrator, the `carbon.logging.jar` file is not packed and the `pax-logging-api` is used instead. With this upgrade, the log4j version is also updated to log4j2.
+Older versions of the WSO2 EI 6.x family (EI 6.5.0 and earlier) use log4j. In  WSO2 EI 7 Micro Integrator, the `carbon.logging.jar` file is not packed and the `pax-logging-api` is used instead. With this upgrade, the log4j version is also updated to log4j2.
 
 Therefore, you need to follow the instructions given below to migrate from log4j (in EI 6.5.0 or earlier version) to log4j2 (in EI 7 Micro Integrator).
 
