@@ -1,4 +1,4 @@
-# Migrating from WSO2 EI 7.0.0 to WSO2 EI 7.1.0
+# Migrating from WSO2 EI 7.0 to WSO2 EI 7.1
 
 This guide explains the recommended strategy for migrating from the Micro Integrator of WSO2 EI 7.0.0 to the Micro Integrator of WSO2 EI 7.1.0.
 
