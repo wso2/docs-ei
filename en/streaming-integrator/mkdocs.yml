@@ -215,7 +215,7 @@ nav:
       - 'Active-Active Cluster': 'setup/deploying-si-as-an-active-active-deployment.md'
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
       - 'Minimum HA Cluster in AWS ECS': 'setup/deploying-si-as-minimum-ha-cluster-in-aws-ecs.md'
-    - 'Setup':
+    - 'Set-up':
       - 'Production Checklist': 'setup/production-checklist.md'
       - 'Configuring Datasources': 'setup/configuring-data-sources.md'
       - 'Configuring Business Rules Deployment': 'setup/configuring-business-rules-deployment.md'
