@@ -138,7 +138,7 @@ Configration management was handled in WSO2 EI 6.x versions via multiple files s
 
 Micro Inegator of EI 7.1 provides a new configuration model where all of the product configurations are primarily managed by a single configuration file named `deployment.toml` (resides in the `<MI_HOME>/conf` directory). 
 
-The logging configuration are managed with log4j2 whereas it was done with log4j in EI 6.x series (Prior to EI 6.6.0).
+The logging configurations are managed with log4j2 whereas it was done with log4j in EI 6.x series (Prior to EI 6.6.0).
 
 Following subsections will guide you thorugh on how to migrate the Prodcut Configuraitons including log4j.
 
