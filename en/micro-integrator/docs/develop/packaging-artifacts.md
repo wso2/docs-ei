@@ -22,8 +22,7 @@ If you have an already created composite appliction project, do the following t
 
 If you have not previously created a composite application project, do the following to package the artifacts in your ESB Config project.
 
-1.  Open the **Getting Started** view and click **Miscellaneous → Create
-    New Composite Application** .  
+1.  Right click on the ESB project and go to **New** and then click **Composite Exporter**. 
     ![Create new CAPP](../assets/img/create_project/create_new_capp.png) 
 2.  In the **New Composite Application Project** dialog that opens, select the artifacts from the relevant ESB projects and click
     **Finish** .  
