@@ -115,7 +115,7 @@ The recommended way to create integration artifacts (in EI 6.x or EI 7.x ) is to
 - If the artifacts are created using the management console of EI 6.x, you need to recreate them using WSO2 Integration Studio and package them as a composite application. See the instructions on [packaging artifacts](../../../develop/packaging-artifacts).
 
 !!! Tip
-     For testing purposes, you can copy the artifacts to the same folder structure inside the `<MI_HOME>/repository/deployment/` directory.
+     For testing purposes, you can copy the artifacts to the same folder structure inside the `<MI_HOME>/repository/deployment/server/synapse-configs/default` directory.
 
 ### Migrating deployed Connectors
 
