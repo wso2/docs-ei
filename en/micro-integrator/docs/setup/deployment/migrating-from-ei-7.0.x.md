@@ -8,7 +8,7 @@ This guide explains the recommended strategy for migrating from the Micro Integr
 -	Download and install EI 7.1 in your environment:
 
 	!!! Tip
-		The home directory of your Micro Integrator will be referred to as `<MI_HOME>` from hereon.
+		The home directory of your new Micro Integrator will be referred to as `<MI_7.1.0_HOME>` from hereon.
 
 	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer).
 	-	Install the product [using the binary distribution](../../../setup/installation/install_in_vm_binary).
