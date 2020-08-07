@@ -8,7 +8,7 @@ service.
 
 ## Prerequisites
 
-Be sure to [configure a user store](../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
+Be sure to [configure a user store](../../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
 
 ## Step 1: Creating a registry resource module
 

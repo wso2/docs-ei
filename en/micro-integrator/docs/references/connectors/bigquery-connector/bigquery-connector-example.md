@@ -226,7 +226,7 @@ Now you can switch into the Source view and check the XML configuration files of
                           <clientSecret>UgtzggStea3Xfd9q7TUMeyNo</clientSecret>
                           <refreshToken>1//0gCwbRibyQinFCgYIARAAGBASNwF-L9IrO9590FKKiOro0UUEZEHD4DiG9or41nbIEmWOzsaM22btR4QLKXHfGMDDUWK2hrp5EBo</refreshToken>
                           <registryPath>{$ctx:registryPath}</registryPath>
-                          <apiKey>AIzaSyDFwqhjAYxvfbTwyCImVnvBTUZa-EHfKyc</apiKey>
+                          <apiKey>XXXX</apiKey>
                           <callback>callBackFunction</callback>
                           <prettyPrint>true</prettyPrint>
                           <quotaUser>{$ctx:quotaUser}</quotaUser>
@@ -258,7 +258,7 @@ Now you can switch into the Source view and check the XML configuration files of
                           <clientSecret>UgtzggStea3Xfd9q7TUMeyNo</clientSecret>
                           <refreshToken>1//0gCwbRibyQinFCgYIARAAGBASNwF-L9IrO9590FKKiOro0UUEZEHD4DiG9or41nbIEmWOzsaM22btR4QLKXHfGMDDUWK2hrp5EBo</refreshToken>
                           <registryPath>{$ctx:registryPath}</registryPath>
-                          <apiKey>AIzaSyDFwqhjAYxvfbTwyCImVnvBTUZa-EHfKyc</apiKey>
+                          <apiKey>XXXX</apiKey>
                           <callback>callBackFunction</callback>
                           <prettyPrint>true</prettyPrint>
                           <quotaUser>{$ctx:quotaUser}</quotaUser>
@@ -293,7 +293,7 @@ Now you can switch into the Source view and check the XML configuration files of
                           <clientSecret>UgtzggStea3Xfd9q7TUMeyNo</clientSecret>
                           <refreshToken>1//0gCwbRibyQinFCgYIARAAGBASNwF-L9IrO9590FKKiOro0UUEZEHD4DiG9or41nbIEmWOzsaM22btR4QLKXHfGMDDUWK2hrp5EBo</refreshToken>
                           <registryPath>{$ctx:registryPath}</registryPath>
-                          <apiKey>AIzaSyDFwqhjAYxvfbTwyCImVnvBTUZa-EHfKyc</apiKey>
+                          <apiKey>XXXX</apiKey>
                           <callback>callBackFunction</callback>
                           <prettyPrint>true</prettyPrint>
                           <quotaUser>{$ctx:quotaUser}</quotaUser>
@@ -327,7 +327,7 @@ Now you can switch into the Source view and check the XML configuration files of
                           <clientSecret>UgtzggStea3Xfd9q7TUMeyNo</clientSecret>
                           <refreshToken>1//0gCwbRibyQinFCgYIARAAGBASNwF-L9IrO9590FKKiOro0UUEZEHD4DiG9or41nbIEmWOzsaM22btR4QLKXHfGMDDUWK2hrp5EBo</refreshToken>
                           <registryPath>{$ctx:registryPath}</registryPath>
-                          <apiKey>AIzaSyDFwqhjAYxvfbTwyCImVnvBTUZa-EHfKyc</apiKey>
+                          <apiKey>XXXX</apiKey>
                           <callback>callBackFunction</callback>
                           <prettyPrint>true</prettyPrint>
                           <quotaUser>{$ctx:quotaUser}</quotaUser>
@@ -367,7 +367,7 @@ Now you can switch into the Source view and check the XML configuration files of
                                            <clientSecret>UgtzggStea3Xfd9q7TUMeyNo</clientSecret>
                                            <refreshToken>1//0gCwbRibyQinFCgYIARAAGBASNwF-L9IrO9590FKKiOro0UUEZEHD4DiG9or41nbIEmWOzsaM22btR4QLKXHfGMDDUWK2hrp5EBo</refreshToken>
                                            <registryPath>{$ctx:registryPath}</registryPath>
-                                           <apiKey>AIzaSyDFwqhjAYxvfbTwyCImVnvBTUZa-EHfKyc</apiKey>
+                                           <apiKey>XXXX</apiKey>
                                            <callback>callBackFunction</callback>
                                            <prettyPrint>true</prettyPrint>
                                            <quotaUser>{$ctx:quotaUser}</quotaUser>
@@ -399,7 +399,7 @@ Now you can switch into the Source view and check the XML configuration files of
                                            <clientSecret>UgtzggStea3Xfd9q7TUMeyNo</clientSecret>
                                            <refreshToken>1//0gCwbRibyQinFCgYIARAAGBASNwF-L9IrO9590FKKiOro0UUEZEHD4DiG9or41nbIEmWOzsaM22btR4QLKXHfGMDDUWK2hrp5EBo</refreshToken>
                                            <registryPath>{$ctx:registryPath}</registryPath>
-                                           <apiKey>AIzaSyDFwqhjAYxvfbTwyCImVnvBTUZa-EHfKyc</apiKey>
+                                           <apiKey>XXXX</apiKey>
                                            <callback>callBackFunction</callback>
                                            <prettyPrint>true</prettyPrint>
                                            <quotaUser>{$ctx:quotaUser}</quotaUser>
@@ -434,7 +434,7 @@ Now you can switch into the Source view and check the XML configuration files of
                                            <clientSecret>UgtzggStea3Xfd9q7TUMeyNo</clientSecret>
                                            <refreshToken>1//0gCwbRibyQinFCgYIARAAGBASNwF-L9IrO9590FKKiOro0UUEZEHD4DiG9or41nbIEmWOzsaM22btR4QLKXHfGMDDUWK2hrp5EBo</refreshToken>
                                            <registryPath>{$ctx:registryPath}</registryPath>
-                                           <apiKey>AIzaSyDFwqhjAYxvfbTwyCImVnvBTUZa-EHfKyc</apiKey>
+                                           <apiKey>XXXX</apiKey>
                                            <callback>callBackFunction</callback>
                                            <prettyPrint>true</prettyPrint>
                                            <quotaUser>{$ctx:quotaUser}</quotaUser>
@@ -468,7 +468,7 @@ Now you can switch into the Source view and check the XML configuration files of
                                            <clientSecret>UgtzggStea3Xfd9q7TUMeyNo</clientSecret>
                                            <refreshToken>1//0gCwbRibyQinFCgYIARAAGBASNwF-L9IrO9590FKKiOro0UUEZEHD4DiG9or41nbIEmWOzsaM22btR4QLKXHfGMDDUWK2hrp5EBo</refreshToken>
                                            <registryPath>{$ctx:registryPath}</registryPath>
-                                           <apiKey>AIzaSyDFwqhjAYxvfbTwyCImVnvBTUZa-EHfKyc</apiKey>
+                                           <apiKey>XXXX</apiKey>
                                            <callback>callBackFunction</callback>
                                            <prettyPrint>true</prettyPrint>
                                            <quotaUser>{$ctx:quotaUser}</quotaUser>
