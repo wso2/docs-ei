@@ -277,7 +277,6 @@ nav:
         - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
         - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
         - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
-      - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
     - Install and Setup:
       - 'Overview': 'setup/micro_integrator_deployment_overview.md'
       - Installation Guide:
@@ -309,6 +308,7 @@ nav:
         - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
         - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
       - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
+      - 'Migrating from WSO2 EI 7.0.x': 'setup/deployment/migrating-from-ei-7.0.x.md'
       - 'Product Deployment Guidelines': 'setup/deployment/deployment_checklist.md'
       - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Security Hardening :
@@ -556,7 +556,9 @@ nav:
           - 'Salesforce Bulk Configuration': 'references/connectors/salesforcebulk-connector/salesforcebulk-connector-configuration.md'
           - 'Salesforce Bulk API Example': 'references/connectors/salesforcebulk-connector/salesforcebulk-connector-example.md'
           - 'Salesforce Bulk API Reference': 'references/connectors/salesforcebulk-connector/salesforcebulk-reference.md'
-          - 'Salesforce SOAP API Reference': 'references/connectors/salesforce-soap-connector/salesforce-soap-reference.md'
+          - 'Salesforce SOAP Connector Configuration': 'references/connectors/salesforce-connectors/sf-soap-connector-config.md'
+          - 'Salesforce SOAP Connector Example': 'references/connectors/salesforce-connectors/sf-soap-connector-example.md'
+          - 'Salesforce SOAP Connector Reference': 'references/connectors/salesforce-soap-connector/salesforce-soap-reference.md'
         - ServiceNow Connector:
           - 'ServiceNow Overview': 'references/connectors/servicenow-connector/servicenow-overview.md'
           - 'Setting up Servicenow': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
