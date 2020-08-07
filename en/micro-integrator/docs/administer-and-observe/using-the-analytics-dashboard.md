@@ -29,25 +29,7 @@ The worker and dashboard are connected through the database.
 
 See the instructions given below on using the Analytics profile with the Micro Integrator.
 
-## Configuring the Micro Integrator
-
-To enable statistics monitoring for the Micro Integrator, add the following parameters in the `deployment.toml` file of your Micro Integrator. This file is stored in the `MI_HOME/conf`.
-
-!!! Tip
-    When you run the embedded Micro Integrator of [WSO2 Integration Studio](../../develop/installing-WSO2-Integration-Studio), the `MI_HOME/conf` directory is as follows: `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS/Linux/CentOS) or `MI_TOOLING_HOME/runtime/microesb/conf` (in Windows) directory. 
-
-```toml
-[mediation]
-flow.statistics.enable=true
-stat.tracer.collect_payloads=true
-stat.tracer.collect_mediation_properties=true
-```
-
-## Enabling statistics for artifacts
-
-You must enable statistics/tracing for the integration artifacts that you wish to monitor.
-
-### System Requirements
+## System Requirements
 
 - For EI nodes, see [Installation Prerequisites](../../setup/installation/install_prerequisites.md).
 
@@ -80,6 +62,24 @@ You must enable statistics/tracing for the integration artifacts that you wish t
     </tr>
     </tbody>
     </table>
+
+## Configuring the Micro Integrator
+
+To enable statistics monitoring for the Micro Integrator, add the following parameters in the `deployment.toml` file of your Micro Integrator. This file is stored in the `MI_HOME/conf`.
+
+!!! Tip
+    When you run the embedded Micro Integrator of [WSO2 Integration Studio](../../develop/installing-WSO2-Integration-Studio), the `MI_HOME/conf` directory is as follows: `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS/Linux/CentOS) or `MI_TOOLING_HOME/runtime/microesb/conf` (in Windows) directory. 
+
+```toml
+[mediation]
+flow.statistics.enable=true
+stat.tracer.collect_payloads=true
+stat.tracer.collect_mediation_properties=true
+```
+
+## Enabling statistics for artifacts
+
+You must enable statistics/tracing for the integration artifacts that you wish to monitor.
 
 ### Enabling statistics for ALL artifacts
 
