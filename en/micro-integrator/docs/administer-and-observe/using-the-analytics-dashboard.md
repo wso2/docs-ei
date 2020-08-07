@@ -47,6 +47,40 @@ stat.tracer.collect_mediation_properties=true
 
 You must enable statistics/tracing for the integration artifacts that you wish to monitor.
 
+### System Requirements
+
+- For EI nodes, see [Installation Prerequisites](../../setup/installation/install_prerequisites.md).
+
+- For the Analytics worker:
+
+    <table>
+    <tbody>
+    <tr class="odd">
+    <th>Memory</th>
+    <td><p><ul><li>~ 2 GB per worker node (and therefore, 4 GB for the recommended Minimum HA cluster<li>2 CPU cores minimum. It is recommended to allocate 4 cores.</li></li><li>~ 2 GB is the initial heap (-Xms)  required for the server startup. The maximum heap size is 4 GB (-Xmx)</li></ul></p></td>
+    </tr>
+    <tr class="even">
+    <th>Disk</th>
+    <td><p><li>~ 480 MB, excluding space allocated for log files and databases.</li></p></td>
+    </tr>
+    </tbody>
+    </table>
+
+- For the Analytics Dashboard:
+
+    <table>
+    <tbody>
+    <tr class="odd">
+    <th>Memory</th>
+    <td><p><ul><li>~ 2 GB minimum, 4 GB Maximum<li>2 CPU cores minimum. It is recommended to allocate 4 cores.</li></li><li>~ 512 MB heap size. This is generally sufficient to process typical SOAP messages but the requirements vary with larger message sizes and  the number of messages processed concurrently.</li></ul></p></td>
+    </tr>
+    <tr class="even">
+    <th>Disk</th>
+    <td><p><li>~ 480 MB, excluding space allocated for log files and databases.</li></p></td>
+    </tr>
+    </tbody>
+    </table>
+
 ### Enabling statistics for ALL artifacts
 
 If you want to collect statistics for **all** your integration artifacts, be sure to add the following parameter to the `deployment.toml` file in addition the [parameters explained above](#configuring-the-micro-integrator):
