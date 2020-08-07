@@ -4,7 +4,7 @@
 
 ### Creating Connector Exporter Project
 
-In order to bundle Connector into a CApp a `Connector Exporter Project` is needed.  
+In order to bundle Connector into a CApp a `Connector Exporter Project` is needed. 
 
 1. Navigate to **File** -> **New** -> **Other** -> **WSO2** -> **Extensions** -> **Project Types** -> **Connector Exporter Project**.<br> 
   <img src="../../../../assets/img/connectors/connector-exporter-project-1.png" title="Add Connector Exporter Project" width="400" alt="Add Connector Exporter Project" />
@@ -21,7 +21,7 @@ In order to bundle Connector into a CApp a `Connector Exporter Project` is neede
 
 ### Creating a Composite Application Project
 
-To export the `Solution Project` as a CApp, a `Composite Application Project` needs to be created. Usually, when a solution project is created, this project is automatically created by Integration Studio. If not, you can specifically create it by navigating to  **File** -> **New** -> **Other** -> **WSO2** -> **Distribution** -> **Composite Application Project**. 
+To export the `Integration Project` as a CApp, a `Composite Application Project` needs to be created. Usually, when an Integration project is created, this project can be created as part of that project by Integration Studio. If not, you can specifically create it by navigating to  **File** -> **New** -> **Other** -> **WSO2** -> **Distribution** -> **Composite Application Project**. 
 
 ### Exporting the Composite Application Project
 1. Right click on Composite Application Project and click on **Export Composite Application Project**.<br> 
