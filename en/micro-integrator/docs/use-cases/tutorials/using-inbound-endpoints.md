@@ -10,7 +10,7 @@ In this sample scenario, you will use an **Inbound Endpoint** to expose an alrea
 
 Set up WSO2 Integration Studio as follows:
 
-1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 2.  Set up the project from the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial:
 
     !!! Note
@@ -26,7 +26,7 @@ Set up WSO2 Integration Studio as follows:
     project directory will appear with the artifacts as shown below.
     Note the 'HealthcareAPI' that is already included.
 
-    ![](../../assets/img/tutorials/inbound-project-explorer.png)
+    <img src="../../../assets/img/tutorials/inbound-project-explorer.png" width="400">
 
 2.  Right-click on **SampleServicesConfigs** and navigate to **New -> Inbound
     Endpoint**. Select **Create A New Inbound Endpoint** and click
@@ -53,7 +53,7 @@ Set up WSO2 Integration Studio as follows:
         </tr>
     </table>
 
-    ![](https://lh3.googleusercontent.com/CYLJoSvCMhZfVYSZc73iRyAHhzgVWwjCqfkNgjPDlVs2qAs6QhsbDKt8mbIzEk8ojpONkEl2nemszzeNLPSAW3ogSs0eHqbGQMmw7WSlhx3b3Nbvfp0xGJ2Xbwl-Qbi0NxMGrSJB)
+    <img src="../../../assets/img/tutorials/using-inbound-endpoint/create-inbound-dialog-box.png" width="500">
 
 4.  Go to the **Properties** tab in the **Design** view and enter the following:
 
@@ -76,7 +76,7 @@ Set up WSO2 Integration Studio as follows:
         </tr>
     </table>
 
-    ![](../../assets/img/tutorials/using-inbound-endpoint/configure-inbound-endpoint.png)
+    <img src="../../../assets/img/tutorials/using-inbound-endpoint/configure-inbound-endpoint.png">
 
 The endpoint will now get mapped to any URL that matches the above pattern provided. You will be exposing the health care API on a new port through this inbound endpoint.
 
