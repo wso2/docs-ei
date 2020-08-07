@@ -29,6 +29,40 @@ The worker and dashboard are connected through the database.
 
 See the instructions given below on using the Analytics profile with the Micro Integrator.
 
+## System Requirements
+
+- For EI nodes, see [Installation Prerequisites](../../setup/installation/install_prerequisites.md).
+
+- For the Analytics worker:
+
+    <table>
+    <tbody>
+    <tr class="odd">
+    <th>Memory</th>
+    <td><p><ul><li>~ 2 GB per worker node (and therefore, 4 GB for the recommended Minimum HA cluster<li>2 CPU cores minimum. It is recommended to allocate 4 cores.</li></li><li>~ 2 GB is the initial heap (-Xms)  required for the server startup. The maximum heap size is 4 GB (-Xmx)</li></ul></p></td>
+    </tr>
+    <tr class="even">
+    <th>Disk</th>
+    <td><p><li>~ 480 MB, excluding space allocated for log files and databases.</li></p></td>
+    </tr>
+    </tbody>
+    </table>
+
+- For the Analytics Dashboard:
+
+    <table>
+    <tbody>
+    <tr class="odd">
+    <th>Memory</th>
+    <td><p><ul><li>~ 2 GB minimum, 4 GB Maximum<li>2 CPU cores minimum. It is recommended to allocate 4 cores.</li></li><li>~ 512 MB heap size. This is generally sufficient to process typical SOAP messages but the requirements vary with larger message sizes and  the number of messages processed concurrently.</li></ul></p></td>
+    </tr>
+    <tr class="even">
+    <th>Disk</th>
+    <td><p><li>~ 480 MB, excluding space allocated for log files and databases.</li></p></td>
+    </tr>
+    </tbody>
+    </table>
+
 ## Configuring the Micro Integrator
 
 To enable statistics monitoring for the Micro Integrator, add the following parameters in the `deployment.toml` file of your Micro Integrator. This file is stored in the `MI_HOME/conf`.
