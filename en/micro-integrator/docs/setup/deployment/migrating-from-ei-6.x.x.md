@@ -134,7 +134,7 @@ Copy the JKS files in the `<EI_6.x.x_HOME>/repository/resources/security` direct
 
 ### Migrating configurations
 
-Configration management was handled in WSO2 EI 6.x versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml` and etc.
+Configuration management was handled in WSO2 EI 6.x versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml`, etc.
 
 Micro Integrator of EI 7.1 provides a new configuration model where all of the product configurations are primarily managed by a single configuration file named `deployment.toml` (resides in the `<MI_HOME>/conf` directory). 
 
