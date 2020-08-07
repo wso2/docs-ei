@@ -56,9 +56,6 @@ Follow the instructions below to start the migration!
 
 If you are already using a JDBC or LDAP user store with EI 6.x, you can simply connect the same to the Micro Integrator by updating the configuration details in `deployment.toml` file. Following is a set of high-level configurations. 
 
-!!! Tip
-	See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
-
 ```toml tab='RDBMS User Store'
 [user_store]
 type = "database"
@@ -101,6 +98,8 @@ type = "read_write_ldap"
 [internal_apis.file_user_store]
 enable = false
 ```
+!!! Tip
+	See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
 	
 ### Migrating the registry
 The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
