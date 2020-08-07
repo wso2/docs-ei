@@ -6,7 +6,7 @@ metrics relating to the history of a node or the cluster. Both JVM level metric
 
 The following sections cover how to configure the Status Dashboard and analyze statistics relating to your Streaming Integrator deployment in it.
 
-### System requirements
+## System requirements
 
 This use case involves running both the Streaming Integrator and the Analytics Dashboard at the same time. The system requirements are as follows:
 
