@@ -140,7 +140,7 @@ Micro Integrator of EI 7.1 provides a new configuration model where all of the p
 
 In EI 7.1, the logging configurations are managed with log4j2, whereas it was done with log4j in EI 6.x series (prior to EI 6.6.0).
 
-Following subsections will guide you thorugh on how to migrate the Prodcut Configuraitons including log4j.
+The following sections of this document will guide you on how to migrate the Product Configurations including log4j.
 
 **Migrating to TOML configurations**
 
