@@ -133,7 +133,14 @@ Copy custom OSGI components in the `<EI_6.x.x_HOME>/dropins` folder to the `<MI_
 Copy the JKS files in the `<EI_6.x.x_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory. 
 
 ### Migrating configurations
-WSO2 EI 6.x versions supported multiple configuration files such as `carbon.xml`, `synapse.properties`, and `axis2.xml`. With the new configuration model in the Micro Integrator of EI 7.1, product configurations are primarily handled by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). The log4j2 configurations are handled in the `log4j2.properties`.
+
+Configration management was handled in WSO2 EI 6.x versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml` and etc.
+
+Micro Inegator of EI 7.1 provides a new configuration model where all of the product configurations are primarily managed by a single configuration file named `deployment.toml` (resides in the `<MI_HOME>/conf` directory). 
+
+The logging configuration are managed with log4j2 whereas it was done with log4j in EI 6.x series (Prior to EI 6.6.0).
+
+Following subsections will guide you thorugh on how to migrate the Prodcut Configuraitons including log4j.
 
 **Migrating to TOML configurations**
 
