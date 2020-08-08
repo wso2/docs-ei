@@ -7,9 +7,6 @@ This guide explains the recommended strategy for migrating from the Micro Integr
 -	Make a backup of the database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
 -	Download and install EI 7.1 in your environment:
 
-	!!! Tip
-		The home directory of your new Micro Integrator will be referred to as `<MI_7.1.0_HOME>` from hereon.
-
 	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer).
 	-	Install the product [using the binary distribution](../../../setup/installation/install_in_vm_binary).
 
@@ -69,19 +66,19 @@ enable = false
 ```
 
 ### Migrating the registry
-The Micro Integrator uses a [file based registry](../file_based_registry). You can directly migrate the artifacts to the EI 7.1.0 by copying the carbon applications from the `<MI_7.0.0_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_7.1.0_HOME>/repository/deployment/server/carbonapps` folder. 
+The Micro Integrator uses a [file-based registry](../file_based_registry). You can directly migrate the artifacts to the Micro Integrator of EI 7.1.0 by copying the carbon applications from the `<MI_HOME>/repository/deployment/server/carbonapps` folder in the Micro Integrator of EI 7.0.0 to the same folder in EI 7.1.0. 
 
 ### Migrating artifacts
-Copy the contents inside `<MI_7.0.0_HOME>/repository/deployment` to the `<MI_7.1.0_HOME>/repository/deployment` folder.
+Copy the contents inside the `<MI_HOME>/repository/deployment` folder in the Micro Integrator of EI 7.0.0 to the same folder in EI 7.1.0.
 
 ### Migrating custom components
-Copy the jars inside the `<MI_7.0.0_HOME>/dropins` folder to the same folder of EI 7.1.0 (`<MI_7.1.0_HOME>/dropins`). The custom JARs can be copied to the `<MI_7.1.0_HOME>/lib` directory.
+Copy the jars inside the `<MI_HOME>/dropins` folder in the Micro Integrator of EI 7.0.0 to the same folder in EI 7.1.0. The custom JARs can be copied to the `<MI_HOME>/lib` directory in EI 7.1.0.
 
 ### Migrating keystores
-Copy the JKS files from the `<MI_7.0.0_HOME>/repository/resources/security` folder to the `<MI_7.1.0_HOME>/repository/resources/security` folder.
+Copy the JKS files from the `<MI_HOME>/repository/resources/security` folder in the Micro Integrator of EI 7.0.0 to the same folder in EI 7.1.0.
 
 ### Migrating configurations
-Copy the configurations in the `deployment.toml` file of EI 7.1.0 (such as database, transport, datasource configurations, etc.) to the `<MI_7.1.0_HOME/conf/deployment.toml` file. 
+Copy the configurations in the `deployment.toml` file of the Micro Integrator of EI 7.0.0 (such as database, transport, datasource configurations, etc.) to the `deployment.toml` file of the Micro Integrator in EI 7.1.0.
 
 ### Migrating encrypted passwords
 
@@ -97,7 +94,7 @@ Follow the instructions given below.
 	!!! Info
 		Note that you need a valid [WSO2 subscription](https://wso2.com/subscription) to use updates in a production environment.
 
-3. Copy the `org.wso2.mi.migration-1.2.0-SNAPSHOT.jar` into the `MI_7.0.0_HOME/dropins` folder.
+3. Copy the `org.wso2.mi.migration-1.2.0-SNAPSHOT.jar` into the `MI_HOME/dropins` folder in the Micro Integrator of EI 7.0.0.
 
 4. Start the server using the `migrate.from.product.version` system property as follows:
 
@@ -110,8 +107,8 @@ Follow the instructions given below.
 	```
 
 	!!! Info
-		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to `MI_7.0.0_HOME/migration/secure-vault-decrypted.properties` file and the `MI_7.0.0_HOME/migration/cipher-text-decrypted.properties` file. 
+		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to `<MI_HOME>/migration/secure-vault-decrypted.properties` file and the `<MI_HOME>/migration/cipher-text-decrypted.properties` file in the Micro Integrator of EI 7.0.0.
 
 	The encrypted passwords are now decrypted and you have access to the plain-text password values.
 
-5.	Use the plain-text passwords and follow the normal procedure of encrypting secrets in EI 7.1 See [Encrypt Secrets](../../security/encrypting_plain_text) for instructions.
+5.	Use the plain-text passwords and follow the normal procedure of encrypting secrets in EI 7.1 See [Encrypting Secrets](../../security/encrypting_plain_text) for instructions.
