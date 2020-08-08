@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-Let’s try a simple scenario where a patient makes an inquiry specifying the doctor's specialization (category) to retrieve a list of doctors that match the specialization. The required information is available in a  back-end micro service. 
+Let’s try a simple scenario where a patient makes an inquiry specifying the doctor's specialization (category) to retrieve a list of doctors that match the specialization. The required information is available in a  back-end microservice. 
 
 To implement this use case, you will create a REST API resource and other artifacts using WSO2 Integration Studio, and then deploy them in the embedded WSO2 Micro Integrator instance. The default API resource will be configured to receive the client request in place of the back-end service, thereby decoupling the client and the back-end service. The response message with the requested doctor details will be routed back to the client through the same API resource.
 
@@ -292,11 +292,11 @@ Let's test the use case by sending a simple client request that invokes the serv
 #### Start the back-end service
 
 1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
-2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+2. Open a terminal, navigate to the location where your saved the back-end service.
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-JDK11.jar
+    java -jar Hospital-Service-JDK11-2.0.0.jar
     ```
 
 #### Send the client request
