@@ -223,7 +223,7 @@ You can now start configuring the API resource.
          </td>
          <td>
             <div class="content-wrapper">
-               To extract the stock symbol from the request and print a welcome message in the log, click the '+' icon in the <strong>Properties</strong> section, and then add the following values:<br />
+               To extract the stock symbol from the request and print a welcome message in the log, click the plus icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">) in the <strong>Properties</strong> section, and then add the following values:<br />
                <ul>
                   <li><strong>Name</strong>: <code>Log Property message</code></li>
                   <li><strong>Type</strong>: <code>LITERAL</code><br />

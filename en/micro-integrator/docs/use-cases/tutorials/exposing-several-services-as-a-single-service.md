@@ -14,7 +14,7 @@ To build this mediation flow, you will update the API resource from the [Message
 
 Set up WSO2 Integration Studio as follows:
 
-1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 2.  Set up the project from the [Message Transformation](transforming-message-content.md) tutorial:
 
     !!! Note
@@ -124,7 +124,7 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
                 <code>POST </code>
             </td>
             <td>
-                This endpoint artifact will be used to post inforamtion to the back-end service.
+                This endpoint artifact will be used to post informtion to the back-end service.
             </td>
         </tr>
         <tr>
@@ -174,20 +174,20 @@ You can now start updating the API resource with the mediation flow.
          <td>Enter <code>               set              </code>.</td>
       </tr>
       <tr class="even">
-         <td>Value Type</td>
-         <td>Enter <code>               EXPRESSION              </code>.</td>
-      </tr>
-      <tr class="even">
         <td>Value</td>
         <td>
             <div class="content-wrapper">
                 <p>Follow the steps given below to specify the expression:</p>
+                <img src="../../../assets/img/tutorials/119132228/expression-value.png">
                 <ol>
-                    <li>Click the <strong>Ex</strong> button in front of the value field.
+                    <li>Click the <strong>Ex</strong> button before the <b>Value</b> field. This specifies the value type as <i>expression</i>.</li>
+                    <li>
+                      Now, click the <strong>f</strong> button to open the <b>Expression Selector</b> dialog box.
+                    </li>
                     <li>Enter <code>json-eval($.cardNo)</code> as the expression value.</li>
                 </ol>
                     <b>Note</b>:
-                    This is the JSONPath expression that will extract the hospital from the request payload.
+                    This is the JSONPath expression that will extract the card number from the request payload.
             </div>
         </td>
       </tr>
@@ -197,7 +197,7 @@ You can now start updating the API resource with the mediation flow.
       </tr>
     </table>
 
-3. Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for `          uri.var.hospital         ` variable that will be used when sending requests to **ChannelingFeeEP** service. 
+3. Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for the `          uri.var.hospital         ` variable that will be used when sending requests to **ChannelingFeeEP** service. 
 
     ![](../../assets/img/tutorials/119132228/119132237.png)
 
@@ -218,10 +218,6 @@ You can now start updating the API resource with the mediation flow.
       <tr class="odd">
          <td>Property Action</td>
          <td>Enter <code>               set              </code>.</td>
-      </tr>
-      <tr class="even">
-         <td>Value Type</td>
-         <td>Enter <code>LITERAL</code>.</td>
       </tr>
       <tr>
           <td>Property Data Type</td>
@@ -247,11 +243,11 @@ You can now start updating the API resource with the mediation flow.
 
 6.  Delete the Send mediator by right clicking on the mediator and selecting **Delete from Model**. Replace this with a Call mediator from the **Mediators** palette and add GrandOakEP from the **Defined Endpoints** palette to the empty box adjoining the Call mediator.  
       
-7.  Replace the Send mediators in the following two case boxes as well and add ClemencyEP and PineValleyEP to the respective boxesadjoining the Call mediators.  
+7.  Replace the Send mediators in the following two case boxes as well and add ClemencyEP and PineValleyEP to the respective boxes adjoining the Call mediators.  
     ![](../../assets/img/tutorials/119132228/119132235.png)
 
     !!! Info
-        Replacing with a Call mediator allows us to define other service invocations following this mediator.
+        Using the Call mediator allows us to define other service invocations following this mediator.
     
     Let's use Property mediators to retrieve and store the values that you get from the response you receive from GrandOakEP, ClemencyEP, or PineValleyEP.
 
@@ -283,26 +279,23 @@ You can now start updating the API resource with the mediation flow.
     <td><p>Select <strong>set</strong></p></td>
     </tr>
     <tr class="even">
-    <td>Value Type</td>
-    <td>Select <strong>EXPRESSION</strong></td>
-    </tr>
-    <tr class="even">
-         <td>Value Expression</td>
-         <td>
+        <td>Value</td>
+        <td>
             <div class="content-wrapper">
-              <p>Follow the steps given below to specify the expression:</p>
-            <ol>
-                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-               <li>Select <strong>Expression</strong> from the list.
-                </li>
-               <li>Enter <code>json-eval($.appointmentNumber)</code> to overwrite the default expression.</li>
-               <li>Click <strong>OK.</strong> <strong><br />
-                  </strong>
-               </li>
-            </ol>
+                <p>Follow the steps given below to specify the expression:</p>
+                <img src="../../../assets/img/tutorials/119132228/expression-value.png">
+                <ol>
+                    <li>Click the <strong>Ex</strong> button before the <b>Value</b> field. This specifies the value type as <i>expression</i>.</li>
+                    <li>
+                      Now, click the <strong>f</strong> button to open the <b>Expression Selector</b> dialog box.
+                    </li>
+                    <li>Enter <code>json-eval($.appointmentNumber)</code> as the expression value.</li>
+                </ol>
+                    <b>Note</b>:
+                    This is the JSONPath expression that will extract the appointment number from the request payload.
             </div>
-         </td>
-      </tr>
+        </td>
+    </tr>
     <tr class="even">
     <td>Description</td>
     <td>Get Appointment Number</td>
@@ -329,7 +322,7 @@ You can now start updating the API resource with the mediation flow.
                "confirmed":false}
         ```
 
-10.  Similarly, add two more Property mediators. They retrieve and store the `           doctor          ` details and `           patient          ` details respectively from the response that is received from GrandOakEP, ClemencyEP, or PineValleyEP.
+10.  Similarly, add two more Property mediators. They will retrieve and store the `           doctor          ` details and `           patient          ` details respectively from the response that is received from GrandOakEP, ClemencyEP, or PineValleyEP.
 
       - To store `doctor` details:
 
@@ -357,22 +350,23 @@ You can now start updating the API resource with the mediation flow.
               </td>
             </tr>
             <tr class="even">
-                 <td>Value Expression</td>
-                 <td>
+                <td>Value</td>
+                <td>
                     <div class="content-wrapper">
-                      <p>Follow the steps given below to specify the expression:</p>
-                    <ol>
-                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-                       <li>Select <strong>Expression</strong> from the list.
-                        </li>
-                       <li>Enter <code>json-eval($.doctor)</code> to overwrite the default expression.</li>
-                       <li>Click <strong>OK.</strong> <strong><br />
-                          </strong>
-                       </li>
-                    </ol>
+                        <p>Follow the steps given below to specify the expression:</p>
+                        <img src="../../../assets/img/tutorials/119132228/expression-value.png">
+                        <ol>
+                            <li>Click the <strong>Ex</strong> button before the <b>Value</b> field. This specifies the value type as <i>expression</i>.</li>
+                            <li>
+                              Now, click the <strong>f</strong> button to open the <b>Expression Selector</b> dialog box.
+                            </li>
+                            <li>Enter <code>json-eval($.doctor)</code> as the expression value.</li>
+                        </ol>
+                            <b>Note</b>:
+                            This is the JSONPath expression that will extract the doctor details from the request payload.
                     </div>
-                 </td>
-              </tr>
+                </td>
+            </tr>
             <tr>
               <td>Description</td>
               <td>
@@ -404,30 +398,25 @@ You can now start updating the API resource with the mediation flow.
                 Select <strong>set</strong>
               </td>
             </tr>
-            <tr>
-              <td>Value Type</td>
-              <td>
-                Select <strong>EXPRESSION</strong>
-              </td>
-            </tr>
             <tr class="even">
-                 <td>Value Expression</td>
-                 <td>
+                <td>Value</td>
+                <td>
                     <div class="content-wrapper">
-                      <p>Follow the steps given below to specify the expression:</p>
-                    <ol>
-                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-                       <li>Select <strong>Expression</strong> from the list.
-                        </li>
-                       <li>Enter <code>json-eval($.patient)</code> to overwrite the default expression.</li>
-                       <li>Click <strong>OK.</strong> <strong><br />
-                          </strong>
-                       </li>
-                    </ol>
+                        <p>Follow the steps given below to specify the expression:</p>
+                        <img src="../../../assets/img/tutorials/119132228/expression-value.png">
+                        <ol>
+                            <li>Click the <strong>Ex</strong> button before the <b>Value</b> field. This specifies the value type as <i>expression</i>.</li>
+                            <li>
+                              Now, click the <strong>f</strong> button to open the <b>Expression Selector</b> dialog box.
+                            </li>
+                            <li>Enter <code>json-eval($.patient)</code> as the expression value.</li>
+                        </ol>
+                            <b>Note</b>:
+                            This is the JSONPath expression that will extract the patient details from the request payload.
                     </div>
-                 </td>
-              </tr>
-              <tr>
+                </td>
+            </tr>
+            <tr>
               <td>Description</td>
               <td>
                  Get Patient Details
@@ -437,7 +426,7 @@ You can now start updating the API resource with the mediation flow.
 
     ![](../../assets/img/tutorials/119132228/119132233.png)
 
-11.  Add a Call mediator and add ChannelingFeeEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator.
+11.  Add a Call mediator and add the ChannelingFeeEP endpoint from the **Defined Endpoints** palette to the empty box adjoining the Call mediator.
 12.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `actualFee`. 
 13.  Access the Property tab of the mediator and specify the following details:
 
@@ -463,37 +452,30 @@ You can now start updating the API resource with the mediation flow.
                 Select <strong>set</strong>
               </td>
             </tr>
+            <tr class="even">
+                <td>Value</td>
+                <td>
+                    <div class="content-wrapper">
+                        <p>Follow the steps given below to specify the expression:</p>
+                        <img src="../../../assets/img/tutorials/119132228/expression-value.png">
+                        <ol>
+                            <li>Click the <strong>Ex</strong> button before the <b>Value</b> field. This specifies the value type as <i>expression</i>.</li>
+                            <li>
+                              Now, click the <strong>f</strong> button to open the <b>Expression Selector</b> dialog box.
+                            </li>
+                            <li>Enter <code>json-eval($.actualFee)</code> as the expression value.</li>
+                        </ol>
+                    </div>
+                </td>
+            </tr>
             <tr>
-              <td>Value Type</td>
               <td>
-                Select <strong>EXPRESSION</strong>
+                  Description
+              </td>
+              <td>
+                  Get Actual Fee
               </td>
             </tr>
-            <tr class="even">
-                 <td>Value Expression</td>
-                 <td>
-                    <div class="content-wrapper">
-                      <p>Follow the steps given below to specify the expression:</p>
-                    <ol>
-                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-                       <li>Select <strong>Expression</strong> from the list.
-                        </li>
-                       <li>Enter <code>json-eval($.actualFee)</code> to overwrite the default expression.</li>
-                       <li>Click <strong>OK.</strong> <strong><br />
-                          </strong>
-                       </li>
-                    </ol>
-                    </div>
-                 </td>
-              </tr>
-              <tr>
-                <td>
-                    Description
-                </td>
-                <td>
-                    Get Actual Fee
-                </td>
-              </tr>
           </table>
 
     ![](../../assets/img/tutorials/119132228/119132232.png)
@@ -542,7 +524,7 @@ You can now start updating the API resource with the mediation flow.
     | Media Type     | Select <strong>json</strong>                                                                           |
     | Payload        | `{"appointmentNumber":$1, "doctor":$2, "patient":$3, "fee":$4, "confirmed":"false", "card_number":"$5"}`</br></br> This is the message payload to send with the request to SettlePaymentEP. In this payload, $1, $2, $3, $4, and $5 indicate variables. |
     
-17. To add the **Args** field for the PayloadFactory mediator:
+17. To add the arguments for the PayloadFactory mediator:
     1. Click the **plus** icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">) in the **Args** field to open the **PayloadFactoryArgument** dialog. 
     2. Enter the following information in the **PayloadFactoryArgument** dialog box. This provides the argument that defines the actual value of the first variable (used in the format definition given in the previous step).
 

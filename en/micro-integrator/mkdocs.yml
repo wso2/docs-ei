@@ -279,72 +279,75 @@ nav:
         - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
     - Install and Setup:
       - 'Overview': 'setup/micro_integrator_deployment_overview.md'
-      - Installation Guide:
+      - Install:
         - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
         - Installing the Micro Integrator:
           - 'Installing via the Installer': 'setup/installation/install_in_vm_installer.md'
           - 'Installing via the Binary': 'setup/installation/install_in_vm_binary.md'
           - 'Installing as a Windows Service': 'setup/installation/install_as_service.md'
         - 'Running the Micro Integrator on Containers': 'setup/installation/run_in_containers.md'
-      - Kubernetes Deployment:
-        - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
-        - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'
-        - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
-        - K8s Deployment Samples:
-          - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
-          - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
-          - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
-      - VM Deployment:
-        - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
-        - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
-        - 'Load Balancing': 'setup/deployment/setting_up_lb.md'
-        - 'File-Based Registry' : 'setup/deployment/file_based_registry.md'
+      - Migrate:
+        - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
+        - 'Migrating from WSO2 EI 7.0': 'setup/deployment/migrating-from-ei-7.0.0.md'
+      - Deploy:
+        - Deploy on Kubernetes:
+          - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
+          - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'
+          - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
+          - K8s Deployment Samples:
+            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
+            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
+            - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+        - Deploy on a Virtual Machine:
+          - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
+          - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
+          - 'Load Balancing': 'setup/deployment/setting_up_lb.md'
+          - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
+          - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'   
+        - Deployment Best Practices:
+          - 'Production Deployment Guidelines': 'setup/deployment/deployment_checklist.md'
+          - 'Health Check': 'setup/deployment/deployment_checklist.md'
+          - 'Changing Default Ports': 'setup/changing_default_ports.md'
+          - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md' 
+          - Performance Tuning:
+            - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
+            - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
+            - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
+            - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
+            - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
+            - 'Tuning the VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
+            - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
+            - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
         - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
-        - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
-      - Setting up Databases:
-        - 'MySQL Database': 'setup/databases/setting-up-MySQL.md'
-        - 'MSSQL Database': 'setup/databases/setting-up-MSSQL.md'
-        - 'Oracle Database': 'setup/databases/setting-up-Oracle.md'
-        - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
-        - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
-      - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
-      - 'Migrating from WSO2 EI 7.0.x': 'setup/deployment/migrating-from-ei-7.0.x.md'
-      - 'Product Deployment Guidelines': 'setup/deployment/deployment_checklist.md'
-      - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
-      - Security Hardening :
-        - Setting up Keystores:
-          - 'Creating New Keystores': 'setup/security/creating_keystores.md'
-          - 'Adding SSL certificates to keystores': 'setup/security/importing_ssl_certificate.md'
-          - 'Renewing a CA-signed Certificate': 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
-          - 'Configuring Keystores': 'setup/security/configuring_keystores.md'
-        - Complying with GDPR:
-          - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
-          - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
-        - Working with Secrets:
-          - 'Encrypting Secrets' : 'setup/security/encrypting_plain_text.md'
-          - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
-        - 'Securing the Management API' : 'setup/security/securing_management_api.md'
-        - Working with User Stores:
-          - 'Configuring a User Store' : 'setup/user_stores/setting_up_a_userstore.md'
-          - 'Managing Users' : 'setup/user_stores/managing_users.md'
-      - 'Health Checking' : 'setup/deployment/health_check.md'
-      - Performance Tuning:
-        - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
-        - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
-        - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
-        - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
-        - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
-        - 'Tuning the VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
-        - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
-        - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
-      - Feature-Specific Configurations:
-        - 'Configuring Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
-        - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
-        - 'Configuring Message Relay': 'setup/message_builders_formatters/message-relay.md'
-        - 'Configuring Transports': 'setup/transport_configurations/configuring-transports.md'
-        - 'Configuring Multi-HTTPS': 'setup/transport_configurations/multi-https-transport.md'
-        - 'Configuring Kafka' : 'setup/feature_configs/configuring-kafka.md'
-        - Configuring Brokers:
+        - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
+      - Set Up:
+        - Data Stores:
+          - User Stores:
+            - 'Configuring a User Store' : 'setup/user_stores/setting_up_a_userstore.md'
+            - 'Managing Users' : 'setup/user_stores/managing_users.md'
+          - Databases:
+            - 'MySQL Database': 'setup/databases/setting-up-MySQL.md'
+            - 'MSSQL Database': 'setup/databases/setting-up-MSSQL.md'
+            - 'Oracle Database': 'setup/databases/setting-up-Oracle.md'
+            - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
+            - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
+          - 'File-Based Registry': 'setup/deployment/file_based_registry.md'
+        - Security:
+          - Setting up Keystores:
+            - 'Creating New Keystores': 'setup/security/creating_keystores.md'
+            - 'Adding SSL certificates to keystores': 'setup/security/importing_ssl_certificate.md'
+            - 'Renewing a CA-signed Certificate': 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
+            - 'Configuring Keystores': 'setup/security/configuring_keystores.md'
+          - Complying with GDPR:
+            - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
+            - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
+          - Working with Secrets:
+            - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
+            - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
+          - 'Securing the Management API' : 'setup/security/securing_management_api.md'
+          - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
+        - Message Brokers:
+          - 'Connecting to RabbitMQ': 'setup/brokers/configure-with-rabbitMQ.md'
           - 'Connecting to ActiveMQ': 'setup/brokers/configure-with-ActiveMQ.md'
           - 'Connecting to Apache Artemis': 'setup/brokers/configure-with-Apache-Artemis.md'
           - 'Connecting to HornetQ': 'setup/brokers/configure-with-HornetQ.md'
@@ -352,19 +355,15 @@ nav:
           - 'Connecting to IBM WebSphere MQ': 'setup/brokers/configure-with-IBM-websphereMQ.md'
           - 'Connecting to JBoss MQ': 'setup/brokers/configure-with-JBossMQ.md'
           - 'Connecting to MSMQ': 'setup/brokers/configure-with-MSMQ.md'
-          - 'Connecting to Rabbit MQ': 'setup/brokers/configure-with-rabbitMQ.md'
           - 'Connecting to Swift MQ': 'setup/brokers/configure-with-SwiftMQ.md'
           - 'Connecting to TIBCO EMS': 'setup/brokers/configure-with-Tibco-EMS.md'
           - 'Connecting to Weblogic': 'setup/brokers/configure-with-WebLogic.md'
           - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
           - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
-      - Additional Configurations:
-        - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy_path.md'
-        - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
-        - 'Changing Default Ports': 'setup/changing_default_ports.md'
-        - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
-        - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
-        - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
+        - 'Configure Kafka' : 'setup/feature_configs/configuring-kafka.md'
+        - 'Configure Transports': 'setup/transport_configurations/configuring-transports.md'
+        - 'Configure Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
+        - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
