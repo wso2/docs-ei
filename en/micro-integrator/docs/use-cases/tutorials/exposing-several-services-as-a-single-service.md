@@ -86,7 +86,7 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
 
 4.  Click **Finish**.
 
-    ![](../../assets/img/tutorials/119132228/119132240.png)
+    <img src="../../../assets/img/tutorials/119132228/119132240.png" width="500">
 
 5.  Create another endpoint for the Settle Payment back-end service and specify the details given below:
     <table>
@@ -142,7 +142,7 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
 
 6.  Click **Finish**.
 
-    ![](../../assets/img/tutorials/119132228/119132239.png)
+    <img src="../../../assets/img/tutorials/119132228/119132239.png" width="500">
 
 You have now created the additional endpoints that are required for this tutorial.
 
@@ -178,21 +178,18 @@ You can now start updating the API resource with the mediation flow.
          <td>Enter <code>               EXPRESSION              </code>.</td>
       </tr>
       <tr class="even">
-         <td>Value Expression</td>
-         <td>
+        <td>Value</td>
+        <td>
             <div class="content-wrapper">
-              <p>Follow the steps given below to specify the expression:</p>
-            <ol>
-                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-               <li>Select <strong>Expression</strong> from the list.
-                </li>
-               <li>Enter <code>json-eval($.cardNo)</code> to overwrite the default expression.</li>
-               <li>Click <strong>OK.</strong> <strong><br />
-                  </strong>
-               </li>
-            </ol>
+                <p>Follow the steps given below to specify the expression:</p>
+                <ol>
+                    <li>Click the <strong>Ex</strong> button in front of the value field.
+                    <li>Enter <code>json-eval($.cardNo)</code> as the expression value.</li>
+                </ol>
+                    <b>Note</b>:
+                    This is the JSONPath expression that will extract the hospital from the request payload.
             </div>
-         </td>
+        </td>
       </tr>
       <tr>
           <td>Description</td>
@@ -575,8 +572,8 @@ You can now start updating the API resource with the mediation flow.
                    <li>Select <strong>Expression</strong> from the list.
                     </li>
                    <li>
-                      Enter "$ctx:uri.var.appointment_id".
-                      Note that the "$ctx" method is similar to using the <code>get-property</code> method. This method checks in the message context.
+                      Enter `$ctx:uri.var.appointment_id`.
+                      Note that the `$ctx` method is similar to using the <code>get-property</code> method. This method checks in the message context.
                    </li>
                    <li>Click <strong>OK.</strong> <strong><br/>
                       </strong>
@@ -649,12 +646,12 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the back-end service
 
-1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
+    java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
 #### Send the client request

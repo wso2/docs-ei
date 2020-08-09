@@ -44,9 +44,9 @@ This sample security policy file validates username token and admin role is allo
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) and [security policy](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 
@@ -57,7 +57,7 @@ Set up the back-end service:
     java -jar stockquote_service.jar
     ```
 
-Be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+Be sure to [configure a user store](../../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
 
 Set up the SOAP client:
 
@@ -65,7 +65,7 @@ Set up the SOAP client:
 2. Create a new SOAP project in the SoapUI using following wsdl file:
 
    ```bash
-   http://localhost:8253/services/StockQuoteProxy?wsdl
+   https://localhost:8253/services/StockQuoteProxy?wsdl
    ```
 3.  Use the `getQuote` operation. 
 4.  Set [Authorization](https://www.soapui.org/soap-and-wsdl/authenticating-soap-requests.html) in the SoapUI request. You will need this to call a secure service.

@@ -43,9 +43,9 @@ Create an integration project with the following modules: **ESB Configs** and **
 
 1.  Open **WSO2 Integration Studio**.
 2.  Click **New Integration Project** in the **Getting Started** tab as shown below. 
-    ![](../../assets/img/tutorials/119132413/119132414.png)
+    ![](../../assets/img/new-project/new-integration-project.png)
 
-3.  Enter `FileProcessingService` as the project name and select the **Create Composite Exporter** check box.
+3.  Enter `FileProcessingService` as the project name.
 4.  Click **Finish**. The created project is saved in the **Project Explorer**.
 
 #### Create the Main and Fault sequences

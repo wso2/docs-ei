@@ -11,7 +11,7 @@ An integration project is the recommended way of creating an “Integration Solu
 2. Open WSO2 Integration Studio and click **New Integration Project** in the **Getting Started** view as shown below.
     <img src="../../assets/img/new-project/new-integration-project.png" title="New Integration Project" width="700" alt="New Integration Project"/>
 
-3. In the **New Integration Project** dialog that opens, enter a name for your integration project. Select the relevant check boxes if you want to create **Registry Resources**, **Connector Exporter**, **Docker Exporter**, or **Kubernetes Exporter** in addition to the **ESB Configs** and **Composite Exporter**.
+3. In the **New Integration Project** dialog box that opens, enter a name for your integration project. Select the relevant check boxes if you want to create **Registry Resources**, **Connector Exporter**, **Docker Exporter**, or **Kubernetes Exporter** in addition to the **ESB Configs** and **Composite Exporter**.
     <img src="../../assets/img/new-project/create-a-project.png" title="Create a New Integration Project" width="700" alt="Create a New Integration Project"/>
 
 ## Sub projects
@@ -74,7 +74,6 @@ The following table lists out the available projects that can be associated with
             <li><b>Proxy</b>: This is a virtual service in WSO2 EI that receives messages and processes them. It then delivers them to an endpoint outside EI, where the actual Web Service is located.</li>
             <li><b>API</b>: Rest API is an endpoint in WSO2 EI that has a URL. This address specifies the context and resources that need to be accessed through an HTTP method or call such as GET, PUT, POST, DELETE. Requests arrive at the input sequence, the EI processes the message using mediators and forwards the message to the Backend. The output sequence receives the backend’s response, processes it, and forwards the message to the client.</li>
             <li><b>Inbound endpoints</b>: They can be configured dynamically without restarting the server. Messages move from the transport layer to the mediation layer without going through the Axis2 engine.</li>
-            <li><b>Main</b>: This is WSO2 EI’s main sequence used to forward the requests that do not match any defined service.</li>
             <li><b>Sequences</b>: Sequences are used in the proxy service and the REST APIs. Each sequence is a set of mediators where messages are processed.</li>
             <li><b>Mediator</b>: It is the processing unit or action that is performed on a message. For example, when enriching a message, filtering it, sending it to an endpoint, deleting it, etc. Mediators can be customized.</li>
             <li><b>Scheduled Tasks</b>: This is a code that is to be executed at a specific moment. Tasks can also be customized.</li>

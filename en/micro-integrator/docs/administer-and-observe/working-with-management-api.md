@@ -55,7 +55,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Retrieves a list of all users stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore).
+	**Description**: Retrieves a list of all users stored in an [external user store](../../setup/user_stores/setting_up_a_userstore).
 
 	**Example**:
 
@@ -77,7 +77,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/{user_id}`
 
-	**Description**: Retrieves information related to a specified user stored in the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+	**Description**: Retrieves information related to a specified user stored in the [external user store](../../setup/user_stores/setting_up_a_userstore).
 
 	**Example**:
 
@@ -99,7 +99,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/pattern=”*”&role=admin`
 
-	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern and user role.
+	**Description**: Retrieves information related to user names (stored in an [external user store](../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern and user role.
 
 	**Example**:
 
@@ -123,7 +123,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_a_userstore). Note that only admin users can create other users with admin access.
+	**Description**: Adds a user to the [external user store](../../setup/user_stores/setting_up_a_userstore). Note that only admin users can create other users with admin access.
 
 	**Example**:
 
@@ -154,7 +154,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Removes a user from the [external user store](../../../setup/user_stores/setting_up_a_userstore). Note that only admin users can remove other users with admin access.
+	**Description**: Removes a user from the [external user store](../../setup/user_stores/setting_up_a_userstore). Note that only admin users can remove other users with admin access.
 
 	**Example**:
 
@@ -228,6 +228,29 @@ The management API has multiple resources to provide information regarding the d
 
 	```bash tab='Response'
     {"Message":"Proxy service HelloWorld stopped successfully"}
+	```
+	
+### ENABLE/DISABLE MESSAGE TRACING for PROXY SERVICES
+
+-	**Resource**: `/proxy-services`
+
+	**Description**: Enable or disable message tracing for a specified proxy service.
+
+	**Example**:
+
+	```bash tab='Request'
+		curl -X POST \
+    	  https://localhost:9164/management/proxy-services \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"name": "HelloWorld",
+    		"trace": "enable"
+    	}' -k -i
+	```
+
+	```bash tab='Response'
+    {"message":"Enabled tracing for ('HelloWorld')"}
 	```
 
 ### GET CARBON APPLICATIONS
@@ -312,6 +335,29 @@ The management API has multiple resources to provide information regarding the d
 	{"Message":"HTTPEP : is switched Off"}
 	```
 
+### ENABLE/DISABLE MESSAGE TRACING for ENDPOINTS
+
+-	**Resource**: `/endpoints`
+
+	**Description**: Enable or disable message tracing for a specified endpoint.
+
+	**Example**:
+	
+    ```bash tab='Request'
+		curl -X POST \
+    	  https://localhost:9164/management/endpoints \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"name": "HTTPEP",
+    		"trace": "enable"
+    	}' -k -i
+	```
+
+	```bash tab='Response'
+    {"message":"Enabled tracing for ('HTTPEP')"}
+	```
+	
 ### GET APIs
 
 -	**Resource**: `/apis`
@@ -344,6 +390,29 @@ The management API has multiple resources to provide information regarding the d
 
 	**Description**: Retrieves information related to a specified api.
 
+### ENABLE/DISABLE MESSAGING TRACING for APIs
+
+-	**Resource**: `/apis`
+
+	**Description**: Enable or disable message tracing for a specified api.
+
+	**Example**:
+
+    ```bash tab='Request'
+		curl -X POST \
+    	  https://localhost:9164/management/apis \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"name": "helloApi",
+    		"trace": "enable"
+    	}' -k -i
+	```
+
+	```bash tab='Response'
+    {"message":"Enabled tracing for ('helloApi')"}
+	```
+	
 ### GET SEQUENCES
 
 -	**Resource**: `/sequences`
@@ -385,6 +454,29 @@ The management API has multiple resources to provide information regarding the d
 	**Description**: Retrieves information related to a specified sequence.
 
 
+### ENABLE/DISABLE MESSAGE TRACING for SEQUENCES
+
+-	**Resource**: `/sequences`
+
+	**Description**: Enable or disable message tracing for a specified sequence.
+
+	**Example**:
+
+    ```bash tab='Request'
+		curl -X POST \
+    	  https://localhost:9164/management/sequences \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"name": "helloSequence",
+    		"trace": "enable"
+    	}' -k -i
+	```
+
+	```bash tab='Response'
+    {"message":"Enabled tracing for ('helloSequence')"}
+	```
+	
 ### GET LOCAL ENTRIES
 
 -	**Resource**: `/local-entries`
@@ -559,6 +651,29 @@ The management API has multiple resources to provide information regarding the d
 
 	**Description**: Retrieves information related to a specified inbound endpoint.
 
+### ENABLE/DISABLE MESSAGE TRACING for INBOUND ENDPOINTS
+
+-	**Resource**: `/inbound-endpoints`
+
+	**Description**: Enable or disable message tracing for a specified inbound-endpoint.
+
+	**Example**:
+
+    ```bash tab='Request'
+		curl -X POST \
+    	  https://localhost:9164/management/inbound-endpoints \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"name": "HTTPIEP",
+    		"trace": "enable"
+    	}' -k -i
+	```
+
+	```bash tab='Response'
+    {"message":"Enabled tracing for ('HTTPIEP')"}
+	```
+	
 ### GET CONNECTORS
 
 -	**Resource**: `/connectors`
@@ -660,6 +775,30 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
+### ENABLE/DISABLE MESSAGE TRACING for SEQUENCE TEMPLATES
+
+-	**Resource**: `/templates`
+
+	**Description**: Enable or disable message tracing for a specified sequence template.
+
+	**Example**:
+
+    ```bash tab='Request'
+		curl -X POST \
+    	  https://localhost:9164/management/templates \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"name": "testSequenceTemplate",
+    		"type": "sequence",
+    		"trace": "enable"
+    	}' -k -i
+	```
+
+	```bash tab='Response'
+    {"message":"Enabled tracing for ('testSequenceTemplate')"}
+	```
+	
 ### GET SERVER INFORMATION
 
 -	**Resource**: `/server`

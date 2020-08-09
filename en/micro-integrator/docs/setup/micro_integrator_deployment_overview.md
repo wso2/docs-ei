@@ -15,26 +15,26 @@ The installation guide of the Micro Integrator explains how to set up the Micro 
 	</tr>
 	<tr>
 		<td>
-			<a href="../../setup/installation/install_in_vm">Install on a VM</a>
+			<a href="../../setup/installation/install_in_vm_installer">Install via the Installer</a>
 		</td>
 		<td>
-			Follow the instructions on downloading the Micro Integrator and installing the server on a VM.
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<a href="../../setup/installation/run_in_docker">Run on Docker</a>
-		</td>
-		<td>
-			Use the Docker images of the Micro Integrator from <b>Docker Hub</b> and deploy an integration solution on Docker.
+			Follow the instructions on downloading the Micro Integrator and installing the server on a VM by using the installer.
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<a href="../../setup/installation/run_in_kubernetes">Run on Kubernetes</a>
+			<a href="../../setup/installation/install_in_vm_binary">Install via the Binary</a>
 		</td>
 		<td>
-			Use the Docker images of Micro Integrator from <b>Docker Hub</b> and deploy an integration solution in a single-node Kubernetes cluster.
+			Follow the instructions on downloading the Micro Integrator and installing the server on a VM by using the binary distribution.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../setup/installation/run_in_containers">Run the Micro Integrator on Containers</a>
+		</td>
+		<td>
+			Use the Docker images of the Micro Integrator from <b>Docker Hub</b> and deploy an integration solution in <b>Docker</b> or <b>Kubernetes</b>.
 		</td>
 	</tr>
 </table>

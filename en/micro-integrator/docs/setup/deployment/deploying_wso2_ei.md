@@ -9,7 +9,7 @@ This deployment scenario is a two-node Micro Integrator deployment. That is, two
 
 ## Install the Micro Integrator
 
-[Download and install WSO2 Micro Integrator](../../setup/installation/install_in_vm.md).
+[Download and install WSO2 Micro Integrator](../../../setup/installation/install_in_vm_installer).
 
 Let's set up two instances of the Micro Integrator server.
 
@@ -106,7 +106,10 @@ When the nodes in the cluster need to communicate with each other, the Micro Int
     pool_options.maxWait = 60000
     pool_options.testOnBorrow = true
     ```
-
+    
+!!! Note
+    RDBMS-based coordination needs the system time of each node to be synchronized. Having them not synchronized will lead to unexpected behavior. Please refer [EI_1758](https://github.com/wso2/docs-ei/issues/1758) for one of the possible issues.
+     
 ### Node ID
 
 The node ID is a unique identifier, which is used to identify a node within the cluster. This is useful in situations where certain requests need to be routed to the server node based on the node ID. For example, <b>scheduled tasks</b> should only run in specific nodes.

@@ -72,9 +72,9 @@ and properties, see [Endpoint Error Handling](../endpoint-error-handling).
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Send the following request to invoke the API:
 

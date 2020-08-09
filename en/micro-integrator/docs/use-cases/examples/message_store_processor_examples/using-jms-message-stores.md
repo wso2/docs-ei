@@ -81,9 +81,9 @@ See the descriptions of the above configurations:
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 
@@ -224,9 +224,9 @@ See the descriptions of the above configurations:
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), [message store](../../../../develop/creating-artifacts/creating-a-message-store) and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 

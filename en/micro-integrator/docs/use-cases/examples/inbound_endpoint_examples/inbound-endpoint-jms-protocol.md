@@ -40,9 +40,9 @@ Following are the integration artifacts that we can used to implement this scena
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 [Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
 

@@ -88,7 +88,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
 <h3>What can WSO2 Enterprise Integrator do?</h3>
 <div style="display: flex; flex-wrap: wrap">
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-cases">
+    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-case/message-routing-overview">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -106,7 +106,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-cases/#service-orchestration">
+    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-case/service-orchestration-overview">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -124,7 +124,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-cases/#asynchronous-message-processing">
+    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-case/asynchronous-message-overview/">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -142,7 +142,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/references/connectors/connectors-overview">
+    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-case/connectors/">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -178,7 +178,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-cases/#data-integration">
+    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-case/data-integration-overview/">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -196,7 +196,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="streaming-integrator/examples/tutorials-overview">
+    <a style="color: #222222;" href="streaming-integrator/examples/performing-real-time-etl-with-files">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -214,7 +214,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-cases/#file-processing">
+    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-case/file-processing-overview">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -250,7 +250,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/references/connectors/connectors-overview">
+    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-case/connectors">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -286,7 +286,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/references/connectors/connectors-overview">
+    <a style="color: #222222;" href="streaming-integrator/guides/use-cases">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">

@@ -86,9 +86,9 @@ suspensions.
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Invoke the sample API by executing the following command:
 
@@ -142,9 +142,9 @@ be configured without having to change the endpoint configuration.
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 ## Example 3: Dynamic endpoint failover management
 Let's look at a sample configuration where you have a dynamic URL with failover management for
@@ -217,9 +217,9 @@ Follow any of the options given below to re-enable an endpoint that is suspended
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 

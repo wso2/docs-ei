@@ -1,7 +1,13 @@
 # Message store and message processor for guaranteed delivery
 
-!!! Note
-    <b>Work in progress!</b>
+This sample demonstrates how a <b>store and forward</b> messaging scenario can be implemented using the RabbitMQ
+message broker and WSO2 Micro Integrator. Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. 
+
+This messaging pattern ensures guaranteed message delivery. That is, because request messages are stored in a message store, messages never get lost.
+
+As shown below, when a client sends a message, the <b>message processor</b> artifact in the Micro Integrator will route the messages to the RabbitMQ broker. The <b>message processor</b> artifact in the Micro Integrator will then process the message from the broker and send it to the back-end service.
+
+<img src="../../../../assets/img/rabbitmq/rabbitmq-store-and-forward.png"> 
 
 ## Synapse configurations
 
@@ -42,4 +48,59 @@ See the instructions on how to [build and run](#build-and-run) this example.
 </messageProcessor>
 ```
 
+```xml tab='Sales Delivery - Proxy'
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="sales-delivery-proxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <property name="OUT_ONLY" scope="default" type="STRING" value="true"/>
+            <property name="FORCE_SC_ACCEPTED" scope="axis2" type="STRING" value="true"/>
+            <log level="custom">
+                <property expression="//Message" name="Message Received"/>
+            </log>
+            <store messageStore="sales-delivery-store"/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+</proxy>
+```
+
+```xml tab='Sales Delivery - Endpoint'
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="DeliveryEndpoint" xmlns="http://ws.apache.org/ns/synapse">
+    <address uri="http://localhost:8280/deliveries">
+        <timeout>
+            <duration>30000</duration>
+            <responseAction>fault</responseAction>
+        </timeout>
+        <suspendOnFailure>
+            <errorCodes>-1</errorCodes>
+            <initialDuration>0</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+            <maximumDuration>0</maximumDuration>
+        </suspendOnFailure>
+        <markForSuspension>
+            <errorCodes>-1</errorCodes>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </address>
+</endpoint>
+```
+
 ## Build and run
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
+3. Create the artifacts (proxy service, message-processor, message-store, endpoint) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
+5. Make sure you have a RabbitMQ broker instance running.
+6. Send a message to the `sales-delivery-proxy` with the following payload.
+	```xml
+	<Message>
+		<SalesId>342</SalesId>
+		<SaleName>HealthCorp</SaleName>
+		<DeliveryDate>20/12/2020</DeliveryDate>
+		<Destination>Colombo</Destination>
+	</Message>
+	```

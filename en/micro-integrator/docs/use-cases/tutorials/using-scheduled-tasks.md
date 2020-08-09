@@ -8,7 +8,7 @@ The sections below demonstrate an example of scheduling a task (using the defaul
 
 ### Step 1: Set up the workspace
 
-Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 
 ### Step 2: Develop the integration artifacts
 
@@ -21,7 +21,7 @@ Create an integration project with the following modules: **ESB Configs** and **
 1.  Open **WSO2 Integration Studio**.
 2.  Click **New Integration Project** in the **Getting Started** tab as shown below. 
 
-    ![](../../assets/img/create_project/create-integration-project.png)
+    <img src="../../../assets/img/create_project/create-integration-project.png">
 
     This will open the <b>New Integration Project</b> dialog box.
 
@@ -35,11 +35,11 @@ The created projects are saved in the **Project Explorer**.
 
 #### Creating the Sequence
 
-1.  In the **Project Explorer**, right click **ScheduleDefaultTask**, and click **New** → **Sequence**.  
-    ![](../../assets/img/tutorials/scheduled-tasks/1-select-sequence.png) 
+1.  In the **Project Explorer**, right click **ScheduleDefaultTaskConfigs** project, and click **New** → **Sequence**.  
+    <img src="../../../assets/img/tutorials/scheduled-tasks/1-select-sequence.png" width="500">
 2.  Click **Create New Sequence** and click **Next**.
 3.  Enter **InjectXMLSequence** as the sequence name and click **Finish**.  
-    ![](../../assets/img/tutorials/scheduled-tasks/2-enter-sequence-artifact.png)  
+    <img src="../../../assets/img/tutorials/scheduled-tasks/2-enter-sequence-artifact.png" width="500">  
 4.  Drag and drop a **Log** mediator and a **Drop** mediator from the **Mediators** Palette.  
     ![](../../assets/img/tutorials/scheduled-tasks/3-inject-xml.png) 
 5.  Click the **Log** mediator and enter the following details in the **Properties** section.  
@@ -79,21 +79,21 @@ Shown below is the complete source configuration of the Sequence (i.e., the `Inj
 #### Creating the Scheduled Task
 
 1. In the **Project Explorer**, right click **ScheduleDefaultTask**, and click **New → Scheduled Task**.
-    ![](../../assets/img/tutorials/scheduled-tasks/4-create-task.png)  
+    <img src="../../../assets/img/tutorials/scheduled-tasks/4-create-task.png"> 
 
 2. Select **Create a New Scheduled Task Artifact** and click **Next**.
-    ![](../../assets/img/tutorials/scheduled-tasks/5-task-artifact-creation-options.png)  
+    <img src="../../../assets/img/tutorials/scheduled-tasks/5-task-artifact-creation-options.png" width="500"> 
 
 3.  Enter the following details and click **Next**:
     -   **Task Name:** `InjectXMLTask`
     -   **Count:** `-1`
     -   **Interval (in seconds):** 5
 
-    ![](../../assets/img/tutorials/scheduled-tasks/6-task-artifact-creation-dialog.png) 
+    <img src="../../../assets/img/tutorials/scheduled-tasks/6-task-artifact-creation-dialog.png" width="500">
 
 4.  In the **Form View** of the `InjectXMLTask` task, click **Task Implementation Properties**. 
 
-    ![](../../assets/img/tutorials/scheduled-tasks/7-select-task-implementation-prop.png) 
+    <img src="../../../assets/img/tutorials/scheduled-tasks/7-select-task-implementation-prop.png"> 
 
     1.  Enter the following parameters:
         -   **injectTo:** `sequence`
@@ -101,12 +101,7 @@ Shown below is the complete source configuration of the Sequence (i.e., the `Inj
 
     2.  Select **XML** as the **Parameter Type** of the **message** parameter, and enter the following as the XML message in the **Value/Expression** field and click **OK**. 
         ```xml
-        <request xmlns="">
-           <location>
-               <city>London</city>
-               <country>UK</country>
-           </location>
-        </request>
+        <request xmlns="">   <location>   <city>London</city>    <country>UK</country>   </location>    </request>
         ``` 
 
         ![](../../assets/img/tutorials/scheduled-tasks/8-task-properties.png)

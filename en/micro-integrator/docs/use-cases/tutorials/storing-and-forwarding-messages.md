@@ -3,7 +3,7 @@
 ## What you'll build
 Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This is also used to ensure guaranteed delivery of messages. Messages never get lost since they are stored in the message store and available for future reference.
 
-**In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in the Message Broker profile of WSO2 EI 6.6.0. You will then use a **Message
+**In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in the RabbitMQ broker. You will then use a **Message
 Processor** to retrieve the message from the store before delivering it to the back-end service.
 
 ## Let's get started!
@@ -12,7 +12,7 @@ Processor** to retrieve the message from the store before delivering it to the b
 
 Set up WSO2 Integration Studio as follows:
 
-1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 2.  If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet:
     1.  Open WSO2 Integration Studio and go to **File -> Import**. 
     2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/service-orchestration-tutorial.zip).
@@ -39,25 +39,46 @@ Now, let's create a Message Store artifact to represent the broker.
     </tr>
     <tr>
     <td>Message Store Type</td>
-    <td>WSO2 MB Message Store</td>
-    <td>An instance of WSO2 Message Broker will be used as the broker.</td>
+    <td>RabbitMQ Message Store</td>
+    <td>An instance of RabbitMQ server will be used as the broker.</td>
     </tr>
     <tr>
-    <td>Queue Connection Factory</td>
-    <td><code>amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'</code>
-    </td>
-    <td>
-        The connection factory URL for the WSO2 MB broker. Be sure to change the port to 5675.
-    </td>
+    <td>RabbitMQ Server Host Name</td>
+    <td><code>localhost</code></td>
+    <td>The address of the RabbitMQ broker</td>
     </tr>
     <tr>
-    <td>JNDI Queue Name</td>
+    <td>RabbitMQ Server Port</td>
+    <td><code>5672</code></td>
+    <td>The port number of the RabbitMQ message broker.</td>
+    </tr>
+    <tr>
+    <td>RabbitMQ Queue Name</td>
     <td>PaymentRequestJMSMessageStore</td>
-    <td>The name of the queue that will be created in WSO2 MB.</td>
+    <td>The name of the RabbitMQ exchange to which the queue is bound.</td>
+    </tr>
+    <tr>
+    <td>RabbitMQ Exchange Name</td>
+    <td>exchange</td>
+    <td>The name of the RabbitMQ exchange to which the queue is bound.</td>
+    </tr>
+    <tr>
+    <td>Routing Key</td>
+    <td>key</td>
+    <td>The exchange and queue binding value.</td>
+    </tr>
+    <tr>
+    <td>User Name</td>
+    <td>user name</td>
+    <td>The user name to connect to the broker.</td>
+    <tr>
+    <td>Password</td>
+    <td>password</td>
+    <td>The password to connect to the broker.</td>
     </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132268/119132276.png)
+    <img src="../../../assets/img/tutorials/119132268/119132276.png" width="500">
 
 3.  Click **Finish**.
 
@@ -68,7 +89,7 @@ Let's create a Sequence that uses the message in the message store to send the r
 1.  Right click the **SampleServices** project in the Project Explorer and navigate to **New -> Sequence**. 
 2.  Select **Create New Sequence** and give **PaymentRequestProcessingSequence** as the name.
 
-    ![](../../assets/img/tutorials/119132268/119132273.png)  
+    <img src="../../../assets/img/tutorials/119132268/119132273.png" width="500">  
 
 3.  Click **Finish**.
 
@@ -141,7 +162,7 @@ Let's create a **Message Sampling Processor** to dispatch the request message fr
         </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132268/119132269.png)
+    <img src="../../../assets/img/tutorials/119132268/119132269.png" width="500">
 
 2.  Click **Finish**.
 
@@ -186,12 +207,12 @@ We have now finished creating all the required artifacts.
 
 ### Step 3: Package the artifacts
 
-Package the artifacts in your composite application project (SampleServicesCompositeApplication project) and the registry resource project (SampleRegistryResource project) to be able to deploy the artifacts in the server.
+Package the artifacts in your composite application project (SampleServicesCompositeExporter module) and the registry resource project (SampleRegistryResources module) to be able to deploy the artifacts in the server.
 
 1.  Open the `          pom.xml         ` file in the composite application project POM editor.
 2.  Ensure that the following projects and artifacts are selected in the POM file.
 
-    -   SampleServicesCompositeApplicationProject
+    -   SampleServicesCompositeExporter
         -   `HealthcareAPI`
         -   `ClemencyEP`
         -   `GrandOakEP`
@@ -205,48 +226,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 
 3.  Save the project.
 
-### Step 4: Configure the Micro Integrator server
-
-We will use the embedded Micro Integrator of WSO2 Integration Studio to run this solution. 
-
-Let's configure the embedded server to connect to the broker:
-
-1.  Click the <b>Embedded Micro Integrator Configuration</b> icon on the upper menu to open the dialog box.
-2.  Add the following server configurations (to the `deployment.toml` file) using the upper section in the dialog box.
-
-    ```toml
-    [[transport.jms.listener]]
-    name = "myQueueListener"
-    parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-    parameter.broker_name = "wso2mb"
-    parameter.provider_url = "conf/jndi.properties"
-    parameter.connection_factory_name = "QueueConnectionFactory"
-    parameter.connection_factory_type = "queue"
-    parameter.cache_level = "consumer"
-
-    [[transport.jms.sender]]
-    name = "myQueueSender"
-    parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-    parameter.broker_name = "wso2mb"
-    parameter.provider_url = "conf/jndi.properties"
-    parameter.connection_factory_name = "QueueConnectionFactory"
-    parameter.connection_factory_type = "queue"
-    parameter.cache_level = "producer"
-
-    [transport.jndi.connection_factories]
-    'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
-
-    [transport.jndi.queue]
-    PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
-    ```
-
-3. Click the (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="20">) icon in the lower section and copy the following JARs from the `<EI_6.6.0_HOME>/wso2/broker/client-lib/` folder.
-    -   andes-client-*.jar
-    -   geronimo-jms_1.1_spec-*.jar
-    -   org.wso2.securevault-*.jar
-
-
-### Step 5: Build and run the artifacts
+### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
@@ -262,36 +242,25 @@ The artifacts will be deployed in the embedded Micro Integrator and the server w
 !!! Warning
     Stop the Micro Integrator before proceeding to test. This is because you need to start the broker profile before starting the Micro Integrator.
 
-### Step 6: Test the use case
+### Step 5: Test the use case
 
 Let's test the use case by sending a simple client request that invokes the service.
 
 #### Start the back-end service
 
-1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
+    java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
-#### Start the Message Broker runtime
+#### Start the RabbitMQ Broker
     
-To start the Message Broker:
+Make sure that you have installed and started a RabbitMQ server instance for the Micro-Integrator to communicate with.
 
-1.  Open a terminal and navigate to the `EI_6.6.0_HOME/wso2/broker/bin` directory.
-2.  Execute the following command to run the message broker. 
-
-    ```bash tab='On MacOS/Linux/Centos'
-    sh wso2server.sh
-    ```
-
-    ```bash tab='On Windows'
-    wso2server.bat
-    ```
-
-    See the [WSO2 EI 6.6.0 documentation](https://docs.wso2.com/display/EI660/Running+the+Product) for more information on how to run the Message Broker profile.
+See the [RabbitMQ documentation](https://www.rabbitmq.com/download.html) for more information on how to install and run the product.
 
 #### Restart the Micro Integrator
 

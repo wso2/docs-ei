@@ -36,10 +36,10 @@ The following properties are required when [creating a RabbitMQ inbound endpiont
     <th>Description</th>
   </tr>
   <tr>
-         <td>
-            sequential
+         <td>sequential</td>
+         <td>The behavior when executing the given sequence.<br />
+            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/deployment.toml</code> file, under the `[mediation]` section. The default setting is <code>true</code>.
          </td>
-         <td>The behavior when executing the given sequence.</td>
       </tr>
       <tr>
          <td>
@@ -89,18 +89,6 @@ The following properties are required when [creating a RabbitMQ inbound endpiont
          <td>coordination</td>
          <td>This parameter is only applicable in a clustered environment.<br />
             In a cluster environment an inbound endpoint will only be executed in worker nodes. If this parameter is set to <code>true</code> in a clustered environment, the inbound will only be executed in a single worker node. Once the running worker node is down, the inbound will start on another available worker node in the cluster. By default, this setting is <code>true</code>.
-         </td>
-      </tr>
-      <tr>
-      <td>
-         sequential
-      </td>
-      <td>The behaviour when executing the given sequence.</td>
-   </tr>
-   <tr>
-         <td>sequential</td>
-         <td>The behavior when executing the given sequence.<br />
-            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/deployment.toml</code> file, under the `[mediation]` section. The default setting is <code>true</code>.
          </td>
       </tr>
       <tr>
@@ -270,13 +258,3 @@ If the parameters are configured with sample values as given above, the
 server makes 5 retry attempts with a time interval of 10000 miliseconds between each
 retry attempt to reconnect when the connection is lost. If reconnecting
 fails after 5 retry attempts, the Micro Integrator terminates the connection.
-
-In addition to the above parameters, if you want to set the interval
-between retry attempts with which the RabbitMQ client should try
-reconnecting to the Micro Integrator, you can configure the following parameter:
-
-```
-<parameter name="rabbitmq.server.retry.interval" locked="false">10000</parameter>
-```
-
-Setting the value of `rabbitmq.server.retry.interval` to be less than the value of `rabbitmq.connection.retry.interval` helps synchronize the reconnection of the Micro Integrator and the RabbitMQ client.

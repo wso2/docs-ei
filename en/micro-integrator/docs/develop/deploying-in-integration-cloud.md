@@ -28,7 +28,7 @@ how to host a solution on Integration Cloud, follow the steps below:
     !!! Info
         The purpose of this step is to change the default values. You can skip it if required.
 
-    1.  In the left navigator, open the `HelloWorldApps/src/main/synapse-config/proxy-services/HelloWorld.xml` file. Then click on the **PayloadFactory** icon to open the **Payload Factory Mediator** configuration in the **Properties** tab.
+    1.  In the left navigator, open the `HelloWorldApps/src/main/synapse-config/api/HelloWorld.xml` file. Then click on the **PayloadFactory** icon to open the **Payload Factory Mediator** configuration in the **Properties** tab.
         ![Cloud](../assets/img/create_project/integration_cloud/3.open_properties.png)
 
     2.  In the **Payload** field, replace the existing value  with `{"data": "HelloWorld"}`.
@@ -83,7 +83,7 @@ how to host a solution on Integration Cloud, follow the steps below:
 4.  To create a new version, repeat step 2, sub steps a-c. Then follow
     the steps below to create a new version.
     1.  In the page where you select deployable artifacts, select
-        **HelloWorldApps** and click **Next**.
+        **HelloWorldAppsConfigs** and click **Next**.
     2.  In the next page, select the **Create New Version** option
         and update the value displayed in the **Application Version**
         field.  

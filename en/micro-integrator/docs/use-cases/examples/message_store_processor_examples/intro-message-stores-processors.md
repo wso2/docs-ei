@@ -49,9 +49,9 @@ Following are the artifact configurations that we can use to implement this scen
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [message store](../../../../develop/creating-artifacts/creating-a-message-store), and [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Send the following request to invoke the service:
 

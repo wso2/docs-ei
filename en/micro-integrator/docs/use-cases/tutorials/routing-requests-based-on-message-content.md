@@ -15,7 +15,7 @@ To implement this use case, you will add a new REST resource to the existing RES
 
 Set up WSO2 Integration Studio as follows:
 
-1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 2.  Set up the project from the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial:
 
     !!! Note
@@ -120,7 +120,7 @@ To implement the routing scenario, let's add a new API resource to the REST API 
 
 1.  Select **API Resource** in the API palette of the REST API and drag it to the canvas just below the previous API resource that was created.  
 
-    ![](../../assets/img/tutorials/119132155/119132165.png)
+    <img src="../../../assets/img/tutorials/119132155/119132165.png">
 
 2.  Click the new API Resource to access the **Properties** tab and enter the following details:
     <table>
@@ -148,7 +148,7 @@ To implement the routing scenario, let's add a new API resource to the REST API 
     </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132155/119132164.png)
+    <img src="../../../assets/img/tutorials/119132155/119132164.png">
 
 #### Define the mediation flow 
 
@@ -178,22 +178,13 @@ You can now start configuring the API resource.
          <td>Enter <code>default</code>.</td>
       </tr>
       <tr class="odd">
-         <td>Value Type</td>
-         <td>Enter <code>EXPRESSION</code>.</td>
-      </tr>
-      <tr class="even">
-         <td>Value Expression</td>
+         <td>Value</td>
          <td>
             <div class="content-wrapper">
               <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the text box of the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-               <li>Select <strong>Expression</strong> from the list.
-                </li>
-               <li>Enter <code>json-eval($.hospital)</code> to overwrite the default expression.</li>
-               <li>Click <strong>OK.</strong> <strong><br />
-                  </strong>
-               </li>
+                <li>Click the <strong>Ex</strong> button in front of the value field.
+               <li>Enter <code>json-eval($.hospital)</code> as the expression value.</li>
             </ol>
                <b>Note</b>:
                This is the JSONPath expression that will extract the hospital from the request payload.
@@ -205,11 +196,11 @@ You can now start configuring the API resource.
 3.  Add a **Switch** mediator from the **Mediator** palette just after the Property Mediator.
 4.  Right-click the Switch mediator you just added and select **Add/Remove Case** to add the number of cases you want to specify.  
 
-    ![](../../assets/img/tutorials/119132155/119132163.png) 
+    <img src="../../../assets/img/tutorials/119132155/119132163.png">
 
     We have three different hospital endpoints, which corresponds to three switch cases. Enter 3 for **Number of branches** and click **OK**.  
 
-    ![](../../assets/img/tutorials/119132155/switch-cases-dialog.png)
+    <img src="../../../assets/img/tutorials/119132155/switch-cases-dialog.png">
 
 5.  With the Switch mediator selected, go to the **Properties** tab and give the following details:
     <table>
@@ -328,7 +319,7 @@ You can now start configuring the API resource.
 
 8.  Add a **Send** mediator adjoining the Log mediator and add the **GrandOakEP endpoint** from **Defined Endpoints** palette to the empty box adjoining the Send mediator.  
 
-    ![](../../assets/img/tutorials/119132155/119132159.png)
+    <img src="../../../assets/img/tutorials/119132155/119132159.png">
 
 9.  Add **Log mediators** in the other two **Case boxes** in the Switch mediator and then enter the same properties. Make sure to name the two Log mediators as follows:
 
@@ -353,7 +344,7 @@ You can now start configuring the API resource.
 
 The In Sequence of the API resource configuration should now look like this:  
 
-![](../../assets/img/tutorials/119132155/119132158.png?effects=drop-shadow)
+<img src="../../../assets/img/tutorials/119132155/119132158.png?effects=drop-shadow">
 
 You have successfully created all the artifacts that are required for routing messages to a back-end service depending on the content in the request payload. 
 
@@ -390,12 +381,12 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the back-end service
 
-1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
+    java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
 #### Send the client request

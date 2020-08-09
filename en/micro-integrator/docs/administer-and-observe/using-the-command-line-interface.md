@@ -649,7 +649,7 @@ mi user <COMMAND> <ARGUMENTS> <FLAGS>
 Commands and Arguments
 
 ```bash
-add [username] [password] [is-admin]     Add new user to the Micro Integrator user store. Specify (as arguments) the user name, password, and whether the admin role should be assigned to the new user. Use 'true' or 'false' for the [is-admin] argument.
+add [username]                           Add new user to the Micro Integrator user store. Specify (as arguments) the user name. You will be prompted to provide password, and whether the admin role should be assigned to the new user. Use 'true' or 'false' for the 'Is an admin [y/N]' argument.
 remove [username]                        Remove an existing user by specifying the user name.
 show                                     Show the list of users created in the user store.
 show [username]                          Show details of a specific user that is in the user store.
@@ -666,8 +666,8 @@ Flags
 Examples
 
 ```bash
-# To add a new user. This option is only available for admin users. Set the `is-admin` flag to `true` or 'false'.
-mi user add userid password true
+# To add a new user. This option is only available for admin users. 
+mi user add userid 
 
 # To remove a user
 mi user remove userid

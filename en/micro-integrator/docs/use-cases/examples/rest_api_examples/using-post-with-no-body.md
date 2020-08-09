@@ -30,17 +30,17 @@ Following is a sample REST API configuration that we can used to implement this 
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 
-1. Download the [Hospital-Service-2.0.0-EI7.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+1. Download the [Hospital-Service-2.0.0-JDK11.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
 2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
+    java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
 3. Start tcpmon and configure it to listen to port 8292 of your local machine. It is also important to set the target host name and port as required. In this case, the target port needs to be set to 9090 (i.e. the port where the back-end service is running). We will now test the connection by sending a POST message that includes a payload inside an HTML body.

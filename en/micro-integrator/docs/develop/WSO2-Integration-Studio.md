@@ -8,11 +8,11 @@ When you open WSO2 Integration Studio, you will see the **Getting Started** view
 
 <img src="../../assets/img/workbench/getting-started-view.png" width="800">
 
-You can also click the <img src="../../assets/img/workbench/icon-getting-started-workbench.png" width="20"> icon at the top-right of the workbench to open the **Project Explorer** and the **Template Guide** alongside the **Getting Started** tab as shown below.
+You can also click the <img src="../../assets/img/workbench/icon-getting-started-workbench.png" width="20"> icon at the top-right of the workbench to open the **Project Explorer** alongside the **Getting Started** tab as shown below.
 
 <img src="../../assets/img/workbench/workbench-getting-started.png" width="800">
 
-To get started, you need to first create the required project directories. Alternatively, you can use an integration template, which will generate the required projects and files for a specific use case.
+To get started, you need to first create the required project directories. Alternatively, you can use an integration sample, which will generate the required projects and files for a specific use case.
 
 <table>
 	<tr>
@@ -26,22 +26,22 @@ To get started, you need to first create the required project directories. Alter
 	</tr>
 	<tr id="templates">
 		<th>
-			Templates
+			Samples
 		</th>
 		<td>
 			<p>
-				The <b>Getting Started</b> view lists a set of sample projects and integration artifacts that represent common integration scenarios. You can use these to explore WSO2 Micro Integrator and to try out common integration use cases. The <a href="#template-guide">template guide</a> will provide instructions on how to run the templates.
+				The <b>Getting Started</b> view lists a set of sample projects and integration artifacts that represent common integration scenarios. You can use these to explore WSO2 Micro Integrator and to try out common integration use cases. The <a href="#sample-guide">sample guide</a> will provide instructions on how to run the samples.
 			</p>
-			<img src="../../assets/img/workbench/getting-started-templates.png">
+			<img src="../../assets/img/workbench/getting-started-templates.png" width="800">
 		</td>
 	</tr>
 	<tr id="template-guide">
 		<th>
-			Template Guide
+			Sample Guide
 		</th>
 		<td>
 			<p>
-				The template guide is a <b>Help</b> pane, which provides documentation on how to use the <a href="#templates">templated integration scenarios</a>. You can follow the instructions given in the guides to deploy and test each template scenario.
+				The sample guide is a <b>Help</b> pane, which provides documentation on how to use the <a href="#templates">integration sample scenarios</a>. You can follow the instructions given in the guides to deploy and test each sample scenario.
 			</p>
 			<img src="../../assets/img/workbench/workbench-template-guide.png" width="200">
 		</td>

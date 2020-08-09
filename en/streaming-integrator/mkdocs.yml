@@ -202,18 +202,20 @@ nav:
         - 'Publishing Aggregated Events to the Amazon AWS S3 Bucket': 'samples/AmazonS3SinkSample.md'
         - 'Publishing Events to a GCS Bucket': 'samples/GCSSinkSample.md'
   - 'Setup and Install':
-    - 'Installing the Product':
-      - 'Install in a VM': 'setup/installing-si-in-vm.md'
+    - 'Install':
+      - 'Installing in a VM': 'setup/installing-si-in-vm.md'
       - 'Installing in Docker': 'setup/installing-si-using-docker.md'
       - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
+    - 'Migrate':
       - 'Migrating from WSO2 SP': 'setup/migrating-from-stream-processor.md'
-    - 'Deploying Streaming Integrator':
+      - 'Upgrading from Streaming Integrator 1.0.0': 'setup/upgrading-from-previous-version.md'
+    - 'Deploy':
       - 'Single Deployment': 'setup/deploying-si-as-a-single-deployment.md'
       - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
       - 'Active-Active Cluster': 'setup/deploying-si-as-an-active-active-deployment.md'
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
       - 'Minimum HA Cluster in AWS ECS': 'setup/deploying-si-as-minimum-ha-cluster-in-aws-ecs.md'
-    - 'Production Hardening':
+    - 'Set-up':
       - 'Production Checklist': 'setup/production-checklist.md'
       - 'Configuring Datasources': 'setup/configuring-data-sources.md'
       - 'Configuring Business Rules Deployment': 'setup/configuring-business-rules-deployment.md'
@@ -241,11 +243,7 @@ nav:
     - 'Monitoring SI via Grafana Dashboards':
       - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
       - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
-      - 'Viewing Grafana Dashboards':
-        - 'Viewing Overview Statistics': 'admin/viewing-overview-statistics.md'
-        - 'Viewing CDC Statistics': 'admin/viewing-cdc-statistice.md'
-        - 'Viewing File Statistics': 'admin/viewing-file-statistice.md'
-        - 'Viewing RDBMS Statistics': 'admin/viewing-rdbms-statistice.md'
+      - 'Monitoring the WSO2 SI with Grafana': 'admin/viewing-dashboards.md'
     - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'

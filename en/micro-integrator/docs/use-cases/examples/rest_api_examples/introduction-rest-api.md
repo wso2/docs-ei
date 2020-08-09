@@ -54,9 +54,9 @@ This is a REST api with two api resources. The GET calls are handled by the firs
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 
@@ -69,37 +69,37 @@ Set up the back-end service:
 
 Invoke the sample Api:
 
--  Sending a GET request.
+-   Sending a GET request.
    
-   Open a terminal and execute the following command. This sends a simple GET request to the Micro Integrator.
+      Open a terminal and execute the following command. This sends a simple GET request to the Micro Integrator.
         
-    ```bash
-    curl http://127.0.0.1:8290/stockquote/view/IBM
-    ```
+      ```bash
+      curl http://127.0.0.1:8290/stockquote/view/IBM
+      ```
     
-    The Micro Integrator returns the following response to the client.
+      The Micro Integrator returns the following response to the client.
 
-    ```xml
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://services.samples" xmlns:ax21="http://services.samples/xsd">
-        <soapenv:Body>
-            <ns:getQuoteResponse>
-                    <ax21:change>-2.86843917118114</ax21:change>
-                    <ax21:earnings>-8.540305401672558</ax21:earnings>
-                    <ax21:high>-176.67958828498735</ax21:high>
-                    <ax21:last>177.66987465262923</ax21:last>
-                    <ax21:low>-176.30898912339075</ax21:low>
-                    <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
-                    <ax21:name>IBM Company</ax21:name>
-                    <ax21:open>185.62740369461244</ax21:open>
-                    <ax21:peRatio>24.341353665128693</ax21:peRatio>
-                    <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
-                    <ax21:prevClose>192.11844053187397</ax21:prevClose>
-                    <ax21:symbol>IBM</ax21:symbol>
-                    <ax21:volume>7791</ax21:volume>
-            </ns:getQuoteResponse>
-        </soapenv:Body>
-    </soapenv:Envelope>
-    ```
+      ```xml
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://services.samples" xmlns:ax21="http://services.samples/xsd">
+          <soapenv:Body>
+              <ns:getQuoteResponse>
+                      <ax21:change>-2.86843917118114</ax21:change>
+                      <ax21:earnings>-8.540305401672558</ax21:earnings>
+                      <ax21:high>-176.67958828498735</ax21:high>
+                      <ax21:last>177.66987465262923</ax21:last>
+                      <ax21:low>-176.30898912339075</ax21:low>
+                      <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
+                      <ax21:name>IBM Company</ax21:name>
+                      <ax21:open>185.62740369461244</ax21:open>
+                      <ax21:peRatio>24.341353665128693</ax21:peRatio>
+                      <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
+                      <ax21:prevClose>192.11844053187397</ax21:prevClose>
+                      <ax21:symbol>IBM</ax21:symbol>
+                      <ax21:volume>7791</ax21:volume>
+              </ns:getQuoteResponse>
+          </soapenv:Body>
+      </soapenv:Envelope>
+      ```
 
 -  Sending a POST request.
     1. Save the following sample request as `placeorder.xml` in your local file system. 

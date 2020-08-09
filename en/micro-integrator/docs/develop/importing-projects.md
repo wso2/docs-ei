@@ -1,6 +1,6 @@
 # Importing projects
 
-If you have an already created ESB project file, you can import it to
+If you have an already created Integration project file, you can import it to
 your WSO2 Integration Studio workspace.
 
 1.  Open WSO2 Integration Studio, navigate to **File -> Import**, select **Existing WSO2 Projects into workspace,** and click **Next**:  

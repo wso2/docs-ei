@@ -15,13 +15,13 @@ or
 <property name=”fooValue” expression=”get-property('foo','func')” />
 ```
 
-Using function scope or "?func?" in the XPath expression allows us to refer a particular parameter value passed externally by an invoker such as the Call Template mediator.
+Using function scope or 'func' in the XPath expression allows us to refer a particular parameter value passed externally by an invoker such as the Call Template mediator.
 
 See the examples given below.
 
 ## Example 1
 
-Let's illustrate the sequence template with a simple example. Suppose we have a sequence that logs the text "hello" in three different languages. We shall make use of a proxy to which we shall send a payload. The switch statement will log a greeting based on the language
+Let's illustrate the sequence template with a simple example. Suppose we have a sequence that logs the text "hello" in three different languages. We shall make use of a proxy to which we shall send a payload. The switch statement will log a greeting based on the language.
 
 ```xml
 <proxy name="HelloProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
@@ -151,11 +151,11 @@ sequence.
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-an-api) and [sequence template](../../../../develop/creating-artifacts/creating-sequence-templates) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
-You can test this out with the following payload sent to the proxy via `localhost:9290/services/HelloProxy`:
+You can test this out with the following payload sent to the proxy via `http://localhost:8290/services/HelloProxy`:
 
 ```xml
 <body>

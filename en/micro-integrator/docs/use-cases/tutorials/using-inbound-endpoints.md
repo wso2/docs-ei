@@ -10,7 +10,7 @@ In this sample scenario, you will use an **Inbound Endpoint** to expose an alrea
 
 Set up WSO2 Integration Studio as follows:
 
-1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 2.  Set up the project from the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial:
 
     !!! Note
@@ -26,7 +26,7 @@ Set up WSO2 Integration Studio as follows:
     project directory will appear with the artifacts as shown below.
     Note the 'HealthcareAPI' that is already included.
 
-    ![](../../assets/img/tutorials/inbound-project-explorer.png)
+    <img src="../../../assets/img/tutorials/inbound-project-explorer.png" width="400">
 
 2.  Right-click on **SampleServicesConfigs** and navigate to **New -> Inbound
     Endpoint**. Select **Create A New Inbound Endpoint** and click
@@ -53,7 +53,7 @@ Set up WSO2 Integration Studio as follows:
         </tr>
     </table>
 
-    ![](https://lh3.googleusercontent.com/CYLJoSvCMhZfVYSZc73iRyAHhzgVWwjCqfkNgjPDlVs2qAs6QhsbDKt8mbIzEk8ojpONkEl2nemszzeNLPSAW3ogSs0eHqbGQMmw7WSlhx3b3Nbvfp0xGJ2Xbwl-Qbi0NxMGrSJB)
+    <img src="../../../assets/img/tutorials/using-inbound-endpoint/create-inbound-dialog-box.png" width="500">
 
 4.  Go to the **Properties** tab in the **Design** view and enter the following:
 
@@ -76,7 +76,7 @@ Set up WSO2 Integration Studio as follows:
         </tr>
     </table>
 
-    ![](https://lh5.googleusercontent.com/KUBGiYXSzSVkZo_mDb0y9yzGFp6Fts7FdUrvrH_QlvpGDtaTiwnivjvCsMBpzhGDyRrJvCeBysYQNBFL3ndpEXwUB-U5TDsBbNS2actK3_8ie2RWULV6-g1LY3Q9XWaWOHsZNc7O)
+    <img src="../../../assets/img/tutorials/using-inbound-endpoint/configure-inbound-endpoint.png">
 
 The endpoint will now get mapped to any URL that matches the above pattern provided. You will be exposing the health care API on a new port through this inbound endpoint.
 
@@ -88,6 +88,7 @@ Package the artifacts in your composite exporter module (SampleServicesComposite
 2.  Ensure that the following artifacts are selected in the POM file.
 
     -   `HealthcareAPI`
+    -   `QueryDoctorEP`
     -   `QueryDoctorInboundEndpoint`
 
 3.  Save the changes.
@@ -111,12 +112,12 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the backend service
 
-1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
+    java -jar Hospital-Service-JDK11-2.0.0.jar
     ```
 
 #### Send the client request

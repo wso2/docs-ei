@@ -69,9 +69,9 @@ See the instructions on how to [build and run](#build-and-run-example-1) this ex
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Config project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 
@@ -235,12 +235,12 @@ The JSON client will receive the following response from the backend with the re
                 "last": 177.66987465262923,
                 "low": -176.30898912339075,
                 "marketCap": 56495579.98178506,
-                "name": " Company",
+                "name": "IBM Company",
                 "open": 185.62740369461244,
                 "peRatio": 24.341353665128693,
                 "percentageChange": -1.4930577008849097,
                 "prevClose": 192.11844053187397,
-                "symbol": null,
+                "symbol": "IBM",
                 "volume": 7791
             }
         }

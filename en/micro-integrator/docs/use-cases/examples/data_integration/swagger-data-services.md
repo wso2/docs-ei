@@ -96,15 +96,13 @@ Following is a sample data service configuration with a custom Swagger definitio
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create the projects](../../../../develop/creating-projects/#esb-config-project) listed below: 
-    - <b>Data Service</b> project
-    - <b>Registry</b> project
-    - <b>Composite Application</b> project
-3. To create the data service with the above configurations:
+2. [Create an integration project](../../../../develop/create-integration-project) with a <b>Registry Resources</b> module and a <b>Composite Exporter</b>.
+3. [Create a Data Service project](../../../../develop/create-data-services-configs) inside the integration project.
+4. To create the data service with the above configurations:
     - Download the Swagger file: [custom_data_service_swagger.yaml](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-rest-apis/simple_petstore.yaml).
     - Follow the instructions on [creating a data service](../../../../develop/creating-artifacts/data-services/creating-data-services).
 
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 
 Copy the following URLs to your browser to see the Swagger documents of your RESTful data service:
