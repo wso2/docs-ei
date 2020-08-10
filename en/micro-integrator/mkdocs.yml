@@ -359,8 +359,8 @@ nav:
           - 'Connecting to Weblogic': 'setup/brokers/configure-with-WebLogic.md'
           - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
           - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
-        - 'Configure Kafka' : 'setup/feature_configs/configuring-kafka.md'
-        - 'Configure Transports': 'setup/transport_configurations/configuring-transports.md'
+        - 'Kafka' : 'setup/feature_configs/configuring-kafka.md'
+        - 'Transports': 'setup/transport_configurations/configuring-transports.md'
         - 'Configure Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observability:
