@@ -36,13 +36,13 @@ Let's create the MySQL data store in which the events with errors can be saved. 
 
     `mysql -u <USERNAME> -p <PASSWORD>`
     
-5. Create a new database named `use errorstoredb;` by issuing the following command in the MySQL console.
+5. Create a new database named `use siddhierrorstoredb;` by issuing the following command in the MySQL console.
 
     ``mysql> create database siddhierrorstoredb;``
     
 6. To switch to the new database, issue the following command.
 
-    `mysql> use errorstoredb;`
+    `mysql> use siddhierrorstoredb;`
 
 ### Step 2: Enable the error store
 
