@@ -4,37 +4,7 @@ Java Management Extensions (JMX) is a technology that lets you implement managem
 
 ## Configuring JMX in WSO2 Micro Integrator
 
-JMX is enabled in WSO2 products by default, which ensures that the JMX server starts automatically when you start the product. Additionally, you can enable JMX separately for the various datasources that are used by the product. Once JMX is enabled, you can monitor your product using [**JConsole**](#monitoring-with-jconsole).
-
-<!--
-Configuring JMX ports for the server
-The default JMX ports (RMIRegistryPort and the RMIServerPort) are
-configured in the `deployment.toml ` file (stored in the
-`         <MI_HOME>/conf        ` directory) as shown
-below. If required, you can update these default values.
-
-```toml
-[monitoring.jmx]
-rmi_hostname = localhost
-rmi_registry_port = 9999
-rmi_server_port = 11111
-```
--->
-
-<!--
-Disabling JMX for the server
-To disable JMX for the server, update the following configuration in the deployment.toml file:
-```toml
-[monitoring.jmx]
-rmi_server_start = true
-```
-Enabling JMX for a datasource
-To enable JMX for a datasource, add the following configuration in the deployment.toml file:
-```toml
-[[datasource]]
-jmx_enable = true
-```
--->
+With [**JConsole**](#monitoring-with-jconsole), you can attach the Micro Integrator as a local process and monitor the MBeans that are provided. There is nothing explicitly enable. 
 
 ## Monitoring with JConsole
 
@@ -42,36 +12,15 @@ Jconsole is a JMX-compliant monitoring tool, which comes with the Java
 Development Kit (JDK) 1.5 and newer versions. You can find this tool
 inside your `         <JDK_HOME>/bin        ` directory.
 
-### Starting WSO2 Micro Integrator with JMX
-
-First, [start the product](../../setup/installation/install_in_vm/#running-the-micro-integrator).  
-
-!!! Info
-    If [JMX is enabled](#configuring-jmx-in-wso2-micro-integrator), the **JMX server URL**  would be:    
-    ``` java
-    service:jmx:rmi://<your-ip>:11111/jndi/rmi://<your-ip>:9999/jmxrmi
-    ```
 ### Starting JConsole
         
-Once the product server is started, you can start the `JConsole` tool as follows:
+Once the **product server is started**, you can start the `JConsole` tool as follows:
 
 1.  Open a command prompt and navigate to the `<JDK_HOME>/bin` directory.
 2.  Execute the `jconsole` command to open the log-in screen of the **Java Monitoring & Management Console** as
     shown below.  
-    ![jconsole connection](../assets/img/jmx/jconsole-new-connection.png)
-3.  Enter the connection details in the above screen as follows:
-    1.  Enter the **JMX server URL** in the **Remote Process** field. This URL is published on the command prompt when you start the
-        server as explained [above](#starting-wso2-micro-integrator-with-jmx).
-
-        !!! Info
-            If you are connecting with a remote IP address instead of localhost, you need to bind the JMX service to the externally accessible IP address by adding the following system property to the product startup script stored in the `MI_HOME>/bin` directory (`micro-integrator.sh` for Linux and `micro-integrator.bat` for Windows). For more information, read [Troubleshooting Connection Problems in JConsole](https://blogs.oracle.com/jmxetc/entrytroubleshooting_connection_problems_in_jconsole).
-            ``` java
-            -Djava.rmi.server.hostname=<IP_ADDRESS_WHICH_YOU_USE_TO_CONNECT_TO_SERVER>
-            ```
-            Be sure to restart the server after adding the above property.
-
-    2.  Enter values for the **Username** and **Password** fields to log in. If you are logging in as the administrator, you can use the. same administrator account that is used to log in to the product server: admin/admin.        
-
+    ![jconsole_process](../assets/img/jmx/jconsole-new-connection.png)
+3.  Click on the  `org.wso2.micro.integrator.bootstrap.Bootstrap` process (which is the Micro Integrator) under the Local Process.
 4.  Click **Connect** to open the **Java Monitoring & Management Console**. See the **Oracle** documentation on [using
     JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html). The following tabs will be available:  
 
@@ -90,153 +39,16 @@ Once the product server is started, you can start the `JConsole` tool as follows
 
 See the list of [WSO2 Micro Integrator MBeans](#mbeans-for-wso2-micro-integrator) that you can monitor.
 
-## Monitoring WSO2 Micro Integrator with Jolokia
-
-[Jolokia](https://jolokia.org) is a JMX-HTTP bridge, which is an
-alternative to JSR-160 connectors. It is an agent-based approach that
-supports many platforms. In addition to basic JMX operations, it
-enhances JMX monitoring with unique features like bulk requests and
-fine-grained security policies.
-
-Follow the steps below to use Jolokia to monitor a WSO2 product.
-
-1.  Download [Jolokia OSGi Agent](https://jolokia.org/download.html). These instructions are tested with the Jolokia OSGI Agent version 1.3.6 by downloading the `jolokia-osgi-1.3.6.jar` file.
-2.  Add it to the `MI_HOME/dropins/` directory.
-3.  Start WSO2 Micro Integrator.
-
-Once the server starts, you can read MBeans using Jolokia APIs.
-Following are a few examples.
-
--   List all available MBeans: <http://localhost:9763/jolokia/list>
-    (Change the appropriate hostname and port accordingly.)
--   WSO2 Micro Integrator MBean:
-    <http://localhost:9763/jolokia/read/org.apache.synapse:Name=https-sender,Type=PassThroughConnections/ActiveConnections>
--   Reading Heap Memory:
-    <http://localhost:9763/jolokia/read/java.lang:type=Memory/HeapMemoryUsage>
-
 ## MBeans for WSO2 Micro Integrator
 
 When JMX is enabled, WSO2 Micro Integrator exposes a number of management resources as
 JMX Management Beans (MBeans) that can be used for managing and
 monitoring the running server.  When you start JConsole, you can monitor
-these MBeans from the **MBeans** tab. While some of these MBeans (
-**ServerAdmin** and **DataSource** ) are common to all WSO2 products,
-some MBeans are specific to WSO2 Micro Integrator.
+these MBeans from the **MBeans** tab. Most of the MBeans are exposed from the underlying Synapse mediation engine.
 
 ![micro integrator mbeans](../assets/img/jmx/mi-mbeans.png)
 
 The following section summarizes the common MBeans for all WSO2 products:
-
-### ServerAdmin MBean
-
-When you go to the **MBeans** tab in the JConsole, the **ServerAdmin**
-MBean will be listed under the "org.wso2.carbon" domain as shown
-below.  
-
-![jconsole MBeans](../assets/img/jmx/server-admin-mbeans.png)
-
-The **ServerAdmin** MBean is used for administering the product server
-instance. There are several server attributes such as "ServerStatus",
-"ServerData" and "ServerVersion". The "ServerStatus" attribute can take
-any of the following values:
-
--   RUNNING
--   SHUTTING_DOWN
--   RESTARTING
--   IN_MAINTENANCE
-
-![server admin attributes](../assets/img/jmx/server-admin-attributes.png)
-
-The **ServerAdmin** MBean has the following operations:
-
-| Operation              | Description                                                                                                 |
-|------------------------|-------------------------------------------------------------------------------------------------------------|
-| **shutdown**           | Forcefully shut down the server.                                                                            |
-| **restart**            | Forcefully restart the server.                                                                              |
-| **restartGracefully**  | Wait till all current requests are served and then restart.                                                 |
-| **shutdownGracefully** | Wait till all current requests are served and then shutdown.                                                |
-| **startMaintenance**   | Switch the server to maintenance mode. No new requests will be accepted while the server is in maintenance. |
-| **endMaintenance**     | Switch the server to normal mode if it was switched to maintenance mode earlier.                            |
-  
-![server admin operations](../assets/img/jmx/server-admin-operations.png)
-
-### ServiceAdmin MBean
-
-This MBean is used for administering services deployed in your product.
-Its attributes are as follows:
-
-| Attribute                    | Description                                                          |
-|------------------------------|----------------------------------------------------------------------|
-| **NumberOfActiveServices**   | The number of services which can currently serve requests.           |
-| **NumberOfInactiveServices** | The number of services which have been disabled by an administrator. |
-| **NumberOfFaultyServices**   | The number of services which are faulty.                             |
-
-![service admin attributes](../assets/img/jmx/service-admin-attributes.png)
-
-The operations available in the ServiceAdmin MBean:
-
-| Operation                                          | Description                                                                                      |
-|----------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| **startService** ( [p1:string](http://p1string/) ) | The p1 parameter is the service name. You can activate a service using this operation.           |
-| **stopService** ( [p1:string](http://p1string/) )  | The p1 parameter is the service name. You can deactivate/disable a service using this operation. |
-
-![service admin operations](../assets/img/jmx/service-admin-operations.png)
-
-### StatisticsAdmin MBean
-
-This MBean is used for monitoring system and server statistics. Its
-attributes are as follows:
-
-| Attributes                | Description                                                                                                                                      |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| **AvgSystemResponseTime** | The average response time for all the services deployed in the system. The beginning of the measurement is the time at which the server started. |
-| **MaxSystemResponseTime** | The maximum response time for all the services deployed in the system. The beginning of the measurement is the time at which the server started. |
-| **MinSystemResponseTime** | The minimum time for all the services deployed in the system. The beginning of the measurement is the time at which the server started.          |
-| **SystemFaultCount**      | The total number of faults that occurred in the system since the server was started.                                                             |
-| **SystemRequestCount**    | The total number of requests that has been served by the system since the server was started.                                                    |
-| **SystemResponseCount**   | The total number of response that has been sent by the system since the server was started.                                                      |
-
-![statistical admin attributes](../assets/img/jmx/statistics-admin-attributes.png)
-
-Operations available in the **Statistics** MBean:
-
-| Operation                                                                                         | Description                                                                                                                                                                                                         |
-|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **getServiceRequestCount** ( [p1:string](http://p1string/) )                                      | The p1 parameter is the service name. You can get the total number of requests received by this service since the time it was deployed, using this operation.                                                       |
-| **getServiceResponseCount** ( [p1:string](http://p1string/) )                                     | The p1 parameter is the service name. You can get the total number of responses sent by this service since the time it was deployed, using this operation.                                                          |
-| **getServiceFaultCount** ( [p1:string](http://p1string/) )                                        | The p1 parameter is the service name. You can get the total number of fault responses sent by this service since the time it was deployed, using this operation.                                                    |
-| **getMaxServiceResponseTime** ( [p1:string](http://p1string/) )                                   | The p1 parameter is the service name. You can get the maximum response time of this service since deployment.                                                                                                       |
-| **getMinServiceResponseTime** ( [p1:string](http://p1string/) )                                   | The p1 parameter is the service name. You can get the minimum response time of this service since deployment.                                                                                                       |
-| **getAvgServiceResponseTime** ( [p1:string](http://p1string/) )                                   | The p1 parameter is the service name. You can get the average response time of this service since deployment.                                                                                                       |
-| **getOperationRequestCount** ( [p1:string](http://p1string/) , [p2:string](http://p2string/) )    | The p1 parameter is the service name. The p2 parameter is the operation name. You can get the total number of requests received by this operation since the time its service was deployed, using this operation.    |
-| **getOperationResponseCount** ( [p1:string](http://p1string/) , [p2:string](http://p2string/) )   | The p1 parameter is the service name. The p2 parameter is the operation name. You can get the total number of responses sent by this operation since the time its service was deployed, using this operation.       |
-| **getOperationFaultCount** ( [p1:string](http://p1string/) , [p2:string](http://p2string/) )      | The p1 parameter is the service name. The p2 parameter is the operation name. You can get the total number of fault responses sent by this operation since the time its service was deployed, using this operation. |
-| **getMaxOperationResponseTime** ( [p1:string](http://p1string/) , [p2:string](http://p2string/) ) | The p1 parameter is the service name. The p2 parameter is the operation name. You can get the maximum response time of this operation since deployment.                                                             |
-| **getMinOperationResponseTime** ( [p1:string](http://p1string/) , [p2:string](http://p2string/) ) | The p1 parameter is the service name. The p2 parameter is the operation name. You can get the minimum response time of this operation since deployment.                                                             |
-| **getAvgOperationResponseTime** ( [p1:string](http://p1string/) , [p2:string](http://p2string/) ) | The p1 parameter is the service name. The p2 parameter is the operation name. You can get the average response time of this operation since deployment.                                                             |
-
-![statistical admin operations](../assets/img/jmx/statistics-admin-operations.png)
-
-### DataSource MBean
-
-If you have [JMX enabled for a datasource connected to the product](#enabling-jmx-for-a-datasource), you can
-monitor the performance of the datasource using this MBean. The
-**DataSource** MBean will be listed as shown below.  
-
-![datasource mbean](../assets/img/jmx/datasource-mbeans.png)
-
-**Example:** If you have JMX enabled for the default Carbon datasource
-in the `         deployment.toml.        ` file, the [JDBC
-connection pool
-parameters](http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html) that
-are configured for the Carbon datasource will be listed as attributes as
-shown below. See the [performance tuning guide](../setup/performance_tuning/jdbc_tuning.md) for
-instructions on how these parameters are configured for a datasource. 
-
-![datasource attribute](../assets/img/jmx/datasource-attributes.png)
-
-This section summarizes the attributes and operations available for the
-following WSO2 EI specific MBeans:
 
 ### Connection MBeans
 
