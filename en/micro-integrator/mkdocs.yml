@@ -320,17 +320,18 @@ nav:
             - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
         - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
-      - Set up:
-        - User Stores:
-          - 'Configuring a User Store' : 'setup/user_stores/setting_up_a_userstore.md'
-          - 'Managing Users' : 'setup/user_stores/managing_users.md'
-        - Databases:
-          - 'MySQL Database': 'setup/databases/setting-up-MySQL.md'
-          - 'MSSQL Database': 'setup/databases/setting-up-MSSQL.md'
-          - 'Oracle Database': 'setup/databases/setting-up-Oracle.md'
-          - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
-          - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
-        - 'File-Based Registry' : 'setup/deployment/file_based_registry.md'
+      - Set Up:
+        - Data Stores:
+          - User Stores:
+            - 'Configuring a User Store' : 'setup/user_stores/setting_up_a_userstore.md'
+            - 'Managing Users' : 'setup/user_stores/managing_users.md'
+          - Databases:
+            - 'MySQL Database': 'setup/databases/setting-up-MySQL.md'
+            - 'MSSQL Database': 'setup/databases/setting-up-MSSQL.md'
+            - 'Oracle Database': 'setup/databases/setting-up-Oracle.md'
+            - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
+            - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
+          - 'File-Based Registry': 'setup/deployment/file_based_registry.md'
         - Security:
           - Setting up Keystores:
             - 'Creating New Keystores': 'setup/security/creating_keystores.md'
@@ -361,7 +362,7 @@ nav:
           - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
         - 'Kafka' : 'setup/feature_configs/configuring-kafka.md'
         - 'Transports': 'setup/transport_configurations/configuring-transports.md'
-        - 'Configure Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
+        - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
