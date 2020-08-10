@@ -58,12 +58,18 @@ Create the artifacts:
 
 Set up the back-end service:
 
-1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
-2. Open a terminal, navigate to the location of the downloaded service, and run it (stock quote service) using the following command:
-
-    ```bash
-    java -jar stockquote_service.jar
-    ```
+1. Download the [back-end service](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/axis2Server.zip).
+2. Extract the downloaded zip file.
+3. Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
+4. Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
+   
+      ```bash tab='On MacOS/Linux/CentOS'
+      sh axis2server.sh
+      ```
+          
+      ```bash tab='On Windows'
+      axis2server.bat
+      ```
 
 Invoke the sample API by executing the following command:
 
@@ -76,19 +82,19 @@ You will receive the following response:
 ```xml
 <soapenv:Body>
     <ns:getQuoteResponse>
-            <ax21:change>-2.86843917118114</ax21:change>
-            <ax21:earnings>-8.540305401672558</ax21:earnings>
-            <ax21:high>-176.67958828498735</ax21:high>
-            <ax21:last>177.66987465262923</ax21:last>
-            <ax21:low>-176.30898912339075</ax21:low>
-            <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
-            <ax21:name> Company</ax21:name>
-            <ax21:open>185.62740369461244</ax21:open>
-            <ax21:peRatio>24.341353665128693</ax21:peRatio>
-            <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
-            <ax21:prevClose>192.11844053187397</ax21:prevClose>
-            <ax21:symbol></ax21:symbol>
-            <ax21:volume>7791</ax21:volume>
+        <ax21:change>-2.86843917118114</ax21:change>
+        <ax21:earnings>-8.540305401672558</ax21:earnings>
+        <ax21:high>-176.67958828498735</ax21:high>
+        <ax21:last>177.66987465262923</ax21:last>
+        <ax21:low>-176.30898912339075</ax21:low>
+        <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
+        <ax21:name>IBM Company</ax21:name>
+        <ax21:open>185.62740369461244</ax21:open>
+        <ax21:peRatio>24.341353665128693</ax21:peRatio>
+        <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
+        <ax21:prevClose>192.11844053187397</ax21:prevClose>
+        <ax21:symbol>IBM</ax21:symbol>
+        <ax21:volume>7791</ax21:volume>
     </ns:getQuoteResponse>
 </soapenv:Body>
 ```

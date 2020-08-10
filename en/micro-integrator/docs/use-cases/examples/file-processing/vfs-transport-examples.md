@@ -73,12 +73,19 @@ To test this sample, the following files and directories should be created:
 
 3. Set up the back-end service.
 
-    -	Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
-
-    -	Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
-	```bash
-	java -jar stockquote_service.jar
-	```
+    - Download the [back-end service](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/axis2Server.zip)
+    - Extract the downloaded zip file.
+    - Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
+    - Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
+   
+        ```bash tab='On MacOS/Linux/CentOS'
+        sh axis2server.sh
+        ```
+          
+        ```bash tab='On Windows'
+        axis2server.bat
+        ```
+        
 4. Create the `test.xml` file shown below and copy it to the location specified by the `transport.vfs.FileURI` property in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
 
     ```xml
