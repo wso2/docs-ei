@@ -36,13 +36,13 @@ Let's create the MySQL data store in which the events with errors can be saved. 
 
     `mysql -u <USERNAME> -p <PASSWORD>`
     
-5. Create a new database named `use errorstoredb;` by issuing the following command in the MySQL console.
+5. Create a new database named `use siddhierrorstoredb;` by issuing the following command in the MySQL console.
 
-    ``mysql> create database errorstoredb;``
+    ``mysql> create database siddhierrorstoredb;``
     
 6. To switch to the new database, issue the following command.
 
-    `mysql> use errorstoredb;`
+    `mysql> use siddhierrorstoredb;`
 
 ### Step 2: Enable the error store
 
@@ -55,8 +55,8 @@ error.store:
   dropWhenBufferFull: true
   errorStore: org.wso2.carbon.streaming.integrator.core.siddhi.error.handler.DBErrorStore
   config:
-    datasource: ERROR_STORE_DB
-    table: ERROR_STORE_TABLE
+    datasource: SIDDHI_ERROR_STORE_DB
+    table: SIDDHI_ERROR_STORE_TABLE
 ```
 
 This configuration refers to a data source named `Error_Store_DB`. Define this data source as follows under `Data sources` in the `<SI_HOME>/conf/server/deployment.yaml` file.
@@ -69,7 +69,7 @@ This configuration refers to a data source named `Error_Store_DB`. Define this d
   definition:
     type: RDBMS
     configuration:
-      jdbcUrl: 'jdbc:mysql://localhost:3306/errorstoredb?useSSL=false'
+      jdbcUrl: 'jdbc:mysql://localhost:3306/siddhierrorstoredb?useSSL=false'
       username: root
       password: root
       driverClassName: com.mysql.jdbc.Driver
