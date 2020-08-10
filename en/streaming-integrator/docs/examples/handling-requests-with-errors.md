@@ -69,7 +69,7 @@ This configuration refers to a data source named `Error_Store_DB`. Define this d
   definition:
     type: RDBMS
     configuration:
-      jdbcUrl: 'jdbc:mysql://localhost:3306/errorstoredb?useSSL=false'
+      jdbcUrl: 'jdbc:mysql://localhost:3306/siddhierrorstoredb?useSSL=false'
       username: root
       password: root
       driverClassName: com.mysql.jdbc.Driver
