@@ -55,8 +55,8 @@ error.store:
   dropWhenBufferFull: true
   errorStore: org.wso2.carbon.streaming.integrator.core.siddhi.error.handler.DBErrorStore
   config:
-    datasource: ERROR_STORE_DB
-    table: ERROR_STORE_TABLE
+    datasource: SIDDHI_ERROR_STORE_DB
+    table: SIDDHI_ERROR_STORE_TABLE
 ```
 
 This configuration refers to a data source named `Error_Store_DB`. Define this data source as follows under `Data sources` in the `<SI_HOME>/conf/server/deployment.yaml` file.
