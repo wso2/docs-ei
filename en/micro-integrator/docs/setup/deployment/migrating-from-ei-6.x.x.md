@@ -106,12 +106,12 @@ The Micro Integrator uses a [file based registry](../file_based_registry) instea
 
 -	If the registry resources in EI 6.x are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<EI_6.x.x_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
 -	If the registry resources are added through the management console in EI 6.x.x, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
-    	- [Checkout the Registry Resources](../../../develop/creating-artifacts/creating-registry-resources/#check-out-from-registry) from EI 6.x.x server directly into the Registry Resources module in WSO2 Integration Studio.
-    	- Download the Registry Resources from EI 6.x.x and [import them](../../../develop/creating-artifacts/creating-registry-resources/#import-from-file-system) into the Registry Resources module in WSO2 Integration Studio.
-    
-!!! Note
-    When you are importing Registry Resources into WSO2 Integration Studio, make sure that the media type of the Resource is set properly.
-    ![Registry Resource Editor](../../assets/img/migration/registry-resource-editor.png)
+	- [Checkout the Registry Resources](../../../develop/creating-artifacts/creating-registry-resources/#check-out-from-registry) from EI 6.x.x server directly into the Registry Resources module in WSO2 Integration Studio.
+	- Download the Registry Resources from EI 6.x.x and [import them](../../../develop/creating-artifacts/creating-registry-resources/#import-from-file-system) into the Registry Resources module in WSO2 Integration Studio.
+
+	!!! Note
+	    Once you have imported the Registry Resources into WSO2 Integration Studio, open the resource editor and make sure that the <b>media type</b> of the resource is set properly.
+	    ![Registry Resource Editor](../../assets/img/migration/registry-resource-editor.png)
 
 ### Migrating artifacts
 
@@ -554,7 +554,7 @@ Given below are the most critical XML configuraton files in the ESB profile of E
 		```
 
 		```toml tab='TOML configuration'
-		[transport.vfs] ]
+		[transport.vfs]
 	    listener.enable = true
 		```
 	    
