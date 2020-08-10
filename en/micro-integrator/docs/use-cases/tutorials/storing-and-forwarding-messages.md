@@ -55,7 +55,7 @@ Now, let's create a Message Store artifact to represent the broker.
     <tr>
     <td>RabbitMQ Queue Name</td>
     <td>PaymentRequestJMSMessageStore</td>
-    <td>The name of the RabbitMQ exchange to which the queue is bound.</td>
+    <td>The queue to which the subscription is created.</td>
     </tr>
     <tr>
     <td>RabbitMQ Exchange Name</td>
