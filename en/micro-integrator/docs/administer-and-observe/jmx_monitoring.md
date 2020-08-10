@@ -4,7 +4,7 @@ Java Management Extensions (JMX) is a technology that lets you implement managem
 
 ## Configuring JMX in WSO2 Micro Integrator
 
-With [**JConsole**](#monitoring-with-jconsole) you can attach Micro Integrator as a local process and monitor the MBeans that are provided. There is nothing explicitly to enable. 
+With [**JConsole**](#monitoring-with-jconsole), you can attach the Micro Integrator as a local process and monitor the MBeans that are provided. There is nothing explicitly enable. 
 
 ## Monitoring with JConsole
 
