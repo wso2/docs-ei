@@ -23,7 +23,7 @@ Let’s assume this is the format of the request sent by the client:
 }
 ```
 
-However, the format of the message compatible with the backend service is as follows:
+However, the format of the message compatible with the back-end service is as follows:
 
 ```json
 {
@@ -50,7 +50,7 @@ The client message format must be transformed to the back-end service message fo
 
 Set up WSO2 Integration Studio as follows:
 
-1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 2.  Set up the project from the [Routing Requests Based on Message Content](routing-requests-based-on-message-content.md) tutorial:
 
     !!! Note
@@ -170,6 +170,9 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
     <img src="../../../assets/img/tutorials/119132196/data-mapping.png">
 
 12. Save and close the configuration.
+
+    <img src="../../../assets/img/tutorials/119132196/119132197.png">
+
 13. Go back to the **Design View** of the API Resource and select the **Data Mapper** mediator and edit the following in the **Properties** tab:
     <table>
       <tr>
@@ -190,11 +193,9 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
       </tr>
     </table>
 
-    <img src="../../../assets/img/tutorials/119132196/119132197.png">
+    <img src="../../../assets/img/tutorials/119132196/119132198.png">
     
 14. Save the REST API configuration.
-
-    <img src="../../../assets/img/tutorials/119132196/119132198.png">
 
 You have successfully created all the artifacts that are required for this use case. 
 
@@ -231,14 +232,14 @@ The artifacts will be deployed in the embedded Micro Integrator and the server w
 
 Let's test the use case by sending a simple client request that invokes the service.
 
-#### Start the backend service
+#### Start the back-end service
 
 1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
-2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+2. Open a terminal, navigate to the location where your saved the back-end service.
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-JDK11.jar
+    java -jar Hospital-Service-JDK11-2.0.0.jar
     ```
 
 #### Send the client request
@@ -273,7 +274,7 @@ Let's send a request to the API resource to make a reservation. You can use the 
               <ul>
                 <li>
                   The URI-Template format that is used in this URL was defined when creating the API resource:
-          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+          <code>http://host:port/categories/{category}/reserve</code>.
                 </li>
               </ul>
             </td>

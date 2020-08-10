@@ -96,7 +96,7 @@ Let's create three different HTTP endpoints for the above services.
       <tr>
          <td>Save Endpoint in</td>
          <td><code>               SampleServicesConfigs              </code></td>
-         <td>This is the ESB Config module we created in the last section</td>
+         <td>This is the ESB Config module we created in the last section.</td>
       </tr>
     </table>
 
@@ -181,9 +181,13 @@ You can now start configuring the API resource.
          <td>Value</td>
          <td>
             <div class="content-wrapper">
-              <p>Follow the steps given below to specify the expression:</p>
+              <p>Follow the steps given below to specify the expression value:</p>
+              <img src="../../../assets/img/tutorials/119132155/expression-value.png">
             <ol>
-                <li>Click the <strong>Ex</strong> button in front of the value field.
+                <li>Click the <strong>Ex</strong> button before the <b>Value</b> field. This specifies the value type as <i>expression</i>.</li>
+                <li>
+                  Now, click the <strong>f</strong> button to open the <b>Expression Selector</b> dialog box.
+                </li>
                <li>Enter <code>json-eval($.hospital)</code> as the expression value.</li>
             </ol>
                <b>Note</b>:
@@ -302,8 +306,8 @@ You can now start configuring the API resource.
         extracted from the request, which we can do using an XPath
         expression.)    </li>
                         <li>
-                            <b>Value/Expression</b> : Click <b>browse (...)</b> in the
-                            <b>Value/Expression</b> field and enter
+                            <b>Property Expression</b> : Click <b>browse (...)</b> in the
+                            <b>Property Expression</b> field and enter
         `fn:concat('Routing to ', get-property('Hospital'))`.
                         </li>
                     </ul>
@@ -329,12 +333,12 @@ You can now start configuring the API resource.
 10. Add **Send** mediators adjoining these log mediators and add the **ClemencyEP** and **PineValleyEP** endpoints respectively from the **Defined Endpoints** palette.
 
     !!! Info
-        You have now configured the Switch mediator to log the `Routing to <Hospital Name>` message when a request is sent to this API resource. The request message will then be routed to the relevant hospital back-end service based on the hospital that is sent in the request payload.
+        You have now configured the Switch mediator to log the `Routing to <Hospital Name>` message when a request is sent to this API resource. The request message will then be routed to the relevant hospital back-end service based on the hospital name that is sent in the request payload.
 
 11. Add a **Log mediator** to the **Default** (the bottom box) of the Switch mediator and configure it the same way as the previous Log mediators.
 
     !!! Note
-        Make sure to name this **Fault Log** and change its Value/Expression as follows:`fn:concat('Invalid hospital - ', get-property('Hospital'))`
+        Make sure to name this **Fault Log** and change its <b>Property Expression</b> as follows:`fn:concat('Invalid hospital - ', get-property('Hospital'))`
 
     The default case of the Switch mediator handles the invalid hospital requests that are sent to the request payload. This logs the message (`Invalid hospital - <Hospital Name>`) for requests that have the invalid hospital name.
 
@@ -382,11 +386,11 @@ Let's test the use case by sending a simple client request that invokes the serv
 #### Start the back-end service
 
 1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
-2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+2. Open a terminal, navigate to the location where your saved the back-end service.
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-JDK11.jar
+    java -jar Hospital-Service-JDK11-2.0.0.jar
     ```
 
 #### Send the client request
@@ -421,7 +425,7 @@ Let's send a request to the API resource to make a reservation. You can use the 
               <ul>
                 <li>
                   The URI-Template format that is used in this URL was defined when creating the API resource:
-          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+          <code>http://host:port/categories/{category}/reserve</code>.
                 </li>
               </ul>
             </td>

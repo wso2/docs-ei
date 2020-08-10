@@ -139,13 +139,13 @@ To connect the Error Store Explorer to the SI server, follow the procedure below
     
      - For Linux: `./streaming-integrator-tooling.sh`
      
-   Then Access the Streaming Integrator Tooling via the URL that appears in the start up log with the text `Editor Started on:`.
+    Then Access the Streaming Integrator Tooling via the URL that appears in the start up log with the text `Editor Started on:`.
        
 2. To open the Error Store Explorer, click **Tools** and then click **Error Store Explorer**.
 
-   The Error Store Explorer opens as shown below. 
+    The Error Store Explorer opens as shown below. 
    
-   ![Access Error Store](../../images/handling-requests-with-errors/error-store-explorer-without-server.png)
+    ![Access Error Store](../../images/handling-requests-with-errors/error-store-explorer-without-server.png)
    
 3. Click **Connect to Server**. Then enter information as follows:
 
