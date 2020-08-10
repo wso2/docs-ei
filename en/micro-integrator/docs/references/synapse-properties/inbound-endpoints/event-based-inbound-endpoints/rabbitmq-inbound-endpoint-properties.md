@@ -91,17 +91,13 @@ The following properties are required when [creating a RabbitMQ inbound endpiont
             In a cluster environment an inbound endpoint will only be executed in worker nodes. If this parameter is set to <code>true</code> in a clustered environment, the inbound will only be executed in a single worker node. Once the running worker node is down, the inbound will start on another available worker node in the cluster. By default, this setting is <code>true</code>.
          </td>
       </tr>
-      <tr>
-        <td>Suspend</td>
-        <td>
-          If the inbound listener should pause when accepting incoming requests, set this to <code>true</code>. If the inbound listener should not pause when accepting incoming requests, set this to <code>false</code>.
-        </td>
-      </tr>
 </table>
 
 ### Optional Properties
 
 The following optional properties can be configured when [creating an RabbitMQ inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
+Note that the optional properties related to defining a **queue** should contain the prefix `rabbitmq.queue.optional.` prefix,
+and the optional properties related to defining an **exchange** should contain the `rabbitmq.exchange.optional.` prefix.
 
 <table>
    <thead>
@@ -173,6 +169,37 @@ The following optional properties can be configured when [creating an RabbitMQ i
       </tr>
       <tr>
          <td>
+            rabbitmq.channel.consumer.qos
+         </td>
+         <td>
+         The prefetch message count. This many messaged will be prefetched before the application sees it.
+         If not set 0 will be used as the default value.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.consumer.tag
+         </td>
+         <td>
+        RabbitMQ consumer identifier.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.connection.factory.network.recovery.interval
+         </td>
+         <td>
+         Interval at which the server will retry connecting to the RabbitMQ server in the case of a failure in the established connection.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.factory.connection.timeout
+         </td>
+         <td>Timeout for the connection initialization.</td>
+      </tr>
+      <tr>
+         <td>
             rabbitmq.queue.durable
          </td>
          <td>Whether the queue should remain declared even if the broker restarts.</td>
@@ -203,9 +230,11 @@ The following optional properties can be configured when [creating an RabbitMQ i
       </tr>
       <tr>
          <td>
-            rabbitmq.queue.delivery.mode
+           rabbitmq.queue.autodeclare
          </td>
-         <td>The delivery mode of the queue (whether or not the queue is persistent).</td>
+         <td>Whether or not to declare the queue. If set to 'false', 
+         the Micro Integrator assumes that a queue is already available
+         </td>
       </tr>
       <tr>
          <td>
@@ -227,6 +256,15 @@ The following optional properties can be configured when [creating an RabbitMQ i
       </tr>
       <tr>
          <td>
+            rabbitmq.exchange.autodeclare
+         </td>
+         <td>
+         Whether or not to declare the exchange. If set to 'false', 
+         the Micro Integrator will assume that an exchange is already available.
+         </td>
+      </tr>
+      <tr>
+         <td>
             rabbitmq.factory.heartbeat
          <td>
             <p>The period of time after which the connection should be considered dead.</p>
@@ -234,9 +272,37 @@ The following optional properties can be configured when [creating an RabbitMQ i
       </tr>
       <tr>
          <td>
-            rabbitmq.message.content.type
+            rabbitmq.message.max.dead.lettered.count
          </td>
-         <td>The content type of the message.</td>
+         <td>
+            The maximum number of attempts a message is allowed to be dead lettered. 
+            Once the count exceeds, the message will be discardedor published to the given 
+            'rabbitmq.message.error.queue.routing.key'.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.message.requeue.delay
+         </td>
+         <td>
+           Delay for the message to be requeued in the case of immediate requeing.
+         </td>
+      </tr>
+      <tr>
+          <td>
+             rabbitmq.message.error.queue.routing.key
+          </td>
+          <td>
+           The routing key to publish the message after the 'max.dead.lettered' count has been reached.
+          </td>
+      </tr>
+      <tr>
+         <td>
+           rabbitmq.message.error.exchange.name
+         </td>
+         <td>
+         The exchange to which messages are published after the `max.dead.lettered` count has been reached.
+         </td>
       </tr>
    </tbody>
 </table>
