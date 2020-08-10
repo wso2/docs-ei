@@ -38,13 +38,19 @@ Create the artifacts:
 
 Set up the back-end service.
 
-* Download the [stockquote_service.jar](
-https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
-
-* Run the mock service using the following command:
-  ```bash
-  java -jar stockquote_service.jar
-  ```
+* Download the [back-end service](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/axis2Server.zip)
+* Extract the downloaded zip file.
+* Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
+* Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
+   
+      ```bash tab='On MacOS/Linux/CentOS'
+      sh axis2server.sh
+      ```
+          
+      ```bash tab='On Windows'
+      axis2server.bat
+      ```
 
 [Enable the TCP transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport) and start the Micro-Integrator.
 

@@ -177,11 +177,18 @@ The sample scenario can be depicted as follows:
     
 3.  Deploy the back-end service
     `          SimpleStockQuoteService         ` . 
-    * Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
-    * Open a terminal, navigate to the location where your saved the back-end service.
-    * Execute the following command to start the service:
+    * Download the ZIP file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/axis2Server.zip).
+    * Extract the downloaded zip file.
+    * Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
+    * Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
    
-            java -jar stockquote_service.jar
+      ```bash tab='On MacOS/Linux/CentOS'
+      sh axis2server.sh
+      ```
+          
+      ```bash tab='On Windows'
+      axis2server.bat
+      ```
             
     You now have a running WSO2 MI instance, ActiveMQ instance and a
     sample back-end service to simulate the sample scenario.
