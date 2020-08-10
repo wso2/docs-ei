@@ -288,7 +288,7 @@ nav:
         - 'Running the Micro Integrator on Containers': 'setup/installation/run_in_containers.md'
       - Migrate:
         - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
-        - 'Migrating from WSO2 EI 7.0': 'setup/deployment/migrating-from-ei-7.0.0.md'
+        - 'Migrating from WSO2 EI 7.0': 'setup/deployment/migrating-from-ei-7.0.x.md'
       - Deploy:
         - Deploy on Kubernetes:
           - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
@@ -306,7 +306,7 @@ nav:
           - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'   
         - Deployment Best Practices:
           - 'Production Deployment Guidelines': 'setup/deployment/deployment_checklist.md'
-          - 'Health Check': 'setup/deployment/deployment_checklist.md'
+          - 'Health Check': 'setup/deployment/health_check.md'
           - 'Changing Default Ports': 'setup/changing_default_ports.md'
           - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md' 
           - Performance Tuning:
@@ -360,9 +360,9 @@ nav:
           - 'Connecting to Weblogic': 'setup/brokers/configure-with-WebLogic.md'
           - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
           - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
-        - 'Configure Kafka' : 'setup/feature_configs/configuring-kafka.md'
-        - 'Configure Transports': 'setup/transport_configurations/configuring-transports.md'
-        - 'Configure Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
+        - 'Kafka' : 'setup/feature_configs/configuring-kafka.md'
+        - 'Transports': 'setup/transport_configurations/configuring-transports.md'
+        - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'

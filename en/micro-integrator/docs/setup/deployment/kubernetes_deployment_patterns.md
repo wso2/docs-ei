@@ -8,7 +8,7 @@ When you deploy your integrations, the main concern is to ensure high availabili
 
 The following diagram depicts a single worker node deployment, which contains a single pod (single replica).
 
-<img src="../../../assets/img/k8s_deployment/k8s-single-pod.png" width='400'>
+<img src="../../../assets/img/k8s_deployment/k8s-single-pod.png" width='250'>
 
 A single worker node will reduce your management overheads when you build an on-premise cluster (does not apply to cloud instances). Also, there will be lower costs and resource requirements when compared to a multiple node cluster.
 
