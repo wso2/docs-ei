@@ -112,6 +112,7 @@ The Micro Integrator uses a [file based registry](../file_based_registry) instea
     
 !!! Note
     When you are importing Registry Resources into Integration Studio, make sure that the media type of the Resource is set properly.
+    ![Registry Resource Editor](../../assets/img/migration/registry-resource-editor.png)
 
 
 ### Migrating artifacts
