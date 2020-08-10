@@ -49,14 +49,22 @@ Let's create the MySQL data store in which the events with errors can be saved. 
 To enable the error store, open the `<SI_HOME>/conf/server/deployment.yaml` file and add a configuration as follows:
 
 ```
+  # Siddhi Error Store Configuration
 error.store:
   enabled: true
+
+  # Size of the buffer which is used in publishing erroneous events to the error store. Must be a power of 2.
   bufferSize: 1024
+
+  # Whether to drop erroneous events when the buffer is full.
   dropWhenBufferFull: true
+
+  # Class that has the implementation of the error store.
   errorStore: org.wso2.carbon.streaming.integrator.core.siddhi.error.handler.DBErrorStore
+
   config:
-    datasource: ERROR_STORE_DB
-    table: ERROR_STORE_TABLE
+    datasource: SIDDHI_ERROR_STORE_DB
+    table: SIDDHI_ERROR_STORE_TABLE
 ```
 
 This configuration refers to a data source named `Error_Store_DB`. Define this data source as follows under `Data sources` in the `<SI_HOME>/conf/server/deployment.yaml` file.
