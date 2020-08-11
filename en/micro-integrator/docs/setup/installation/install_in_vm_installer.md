@@ -10,61 +10,109 @@ The **product installer** that is compatible with your operating system will be 
 
 Double-click to open the installation wizard, which will guide you through the installation. When you finish, all the runtimes of WSO2 Enterprise Integrator will be installed and ready for use.
 
-## Starting the MI server
+## Running the MI server
 
-If you installed the Micro Integrator using the installer, use the following instructions.
+If you installed the Micro Integrator using the installer, use the following instructions to start and stop the MI server.
 
--  On **MacOS/Linux/CentOS**
+### Starting the MI server
 
-      Open a terminal and execute the command given below.
+On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
+
+-  To <b>start</b> the Micro Integrator as a <b>standalone application</b>:
 
       ```bash
       sudo wso2mi
       ```
-
-      If you have **installed the product using the installer** and you want to manually run the product startup script from the `MI_HOME/bin` directory, you need to use the following command:
-
-      ```bash
-      sudo sh launcher_micro-integrator.sh
-      ```
    
-      To Start Micro Integrator as a service execute the command given below.
+-  To <b>start</b> the Micro Integrator as a <b>service</b>:
       
       ```bash
       sudo wso2mi-service start
       ```
 
-      This script automatically assigns the JAVA HOME of your VM to the root user of your Micro Integrator instance.
+On **Windows**
 
--  On **Windows**
+-  Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Micro Integrator**. This will open a terminal and start the relevant profile.
 
-      Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This will open a terminal and start the relevant profile.
+!!! Tip
+    If you have **installed the product using the installer** and you want to manually run the product startup script from the `MI_HOME/bin` directory, you need to use the following command:
 
-## Starting the MI dashboard
+    ```bash
+    sudo sh launcher_micro-integrator.sh
+    ```
 
-If you installed the Micro Integrator using the installer, use the following instructions.
+    This script automatically assigns the JAVA HOME of your VM to the root user of your Micro Integrator instance.
 
--  On **MacOS/Linux/CentOS**
+### Stopping the MI server
 
-      Open a terminal and execute the command given below.
+-  To <b>stop</b> the Micro Integrator standalone application, go to the terminal and press <i>Ctrl+C</i>.
+-  To <b>stop</b> the Micro Integrator service:
+      
+      ```bash
+      sudo wso2mi-service stop
+      ```
+
+## Running the MI dashboard
+
+If you installed the Micro Integrator using the installer, use the following instructions to start and stop the Micro Integrator dashboard.
+
+### Starting the dashboard server
+
+On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
+
+-  To <b>start</b> the dashboard as a <b>standalone application</b>:
 
       ```bash
       sudo wso2mi-dashboard
       ```
    
-      To Start Micro Integrator dashboard as a service execute the command given below.
+-  To <b>start</b> the dashboard as a <b>service</b>:
       
       ```bash
       sudo wso2mi-dashboard-service start
       ```
 
-      This script automatically assigns the JAVA HOME of your VM to the root user of your MI dashboard instance.
+On **Windows**
 
-## Stopping the MI server
+-  Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Dashboard**. This will open a terminal and start the dashboard.
 
-To stop the Micro Integrator runtime, press Ctrl+C in the command window.
+### Accessing the dashboard
 
-## Accessing the MI_HOME directory
+Once you have [started the dashboard server](#starting-the-dashboard-server), you can now access the dashboard:
+
+1. Copy the following URL to your browser to access the dashboard.
+
+      ```bash
+      https://192.168.1.2:9743/dashboard
+      ```
+
+2. Sign in to the dashboard using your credentials.
+
+    !!! Warning
+
+        - In a non-production environment (with the self-signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
+        - We have identified issues with the Microsoft Edge browser, which prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, consider switching the browser.
+
+    <img src="../../../assets/img/monitoring-dashboard/login.png">
+
+
+3. If your [Micro Integrator server is started](#starting-the-mi-server), you can now start using the dashboard. 
+
+   See the [Micro Integrator Dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) documentation for more information on how to use the dashboard.
+
+### Stopping the dashboard server
+
+-  To <b>stop</b> the dashboard standalone application, go to the terminal and press <i>Ctrl+C</i>.
+
+-  To <b>stop</b> the dashboard service:
+      
+      ```bash
+      sudo wso2mi-dashboard-service stop
+      ```
+
+## Accessing the HOME directory
+
+### MI_HOME
 
 **MI_HOME** is the installation location of the Micro Integrator runtime. When you use the **installer**, the `MI_HOME` is located in a place specific to your OS as shown below:
 
@@ -95,6 +143,41 @@ To stop the Micro Integrator runtime, press Ctrl+C in the command window.
       <tr class="even">
          <td>CentOS</td>
          <td><code>/usr/lib64/wso2/wso2ei/7.1.0/micro-integrator</code></td>
+      </tr>
+   </tbody>
+</table>
+
+### DASHBOARD_HOME
+
+**DASHBOARD_HOME** is the installation location of the Micro Integrator dashboard. When you use the **installer**, the `DASHBOARD_HOME` is located in a place specific to your OS as shown below:
+
+<table style="width:100%;">
+   <colgroup>
+      <col style="width: 9%" />
+      <col style="width: 90%" />
+   </colgroup>
+   <thead>
+      <tr class="header">
+         <th>OS</th>
+         <th>Home directory</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr class="odd">
+         <td>Mac OS</td>
+         <td><code>/Library/WSO2/EnterpriseIntegrator/7.1.0/micro-integrator-dashboard</code></td>
+      </tr>
+      <tr class="even">
+         <td>Windows</td>
+         <td><code>C:\Program Files\WSO2\Enterprise Integrator\7.1.0\micro-integrator-dashboard</code></td>
+      </tr>
+      <tr class="odd">
+         <td>Ubuntu</td>
+         <td><code>/usr/lib/wso2/wso2ei/7.1.0/micro-integrator-dashboard</code></td>
+      </tr>
+      <tr class="even">
+         <td>CentOS</td>
+         <td><code>/usr/lib64/wso2/wso2ei/7.1.0/micro-integrator-dashboard</code></td>
       </tr>
    </tbody>
 </table>
