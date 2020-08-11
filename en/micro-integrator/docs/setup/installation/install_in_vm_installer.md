@@ -27,12 +27,38 @@ If you installed the Micro Integrator using the installer, use the following ins
       ```bash
       sudo sh launcher_micro-integrator.sh
       ```
+   
+      To Start Micro Integrator as a service execute the command given below.
+      
+      ```bash
+      sudo wso2mi-service start
+      ```
 
       This script automatically assigns the JAVA HOME of your VM to the root user of your Micro Integrator instance.
 
 -  On **Windows**
 
       Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This will open a terminal and start the relevant profile.
+
+## Starting the MI dashboard
+
+If you installed the Micro Integrator using the installer, use the following instructions.
+
+-  On **MacOS/Linux/CentOS**
+
+      Open a terminal and execute the command given below.
+
+      ```bash
+      sudo wso2mi-dashboard
+      ```
+   
+      To Start Micro Integrator dashboard as a service execute the command given below.
+      
+      ```bash
+      sudo wso2mi-dashboard-service start
+      ```
+
+      This script automatically assigns the JAVA HOME of your VM to the root user of your MI dashboard instance.
 
 ## Stopping the MI server
 
