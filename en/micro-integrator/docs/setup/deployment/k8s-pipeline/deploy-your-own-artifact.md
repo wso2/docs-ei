@@ -79,7 +79,7 @@
 9.  Invoke the service 
     
     ``` bash
-    curl -k https://wso2mi-dev/services/HelloWorld  
+    curl -k https://mi.dev.wso2.com/services/HelloWorld  
     ```
 
 
