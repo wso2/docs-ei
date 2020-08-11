@@ -4,7 +4,7 @@ Follow the steps given below to install the WSO2 Micro Integrator runtime and it
 
 ## Download and install
 
-Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/#), click **Download**, and then click the **Installer**.
+Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then click the **Installer**.
 
 The **product installer** that is compatible with your operating system will be downloaded.
 
@@ -12,11 +12,11 @@ Double-click to open the installation wizard, which will guide you through the 
 
 ## Running the MI server
 
-If you installed the Micro Integrator using the installer, use the following instructions to start and stop the MI server.
+If you installed the product using the installer, use the following instructions to start and stop the MI server.
 
 ### Starting the MI server
 
-On **MacOS/Linux**, open a terminal and execute one of the commands given below.
+On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
 
 -  To <b>start</b> the Micro Integrator as a <b>standalone application</b>:
 
@@ -26,21 +26,11 @@ On **MacOS/Linux**, open a terminal and execute one of the commands given below.
    
 -  To <b>start</b> the Micro Integrator as a <b>service</b>:
       
-      ```bash
+      ```bash tab='On MacOS/Linux'
       sudo wso2mi-service start
       ```
 
-On **Centos**, open a terminal and execute one of the commands given below.
-
--  To <b>start</b> the Micro Integrator as a <b>standalone application</b>:
-
-      ```bash
-      sudo wso2mi
-      ```
-   
--  To <b>start</b> the Micro Integrator as a <b>service</b>:
-      
-      ```bash
+      ```bash tab='On CentOS'
       sudo service wso2mi start
       ```
 
@@ -72,7 +62,7 @@ On **Windows**
 
 ## Running the MI dashboard
 
-If you installed the Micro Integrator using the installer, use the following instructions to start and stop the Micro Integrator dashboard.
+If you installed the product using the installer, use the following instructions to start and stop the Micro Integrator dashboard.
 
 ### Starting the dashboard server
 
@@ -86,21 +76,11 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
    
 -  To <b>start</b> the dashboard as a <b>service</b>:
       
-      ```bash
+      ```bash tab='On MacOS/Linux'
       sudo wso2mi-dashboard-service start
       ```
-
-On **CentOS**, open a terminal and execute one of the commands given below.
-
--  To <b>start</b> the dashboard as a <b>standalone application</b>:
-
-      ```bash
-      sudo wso2mi-dashboard
-      ```
-   
--  To <b>start</b> the dashboard as a <b>service</b>:
       
-      ```bash
+      ```bash tab='On CentOS'
       sudo service wso2mi-dashboard start
       ```
 
