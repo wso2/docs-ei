@@ -14,63 +14,74 @@ Double-click to open the installation wizard, which will guide you through the 
 
 If you installed the Micro Integrator using the installer, use the following instructions to start and stop the MI server.
 
--  On **MacOS/Linux/CentOS**
+On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
 
-      Open a terminal and execute one of the commands given below.
-
-      To <b>start</b> the Micro Integrator as a <b>standalone application</b>:
+-  To <b>start</b> the Micro Integrator as a <b>standalone application</b>:
 
       ```bash
       sudo wso2mi
       ```
    
-      To <b>start</b> the Micro Integrator as a <b>background service</b>:
+-  To <b>start</b> the Micro Integrator as a <b>background service</b>:
       
       ```bash
       sudo wso2mi-service start
       ```
 
-      !!! Tip
-          If you have **installed the product using the installer** and you want to manually run the product startup script from the `MI_HOME/bin` directory, you need to use the following command:
+-  To <b>stop</b> the Micro Integrator standalone application, go to the terminal and press <i>Ctrl+C</i>.
 
-            ```bash
-            sudo sh launcher_micro-integrator.sh
-            ```
+-  To <b>stop</b> the Micro Integrator background service:
+      
+      ```bash
+      sudo wso2mi-service start
+      ```
 
-            This script automatically assigns the JAVA HOME of your VM to the root user of your Micro Integrator instance.
+On **Windows**
 
-      To <b>stop</b> the Micro Integrator, press <i>Ctrl+C</i> in the command window.
+-  Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Micro Integrator**. This will open a terminal and start the relevant profile.
 
--  On **Windows**
+!!! Tip
+    If you have **installed the product using the installer** and you want to manually run the product startup script from the `MI_HOME/bin` directory, you need to use the following command:
 
-      Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Micro Integrator**. This will open a terminal and start the relevant profile.
+    ```bash
+    sudo sh launcher_micro-integrator.sh
+    ```
 
+    This script automatically assigns the JAVA HOME of your VM to the root user of your Micro Integrator instance.
 
 ## Running the MI dashboard
 
-If you installed the Micro Integrator using the installer, use the following instructions.
+If you installed the Micro Integrator using the installer, use the following instructions to start and stop the Micro Integrator dashboard.
 
--  On **MacOS/Linux/CentOS**
+On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
 
-      Open a terminal and execute one of the commands given below.
-
-      To <b>start</b> the dashboard as a <b>standalone application</b>:
+-  To <b>start</b> the dashboard as a <b>standalone application</b>:
 
       ```bash
       sudo wso2mi-dashboard
       ```
    
-      To start dashboard as a <b>background service</b>:
+-  To <b>start</b> the dashboard as a <b>background service</b>:
       
       ```bash
       sudo wso2mi-dashboard-service start
       ```
 
--  On **Windows**
+-  To <b>stop</b> the dashboard standalone application, go to the terminal and press <i>Ctrl+C</i>.
 
-      Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Dashboard**. This will open a terminal and start the dashboard.
+-  To <b>stop</b> the dashboard service:
+      
+      ```bash
+      sudo wso2mi-dashboard-service stop
+      ```
 
-## Accessing the MI_HOME directory
+On **Windows**
+
+-  Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Dashboard**. This will open a terminal and start the dashboard.
+
+## Accessing the HOME directory
+
+### MI_HOME
 
 **MI_HOME** is the installation location of the Micro Integrator runtime. When you use the **installer**, the `MI_HOME` is located in a place specific to your OS as shown below:
 
@@ -105,7 +116,7 @@ If you installed the Micro Integrator using the installer, use the following ins
    </tbody>
 </table>
 
-## Accessing the DASHBOARD_HOME directory
+### DASHBOARD_HOME
 
 **DASHBOARD_HOME** is the installation location of the Micro Integrator dashboard. When you use the **installer**, the `DASHBOARD_HOME` is located in a place specific to your OS as shown below:
 
