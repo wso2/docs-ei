@@ -1,6 +1,6 @@
 # Install and Setup Overview
 
-## Installation Guide
+## Install
 
 The installation guide of the Micro Integrator explains how to set up the Micro Integrator on a single server node or container.
 
@@ -39,11 +39,18 @@ The installation guide of the Micro Integrator explains how to set up the Micro 
 	</tr>
 </table>
 
-## Deployment Options
+## Migrate
+
+Follow the topics in this section to migrate to the latest version of WSO2 EI 7 from a previous version.
+
+-	[Migrating from WSO2 EI 6.x Family](../../setup/deployment/migrating-from-ei-6.x.x)
+-	[Migrating from WSO2 EI 7.0](../../setup/deployment/migrating-from-ei-7.0.x)
+
+## Deploy
 
 You can set up a Micro Integrator deployment either in a VM environment or a Kubernetes environment.
 
-### Kubernetes Deployment
+### Deploy on Kubernetes
 
 Follow the topics in this section if you are setting up a Micro Integrator deployment in a Kubernetes environment.
 
@@ -74,25 +81,9 @@ Follow the topics in this section if you are setting up a Micro Integrator deplo
 			Follow the step-by-step instructions on how to build a pipeline to manage the continuous integration and continuous deployment process.
 		</td>
 	</tr>
-	<tr>
-		<td>
-			<a href="../../setup/dynamic_server_configurations">Managing Configurations across Environments</a>
-		</td>
-		<td>
-			When you have multiple environments such as DEV, QA, UAT, and PROD, you can follow these instructions to remotely manage the configurations in each environment without modifying the artifacts or configuration file.
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<a href="../../setup/deployment/deployment_checklist">Product Deployment Checklist</a>
-		</td>
-		<td>
-			Once you have set up your development verify with this checklist to ensure that you have followed all the required standards.
-		</td>
-	</tr>
 </table>
 
-### VM Deployment
+### Deploy on a Virtual Machine
 
 Follow the topics in this section if you are setting up a Micro Integrator deployment in a VM environment.
 
@@ -123,10 +114,49 @@ Follow the topics in this section if you are setting up a Micro Integrator deplo
 	</tr>
 	<tr>
 		<td>
-			<b>Databases</b>
+			<a href="../../setup/configuring_proxy_servers">Configuring a Proxy Server</a>
 		</td>
 		<td>
-			This section explains how to set up a database and connect it to the nodes in your cluster in your Micro Integrator. The following database types are supported: <a href="../../setup/deployment/databases/setting-up-MySQL">MySQL</a>, <a href="../../setup/deployment/databases/setting-up-MSSQL">MSSQL</a>, <a href="../../setup/deployment/databases/setting-up-PostgreSQL">Postgre</a>, <a href="../../setup/deployment/databases/setting-up-Oracle">Oracle</a>, <a href="../../setup/deployment/databases/setting-up-IBM-DB2">IBM</a>.
+			Follow the instructions on configuring a proxy server to front your Micro Integrator deployment.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../setup/enabling_SSL_tunneling_thru_proxy_server">Enable SSL Tunneling through Proxy Server</a>
+		</td>
+		<td>
+			Follow the instructions on how to enable secure socket layer (SSL) tunneling through the proxy server.
+		</td>
+	</tr>
+</table>
+
+### Deployment Best Practices
+
+Follow the topics for best practices to follow when setting up a Micro Integrator deployment.
+
+<table>
+	<tr>
+		<td>
+			<a href="../../setup/deployment/deployment_checklist">Product Deployment Checklist</a>
+		</td>
+		<td>
+			Once you have set up your development verify with this checklist to ensure that you have followed all the required standards.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../setup/deployment/health_check">Health Check</a>
+		</td>
+		<td>
+			Check the health of your Micro Integrator nodes before routing traffic.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href='../../setup/changing_default_ports'>Changing Default Ports</a>
+		</td>
+		<td>
+			See the instructions on changing the default ports.
 		</td>
 	</tr>
 	<tr>
@@ -153,23 +183,66 @@ Follow the topics in this section if you are setting up a Micro Integrator deplo
 			When you have multiple environments such as DEV, QA, UAT, and PROD, you can follow these instructions to remotely manage the configurations in each environment without modifying the artifacts or configuration file.
 		</td>
 	</tr>
-	<tr>
-		<td>
-			<a href="../../setup/deployment/deployment_checklist">Product Deployment Checklist</a>
-		</td>
-		<td>
-			Once you have set up your development verify with this checklist to ensure that you have followed all the required standards.
-		</td>
-	</tr>
 </table>
 
-## Migration Guide
+## Set up
 
-Follow the topics in this section to migrate to the latest version of WSO2 EI 7 from a previous version.
+### Data Stores
 
--	[Migrating from WSO2 EI 6.x Family](../../setup/deployment/migrating-from-ei-6.x.x)
+-	<b>User Stores</b>
 
-## Security Hardening
+	<table>
+		<tr>
+			<td>
+				<a href="../../setup/user_stores/setting_up_a_userstore">Configuring a User Store</a>
+			</td>
+			<td>
+				Set up an LDAP or RDBMS to store user credentials.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="../../setup/user_stores/managing_users">Managing Users</a>
+			</td>
+			<td>
+				Add, remove, or update users in the user store.
+			</td>
+		</tr>
+	</table>
+
+-	<b>Databases</b>
+
+	<table>
+		<tr>
+			<td>
+				<b>Setting up Databases</b>
+			</td>
+			<td>
+				This section explains how to set up a database and connect it to the nodes in your cluster in your Micro Integrator. The following database types are supported: 
+				<ul>
+					<li>
+						<a href="../../setup/databases/setting-up-MySQL">MySQL</a>
+					</li>
+					<li>
+						<a href="../../setup/databases/setting-up-MSSQL">MSSQL</a>
+					</li>
+					<li>
+						<a href="../../setup/databases/setting-up-PostgreSQL">Postgre</a>
+					</li>
+					<li>
+						<a href="../../setup/databases/setting-up-Oracle">Oracle</a>
+					</li>
+					<li>
+						<a href="../../setup/databases/setting-up-IBM-DB2">IBM</a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+
+-	<b><a href="../../setup/deployment/file_based_registry">File-Based Registry</a></b>
+
+### Security
 
 Follow the topics in this section to configure security for your Micro Integrator instance.
 
@@ -238,9 +311,17 @@ Follow the topics in this section to configure security for your Micro Integrato
 			 The management API of the Micro Integrator powers the Micro Integrator <b>CLI tool</b> as well as the <b>Dashboard</b>. This section explains how the management API can be secured.
 		</td>
 	</tr>
+	<tr>
+		<td>
+			 <a href='../../setup/customizing_error_pages'>Customizing Error Messages</a>
+		</td>
+		<td>
+			 See the instructions on how to create custom error messages.
+		</td>
+	</tr>
 </table>
 
-## Performance Tuning
+### Performance
 
 Follow the topics in this section to optimize the performance of your Micro Integrator instance.
 
@@ -253,25 +334,84 @@ Follow the topics in this section to optimize the performance of your Micro Inte
 -	<a href='../../setup/performance_tuning/rabbitmq_transport_tuning'>Tuning the RabbitMQ Transport</a>
 -	<a href='../../setup/performance_tuning/tuning-inbound-endpoints'>Tuning the Inbound Endpoints</a>
 
-## Configuring Brokers
+### Message Brokers
 
 The following topics explain how to connect the Micro Integrator with an external message broker.
 
--	<a href='../../setup/brokers/configure-with-ActiveMQ'>Connecting to ActiveMQ</a>
--	<a href='../../setup/brokers/configure-with-Apache-Artemis'>Connecting to Apache Artemis</a>
--	<a href='../../setup/brokers/configure-with-HornetQ'>Connecting to HornetQ</a>
--	<a href='../../setup/brokers/configure-with-IBM-websphere-app-server'>Connecting to IBM Websphere App Server</a>
--	<a href='../../setup/brokers/configure-with-IBM-websphereMQ'>Connecting to IBM Websphere MQ</a>
--	<a href='../../setup/brokers/configure-with-JBossMQ'>Connecting to JBoss MQ</a>
--	<a href='../../setup/brokers/configure-with-MSMQ'>Connecting to MSMQ</a>
--	<a href='../../setup/brokers/configure-with-rabbitMQ'>Connecting to RabbitMQ</a>
--	<a href='../../setup/brokers/configure-with-SwiftMQ'>Connecting to SwiftMQ</a>
--	<a href='../../setup/brokers/configure-with-Tibco-EMS'>Connecting to TIBCO EMS</a>
--	<a href='../../setup/brokers/configure-with-WebLogic'>Connecting to Weblogic</a>
--	<a href='../../setup/brokers/configure-with-WSO2-MB'>Connecting to WSO2 MB</a>
--	<a href='../../setup/brokers/configure-with-multiple-brokers'>Connecting to Multiple Brokers</a>
+<table>
+	<tr>
+		<td>
+			<b>AMQP (RabbitMQ)</b>
+		</td>
+		<td>
+			<b>JMS</b>
+		</td>
+		<td>
+			<b>Kafka</b>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<ul>
+				<li>
+					<a href='../../setup/brokers/deploy-rabbitMQ'>RabbitMQ Deployment Recommendations</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-rabbitMQ'>Connecting to RabbitMQ</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<ul>
+				<li>
+					<a href='../../setup/brokers/configure-with-ActiveMQ'>Connecting to ActiveMQ</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-Apache-Artemis'>Connecting to Apache Artemis</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-HornetQ'>Connecting to HornetQ</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-IBM-websphere-app-server'>Connecting to IBM Websphere App Server</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-IBM-websphereMQ'>Connecting to IBM Websphere MQ</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-JBossMQ'>Connecting to JBoss MQ</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-MSMQ'>Connecting to MSMQ</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-SwiftMQ'>Connecting to SwiftMQ</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-Tibco-EMS'>Connecting to TIBCO EMS</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-WebLogic'>Connecting to Weblogic</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-WSO2-MB'>Connecting to WSO2 MB</a>
+				</li>
+				<li>
+					<a href='../../setup/brokers/configure-with-multiple-brokers'>Connecting to Multiple Brokers</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<ul>
+				<li>
+					<a href='../../setup/feature_configs/configuring-kafka'>Configuring Kafka</a>
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
 
-## Feature-Specific Configurations
+### Advanced
 
 The follow topics explain configurations specific to various scenarios and features of the Micro Integrator.
 
@@ -280,15 +420,3 @@ The follow topics explain configurations specific to various scenarios and featu
 -	<a href='../../setup/message_builders_formatters/message-relay'>Configuring Message Relay</a>
 -	<a href='../../setup/transport_configurations/configuring-transports'>Configuring Transports</a>
 -	<a href='../../setup/transport_configurations/multi-https-transport'>Configuring Multi-HTTPS</a>
--	<a href='../../setup/feature_configs/configuring-kafka'>Configuring Kafka</a>
-
-## Additional Configurations
-
-The follow topics explain additional configurations of the Micro Integrator.
-
--	<a href='../../setup/adding_a_custom_proxy_path'>Adding a Custom Proxy Path</a>
--	<a href='../../setup/configuring_proxy_servers'>Configuring a Proxy Server</a>
--	<a href='../../setup/changing_default_ports'>Changing Default Ports</a>
--	<a href='../../setup/customizing_error_pages'>Customizing Error Messages</a>
--	<a href='../../setup/govern_ext_refs_across_env'>Governing External References Across Environments</a>
--	<a href='../../setup/enabling_SSL_tunneling_thru_proxy_server'>Enable SSL Tunneling through Proxy Server</a>
