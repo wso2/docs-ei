@@ -16,7 +16,7 @@ If you installed the Micro Integrator using the installer, use the following ins
 
 ### Starting the MI server
 
-On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
+On **MacOS/Linux**, open a terminal and execute one of the commands given below.
 
 -  To <b>start</b> the Micro Integrator as a <b>standalone application</b>:
 
@@ -28,6 +28,20 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       
       ```bash
       sudo wso2mi-service start
+      ```
+
+On **Centos**, open a terminal and execute one of the commands given below.
+
+-  To <b>start</b> the Micro Integrator as a <b>standalone application</b>:
+
+      ```bash
+      sudo wso2mi
+      ```
+   
+-  To <b>start</b> the Micro Integrator as a <b>service</b>:
+      
+      ```bash
+      sudo service wso2mi start
       ```
 
 On **Windows**
@@ -48,8 +62,12 @@ On **Windows**
 -  To <b>stop</b> the Micro Integrator standalone application, go to the terminal and press <i>Ctrl+C</i>.
 -  To <b>stop</b> the Micro Integrator service:
       
-      ```bash
+      ```bash tab='On MacOS/Linux'
       sudo wso2mi-service stop
+      ```
+
+      ```bash tab='On CentOS'
+      sudo service wso2mi stop
       ```
 
 ## Running the MI dashboard
@@ -70,6 +88,20 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       
       ```bash
       sudo wso2mi-dashboard-service start
+      ```
+
+On **CentOS**, open a terminal and execute one of the commands given below.
+
+-  To <b>start</b> the dashboard as a <b>standalone application</b>:
+
+      ```bash
+      sudo wso2mi-dashboard
+      ```
+   
+-  To <b>start</b> the dashboard as a <b>service</b>:
+      
+      ```bash
+      sudo service wso2mi-dashboard start
       ```
 
 On **Windows**
@@ -106,8 +138,12 @@ Once you have [started the dashboard server](#starting-the-dashboard-server), yo
 
 -  To <b>stop</b> the dashboard service:
       
-      ```bash
+      ```bash tab='On MacOS/Linux'
       sudo wso2mi-dashboard-service stop
+      ```
+
+      ```bash tab='On CentOS'
+      sudo service wso2mi-dashboard stop
       ```
 
 ## Accessing the HOME directory
