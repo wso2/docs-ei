@@ -14,6 +14,8 @@ Double-click to open the installation wizard, which will guide you through the 
 
 If you installed the Micro Integrator using the installer, use the following instructions to start and stop the MI server.
 
+### Starting the MI server
+
 On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
 
 -  To <b>start</b> the Micro Integrator as a <b>standalone application</b>:
@@ -26,14 +28,6 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       
       ```bash
       sudo wso2mi-service start
-      ```
-
--  To <b>stop</b> the Micro Integrator standalone application, go to the terminal and press <i>Ctrl+C</i>.
-
--  To <b>stop</b> the Micro Integrator service:
-      
-      ```bash
-      sudo wso2mi-service stop
       ```
 
 On **Windows**
@@ -49,9 +43,20 @@ On **Windows**
 
     This script automatically assigns the JAVA HOME of your VM to the root user of your Micro Integrator instance.
 
+### Stopping the MI server
+
+-  To <b>stop</b> the Micro Integrator standalone application, go to the terminal and press <i>Ctrl+C</i>.
+-  To <b>stop</b> the Micro Integrator service:
+      
+      ```bash
+      sudo wso2mi-service stop
+      ```
+
 ## Running the MI dashboard
 
 If you installed the Micro Integrator using the installer, use the following instructions to start and stop the Micro Integrator dashboard.
+
+### Starting the dashboard server
 
 On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
 
@@ -67,6 +72,36 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       sudo wso2mi-dashboard-service start
       ```
 
+On **Windows**
+
+-  Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Dashboard**. This will open a terminal and start the dashboard.
+
+### Accessing the dashboard
+
+Once you have [started the dashboard server](#starting-the-dashboard-server), you can now access the dashboard:
+
+1. Copy the following URL to your browser to access the dashboard.
+
+      ```bash
+      https://192.168.1.2:9743/dashboard
+      ```
+
+2. Sign in to the dashboard using your credentials.
+
+    !!! Warning
+
+        - In a non-production environment (with the self-signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
+        - We have identified issues with the Microsoft Edge browser, which prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, consider switching the browser.
+
+    <img src="../../../assets/img/monitoring-dashboard/login.png">
+
+
+3. If your [Micro Integrator server is started](#starting-the-mi-server), you can now start using the dashboard. 
+
+   See the [Micro Integrator Dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) documentation for more information on how to use the dashboard.
+
+### Stopping the dashboard server
+
 -  To <b>stop</b> the dashboard standalone application, go to the terminal and press <i>Ctrl+C</i>.
 
 -  To <b>stop</b> the dashboard service:
@@ -74,10 +109,6 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       ```bash
       sudo wso2mi-dashboard-service stop
       ```
-
-On **Windows**
-
--  Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Dashboard**. This will open a terminal and start the dashboard.
 
 ## Accessing the HOME directory
 
