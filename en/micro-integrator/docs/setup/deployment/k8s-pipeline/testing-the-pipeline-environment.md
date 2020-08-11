@@ -51,7 +51,7 @@ Send the following request through a Curl command and observe the
 output.
 
 ``` xml
-$ curl -k https://wso2mi-dev/services/HelloWorld  
+$ curl -k https://mi.dev.wso2.com/services/HelloWorld  
 You will get the following response: {"Hello":"World"}
 
 ```
