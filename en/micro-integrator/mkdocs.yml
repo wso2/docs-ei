@@ -207,7 +207,6 @@ nav:
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
-      - 'Connectors': 'use-cases/connectors.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - WSO2 Integration Studio:
@@ -390,6 +389,7 @@ nav:
         - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
         - 'When to Use Connectors' : 'references/connectors/why-connectors.md'
         - 'Connector Usage Guidelines' : 'references/connectors/connector-usage.md'
+        - 'Connector Developer Guidelines' : 'references/connectors/develop-connectors.md'
         - Amazon DynamoDB Connector:
           - 'Amazon DynamoDB Overview': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-overview.md'
           - 'Setting up Amazon DynamoDB': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'

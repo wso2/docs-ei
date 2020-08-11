@@ -41,17 +41,12 @@ After importing the connector, you can drag and drop operations to the design pa
 
 Some connectors use message content in the $body to execute the operation. In such situations you may need to transform the current message in the way the connector operation needs before using that with the connector operation. Following are some of the mediators you can use to transform the message. 
 
-    * **[PayloadFactory mediator](../mediators/payloadFactory-Mediator.md)** - This replaces the current message with a message in the format we specify. We can use the information of the current message to construct this new message.
-
-    * **[Enrich mediator](../mediators/enrich-Mediator.md)** - Enrich the current message modifying or adding new elements. This is also useful to save the current message as a property and to place a message in a property as the current message.
-
-    * **[Datamapper mediator](../mediators/data-Mapper-Mediator.md)** - Transform JSON, XML, CSV messages between formats.
-
-    * **[Script mediator](../mediators/script-Mediator.md)** - Use JavaScript, Groovy or Ruby scripting languages to transform message in a custom manner.
-
-    * **[Custom class mediator](../mediators/class-Mediator.md)** - Use Java to transform message in a custom manner (use Axiom, Jackson, or Gson libraries).
-
-    * **Mediator Modules (new)** - Import module and use operations to transform message (currently CSV related transformations only).
+* **[PayloadFactory mediator](../mediators/payloadFactory-Mediator.md)** - This replaces the current message with a message in the format we specify. We can use the information of the current message to construct this new message.
+* **[Enrich mediator](../mediators/enrich-Mediator.md)** - Enrich the current message modifying or adding new elements. This is also useful to save the current message as a property and to place a message in a property as the current message.
+* **[Datamapper mediator](../mediators/data-Mapper-Mediator.md)** - Transform JSON, XML, CSV messages between formats.
+* **[Script mediator](../mediators/script-Mediator.md)** - Use JavaScript, Groovy or Ruby scripting languages to transform message in a custom manner.
+* **[Custom class mediator](../mediators/class-Mediator.md)** - Use Java to transform message in a custom manner (use Axiom, Jackson, or Gson libraries).
+* **Mediator Modules (new)** - Import module and use operations to transform message (currently CSV related transformations only).
 
 The above mediators are useful to transform the message anywhere in the mediation flow. Hence, the same mediators can be used to transform the result of a certain connector operation in the way the next connector operation needs. 
 
@@ -99,9 +94,9 @@ Keeping local entry names unchanged, you can create configurations specific to d
 
 The following are some other ways to externalize connection initialization parameters. 
 
-* For connector init operation parameters (for previous connector versions) or for connection parameters when creating new connector connections (newer connector versions), specify an expression to read them as system variables (i.e., `get-property('System','email.hostName')`). Then you can pass the values for system variables in the `<EI_HOME>/bin/integrator.sh` script. You can do this specific to the environment. 
+* For connector `init` operation parameters (for previous connector versions) or for connection parameters when creating new connector connections (newer connector versions), specify an expression to read them as system variables (i.e., `get-property('System','email.hostName')`). Then you can pass the values for system variables in the `<EI_HOME>/bin/integrator.sh` script. You can do this specific to the environment. 
 
-* For connector init operation parameters (for previous connector versions) or for connection parameters when creating new connector connections (newer connector versions), specify an expression to read them as registry variables (i.e., `get-property(get-property('registry','conf:<path to resource from config>'))`). Then you can provide values in the registry specific to the environment at the registry path specified. Make sure you share the registry between the nodes if setting up a WSO2 EI cluster. 
+* For connector `init` operation parameters (for previous connector versions) or for connection parameters when creating new connector connections (newer connector versions), specify an expression to read them as registry variables (i.e., `get-property(get-property('registry','conf:<path to resource from config>'))`). Then you can provide values in the registry specific to the environment at the registry path specified. Make sure you share the registry between the nodes if setting up a WSO2 EI cluster. 
 
 ## Deployment 
 
