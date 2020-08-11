@@ -278,7 +278,7 @@ nav:
         - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
         - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
     - Install and Setup:
-      - 'Overview': 'setup/micro_integrator_deployment_overview.md'
+      - 'Overview': 'setup/install_and_setup_overview.md'
       - Install:
         - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
         - Installing the Micro Integrator:
@@ -309,15 +309,6 @@ nav:
           - 'Health Check': 'setup/deployment/health_check.md'
           - 'Changing Default Ports': 'setup/changing_default_ports.md'
           - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md' 
-          - Performance Tuning:
-            - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
-            - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
-            - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
-            - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
-            - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
-            - 'Tuning the VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
-            - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
-            - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
         - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Set Up:
@@ -331,7 +322,7 @@ nav:
             - 'Oracle Database': 'setup/databases/setting-up-Oracle.md'
             - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
             - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
-          - 'File-Based Registry': 'setup/deployment/file_based_registry.md'
+          - 'File-Based Registry': 'setup/deployment/file_based_registry.md'       
         - Security:
           - Setting up Keystores:
             - 'Creating New Keystores': 'setup/security/creating_keystores.md'
@@ -346,6 +337,15 @@ nav:
             - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Securing the Management API' : 'setup/security/securing_management_api.md'
           - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
+        - Performance:
+          - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
+          - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
+          - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
+          - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
+          - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
+          - 'Tuning the VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
+          - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
+          - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'        
         - Message Brokers:
           - AMQP (RabbitMQ):
             - 'RabbitMQ Deployment Recommendations': 'setup/brokers/deploy-rabbitMQ.md'
@@ -365,7 +365,9 @@ nav:
             - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
           - 'Kafka' : 'setup/feature_configs/configuring-kafka.md'
         - 'Transports': 'setup/transport_configurations/configuring-transports.md'
+        - 'Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
         - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
+        - 'Message Relay' : 'setup/message_builders_formatters/message-relay.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
