@@ -31,7 +31,6 @@ In summary, all the integration capabilities that you used in the ESB can be use
  
 See the [detailed comparison of EI 6.x and EI 7.0](../../../references/comparisong-mi7-ei6xx) to understand what has 
 changed between the ESB profile of EI 6.x.x and the Micro Integrator of EI 7.0.
-See the [detailed comparison of EI 6.x and EI 7.1](../../../references/comparisong-mi7-ei6xx) to understand what has changed between the ESB profile of EI 6.x.x and the Micro Integrator of EI 7.1.0
 
 Follow the instructions below to start the migration!
 
