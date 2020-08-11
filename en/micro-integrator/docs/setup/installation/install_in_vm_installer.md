@@ -61,7 +61,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       sudo wso2mi-dashboard
       ```
    
--  To <b>start</b> the dashboard as a <b>background service</b>:
+-  To <b>start</b> the dashboard as a <b>service</b>:
       
       ```bash
       sudo wso2mi-dashboard-service start
