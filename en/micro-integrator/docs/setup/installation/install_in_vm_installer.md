@@ -22,7 +22,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       sudo wso2mi
       ```
    
--  To <b>start</b> the Micro Integrator as a <b>background service</b>:
+-  To <b>start</b> the Micro Integrator as a <b>service</b>:
       
       ```bash
       sudo wso2mi-service start
@@ -30,10 +30,10 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
 
 -  To <b>stop</b> the Micro Integrator standalone application, go to the terminal and press <i>Ctrl+C</i>.
 
--  To <b>stop</b> the Micro Integrator background service:
+-  To <b>stop</b> the Micro Integrator service:
       
       ```bash
-      sudo wso2mi-service start
+      sudo wso2mi-service stop
       ```
 
 On **Windows**
