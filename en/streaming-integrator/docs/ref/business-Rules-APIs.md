@@ -1,6 +1,3 @@
-!!! note
-    **This page is still a work in progress!**
-
 # Business Rules APIs
 
 ## Listing the available business rule instances
@@ -23,8 +20,7 @@
 </tr>
 <tr class="even">
 <th>Request/Response Format</th>
-<td><br />
-</td>
+<td>application/json</td>
 </tr>
 <tr class="odd">
 <th>Authentication</th>
@@ -54,12 +50,13 @@ curl -X GET "https://<HOST_NAME>:<PORT>/business-rules/instances" -u admin:admin
 ### Sample curl command
 
 ``` java
-curl -X GET "https://localhost:9643/business-rules/instances" -u admin:admin -k
+curl -X GET "https://localhost:9743/business-rules/instances" -u admin:admin -k
 ```
 
 ### Sample output
 
 ``` java
+[ "Found Business Rules", "Loaded available business rules", [ [ { "ruleTemplateUUID": "identifying-continuous-production-decrease", "properties": { "timeInterval": "6", "timeRangeInput": "5", "email": "example@email.com", "validateTimeRange": "function validateTimeRange(number) {\n\tif (!isNaN(number) && (number > 0)) {\n\t\treturn number;\n\t} else {\n\t\tthrow 'A positive number expected for time range';\n\t}\n}", "getUsername": "function getUsername(email) {\n\tif (email.match(/\\S+@\\S+/g)) {\n\t\tif (email.match(/\\S+@\\S+/g)[0] === email) {\n\t\t\treturn email.split('@')[0];\n\t\t}\n\t\tthrow 'Invalid email address provided';\n\t}\n\tthrow 'Invalid email address provided';\n}", "timeRange": "5", "username": "example" }, "uuid": "samplesiddhiapp", "name": "SampleSiddhiApp", "templateGroupUUID": "3432442", "type": "template" }, 1 ] ], 0 ]
 ```
 
 ### Response
@@ -130,13 +127,13 @@ curl -X DELETE "https://<HOST_NAME>:<PORT>/business-rules/instances/business-rul
 ### Sample curl command
 
 ``` java
-curl -X DELETE "https://localhost:9643/business-rules/instances/business-rule-1?force-delete=false" -H "accept: application/json" -u admin:admin
+curl -X DELETE "https://localhost:9743/business-rules/instances/business-rule-1?force-delete=false" -H "accept: application/json" -u admin:admin
 ```
 
 ### Sample output
 
 ``` java
-
+[ "Deletion Successful", "Successfully deleted the business rule", 6 ]
 ```
 
 ### Response
@@ -208,12 +205,13 @@ curl -X GET "https://<HOST_NAME>:<PORT>/business-rules/template-groups/{template
 ### Sample curl command
 
 ``` java
-curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory" -u admin:admin -k
+curl -X GET "https://localhost:9743/business-rules/template-groups/sweet-factory" -u admin:admin -k
 ```
 
 ### Sample output
 
 ``` java
+[ "Found Template Group", "Loaded template group with uuid '3432442'", { "uuid": "3432442", "name": "Sweet Factory", "description": "Configure Sweet Factory Rules", "ruleTemplates": [ { "uuid": "identifying-continuous-production-decrease", "name": "Identify Continuous Production Decrease", "type": "template", "instanceCount": "many", "script": "var timeRange = validateTimeRange(${timeRangeInput});\nvar username = getUsername('${email}');\n\n// Validates the input provided for time range\nfunction validateTimeRange(number) {\n\tif (!isNaN(number) && (number > 0)) {\n\t\treturn number;\n\t} else {\n\t\tthrow 'A positive number expected for time range';\n\t}\n}\n\n// Gets the username from provided email\nfunction getUsername(email) {\n\tif (email.match(/\\S+@\\S+/g)) {\n\t\tif (email.match(/\\S+@\\S+/g)[0] === email) {\n\t\t\treturn email.split('@')[0];\n\t\t}\n\t\tthrow 'Invalid email address provided';\n\t}\n\tthrow 'Invalid email address provided';\n}", "description": "Alert factory managers if rate of production continuously decreases for `X` time period", "templates": [ { "type": "siddhiApp", "content": "@App:name('SweetFactory-TrendAnalysis')\n\n@source(type='http', @map(type='json'))\ndefine stream SweetProductionStream (name string, amount double, factoryId int);\n\n@sink(type='log', @map(type='text', @payload(\"\"\"\nHi ${username},\nProduction at Factory {{factoryId}} has gone\nfrom {{initalamout}} to {{finalAmount}} in ${timeInterval} seconds!\"\"\")))\ndefine stream ContinousProdReductionStream (factoryId int, initaltime long, finalTime long, initalamout double, finalAmount double);\n\nfrom 
 ```
 
 ### Response
@@ -248,8 +246,7 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory
 </tr>
 <tr class="even">
 <td>Request/Response Format</td>
-<td><br />
-</td>
+<td>application/json</td>
 </tr>
 <tr class="odd">
 <td>Authentication</td>
@@ -285,12 +282,13 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/{templateGrou
 ### Sample curl command
 
 ``` java
-curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory/templates" -u admin:admin -k
+curl -X GET "https://localhost:9743/business-rules/template-groups/sweet-factory/templates" -u admin:admin -k
 ```
 
 ### Sample output
 
 ``` java
+[ "Found Rule Templates", "Loaded available rule templates for template group with uuid '3432442'", [ { "uuid": "identifying-continuous-production-decrease", "name": "Identify Continuous Production Decrease", "type": "template", "instanceCount": "many", "script": "var timeRange = validateTimeRange(${timeRangeInput});\nvar username = getUsername('${email}');\n\n// Validates the input provided for time range\nfunction validateTimeRange(number) {\n\tif (!isNaN(number) && (number > 0)) {\n\t\treturn number;\n\t} else {\n\t\tthrow 'A positive number expected for time range';\n\t}\n}\n\n// Gets the username from provided email\nfunction getUsername(email) {\n\tif (email.match(/\\S+@\\S+/g)) {\n\t\tif (email.match(/\\S+@\\S+/g)[0] === email) {\n\t\t\treturn email.split('@')[0];\n\t\t}\n\t\tthrow 'Invalid email address provided';\n\t}\n\tthrow 'Invalid email address provided';\n}", "description": "Alert factory managers if rate of production continuously decreases for `X` time period", "templates": [ { "type": "siddhiApp", "content": "@App:name('SweetFactory-TrendAnalysis')\n\n@source(type='http', @map(type='json'))\ndefine stream SweetProductionStream (name string, amount double, factoryId int);\n\n@sink(type='log', @map(type='text', @payload(\"\"\"\nHi ${username},\nProduction at Factory {{factoryId}} has gone\nfrom {{initalamout}} to {{finalA
 ```
 
 ### Response
@@ -325,8 +323,7 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory
 </tr>
 <tr class="even">
 <th>Request/Response Format</th>
-<td><br />
-</td>
+<td>application/json</td>
 </tr>
 <tr class="odd">
 <th>Authentication</th>
@@ -349,15 +346,15 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory
 
 #### Parameter description
 
-| Parameter                                    | Description                                                                                  |
-|----------------------------------------------|----------------------------------------------------------------------------------------------|
+| Parameter          | Description                                                                                  |
+|--------------------|----------------------------------------------------------------------------------------------|
 | `{templateGroupID}`| The UUID of the template group from which the specified rule template needs to be retrieved. |
 | `{ruleTemplateID}` | The UUID of the rule template that needs to be retrieved from the specified template group.  |
 
 ### curl command syntax
 
 ``` java
-curl -X GET "https://localhost:9643/business-rules/template-groups/{templateGroupID}/templates/{ruleTemplateID}" -u admin:admin -k
+curl -X GET "https://localhost:9743/business-rules/template-groups/{templateGroupID}/templates/{ruleTemplateID}" -u admin:admin -k
 ```
 
 ### Sample curl command
@@ -369,6 +366,7 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory
 ### Sample output
 
 ``` java
+[ "Found Rule Template", "Loaded rule template with uuid 'identifying-continuous-production-decrease'", { "uuid": "identifying-continuous-production-decrease", "name": "Identify Continuous Production Decrease", "type": "template", "instanceCount": "many", "script": "var timeRange = validateTimeRange(${timeRangeInput});\nvar username = getUsername('${email}');\n\n// Validates the input provided for time range\nfunction validateTimeRange(number) {\n\tif (!isNaN(number) && (number > 0)) {\n\t\treturn number;\n\t} else {\n\t\tthrow 'A positive number expected for time range';\n\t}\n}\n\n// Gets the username from provided email\nfunction getUsername(email) {\n\tif (email.match(/\\S+@\\S+/g)) {\n\t\tif (email.match(/\\S+@\\S+/g)[0] === email) {\n\t\t\treturn email.split('@')[0];\n\t\t}\n\t\tthrow 'Invalid email address provided';\n\t}\n\tthrow 'Invalid email address provided';\n}", "description": "Alert factory managers if rate of production continuously decreases for `X` time period", "templates": [ { "type": "siddhiApp", "content": "@App:name('SweetFactory-TrendAnalysis')\n\n@source(type='http', @map(type='json'))\ndefine stream SweetProductionStream (name string, amount double, factoryId int);\n\n@sink(type='log', @map(type='text', @payload(\"\"\"\nHi ${username},\nProduction at Factory {{factoryId}} has gone\nfrom {{initalamout}} to {{finalAmount}} in ${timeInterval} seconds!\"\"\")))\ndefine stream ContinousProdReductionStream (factoryId int, initaltime long, finalTime long, initalamout do
 ```
 
 ### Response
@@ -403,8 +401,7 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory
 </tr>
 <tr class="even">
 <th>Request/Response Format</th>
-<td><br />
-</td>
+<td>application/json</td>
 </tr>
 <tr class="odd">
 <th>Authentication</th>
@@ -434,13 +431,13 @@ curl -X GET "https://<HOST_NAME>:<PORT>/business-rules/template-groups" -u admin
 ### Sample curl command
 
 ``` java
-curl -X GET "https://localhost:9643/business-rules/template-groups" -u admin:admin -k
+curl -X GET "https://localhost:9743/business-rules/template-groups" -u admin:admin -k
 ```
 
 ### Sample output
 
 ``` java
-
+[ "Found Template Groups", "Loaded available template groups", [ { "uuid": "stock-exchange", "name": "Stock Exchange", "description": "Domain for stock exchange analytics", "ruleTemplates": [ { "uuid": "stock-exchange-input", "name": "Stock Exchange Input", "type": "input", "instanceCount": "many", "script": "", "description": "configured http source to receive stock exchange updates", "templates": [ { "type": "siddhiApp", "content": "@App:name('appName1')\n@Source(type = 'http', receiver.url='${receiverUrl}',  basic.auth.enabled='false',\n@map(type='text'))\ndefine stream StockInputStream(symbol string, price float, volume long, name string);", "exposedStreamDefinition": "define stream StockInputStream(symbol string, price float, volume long, name string);" } ], "properties": { "receiverUrl": { "fieldName": "Receiver URL", "description": "Enter the URL of the http receiver for text messages. One URL can only be used once", "defaultValue": "https://localhost:8005/stockInputStream" } } }, { "uuid": "stock-exchange-output", "name": "Stock Exchange Output", "type": "output", "instanceCount": "many", "script": "", "description": "configured output to log the filtered stock exchange data", "templates": [ { "type": "siddhiApp", "content": "@App:name('appName2')\n\ndefine stream StockOutputStream(companyName string, companySymbol string, sellingPrice float);\
 ```
 
 ### Response
@@ -513,13 +510,13 @@ curl -X GET "https://<HOST_NAME>:<PORT>/business-rules/instances/{businessRuleIn
 ### Sample curl command
 
 ``` java
-curl -X GET "https://localhost:9643/business-rules/instances/business-rule-1" -H "accept: application/json" -u admin:admin -k
+curl -X GET "https://localhost:9743/business-rules/instances/business-rule-1" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
 
 ``` java
-
+[ "Found Business Rule", "Loaded business rule with uuid 'sample'", { "ruleTemplateUUID": "identifying-continuous-production-decrease", "properties": { "timeInterval": "6", "timeRangeInput": "5", "email": "example@email.com", "validateTimeRange": "function validateTimeRange(number) {\n\tif (!isNaN(number) && (number > 0)) {\n\t\treturn number;\n\t} else {\n\t\tthrow 'A positive number expected for time range';\n\t}\n}", "getUsername": "function getUsername(email) {\n\tif (email.match(/\\S+@\\S+/g)) {\n\t\tif (email.match(/\\S+@\\S+/g)[0] === email) {\n\t\t\treturn email.split('@')[0];\n\t\t}\n\t\tthrow 'Invalid email address provided';\n\t}\n\tthrow 'Invalid email address provided';\n}", "timeRange": "5", "username": "example" }, "uuid": "sample", "name": "Sample", "templateGroupUUID": "3432442", "type": "template" } ]
 ```
 
 ### Response
@@ -605,7 +602,7 @@ curl -X GET "https://localhost:9643/business-rules/instances/business-rule-1" -H
 ### Sample curl command
 
 ``` java
-curl -X POST "https://localhost:9643/business-rules/instances?deploy=true" -H "accept: application/json" -H "content-type: multipart/form-data" -F 'businessRule={"name":"Business Rule 5","uuid":"business-rule-5","type":"template","templateGroupUUID":"sweet-factory","ruleTemplateUUID":"identifying-continuous-production-decrease","properties":{"timeInterval":"6","timeRangeInput":"5","email":"example@email.com"}}' -u admin:admin -k
+curl -X POST "https://localhost:9743/business-rules/instances?deploy=true" -H "accept: application/json" -H "content-type: multipart/form-data" -F 'businessRule={"name":"Business Rule 5","uuid":"business-rule-5","type":"template","templateGroupUUID":"sweet-factory","ruleTemplateUUID":"identifying-continuous-production-decrease","properties":{"timeInterval":"6","timeRangeInput":"5","email":"example@email.com"}}' -u admin:admin -k
 ```
 
 ### Sample output
@@ -645,8 +642,7 @@ curl -X POST "https://localhost:9643/business-rules/instances?deploy=true" -H "a
 </tr>
 <tr class="even">
 <th>Request/Response Format</th>
-<td><code>application/json</code>
-</td>
+<td>application/json</td>
 </tr>
 <tr class="odd">
 <th>Authentication</th>
@@ -689,25 +685,11 @@ curl -X POST "https://localhost:9643/business-rules/instances?deploy=true" -H "a
 </tr>
 </tbody>
 </table>
-
-### curl command syntax
-
-``` java
-
-```
-
-  
-
+ 
 ### Sample curl command
 
 ``` java
-curl -X PUT "https://localhost:9643/business-rules/instances/business-rule-5?deploy=true" -H "accept: application/json" -H "content-type: application/json" -d '{"name":"Business Rule 5","uuid":"business-rule-5","type":"template","templateGroupUUID":"sweet-factory","ruleTemplateUUID":"identifying-continuous-production-decrease","properties":{"timeInterval":"9","timeRangeInput":"8","email":"newexample@email.com"}}' -u admin:admin -k
-```
-
-### Sample output
-
-``` java
-
+curl -X PUT "https://localhost:9743/business-rules/instances/business-rule-5?deploy=true" -H "accept: application/json" -H "content-type: application/json" -d '{"name":"Business Rule 5","uuid":"business-rule-5","type":"template","templateGroupUUID":"sweet-factory","ruleTemplateUUID":"identifying-continuous-production-decrease","properties":{"timeInterval":"9","timeRangeInput":"8","email":"newexample@email.com"}}' -u admin:admin -k
 ```
 
 ### Response
