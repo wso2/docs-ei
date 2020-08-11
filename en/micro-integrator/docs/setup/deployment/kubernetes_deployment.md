@@ -1,4 +1,4 @@
-# Deploy on Kubernetes
+# Deploy on Kubernetes using EI-K8s Operator
 
 
 ##  Prerequisites (system requirements)
