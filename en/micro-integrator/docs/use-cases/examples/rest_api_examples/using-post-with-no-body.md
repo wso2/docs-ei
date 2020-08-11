@@ -43,7 +43,7 @@ Set up the back-end service:
     java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
-3. Start tcpmon and configure it to listen to port 8292 of your local machine. It is also important to set the target host name and port as required. In this case, the target port needs to be set to 9090 (i.e. the port where the back-end service is running). We will now test the connection by sending a POST message that includes a payload inside an HTML body.
+3. [Start tcpmon](https://ei.docs.wso2.com/en/7.1.0/micro-integrator/administer-and-observe/tcp/starting_tcp_mon/) and configure it to listen to port 8292 of your local machine. It is also important to set the target host name and port as required. In this case, the target port needs to be set to 9090 (i.e. the port where the back-end service is running). We will now test the connection by sending a POST message that includes a payload inside an HTML body.
 
 Invoke the REST API:
 

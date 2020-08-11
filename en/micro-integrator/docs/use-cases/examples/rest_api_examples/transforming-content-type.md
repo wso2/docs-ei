@@ -3,7 +3,7 @@ This section describes how you can transform the content type of a message using
     
 -  GET - Response is in JSON format.
 -  POST - Accepts JSON request and returns response in XML format.
--  DELETE - Empty request body should is required. RReturns response in XML format. 
+-  DELETE - Empty request body is required. Returns response in XML format. 
     
 ## Synapse configuration
     
@@ -72,7 +72,7 @@ Set up the back-end service:
 2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-JDK11.jar
+    java -jar Hospital-Service-JDK11-2.0.0.jar
     ```
 
 Sending an **HTTP POST request**:
