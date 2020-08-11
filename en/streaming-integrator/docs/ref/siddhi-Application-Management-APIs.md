@@ -48,7 +48,7 @@
 ### curl command syntax
 
 ``` java
-curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" -d @{appName} -u <SI_USERNAME>:<SI_PASSWORD> -k
+curl -X POST "https://<HOST_NAME>:<PORT>/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" -d @{appName} -u <SI_USERNAME>:<SI_PASSWORD> -k
 ```
 
 ### Sample curl command
@@ -69,6 +69,10 @@ following.
     home.
 
     ``` java
+    {
+      "type":"success",
+      "message":"Siddhi App saved succesfully and will be deployed in next deployment cycle"
+    }
     ```
 
 -   If the API request is valid, but a Siddhi application with the given
@@ -174,6 +178,14 @@ curl -X PUT "https://localhost:9443/siddhi-apps" -H "accept: application/json" -
 
 ### Sample output
 
+-   If the API request is valid and the specified Siddhi application is successfully updated, the following response is returned with response code 200.
+
+    ```
+    {
+      "type":"success",
+      "message":"Siddhi App updated succesfully and will be deployed in next deployment cycle"}
+    ```
+
 -   If the API request is invalid due to invalid content in the Siddhi
     query, a response similar to the following is returned with response
     code 400.
@@ -220,7 +232,7 @@ curl -X PUT "https://localhost:9443/siddhi-apps" -H "accept: application/json" -
 <tbody>
 <tr class="odd">
 <th>Description</th>
-<td>Sends the name of a Siddhi application as a URL parameter.</td>
+<td>Delets an existing Siddhi application.</td>
 </tr>
 <tr class="even">
 <th>API Context</th>
@@ -277,7 +289,7 @@ The response for the sample curl command given above can be one of the
 following:
 
 -   If the API request is valid and a Siddhi application with the given
-    name exists, the following response is received with response
+    name exists, an empty response is received with response
     code 200.
 
     ``` java
@@ -397,6 +409,7 @@ Possible responses are as follows:
     ```
 
 - If the API request is valid, there are Siddhi applications deployed in your Streaming Integrator setup, and a query parameter is defined in the request, a response similar to the following is returned with response code 200. This response only contains Siddhi applications that are active.<br/><br/>
+
     !!! info
         If these conditions are met, but the `isActive` parameter is set to `false`, the response contains only inactive Siddhi applications.
     
@@ -895,6 +908,24 @@ curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u
 
 ### Sample output
 
+```
+{
+  "workerMetrics": {
+    "processCPU": 0.0,
+    "systemCPU": 0.0,
+    "loadAverage": 0.0,
+    "memoryUsage": 0.0
+  },
+  "runningStatus": "Reachable",
+  "isStatsEnabled": false,
+  "clusterID": "Single Node Deployments",
+  "lastSyncTime": "n/a",
+  "lastSnapshotTime": "Thu, 01 Jan 1970 05:30:00 IST",
+  "isInSync": false,
+  "message": "Metrics are disabled."
+}
+```
+
 ### Response
 
 <table>
@@ -915,7 +946,7 @@ curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u
 <tbody>
 <tr class="odd">
 <th>Description</th>
-<td>Returns the real-time statistics of a Streaming Integrator node.</td>
+<td>Enables/disables the real-time statistics of a Streaming Integrator node.</td>
 </tr>
 <tr class="even">
 <th><p>API Context</p></th>
@@ -951,16 +982,55 @@ curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u
 ### curl command syntax
 
 ``` java
-curl -X PUT "https://<HOST_NAME>:<PORT/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://<HOST_NAME>:<PORT/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"statsEnable\":\"true\"}" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"statsEnable\":\"true\"}" -u admin:admin -k
 ```
 
 ### Sample output
+
+- If the statistics are successfully enabled, the following response is returned.
+
+    ```
+      {
+        "code":4,
+        "type":"ok",
+        "message":"Successfully enabled the metrics."
+      }  
+    ```
+- If the statistics are already enabled, the following response is returned.
+
+    ```
+      {
+        "code":4,
+        "type":"ok",
+        "message":"Metrics are enabled already."
+      }
+    ```
+
+- If the statistics are successfully disabled, the following response is returned.
+
+    ```
+      {
+        "code":4,
+        "type":"ok",
+        "message":"Successfully disabled the metrics."
+      }
+    ```
+  
+- If the statistics are already disabled, the following response is returned.
+
+    ```
+      {
+        "code":4,
+        "type":"ok",
+        "message":"Metrics are disabled already."
+      }
+    ```
 
 ### Response
 
@@ -1029,6 +1099,25 @@ curl -X GET "https://localhost:9443/system-details" -H "accept: application/json
 
 ### Sample output
 
+```
+{
+  "carbonId": "wso2-si",
+  "javaRuntimeName": "Java(TM) SE Runtime Environment",
+  "javaVMVersion": "25.152-b16",
+  "javaVMVendor": "Oracle Corporation",
+  "javaHome": "/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/jre",
+  "javaVersion": "1.8.0_152",
+  "osName": "Mac OS X",
+  "osVersion": "10.14.5",
+  "userHome": "/Users/wso2user",
+  "userTimezone": "Asia/Colombo",
+  "userName": "wso2user",
+  "userCountry": "LK",
+  "repoLocation": "/Users/wso2user/wso2si/deployment",
+  "serverStartTime": "Thu, 06 Aug 2020 15:45:51 IST"
+}
+```
+
 ### Response
 
 <table>
@@ -1096,6 +1185,43 @@ curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: applicat
 
 ### Sample output
 
+- If Siddhi applications exist, a response similar to the following is returned with details of each Siddhi application. This response is returned with the 200 code.
+
+    ```
+      [
+        {
+          "appName": "TestExecutionPlan1",
+          "status": "active",
+          "age": 89981329,
+          "isStatEnabled": "DETAIL",
+          "siddhiStatEnabledLevel": { "name": "DETAIL", "intLevel": 500 }
+        },
+        {
+          "appName": "TestExecutionPlan2",
+          "status": "active",
+          "age": 89981639,
+          "isStatEnabled": "DETAIL",
+          "siddhiStatEnabledLevel": { "name": "DETAIL", "intLevel": 500 }
+        },
+        {
+          "appName": "TestExecutionPlan3",
+          "status": "active",
+          "age": 87053026,
+          "isStatEnabled": "DETAIL",
+          "siddhiStatEnabledLevel": { "name": "DETAIL", "intLevel": 500 }
+        }
+      ]
+    ```
+
+- If Siddhi applications do not exist, the following response is returned with the 404 response code.
+
+    ```
+      {
+        "type":"not-found",
+        "message":"There are no any Siddhi App exist."
+      }
+    ```
+
 ### Response
 
 <table>
@@ -1159,16 +1285,56 @@ curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: applicat
 ### curl command syntax
 
 ``` java
-curl -X PUT "https://<HOST_NAME>:<PORT>/siddhi-apps/{appName}/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://<HOST_NAME>:<PORT>/siddhi-apps/{appName}/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"statsEnable\": \"true\"}" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"statsEnable\": \"true\"}" -u admin:admin -k
 ```
 
 ### Sample output
+
+- If statistics are successfully enabled, the following response is returned.
+
+    ```
+      {
+        "type":"success",
+        "message":"Sucessfully updated Aiddhi App : TestSiddhiApp"
+      }
+    ```
+  
+- If statistics are already enabled, the following response is returned.
+
+    ```
+      {"type":"success","message":"Stats level is already set to :class StatsEnable {\n    enabledStatLevel: DETAIL\n} for siddhi appTestSiddhiApp"}   
+    ```
+
+- If statistics are successfully disabled, the following response is returned.
+
+    ```
+      {
+        "type":"success",
+        "message":"Sucessfully updated Aiddhi App : TestSiddhiApp"
+      }
+    ```
+  
+- If statistics are already disabled, the following response is returned.
+
+    ```
+      {"type":"success","message":"Stats level is already set to :class StatsEnable {\n    enabledStatLevel: OFF\n} for siddhi appTestSiddhiApp"}
+    ```
+  
+- If no Siddhi application of the specified name exists, the following response is returned with the 404 code.
+
+    ```
+      {
+        "type":"not-found",
+        "message":"There is no Siddhi App exist with provided name : TestSiddhiApp"
+      }
+    ```
+    
 
 ### Response
 
@@ -1227,16 +1393,23 @@ curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "ac
 ### curl command syntax
 
 ``` java
-curl -X PUT "https://<HOST_NAME>:<PORT>/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://<HOST_NAME>:<PORT>/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"statsEnable\": \"true\"}" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"statsEnable\": \"true\"}" -u admin:admin -k
 ```
 
 ### Sample output
+
+```
+{
+  "type":"success",
+  "message":"All siddhi apps Sucessfully updated."
+}
+```
 
 ### Response
 
