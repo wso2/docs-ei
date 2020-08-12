@@ -347,7 +347,7 @@ nav:
           - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'        
         - Message Brokers:
           - AMQP (RabbitMQ):
-            - 'RabbitMQ Deployment Recommendations': 'setup/brokers/deploy-rabbitMQ.md'
+            - 'Deploy RabbitMQ': 'setup/brokers/deploy-rabbitMQ.md'
             - 'Connecting to RabbitMQ': 'setup/brokers/configure-with-rabbitMQ.md'
           - JMS:
             - 'Connecting to ActiveMQ': 'setup/brokers/configure-with-ActiveMQ.md'
