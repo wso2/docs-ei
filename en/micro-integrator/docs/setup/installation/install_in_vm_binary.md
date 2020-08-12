@@ -7,6 +7,7 @@ Follow the steps given below to install the WSO2 Micro Integrator runtime and it
 Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then cick **Binary** to download the product distribution as a ZIP file.
 
 Extract the download ZIP file to a location on your computer. 
+
 -	The <b>micro-integrator</b> folder inside the extracted ZIP file will be your <b>MI_HOME</b> directory.
 -	The <b>micro-integrator-dashboard</b> folder inside the extracted ZIP file will be your <b>DASHBOARD_HOME</b> directory.
 
@@ -57,7 +58,7 @@ Once you have [started the dashboard server](#starting-the-dashboard-server), yo
 1. Copy the following URL to your browser to access the dashboard.
 
       ```bash
-      https://192.168.1.2:9743/dashboard
+      https://localhost:9743/dashboard
       ```
 
 2. Sign in to the dashboard using your credentials.
