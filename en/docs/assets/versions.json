@@ -1,13 +1,17 @@
 {
-  "7.1.0": "master",
-  "current": "7.0.0",
+  "7.2.0": "master",
+  "current": "7.1.0",
   "list": [
-    "7.0.0"
+    "7.1.0"
   ],
   "all": {
+    "7.1.0": {
+        "doc": "7.1.0",
+        "notes": "https://ei.docs.wso2.com/en/latest/about-this-release-7.1.0"
+    },
     "7.0.0": {
         "doc": "7.0.0",
-        "notes": "https://ei.docs.wso2.com/en/latest/about-this-release-7.0.0"
+        "notes": "https://ei.docs.wso2.com/en/7.0.0/about-this-release-7.0.0"
     },
     "6.6.0": {
         "doc": "https://docs.wso2.com/display/EI660/WSO2+Enterprise+Integrator+Documentation",
