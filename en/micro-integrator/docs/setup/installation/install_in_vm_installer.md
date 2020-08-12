@@ -115,7 +115,6 @@ Once you have [started the dashboard server](#starting-the-dashboard-server), yo
 ### Stopping the dashboard server
 
 -  To <b>stop</b> the dashboard standalone application, go to the terminal and press <i>Ctrl+C</i>.
-
 -  To <b>stop</b> the dashboard service:
       
       ```bash tab='On MacOS/Linux'
@@ -224,15 +223,6 @@ If you used the **installer** to install WSO2 Enterprise Integrator, you can uni
 <td>Go to <strong>Start Menu -&gt; Programs -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.1.0</strong> or search <strong>Uninstall Enterprise Integrator 7.1.0</strong> and click the shortcut icon. This will uninstall the product from your computer.</td>
 </tr>
 <tr class="odd">
-<td>Ubuntu</td>
-<td><div class="content-wrapper">
-<p>Open a terminal and run the following command:</p>
-<code>sudo apt purge wso2ei-7.1.0</code>
-</div>
-</div>
-</div></td>
-</tr>
-<tr class="even">
 <td>CentOS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command:</p>
