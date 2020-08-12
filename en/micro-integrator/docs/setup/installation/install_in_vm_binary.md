@@ -57,7 +57,7 @@ Once you have [started the dashboard server](#starting-the-dashboard-server), yo
 1. Copy the following URL to your browser to access the dashboard.
 
       ```bash
-      https://192.168.1.2:9743/dashboard
+      https://localhost:9743/dashboard
       ```
 
 2. Sign in to the dashboard using your credentials.
