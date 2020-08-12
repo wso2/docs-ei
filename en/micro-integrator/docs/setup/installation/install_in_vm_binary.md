@@ -6,17 +6,21 @@ Follow the steps given below to install the WSO2 Micro Integrator runtime and it
 
 Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then cick **Binary** to download the product distribution as a ZIP file.
 
-Extract the download ZIP file to a location on your computer. The <b>micro-integrator</b> folder inside the extracted ZIP file will be your <b>MI_HOME</b> directory.
+Extract the download ZIP file to a location on your computer. 
 
-## Setting the Java_Home
+-	The <b>micro-integrator</b> folder inside the extracted ZIP file will be your <b>MI_HOME</b> directory.
+-	The <b>micro-integrator-dashboard</b> folder inside the extracted ZIP file will be your <b>DASHBOARD_HOME</b> directory.
 
-Set up a [JDK that is compatible with WSO2 Enterprise Integrator](../install_prerequisites/#environment-compatibility) and point the `java_home` variable to your JDK instance.
+## Prerequisites
 
-## Starting the MI server
+**Setting the Java_Home**: Set up a [JDK that is compatible with WSO2 Enterprise Integrator](../install_prerequisites/#environment-compatibility) and point the `java_home` variable to your JDK instance.
 
-1.  Before you execute the product startup script, be sure to [set the JAVA HOME](#setting-the-java_home).
-2.  Open a terminal and navigate to the `MI_HOME/bin/` directory, where `MI_HOME` is the home directory of the distribution you downloaded.
-3.  Execute the relevant command:
+## Running the MI server
+
+### Starting the MI server
+
+1.  Open a terminal and navigate to the `MI_HOME/bin/` directory, where `MI_HOME` is the home directory of the distribution you downloaded.
+2.  Execute the relevant command:
 
     ```bash tab='On MacOS/Linux/CentOS'
     sh micro-integrator.sh
@@ -28,6 +32,49 @@ Set up a [JDK that is compatible with WSO2 Enterprise Integrator](../install_pre
       
 By default, the HTTP listener port is 8290 and the default HTTPS listener port is 8253.
 
-## Stopping the MI server
+### Stopping the MI server
 
 To stop the Micro Integrator runtime, press Ctrl+C in the command window.
+
+## Running the MI dashboard
+
+### Starting the dashboard server
+
+1.  Open a terminal and navigate to the `DASHBOARD_HOME/bin/` directory, where `DASHBOARD_HOME` is the home directory of the distribution you downloaded.
+2.  Execute the relevant command:
+
+    ```bash tab='On MacOS/Linux/CentOS'
+    sh dashboard.sh
+    ```
+    
+    ```bash tab='On Windows'
+    dashboard.bat
+    ```
+
+### Accessing the dashboard
+
+Once you have [started the dashboard server](#starting-the-dashboard-server), you can now access the dashboard:
+
+1. Copy the following URL to your browser to access the dashboard.
+
+      ```bash
+      https://localhost:9743/dashboard
+      ```
+
+2. Sign in to the dashboard using your credentials.
+
+    !!! Warning
+
+        - In a non-production environment (with the self-signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
+        - We have identified issues with the Microsoft Edge browser, which prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, consider switching the browser.
+
+    <img src="../../../assets/img/monitoring-dashboard/login.png">
+
+
+3. If your [Micro Integrator server is started](#starting-the-mi-server), you can now start using the dashboard. 
+
+   See the [Micro Integrator Dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) documentation for more information on how to use the dashboard.
+
+### Stopping the dashboard server
+
+To stop the dashboard runtime, press Ctrl+C in the command window.
