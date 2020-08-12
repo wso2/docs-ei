@@ -1,4 +1,4 @@
-# RabbitMQ Deployment 
+# Deploying RabbitMQ
 
 You can integrate WSO2 Micro Integrator with RabbitMQ to implement asynchronous messaging patterns. The following topics explain the process of setting up a single-node RabbitMQ deployment, which you can use for testing purposes.
 
@@ -53,7 +53,7 @@ You can integrate WSO2 Micro Integrator with RabbitMQ to implement asynchronous 
 
 When you move your RabbitMQ deployment to production, be sure to follow the instructions and guidelines specified in the official [RabbitMQ Documentation](https://www.rabbitmq.com/download.html).
 
-For **high availability** in the RabbitMQ cluster, note the following:
+For **high availability** in your RabbitMQ deployment, note the following:
 
 -  RabbitMQ servers need to be clustered. Refer the [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html).
 -  The minimum of three nodes are recommended for a RabbitMQ cluster. This is because RabbitMQ uses [Quorum-based distributed consensus].(https://www.rabbitmq.com/clustering.html#node-count).
