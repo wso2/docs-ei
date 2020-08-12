@@ -85,7 +85,10 @@ The **File** menu includes the following options.
 ![File menu](../images/streaming-integrator-studio-overview/FileMenu.png)
 
 -   **New**  
-    Click this to open a new untitled Siddhi file.  
+    Click this to open a new untitled Siddhi file. For more information, see the [Creating an ETL Application via SI Tooling tutorial](../examples/create-etl-application-via-tooling.md).
+    
+-   **New ETL Flow**
+    Click this to create a new ETL application via the ETL wizard. For instructions, 
     
 -   **Open File** 
     Click this to open a Siddhi file that is already saved in the `workspace` directory of the Streaming Integrator 
