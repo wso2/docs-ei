@@ -42,10 +42,12 @@ Let’s implement a simple integration solution that can be used to query the av
 
 ## Before you begin
 
-1. Go to the [website](https://www.wso2.com/integration/micro-integrator) to download the Micro Integrator. When you click **Download**, the installation options will be listed. For this quick start, you can either download and run the **installer**, or use the **binary** file.
+1. Go to the [website](https://wso2.com/integration/) to download WSO2 Enteprise Integrator. 
+
+    When you click **Download**, the installation options will be listed. For this quick start, you can either download and run the **installer**, or use the **binary** file.
 
     !!! Info
-        For more information, see the [installation instructions](../../setup/installation/install_in_vm_installer/).
+        For more information, see the [installation instructions](../../setup/install_and_setup_overview/#install).
 
 2. Download the [sample files](https://github.com/wso2/docs-ei/blob/master/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME-JDK11.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
 3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
@@ -130,7 +132,7 @@ java -jar DoctorInfo-JDK11.jar
 Copy the CAR file of the healthcare service (HealthcareCompositeExporter_1.0.0.car) from the `<MI_QSG_HOME>/HealthcareCompositeExporter/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
 
 !!! Note
-    If you [set up the product](#before-you-begin) using the **installer**, the `<MI_HOME>` [location](../../setup/installation/install_in_vm_installer/#accessing-the-mi_home-directory) is specific to your OS.
+    If you [set up the product](#before-you-begin) using the **installer**, the `<MI_HOME>` [location](../../setup/installation/install_in_vm_installer/#accessing-the-home-directory) is specific to your OS.
 
 #### Start the Micro Integrator
 
@@ -153,6 +155,13 @@ sh micro-integrator.sh
 ```bash tab='On Windows'
 micro-integrator.bat
 ```
+
+#### (Optional) Start the Dashboard
+
+If you want to view the integrations artifacts deployed in the Micro Integrator, you can start the dashboard. The instructions on running the MI dashboard is given in the installation guide:
+
+- Running the [MI dashboard using the installer](../../setup/installation/install_in_vm_installer/#running-the-mi-dashboard)
+- Running the [MI dashboard using the binary](../../setup/installation/install_in_vm_binary)
 
 #### Invoke the healthcare service
 

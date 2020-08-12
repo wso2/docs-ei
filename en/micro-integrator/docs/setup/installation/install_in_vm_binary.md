@@ -4,9 +4,11 @@ Follow the steps given below to install the WSO2 Micro Integrator runtime and it
 
 ## Download and install
 
-Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/#), click **Download**, and then cick **Binary** to download the product distribution as a ZIP file.
+Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then cick **Binary** to download the product distribution as a ZIP file.
 
-Extract the download ZIP file to a location on your computer. The <b>micro-integrator</b> folder inside the extracted ZIP file will be your <b>MI_HOME</b> directory.
+Extract the download ZIP file to a location on your computer. 
+-	The <b>micro-integrator</b> folder inside the extracted ZIP file will be your <b>MI_HOME</b> directory.
+-	The <b>micro-integrator-dashboard</b> folder inside the extracted ZIP file will be your <b>DASHBOARD_HOME</b> directory.
 
 ## Setting the Java_Home
 
@@ -15,7 +17,7 @@ Set up a [JDK that is compatible with WSO2 Enterprise Integrator](https://docs.w
 ## Starting the MI server
 
 1.  Before you execute the product startup script, be sure to set the
-    JAVA HOME in your machine. Use a [JDK that is compatible with WSO2 Enterprise Integrator](https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs).
+    JAVA HOME in your machine.
 2.  Open a terminal and navigate to the `MI_HOME/bin/` directory, where `MI_HOME` is the home directory of the distribution you downloaded.
 3.  Execute the relevant command:
 
