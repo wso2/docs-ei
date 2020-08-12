@@ -46,6 +46,9 @@ select *
 update or insert into PurchaseRecords
     on PurchaseRecords.transNo == transNo;
 ```
+The following diagram summarizes the ETL flow of the above Siddhi application.
+
+![Performing ETL in Real Time](../images/performing-etl-operations/performing-etl-in-real-time.png)
 
 Here, you are **extracting** the input by tailing the `SugarSupply.csv` and `FlourSupply.csv` files in which suppliers publish details of their supplies in real time. This is done via a [file source](https://siddhi-io.github.io/siddhi-io-file/api/latest/).
 
@@ -59,7 +62,11 @@ In the previous example, you extracted information from two sources of the same 
 
 To understand how this requirement can be addressed via the WSO2 Streaming Integrator, let's try out consuming events from both a file and a database at the same time.
 
-Assume that the Head Office of the Sweet Factory also maintains a record of the. To keep the stock updated, each purchase of a raw material needs to be added to the existing stock, and each dispatch to the factory needs to be deducted from the existing stock. If the material dispatches are recorded in a file, WSO2 Stream Processor needs to extract events from that file and the `PurchaseRecords` database table simultaneously to update the stock records. To do this, you can define two input streams and connect then to the relevant sources as follows:
+Assume that the Head Office of the Sweet Factory also maintains a record of the current stock of each material in a database table named `StockRecords`. To keep the stock updated, each purchase of a raw material needs to be added to the existing stock, and each dispatch to the factory needs to be deducted from the existing stock. The material dispatches are recorded in a file. To achieve this, you need to create an ETL flow as shown in the below diagram.
+
+![Integrating Heterogeneous Data Sources](../images/performing-etl-operations/integrating-heterogeneous-data-sources.png)
+
+WSO2 Stream Processor needs to extract events from that file and the `PurchaseRecords` database table simultaneously to update the stock records. To do this, you can define two input streams and connect then to the relevant sources as follows:
 
 ```
 @source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/PurchaseRecords', username = 'root', password = 'root', table.name = 'PurchaseRecords', operation = 'insert',
@@ -111,6 +118,8 @@ update or insert into StockRecords
 ```
 
 The above query performs a join between the `StockUpdatesStream` stream and the `StockRecords` table,  and adds the stock update calculated to the existing amount in the `StockRecords` table. Then to **load** the final output, the query performs an `update or insert into` operation to the `Stock Records` table. This means, if the table already has a record with a same value for the `name` field as the latest output event generated in the `StockUpdatesStream` stream, the output event overwrites the record in the table. If no such matching record is found, the output event is inserted as a new record.
+
+The queries above updtes the ETL flow as shown in the diagram 
 
 Once you add all the new Siddhi queries and configurations introduced in this section to the original `ManagingStocksApp` Siddi application, it looks as follows:
 
@@ -189,7 +198,9 @@ update or insert into StockRecords
 When there are rapid changes and growths in business, it is necessary to scale ETL applications in an agile manner to support it. WSO2 Streaming Integrator supports the need for scalability via the Siddhi logic. 
 This can be observed in the previous examples where the `ManagingStocksApp` Siddhi application which only captured purchase records in the [Performing ETL in real time section](#performing-ETL-in-real-time) and with only two files and one database table (`SugarSupply.csv` file, `FlourSupply.csv` file and `PurchaseRecords` database table) in the ETL flow was scaled to perform stock updates by incorporating another file and a database (i.e., `MaterialDispatches.csv` file and `StockRecords` database table) to the ETL flow.
 
-You can further extend this Siddhi application to incorporate many more different sources from which more data can be extracted, as well as to incorporate many more destinations to which output can be loaded for further processing. For example, if the Sweet Factory starts purchasing another ingredient (e.g., honey), you can define another stream to consume from a new source (e.g., a new file named `HoneySupply.xml) as follows:
+![Extended ETL Flow](../images/performing-etl-operations/extended-etl-flow.png)
+
+When you extended the ETL flow to perform stock updates, it involved adding more ETL tasks to the flow. You can also scale your ETL applications without adding more ETL tasks. This is done by adding only more sources to extract data for the existing tasks or adding more destinations for the existing tasks to load the output. For example, if the Sweet Factory starts purchasing another ingredient (e.g., honey), you can define another stream to consume from a new source (e.g., a new file named `HoneySupply.xml) as follows:
 
 ```
 @source(type='file', mode='LINE',
@@ -208,9 +219,12 @@ select *
 update or insert into PurchaseRecords
     on PurchaseRecords.transNo == transNo;
 ```
+The following diagram depicts how the above changes scaled the ETL flow.
+
+![Adding a new source](/../imagesperforming-etl-operations/adding-a-new-source.png)
 
 !!! tip
-    As you scale your ETL operations, you may have all the related queries in a single application or create multiple Siddhi applications that contribute to the same ETL flow.
+    As you scale your ETL operations, you may have all the related queries in a single application or create multiple Siddhi applications that function as components of the same ETL flow.
        
 ## Multiple platforms for ETL application design
 
