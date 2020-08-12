@@ -198,7 +198,9 @@ update or insert into StockRecords
 When there are rapid changes and growths in business, it is necessary to scale ETL applications in an agile manner to support it. WSO2 Streaming Integrator supports the need for scalability via the Siddhi logic. 
 This can be observed in the previous examples where the `ManagingStocksApp` Siddhi application which only captured purchase records in the [Performing ETL in real time section](#performing-ETL-in-real-time) and with only two files and one database table (`SugarSupply.csv` file, `FlourSupply.csv` file and `PurchaseRecords` database table) in the ETL flow was scaled to perform stock updates by incorporating another file and a database (i.e., `MaterialDispatches.csv` file and `StockRecords` database table) to the ETL flow.
 
-You can further extend this Siddhi application to incorporate many more different sources from which more data can be extracted, as well as to incorporate many more destinations to which output can be loaded for further processing. For example, if the Sweet Factory starts purchasing another ingredient (e.g., honey), you can define another stream to consume from a new source (e.g., a new file named `HoneySupply.xml) as follows:
+![Extended ETL Flow](../images/performing-etl-operations/extended-etl-flow.png)
+
+When you extended the ETL flow to perform stock updates, it involved adding more ETL tasks to the flow. You can also scale your ETL applications without adding more ETL tasks. This is done by adding only more sources to extract data for the existing tasks or adding more destinations for the existing tasks to load the output. For example, if the Sweet Factory starts purchasing another ingredient (e.g., honey), you can define another stream to consume from a new source (e.g., a new file named `HoneySupply.xml) as follows:
 
 ```
 @source(type='file', mode='LINE',
@@ -217,9 +219,12 @@ select *
 update or insert into PurchaseRecords
     on PurchaseRecords.transNo == transNo;
 ```
+The following diagram depicts how the above changes scaled the ETL flow.
+
+![Adding a new source](/../imagesperforming-etl-operations/adding-a-new-source.png)
 
 !!! tip
-    As you scale your ETL operations, you may have all the related queries in a single application or create multiple Siddhi applications that contribute to the same ETL flow.
+    As you scale your ETL operations, you may have all the related queries in a single application or create multiple Siddhi applications that function as components of the same ETL flow.
        
 ## Multiple platforms for ETL application design
 
