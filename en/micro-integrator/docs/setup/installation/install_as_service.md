@@ -4,11 +4,11 @@ Follow the instructions given below to run the Micro Integrator as a Windows ser
 
 ## Prerequisites
 
--	Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/#), click **Download**, and then cick **Binary** to download the product distribution as a ZIP file.
+-	Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then cick **Binary** to download the product distribution as a ZIP file.
 
 -	Extract the download ZIP file to a location on your computer. The <b>micro-integrator</b> folder inside the extracted ZIP file will be your <b>MI_HOME</b> directory.
 
--	Set up a [JDK that is compatible with WSO2 Enterprise Integrator](https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs) and point the `java_home` variable to your JDK instance. 
+-	Set up a [JDK that is compatible with WSO2 Enterprise Integrator](../install_prerequisites/#environment-compatibility) and point the `java_home` variable to your JDK instance. 
  
 -	Point the `wso2mi_home` environment variable to the `MI_HOME` directory.
 

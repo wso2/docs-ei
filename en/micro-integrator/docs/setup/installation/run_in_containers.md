@@ -87,14 +87,14 @@ automating, scaling, and managing your application deployments.
 
 You can easily run your Micro Integrator solution in a Kubernetes environment by using the <b>Kubernetes Exporter</b> in [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the <b>EI Kubernetes Operator</b>.
 
-See the EI Kubernetes Operator samples for instructions.
+See the [EI Kubernetes Operator samples](../../../setup/deployment/k8s-samples/hello-world) for instructions.
 
 ## Create Docker files manually
 
 If you already have **packaged integration artifacts** in a CAR file, you can manually create the Docker files and deploy on Docker. Follow the steps given below.
 
 !!! Tip
-    **Before you begin**: Use WSO2 Integration Studio to [create the integration artifacts](../../../develop/intro-integration-development/#develop_artifacts) and then [export the integration artifacts](../../develop/exporting-artifacts.md) into a CAR file.
+    **Before you begin**: Use WSO2 Integration Studio to create the integration artifacts and then [export the integration artifacts](../../develop/exporting-artifacts.md) into a CAR file.
 
 1.  **Create the Dockerfile** as shown below. 
 

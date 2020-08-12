@@ -161,7 +161,7 @@ micro-integrator.bat
 If you want to view the integrations artifacts deployed in the Micro Integrator, you can start the dashboard. The instructions on running the MI dashboard is given in the installation guide:
 
 - Running the [MI dashboard using the installer](../../setup/installation/install_in_vm_installer/#running-the-mi-dashboard)
-- Running the [MI dashboard using the binary](../../setup/installation/install_in_vm_binary)
+- Running the [MI dashboard using the binary](../../setup/installation/install_in_vm_binary/#running-the-mi-dashboard)
 
 #### Invoke the healthcare service
 

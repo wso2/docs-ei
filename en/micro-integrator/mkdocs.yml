@@ -207,7 +207,6 @@ nav:
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
-      - 'Connectors': 'use-cases/connectors.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - WSO2 Integration Studio:
