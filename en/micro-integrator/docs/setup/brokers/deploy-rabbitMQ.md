@@ -2,7 +2,7 @@
 
 You can integrate WSO2 Micro Integrator with RabbitMQ to implement asynchronous messaging patterns. The following topics explain the process of setting up a single-node RabbitMQ deployment, which you can use for testing purposes.
 
-## RabbitMQ single-node deployment
+## RabbitMQ single-node deployment for testing
 
 !!! Note
      **Before you begin**, note that the following guide is tested on the following version.
