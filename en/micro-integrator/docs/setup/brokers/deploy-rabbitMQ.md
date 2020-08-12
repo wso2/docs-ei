@@ -1,22 +1,28 @@
 # RabbitMQ Deployment 
 
-This section describes how to setup a rabbitmq deployment.
-   
-## Setting up a single instance VM Based Deployment for Testing (version 3.8.2) on Unix OS
+You can integrate WSO2 Micro Integrator with RabbitMQ to implement asynchronous messaging patterns. The following topics explain the process of setting up a single-node RabbitMQ deployment, which you can use for testing purposes.
 
-1. Download RabbitMQ distribution to the desired location
+## Testing a RabbitMQ Deployment
+
+!!! Note
+     **Before you begin**, note that the following guide is tested on the following version.
+
+     - RabbitMQ version 3.8.2 
+     - On Unix OS
+
+1. Download RabbitMQ distribution to the desired location:
 
     ```bash
     wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.2/rabbitmq-server-generic-unix-3.8.2.tar.xz
     ```
     
-2. Extract the distribution
+2. Extract the distribution:
 
     ```bash
     tar -xf rabbitmq-server-generic-unix-3.8.2.tar.xz
     ```
 
-3. Install the erlang distribution
+3. Install the `erlang` distribution:
 
     ```bash
     wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
@@ -30,26 +36,26 @@ This section describes how to setup a rabbitmq deployment.
     ```bash
     sudo ./rabbitmq-server -detached
     ```
-5. To enable management plugin, execute the following command
+    
+5. To enable the management plugin, execute the following command:
 
     ```bash
     sudo ./rabbitmq-plugins enable rabbitmq_management
     ```
-6. Visit the following url to view the UI
+    
+6. Visit the following url to view the UI:
 
     ```bash
     http://localhost:15672/#/
     ```
     
-## Production Guideline
+## Using RabbitMQ in production
 
-For deployment please refer the [Downloading and Installing RabbitMQ](https://www.rabbitmq.com/download.html) official guide of RabbitMQ.
+When you move your RabbitMQ deployment to production, be sure to follow the instructions and guidelines specified in the official [RabbitMQ Documentation](https://www.rabbitmq.com/download.html).
 
-### High-Availability with RabbitMQ 
+For **high availability** in the RabbitMQ cluster, note the following:
 
-For highly availability, rabbitmq servers need to be clustered. Please refer the [Clustering Guide](https://www.rabbitmq.com/clustering.html).
-
-!!! Tip
-     - Minimum node count recommended for clustering is 3 since RabbitMQ uses a [Quorum based distributed consensus](https://www.rabbitmq.com/clustering.html#node-count).
-     - Queues need to be mirrored for high availability and for fault tolerance. Refer [Mirrored Queues](https://www.rabbitmq.com/ha.html).
+-  RabbitMQ servers need to be clustered. Refer the [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html).
+-  The minimum of three nodes are recommended for a RabbitMQ cluster. This is because RabbitMQ uses [Quorum-based distributed consensus].(https://www.rabbitmq.com/clustering.html#node-count).
+-  RabbitMQ **queues** need to be mirrored for high availability and fault tolerance. Refer [Mirrored Queues](https://www.rabbitmq.com/ha.html) for details.
  
