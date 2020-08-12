@@ -26,11 +26,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
    
 -  To <b>start</b> the Micro Integrator as a <b>service</b>:
       
-      ```bash tab='On MacOS/Linux'
-      sudo wso2mi-service start
-      ```
-
-      ```bash tab='On CentOS'
+      ```bash
       sudo service wso2mi start
       ```
 
@@ -52,11 +48,7 @@ On **Windows**
 -  To <b>stop</b> the Micro Integrator standalone application, go to the terminal and press <i>Ctrl+C</i>.
 -  To <b>stop</b> the Micro Integrator service:
       
-      ```bash tab='On MacOS/Linux'
-      sudo wso2mi-service stop
-      ```
-
-      ```bash tab='On CentOS'
+      ```bash
       sudo service wso2mi stop
       ```
 
@@ -76,11 +68,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
    
 -  To <b>start</b> the dashboard as a <b>service</b>:
       
-      ```bash tab='On MacOS/Linux'
-      sudo wso2mi-dashboard-service start
-      ```
-      
-      ```bash tab='On CentOS'
+      ```bash
       sudo service wso2mi-dashboard start
       ```
 
@@ -118,11 +106,7 @@ Once you have [started the dashboard server](#starting-the-dashboard-server), yo
 
 -  To <b>stop</b> the dashboard service:
       
-      ```bash tab='On MacOS/Linux'
-      sudo wso2mi-dashboard-service stop
-      ```
-
-      ```bash tab='On CentOS'
+      ```bash
       sudo service wso2mi-dashboard stop
       ```
 
