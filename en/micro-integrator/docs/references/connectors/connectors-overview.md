@@ -67,7 +67,7 @@ Using connectors provide the following advantages:
 
 ## How to use connectors
 
-When configuring the integration logic, you need to use Integration Studio. When ready, you can export the project along with dependency connectors to the WSO2 EI runtime. See [documentation on adding connectors](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/creating-artifacts/adding-connectors/) for more information.
+When configuring the integration logic, you need to use Integration Studio. When ready, you can export the project along with dependency connectors to the WSO2 EI runtime. See [documentation on adding connectors](../../develop/creating-artifacts/adding-connectors/) for more information.
 
 See the following video for a quick look at how to use connectors.
 
@@ -93,7 +93,7 @@ As described above input for the connector operations would be:
 
 * Hard coded values
 * Values of properties set to the message flow before the connector operation is used 
-* Payload that is in message context (message flow) at the place he connector operation is used
+* Payload that is in message context (message flow) at the place the connector operation is used
 
 ### Inbound endpoints
 
