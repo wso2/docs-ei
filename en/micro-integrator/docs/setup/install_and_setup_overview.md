@@ -354,7 +354,7 @@ The following topics explain how to connect the Micro Integrator with an externa
 		<td>
 			<ul>
 				<li>
-					<a href='../../setup/brokers/deploy-rabbitMQ'>RabbitMQ Deployment Recommendations</a>
+					<a href='../../setup/brokers/deploy-rabbitMQ'>Deploying RabbitMQ</a>
 				</li>
 				<li>
 					<a href='../../setup/brokers/configure-with-rabbitMQ'>Connecting to RabbitMQ</a>
