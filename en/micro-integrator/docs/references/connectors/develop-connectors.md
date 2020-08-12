@@ -387,6 +387,21 @@ This builds the connector and generates a ZIP file named sample-connector-1.0.0.
 
     <img src="../../../assets/img/connectors/workspace-connector.png" title="Connector Workspace" width="400" alt="Connector Workspace"/>
 
-8. To run the project, right click on the project -> **Run As** -> **Run on Micro Integrator**.
+8. To run the project, right click on the project and select **Run As** -> **Run on Micro Integrator**.
+
+9. Select the artifacts to be exported and click **Finish**.
+
+    <img src="../../../assets/img/connectors/select-artifacts.png" title="Select Artifacts" width="300" alt="Select Artifacts"/>
+
+10. Send a POST call to http://localhost:8290/sample/listVolume with the below request payload.
+    ```json
+    {
+	    "searchQuery": "rabbit"
+    }
+    ```
+
+11. A JSON response containing book information will be returned.
+
+    <img src="../../../assets/img/connectors/json-response.png" title="JSON response" width="800" alt="JSON Response"/>
 
 
