@@ -2,6 +2,10 @@
 
 This section describes how to configure WSO2 Micro Integrator to connect with RabbitMQ.
 
+## Setting up RabbitMQ
+
+Please refer [RabbitMQ Deployment](deploy-rabbitMQ.md) 
+
 ## Enabling the RabbitMQ transport 
 
 Uncomment the following parameters in the deployment.toml file (stored in the `MI_HOME/conf` directory).

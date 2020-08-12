@@ -1,169 +1,61 @@
-# RabbitMQ Deployment 
+# Deploying RabbitMQ
 
-!!! Warning
-	<b>Work in progress!</b>
+You can integrate WSO2 Micro Integrator with RabbitMQ to implement asynchronous messaging patterns. The following topics explain the process of setting up a single-node RabbitMQ deployment, which you can use for testing purposes.
 
-Please refer the [Downloading and Installing RabbitMQ](https://www.rabbitmq.com/download.html) to configure the 
-RabbitMQ deployment.
-
-Following are the important points to be noted while doing the RabbitMQ Setup.
-
-### High-Availability with RabbitMQ 
-
-For highly availability, rabbitmq nodes need to be clustered. Please refer the [Clustering Guide](https://www.rabbitmq.com/clustering.html).
+## Testing a RabbitMQ Deployment
 
 !!! Note
-    Minimum node count recommended for clustering is 3 since RabbitMQ uses a [Quorum based distributed consensus](https://www.rabbitmq.com/clustering.html#node-count).
-    Queues need to be mirrored for high availability and for fault tolerance. Refer [Mirrored Queues](https://www.rabbitmq.com/ha.html).
+     **Before you begin**, note that the following guide is tested on the following version.
+
+     - RabbitMQ version 3.8.2 
+     - On Unix OS
+
+1. Download RabbitMQ distribution to the desired location:
+
+    ```bash
+    wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.2/rabbitmq-server-generic-unix-3.8.2.tar.xz
+    ```
     
-#### Example steps to setup a 3 node cluster ( version 3.8.2)
+2. Extract the distribution:
 
-1. Edit each node `/etc/hostname` file and add following name (e.g: for rabbitmq-cluster-1-node1, add rabbitmq-cluster-1-node1.messaging.svc.local)
+    ```bash
+    tar -xf rabbitmq-server-generic-unix-3.8.2.tar.xz
+    ```
 
-```toml tab='Node 1'
-rabbitmq-cluster-1-node1.messaging.svc.local
-```
+3. Install the `erlang` distribution:
 
-```toml tab='Node 2'
-rabbitmq-cluster-1-node2.messaging.svc.local
-```
+    ```bash
+    wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
+    echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list && \
+    sudo apt update && \
+    sudo apt -y install erlang
+    ```
 
-```toml tab='Node 3'
-rabbitmq-cluster-1-node3.messaging.svc.local
-```
+4. Navigate to `$RABBITMQ_HOME/sbin` and execute the following command. Here `$RABBITMQ_HOME` is the location where the extraction was done in step 2.
 
-!!! Note
-    The host name should start with rabbitmq
+    ```bash
+    sudo ./rabbitmq-server -detached
+    ```
     
-2. Reboot each node for the changes to take effect
+5. To enable the management plugin, execute the following command:
 
-3. Add the following entries to each node `/etc/hosts` file
+    ```bash
+    sudo ./rabbitmq-plugins enable rabbitmq_management
+    ```
+    
+6. Visit the following url to view the UI:
 
-```bash
-{node1_ip} rabbitmq-cluster-1-node1.messaging.svc.local rabbitmq-cluster-1-node1
-{node2_ip} rabbitmq-cluster-1-node2.messaging.svc.local rabbitmq-cluster-1-node2
-{node3_ip} rabbitmq-cluster-1-node3.messaging.svc.local rabbitmq-cluster-1-node3
-```
+    ```bash
+    http://localhost:15672/#/
+    ```
+    
+## Using RabbitMQ in production
 
-4. Download RabbitMQ distribution to the `$HOME` folder
+When you move your RabbitMQ deployment to production, be sure to follow the instructions and guidelines specified in the official [RabbitMQ Documentation](https://www.rabbitmq.com/download.html).
 
-```bash
-wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.2/rabbitmq-server-generic-unix-3.8.2.tar.xz
-```
+For **high availability** in your RabbitMQ deployment, note the following:
 
-5. Extract the distribution
-
-```bash
-tar -xf rabbitmq-server-generic-unix-3.8.2.tar.xz
-```
-
-6. Install the erlang distribution
-
-```bash
-wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
-echo "deb https://packages.erlang-solutions.com/ubuntu bionic contrib" | sudo tee /etc/apt/sources.list.d/rabbitmq.list && \
-sudo apt update && \
-sudo apt -y install erlang
-```
-
-7. Create a file named as `rabbitmq.conf` in `$RABBITMQ_HOME/etc/rabbitmq/` and add the following entries to it
-
-```bash
-##
-## Clustering
-##
-
-cluster_formation.peer_discovery_backend = rabbit_peer_discovery_classic_config
-
-cluster_formation.classic_config.nodes.1 = rabbit@rabbitmq-cluster-1-node1
-cluster_formation.classic_config.nodes.2 = rabbit@rabbitmq-cluster-1-node2
-cluster_formation.classic_config.nodes.3 = rabbit@rabbitmq-cluster-1-node3
-loopback_users = none
-```
-
-8. Repeat the above steps in other two nodes as well
-
-9. Copy the `.erlang.cookie` file in the `$HOME (/home/ubuntu)` folder of node1 to other nodes (If the file does not exist, start and stop the RabbitMQ server)
-
-10. Start the RabbitMQ server in each node one after the other using the following command
-
-```bash
-$RABBITMQ_HOME/sbin/rabbitmq-server -detached
-```
-
-11. Check the cluster status by RabbitMQ command line tool
-
-```bash
-$RABBITMQ_HOME/sbin/rabbitmqctl cluster_status
-```
-
-#### Other useful command with RabbitMQ
-
-1. Create policy named high-available that has regular expression for applying the policy to queue name start with “queue”
-
-```bash
-rabbitmqctl set_policy high-available "^queue*" '{"ha-mode":"exactly","ha-params":2,"ha-sync-mode":"automatic"}'
-```
-
-2. Create a user
-
-```bash
-rabbitmqctl add_user wso2 password
-rabbitmqctl set_user_tags wso2 administrator
-rabbitmqctl list_users
-```
-
-3. Set permissions
-
-```bash
-rabbitmqctl set_permissions -p / wso2 ".*" ".*" ".*"
-rabbitmqctl list_permissions -p /
-```
-
-4. Download rabbitmqadmin client to **sbin** folder
-
-```bash
-wget https://raw.githubusercontent.com/rabbitmq/rabbitmq-management/v3.8.2/bin/rabbitmqadmin
-```
-
-5. Set executable permission
-
-```bash
-chmod 755 rabbitmqadmin
-```
-
-6. Python required for execute the rabbitmqadmin
-
-```bash
-sudo apt install python
-```
-
-7. Install RabbitMQ management plugin
-
-- Make sure you are in the sbin directory
-- Execute the following command
-
-```bash
-rabbitmq-plugins enable rabbitmq_management
-```
-
-8. Create an exchange
-
-```bash
-rabbitmqadmin declare exchange --vhost=/ --user=wso2 --password=password name=queue-exchange type=direct durable=true
-rabbitmqctl list_exchanges -p /
-```
-
-9. Create a queue
-
-```bash
-rabbitmqadmin declare queue --vhost=/ --user=wso2 --password=password name=queue1 durable=true
-rabbitmqctl list_queues -p /
-```
-
-10. Add binding to the queue
-
-```bash
-rabbitmqadmin declare binding --vhost=/ --user=wso2 --password=password source=queue-exchange destination=queue1
-rabbitmqctl list_bindings -p /
-```
+-  RabbitMQ servers need to be clustered. Refer the [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html).
+-  The minimum of three nodes are recommended for a RabbitMQ cluster. This is because RabbitMQ uses [Quorum-based distributed consensus].(https://www.rabbitmq.com/clustering.html#node-count).
+-  RabbitMQ **queues** need to be mirrored for high availability and fault tolerance. Refer [Mirrored Queues](https://www.rabbitmq.com/ha.html) for details.
+ 
