@@ -46,6 +46,9 @@ select *
 update or insert into PurchaseRecords
     on PurchaseRecords.transNo == transNo;
 ```
+The following diagram summarizes the ETL flow of the above Siddhi application.
+
+![Performing ETL in Real Time](../images/performing-etl-operations/performing-etl-in-real-time.png)
 
 Here, you are **extracting** the input by tailing the `SugarSupply.csv` and `FlourSupply.csv` files in which suppliers publish details of their supplies in real time. This is done via a [file source](https://siddhi-io.github.io/siddhi-io-file/api/latest/).
 
@@ -59,7 +62,11 @@ In the previous example, you extracted information from two sources of the same 
 
 To understand how this requirement can be addressed via the WSO2 Streaming Integrator, let's try out consuming events from both a file and a database at the same time.
 
-Assume that the Head Office of the Sweet Factory also maintains a record of the. To keep the stock updated, each purchase of a raw material needs to be added to the existing stock, and each dispatch to the factory needs to be deducted from the existing stock. If the material dispatches are recorded in a file, WSO2 Stream Processor needs to extract events from that file and the `PurchaseRecords` database table simultaneously to update the stock records. To do this, you can define two input streams and connect then to the relevant sources as follows:
+Assume that the Head Office of the Sweet Factory also maintains a record of the current stock of each material in a database table named `StockRecords`. To keep the stock updated, each purchase of a raw material needs to be added to the existing stock, and each dispatch to the factory needs to be deducted from the existing stock. The material dispatches are recorded in a file. To achieve this, you need to create an ETL flow as shown in the below diagram.
+
+![Integrating Heterogeneous Data Sources](../images/performing-etl-operations/integrating-heterogeneous-data-sources.png)
+
+WSO2 Stream Processor needs to extract events from that file and the `PurchaseRecords` database table simultaneously to update the stock records. To do this, you can define two input streams and connect then to the relevant sources as follows:
 
 ```
 @source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/PurchaseRecords', username = 'root', password = 'root', table.name = 'PurchaseRecords', operation = 'insert',
@@ -111,6 +118,8 @@ update or insert into StockRecords
 ```
 
 The above query performs a join between the `StockUpdatesStream` stream and the `StockRecords` table,  and adds the stock update calculated to the existing amount in the `StockRecords` table. Then to **load** the final output, the query performs an `update or insert into` operation to the `Stock Records` table. This means, if the table already has a record with a same value for the `name` field as the latest output event generated in the `StockUpdatesStream` stream, the output event overwrites the record in the table. If no such matching record is found, the output event is inserted as a new record.
+
+The queries above updtes the ETL flow as shown in the diagram 
 
 Once you add all the new Siddhi queries and configurations introduced in this section to the original `ManagingStocksApp` Siddi application, it looks as follows:
 
