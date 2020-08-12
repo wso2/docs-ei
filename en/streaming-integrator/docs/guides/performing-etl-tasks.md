@@ -221,7 +221,7 @@ update or insert into PurchaseRecords
 ```
 The following diagram depicts how the above changes scaled the ETL flow.
 
-![Adding a new source](/../imagesperforming-etl-operations/adding-a-new-source.png)
+![Adding a new source](../images/performing-etl-operations/adding-a-new-source.png)
 
 !!! tip
     As you scale your ETL operations, you may have all the related queries in a single application or create multiple Siddhi applications that function as components of the same ETL flow.
