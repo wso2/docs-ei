@@ -51,7 +51,7 @@ Improvements to the [<b>embedded Micro Integrator (MI)</b>](../../develop/using-
 
 -	WSO2 MI 1.2.0 as the embedded server runtime.
 -	Hot deployment capability for the embedded MI.
--   Configure the embedded Micro Integrator via the tool.
+-   Configure the embedded Micro Integrator via WSO2 Integration Studio.
 -   Run and Debug synapse configurations with MI 1.2.0.
 -   View deployed services using the **Runtime Services** view.
 -   View and monitor deployed artifacts using the **embedded** WSO2 EI Monitoring Dashboard.
