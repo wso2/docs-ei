@@ -22,38 +22,34 @@ You can use the dashboard to perform the following administration tasks related 
 
     You can view details of users stored in the external user store. If you are logged in to the dashsboard with administrator credentials, you can also add new users, and remove users from the user store.
 
-!!! Warning
-    In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
+## Setting up the Dashboard
 
-!!! Warning
-    We have identified issues with Microsoft Edge browser where it prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, please consider switching the browser.
+See the following topics in the installation guide for instructions on how to install and set up the Micro Integrator and the Dashboard:
 
-## Installing the Dashboard
+<table>
+    <tr>
+        <td>
+            <a href="../../setup/installation/install_in_vm_installer">Using the Installer</a>
+        </td>
+        <td>
+            Download and run the <b>product installer</b> and then follow the instructions to start the Micro Integrator and the dashboard.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="../../setup/installation/install_in_vm_binary">Using the Binary</a>
+        </td>
+        <td>
+            Download the binary distribution of the product, and then follow the instructions to start the Micro Integrator and the dashabord.
+        </td>
+    </tr>
+</table>
 
-To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
+## Signing in to the Dashboard
 
-## Starting the Dashboard
-
-1.  Extract the downloaded ZIP file. This will be the `<MI_DASHBOARD_HOME>` directory.
-2.  Open a terminal, navigate to the `<MI_DASHBOARD_HOME>/bin` directory, and execute the following command to start the dashboard server:
-
-    ```bash tab='On Linux/MacOS'
-    sh dashboard.sh
-    ```
-
-    ```bash tab='On Windows'
-    dashboard.bat
-    ```
-
-    The dashboard server will start as follows:
-
-    ```bash
-    Web app 'dashboard' is available at 'https://localhost:9743/dashboard/login'
-    ```
-
-## Sign in to the Dashboard
+Once you [set up and start the dashboard](#setting-up-the-dashboard), you can access the dashboard URL from the following URL: `https://localhost:9743/dashboard/login`
   
-1.  Copy the dashboard URL to your browser.
+1.  Copy the following dashboard URL to your browser:
 
     ```bash
     https://localhost:9743/dashboard/login
@@ -99,9 +95,16 @@ To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso
         </tr>
     </table> 
 
-3.  Click <b>SIGN IN</b> and you are redirected to the home page of the Micro Integrator dashboard.
+    !!! Warning
+
+        - In a non-production environment (with the self-signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
+        - We have identified issues with the Microsoft Edge browser, which prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, consider switching the browser.
+
+3.  Click <b>SIGN IN</b>.
+
+You are redirected to the home page of the Micro Integrator dashboard.
      
-    <img src="../../assets/img/monitoring-dashboard/dashboard-artifact-home.png" width="700">
+<img src="../../assets/img/monitoring-dashboard/dashboard-artifact-home.png" width="700">
 
 ## Using the Dashboard
 
