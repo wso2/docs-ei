@@ -24,56 +24,52 @@ The following features and improvements are available for the <b>Micro Integrato
 
 The following features and improvements are available for <b>WSO2 Integration Studio</b> EI 7.1.0:
 
-Improvements to [<b>Connectors</b>](../../references/connectors/connectors-overview):
+Revamped [<b>Connectors</b>](../../references/connectors/connectors-overview) functionality with improved user experience:
 
--   Revamped connector story with improved user experience
 -   Redesigned connector configuration view
 -   New externalizable connection configuration view for connectors
-<!--   Improved CI/CD story with WSO2 Micro Integrator-->
 
-Improvements to [<b>integration project</b>](../../develop/create-integration-project):
+Improved capabilities to support CI/CD with WSO2 Micro Integrator:
 
--   Maven multi module support for the integration project
-<!-- -   Embedded maven support -->
--   New maven profiles for project build  
--   Improved project import/export functionality
-<!-- -   Capability to import existing projects into maven multi module project -->
+!!! Note
+    For more information, read about the [<b>integration project</b>](../../develop/create-integration-project) and the [<b>Docker project</b>](../../develop/create-docker-project).
 
-Improvements to [<b>Docker project</b>](../../develop/create-docker-project):
+-   Capability to create the integration solution as a **Maven Multi Module** project.
+-   Embedded maven support to easily build and push projects.
+-   Maven profiles allowing you to build individual integration modules.
+-   Capability to import/export maven project (integration project).
+-   Capability to import/export projects with/without copying to the workspace.
+-   Capability to import existing modules into maven multi module project (integration project).
+-   Capability to build and push Docker exporter using maven.
+-   Capability to push images to a remote repository via the Docker exporter.
+-   Capability to encrypt secrets in Docker/Kubernetes modules of the integration project by using the **Cipher Tool**.
 
--   Improved Docker project
--   Capability to push images to a remote repository via the Docker exporter
+Improvements to the [<b>embedded Micro Integrator (MI)</b>](../../develop/using-embedded-micro-integrator):
 
-Improvements to the [<b>embedded Micro Integrator</b>](../../develop/using-embedded-micro-integrator):
+-	  WSO2 MI 1.2.0 as the embedded server runtime.
+-	  Hot deployment capability for the embedded MI.
+-   Capability to configure the embedded Micro Integrator via the tool.
+-   Capability to Run and Debug synapse configurations with MI 1.2.0.
+-   View deployed services using the **Runtime Services** view.
+-   View and monitor deployed artifacts using the embedded WSO2 EI Monitoring Dashboard.
 
--	WSO2 Micro Integrator 1.2.0 as the embedded server runtime
--	Hot deployment capability for the embedded Micro Integrator
--   Capability to configure the embedded Micro Integrator via the tool
--   Embedded WSO2 EI monitoring dashboard to list details of the deployed services
+Improvements to the [Synapse Unit testing framework](../../develop/creating-unit-test-suite):
 
-Improvements to <b>debugging and testing</b>:
-
--   Capability to [run and debug synapse configurations](../../develop/debugging-mediation)
-<!-- -   Listing deployed services via the embedded CLI tool -->
--   Improved [Synapse Unit testing framework](../../develop/creating-unit-test-suite)
--   Test failure observability improvements
-<!-- -   Synapse template testing support -->
-<!-- -   Synapse sequence testing improvements -->
+-   Detailed analysis of unit test failures.
+-   Capability to test synapse template.
+-   Capability to use HTTP status code and HTTP version assertion.
+-   Capability use JSON and text payload assertion for sequence testing.
 
 Improvements to <b>artifact development</b>:
 
 -   Improved [data mapper mediator](../../references/mediators/data-Mapper-Mediator)
-<!--  -   AI-based data mapper improvements -->
-<!--  -   Data mapper functionality and UI improvements -->
 -   Improved [data services editor](../../develop/creating-artifacts/data-services/creating-data-services)
-<!--  -   Improved editor theme -->
-<!-- -   RCP improvements -->
 
-Other improvements:
+WSO2 Integration Studio customizations (RPC):
 
--   New WSO2 Integration Studio theme
--   New 'Getting Started' experience
-<!-- -   New update notification functionality -->
+-   New WSO2 Integration Studio theme.
+-   New 'Getting Started' experience.
+-   New update notification functionality.
 
 #### New in the Streaming Integrator
 
