@@ -79,9 +79,9 @@ The following features and improvements are available for the <b>Streaming Integ
 -   Error Store in which the events with errors can be browsed. This also allows events with certain types of errors to be replayed. For more information, see [Error Handling](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/guides/fault-Handling/).
 -   ETL wizard that allows you to design ETL applications without writing code. For more information, see [Creating an ETL Application via SI Tooling](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/examples/creating-etl-application-via-tooling/).
 -   New monitoring dashboards to analyze ETL flows. For more information, see [Monitoring Statistics via Grafana Dashboards](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/admin/setting-up-grafana-dashboards/).
--   Enhanced support for CDC, File Streaming and Cloud storages. For more information, see [Siddhi Query Guide - File](https://siddhi-io.github.io/siddhi-io-file/) and [Siddhi Query Guide - CDC](https://siddhi-io.github.io/siddhi-io-cdc/).
+-   Enhanced support for CDC, File Streaming and Cloud storages.
 -   Improvements to the Design View of Streaming Integrator Tooling.
--   Extensive support for CDC and File connectors with the ability to generate Cron expressions via the UI. 
+-   Extensive support for CDC and File connectors with the ability to generate Cron expressions via the UI. For more information, see [Siddhi Query Guide - File](https://siddhi-io.github.io/siddhi-io-file/) and [Siddhi Query Guide - CDC](https://siddhi-io.github.io/siddhi-io-cdc/).
 
 <!--
 ## Fixed issues
