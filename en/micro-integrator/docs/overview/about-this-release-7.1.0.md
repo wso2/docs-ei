@@ -79,11 +79,11 @@ Other improvements:
 
 The following features and improvements are available for the <b>Streaming Integrator</b> of EI 7.1.0:
 
--   Extension Installer CLI tool to install Siddhi extensions via the command line.
--   Error Store in which the events with errors can be browsed. This also allows events with certain types of errors to be replayed.
--   ETL wizard that allows you to design ETL applications without writing code.
--   New monitoring dashboards to analyze ETL flows.
--   Enhanced support for CDC, File Streaming and Cloud storages
+-   [Extension Installer](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/connectors/downloading-and-Installing-Siddhi-Extensions/#downloading-and-installing-siddhi-extensions-via-the-command-line) CLI tool to install Siddhi extensions via the command line.
+-   Error Store in which the events with errors can be browsed. This also allows events with certain types of errors to be replayed. For more information, see [Error Handling](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/guides/fault-Handling/).
+-   ETL wizard that allows you to design ETL applications without writing code. For more information, see [Creating an ETL Application via SI Tooling](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/examples/creating-etl-application-via-tooling/).
+-   New monitoring dashboards to analyze ETL flows. For more information, see [Monitoring Statistics via Grafana Dashboards](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/admin/setting-up-grafana-dashboards/).
+-   Enhanced support for CDC, File Streaming and Cloud storages. For more information, see [Siddhi Query Guide - File](https://siddhi-io.github.io/siddhi-io-file/) and [Siddhi Query Guide - CDC](https://siddhi-io.github.io/siddhi-io-cdc/).
 -   Improvements to the Design View of Streaming Integrator Tooling.
 -   Extensive support for CDC and File connectors with the ability to generate Cron expressions via the UI. 
 
