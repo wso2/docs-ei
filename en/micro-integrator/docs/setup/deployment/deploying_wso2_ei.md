@@ -163,7 +163,7 @@ When you have scheduled tasks in your integration deployment, each task should o
 
 #### Advanced parameters
 
-The paramters which control the behavior of the task resovler component. The `resolving_period` and `resolving_frequency` properties are set by default as shown below. It is **not recommended** to change these default values.
+The paramters that control the behavior of the task resolver component. The `resolving_period` and `resolving_frequency` properties are set by default as shown below. It is **not recommended** to change these default values.
 
 ```toml
 [task_handling]
