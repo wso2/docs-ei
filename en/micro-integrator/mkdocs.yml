@@ -272,7 +272,7 @@ nav:
         - 'Endpoint Tracing': 'develop/endpoint-trace-logs.md'
       - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
-        - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
+        - 'Injecting Parameters': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
         - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
         - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
