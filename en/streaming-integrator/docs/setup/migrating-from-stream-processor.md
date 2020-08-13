@@ -52,4 +52,4 @@ If you are using the [Analytics Dashboard](https://docs.wso2.com/display/SP440/V
 
 ## Testing the migration
 
-Simulate a few events to the Siddhi applications deployed in the Streaming Integrator to test whether they are generating the expected results.,
+Simulate a few events to the Siddhi applications deployed in the Streaming Integrator to test whether they are generating the expected results.
