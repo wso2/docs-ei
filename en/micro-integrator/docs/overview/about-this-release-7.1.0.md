@@ -4,23 +4,23 @@ WSO2 Enterprise Integrator (EI) version 7.1.0 is the latest release of the WSO2 
 
 ## What's new in this release?
 
-#### New in the Micro Integrator
+### New in the Micro Integrator
 
 The following features and improvements are available for the <b>Micro Integrator</b> of EI 7.1.0:
 
--   [Task coordination](../../setup/deployment/deploying_wso2_ei/#cluster-coordination) for distributed deployments
--   Capability of viewing and configuring logs without accessing the file system
--   User management with [external user stores](../../setup/install_and_setup_overview/#data-stores)
--   [Readiness probe](../../setup/deployment/health_check) for health checking
--   Enhanced experience for [handling security](../../setup/security/encrypting_plain_text) (Ciphertool, Securevault, Kubernetes Secrets)
--   [Hot deployment](../../develop/hot-deployment) capability
--   Schema-based XML to JSON transformations with the [JSON Transform mediator](../../references/mediators/json-Transform-Mediator)
--   [Swagger generation for data services](../../develop/advanced-development/using-swagger-for-apis)
--   [Transaction counter](../../setup/deployment/deployment_checklist/#monitoring-transaction-counts) for services
--   [Environment/System variable support](../../setup/dynamic_server_configurations) for Kubernetes environments
--   [Enhanced Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface)
+-   [Task coordination](../../setup/deployment/deploying_wso2_ei/#cluster-coordination) for distributed deployments.
+-   Capability of viewing and configuring logs without accessing the file system.
+-   User management with [external user stores](../../setup/install_and_setup_overview/#data-stores).
+-   [Readiness probe](../../setup/deployment/health_check) for health checking.
+-   Enhanced experience for [handling security](../../setup/security/encrypting_plain_text) (Ciphertool, Securevault, Kubernetes Secrets).
+-   [Hot deployment](../../develop/hot-deployment) capability.
+-   Schema-based XML to JSON transformations with the [JSON Transform mediator](../../references/mediators/json-Transform-Mediator).
+-   [Swagger generation for data services](../../develop/advanced-development/using-swagger-for-apis).
+-   [Transaction counter](../../setup/deployment/deployment_checklist/#monitoring-transaction-counts) for services.
+-   [Environment/System variable support](../../setup/dynamic_server_configurations) for Kubernetes environments.
+-   [Enhanced Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface).
 
-#### New in WSO2 Integration Studio
+### New in WSO2 Integration Studio**
 
 The following features and improvements are available for <b>WSO2 Integration Studio</b> EI 7.1.0:
 
@@ -46,8 +46,8 @@ Improved capabilities to support CI/CD with WSO2 Micro Integrator:
 
 Improvements to the [<b>embedded Micro Integrator (MI)</b>](../../develop/using-embedded-micro-integrator):
 
--	  WSO2 MI 1.2.0 as the embedded server runtime.
--	  Hot deployment capability for the embedded MI.
+-	WSO2 MI 1.2.0 as the embedded server runtime.
+-	Hot deployment capability for the embedded MI.
 -   Capability to configure the embedded Micro Integrator via the tool.
 -   Capability to Run and Debug synapse configurations with MI 1.2.0.
 -   View deployed services using the **Runtime Services** view.
@@ -71,7 +71,7 @@ WSO2 Integration Studio customizations (RPC):
 -   New 'Getting Started' experience.
 -   New update notification functionality.
 
-#### New in the Streaming Integrator
+### New in the Streaming Integrator
 
 The following features and improvements are available for the <b>Streaming Integrator</b> of EI 7.1.0:
 
