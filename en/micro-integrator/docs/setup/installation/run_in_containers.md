@@ -104,7 +104,7 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
     The **Dockerfile**:
 
     ```bash
-    FROM <docker_image_name>:1.1.0
+    FROM <docker_image_name>:1.2.0
     COPY <directoy_path>/<capp_name> $WSO2_SERVER_HOME/repository/deployment/server/carbonapps
     ```
     The information specified in the Docker file is as follows:
@@ -118,13 +118,13 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
     <tr class="odd">
     <td>FROM</td>
     <td><div class="content-wrapper">
-    <p>The 'FROM' tag in the docker file specifies the WSO2 Micro Integrator version that should be downloaded. You can use the updated Docker image or the community version as shown below. The version is 1.1.0 of the WSO2 Micro Integrator. If required, you can use an earlier version by replacing 'latest' with the version number.</p>
+    <p>The 'FROM' tag in the docker file specifies the WSO2 Micro Integrator version that should be downloaded. You can use the updated Docker image or the community version as shown below. The version is 1.2.0 of the WSO2 Micro Integrator. If required, you can use an earlier version by replacing 'latest' with the version number.</p>
     <div class="code panel pdl" style="border-width: 1px;">
     <div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;">
     <strong>Example 1: Docker image with updates</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>FROM docker.<span class="fu">wso2</span>.<span class="fu">com</span>/wso2mi:<span class="fl">1.1.</span><span class="dv">0</span></span></code></pre></div>
+    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>FROM docker.<span class="fu">wso2</span>.<span class="fu">com</span>/wso2mi:<span class="fl">1.2.</span><span class="dv">0</span></span></code></pre></div>
     </div>
     </div>
     <div class="code panel pdl" style="border-width: 1px;">
@@ -132,7 +132,7 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
     <strong>Example 2: Docker image without updates (community version)</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>FROM wso2/wso2mi:<span class="fl">1.1.</span><span class="dv">0</span></span></code></pre></div>
+    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>FROM wso2/wso2mi:<span class="fl">1.2.</span><span class="dv">0</span></span></code></pre></div>
     </div>
     </div>
     </div></td>
