@@ -114,7 +114,32 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <sendEmail xmlns:sfdc="sfdc">{//sfdc:emailWrapper}</sendEmail>
     </salesforce.sendEmail>
     ```
-    
+    **Sample response**
+        
+    Given below is a sample response for the sendEmail operation.
+            
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>67</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <sendEmailResponse>
+                <result>
+                    <success>true</success>
+                </result>
+            </sendEmailResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```    
+        
 ??? note "sendEmailMessage"
     The salesforcebulk.sendEmailMessage method sends emails that have already been drafted in Salesforce. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_send_email_message.htm) for more information.
     <table>
@@ -156,6 +181,32 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
     <salesforce.sendEmailMessage config-ref="connectorConfig">
         <sendEmailMessage xmlns:sfdc="sfdc">{//sfdc:emails}</sendEmailMessage>
     </salesforce.sendEmailMessage>
+    ```    
+      
+    **Sample response**
+    
+    Given below is a sample response for the sendEmail operation.
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>67</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <sendEmailResponse>
+                <result>
+                    <success>true</success>
+                </result>
+            </sendEmailResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
     ```      
     
 ---
@@ -199,8 +250,7 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
 
     **Sample request**
     
-    Given below is a sample request that can be handled by the create operation.
-    
+    Given below is a sample request that can be handled by the create operation.    
 
     ```xml
     <payloadFactory>
@@ -223,6 +273,33 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <sobjects xmlns:sfdc="sfdc">{//sfdc:sObjects}</sobjects>
     </salesforce.create>
     ```
+    **Sample response**    
+        
+    Given below is a sample response that can be handled by the create operation
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>9</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <createResponse>
+                <result>
+                    <id>0036F00002mdwl2QAA</id>
+                    <success>true</success>
+                </result>
+            </createResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>    
+    ```
+    
 ??? note "salesforcebulk.update"
     The salesforcerest.update operation updates one or more existing records with the Salesforce SOAP API. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_update.htm) for more information.
     <table>
@@ -286,6 +363,33 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <sobjects xmlns:sfdc="sfdc">{//sfdc:sObjects}</sobjects>
     </salesforce.update>
     ```
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the update operation.
+        
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>53</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <updateResponse>
+                <result>
+                    <id>0016F00002S4Wj0QAF</id>
+                    <success>true</success>
+                </result>
+            </updateResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+    
 ??? note "salesforcebulk.upsert"
     The salesforcerest.upsert operation update existing records and insert new records in a single operation, with the Salesforce SOAP API. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_upsert.htm) for more information.
     <table>
@@ -376,7 +480,41 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <externalId>Id</externalId>
         <sobjects xmlns:sfdc="sfdc">{//sfdc:sObjects}</sobjects>
     </salesforce.upsert>
-    ```           
+    ```
+    
+    **Sample response**
+            
+    Given below is a sample response that can be handled by the upsert operation.
+            
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>54</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <upsertResponse>
+                <result>
+                    <created>false</created>
+                    <id>0016F00002S4Wj0QAF</id>
+                    <success>true</success>
+                </result>
+                <result>
+                    <created>true</created>
+                    <id>0016F00002pUVTMQA4</id>
+                    <success>true</success>
+                </result>
+            </upsertResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+               
 ??? note "salesforcebulk.search"
     The salesforcerest.search operation searchs for records, use salesforce.search and specify the search string. If you already know the record IDs, use retrieve instead. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_search.htm) for more information.
     <table>
@@ -399,6 +537,39 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <searchString>FIND {map*} IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity, Lead</searchString>
     </salesforce.search>
     ```
+    **Sample response**
+                
+    Given below is a sample response that can be handled by the search operation.
+                
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:sf="urn:sobject.partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>56</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <searchResponse>
+                <result>
+                    <searchRecords>
+                        <record xsi:type="sf:sObject">
+                            <sf:type>Account</sf:type>
+                            <sf:Id>0016F00002SN7qiQAD</sf:Id>
+                            <sf:Id>0016F00002SN7qiQAD</sf:Id>
+                            <sf:Name>GenePoint</sf:Name>
+                        </record>
+                    </searchRecords>
+                </result>
+            </searchResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```    
+    
 ??? note "salesforcebulk.query"
     The salesforcerest.query operation retrieve data from an object, use salesforce.query with the Salesforce SOAP API. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_query.htm) for more information.
     <table>
@@ -450,7 +621,43 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
             </sequence>
         </target>
     </iterate>
-    ```    
+    ```
+    **Sample response**
+        
+    Given below is a sample response for the query operation.
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:sf="urn:sobject.partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>58</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <queryResponse>
+                <result xsi:type="QueryResult">
+                    <done>true</done>
+                    <queryLocator xsi:nil="true"/>
+                    <records xsi:type="sf:sObject">
+                        <sf:type>Account</sf:type>
+                        <sf:Id>0016F00002SasNYQAZ</sf:Id>
+                        <sf:Id>0016F00002SasNYQAZ</sf:Id>
+                        <sf:Name>wso2New</sf:Name>
+                    </records>
+                    .
+                    .
+                    <size>129</size>
+                </result>
+            </queryResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+    
 ??? note "salesforcebulk.retrieve"
     The salesforcerest.retrieve operation IDs of the records you want to retrieve with the Salesforce SOAP API.  If you do not know the record IDs, use query instead. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_retrieve.htm) for more information.
     <table>
@@ -507,7 +714,36 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <objectType>Account</objectType>
         <objectIDS xmlns:sfdc="sfdc">{//sfdc:sObjects}</objectIDS>
     </salesforce.retrieve>
-    ```    
+    ```
+    **Sample response**
+            
+    Given below is a sample response for the retrieve operation.
+        
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:sf="urn:sobject.partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>60</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <retrieveResponse>
+                <result xsi:type="sf:sObject">
+                    <sf:type>Account</sf:type>
+                    <sf:Id>0016F00002S4Wj0QAF</sf:Id>
+                    <sf:Id>0016F00002S4Wj0QAF</sf:Id>
+                    <sf:Name>newname01</sf:Name>
+                </result>
+            </retrieveResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+        
 ??? note "salesforcebulk.delete"
     The salesforcerest.delete operation delete one or more records. If you do not know the record IDs, use query instead. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_delete.htm) for more information.
     <table>
@@ -539,7 +775,7 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
 
     **Sample request**
     
-    Given below is a sample request that can be handled by the retrieve operation.
+    Given below is a sample request that can be handled by the delete operation.
          
 
     ```xml
@@ -558,6 +794,33 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
        <sobjects xmlns:sfdc="sfdc">{//sfdc:sObjects}</sobjects>
     </salesforce.delete>
     ```   
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the delete operation.
+             
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>63</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <deleteResponse>
+                <result>
+                    <id>0016F00002S4Wj0QAF</id>
+                    <success>true</success>
+                </result>
+            </deleteResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```   
+    
 ??? note "salesforcebulk.undelete"
     The salesforcerest.undelete operation restore records that were previously deleted. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_undelete.htm) for more information.
     <table>
@@ -607,7 +870,34 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <allOrNone>0</allOrNone>
         <sobjects xmlns:sfdc="sfdc">{//sfdc:sObjects}</sobjects>
     </salesforce.undelete>
+    ```
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the undelete operation.
+                 
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>64</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <undeleteResponse>
+                <result>
+                    <id>0016F00002S4Wj0QAF</id>
+                    <success>true</success>
+                </result>
+            </undeleteResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
     ```    
+        
 ??? note "salesforcebulk.getDeleted"
     The salesforcerest.getDeleted operation retrieve the list of records that were previously deleted. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_getdeleted.htm) for more information.
     <table>
@@ -663,6 +953,37 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         </soapenv:Body>
     </soapenv:Envelope> 
     ```       
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the getDeleted operation.
+                    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>55</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <getDeletedResponse>
+                <result>
+                    <deletedRecords>
+                        <deletedDate>2020-06-18T04:10:20.000Z</deletedDate>
+                        <id>0012x000007RqnHAAS</id>
+                    </deletedRecords>
+                    <earliestDateAvailable>2020-04-27T13:43:00.000Z</earliestDateAvailable>
+                    <latestDateCovered>2020-06-30T05:05:00.000Z</latestDateCovered>
+                </result>
+            </getDeletedResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+    
 ??? note "salesforcebulk.getUpdated"
     The salesforcerest.getUpdated operation retrieve the list of records that were previously updated. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_getupdated.htm) for more information.
     <table>
@@ -717,7 +1038,38 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
             <urn:endDate>2020-06-30T05:05:53+0000</urn:endDate>
         </soapenv:Body>
     </soapenv:Envelope>  
+    ```
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the getUpdated operation.
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>66</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <getUpdatedResponse>
+                <result>
+                    <ids>0012x000007RVCcAAO</ids>
+                    <ids>0012x000007RVD1AAO</ids>
+                    <ids>0012x000007RVG8AAO</ids>
+                    <ids>0012x000007RVw7AAG</ids>
+                    <ids>0012x000007RW3uAAG</ids>
+                    <latestDateCovered>2020-06-30T05:05:00.000Z</latestDateCovered>
+                </result>
+            </getUpdatedResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
     ```    
+    
 ??? note "salesforcebulk.findDuplicates"
     The salesforcerest.findDuplicates operation retrieve the list of records that are duplicate entries. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_findduplicates.htm) for more information.
     <table>
@@ -765,6 +1117,46 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         </soapenv:Body>
     </soapenv:Envelope>  
     ```   
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the findDuplicates operation.
+                           
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>11</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <findDuplicatesResponse>
+                <result>
+                    <duplicateResults>
+                        <allowSave>false</allowSave>
+                        <duplicateRule>Standard_Account_Duplicate_Rule</duplicateRule>
+                        <duplicateRuleEntityType>Account</duplicateRuleEntityType>
+                        <errorMessage xsi:nil="true"/>
+                        <matchResults>
+                            <entityType>Account</entityType>
+                            <matchEngine>FuzzyMatchEngine</matchEngine>
+                            <rule>Standard_Account_Match_Rule_v1_0</rule>
+                            <size>0</size>
+                            <success>true</success>
+                        </matchResults>
+                    </duplicateResults>
+                    <success>true</success>
+                </result>
+            </findDuplicatesResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```    
+        
 ??? note "salesforcebulk.findDuplicatesByIds"
     The salesforcerest.findDuplicatesByIds operation retrieves the list of records that are duplicate entries by using ids. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_findduplicatesbyids.htm) for more information.
     <table>
@@ -809,6 +1201,46 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         </soapenv:Body>
     </soapenv:Envelope>  
     ```
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the findDuplicatesByIds operation.
+    
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>53</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <findDuplicatesByIdsResponse>
+                <result>
+                    <duplicateResults>
+                        <allowSave>false</allowSave>
+                        <duplicateRule>Standard_Account_Duplicate_Rule</duplicateRule>
+                        <duplicateRuleEntityType>Account</duplicateRuleEntityType>
+                        <errorMessage xsi:nil="true"/>
+                        <matchResults>
+                            <entityType>Account</entityType>
+                            <matchEngine>FuzzyMatchEngine</matchEngine>
+                            <rule>Standard_Account_Match_Rule_v1_0</rule>
+                            <size>0</size>
+                            <success>true</success>
+                        </matchResults>
+                    </duplicateResults>
+                    <success>true</success>
+                </result>
+            </findDuplicatesByIdsResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+    
 ??? note "salesforcebulk.merge"
     The salesforcerest.merge operation merge records into one master record. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_merge.htm) for more information.
     <table>
@@ -857,6 +1289,35 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         </soapenv:Body>
     </soapenv:Envelope>  
     ```     
+    
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the merge operation.
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>70</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <mergeResponse>
+                <result>
+                    <id>0012x000008un5bAAA</id>
+                    <mergedRecordIds>0012x000008un5lAAA</mergedRecordIds>
+                    <success>true</success>
+                </result>
+            </mergeResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+    
 ??? note "salesforcebulk.convertLead"
     The salesforcerest.convertLead operation convert a lead into an account. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_merge.htm) for more information.
     <table>
@@ -903,6 +1364,37 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
             </urn:leadconvertrequests>
         </soapenv:Body>
     </soapenv:Envelope> 
+    ```
+    
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the merge operation.
+                       
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>128</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <convertLeadResponse>
+                <result>
+                    <accountId>0012x000005mqKuAAI</accountId>
+                    <contactId>0032x000006I2xYAAS</contactId>
+                    <leadId>00Q2x00000AH981EAD</leadId>
+                    <opportunityId>0062x0000053r8FAAQ</opportunityId>
+                    <success>true</success>
+                </result>
+            </convertLeadResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
     ```        
 ---
 
@@ -959,6 +1451,33 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
     </salesforce.emptyRecycleBin>
     ```
     
+    **Sample response**
+        
+    Given below is a sample response that can be handled by the emptyRecycleBin operation.
+            
+    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>27</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <emptyRecycleBinResponse>
+                <result>
+                    <id>0016F00002S4WaGQAV</id>
+                    <success>true</success>
+                </result>
+            </emptyRecycleBinResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
 ---  
     
 ## Working with sObjects
@@ -972,6 +1491,60 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
     ```xml
     <salesforce.describeGlobal configKey="MySFConfig"/>
     ```
+    
+    **Sample response**
+            
+    Given below is a sample response that can be handled by the describeGlobal operation.
+        
+        
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <soapenv:Header>
+                    <LimitInfoHeader>
+                        <limitInfo>
+                            <current>29</current>
+                            <limit>15000</limit>
+                            <type>API REQUESTS</type>
+                        </limitInfo>
+                    </LimitInfoHeader>
+                </soapenv:Header>
+                <soapenv:Body>
+                    <describeGlobalResponse>
+                        <result>
+                            <encoding>UTF-8</encoding>
+                            <maxBatchSize>200</maxBatchSize>
+                            <sobjects>
+                                <activateable>false</activateable>
+                                <createable>false</createable>
+                                <custom>false</custom>
+                                <customSetting>false</customSetting>
+                                <deletable>false</deletable>
+                                <deprecatedAndHidden>false</deprecatedAndHidden>
+                                <feedEnabled>false</feedEnabled>
+                                <keyPrefix xsi:nil="true"/>
+                                <label>Accepted Event Relation</label>
+                                <labelPlural>Accepted Event Relations</labelPlural>
+                                <layoutable>false</layoutable>
+                                <mergeable>false</mergeable>
+                                <name>AcceptedEventRelation</name>
+                                <queryable>true</queryable>
+                                <replicateable>false</replicateable>
+                                <retrieveable>true</retrieveable>
+                                <searchable>false</searchable>
+                                <triggerable>false</triggerable>
+                                <undeletable>false</undeletable>
+                                <updateable>false</updateable>
+                            </sobjects>
+                            .
+                            .
+                        </result>
+                    </describeGlobalResponse>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        
+    ```
+    
 ??? note "salesforcebulk.describeSobject"
     The salesforcerest.describeSobject operation retrieve metadata (such as name, label, and fields, including the field properties) for a specific object type. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_describesobject.htm) for more information.
     <table>
@@ -994,6 +1567,43 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <sobject>Account</sobject>
     </salesforce.describeSObject>
     ```
+    
+    **Sample response**
+                
+    Given below is a sample response that can be handled by the describeSobject operation.
+            
+            
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>31</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <describeSObjectResponse>
+                <result>
+                    <activateable>false</activateable>
+                    <childRelationships>
+                        <cascadeDelete>false</cascadeDelete>
+                        <childSObject>Account</childSObject>
+                        <deprecatedAndHidden>false</deprecatedAndHidden>
+                        <field>ParentId</field>
+                        <relationshipName>ChildAccounts</relationshipName>
+                    </childRelationships>
+                    .
+                    .
+                </result>
+            </describeSObjectResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+    
 ??? note "salesforcebulk.describeSobjects"
     The salesforcerest.describeSobjects operation retrieve metadata (such as name, label, and fields, including the field properties) for multiple object types returned as an array. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_describesobjects.htm) for more information.
     <table>
@@ -1036,7 +1646,55 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
     <salesforce.describeSobjects configKey="MySFConfig">
         <sobjects xmlns:sfdc="sfdc">{//sfdc:sObjects}</sobjects>
     </salesforce.describeSobjects> 
-    ```    
+    ```  
+    
+    **Sample response**
+                    
+    Given below is a sample response that can be handled by the describeSobjects operation.
+                
+                
+    ```xml 
+    <?xml version="1.0" encoding="UTF-8"?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>51</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <describeSObjectsResponse>
+                <result>
+                    <activateable>false</activateable>
+                    <childRelationships>
+                        <cascadeDelete>false</cascadeDelete>
+                        <childSObject>Account</childSObject>
+                        <deprecatedAndHidden>false</deprecatedAndHidden>
+                        <field>ParentId</field>
+                        <relationshipName>ChildAccounts</relationshipName>
+                    </childRelationships>
+                    .
+                    .
+                </result>
+                <result>
+                    <activateable>false</activateable>
+                    <childRelationships>
+                        <cascadeDelete>false</cascadeDelete>
+                        <childSObject>AcceptedEventRelation</childSObject>
+                        <deprecatedAndHidden>false</deprecatedAndHidden>
+                        <field>RelationId</field>
+                        <relationshipName>AcceptedEventRelations</relationshipName>
+                    </childRelationships>
+                    .
+                    .
+                </result>
+            </describeSObjectsResponse>
+        </soapenv:Body>
+    </soapenv:Envelope> 
+    ```
    
 ---
 
@@ -1050,6 +1708,54 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
     ```xml
     <salesforce.getUserInfo configKey="MySFConfig"/>
     ```
+    
+    **Sample response**
+                        
+    Given below is a sample response that can be handled by the emptyRecycleBin operation.
+                    
+                    
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>11</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <getUserInfoResponse>
+                <result>
+                    <accessibilityMode>false</accessibilityMode>
+                    <currencySymbol>$</currencySymbol>
+                    <orgAttachmentFileSizeLimit>5242880</orgAttachmentFileSizeLimit>
+                    <orgDefaultCurrencyIsoCode>USD</orgDefaultCurrencyIsoCode>
+                    <orgDisallowHtmlAttachments>false</orgDisallowHtmlAttachments>
+                    <orgHasPersonAccounts>false</orgHasPersonAccounts>
+                    <organizationId>00D6F000002SofgUAC</organizationId>
+                    <organizationMultiCurrency>false</organizationMultiCurrency>
+                    <organizationName>john</organizationName>
+                    <profileId>00e6F000003GTmYQAW</profileId>
+                    <roleId xsi:nil="true"/>
+                    <sessionSecondsValid>7200</sessionSecondsValid>
+                    <userDefaultCurrencyIsoCode xsi:nil="true"/>
+                    <userEmail>iamjohn@gmail.com</userEmail>
+                    <userFullName>john doe</userFullName>
+                    <userId>0056F000009wCJgQAM</userId>
+                    <userLanguage>en_US</userLanguage>
+                    <userLocale>en_US</userLocale>
+                    <userName>iamjohn@gmail.com</userName>
+                    <userTimeZone>America/Los_Angeles</userTimeZone>
+                    <userType>Standard</userType>
+                    <userUiSkin>Theme3</userUiSkin>
+                </result>
+            </getUserInfoResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>    
+    ``` 
 
 ??? note "salesforcebulk.setPassword"
     The salesforcerest.setPassword operation change the user password by specifying the password. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_setpassword.htm) for more information.
@@ -1089,6 +1795,33 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
         <userId>0056F000009wCJgQAM</userId>
     </salesforce.resetPassword>    
     ```
+    
+    **Sample setPassword**
+                            
+    Given below is a sample response that can be handled by the setPassword operation.
+                        
+                        
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>23</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <resetPasswordResponse>
+                <result>
+                    <password>H5fj8A6M</password>
+                </result>
+            </resetPasswordResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
 ---
 
 ## Working with Utility
@@ -1104,7 +1837,7 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
 
     **Sample request**
     
-    Given below is a sample request that can be handled by the emptyRecycleBin operation.
+    Given below is a sample request that can be handled by the undelete operation.
         
 
     ```xml
@@ -1118,4 +1851,31 @@ To use the Salesforce SOAP connector, add the `<salesforcerest.init>` element in
             <urn:blocking>false</urn:blocking>
         </soapenv:Body>
     </soapenv:Envelope> 
+    ```
+    
+    **Sample response**
+                                
+    Given below is a sample response that can be handled by the getServerTimestamp operation.
+                            
+                            
+    ```xml
+    <?xml version='1.0' encoding='utf-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com">
+        <soapenv:Header>
+            <LimitInfoHeader>
+                <limitInfo>
+                    <current>58</current>
+                    <limit>15000</limit>
+                    <type>API REQUESTS</type>
+                </limitInfo>
+            </LimitInfoHeader>
+        </soapenv:Header>
+        <soapenv:Body>
+            <getServerTimestampResponse>
+                <result>
+                    <timestamp>2020-07-03T09:14:41.321Z</timestamp>
+                </result>
+            </getServerTimestampResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
     ```
