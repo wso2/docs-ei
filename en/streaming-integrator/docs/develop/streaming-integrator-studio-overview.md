@@ -15,7 +15,7 @@ interfaces to develop Siddhi applications
     Siddhi application, and allows you to compose the applications by
     dragging and dropping Siddhi components to a graph.
     
--   **Wizard View**: This is a wizard with a page for each component of a Siddhi application that displays the relevant configuration parameters as fields. This wizard can be directly accessed from the [Welcome Page](#welcome-page). Only ETL (Extract, Transform, Load) applications can be created/viewed in this interface. For a Siddhi application to be considered an ETL application, it must include all of the following components:<br/><br/> - A source configuration<br/><br/> - A sink configuration (the sink type can be any of the [supported sink types](https://siddhi.io/en/v5.1/docs/query-guide/#sink) other than `log`)<br/><br/> - A Siddhi query that performs a transformation. <br/><br/> For more information, see [Creating an ETL Application via SI Tooling tutorial](../examples/create-etl-application-via-tooling.md).
+-   **Wizard View**: This is a wizard with a page for each component of a Siddhi application that displays the relevant configuration parameters as fields. This wizard can be directly accessed from the [Welcome Page](#welcome-page). Only ETL (Extract, Transform, Load) applications can be created/viewed in this interface. For a Siddhi application to be considered an ETL application, it must include all of the following components:<br/><br/> - A source configuration<br/><br/> - A sink configuration (the sink type can be any of the [supported sink types](https://siddhi.io/en/v5.1/docs/query-guide/#sink) other than `log`)<br/><br/> - A Siddhi query that performs a transformation. <br/><br/> For more information, see [Creating an ETL Application via SI Tooling tutorial](../examples/creating-etl-application-via-tooling.md).
 
 Once a Siddhi application is created, you can simulate events via the
 Streaming Integrator Tooling to test whether it works as expected.
@@ -57,7 +57,7 @@ following:
     the `workspace` directory is `<SI_Home>/wso2/server/deployment`.
     
 -   **New ETL Flow**
-    Click this to open a wizard with which you can create a Siddhi application with ETL functionality by entering values for the required parameters instead of constructing Siddhi queries by writing code or via a graphical interface. To understand how this is done, follow the [Creating an ETL Application via SI Tooling tutorial](../examples/create-etl-application-via-tooling.md).
+    Click this to open a wizard with which you can create a Siddhi application with ETL functionality by entering values for the required parameters instead of constructing Siddhi queries by writing code or via a graphical interface. To understand how this is done, follow the [Creating an ETL Application via SI Tooling tutorial](../examples/creating-etl-application-via-tooling.md).
 
 -   **Try out samples**  
     The pre-created samples provided out of the box are listed in this
@@ -85,7 +85,7 @@ The **File** menu includes the following options.
 ![File menu](../images/streaming-integrator-studio-overview/FileMenu.png)
 
 -   **New**  
-    Click this to open a new untitled Siddhi file. For more information, see the [Creating an ETL Application via SI Tooling tutorial](../examples/create-etl-application-via-tooling.md).
+    Click this to open a new untitled Siddhi file. For more information, see the [Creating an ETL Application via SI Tooling tutorial](../examples/creating-etl-application-via-tooling.md).
     
 -   **New ETL Flow**
     Click this to create a new ETL application via the ETL wizard. For instructions, 
