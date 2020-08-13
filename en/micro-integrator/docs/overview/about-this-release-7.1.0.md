@@ -95,7 +95,7 @@ The following features and improvements are available for the <b>Streaming Integ
 
 ## Known issues
 
--   [Micro Integrato - Known Issues](https://github.com/wso2/micro-integrator/issues)
+-   [Micro Integrator - Known Issues](https://github.com/wso2/micro-integrator/issues)
 -   [WSO2 Integration Studio - Known Issues](https://github.com/wso2/devstudio-tooling-ei/issues)
 
 -   [Streaming Integrator - Known Issues](https://github.com/wso2/streaming-integrator/issues)
