@@ -297,14 +297,14 @@ nav:
             - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
             - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
             - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
-        - K8s Pipeline:
-          - 'Overview': 'setup/deployment/k8s-pipeline/overview.md'
-          - 'Quick Start Guide': 'setup/deployment/k8s-pipeline/quick-start-guide.md'
-          - 'Testing the Pipeline Environment': 'setup/deployment/k8s-pipeline/testing-the-pipeline-environment.md'
-          - 'Deploy Your Own Artifact': 'setup/deployment/k8s-pipeline/deploy-your-own-artifact.md'
-          - 'Adding Testcases': 'setup/deployment/k8s-pipeline/adding-test-cases.md'
-          - 'Modifying Product Configurations': 'setup/deployment/k8s-pipeline/modifying-product-configurations.md'
-          - 'Modifying Pipeline Configurations': 'setup/deployment/k8s-pipeline/modifying-pipeline-configurations.md'
+          - K8s Pipeline:
+            - 'Overview': 'setup/deployment/k8s-pipeline/overview.md'
+            - 'Quick Start Guide': 'setup/deployment/k8s-pipeline/quick-start-guide.md'
+            - 'Testing the Pipeline Environment': 'setup/deployment/k8s-pipeline/testing-the-pipeline-environment.md'
+            - 'Deploy Your Own Artifact': 'setup/deployment/k8s-pipeline/deploy-your-own-artifact.md'
+            - 'Adding Testcases': 'setup/deployment/k8s-pipeline/adding-test-cases.md'
+            - 'Modifying Product Configurations': 'setup/deployment/k8s-pipeline/modifying-product-configurations.md'
+            - 'Modifying Pipeline Configurations': 'setup/deployment/k8s-pipeline/modifying-pipeline-configurations.md'
         - Deploy on a Virtual Machine:
           - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
           - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
