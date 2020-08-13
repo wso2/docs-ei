@@ -137,8 +137,6 @@ When you have scheduled tasks in your integration deployment, each task should o
 
     By default, tasks are resolved by selecting a random node from the available list of nodes in the cluster. All the tasks are resolved to the selected node. The tasks will be resolved to some other node only if the first node leaves the cluster. 
 
-    Optionally, you can apply the following [advanced configurations](#advanced-parameters).
-
 -   Round robin resolver
 
     This class distributes the tasks among the nodes in a round robin manner. In addition to that, it accepts a parameter named `task_server_count`, which specifies the number of nodes that should be present in the cluster before starting the task resolving process.
@@ -165,7 +163,7 @@ When you have scheduled tasks in your integration deployment, each task should o
 
 #### Advanced parameters
 
-The `resolving_period` and `resolving_frequency` properties are set by default as shown below. It is **not recommended** to change these default values.
+The paramters that control the behavior of the task resolver component. The `resolving_period` and `resolving_frequency` properties are set by default as shown below. It is **not recommended** to change these default values.
 
 ```toml
 [task_handling]
