@@ -4,7 +4,7 @@ WSO2 Enterprise Integrator (EI) version 7.1.0 is the latest release of the WSO2 
 
 ## What's new in this release?
 
-#### Micro Integrator
+#### New in the Micro Integrator
 
 The following features and improvements are available for the <b>Micro Integrator</b> of EI 7.1.0:
 
@@ -20,18 +20,18 @@ The following features and improvements are available for the <b>Micro Integrato
 -   [Environment/System variable support](../../setup/dynamic_server_configurations) for Kubernetes environments
 -   [Enhanced Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface)
 
-#### WSO2 Integration Studio
+#### New in WSO2 Integration Studio
 
 The following features and improvements are available for <b>WSO2 Integration Studio</b> EI 7.1.0:
 
-Improvements to [<b>Connector</b>](../../references/connectors/connectors-overview):
+Improvements to [<b>Connectors</b>](../../references/connectors/connectors-overview):
 
 -   Revamped connector story with improved user experience
 -   Redesigned connector configuration view
 -   New externalizable connection configuration view for connectors
 <!--   Improved CI/CD story with WSO2 Micro Integrator-->
 
-Improvements to [<b>integration project</b>]((../../develop/create-integration-project):
+Improvements to [<b>integration project</b>](../../develop/create-integration-project):
 
 -   Maven multi module support for the integration project
 <!-- -   Embedded maven support -->
@@ -75,7 +75,7 @@ Other improvements:
 -   New 'Getting Started' experience
 <!-- -   New update notification functionality -->
 
-#### Streaming Integrator
+#### New in the Streaming Integrator
 
 The following features and improvements are available for the <b>Streaming Integrator</b> of EI 7.1.0:
 
