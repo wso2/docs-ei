@@ -53,27 +53,18 @@ To stop the Micro Integrator runtime, press Ctrl+C in the command window.
 
 ### Accessing the dashboard
 
-Once you have [started the dashboard server](#starting-the-dashboard-server), you can now access the dashboard:
+Once you have [started the dashboard server](#starting-the-dashboard-server), you can access the dashboard using the following URL:
 
-1. Copy the following URL to your browser to access the dashboard.
+```bash
+https://localhost:9743/dashboard
+```
 
-      ```bash
-      https://localhost:9743/dashboard
-      ```
+!!! Warning
 
-2. Sign in to the dashboard using your credentials.
+     - In a non-production environment (with the self-signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
+     - We have identified issues with the Microsoft Edge browser, which prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, consider switching the browser.
 
-    !!! Warning
-
-        - In a non-production environment (with the self-signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
-        - We have identified issues with the Microsoft Edge browser, which prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, consider switching the browser.
-
-    <img src="../../../assets/img/monitoring-dashboard/login.png">
-
-
-3. If your [Micro Integrator server is started](#starting-the-mi-server), you can now start using the dashboard. 
-
-   See the [Micro Integrator Dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) documentation for more information on how to use the dashboard.
+See the [Micro Integrator Dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) documentation for information on how to sign in and use the dashboard.
 
 ### Stopping the dashboard server
 
