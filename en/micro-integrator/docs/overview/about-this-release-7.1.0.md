@@ -26,8 +26,8 @@ The following features and improvements are available for <b>WSO2 Integration St
 
 Revamped [<b>Connectors</b>](../../references/connectors/connectors-overview) functionality with improved user experience:
 
--   Redesigned connector configuration view
--   New externalizable connection configuration view for connectors
+-   Redesigned connector configuration view.
+-   New externalizable connection configuration view for connectors.
 
 Improved capabilities to support CI/CD with WSO2 Micro Integrator:
 
@@ -50,12 +50,12 @@ Improvements to the [<b>embedded Micro Integrator (MI)</b>](../../develop/using-
 -	Hot deployment capability for the embedded MI.
 -   Capability to configure the embedded Micro Integrator via the tool.
 -   Capability to Run and Debug synapse configurations with MI 1.2.0.
--   View deployed services using the **Runtime Services** view.
--   View and monitor deployed artifacts using the embedded WSO2 EI Monitoring Dashboard.
+-   Capability to view deployed services using the **Runtime Services** view.
+-   Capability to view and monitor deployed artifacts using the **embedded** WSO2 EI Monitoring Dashboard.
 
 Improvements to the [Synapse Unit testing framework](../../develop/creating-unit-test-suite):
 
--   Detailed analysis of unit test failures.
+-   Capability to run detailed analysis of unit test failures.
 -   Capability to test synapse template.
 -   Capability to use HTTP status code and HTTP version assertion.
 -   Capability use JSON and text payload assertion for sequence testing.
