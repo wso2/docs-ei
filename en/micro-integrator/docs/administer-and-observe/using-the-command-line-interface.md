@@ -1,10 +1,12 @@
 # Micro Integrator CLI
 
-The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) and perform various management and administration tasks from the command line. The CLI (as well as the [dashboard](../../administer-and-observe/working-with-monitoring-dashboard)) communicates with the management API of WSO2 Micro Integrator to function.
+The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) from the command line. The dashboard (as well as the [dashboard](../../administer-and-observe/working-with-monitoring-dashboard)) communicates with the management API of WSO2 Micro Integrator to function.
 
-## Installing the CLI
+## Setting up the CLI
 
-1.  To download the CLI, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
+To download the CLI:
+
+1.  Go to [**WSO2 Enterprise Integrator** website](https://wso2.com/integration/) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
 2.  If you are using a UNIX-based operating system (Linux, Solaris, and Mac OS X), be sure to set the `MI_CLI_HOME/bin` folder path as the PATH:
 
     ```bash
@@ -18,16 +20,16 @@ The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed i
     Execute the following command to start the CLI:
 
     ```bash
-    mi
+    ./mi
     ```
 
     The available commands are listed as follows:
 
     ```bash
-    mi is a Command Line Tool for Management of WSO2 Micro Integrator
+    ./mi is a Command Line Tool for Management of WSO2 Micro Integrator
 
     Usage:
-      mi [command]
+      ./mi [command]
 
     Available Commands:
       api              Manage deployed Apis
@@ -69,7 +71,7 @@ The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed i
     mi remote add <server-name> <hostname> <port>
     ```
 
-    Find out more about the `mi remote` option in the [CLI Reference](#mi-remote).
+    Find out more about the `mi remote` option in the [CLI Reference](#remote).
 
 3. **Select MI server**
 
@@ -140,10 +142,10 @@ The following global flags can be used with all the `mi` options and commands.
 
 ### mi
 
-Use `mi` to initialize the CLI tool.
+Use `./mi` to initialize the CLI tool.
 
 ```bash
-mi
+./mi
 ```
 
 ### mi version
@@ -158,14 +160,113 @@ mi version
 
 Use `remote` to manages the remote servers connected to the CLI tool. The CLI can be connected to multiple running Micro Integrator servers, however, you can only log in to one at a time.
 
-Usage
+- Usage
 
-```bash
-mi remote <COMMAND> <ARGUMENTS>
-```
+    ```bash
+    mi remote <COMMAND> <ARGUMENTS>
+    ```
 
-Commands and Arguments
+- Commands
 
+    The following commands are available for for `mi remote`.
+
+    <table style="table-layout: fixed;">
+      <tr>
+        <td>
+          <code>add</code>
+        </td>
+        <td>
+          Adds a Micro Integrator server to the CLI.
+          The following arguments are required: <i>SERVER-NAME</i>, <i>HOST</i>, and <i>API-PORT</i>.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>remove</code>
+        </td>
+        <td>
+          Removes a Micro Integrator server from the CLI. The <i>SERVER-NAME</i> argument is required.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>update</code>
+        </td>
+        <td>
+          Update the host and the management api port of a Micro Integrator server. Specify the <i>HOST</i> and/or <i>API-PORT</i> as arguments.          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>show</code>
+        </td>
+        <td>
+          Shows the Micro Integrator servers connected to the CLI.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>select</code>
+        </td>
+        <td>
+          Selects one Micro Integrator server (from the list that was added the CLI). Specify the <i>SERVER-NAME</i> as an argument.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>login</code>
+        </td>
+        <td>
+          Log in to use the management API of the selected server. You can specify the <i>USERNAME</i> and <i>PASSWORD</i> as arguments. Otherwise, the username and password will be prompted. This should be a valid user that is stored in the Micro Integrator user store.
+        </td>
+      </tr>
+    </table>
+
+- Arguments
+
+    You can use the following arguements with the commands listed above.
+
+    <table>
+      <tr>
+        <td>
+          <i>SERVER-NAME</i>
+        </td>
+        <td>
+          A user-defined name to identify a server instance.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i>HOST</i>
+        </td>
+        <td>
+          The hostname on which the Micro Integrator server is running.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i>API-PORT</i>
+        </td>
+        <td>
+          The port on which the management API of the Micro Integrator server is running. The default port is <b>9164</b>.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i>USER-NAME</i>
+        </td>
+        <td rowspan="2">
+          These arguements are required when you execute the <code>mi remote login</code> command to log in to a Micro Integrator instance. Note that these credentials should be stored in an external user store connected to the Micro Integrator.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i>PASSWORD</i>
+        </td>
+      </tr>
+    </table>
+
+<!--
 ```bash
 add <server-name> <host> <api-port>      Connect a Micro Integrator server to the CLI.
 remove <server-name>                     Remove a Micro Integrator server from the CLI. 
@@ -175,31 +276,32 @@ select <server-name>                 Select one Micro Integrator server to manag
 login                                Log in to use the management API of the selected server (will be prompted for username and password). This should be a valid user that is stored in the Micro Integrator user store.
 login <username> <password>          Log in to use the management API of the selected server (inline username and password).
 ```
+-->
 
-Examples
+- Examples
 
-```bash
-# To add a Micro Integrator
-mi remote add TestServer 192.168.1.15 9164
+    ```bash
+    # To add a Micro Integrator
+    mi remote add TestServer 192.168.1.15 9164
 
-# To remove a Micro Integrator
-mi remote remove TestServer
+    # To remove a Micro Integrator
+    mi remote remove TestServer
 
-# To update a Micro Integrator
-mi remote update TestServer 192.168.1.17 9164
+    # To update a Micro Integrator
+    mi remote update TestServer 192.168.1.17 9164
 
-# To show available Micro Integrators
-mi remote show
+    # To show available Micro Integrators
+    mi remote show
 
-# To select a Micro Integrator
-mi remote select TestServer
+    # To select a Micro Integrator
+    mi remote select TestServer
 
-# login to the current (selected)  Micro Integrator instance
-mi remote login     # will be prompted for username and password
+    # login to the current (selected)  Micro Integrator instance
+    mi remote login     # will be prompted for username and password
 
-# login (with inline username and password)
-mi remote login admin admin
-```
+    # login (with inline username and password)
+    mi remote login admin admin
+    ```
 
 ### mi logs
 
@@ -226,7 +328,7 @@ mi logs show
 
 ### mi log-level
 
-Use `log-level` to manage the logging configurations in a Micro Integrator server.
+Use `log-level` to manage the log4j logs in a Micro Integrator server.
 
 Usage
 
@@ -238,7 +340,7 @@ Commands and Arguments
 
 ```bash
 show [logger-name]                   Show information about a logger.
-update [logger-name] [class-name] [log-level] Update the log level of existing logger or add new logger.  The possible values for log level: DEBUG, INFO, WARN, ERROR, TRACE, FATAL, OFF.
+update [logger-name] [log-level]     Update the log level of a logger. Specify both the logger name and log level as arguements. The possible values for log level: DEBUG, INFO, WARN, ERROR, TRACE, FATAL, OFF.
 ```
 
 Examples
@@ -247,11 +349,8 @@ Examples
 # Show information about a logger
 mi log-level show org-apache-coyote
 
-# Update the log level of an existing logger
+# Update the log level of a logger
 mi log-level update org-apache-coyote DEBUG
-
-# Add a new logger
-mi log-level update synapse-api org.apache.synapse.rest.API DEBUG
 ```
 
 ### mi api
@@ -649,7 +748,7 @@ mi user <COMMAND> <ARGUMENTS> <FLAGS>
 Commands and Arguments
 
 ```bash
-add [username]                           Add new user to the Micro Integrator user store. Specify (as arguments) the user name. You will be prompted to provide password, and whether the admin role should be assigned to the new user. Use 'true' or 'false' for the 'Is an admin [y/N]' argument.
+add [username] [password] [is-admin]     Add new user to the Micro Integrator user store. Specify (as arguments) the user name, password, and whether the admin role should be assigned to the new user. Use 'true' or 'false' for the [is-admin] argument.
 remove [username]                        Remove an existing user by specifying the user name.
 show                                     Show the list of users created in the user store.
 show [username]                          Show details of a specific user that is in the user store.
@@ -666,8 +765,8 @@ Flags
 Examples
 
 ```bash
-# To add a new user. This option is only available for admin users. 
-mi user add userid 
+# To add a new user. This option is only available for admin users. Set the `is-admin` flag to `true` or 'false'.
+mi user add userid password true
 
 # To remove a user
 mi user remove userid
@@ -719,16 +818,16 @@ Examples
  # To encrypt secret and get output on console
  mi secret create
 
- # To encrypt secret and get output to file (stored in the <CLI_HOME>/security folder).
+ # To encrypt secret and get output to file (stored in the <CLI_HOME>/bin/security folder).
  mi secret create file
 
- # To encrypt secret and get output as a .yaml file (stored in the <CLI_HOME>/security folder).
+ # To encrypt secret and get output as a .yaml file (stored in the <CLI_HOME>/bin/security folder).
  mi secret create k8
 
  # To bulk encrypt secrets defined in a properties file.
  mi secret create -f=</file_path>
 
- # To bulk encrypt secretes defined in a properties file and get a .yaml file (stored in the <CLI_HOME>/security folder).
+ # To bulk encrypt secretes defined in a properties file and get a .yaml file (stored in the <CLI_HOME>/bin/security folder).
  mi secret create k8 -f=</file_path>
 ```
 
@@ -749,7 +848,7 @@ count                                    Get transaction count for the current m
 count [year] [month]                     Get transaction count for the specified year and month.
 remote [start] [end] [--path[=<path>]]   Generate transaction report for the specified period and store in the specified location.
 remote [start] [end]                     Generate transaction report for the specified date and store in the current location.
-remote [start] [--path[=<path>]]         Generate transaction report from the specified date upto current date and store in the specified location.
+remote [start] [--path[=<path>]]         Generate transaction report for the specified period and store in the specified location.
 ```
 
 Flags
@@ -761,19 +860,19 @@ Flags
 Examples
 
 ```bash
- # To get the transaction count for the current month
+ # To get the transction count for the current month
  mi transaction count
 
- # To get the transaction count for 2020/05 [YYYY/MM]
+ # To get the transction count for 2020/05 [YYYY/MM]
  mi transaction count 2020 05
 
- # To generate transaction count report with data between 2020-01 and 2020-05 at the specified location
+ # To generate transction count report with data between 2020-01 and 2020-05 at the specified location
  mi transaction report 2020-01 2020-05 --path=</dir_path>
 
  # To generate transaction count report with data from 2020-01 (upto current date) at the specified location
- mi transaction report 2020-01 --path=</dir_path>
+ mi transaction count 2020-01 --path=</dir_path>
 
  # To generate transaction count report at the current location for data between 2020-01 and 2020-05
- mi transaction report 2020-01 2020-05
+ mi transaction count 2020-01 2020-05
 
 ```

@@ -22,15 +22,9 @@ You can use the dashboard to perform the following administration tasks related 
 
     You can view details of users stored in the external user store. If you are logged in to the dashsboard with administrator credentials, you can also add new users, and remove users from the user store.
 
-!!! Warning
-    In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
-
-!!! Warning
-    We have identified issues with Microsoft Edge browser where it prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, please consider switching the browser.
-
 ## Setting up the Dashboard
 
-See the following topics for instructions to install and run the Micro Integrator dashboard:
+See the following topics in the installation guide for instructions on how to install and set up the Micro Integrator and the Dashboard:
 
 <table>
     <tr>
@@ -53,7 +47,7 @@ See the following topics for instructions to install and run the Micro Integrato
 
 ## Signing in to the Dashboard
 
-When the dashboard server is started, you can access the dashboard URL from the following URL: `https://localhost:9743/dashboard/login`
+Once you [set up and start the dashboard](#setting-up-the-dashboard), you can access the dashboard URL from the following URL: `https://localhost:9743/dashboard/login`
   
 1.  Copy the following dashboard URL to your browser:
 
@@ -101,9 +95,16 @@ When the dashboard server is started, you can access the dashboard URL from the 
         </tr>
     </table> 
 
-3.  Click <b>SIGN IN</b> and you are redirected to the home page of the Micro Integrator dashboard.
+    !!! Warning
+
+        - In a non-production environment (with the self-signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
+        - We have identified issues with the Microsoft Edge browser, which prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, consider switching the browser.
+
+3.  Click <b>SIGN IN</b>.
+
+You are redirected to the home page of the Micro Integrator dashboard.
      
-    <img src="../../assets/img/monitoring-dashboard/dashboard-artifact-home.png" width="700">
+<img src="../../assets/img/monitoring-dashboard/dashboard-artifact-home.png" width="700">
 
 ## Using the Dashboard
 
