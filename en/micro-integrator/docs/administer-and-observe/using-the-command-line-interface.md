@@ -4,7 +4,9 @@ The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed i
 
 ## Installing the CLI
 
-1.  To download the CLI, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
+To download the CLI:
+
+1.  Go to [**WSO2 Enterprise Integrator** website](https://wso2.com/integration/) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
 2.  If you are using a UNIX-based operating system (Linux, Solaris, and Mac OS X), be sure to set the `MI_CLI_HOME/bin` folder path as the PATH:
 
     ```bash
