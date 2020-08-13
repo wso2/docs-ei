@@ -29,7 +29,7 @@ See the following topics in the installation guide for instructions on how to in
 <table>
     <tr>
         <td>
-            <a href="../../../setup/installation/install_in_vm_installer">Using the Installer</a>
+            <a href="../../setup/installation/install_in_vm_installer">Using the Installer</a>
         </td>
         <td>
             Download and run the <b>product installer</b> and then follow the instructions to start the Micro Integrator and the dashboard.
@@ -37,7 +37,7 @@ See the following topics in the installation guide for instructions on how to in
     </tr>
     <tr>
         <td>
-            <a href="../../../setup/installation/install_in_vm_binary">Using the Binary</a>
+            <a href="../../setup/installation/install_in_vm_binary">Using the Binary</a>
         </td>
         <td>
             Download the binary distribution of the product, and then follow the instructions to start the Micro Integrator and the dashabord.
