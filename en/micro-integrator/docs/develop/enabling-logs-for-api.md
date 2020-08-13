@@ -11,7 +11,7 @@ Open `MI_HOME/conf/log4j2.properties` file using your favorite text editor to c
 
 Follow the instructions below to enable log4j2 logs for a sample REST API (named `TestAPI`). 
 
-1.  Open up the `log4j2.properties` file (stored in the `MI_HOME/conf` directory. 
+1.  Open up the `log4j2.properties` file (stored in the `MI_HOME/conf` ) directory. 
 2.  Let's define a new appender for the `TestAPI` API by adding the following section to the end of the file (starting in a new line).
 
 	!!! Note
@@ -21,7 +21,7 @@ Follow the instructions below to enable log4j2 logs for a sample REST API (named
 	# API_APPENDER is set to be a DailyRollingFileAppender using a PatternLayout.
 	appender.API_APPENDER.type = RollingFile
 	appender.API_APPENDER.name = API_APPENDER
-	appender.API_APPENDER.fileName = ${sys:carbon.home}/repository/logs/wso2-ei-api.log
+	appender.API_APPENDER.fileName = ${sys:carbon.home}/repository/logs/TestAPI.log
 	appender.API_APPENDER.filePattern = ${sys:carbon.home}/repository/logs/wso2-ei-api-%d{MM-dd-yyyy}.log
 	appender.API_APPENDER.layout.type = PatternLayout
 	appender.API_APPENDER.layout.pattern = TID: [%d] %5p {%c} [%logger] - %m%ex%n
