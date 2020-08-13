@@ -55,12 +55,13 @@ curl -k -X GET http://<HOST_NAME>:<PORT>/health
 ### Sample curl command
 
 ``` java
-curl -k -X GET http://localhost:9090/health
+curl -k -X GET http://localhost:9090/health	
 ```
 
 ### Sample output
 
 ``` java
+{"status":"healthy"}	
 ```
 
 ### Response
@@ -69,7 +70,7 @@ curl -k -X GET http://localhost:9090/health
 <tbody>
 <tr class="odd">
 <th>HTTP Status Code</th>
-<td><p>200 or 404</p>
+<td><p>200</p>
 <p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>

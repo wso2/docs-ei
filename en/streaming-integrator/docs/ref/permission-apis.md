@@ -58,9 +58,7 @@ curl -X POST https://localhost:9443/permissions/ -H 'content-type: application/j
 
 ### Sample output
 
-```java
-
-```
+Returns the permission ID for the particular permission string
 
 ### Response
 
@@ -134,7 +132,7 @@ curl -X GET https://localhost:9443/permissions/app/MON
 ### Sample output
 
 ```java
-
+[{"permissionID": "f0c74633-2f07-3896-841a-154afb0c29da","permissionString": "MON.consumer"}]
 ```
 
 ### Response
@@ -198,19 +196,19 @@ curl -X GET https://localhost:9443/permissions/app/MON
 ### curl command syntax
 
 ```java
-
+curl --location --request GET 'https://<host>:port/permissions/auth/<permission-string-id>/<user>'
 ```
 
 ### Sample curl command
 
 ```java
-curl -X GET https://localhost:9443/permissions/auth/8dc31fec-8364-3082-9f88-c7ca7d979873/admin
+curl --location --request GET 'https://localhost:9443/permissions/auth/f0c74633-2f07-3896-841a-154afb0c29da/admin'
 ```
 
 ### Sample output
 
 ```java
-
+{ "code": 4, "type": "ok", "message": "Checking permission for app:f0c74633-2f07-3896-841a-154afb0c29da role: admin successful" }
 ```
 
 ### Response
@@ -283,6 +281,14 @@ curl -X DELETE https://localhost:9443/permissions/e9687c6f-b5b2-3216-b3bd-82e7a8
 ```
 
 ### Sample output
+
+```
+{ 
+  "code": 4, 
+  "type": "ok", 
+  "message": "Deleted permission with ID: f0c74633-2f07-3896-841a-154afb0c29da" 
+}
+```
 
 ### Response
 
@@ -431,7 +437,11 @@ curl -X POST https://localhost:9443/permissions/revoke/8dc31fec-8364-3082-9f88-c
 ### Sample output
 
 ```java
-
+{ 
+  "code": 4, 
+  "type": "ok", 
+  "message": "Permission revoke for permissionID e9687c6f-b5b2-3216-b3bd-82e7a8e14367 success." 
+}
 ```
 
 ### Response
@@ -494,19 +504,23 @@ curl -X POST https://localhost:9443/permissions/revoke/8dc31fec-8364-3082-9f88-c
 ### curl command syntax
 
 ```java
-
+curl -X POST 'https://<host>:<port>/permissions/roles/<user>?action=revoke' -H 'content-type: application/json' -d ' { "appName":"<Siddhi-app-name>", "permissionString":"<permission-string>"}' -k
 ```
 
 ### Sample curl command
 
 ```java
-curl -X POST 'https://localhost:9443/permissions/roles/admin?action=revoke' -H 'content-type: application/json' -d ' { "appName":"MON", "permissionString":"MON.manager"}'
+curl -X POST 'https://localhost:9444/permissions/roles/admin?action=revoke' -H 'content-type: application/json' -d ' { "appName":"MON", "permissionString":"MON.consumer"}' -k
 ```
 
 ### Sample output
 
 ```yaml
-
+{
+  "code":4,
+  "type":"ok",
+  "message":"Action, revoke for permission, Permission[appName\u003dMON, permissionString\u003dMON.consumer] successful."
+}
 ```
 
 ### Response

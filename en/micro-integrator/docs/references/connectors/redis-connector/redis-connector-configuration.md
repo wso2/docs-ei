@@ -22,16 +22,3 @@ To configure the Redis connector, download the following client libraries from t
 4. You can interact with Redis using the built-in client. In the command line, navigate to the location you installed Redis. Enter `redis-cli`.
 
    <img src="../../../../assets/img/connectors/redis-client.png" title="Redis Client" width="600" alt="Redis Client"/> 
-   
-## Set up the Stockquote back-end service 
-
-1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
-
-2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
-
-   ```
-   java -jar stockquote_service.jar
-   ```
-3. You will see the following window after starting the back-end server.   
-
-   <img src="../../../../assets/img/connectors/redis-client.png" title="Redis Client" width="600" alt="Redis Client"/>  

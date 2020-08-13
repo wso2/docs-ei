@@ -2,6 +2,10 @@
 
 This section describes how to configure WSO2 Micro Integrator to connect with RabbitMQ.
 
+## Setting up RabbitMQ
+
+Please refer [RabbitMQ Deployment](deploy-rabbitMQ.md) 
+
 ## Enabling the RabbitMQ transport 
 
 Uncomment the following parameters in the deployment.toml file (stored in the `MI_HOME/conf` directory).
@@ -26,12 +30,12 @@ Add the following parameters under the RabbitMQ configuration section to the dep
 [[transport.rabbitmq.listener]]
 parameter.ssl_enable = true
 parameter.ssl_version = "SSL"
-parameter.keystore_file_name ="$ref{keystore.tls.file_name}"
-parameter.keystore_type = "$ref{keystore.tls.type}"
-parameter.keystore_password = "$ref{keystore.tls.password}"
-parameter.truststore_file_name ="$ref{truststore.file_name}"
-parameter.truststore_type = "$ref{truststore.type}"
-parameter.truststore_password = "$ref{truststore.password}"
+parameter.keystore_location ="repository/resources/security/wso2carbon.jks"
+parameter.keystore_type = "JKS"
+parameter.keystore_password = "wso2carbon"
+parameter.truststore_location ="repository/resources/security/client-truststore.jks"
+parameter.truststore_type = "JKS"
+parameter.truststore_password = "wso2carbon"
 ```
 See the complete list of server-level configurations for the [RabbitMQ Listener](../../../references/config-catalog/#rabbitmq-listener) and [RabbitMQ Sender](../../../references/config-catalog/#rabbitmq-sender).
 

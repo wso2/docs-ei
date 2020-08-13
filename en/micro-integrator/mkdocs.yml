@@ -51,6 +51,7 @@ nav:
       - 'Quick Start Guide': 'overview/quick-start-guide.md'
       - 'Developing your First Integration': 'develop/integration-development-kickstart.md'
       - 'Key Concepts': 'overview/key-concepts.md'
+      - 'About this Release': 'overview/about-this-release-7.1.0.md'
     - Learn:
       - 'Overview': 'use-cases/learn-overview.md'
       - Integration Use Cases:
@@ -207,7 +208,6 @@ nav:
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
-      - 'Connectors': 'use-cases/connectors.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - WSO2 Integration Studio:
@@ -272,13 +272,13 @@ nav:
         - 'Endpoint Tracing': 'develop/endpoint-trace-logs.md'
       - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
-        - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
+        - 'Injecting Parameters': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
         - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
         - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
         - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
     - Install and Setup:
-      - 'Overview': 'setup/micro_integrator_deployment_overview.md'
+      - 'Overview': 'setup/install_and_setup_overview.md'
       - Install:
         - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
         - Installing the Micro Integrator:
@@ -309,15 +309,6 @@ nav:
           - 'Health Check': 'setup/deployment/health_check.md'
           - 'Changing Default Ports': 'setup/changing_default_ports.md'
           - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md' 
-          - Performance Tuning:
-            - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
-            - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
-            - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
-            - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
-            - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
-            - 'Tuning the VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
-            - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
-            - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
         - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Set Up:
@@ -331,7 +322,7 @@ nav:
             - 'Oracle Database': 'setup/databases/setting-up-Oracle.md'
             - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
             - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
-          - 'File-Based Registry': 'setup/deployment/file_based_registry.md'
+          - 'File-Based Registry': 'setup/deployment/file_based_registry.md'       
         - Security:
           - Setting up Keystores:
             - 'Creating New Keystores': 'setup/security/creating_keystores.md'
@@ -346,9 +337,18 @@ nav:
             - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Securing the Management API' : 'setup/security/securing_management_api.md'
           - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
+        - Performance:
+          - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
+          - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
+          - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
+          - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
+          - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
+          - 'Tuning the VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
+          - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
+          - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'        
         - Message Brokers:
           - AMQP (RabbitMQ):
-            - 'RabbitMQ Deployment Recommendations': 'setup/brokers/deploy-rabbitMQ.md'
+            - 'Deploying RabbitMQ': 'setup/brokers/deploy-rabbitMQ.md'
             - 'Connecting to RabbitMQ': 'setup/brokers/configure-with-rabbitMQ.md'
           - JMS:
             - 'Connecting to ActiveMQ': 'setup/brokers/configure-with-ActiveMQ.md'
@@ -365,7 +365,9 @@ nav:
             - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
           - 'Kafka' : 'setup/feature_configs/configuring-kafka.md'
         - 'Transports': 'setup/transport_configurations/configuring-transports.md'
+        - 'Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
         - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
+        - 'Message Relay' : 'setup/message_builders_formatters/message-relay.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
@@ -392,6 +394,7 @@ nav:
         - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
         - 'When to Use Connectors' : 'references/connectors/why-connectors.md'
         - 'Connector Usage Guidelines' : 'references/connectors/connector-usage.md'
+        - 'Connector Developer Guidelines' : 'references/connectors/develop-connectors.md'
         - Amazon DynamoDB Connector:
           - 'Amazon DynamoDB Overview': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-overview.md'
           - 'Setting up Amazon DynamoDB': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'

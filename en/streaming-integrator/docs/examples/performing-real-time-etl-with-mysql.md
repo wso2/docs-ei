@@ -1,4 +1,4 @@
-# Performing Real-time ETL with MySQL
+# Performing Real-time Change Data Capture with MySQL
 
 ## Introduction
 

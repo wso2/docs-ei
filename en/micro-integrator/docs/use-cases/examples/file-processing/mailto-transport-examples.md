@@ -144,12 +144,20 @@ Create the artifacts:
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 4. Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). Change the registry path of the proxy accordingly. 
 5. Set up the back-end service.
-   - Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+   - Download the [back-end service](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/axis2Server.zip)
    
-   - Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
-       ```bash
-       java -jar stockquote_service.jar
-       ```
+   - Extract the downloaded zip file.
+   - Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
+   - Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
+   
+      ```bash tab='On MacOS/Linux/CentOS'
+      sh axis2server.sh
+      ```
+          
+      ```bash tab='On Windows'
+      axis2server.bat
+      ```
+      
 6. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator. 
 
 Send a plain/text e-mail (Make sure you switch to **Plain text** **mode** when you are composing the email) with the following body and any custom Subject from your mail account to the mail address `synapse.demo.1@gmail.com`. 

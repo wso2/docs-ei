@@ -50,22 +50,6 @@ internal_http_api_enable = true
 internal_https_api_port = 9154 
 ```
 
-### JMX monitoring ports
-
-WSO2 Micro Integrator uses TCP ports to monitor a running server instance
-using a JMX client such as JConsole. 
-The JMX ports (RMIRegistryPort and the RMIServerPort) can be configured in the `deployment.toml ` file (stored in the `<MI_HOME>/conf` directory) as shown below. 
-
-```toml
-[monitoring.jmx]
-rmi_hostname = localhost
-rmi_registry_port = 9999
-rmi_server_port = 11111
-```
-
--   9999: RMIRegistry port. Used to monitor Carbon remotely.
--   11111: RMIServer port. Used along with the RMIRegistry port when the server is monitored from a JMX client that is behind a firewall.
-
 ### Random ports
 
 Certain ports are randomly opened during server startup. This is due to
