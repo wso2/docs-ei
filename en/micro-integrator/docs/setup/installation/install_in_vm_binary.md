@@ -56,7 +56,7 @@ To stop the Micro Integrator runtime, press Ctrl+C in the command window.
 Once you have [started the dashboard server](#starting-the-dashboard-server), you can access the dashboard using the following URL:
 
 ```bash
-https://192.168.1.2:9743/dashboard
+https://localhost:9743/dashboard
 ```
 
 !!! Warning
