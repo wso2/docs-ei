@@ -2,6 +2,9 @@
 
 WSO2 Enterprise Integrator (EI) version 7.1.0 is the latest release of the WSO2 EI 7.x family, which provides a powerful solution for integrating systems.
 
+!!! Tip
+	If you are already using a previous version of WSO2 EI and you want to migrate to this release, see the instructions in the [migrating guide](../../setup/install_and_setup_overview/#migrate).
+
 ## What's new in this release?
 
 ### New in the Micro Integrator
@@ -9,7 +12,7 @@ WSO2 Enterprise Integrator (EI) version 7.1.0 is the latest release of the WSO2 
 The following features and improvements are available for the <b>Micro Integrator</b> of EI 7.1.0:
 
 -   [Task coordination](../../setup/deployment/deploying_wso2_ei/#cluster-coordination) for distributed deployments.
--   Capability of viewing and configuring logs without accessing the file system.
+-   Capability of viewing and configuring logs (without accessing the file system) via the Micro Integrator's [CLI](../../administer-and-observe/using-the-command-line-interface) or the [management API](../../administer-and-observe/working-with-management-api).
 -   User management with [external user stores](../../setup/install_and_setup_overview/#data-stores).
 -   [Readiness probe](../../setup/deployment/health_check) for health checking.
 -   Enhanced experience for [handling security](../../setup/security/encrypting_plain_text) (Ciphertool, Securevault, Kubernetes Secrets).
@@ -34,31 +37,31 @@ Improved capabilities to support CI/CD with WSO2 Micro Integrator:
 !!! Note
     For more information, read about the [<b>integration project</b>](../../develop/create-integration-project) and the [<b>Docker project</b>](../../develop/create-docker-project).
 
--   Capability to create the integration solution as a **Maven Multi Module** project.
+-   Create the integration solution as a **Maven Multi Module** project.
 -   Embedded maven support to easily build and push projects.
 -   Maven profiles allowing you to build individual integration modules.
--   Capability to import/export maven project (integration project).
--   Capability to import/export projects with/without copying to the workspace.
--   Capability to import existing modules into maven multi module project (integration project).
--   Capability to build and push Docker exporter using maven.
--   Capability to push images to a remote repository via the Docker exporter.
--   Capability to encrypt secrets in Docker/Kubernetes modules of the integration project by using the **Cipher Tool**.
+-   Import/export maven project (integration project).
+-   Import/export projects with/without copying to the workspace.
+-   Import existing modules into maven multi module project (integration project).
+-   Build and push Docker exporter using maven.
+-   Push images to a remote repository via the Docker exporter.
+-   Encrypt secrets in Docker/Kubernetes modules of the integration project by using the **Cipher Tool**.
 
 Improvements to the [<b>embedded Micro Integrator (MI)</b>](../../develop/using-embedded-micro-integrator):
 
 -	WSO2 MI 1.2.0 as the embedded server runtime.
 -	Hot deployment capability for the embedded MI.
--   Capability to configure the embedded Micro Integrator via the tool.
--   Capability to Run and Debug synapse configurations with MI 1.2.0.
--   Capability to view deployed services using the **Runtime Services** view.
--   Capability to view and monitor deployed artifacts using the **embedded** WSO2 EI Monitoring Dashboard.
+-   Configure the embedded Micro Integrator via the tool.
+-   Run and Debug synapse configurations with MI 1.2.0.
+-   View deployed services using the **Runtime Services** view.
+-   View and monitor deployed artifacts using the **embedded** WSO2 EI Monitoring Dashboard.
 
 Improvements to the [Synapse Unit testing framework](../../develop/creating-unit-test-suite):
 
--   Capability to run detailed analysis of unit test failures.
--   Capability to test synapse template.
--   Capability to use HTTP status code and HTTP version assertion.
--   Capability use JSON and text payload assertion for sequence testing.
+-   Run detailed analysis of unit test failures.
+-   Test synapse templates.
+-   Use HTTP status code and HTTP version assertion.
+-   Use JSON and text payload assertion for sequence testing.
 
 Improvements to <b>artifact development</b>:
 
