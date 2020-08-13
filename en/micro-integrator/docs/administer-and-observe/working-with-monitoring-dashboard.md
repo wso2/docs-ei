@@ -28,32 +28,34 @@ You can use the dashboard to perform the following administration tasks related 
 !!! Warning
     We have identified issues with Microsoft Edge browser where it prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, please consider switching the browser.
 
-## Installing the Dashboard
+## Setting up the Dashboard
 
-To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
+See the following topics for instructions to install and run the Micro Integrator dashboard:
 
-## Starting the Dashboard
+<table>
+    <tr>
+        <td>
+            <a href="../../../setup/installation/install_in_vm_installer">Using the Installer</a>
+        </td>
+        <td>
+            Download and run the <b>product installer</b> and then follow the instructions to start the Micro Integrator and the dashboard.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="../../../setup/installation/install_in_vm_binary">Using the Binary</a>
+        </td>
+        <td>
+            Download the binary distribution of the product, and then follow the instructions to start the Micro Integrator and the dashabord.
+        </td>
+    </tr>
+</table>
 
-1.  Extract the downloaded ZIP file. This will be the `<MI_DASHBOARD_HOME>` directory.
-2.  Open a terminal, navigate to the `<MI_DASHBOARD_HOME>/bin` directory, and execute the following command to start the dashboard server:
+## Signing in to the Dashboard
 
-    ```bash tab='On Linux/MacOS'
-    sh dashboard.sh
-    ```
-
-    ```bash tab='On Windows'
-    dashboard.bat
-    ```
-
-    The dashboard server will start as follows:
-
-    ```bash
-    Web app 'dashboard' is available at 'https://localhost:9743/dashboard/login'
-    ```
-
-## Sign in to the Dashboard
+When the dashboard server is started, you can access the dashboard URL from the following URL: `https://localhost:9743/dashboard/login`
   
-1.  Copy the dashboard URL to your browser.
+1.  Copy the following dashboard URL to your browser:
 
     ```bash
     https://localhost:9743/dashboard/login
