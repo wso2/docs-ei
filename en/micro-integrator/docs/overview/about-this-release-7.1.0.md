@@ -98,4 +98,4 @@ The following features and improvements are available for the <b>Streaming Integ
 -   [WSO2 Integration Studio - Known Issues](https://github.com/wso2/devstudio-tooling-ei/issues)
 
 -   [Streaming Integrator - Known Issues](https://github.com/wso2/streaming-integrator/issues)
--   [Streaming Integrator Tooling - Known Issues](https://github.com/wso2/streaming-integrator/issues?q=is%3Aissue+is%3Aclosed)
+-   [Streaming Integrator Tooling - Known Issues](https://github.com/wso2/streaming-integrator/issues?q=is%3Aissue+label%3Atooling+is%3Aopen)
