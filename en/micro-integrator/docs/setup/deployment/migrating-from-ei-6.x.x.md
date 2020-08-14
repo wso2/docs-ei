@@ -811,6 +811,104 @@ Given below are the most critical XML configuraton files in the ESB profile of E
     
     Find more [parameters](../../../references/config-catalog/#message-mediation).
 
+??? note "passthru-http.properties"
+	
+	-	HTTP/S worker pool properties
+
+	    ```xml tab='XML configuration'
+		worker_pool_size_core=400
+        worker_pool_size_max=400
+        worker_pool_queue_length=-1
+		```
+
+		```toml tab='TOML configuration'
+		[transport.http]
+	    core_worker_pool_size = 400         # inferred default: 400
+        max_worker_pool_size = 400          # inferred default: 400
+        worker_pool_queue_length = -1
+		```
+
+    	Find more [parameters](../../../references/config-catalog/#https-transport-non-blocking-mode).
+
+    -	Preserve headers
+    
+        ```xml tab='XML configuration'
+        http.user.agent.preserve=false
+        http.server.preserve=true
+        http.headers.preserve=Content-Type
+        ```
+    
+        ```toml tab='TOML configuration'
+        [transport.http]
+        preserve_http_user_agent = false
+        preserve_http_server_name = true
+        preserve_http_headers = ["Content-Type"]
+        ```
+
+        Find more [parameters](../../../references/config-catalog/#https-transport-non-blocking-mode).
+
+??? note "jndi.properties"
+	
+	-	JMS connection factory
+
+	    ```xml tab='XML configuration'
+		connectionfactory.QueueConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'
+        connectionfactory.TopicConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'
+		```
+
+		```toml tab='TOML configuration'
+		[transport.jndi.connection_factories]
+        'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+        'connectionfactory.TopicConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+		```
+
+    	Find more [parameters](../../../references/config-catalog/#jndi-connection-factories).
+
+    -	JMS queue
+    
+        ```xml tab='XML configuration'
+        queue.JMSMS=JMSMS
+        ```
+
+        ```toml tab='TOML configuration'
+        [transport.jndi.queue]
+        JMSMS = "JMSMS"
+        ```
+
+        Find more [parameters](../../../references/config-catalog/#jndi-connection-factories).
+
+    -	JMS topic
+        
+        ```xml tab='XML configuration'
+        topic.MyTopic = example.MyTopic
+        ```
+
+        ```toml tab='TOML configuration'
+        [transport.jndi.topic]
+        MyTopic = "example.MyTopic"
+        ```
+
+        Find more [parameters](../../../references/config-catalog/#jndi-connection-factories).
+
+??? note "tasks-config.xml"
+	
+	    ```xml tab='XML configuration'
+		<taskServerCount>1</taskServerCount>
+        <defaultLocationResolver>
+            <locationResolverClass>org.wso2.carbon.ntask.core.impl.RoundRobinTaskLocationResolver</locationResolverClass>
+        </defaultLocationResolver>		
+        ```
+
+		```toml tab='TOML configuration'
+		[task_handling]
+        resolver_class = "org.wso2.micro.integrator.ntask.coordination.task.resolver.RoundRobinResolver"
+        
+        [[task_resolver]]
+        task_server_count = "3"
+        ```
+
+    	Find more [parameters](../../../setup/deployment/deploying_wso2_ei).
+
 The complete list of TOML configurations for the Micro Integrator are listed in the [product configuration catalog](../../../references/config-catalog).
 
 **Migrating Log4j configurations**
