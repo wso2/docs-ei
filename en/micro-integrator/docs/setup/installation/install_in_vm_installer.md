@@ -136,7 +136,7 @@ See the [Micro Integrator Dashboard](../../../administer-and-observe/working-wit
    <tbody>
       <tr class="odd">
          <td>Mac OS</td>
-         <td><code>/Library/WSO2/EnterpriseIntegrator/7.1.0/micro-integrator</code></td>
+         <td><code>/Library/WSO2/wso2ei/7.1.0/micro-integrator</code></td>
       </tr>
       <tr class="even">
          <td>Windows</td>
@@ -171,7 +171,7 @@ See the [Micro Integrator Dashboard](../../../administer-and-observe/working-wit
    <tbody>
       <tr class="odd">
          <td>Mac OS</td>
-         <td><code>/Library/WSO2/EnterpriseIntegrator/7.1.0/micro-integrator-dashboard</code></td>
+         <td><code>/Library/WSO2/wso2ei/7.1.0/micro-integrator-dashboard</code></td>
       </tr>
       <tr class="even">
          <td>Windows</td>
@@ -204,7 +204,7 @@ If you used the **installer** to install WSO2 Enterprise Integrator, you can uni
 <td>Mac OS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command as the root user:</p>
-  <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.1.0/uninstall.sh</code>
+  <code>sudo bash /Library/WSO2/wso2ei/7.1.0/uninstall.sh</code>
 </div>
 </div>
 </div></td>
