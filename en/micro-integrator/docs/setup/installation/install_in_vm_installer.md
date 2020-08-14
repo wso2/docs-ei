@@ -27,7 +27,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
 -  To <b>start</b> the Micro Integrator as a <b>service</b>:
       
       ```bash tab='On MacOS/Linux'
-      sudo wso2mi-service start
+      sudo wso2mi start
       ```
 
       ```bash tab='On CentOS'
@@ -53,7 +53,7 @@ On **Windows**
 -  To <b>stop</b> the Micro Integrator service:
       
       ```bash tab='On MacOS/Linux'
-      sudo wso2mi-service stop
+      sudo wso2mi stop
       ```
 
       ```bash tab='On CentOS'
@@ -77,7 +77,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
 -  To <b>start</b> the dashboard as a <b>service</b>:
       
       ```bash tab='On MacOS/Linux'
-      sudo wso2mi-dashboard-service start
+      sudo wso2mi-dashboard start
       ```
       
       ```bash tab='On CentOS'
@@ -109,7 +109,7 @@ See the [Micro Integrator Dashboard](../../../administer-and-observe/working-wit
 -  To <b>stop</b> the dashboard service:
       
       ```bash tab='On MacOS/Linux'
-      sudo wso2mi-dashboard-service stop
+      sudo wso2mi-dashboard stop
       ```
 
       ```bash tab='On CentOS'
