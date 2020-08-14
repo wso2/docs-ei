@@ -78,12 +78,8 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
 
 -  To <b>start</b> the dashboard as a <b>standalone application</b>:
 
-      ```bash tab='On MacOS/CentOS'
+      ```bash
       sudo wso2mi-dashboard
-      ```
-
-      ```bash tab='On Linux'
-      sudo service wso2mi-dashboard
       ```
    
 -  To <b>start</b> the dashboard as a <b>service</b>:
