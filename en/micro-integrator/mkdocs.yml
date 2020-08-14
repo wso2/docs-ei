@@ -51,6 +51,7 @@ nav:
       - 'Quick Start Guide': 'overview/quick-start-guide.md'
       - 'Developing your First Integration': 'develop/integration-development-kickstart.md'
       - 'Key Concepts': 'overview/key-concepts.md'
+      - 'About this Release': 'overview/about-this-release-7.1.0.md'
     - Learn:
       - 'Overview': 'use-cases/learn-overview.md'
       - Integration Use Cases:
