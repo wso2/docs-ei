@@ -256,7 +256,6 @@ nav:
     - 'Streaming Integration REST API Guide':
       - 'REST API Guide Overview': 'ref/rest-api-guide-overview.md'
       - 'Siddhi Application Management APIs': 'ref/siddhi-Application-Management-APIs.md'
-      - 'Event Simulation APIs': 'ref/event-simulation-apis.md'
       - 'Permission APIs': 'ref/permission-apis.md'
       - 'Business Rules APIs': 'ref/business-Rules-APIs.md'
       - 'Store APIs': 'ref/store-APIs.md'
