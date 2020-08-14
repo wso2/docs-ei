@@ -36,7 +36,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
 
 On **Windows**
 
--  Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Micro Integrator**. This will open a terminal and start the relevant profile.
+-  Go to **Start Menu -> WSO2 -> Enterprise Integrator 7.1.0 Micro Integrator**. This will open a terminal and start the Micro Integrator.
 
 !!! Tip
     If you have **installed the product using the installer** and you want to manually run the product startup script from the `MI_HOME/bin` directory, you need to use the following command:
@@ -86,7 +86,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
 
 On **Windows**
 
--  Go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator -> Dashboard**. This will open a terminal and start the dashboard.
+-  Go to **Start Menu -> WSO2 -> Enterprise Integrator 7.1.0 Micro Integrator Monitoring Dashboard**. This will open a terminal and start the dashboard.
 
 ### Accessing the dashboard
 
@@ -211,7 +211,7 @@ If you used the **installer** to install WSO2 Enterprise Integrator, you can uni
 </tr>
 <tr class="even">
 <td>Windows</td>
-<td>Go to <strong>Start Menu -&gt; Programs -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.1.0</strong> or search <strong>Uninstall Enterprise Integrator 7.1.0</strong> and click the shortcut icon. This will uninstall the product from your computer.</td>
+<td>Go to <strong>Start Menu -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.1.0</strong> or search <strong>Uninstall Enterprise Integrator 7.1.0</strong> and click the shortcut icon. This will uninstall the product from your computer.</td>
 </tr>
 <tr class="odd">
 <td>CentOS</td>
