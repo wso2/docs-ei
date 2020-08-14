@@ -81,7 +81,7 @@ Copy the JKS files from the `<MI_HOME>/repository/resources/security` folder in 
 Copy the configurations in the `deployment.toml` file of the Micro Integrator of EI 7.0.0 (such as database, transport, datasource configurations, etc.) to the `deployment.toml` file of the Micro Integrator in EI 7.1.0.
 
 !!! Info
-If you have done any customization to the <MI_HOME>/conf/internal-apis.xml file, you have to move that to the <MI_HOME>/conf/deployment.toml file.
+If you have done any customization to the `<MI_HOME>/conf/internal-apis.xml` file, you have to move that to the `<MI_HOME>/conf/deployment.toml` file.
 Please refer 
 [Management API Token Handler Parameters](../../../references/config-catalog/#management-api-token-handler).
 [Management API Token Store Parameters](../../../references/config-catalog/#management-api-token-store).
