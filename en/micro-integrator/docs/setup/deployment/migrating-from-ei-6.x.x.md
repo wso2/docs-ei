@@ -892,22 +892,22 @@ Given below are the most critical XML configuraton files in the ESB profile of E
 
 ??? note "tasks-config.xml"
 	
-	    ```xml tab='XML configuration'
-		<taskServerCount>1</taskServerCount>
-        <defaultLocationResolver>
-            <locationResolverClass>org.wso2.carbon.ntask.core.impl.RoundRobinTaskLocationResolver</locationResolverClass>
-        </defaultLocationResolver>		
-        ```
+    ```xml tab='XML configuration'
+	<taskServerCount>1</taskServerCount>
+    <defaultLocationResolver>
+        <locationResolverClass>org.wso2.carbon.ntask.core.impl.RoundRobinTaskLocationResolver</locationResolverClass>
+    </defaultLocationResolver>		
+    ```
 
-		```toml tab='TOML configuration'
-		[task_handling]
-        resolver_class = "org.wso2.micro.integrator.ntask.coordination.task.resolver.RoundRobinResolver"
-        
-        [[task_resolver]]
-        task_server_count = "3"
-        ```
+	```toml tab='TOML configuration'
+	[task_handling]
+    resolver_class = "org.wso2.micro.integrator.ntask.coordination.task.resolver.RoundRobinResolver"
+    
+    [[task_resolver]]
+    task_server_count = "3"
+    ```
 
-    	Find more [parameters](../../../setup/deployment/deploying_wso2_ei).
+	Find more [parameters](../../../setup/deployment/deploying_wso2_ei).
 
 The complete list of TOML configurations for the Micro Integrator are listed in the [product configuration catalog](../../../references/config-catalog).
 
