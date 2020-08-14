@@ -30,7 +30,7 @@ template: templates/versions.html
                 <a id="current-version-documentation-link">Documentation</a>
             </td>
             <td>
-                <a id="current-version-release-notes-link">Release Notes</a>
+                <a href="https://ei.docs.wso2.com/en/latest/micro-integrator/overview/about-this-release-7.1.0/">Release Notes</a>
             </td>
         </tr>
     </tbody>
