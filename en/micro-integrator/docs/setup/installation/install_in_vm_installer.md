@@ -26,12 +26,16 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
    
 -  To <b>start</b> the Micro Integrator as a <b>service</b>:
       
-      ```bash tab='On MacOS/Linux'
+      ```bash tab='On MacOS'
       sudo wso2mi-service start
       ```
 
-      ```bash tab='On CentOS'
+      ```bash tab='On Linux'
       sudo service wso2mi start
+      ```
+
+      ```bash tab='On Centos'
+      sudo wso2mi start
       ```
 
 On **Windows**
@@ -52,12 +56,16 @@ On **Windows**
 -  To <b>stop</b> the Micro Integrator standalone application, go to the terminal and press <i>Ctrl+C</i>.
 -  To <b>stop</b> the Micro Integrator service:
       
-      ```bash tab='On MacOS/Linux'
+      ```bash tab='On MacOS'
       sudo wso2mi-service stop
       ```
 
-      ```bash tab='On CentOS'
+      ```bash tab='On Linux'
       sudo service wso2mi stop
+      ```
+
+      ```bash tab='On CentOS'
+      sudo wso2mi stop
       ```
 
 ## Running the MI dashboard
@@ -70,18 +78,26 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
 
 -  To <b>start</b> the dashboard as a <b>standalone application</b>:
 
-      ```bash
+      ```bash tab='On MacOS/CentOS'
       sudo wso2mi-dashboard
+      ```
+
+      ```bash tab='On Linux'
+      sudo service wso2mi-dashboard
       ```
    
 -  To <b>start</b> the dashboard as a <b>service</b>:
       
-      ```bash tab='On MacOS/Linux'
+      ```bash tab='On MacOS'
       sudo wso2mi-dashboard-service start
+      ```
+
+      ```bash tab='On Linux'
+      sudo service wso2mi-dashboard start
       ```
       
       ```bash tab='On CentOS'
-      sudo service wso2mi-dashboard start
+      sudo wso2mi-dashboard start
       ```
 
 On **Windows**
@@ -108,12 +124,16 @@ See the [Micro Integrator Dashboard](../../../administer-and-observe/working-wit
 -  To <b>stop</b> the dashboard standalone application, go to the terminal and press <i>Ctrl+C</i>.
 -  To <b>stop</b> the dashboard service:
       
-      ```bash tab='On MacOS/Linux'
+      ```bash tab='On MacOS'
       sudo wso2mi-dashboard-service stop
       ```
 
-      ```bash tab='On CentOS'
+      ```bash tab='On Linux'
       sudo service wso2mi-dashboard stop
+      ```
+
+      ```bash tab='On CentOS'
+      sudo wso2mi-dashboard stop
       ```
 
 ## Accessing the HOME directory
@@ -136,14 +156,14 @@ See the [Micro Integrator Dashboard](../../../administer-and-observe/working-wit
    <tbody>
       <tr class="odd">
          <td>Mac OS</td>
-         <td><code>/Library/WSO2/EnterpriseIntegrator/7.1.0/micro-integrator</code></td>
+         <td><code>/Library/WSO2/wso2ei/7.1.0/micro-integrator</code></td>
       </tr>
       <tr class="even">
          <td>Windows</td>
          <td><code>C:\Program Files\WSO2\Enterprise Integrator\7.1.0\micro-integrator</code></td>
       </tr>
       <tr class="odd">
-         <td>Ubuntu</td>
+         <td>Linux</td>
          <td><code>/usr/lib/wso2/wso2ei/7.1.0/micro-integrator</code></td>
       </tr>
       <tr class="even">
@@ -171,14 +191,14 @@ See the [Micro Integrator Dashboard](../../../administer-and-observe/working-wit
    <tbody>
       <tr class="odd">
          <td>Mac OS</td>
-         <td><code>/Library/WSO2/EnterpriseIntegrator/7.1.0/micro-integrator-dashboard</code></td>
+         <td><code>/Library/WSO2/wso2ei/7.1.0/micro-integrator-dashboard</code></td>
       </tr>
       <tr class="even">
          <td>Windows</td>
          <td><code>C:\Program Files\WSO2\Enterprise Integrator\7.1.0\micro-integrator-dashboard</code></td>
       </tr>
       <tr class="odd">
-         <td>Ubuntu</td>
+         <td>Linux</td>
          <td><code>/usr/lib/wso2/wso2ei/7.1.0/micro-integrator-dashboard</code></td>
       </tr>
       <tr class="even">
@@ -204,7 +224,7 @@ If you used the **installer** to install WSO2 Enterprise Integrator, you can uni
 <td>Mac OS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command as the root user:</p>
-  <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.1.0/uninstall.sh</code>
+  <code>sudo bash /Library/WSO2/wso2ei/7.1.0/uninstall.sh</code>
 </div>
 </div>
 </div></td>
@@ -214,10 +234,19 @@ If you used the **installer** to install WSO2 Enterprise Integrator, you can uni
 <td>Go to <strong>Start Menu -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.1.0</strong> or search <strong>Uninstall Enterprise Integrator 7.1.0</strong> and click the shortcut icon. This will uninstall the product from your computer.</td>
 </tr>
 <tr class="odd">
+<td>Linux</td>
+<td><div class="content-wrapper">
+<p>Open a terminal and run the following command:</p>
+<code>sudo dpkg --purge wso2ei-7.1.0</code>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="even">
 <td>CentOS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command:</p>
-<code>sudo yum remove wso2ei-7.1.0</code>
+<code>sudo rpm -e wso2ei-7.1.0-1.el7.x86_64</code>
 </div>
 </div>
 </div></td>
