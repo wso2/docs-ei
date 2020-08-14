@@ -80,6 +80,16 @@ Copy the JKS files from the `<MI_HOME>/repository/resources/security` folder in 
 ### Migrating configurations
 Copy the configurations in the `deployment.toml` file of the Micro Integrator of EI 7.0.0 (such as database, transport, datasource configurations, etc.) to the `deployment.toml` file of the Micro Integrator in EI 7.1.0.
 
+!!! Info
+If you have done any customization to the `<MI_HOME>/conf/internal-apis.xml` file, you have to move that to the `<MI_HOME>/conf/deployment.toml` file.
+Please refer 
+[Management API Token Handler Parameters](../../../references/config-catalog/#management-api-token-handler).
+[Management API Token Store Parameters](../../../references/config-catalog/#management-api-token-store).
+[Management API Token Parameters](../../../references/config-catalog/#management-api-token).
+[Management API - Default User Store Parameters](../../../references/config-catalog/#management-api-default-user-store).
+[Management API - Users Parameters](../../../references/config-catalog/#management-api-users).
+[Management API - CORS Parameters](../../../references/config-catalog/#management-api-cors).
+
 ### Migrating encrypted passwords
 
 In version 7.0.0, **secure vault** was used to store sensitive information used in **synapse** configurations and the **cipher tool** was used for sensitive **server** configurations. In EI 7.1.0, all the sensitive information (in server configurations as well as synapse configuration) can simply be encrypted and stored using the cipher tool.
