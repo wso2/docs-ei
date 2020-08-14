@@ -813,7 +813,7 @@ Given below are the most critical XML configuraton files in the ESB profile of E
 
 ??? note "passthru-http.properties"
 	
-	-	worker pool properties
+	-	HTTP/S worker pool properties
 
 	    ```xml tab='XML configuration'
 		worker_pool_size_core=400
@@ -830,7 +830,7 @@ Given below are the most critical XML configuraton files in the ESB profile of E
 
     	Find more [parameters](../../../references/config-catalog/#https-transport-non-blocking-mode).
 
-    -	preserve headers configs
+    -	Preserve headers
     
         ```xml tab='XML configuration'
         http.user.agent.preserve=false
@@ -849,7 +849,7 @@ Given below are the most critical XML configuraton files in the ESB profile of E
 
 ??? note "jndi.properties"
 	
-	-	connection factory config
+	-	JMS connection factory
 
 	    ```xml tab='XML configuration'
 		connectionfactory.QueueConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'
@@ -864,7 +864,7 @@ Given below are the most critical XML configuraton files in the ESB profile of E
 
     	Find more [parameters](../../../references/config-catalog/#jndi-connection-factories).
 
-    -	queue config
+    -	JMS queue
     
         ```xml tab='XML configuration'
         queue.JMSMS=JMSMS
@@ -877,7 +877,7 @@ Given below are the most critical XML configuraton files in the ESB profile of E
 
         Find more [parameters](../../../references/config-catalog/#jndi-connection-factories).
 
-    -	topic config
+    -	JMS topic
         
         ```xml tab='XML configuration'
         topic.MyTopic = example.MyTopic
