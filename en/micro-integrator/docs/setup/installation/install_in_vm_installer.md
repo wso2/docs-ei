@@ -31,7 +31,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       ```
 
       ```bash tab='On CentOS'
-      sudo service wso2mi start
+      sudo wso2mi start
       ```
 
 On **Windows**
@@ -57,7 +57,7 @@ On **Windows**
       ```
 
       ```bash tab='On CentOS'
-      sudo service wso2mi stop
+      sudo wso2mi stop
       ```
 
 ## Running the MI dashboard
@@ -81,7 +81,7 @@ On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given
       ```
       
       ```bash tab='On CentOS'
-      sudo service wso2mi-dashboard start
+      sudo wso2mi-dashboard start
       ```
 
 On **Windows**
@@ -113,7 +113,7 @@ See the [Micro Integrator Dashboard](../../../administer-and-observe/working-wit
       ```
 
       ```bash tab='On CentOS'
-      sudo service wso2mi-dashboard stop
+      sudo wso2mi-dashboard stop
       ```
 
 ## Accessing the HOME directory
