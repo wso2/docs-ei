@@ -69,9 +69,11 @@ Once you have created a Unit Test Suite in WSO2 Integration Studio, you can find
         -   **Assertion Type**: Type of the assertion.
         -   **Actual Expression**: Expression that you want to assert.
             -   **$body**: assert the payload<br/>
-            -   **$ctx:"<property_name>"**: assert synapse property
-            -   **$axis2:"<property_name>"**: assert axis2 property
-            -   **$trp:"<property_name>"**: assert transport property
+            -   **$ctx:<property_name>**: assert synapse property
+            -   **$axis2:<property_name>**: assert axis2 property
+            -   **$trp:<property_name>**: assert transport property
+            -   **$statusCode**: assert status code of the service
+            -   **$httpVersion**: assert http version of the service
                 
         -   **Expected Value**: Expected value for the actual expression. Type can be a **JSON**, **XML** or a **plain text**.  
         -   **Error Message**: Error message to print when the assertion is failed.
@@ -96,6 +98,19 @@ The **Unit Test Run Configuration** wizard opens. Select one of server run confi
     -   **Server Remote Host**: Host IP of the remote unit testing server.
     -   **Server Test Port**: Port of the remote unit testing server.
     
+    !!! Note 
+            You can pass the following parameters when start the Micro Integrator in order to start the Unit Testing server.
+            
+            ```bash tab='On MacOS/Linux/CentOS'
+               sh micro-integrator.sh -DsynapseTest
+            ```
+          
+            ```bash tab='On Windows'
+               micro-integrator.bat -DsynapseTest 
+            ```
+            
+    To change starting port of the unit testing server, you can use `-DsynapseTestPort=<PORT>` system property with above command. Here, the default port is 9008. 
+            
 3. Click **Run** to start the unit test. It will start the unit testing server in the console and prints the summary report for the given unit test suite(s) using the response from the unit testing server.
 
     ![Output Console](../assets/img/create_project/synapse_unit_test/console-log.png)    
