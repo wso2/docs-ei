@@ -123,7 +123,7 @@ You can refer an encrypted secret in your server configurations by using the `$s
     You can use encrypted [static secrets](#static-secrets) as well as [dynamic secrets](#dynamic-secrets).
 
 ```toml
-[keystore.tls]
+[keystore.primary]
 password = "$secret{server_secret}"
 alias = "$secret{server_secret}"
 key_password = "$secret{server_secret}"  

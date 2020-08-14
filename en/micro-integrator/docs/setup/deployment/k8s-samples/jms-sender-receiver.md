@@ -212,7 +212,7 @@ Finally, the created Maven Multi Module project should look as follows:
     [server]
     hostname = "localhost"
     
-    [keystore.tls]
+    [keystore.primary]
     file_name = "wso2carbon.jks"
     password = "wso2carbon"
     alias = "wso2carbon"

@@ -17,7 +17,8 @@ The **default** `deployment.toml` file of the Micro Integrator is as follows:
 [server]
 hostname = "localhost"
 
-[keystore.tls]
+
+[keystore.tls]       # IMPORTANT! Be sure to change this heading to [keystore.primary] when you use the product.
 file_name = "wso2carbon.jks"
 password = "wso2carbon"
 alias = "wso2carbon"
