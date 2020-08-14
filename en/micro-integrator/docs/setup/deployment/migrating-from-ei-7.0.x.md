@@ -81,14 +81,16 @@ Copy the JKS files from the `<MI_HOME>/repository/resources/security` folder in 
 Copy the configurations in the `deployment.toml` file of the Micro Integrator of EI 7.0.0 (such as database, transport, datasource configurations, etc.) to the `deployment.toml` file of the Micro Integrator in EI 7.1.0.
 
 !!! Info
-If you have done any customization to the `<MI_HOME>/conf/internal-apis.xml` file, you have to move that to the `<MI_HOME>/conf/deployment.toml` file.
-Please refer 
-[Management API Token Handler Parameters](../../../references/config-catalog/#management-api-token-handler).
-[Management API Token Store Parameters](../../../references/config-catalog/#management-api-token-store).
-[Management API Token Parameters](../../../references/config-catalog/#management-api-token).
-[Management API - Default User Store Parameters](../../../references/config-catalog/#management-api-default-user-store).
-[Management API - Users Parameters](../../../references/config-catalog/#management-api-users).
-[Management API - CORS Parameters](../../../references/config-catalog/#management-api-cors).
+	If you have done any customization to the `<MI_HOME>/conf/internal-apis.xml` file in the Micro Integrator of EI 7.0.0, you have to move them to the `deployment.toml` file in EI 7.1.0. 
+
+	See the following topics for the TOML configurations that correspond to your configurations in the `internal-apis.xml` file:
+	
+	-	[Management API Token Handler Parameters](../../../references/config-catalog/#management-api-token-handler).
+	-	[Management API Token Store Parameters](../../../references/config-catalog/#management-api-token-store).
+	-	[Management API Token Parameters](../../../references/config-catalog/#management-api-token).
+	-	[Management API - Default User Store Parameters](../../../references/config-catalog/#management-api-default-user-store).
+	-	[Management API - Users Parameters](../../../references/config-catalog/#management-api-users).
+	-	[Management API - CORS Parameters](../../../references/config-catalog/#management-api-cors).
 
 ### Migrating encrypted passwords
 
