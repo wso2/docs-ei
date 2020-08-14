@@ -96,7 +96,7 @@ The following properties are required when [creating a RabbitMQ inbound endpiont
 ### Optional Properties
 
 The following optional properties can be configured when [creating an RabbitMQ inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
-Note that the optional properties related to defining a **queue** should contain the prefix `rabbitmq.queue.optional.` prefix,
+Note that the optional properties related to defining a **queue** should contain the `rabbitmq.queue.optional.` prefix,
 and the optional properties related to defining an **exchange** should contain the `rabbitmq.exchange.optional.` prefix.
 
 <table>
@@ -173,7 +173,7 @@ and the optional properties related to defining an **exchange** should contain t
          </td>
          <td>
          The prefetch message count. This many messaged will be prefetched before the application sees it.
-         If not set 0 will be used as the default value.
+         If a value is not set, 0 will be used as the default value.
          </td>
       </tr>
       <tr>
@@ -276,7 +276,7 @@ and the optional properties related to defining an **exchange** should contain t
          </td>
          <td>
             The maximum number of attempts a message is allowed to be dead lettered. 
-            Once the count exceeds, the message will be discardedor published to the given 
+            Once the count exceeds, the message will be discarded or published to the given 
             'rabbitmq.message.error.queue.routing.key'.
          </td>
       </tr>
