@@ -1,13 +1,13 @@
 # Using Docker Secrets in Synapse Configurations
 
-WSO2 Micro Integrator comes with a built-in secret repository as a part of its [secure vault implementation](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/security/encrypting_plain_text/) by default. In addition to this, the Micro Integrator also provides built-in support for Docker secrets and Kubernetes secrets for your containerized deployments.
+WSO2 Micro Integrator comes with a built-in secret repository as a part of its [secure vault implementation](../../../setup/security/encrypting_plain_text/) by default. In addition to this, the Micro Integrator also provides built-in support for Docker secrets and Kubernetes secrets for your containerized deployments.
 
 Managing sensitive information in a Docker environment can be achieved using two simple steps:
 
 1.	Adding the secret to your Docker environment.
 2.	Accessing the secret from within your synapse configurations.
 
-There are two ways to add secrets to a Docker environment: Create the Docker secret directly inside the environment, or store the secrets in a flat file and add the file to the environment.
+There are two ways to add secrets to a Docker environment: Creating the Docker secret directly inside the environment, or storing the secrets in a flat file and adding the file to the environment.
 
 ## Creating a secret in the Docker environment
 
@@ -18,9 +18,9 @@ Follow the steps given below to directly add the required secrets to the Docker 
 You can create a Docker secret in the Docker environment by using the following command:
 
 !!! Tip
-		Note that in order to use the Docker secrets feature, you must have the swarm mode enabled in your environment. If it is not, you can enable it by using the command `docker swarm init`.
+		To use Docker secrets, you must have the `swarm` mode enabled in your environment. If it is not already enabled, you can enable it by using the `docker swarm init` command.
 
-You can use the docker secret create command as given below to create a secret in your docker environment.
+You can use the `docker secret create` command as given below to create a secret in your docker environment.
 
 ```bash
 echo "dockersecret123456" | docker secret create testdockersecret -
@@ -49,15 +49,16 @@ Given below is a sample synapse configuration that accesses and prints the Docke
 
 ## Adding a secret from a flat file
 
-Instead of creating Docker secrets directly in the Docker environment, you can add secrets to the Docker environment by adding a flat file that contains the secret.
+Instead of creating Docker secrets directly in the Docker environment, you can add secrets to the Docker environment by adding a flat file that contains the secrets.
 
 ### Step 1: Adding the flat file
 
 Follow the steps given below.
 
-1.	Create a flat file with the secret. Here, the file name is the alias (e.g. testsecret) of the secret and the file content should be the secret itself.
-2.	Add the created file to the **Resources** folder in your Docker Exporter module inside the Integration Project.
-3.	Add the following line to the Dockerfile in your Docker Exporter module. This copies the secret file to the `<MI_HOME>` directory so that, it will be available in your Docker Image.
+1.	Create a flat file with the secret. Note that the file name is the alias (e.g. `testsecret`) of the secret and the file content should be the secret itself.
+2.	Add the created file to the **Resources** folder in your Docker Exporter module inside the integration project.
+3.	Add the following line to the Dockerfile in your Docker Exporter module. This copies the secret file to the `<MI_HOME>` directory so that it will be available in your Docker Image.
+
 ```bash
 COPY Resources/FLAT_FILE_NAME ${WSO2_SERVER_HOME}/
 ```
@@ -96,8 +97,9 @@ Once the secrets are added to the environment, you need to enable <b>secure vaul
 3.  When you build the Docker image from your Docker Exporter, the secrets will get enabled in the environment.
 
 !!! Tip
-     For Docker secrets to be effective, you can create a docker service that includes the image you created in the above step by creating a docker-compose.yml file and then deploying it to the docker swarm. 
-     Given below is a sample docker-compose.yml that can be used to create a simple docker service orchestration.
+     For Docker secrets to be effective, you can create a docker service that includes the image you created in the above step. This can be done by creating a `docker-compose.yml` file and deploying it to the docker swarm. 
+     
+     Given below is a sample `docker-compose.yml` file that can be used to create a simple docker service orchestration.
      ```bash
      version: '3.3'
      services:
@@ -112,10 +114,13 @@ Once the secrets are added to the environment, you need to enable <b>secure vaul
        testdockersecret:
          external: true
      ```
-     Upon creating docker-compose.yml you can deploy the services using the docker stack deploy command as follows. 
+     
+     Upon creating the `docker-compose.yml` file, you can deploy the services using the `docker stack deploy` command as follows:
+ 
      ```bash
      docker stack deploy -c <PATH_TO_DOCKER_COMPOSE_FILE> <STACK_NAME>
      ```
+
      See the [Docker guide](https://docs.docker.com/engine/swarm/secrets/#defining-and-using-secrets-in-compose-files) for more information on defining and using Docker secrets.
 
 ## Configuring the secrets' location
