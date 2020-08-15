@@ -2,7 +2,7 @@
 
 The Micro Integrator of WSO2 Enterprise Integrator 7.0 introduces TOML-based product configurations. All the server-level configurations of your Micro Integrator instance can be applied using a single configuration file, which is the `deployment.toml` file (stored in the `MI_HOME/conf` directory).
 
-The complete list of configuration parameters that you can use in the `deployment.toml` file are listed below along with descriptions. You can also see the documentation on product [installation and setup](../../setup/installation/install_in_vm) for details on applying product configurations to your Micro Integrator deployment.
+The complete list of configuration parameters that you can use in the `deployment.toml` file are listed below along with descriptions. You can also see the documentation on product [installation and setup](../../setup/install_and_setup_overview) for details on applying product configurations to your Micro Integrator deployment.
 
 ## Instructions for use
 
