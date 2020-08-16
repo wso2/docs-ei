@@ -749,9 +749,9 @@ Commands and Arguments
 ```bash
 count                                    Get transaction count for the current month.
 count [year] [month]                     Get transaction count for the specified year and month.
-remote [start] [end] [--path[=<path>]]   Generate transaction report for the specified period and store in the specified location.
-remote [start] [end]                     Generate transaction report for the specified date and store in the current location.
-remote [start] [--path[=<path>]]         Generate transaction report from the specified date upto current date and store in the specified location.
+report [start] [end] [--path[=<path>]]   Generate transaction report for the specified period and store in the specified location.
+report [start] [end]                     Generate transaction report for the specified date and store in the current location.
+report [start] [--path[=<path>]]         Generate transaction report from the specified date upto current date and store in the specified location.
 ```
 
 Flags
