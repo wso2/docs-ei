@@ -968,7 +968,7 @@ The management API has multiple resources to provide information regarding the d
 	**Example**:
 
   	```bash tab='Request'
-  	curl -X GET "https://localhost:9164/management/transactions" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
+  	curl -X GET "https://localhost:9164/management/transactions/count" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
   	```
 
   	```bash tab='Response'
@@ -983,10 +983,10 @@ The management API has multiple resources to provide information regarding the d
 
 	**Description**: Retrieves the transaction count for the specified year and month.
 
-        **Example**:
+    **Example**:
 
   	```bash tab='Request'
-  	curl -X GET "https://localhost:9164/management/transactions?year=2020&month=5" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
+  	curl -X GET "https://localhost:9164/management/transactions/count?year=2020&month=5" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
   	```
 
   	```bash tab='Response'
