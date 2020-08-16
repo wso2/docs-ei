@@ -73,7 +73,7 @@ Dynamic secrets are specified in configurations as environment variables, system
 
 ## Step 2: Running the Cipher Tool
 
-Runnign the Cipher Tool will first encrypt any [static secrets](#static-secrets) defined in the `[secrets]` section, and then enable all the secrets (static as aswell as dynamic) in the environment.
+Running the Cipher Tool will first encrypt any [static secrets](#static-secrets) defined in the `[secrets]` section, and then enable all the secrets (static as well as dynamic) in the environment.
 
 ### In a VM environment
 
