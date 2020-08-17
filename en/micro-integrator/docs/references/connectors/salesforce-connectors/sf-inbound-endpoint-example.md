@@ -118,5 +118,5 @@ Now that you have configured the Salesforce Inbound Endpoint, use the following 
    ```   
 ## What's next
    
-* You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* You can deploy and run your project on Docker or Kubernetes. See the instructions in [Running the Micro Integrator on Containers](../../../../setup/installation/run_in_containers).
 * To customize this example for your own scenario, see [Salesforce Inbound Endpoint Reference](sf-inbound-endpoint-reference-configuration.md) documentation for all operation details of the connector.
