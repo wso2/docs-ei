@@ -19,7 +19,7 @@ $ helm upgrade <RELEASE_NAME> wso2/kubernetes-pipeline --version 1.0.0 -f values
 **<RELEASE\_NAME\>** should be replaced with the release name provided
 when the pipeline is installed initially.
 
-Configuration changes occur which will affect the Jenkins
+Configuration changes occur that will affect the Jenkins
 deployment, some of which include:
 
   * Changes to the private Docker repository
@@ -28,7 +28,7 @@ deployment, some of which include:
 
   * Changes to the chart source repository
 
-In these cases, the **Jenkins pod would be restarted for these
+In these cases, the **Jenkins pod is restarted for these
 configurations to be reflected**.
 
 Following are some advanced configurations that could be done to
@@ -36,7 +36,7 @@ customize and secure the pipeline tools.
 
 ## Change Domain
 
-To customize the domain name override the host values as shown in the
+To customize the domain name, override the host values as shown in the
 example below.
 
 ``` yml
