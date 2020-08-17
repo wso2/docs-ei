@@ -100,15 +100,15 @@ the `MI_HOME/conf/` directory) and add the following:
 
 ```toml
 [[management_api.authorization_handler.resources]]
-path = "/user"
+path = "/users"
 
 [[management_api.authorization_handler.resources]]
 path = "/apis"
 ```
 
 !!! Note
-    You need to redefine the `/user` resource in cases where you need to customize the resources that need
-    authorization. Failing to do so will remove authorization from the `/user` resource.
+    You need to redefine the `/users` resource in cases where you need to customize the resources that need
+    authorization. Failing to do so will remove authorization from the `/users` resource.
 
 ## Configuring CORS
 
