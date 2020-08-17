@@ -139,5 +139,5 @@ Now WSO2 EI will start listening to the data changes of `CDC_CUSTOM` table.
 > **Note**: You can do any type of advanced integration using the rich WSO2 EI mediator catalog, not just logging. 
 
 ## What's Next
-* You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* You can deploy and run your project on Docker or Kubernetes. See the instructions in [Running the Micro Integrator on Containers](../../../../setup/installation/run_in_containers).
 * To customize this example for your own scenario, see [DB Event Inbound Endpoint Configuration](db-event-inbound-endpoint-config.md) documentation for all configuration options of the endpoint.
