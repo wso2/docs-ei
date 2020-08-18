@@ -10,7 +10,7 @@ following pages.
 2.  [Testing The Pipeline
     Environment](/setup/deployment/k8s-pipeline/testing-the-pipeline-environment/)
 
-Test cases are available in the chart source repository under a
+Test cases are available in the [chart source repository](https://github.com/wso2-incubator/cicd-sample-chart-mi.) under a
 directory named `tests`. This guide demonstrates how you can add test
 cases.
 
