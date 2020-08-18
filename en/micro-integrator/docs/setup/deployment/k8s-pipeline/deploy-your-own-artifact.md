@@ -1,7 +1,7 @@
 # Deploy Your Own Artifact
 1.  Fork the [CICD sample](https://github.com/wso2-incubator/cicd-sample-docker-mi) repository that contains a [Maven
     Multi-Module
-    project](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/create-multi-maven-project/).
+    project](/develop/create-integration-project/).
 
 2.  Update the repositories in the  [sample values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
     used in the  [Quick Start Guide](/setup/deployment/k8s-pipeline/quick-start-guide/) to
