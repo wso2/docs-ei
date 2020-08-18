@@ -19,7 +19,7 @@ directory named `tests`.
     following command.
     
     ``` xml
-    $ git clone https://github.com/<ORGANIZATION_NAME>/cicd-sample-chart-mi.git
+    $ git clone https://github.com/[git-username]/cicd-sample-chart-mi.git
     ```
 
     
