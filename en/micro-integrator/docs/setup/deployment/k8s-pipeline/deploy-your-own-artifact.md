@@ -1,5 +1,5 @@
 # Deploy Your Own Artifact
-1.  Fork the [CICD sample](https://github.com/wso2-incubator/cicd-sample-docker-mi) repository which contains a [Maven
+1.  Fork the [CICD sample](https://github.com/wso2-incubator/cicd-sample-docker-mi) repository that contains a [Maven
     Multi-Module
     project](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/create-multi-maven-project/).
 
