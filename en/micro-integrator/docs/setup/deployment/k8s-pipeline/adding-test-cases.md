@@ -31,8 +31,8 @@ directory named `tests`.
     
     This script in the test.sh file checks if the server has
     successfully started by performing health checks on Micro Integrator
-    endpoints. If the desired response is any of the provided
-    endpoints, are not met, the script throws a non-zero exit code
+    endpoints. If the endpoints does not provide the desired response(s)
+    the script would throw a non-zero exit code
     causing the test to fail.
 
 4.  Uncomment the commented code block and remove the last line in the
