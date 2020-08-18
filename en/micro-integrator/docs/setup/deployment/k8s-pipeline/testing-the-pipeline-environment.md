@@ -56,7 +56,7 @@ You will get the following response: {"Hello":"World"}
 
 ```
 You have deployed WSO2 Micro Integrator into your Development
-environment\! For more information on using WSO2 Micro Integrator, please take a look
+environment! For more information on using WSO2 Micro Integrator, please take a look
 at our [documentation.](/overview/introduction/)
 
 ## Logging
