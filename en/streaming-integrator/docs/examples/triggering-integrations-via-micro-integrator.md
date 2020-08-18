@@ -81,7 +81,6 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
 
      This query applies a time batch window to the `InputStream` stream so that events within each minute is considered a separate subset to be calculations in the query are applied. The minutes are considered in a tumbling manner because it is a batch window. Then the `avg()` function is applied to the `amount` attribute of the input stream to derive the average production amount. The results are then inserted into an inferred stream named `AVGStream`.
 
-
     b. To filter events from the `AVGStream` stream where the average production is greater then 100, add a query named `FilterExcessProduction` as follows.
 
         ```
@@ -172,6 +171,11 @@ After doing the required configurations in the Streaming Integrator, let's confi
     ```
 
     This configuration has a configuration parameter to start the gRPC server, and specifies the default sequence to inject messages accordingly.
+    
+    !!! info
+        Currently, WSO2 Integration Studio does not support GRPC Inbound Endpoint. This capability will be available in a future [release](https://github.com/wso2/devstudio-tooling-ei/issues/1238). 
+        For now, you need to create the inbound endpoint manually as an XML file.
+
 
 2. Deploy the following sequence by saving it as `inSeq.xml` file in the `<MI_Home>/repository/deployment/server/synapse-configs/default/sequences` directory.
 
