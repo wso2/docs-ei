@@ -4,7 +4,7 @@
 
 In this tutorial, lets look at how the Streaming Integrator generates an alert based on the events received, and how that particular alert can trigger an integration flow in the Micro Integrator, and get a response back to the Streaming Integrator for further processing.
 
-To understand this consider a scenario where the Streaming Integrator receives production data from a factory, and triggers an integration flow if it detects a per minute production average that exceeds 100.
+To understand this, consider a scenario where the Streaming Integrator receives production data from a factory, and triggers an integration flow if it detects a per minute production average that exceeds 100.
 
 
 ## Configuring the Streaming Integrator
@@ -172,6 +172,10 @@ After doing the required configurations in the Streaming Integrator, let's confi
     ```
 
     This configuration has a configuration parameter to start the gRPC server, and specifies the default sequence to inject messages accordingly.
+
+    !!! info
+        Currently, WSO2 Integration Studio does not support GRPC Inbound Endpoint. This capability will be available in a future [release](https://github.com/wso2/devstudio-tooling-ei/issues/1238). 
+        For now, you need to create the inbound endpoint manually as an XML file.
 
 2. Deploy the following sequence by saving it as `inSeq.xml` file in the `<MI_Home>/repository/deployment/server/synapse-configs/default/sequences` directory.
 
