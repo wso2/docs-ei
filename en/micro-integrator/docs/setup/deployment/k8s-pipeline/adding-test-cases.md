@@ -23,13 +23,11 @@ directory named `tests`.
     ```
 
     
-   Replace the `<ORGANIZATION_NAME>` tag with the name of your GitHub
-    organization.
+   Replace the `<ORGANIZATION_NAME>` tag with the name of your GitHub organization.
 
-3.  In the sample chart repository, observe the sample test script
-    provided in Navigate to 
-    [cicd-sample-chart-mi/tests](https://github.com/wso2-incubator/cicd-sample-chart-mi) and
-    click **test.sh.**
+3.  In the sample chart repository,click on 
+    [test](https://github.com/wso2-incubator/cicd-sample-chart-mi) directory and
+     thereafter open the **test.sh** file
     
     This script in the test.sh file checks if the server has
     successfully started by performing health checks on Micro Integrator
