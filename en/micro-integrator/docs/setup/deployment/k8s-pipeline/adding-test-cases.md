@@ -23,7 +23,7 @@ directory named `tests`.
     ```
 
     
-   Replace the `<ORGANIZATION_NAME>` tag with the name of your GitHub organization.
+   Replace the `[git-username]` tag with the name of your GitHub username.
 
 3.  In the sample chart repository,click on 
     [test](https://github.com/wso2-incubator/cicd-sample-chart-mi) directory and
