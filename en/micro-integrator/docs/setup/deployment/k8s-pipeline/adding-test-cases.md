@@ -1,8 +1,7 @@
 # Adding test cases
 
 ## Add your own test case to the Kubernetes Pipeline
-
-This document assumes that you have completed the instructions in the
+This guide demonstrates how you can add test cases.Further, the guide assumes that you have completed the instructions in the
 following pages.
 
 1.  [Quick Start Guide](/setup/deployment/k8s-pipeline/quick-start-guide/)
@@ -11,8 +10,7 @@ following pages.
     Environment](/setup/deployment/k8s-pipeline/testing-the-pipeline-environment/)
 
 Test cases are available in the [chart source repository](https://github.com/wso2-incubator/cicd-sample-chart-mi.) under a
-directory named `tests`. This guide demonstrates how you can add test
-cases.
+directory named `tests`. 
 
 1.  Create a fork of the [sample chart source
     repository](https://github.com/wso2-incubator/cicd-sample-chart-mi).
