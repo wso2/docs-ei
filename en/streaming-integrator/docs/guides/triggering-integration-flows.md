@@ -7,7 +7,7 @@ Once the Streaming Integrator processes streaming data and generates an output, 
 
 ## Triggering integration via Streaming Integrator as fire and forget manner
 
-In order to allow the STreaming Integrator to trigger an integration flow in the Micro Integrator, you need to do the following:
+In order to allow the Streaming Integrator to trigger an integration flow in the Micro Integrator, you need to do the following:
 
 - Design a Siddhi application with a `grpc-call` sink that allows an output event to be generated as a request that is sent to the Micro Integrator.
 
