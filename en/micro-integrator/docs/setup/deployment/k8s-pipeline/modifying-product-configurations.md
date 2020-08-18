@@ -19,10 +19,10 @@ Source Repository](https://github.com/wso2-incubator/cicd-sample-chart-mi).
 Create a clone of the forked chart source repository as follows.
     
    ``` xml
-    $ git clone https://github.com/<ORGANIZATION_NAME>/cicd-sample-chart-mi.git
+    $ git clone https://github.com/[git-username]/cicd-sample-chart-mi.git
     
    ```
-Replace the **<ORGANIZATION\_NAME\>** tag with the name of your GitHub organization.
+Replace the `[git-username]` tag with the name of your GitHub username.
 
 2.  Apply overridden configurations as environment variables. 
     
@@ -54,7 +54,7 @@ Replace the **<ORGANIZATION\_NAME\>** tag with the name of your GitHub organiz
             customChart: false
             name: micro-integrator
             version: 1.2.0-1
-            repo: 'https://github.com/<ORGANIZATION_NAME>/cicd-sample-chart-mi'
+            repo: 'https://github.com/[git-username]/cicd-sample-chart-mi'
         ```
     
     3.  Upgrade the Helm chart with the command below, providing the

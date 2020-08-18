@@ -5,7 +5,7 @@
 
 2.  Update the repositories in the  [sample values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
     used in the  [Quick Start Guide](/setup/deployment/k8s-pipeline/quick-start-guide/) to
-    include the forked repository in place of `<ORGANIZATION_NAME>` as
+    include the forked repository in place of `[git-username]` as
     highlighted below.
     
     ``` xml
@@ -26,7 +26,7 @@
             deployment: wso2microIntegrator
             customImage:
               baseImage: 'wso2/wso2mi:1.2.0'
-              dockerfileGitRepo: 'https://github.com/<ORGANIZATION_NAME>/cicd-sample-docker-mi'
+              dockerfileGitRepo: 'https://github.com/[git-username]/cicd-sample-docker-mi'
     ```
 
 3.  Upgrade the Helm chart with the command below.
@@ -54,11 +54,10 @@
 5.  Create a clone of the forked artifact source repository as follows:
 
     ``` xml
-    $ git clone https://github.com/<ORGANIZATION_NAME>/cicd-sample-docker-mi.git
+    $ git clone https://github.com/[git-username]/cicd-sample-docker-mi.git
     ```
     
-    Replace the **<ORGANIZATION_NAME\>** tag with the name of your
-    GitHub organization.
+    Replace the `[git-username]` tag with the name of your GitHub username.
 
 6.  Modify the Proxy service located at
     **cicd-sample-docker-mi > helloworld/src/main/synapse-config/proxy-services/HelloWorld.xml** to

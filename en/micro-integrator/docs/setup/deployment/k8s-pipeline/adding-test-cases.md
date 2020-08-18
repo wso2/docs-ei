@@ -71,7 +71,7 @@ directory named `tests`.
           customChart: true
           name: micro-integrator
           version: 1.2.0-1
-          repo: 'https://github.com/<ORGANIZATION_NAME>/cicd-sample-chart-mi'
+          repo: 'https://github.com/[git-username]/cicd-sample-chart-mi'
     ```
 
 6.  Upgrade the Helm chart with the command below, providing the
