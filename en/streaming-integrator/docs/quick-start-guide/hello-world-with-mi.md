@@ -70,7 +70,6 @@ To create and deploy Siddhi application that triggers an integration flow, and t
            | **User Name**   | `admin`                          |
            | **Password**    | `admin`                          |
 
-
         ![Add New Server](../images/getting-si-run-with-mi/add-new-server.png)
 
         Then click **Add**.

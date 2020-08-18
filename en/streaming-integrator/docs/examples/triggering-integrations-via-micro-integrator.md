@@ -81,7 +81,6 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
 
      This query applies a time batch window to the `InputStream` stream so that events within each minute is considered a separate subset to be calculations in the query are applied. The minutes are considered in a tumbling manner because it is a batch window. Then the `avg()` function is applied to the `amount` attribute of the input stream to derive the average production amount. The results are then inserted into an inferred stream named `AVGStream`.
 
-
     b. To filter events from the `AVGStream` stream where the average production is greater then 100, add a query named `FilterExcessProduction` as follows.
 
         ```
@@ -90,9 +89,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
         select symbol, avgAmount
         insert into FooStream;
         ```
-
       Here, the `avgAmount > 100` filter is applied to filter only events that report an average production amount greater than 100. The filtered events are inserted into the `FooStream` stream.
-
 
     c. To select all the responses from the Micro Integrator to be logged, add a new query named `LogResponseEvents`
 
