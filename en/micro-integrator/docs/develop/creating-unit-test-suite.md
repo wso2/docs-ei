@@ -101,7 +101,7 @@ Run the Unit Test Suite(s) in the unit testing server of the embedded Micro Inte
     -   **Executable Path**: Path to the unit testing server.
     -   **Server Test Port**: Port of the unit testing server.
     
-    **Remote Server Configuration*
+    **Remote Server Configuration**
 
     !!! Note 
         **Before you begin**
