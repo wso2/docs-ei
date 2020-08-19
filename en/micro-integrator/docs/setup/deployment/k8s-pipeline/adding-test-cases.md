@@ -1,7 +1,10 @@
 # Adding test cases
 
 ## Add your own test case to the Kubernetes Pipeline
-This guide demonstrates how you can add test cases.Further, the guide assumes that you have completed the instructions in the
+Testing your pipeline is a particularly important step in developing a competent data processing solution.
+Often it is faster and simpler to perform local unit testing on your pipeline code than to debug a pipeline’s remote execution. 
+
+This guide assumes that you have completed the instructions in the
 following pages.
 
 1.  [Quick Start Guide](/setup/deployment/k8s-pipeline/quick-start-guide/)
