@@ -82,36 +82,47 @@ Once you have created a Unit Test Suite in WSO2 Integration Studio, you can find
     
 ## Run Unit Test Suites
 
-You can run the created Unit Test Suites using the unit testing server that is included in the embedded Micro Integrator of WSO2 Integration Studio. Right-click the **test** directory and click **Run Unit Test** to run all the unit test suites at once, or right-click the particular unit test suite and click **Run Unit Test** to run a selected unit test suite.
+Run the Unit Test Suite(s) in the unit testing server of the embedded Micro Integrator or a remote unit testing server. 
 
-![Run Unit Test Suite](../assets/img/create_project/synapse_unit_test/run-test.png)
+1.  Right-click the **test** directory and click **Run Unit Test** to run all the unit test suites at once. Alternatively, right-click the particular unit test suite and click **Run Unit Test** to run a selected unit test suite.
 
-The **Unit Test Run Configuration** wizard opens. Select one of server run configuration method you want to proceed with Unit Test.
+    ![Run Unit Test Suite](../assets/img/create_project/synapse_unit_test/run-test.png)
 
-![Run Configuration](../assets/img/create_project/synapse_unit_test/run-configuration.png)
+    The **Unit Test Run Configuration** wizard opens. 
 
-1.  **Local Server Configuration**: Run the Unit Test Suite(s) in embedded unit testing Server in Micro Integrator or local unit testing server.
+2.  Select the specific unit testing server (embedded server or remote server) to run the tests.
+
+    ![Run Configuration](../assets/img/create_project/synapse_unit_test/run-configuration.png)
+
+    **Local Server Configuration**
+
+    If you select this option, you are running the tests in the unit test server of the embedded Micro Integrator. Specify the following details:
+
     -   **Executable Path**: Path to the unit testing server.
     -   **Server Test Port**: Port of the unit testing server.
     
-2.  **Remote Server Configuration**: Run the Unit Test Suite(s) in remote unit testing server.
-    -   **Server Remote Host**: Host IP of the remote unit testing server.
-    -   **Server Test Port**: Port of the remote unit testing server.
-    
+    **Remote Server Configuration*
+
     !!! Note 
-            You can pass the following parameters when start the Micro Integrator in order to start the Unit Testing server.
+        **Before you begin**
+        Be sure that your remote Micro Integrator is started along with its Unit Testing server. Note that you need to pass the `-DsynapseTest` property with your product startup script as shown below. This property is required for starting the Unit Testing server.
+
+        ```bash tab='On MacOS/Linux/CentOS'
+        sh micro-integrator.sh -DsynapseTest
+        ```
+
+        ```bash tab='On Windows'
+        micro-integrator.bat -DsynapseTest 
+        ```
+        
+        To change starting port of the unit testing server, you can use `-DsynapseTestPort=<PORT>` system property with above command. The default port is 9008. 
+    
+    If you select this option, you are running the tests in the unit testing server of a remote Micro Integrator. Specify the following details:
+
+    -   **Server Remote Host**: Host IP of the remote unit testing server. This is the host on which the remote Micro Integrator is running.
+    -   **Server Test Port**: Port of the remote unit testing server. The default port is 9008. 
             
-            ```bash tab='On MacOS/Linux/CentOS'
-               sh micro-integrator.sh -DsynapseTest
-            ```
-          
-            ```bash tab='On Windows'
-               micro-integrator.bat -DsynapseTest 
-            ```
-            
-    To change starting port of the unit testing server, you can use `-DsynapseTestPort=<PORT>` system property with above command. Here, the default port is 9008. 
-            
-3. Click **Run** to start the unit test. It will start the unit testing server in the console and prints the summary report for the given unit test suite(s) using the response from the unit testing server.
+3. Click **Run** to start the unit test. It will start the unit testing server in the console and prints the summary report for the given unit test suite(s) using the response from the unit testing server. 
 
     ![Output Console](../assets/img/create_project/synapse_unit_test/console-log.png)    
 
