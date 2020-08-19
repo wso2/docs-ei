@@ -1,8 +1,9 @@
 # Testing The Pipeline Environment
-It is a very simple process to test your pipeline enviroment. 
+It is a very simple process to test your pipeline environment. 
 Follow the steps below:
 
-1.  Explore the Spinnaker Dashboard.
+1.  Explore the Spinnaker Dashboard [ Each application in Spinnaker consists of two dashboards those are for pipelines and infrastructure. 
+The pipeline dashboard can be utilized to view the executions of each pipelines of the application while the infrastructure dashboard can be used to view the deployed resources for the application]
     
     Navigate to the Spinnaker dashboard
     at `https://spinnaker.example.com`and
