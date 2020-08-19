@@ -124,7 +124,13 @@ Once the secrets are added to the environment, you need to enable <b>secure vaul
      See the [Docker guide](https://docs.docker.com/engine/swarm/secrets/#defining-and-using-secrets-in-compose-files) for more information on defining and using Docker secrets.
 
 ## Configuring the secrets' location
-The Docker and file secrets can be found in default directory locations in the container. The Docker secrets default to `/run/secrets/<secret_name>` in Linux containers, or `C:\ProgramData\Docker\secrets` in Windows containers whereas the default location for the file secret is the `<MI-HOME>/` directory. Therefore, by default, the server will search for aliases in these directories. 
+
+The Docker secrets and file secrets are stored in default locations in the container environment. The Docker secrets can be found in the following location:
+
+-	On **Linux**: `/run/secrets/<secret_name>`
+-	On **Windows**: `C:\ProgramData\Docker\secrets`
+
+The default location for the file secret is the `<MI-HOME>/` directory. Therefore, by default, the server will search for aliases in these directories.
 
 However, if you are storing your secrets in a different directory location in the container, you should configure the server to search the secrets in those custom directories by using the following **system properties**.
 
