@@ -1,6 +1,6 @@
 # Modifying Pipeline Configurations
 
-## The pipeline configurations can be changed by the modification of values.yaml file
+## Modifying values.yaml file to change configuration
 
 The pipeline configurations can be changed by the modification of the
 configurations in
