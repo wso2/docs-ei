@@ -1,6 +1,6 @@
 # Modifying Product Configurations
 
-## User is able to modify the Product Configurations in a easy and efficient manner.
+## Modify the Product Configurations in efficient manner.
 
 This document assumes that you have completed the instructions in the
 following pages.
