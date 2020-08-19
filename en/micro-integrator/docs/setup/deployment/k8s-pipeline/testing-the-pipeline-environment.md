@@ -10,7 +10,7 @@ Follow the steps below:
     
     [ ![Spinnaker-Dashboard](../../../assets/img/k8s_pipeline/testing_pipeline/testing-mi-2.png) ](../../../assets/img/k8s_pipeline/testing_pipeline/testing-mi-2.png)
     
-    which will navigate to the pipeline page 
+    once the user click on the `pipeline` tab the pipeline details will be displayed. Refer the below image: 
     
     [ ![Pipeline-Page](../../../assets/img/k8s_pipeline/testing_pipeline/test-mi-3.png) ](../../../assets/img/k8s_pipeline/testing_pipeline/test-mi-3.png)
     
