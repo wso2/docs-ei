@@ -1,4 +1,6 @@
 # Testing The Pipeline Environment
+It is a very simple process to test your pipeline enviroment. 
+Follow the steps below:
 
 1.  Explore the Spinnaker Dashboard.
     
