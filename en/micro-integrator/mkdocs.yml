@@ -581,7 +581,7 @@ nav:
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
-          - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
+          - 'Aggregate Mediator' : 'references/mediators/aggregate-Mediator.md'
           - 'Builder Mediator' : 'references/mediators/builder-Mediator.md'
           - 'Cache Mediator' : 'references/mediators/cache-Mediator.md'
           - 'Call Mediator' : 'references/mediators/call-Mediator.md'
