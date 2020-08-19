@@ -1,4 +1,7 @@
 # Deploy Your Own Artifact
+It is possible to deploy your own artifacts into the environments through the Kubernetes pipeline. 
+This is done by providing a custom Dockerfile as shown in the steps below:
+
 1.  Fork the [CICD sample](https://github.com/wso2-incubator/cicd-sample-docker-mi) repository that contains a [Maven
     Multi-Module
     project](/develop/create-integration-project/).
