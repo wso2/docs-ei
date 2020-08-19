@@ -174,10 +174,6 @@ After doing the required configurations in the Streaming Integrator, let's confi
 
     This configuration has a configuration parameter to start the gRPC server, and specifies the default sequence to inject messages accordingly.
 
-    !!! info
-        Currently, WSO2 Integration Studio does not support GRPC Inbound Endpoint. This capability will be available in a future [release](https://github.com/wso2/devstudio-tooling-ei/issues/1238). 
-        For now, you need to create the inbound endpoint manually as an XML file.
-
 2. Deploy the following sequence by saving it as `inSeq.xml` file in the `<MI_Home>/repository/deployment/server/synapse-configs/default/sequences` directory.
 
     !!!info
