@@ -18,12 +18,12 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://ei.docs.wso2.com/en/latest/
+site_url: https://ei.docs.wso2.com/en/7.1.0/
 
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/master/en/streaming-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.1.0/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
