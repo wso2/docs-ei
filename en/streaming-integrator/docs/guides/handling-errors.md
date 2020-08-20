@@ -25,8 +25,14 @@ error.store:
 - `bufferSize` denotes the size of the ring buffer that is used in the disruptor when publishing events to the ErrorStore. This has to be a power of two. If not, it throws an exception during initialization. The default buffer size is `1024`.
 - If the `dropWhenBufferFull` is set to `true`, the event is dropped when the capacity of the ring buffer is insufficient.
 
-This can be used with the following.
-1. With Siddhi Streams
+This can be used with the following:
+
+- Siddhi Streams
+
+    This on-error action can be specified for a  stream via the `@OnError()` annotation. 
+
+    The Siddhi query uses the `cast("abc", "double")` which intentionally generates an error for testing purposes. 
+
     ```
     @OnError(action='STORE')
     define stream StreamA (symbol string, amount double);
@@ -34,10 +40,13 @@ This can be used with the following.
     from StreamA[cast("abc", "double") > 100]
     insert into StreamB;
     ```
-    The Siddhi query uses the `cast("abc", "double")` which intentionally generates an error for testing purpose.
-    if no @OnError() is specified, the event will be logged and dropped.
+  
+  If you do not specify the on-error action for a stream  via the `@OnError()` annotation, the event is logged and dropped.
     
-2. With Sinks
+- Sinks
+
+    You can specify an on-error action by including the `on-error` parameter within the sink configuration as shown below.
+    
     ```
     @sink(type = 'http', on.error='STORE', blocking.io='true', 
           publisher.url = "http://localhost:8090/unavailableEndpoint", 
@@ -45,35 +54,49 @@ This can be used with the following.
     define stream StreamA (name string, volume long);
     ```
 
-3. With Source Mappers
-   If the `error.store` is enabled in the deployment.yaml, this will be automatically added to the error store.
+- Source mappers
+
+   If the `error.store` is enabled in the `<SI_HOME>/conf/server/deployment.yaml` file, mapping errors are automatically added to the error store.
 
 ### LOG
 
-This logs the event with details of the error and then drops the event.
-This can be used with the following.
-1. With Siddhi Streams
+This logs the event with details of the error and then drops the event. This can be used with the following:
+
+- Siddhi Streams
+
+    You can specify this on-error action for streams via the `@OnError` annotation as shown below.
+
     ```
     @OnError(action='LOG')
     define stream StreamA (symbol string, volume long);
     ```
-    if no @OnError() is specified, the event will be logged and dropped.
-2. With Sinks
+    If you do not specify the on-error action for a stream  via the `@OnError()` annotation, the event is logged and dropped.
+    
+- Sinks
+
+    You can specify this on-error action by including the `on-error` parameter within the sink configuration as shown below.
     ```
     @sink(type = 'http', on.error='LOG', blocking.io='true', 
           publisher.url = "http://localhost:8090/unavailableEndpoint", 
           method = "POST", @map(type = 'json'))
     define stream TestPublisherStream (symbol string, volume long);
     ```
-   if on.error parameter is not specified, the event will be logged and dropped.
-3. With Source Mappers, when Error Store is not enabled in the deployment.yaml
+   If you do not specify the on-error action for a stream  via the `on.error` parameter, the event is logged and dropped.
+   
+- Source mappers 
+
+    Logging is the default on-error action for source mappers when the error store is not enabled in the `<SI_HOME>/conf/server/deployment.yaml` file.
    
 ### STREAM
 
-Here, if an error occurs for the base stream named `StreamA` , a stream named `!StreamA` is automatically created. The base stream has two attributes named symbol and volume. Therefore, `!StreamA` has the same two attributes, and in addition, another attribute named `_error`.
+This can be used with the following:
 
-This can be used with the following.
-1. With Siddhi Streams
+- Siddhi Streams
+
+    This on-error action can be specified for a  stream via the `@OnError()` annotation. 
+    
+    In the following example, the Siddhi query uses the `cast("abc", "double")` function that intentionally generates an error for testing purposes.
+
     ```
     @OnError(action='STREAM')
     define stream StreamA (symbol string, amount double);
@@ -86,10 +109,12 @@ This can be used with the following.
     select symbol, amount, _error
     insert into tempStream;
     ```
-    The Siddhi query uses the `cast("abc", "double")` which intentionally generates an error for testing purpose.
-    if no @OnError() is specified, the event will be logged and dropped.
+    If you do not specify the on-error action for a stream  via the `@OnError()` annotation, the event is logged and dropped.
     
-2. With Sinks
+- Sinks
+
+    You can specify this on-error action by including the `on-error` parameter within the sink configuration as shown below.
+
     ```
     @OnError(action='STREAM')
     @sink(type = 'http', on.error='STREAM', blocking.io='true', 
@@ -104,12 +129,12 @@ This can be used with the following.
     ```
 
 !!! Note
-    This is not applicable with Source Mappers
+    This on.error action is not applicable for source mappers.
 
 ### WAIT
 
-This on-error type is only applicable to publishing errors. Here, the thread waits in the `back-off and re-trying` state, and reconnects once the connection is re-established.
-This can be only used with Sinks
+This on-error action is only applicable to publishing errors, and therefore it can be only used with sinks. Here, the thread waits in the `back-off and re-trying` state, and reconnects once the connection is re-established.
+
 ```
 @sink(type = 'http', on.error='WAIT', blocking.io='true', 
       publisher.url = "http://localhost:8090/unavailableEndpoint", 
