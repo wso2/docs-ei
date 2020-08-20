@@ -54,22 +54,7 @@ Create the artifacts:
 3. Create the [rest api](../../../../develop/creating-artifacts/creating-an-api) and [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
-Set up the back-end service:
-
-1. Download the [back-end service](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/axis2Server.zip)
-2. Extract the downloaded zip file.
-3. Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
-4. Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
-   
-      ```bash tab='On MacOS/Linux/CentOS'
-      sh axis2server.sh
-      ```
-          
-      ```bash tab='On Windows'
-      axis2server.bat
-      ```
-
-Send an invalid request to the back end as follows:
+Send an invalid request to the api resource as follows:
     
 ```bash
 curl -X GET http://localhost:8290/jaxrs/customers-wrong/123
