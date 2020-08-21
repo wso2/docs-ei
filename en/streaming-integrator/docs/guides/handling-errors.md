@@ -133,7 +133,7 @@ This can be used with the following:
 
 ### WAIT
 
-This on-error action is only applicable to publishing errors, and therefore it can be only used with sinks. Here, the thread waits in the `back-off and re-trying` state, and reconnects once the connection is re-established.
+This on-error action is only applicable to errors that occur when publishing data, and therefore it can be only used with sinks. Here, the thread waits in the `back-off and re-trying` state, and reconnects once the connection is re-established.
 
 ```
 @sink(type = 'http', on.error='WAIT', blocking.io='true', 
