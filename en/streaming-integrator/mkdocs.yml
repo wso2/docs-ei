@@ -71,7 +71,7 @@ nav:
       - 'Integrating Stores': 'guides/storage-Integration.md'
       - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
-      - 'Handling Errors': 'guides/handling-errors.md'
+      - 'Handling Errors': 'guides/fault-Handling.md'
       - 'Performing ETL Operations': 'guides/performing-etl-tasks.md'
     - 'Tutorials':
       - 'Tutorials Overview': 'examples/tutorials-overview.md'
