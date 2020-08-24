@@ -93,8 +93,7 @@ To create and deploy a Siddhi application, follow the steps below:
     
     Then Access the Streaming Integrator Tooling via the URL that appears in the start up log with the text `Editor Started on:`.
     
-2. Open a new file. Then copy and paste the following Siddhi application to it.
-
+2. Copy paste the following three Siddhi applications to three separate new files and save.
     ```
         @App:name("MappingErrorTest")
         
@@ -111,19 +110,74 @@ To create and deploy a Siddhi application, follow the steps below:
         select *
         insert into LogStream;
     ```
-3. Save the Siddhi file.
+    ```
+       @App:name("SinkTransportErrorTest")
+       
+       @sink(type = 'http', on.error='STORE', blocking.io='true', 
+             publisher.url = "http://localhost:8090/unavailableEndpoint", 
+             method = "POST", @map(type = 'json'))
+       define stream TestPublisherStream (name string, amount double);
+       
+       @Source(type = 'http', receiver.url='http://localhost:8007/testUnavailableEP', 
+               basic.auth.enabled='false', 
+               @map(type='json', enclosing.element='$.event', 
+                   @attributes(name='name', amount='amount')))
+       define stream TestInput(name string, amount double);
+       
+       from TestInput#log('Sending to unavailableEndpoint: ')
+       select name, amount
+       insert into TestPublisherStream;
+    ```
+    ```
+       @App:name("ReceiveAndCount")
+       
+       @App:description('Receive events via HTTP transport and view the output on the console')
+       
+       @Source(type = 'http',
+               receiver.url='http://localhost:8090/unavailableEndpoint',
+               basic.auth.enabled='false',
+               @map(type='json'))
+       define stream SweetProductionStream (name string, amount double);
+       
+       @sink(type='log')
+       define stream TotalCountStream (totalCount long);
+       
+       -- Count the incoming events
+       @info(name='query1')
+       from SweetProductionStream
+       select count() as totalCount
+       insert into TotalCountStream;
+    ```
 
-4. To deploy the Siddhi file, follow the procedure below:
+3. To deploy the Siddhi file, follow the procedure below:
 
     1. Click the **Deploy** menu and then click **Deploy to Server**. This opens the **Deploy Siddhi Apps to Server** dialog box.
     
     2. In the **Add New Server** section, enter the host, port, user name and the password of your Streaming Integrator server as shown below.
     
+        !!! Tip
+            To check the port of your streaming integrator server, open the `<SI_HOME>/conf/server/deployment.yaml file` and search for `wso2.transport.http` -> `Listener Configurations`. The port of your WSO2 Streaming Integrator port is specified under the listener configuration that has `msf4j-https` as the ID as shown in the extract below. In this example, it is `9443`.<br/><br/>
+            ```
+            listenerConfigurations:
+                -
+                  id: "default"
+                  host: "0.0.0.0"
+                  port: 9090
+                -
+                  id: "msf4j-https"
+                  host: "0.0.0.0"
+                  port: 9443
+                  scheme: https
+                  keyStoreFile: "${carbon.home}/resources/security/wso2carbon.jks"
+                  keyStorePassword: wso2carbon
+                  certPass: wso2carbon
+            ```
+    
         ![Adding a New Server](../../images/handling-requests-with-errors/add-a-new-server.png)
         
         Then click **Add**.
         
-    3. In the **Siddhi Apps to Deploy** section, select the checkbox for the **MappingErrorTest.siddhi** application. In the **Servers** section, select the check box for the server you added. Then click **Deploy**.
+    3. In the **Siddhi Apps to Deploy** section, select the check boxes for the **MappingErrorTest.siddhi** and **SinkTransportErrorTest.siddhi** applications. In the **Servers** section, select the check box for the server you added. Then click **Deploy**.
     
         ![Select Siddhi Application and Server](../../images/handling-requests-with-errors/select-siddhi-app-and-server.png)
         
@@ -148,6 +202,7 @@ To connect the Error Store Explorer to the SI server, follow the procedure below
     ![Access Error Store](../../images/handling-requests-with-errors/error-store-explorer-without-server.png)
    
 3. Click **Connect to Server**. Then enter information as follows:
+   To check the port of the Streaming Integrator Server, Open <SI_HOME>/conf/server/deployment.yaml file. Under Listener Configurations of wso2.transport.http, locate the listener configuration with msf4j-https as the ID and specify its port as shown in the extract below.
 
     ![Server Configuration](../../images/handling-requests-with-errors/server-configurations.png)
 
@@ -160,20 +215,29 @@ To connect the Error Store Explorer to the SI server, follow the procedure below
     
     Then click **Connect**.
         
-### Step 5: Generate events with errors
+### Step 5: Test the event mapping failing scenario
 
-To simulate an event with an error, issue the following CURL command:
+#### Step 5.1: Publish an event with a mapping error in MappingErrorTest Siddhi application
+
+Send an event to the `ProductionStream` stream of the `MappingErrorTest`' Siddhi application by issuing the following CURL command.
 
 ```
 curl --location --request POST 'http://localhost:8006/productionStream' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-        "foo": "Cake",
-        "amount": 20.02
-}'
+                "foo": "Cake",
+                "amount": 20.12
+            }'
 ```
- 
-### Step 6: Manage the error in the Error Store Explorer
+The event causes an error referred to as `MappingFailedException`. This is because the `ProductionStream` expects an event in the following format which is specified via a custom mapping.
+```
+{
+    "name": "Cake",
+    "amount": 20.12
+}
+```
+
+#### Step 5.2: Manage the error in the Error Store Explorer
 
 To manage the error in the Error Store Explorer, follow the procedure below:
     
@@ -201,4 +265,65 @@ To manage the error in the Error Store Explorer, follow the procedure below:
     
     ```
         INFO {io.siddhi.core.stream.output.sink.LogSink} - Successful mapping:  : Event{timestamp=1595574091411, data=[Cake, 20.02], isExpired=false}
+    ```
+   
+### Step 6: Test the event failing scenario at sink level
+
+#### Step 6.1: Trigger an event flow that publishes an event to the SinkTransportErrorTest Siddhi application
+
+Send an HTTP event to the `TestInput` stream of the `SinkTransportErrorTest` Siddhi application by issuing the following CURL command.
+
+```
+curl --location --request POST 'http://localhost:8007/testUnavailableEP' --header 'Content-Type: application/json' --data-raw ' { "event": { "name": "Cake2", "amount": 20.222 } }'
+```
+
+The following is logged in the Streaming Integrator Server console
+```
+INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - SinkTransportErrorTest: Sending to unavailableEndpoint: , StreamEvent{ timestamp=1597853565942, beforeWindowData=null, onAfterWindowData=null, outputData=[Cake2, 20.222], type=CURRENT, next=null}
+```
+However, because the `http://localhost:8007/testUnavailableEP` is unavailable, the event is dropped at the sink level and then stored in the ErrorStore.
+
+#### Step 6.2: Start service via the ReceiveAndCount Siddhi application
+
+In this step, let's start the service at `http://localhost:8007/testUnavailableEP` via the `ReceiveAndCount` Siddhi application
+
+In the **Siddhi Apps to Deploy** section, select the check box for the **ReceiveAndCount.siddhi** application. In the **Servers** section, select the check box for the server you added. Then click **Deploy**.
+
+   ![Select ReceiveAndCount Siddhi Application and Server](../../images/handling-requests-with-errors/select-receiveAndCount-app-and-server.png)
+
+The following log is displayed in the Streaming Integrator console.
+
+```
+INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App ReceiveAndCount deployed successfully
+```
+#### Step 6.3: Manage the error in the Error Store Explorer
+
+To manage the error in the Error Store Explorer, follow the procedure below:
+    
+1. To open the Error Store Explorer, open Streaming Integrator Tooling, click **Tools** and then click **Error Store Explorer**.
+
+    ![Access Error Store](../../images/handling-requests-with-errors/access-error-store-explorer.png)
+    
+2. In the **Siddhi app** field, select **SinkTransportErrorTest** Siddhi application and then click **Fetch**.
+    
+    As a result, an error is displayed as follows.
+    
+    ![Error Store Explorer](../../images/handling-requests-with-errors/error-store-explorer-with-SinkTransportErrorTest.png)
+    
+    This indicates that the event was dropped because the end point was not available.
+    
+2. To view details of the error, click **Detailed Info**. The following is displayed.
+
+    ![Error Entry](../../images/handling-requests-with-errors/error-entry-for-SinkTransportErrorTest.png)
+    
+    Previously, you deployed the `ReceiveAndCount` Siddhi application. Therefore, you can send the event again by clicking **Replay**.
+    
+    ![Replay Error](../../images/handling-requests-with-errors/replay-error-SinkTransportErrorTest.png)
+    
+    As a result, the **Error Entry** dialog box closes, and the **Error Store Explorer** dialog box is displayed with no errors.
+    
+    At the same time the following is logged for the Streaming Integrator Server which is logged by the ReceiveAndCount Siddhi application.
+    
+    ```
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - ReceiveAndCount : TotalCountStream : Event{timestamp=1597857170244, data=[1], isExpired=false}    
     ```

@@ -97,7 +97,6 @@ endpoint specified.
                 <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
             </endpoint>
         </send>
-        <drop/>
     </inSequence>
     <outSequence>
         <send/>

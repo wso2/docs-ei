@@ -4,10 +4,9 @@
 
 Once the Streaming Integrator processes streaming data and generates an output, you are often required to take some action based on that output. The action required could be executing some code, calling an external service or triggering a complex integration flow. When it is required to trigger an integration flow, the Streaming Integrator can send a request to the Micro integrator to initiate such action.
 
-
 ## Triggering integration via Streaming Integrator as fire and forget manner
 
-In order to allow the STreaming Integrator to trigger an integration flow in the Micro Integrator, you need to do the following:
+In order to allow the Streaming Integrator to trigger an integration flow in the Micro Integrator, you need to do the following:
 
 - Design a Siddhi application with a `grpc-call` sink that allows an output event to be generated as a request that is sent to the Micro Integrator.
 
@@ -72,8 +71,10 @@ The following artifacts need to be deployed in the Micro Integrator.
        </parameters>
     </inboundEndpoint>
     ```
-
-
+    !!! info
+        Currently, WSO2 Integration Studio does not support GRPC Inbound Endpoint. This capability will be available in a future [release](https://github.com/wso2/devstudio-tooling-ei/issues/1238). 
+        For now, you need to create the inbound endpoint manually as an XML file.
+                                
 - Both the inbound endpoint and the `grpc-call` sink in the Siddhi application refers to a sequence (`inSeq` in this example). A sequence with the same name and the required configuration should be added to the `<MI_HOME>/repository/deployment/server/synapse-configs/default/sequences` directory. The following is a sample configuration.
 
     ```xml

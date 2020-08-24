@@ -53,5 +53,3 @@ Set up the back-end service:
       ```bash tab='On Windows'
       axis2server.bat
       ```
-
-Invoke the REST API with a POST message.

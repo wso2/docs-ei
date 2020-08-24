@@ -1,8 +1,10 @@
 # Publishing a Custom Swagger Document
 
 When you create a REST API, a default Swagger definition is automatically
-generated. You can access this Swagger document by suffixing the API URL
-with `?swagger.json` or `?swagger.yaml`. See [Using Swagger Documents](../../../../develop/advanced-development/using-swagger-for-apis) for more information.
+generated. You can access this Swagger document by using the
+`http://<MI_HOST>:8290/<API_NAME>?swagger.json` or `http://<MI_HOST>:8290/<API_NAME>?swagger.yaml` URL.
+
+See [Using Swagger Documents](../../../../develop/advanced-development/using-swagger-for-apis) for more information.
 
 This example demonstrates how a custom Swagger definition is published for a REST API. 
     

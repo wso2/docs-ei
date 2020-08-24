@@ -4,7 +4,7 @@ API documentation is important to guide the users on what they can do using spec
 
 When you create a REST API artifact or a RESTful data service from WSO2 Integration Studio, a default Swagger definition is generated. For [REST API](../../../develop/creating-artifacts/creating-an-api) artifacts, you can also attach an additional custom Swagger definition for the API.
 
-## Swagger documets of API artifacts
+## Swagger documents of API artifacts
 
 If your REST API is deployed, copy the following URLs (with your API details) to your browser:
 
@@ -38,7 +38,7 @@ If your REST API is deployed, copy the following URLs (with your API details) to
     -   Replace `<MI_HOST>` with `localhost`. If you are using a public IP, the respective IP address or domain needs to be specified. 
     -   Replace `<API_NAME>` with your API's name. The API name is case sensitive.
 
-## Swagger documets of RESTful data services
+## Swagger documents of RESTful data services
 
 If your RESTful data service is deployed, copy the following URLs to your browser:
 
