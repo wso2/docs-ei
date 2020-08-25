@@ -6,10 +6,12 @@ Follow the steps given below to install and run WSO2 Micro Integrator on a VM.
 
 Follow the steps below:
 
-1.  Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/) and click **Download** to get the latest **EI 7x** version. You can now download the **product installer** (which is compatible with your operating system) or the **binary**.
-    
-    !!! Info
-        Alternatively, you can also go to **Other Installation Options** and click **Binary** to download the binary distribution.
+1.  Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/) and click **Download** -> **Previous Versions** to get the **EI 7.0.2** version.
+
+    !!! Note
+        The latest version of WSO2 Enterprise Integrator (EI 7.1.0) is now released. See the installation guide of the [latest EI documentation](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/installation/install_in_vm_installer/).
+
+    You can download the **product installer** (which is compatible with your operating system) or the **binary**.
 
 2.  If you used the installer, double-click to open the installation wizard, which will guide you through the installation. When you finish, the product will be installed and ready for use.
 
