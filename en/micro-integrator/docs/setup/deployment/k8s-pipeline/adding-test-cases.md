@@ -7,12 +7,12 @@ Often it is faster and simpler to perform local unit testing on your pipeline co
 This guide assumes that you have completed the instructions in the
 following pages.
 
-1.  [Quick Start Guide](/setup/deployment/k8s-pipeline/quick-start-guide/)
+1.  [Quick Start Guide](../quick-start-guide/)
 
 2.  [Testing The Pipeline
-    Environment](/setup/deployment/k8s-pipeline/testing-the-pipeline-environment/)
+    Environment](../testing-the-pipeline-environment/)
 
-Test cases are available in the [chart source repository](https://github.com/wso2-incubator/cicd-sample-chart-mi.) under a
+Test cases are available in the [chart source repository](https://github.com/wso2-incubator/cicd-sample-chart-mi) under a
 directory named `tests`. 
 
 1.  Create a fork of the [sample chart source
@@ -60,7 +60,7 @@ directory named `tests`.
 5.  Change the chart repository in the
     sample [values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
     used in the [Quick Start
-    Guide](/setup/deployment/k8s-pipeline/quick-start-guide/)
+    Guide](../quick-start-guide/)
     to use a custom chart.
     
     ``` xml
