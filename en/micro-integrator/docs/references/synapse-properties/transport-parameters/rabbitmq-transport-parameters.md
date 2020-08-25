@@ -161,8 +161,27 @@ To enable SSL support in RabbitMQ, you need to configure the following paramet
   <tr>
     <td>rabbitmq.connection.ssl.version</td>
     <td>
-       The SSL protocols that are supported.
+       When SSL is enabled, you can specify the SSL protocols that are supported.
     </td>
+  </tr>
+</table>
+
+Note that keystore information is not required for an SSL connection if the <code>fail_if_no_peer_cert</code> parameter is set to 'false' in the RabbitMQ broker. However, if this parameter is set to 'true', the following (keystore) configurations are required.
+
+!!! Tip
+    Shown below is a sample broker configuration where `fail_if_no_peer_cert` is set to `false`:
+    ```xml
+    {ssl_options, [{cacertfile,"/path/to/testca/cacert.pem"},
+                   {certfile,"/path/to/server/cert.pem"},
+                   {keyfile,"/path/to/server/key.pem"},
+                   {verify,verify_peer},
+                   {fail_if_no_peer_cert,false}]}   
+    ```
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Description</th>
   </tr>
   <tr>
     <td>rabbitmq.connection.ssl.keystore.location</td>
