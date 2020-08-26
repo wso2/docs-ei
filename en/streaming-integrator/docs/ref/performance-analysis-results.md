@@ -124,7 +124,7 @@ insert into FinalThroughputStream;
 - Average Publishing TPS from HTTP request sink  : 29K
 - Average Consuming TPS from HTTP response source: 29K
 
-## Performing ETL tasks
+## Performing ETL tasks : Reading a CSV and Loading data into a MySQL table
 
 ### Specifications of EC2 Instances
 
