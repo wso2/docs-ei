@@ -31,6 +31,7 @@ There are two types of connectors.
 
 The typical folder structure of a connector is as follows.
 
+```
 ├── pom.xml
 ├── repository
 ├── src
@@ -53,6 +54,7 @@ The typical folder structure of a connector is as follows.
 │   │           ├── component.xml
 │   │           └── operation1.xml
 │   └── test
+```
 
 * **pom.xml** - Defines the build information for maven.
 * **repository** - When running Integration tests, the EI pack should be placed here.
@@ -200,20 +202,7 @@ A typical template configuration for an operation would look like below.
     </tr>
     <tr>
         <td>name</td>
-        <td>The name of the operation. This should correspond to the name defined in the subcomponent in the component.xml. The following is a sample of the code in component.xml
-            <code>
-                <subComponents>
-                    <component name="operation1">
-                        <file>operation1.xml</file>
-                        <description>sample wso2 connector method</description>
-                    </component>
-                </subComponents>
-            </code>
-        The following is a sample code extracted from operation1.xml
-            <code>
-                <template xmlns="http://ws.apache.org/ns/synapse" name="operation1">
-            </code>
-        </td>
+        <td>The name of the operation. This should correspond to the name defined in the subcomponent in the component.xml. </td>
     </tr>
     <tr>
         <td>parameter</td>
@@ -225,6 +214,21 @@ A typical template configuration for an operation would look like below.
     </tr>
 </table>
 
+The following is a sample of the code in component.xml.
+
+```xml
+    <subComponents>
+        <component name="operation1">
+            <file>operation1.xml</file>
+            <description>sample wso2 connector method</description>
+        </component>
+    </subComponents>
+```
+
+The following is a sample code extracted from operation1.xml
+```xml
+    <template xmlns="http://ws.apache.org/ns/synapse" name="operation1">
+```
 
 ### Invoking an operation
 
@@ -410,7 +414,59 @@ This builds the connector and generates a ZIP file named sample-connector-1.0.0.
 In cases where you need to provide custom capabilities that cannot be fulfilled using mediators, we are able to implement this logic in Java within the connector itself and invoking them using the Class Mediator. This capability is useful when creating Technology connectors.
 
 These Java classes should reside inside /src/main/java/org.wso2.carbon.connector/ directory.
-Sample
+
+
+### Sample
 
 This sample is an extension to the ‘Writing your first connector’ section. Let us improve the connector with a Java implementation. 
+
 In the same project, you may observe the sampleConnector class created under /src/main/java/org.wso2.carbon.connector/ directory.
+
+<img src="../../../assets/img/connectors/sampleConnector-class.png" title="sampleConnector class" width="200" alt="sampleConnector class"/>
+
+The class would look similar to the following.
+
+```java
+public class sampleConnector extends AbstractConnector {
+
+   @Override
+   public void connect(MessageContext messageContext) throws ConnectException {
+       Object templateParam = getParameter(messageContext, "generated_param");
+       try {
+           log.info("sample sample connector received message :" + templateParam);
+           /**Add your connector code here
+           **/
+       } catch (Exception e) {
+      	throw new ConnectException(e);
+       }
+   }
+}
+```
+
+This class is being invoked by `/src/main/resources/sample/sample_template.xml` with the below code segment.
+
+```xml
+<class name="org.wso2.carbon.connector.sampleConnector" />
+```
+
+Now, let’s add the component containing the sample_template.xml to the connector by adding the below line to connector.xml.
+
+```xml
+<dependency component="sample" />
+```
+
+After adding this line, the connector.xml should be as below.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<connector>
+   <component name="sample" package="org.wso2.carbon.connector">
+      <dependency component="googlebooks_volume" />
+      <dependency component="sample" />
+      <description>wso2 sample connector library</description>
+   </component>
+</connector>
+```
+
+In the sample, when the connect method is invoked, it should log message “sample sample connector received message : <template_param_passed>”.
+
