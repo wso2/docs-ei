@@ -14,6 +14,8 @@ By changing the database type, you can also try out this example for the followi
 
 * Postgresql
 
+* MongoDB
+
 !!!info "Before you begin:"
     1. Ensure that MySQL is installed on your computer.<br/>
     2. Add the MySQL JDBC driver to the `<SI_TOOLING_HOME>/lib` directory as follows:<br/>
