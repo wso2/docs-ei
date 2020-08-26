@@ -103,6 +103,20 @@ The following properties are required when [creating a RabbitMQ inbound endpiont
 
 The following optional properties can be configured when [creating an RabbitMQ inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
+!!! Tip
+    Note that keystore information is not required for an SSL connection if the <code>fail_if_no_peer_cert</code> parameter is set to 'false' in the RabbitMQ broker. You only need to enable SSL in the Micro Integrator (using the `rabbitmq.connection.ssl.enabled` parameter).
+
+    However, if the <code>fail_if_no_peer_cert</code> parameter is set to 'true' in RabbitMQ, the keystore configurations (given below) are also required for the Micro Integrator.
+
+    Shown below is a sample broker configuration where `fail_if_no_peer_cert` is set to `false`:
+    ```xml
+    {ssl_options, [{cacertfile,"/path/to/testca/cacert.pem"},
+                   {certfile,"/path/to/server/cert.pem"},
+                   {keyfile,"/path/to/server/key.pem"},
+                   {verify,verify_peer},
+                   {fail_if_no_peer_cert,false}]}   
+    ```
+
 <table>
    <thead>
       <tr>
@@ -249,7 +263,7 @@ recreate the connection.
 If you want to enable connection recovery, you should configure the
 following parameters in the inbound endpoint:
 
-```
+```xml
 <parameter name="rabbitmq.connection.retry.interval" locked="false">10000</parameter>
 <parameter name="rabbitmq.connection.retry.count" locked="false">5</parameter>   
 ```

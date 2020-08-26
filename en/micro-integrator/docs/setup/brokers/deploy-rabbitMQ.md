@@ -10,17 +10,19 @@ You can integrate WSO2 Micro Integrator with RabbitMQ to implement asynchronous 
      - RabbitMQ version 3.8.2 
      - On Unix OS
 
-1. Download RabbitMQ distribution to the desired location:
+1. Download the RabbitMQ distribution to the desired location. 
 
-    ```bash
-    wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.2/rabbitmq-server-generic-unix-3.8.2.tar.xz
-    ```
+	   You can copy the following URL to your browser to start the download.
+	    ```bash
+	    https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.2/rabbitmq-server-generic-unix-3.8.2.tar.xz
+	    ```
     
-2. Extract the distribution:
+2. Extract the distribution. 
 
-    ```bash
-    tar -xf rabbitmq-server-generic-unix-3.8.2.tar.xz
-    ```
+	   You can open a terminal, navigate to the download location, and execute the following command.
+	    ```bash
+	    tar -xf rabbitmq-server-generic-unix-3.8.2.tar.xz
+	    ```
 
 3. Install the `erlang` distribution:
 
@@ -31,7 +33,7 @@ You can integrate WSO2 Micro Integrator with RabbitMQ to implement asynchronous 
     sudo apt -y install erlang
     ```
 
-4. Navigate to `$RABBITMQ_HOME/sbin` and execute the following command. Here `$RABBITMQ_HOME` is the location where the extraction was done in step 2.
+4. Navigate to the `<RABBITMQ_HOME>/sbin` folder (where `<RABBITMQ_HOME>` is the location of the extracted RabbitMQ distribution) and execute the following command.
 
     ```bash
     sudo ./rabbitmq-server -detached
@@ -56,6 +58,6 @@ When you move your RabbitMQ deployment to production, be sure to follow the inst
 For **high availability** in your RabbitMQ deployment, note the following:
 
 -  RabbitMQ servers need to be clustered. Refer the [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html).
--  The minimum of three nodes are recommended for a RabbitMQ cluster. This is because RabbitMQ uses [Quorum-based distributed consensus].(https://www.rabbitmq.com/clustering.html#node-count).
+-  The minimum of three nodes are recommended for a RabbitMQ cluster. This is because RabbitMQ uses [Quorum-based distributed consensus](https://www.rabbitmq.com/clustering.html#node-count).
 -  RabbitMQ **queues** need to be mirrored for high availability and fault tolerance. Refer [Mirrored Queues](https://www.rabbitmq.com/ha.html) for details.
  
