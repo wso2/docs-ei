@@ -4,7 +4,7 @@ This is done by providing a custom Dockerfile as shown in the steps below:
 
 1.  Fork the [CICD sample](https://github.com/wso2-incubator/cicd-sample-docker-mi) repository that contains a [Maven
     Multi-Module
-    project](/develop/create-integration-project/).
+    project](../../../../develop/create-integration-project/).
 
 2.  Update the repositories in the  [sample values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
     used in the  [Quick Start Guide](../quick-start-guide/) to
