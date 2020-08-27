@@ -1,5 +1,5 @@
 !!! note
-    TRhis section is still a work in progress and not tested.
+    This section is still a work in progress and not tested.
 
 # Cloud Native Observability Deployment
 
@@ -207,7 +207,7 @@ To set up Fluent Bit, follow the procedure below:
 
 After successfully setting up the Fluent Bit you need to set up Grafana Loki. Grafana Loki aggregates and processes the logs from Fluent Bit. To set up Grafana Loki, follow the steps below:
 
-1. Download Grafana v7.1.1 from the [`grafana/loki` Git repository](https://github.com/grafana/loki/blob/v1.5.0/docs/installation/local.md).
+1. Download Loki v1.6.1 from the [`grafana/loki` Git repository](https://github.com/grafana/loki/blob/v1.5.0/docs/installation/local.md).
 
     !!! tip
         Make sure that you select the appropriate OS version before downloading.
@@ -269,6 +269,67 @@ After successfully setting up the Fluent Bit you need to set up Grafana Loki. Gr
  4. Open a new terminal window and navigate to the `<GrafanaLoki_Home>`. Then issue the following command.
  
     `./loki-darwin-amd64 -config.file=./loki-local-config.yaml`
+    
+## Integrating the log processing add-on to the minimum basic observability deployment
+
+### Configuring the EI to publish logs
+
+### Configuring Grafana to display logs
+
+In order to configure Grafana to display logs, you need to add Loki as a data source in Grafana. To do this, follow the procedure below:
+
+1. Start Grafana
+
+    !!! info
+        The procedure to start Grafana depends on your operating system and the installation process. e.g., If your operating system is Mac OS and you have installed Grafana via Homebrew, you start Grafana by issuing the `brew services start grafana` command.
+        
+2. Access Grafana via `http://localhost:3000/`.
+
+3. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Loki**.
+
+4. In the **Add data source** page -> **Settings** tab, update the configurations for Loki as follows.
+
+    <ADD IMAGE>
+    
+5. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
+
+
+## Integrating the tracing processing add-on to the minimum basic observability deployment
+
+### Setting up the tracing add-on
+
+To set up the tracing add-on, download Jaeger from the [Jaeger site](https://www.jaegertracing.io/download/). Then install it.
+
+### Configuring the EI to publish tracing information
+
+To configure WSO2 EI to publish tracing information, follow the procedure below:
+
+1. Add the following entries to the `<MI_HOME>/conf/deployment.toml` file.
+
+    ```
+        [mediation]
+        flow.statistics.capture_all= true
+        stat.tracer.collect_payloads= true
+        stat.tracer.collect_mediation_properties= true
+        
+        [opentracing]
+        enable = true
+        logs = true
+        manager_host = "localhost"
+        agent_host = "localhost”
+
+    ```
+
+2. Add the following entries to the `<MI_HOME>/repository/resources/conf/keyMappings.json` file.
+
+    ```
+        "opentracing.enable": "synapse_properties.'opentracing.enable'",
+        "opentracing.logs": "synapse_properties.'jaeger.reporter.log.spans'",
+        "opentracing.manager_host": "synapse_properties.'jaeger.sampler.manager.host'",
+        "opentracing.agent_host": "synapse_properties.'jaeger.sender.agent.host'"
+
+    ```
+
 
 
 
