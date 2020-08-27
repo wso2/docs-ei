@@ -839,3 +839,403 @@ In order to support the new Integration Studio (version 7.1.0 +) properties wind
 
 <img src="../../../assets/img/connectors/UI-schema.png" title="UI schema" width="300" alt="UI schema"/>
 
+When adding the UI Model to the connector, the JSON files containing the schema should be included in a directory called ‘uischema’ under the resources directory.
+
+<img src="../../../assets/img/connectors/UI-schema-directory.png" title="UI schema directory" width="300" alt="UI schema directory"/>
+
+Let us go through the constructs available in the UI schema. 
+
+### Connection
+
+In previous versions, the connector is being initialized using the `init` operation.
+
+In the latest connector versions, the `init` operation, which is used to initiate the connector, is being created as a local entry and then referred from Integration Studio itself.
+
+This operation is referred to as ‘Connection’ in UI schema terminology. Here we will define the fields that are required to initialize the connection of a connector.
+
+Connection schema should be created in a separate file. As a practice, the name of the file should be the name of the connection.
+
+The schema of a connection is as follows.
+
+```json
+{
+  "connectorName": "email",
+  "connectionName": "IMAP",
+  "title": "IMAP Connection",
+  "help": "<h1>Email Connector</h1> <b>The email connector supports IMAP, POP3 and SMTP protocols for handling emails</b>",
+  "elements": []
+}
+```
+
+<table>
+    <tr>
+        <th>Property Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>connectorName</td>
+        <td>Name of the connector</td>
+    </tr>
+    <tr>
+        <td>connectionName</td>
+        <td>Unique name for the connection</td>
+    </tr>
+    <tr>
+        <td>title</td>
+        <td>Title of the connection to be shown</td>
+    </tr>
+    <tr>
+        <td>help</td>
+        <td>Help tip to be shown</td>
+    </tr>
+    <tr>
+        <td>elements</td>
+        <td>Field elements of the connection</td>
+    </tr>
+</table>
+
+### Operation
+
+Connection operation will be portrayed in the new Integration Studio connector view as shown below.
+
+<img src="../../../assets/img/connectors/connection-operation.png" title="Connection operation" width="700" alt="Connection operation"/>
+
+Operation schema for each operation should be created in a separate file. As a practice, the name of the file should be the name of the operation. 
+
+The schema of an operation is as follows.
+
+```json
+{
+  "connectorName": "email",
+  "operationName": "send",
+  "title": "Send Email",
+  "help": "<h1>Send Email</h1> <b>The send operation sends an email.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/file-connector/file-connector-config/\"> More Help </a></li></ul>",
+  "elements": []
+}
+```
+
+<table>
+    <tr>
+        <th>Property Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>connectorName</td>
+        <td>Name of the connector</td>
+    </tr>
+    <tr>
+        <td>operationName</td>
+        <td>Unique name for the operation</td>
+    </tr>
+    <tr>
+        <td>title</td>
+        <td>Title of the connection to be shown</td>
+    </tr>
+    <tr>
+        <td>help</td>
+        <td>Help tip to be shown</td>
+    </tr>
+    <tr>
+        <td>elements</td>
+        <td>Field elements of the connection</td>
+    </tr>
+</table>
+
+### Elements
+
+The following is an element definition.
+
+```json
+{
+ "type": "attribute",
+ "value": {
+   "name": "from",
+   "displayName": "From",
+   "inputType": "stringOrExpression",
+   "defaultValue": "",
+   "required": "false",
+   "helpTip": "The 'From' address of the message sender"
+ }
+}
+```
+
+#### Types of Elements
+
+**Attribute**
+```json
+{
+ "type": "attribute",
+ "value": {
+   "name": "from",
+   "displayName": "From",
+   "inputType": "stringOrExpression",
+   "defaultValue": "",
+   "required": "false",
+   "helpTip": "The 'From' address of the message sender"
+ }
+}
+```
+
+<table>
+    <tr>
+        <th>Property Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>type</td>
+        <td>Type of the element</td>
+    </tr>
+    <tr>
+        <td>value</td>
+        <td>Value of the element</td>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td>Name of the element</td>
+    </tr>
+    <tr>
+        <td>displayName</td>
+        <td>Display name to be shown</td>
+    </tr>
+    <tr>
+        <td>inputType</td>
+        <td>Field type for the attribute (stringOrExpression, booleanOrExpression, textOrExpression).</td>
+    </tr>
+    <tr>
+        <td>required</td>
+        <td>Whether the field is a mandatory field or not</td>
+    </tr>
+    <tr>
+        <td>helpTip</td>
+        <td>Help tip to be shown</td>
+    </tr>
+</table>
+
+**Attribute Group** 
+
+Grouping multiple attributes together
+
+```json	
+{
+    "type": "attributeGroup",
+    "value": {
+        "groupName": "Basic",
+        "elements": []
+    }
+}
+```
+
+<table>
+    <tr>
+        <th>Property Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>type</td>
+        <td>Type of the element</td>
+    </tr>
+    <tr>
+        <td>value</td>
+        <td>Value of the element</td>
+    </tr>
+    <tr>
+        <td>groupName</td>
+        <td>Name of the group</td>
+    </tr>
+    <tr>
+        <td>elements</td>
+        <td>Elements in the group</td>
+    </tr>
+</table>
+
+When defining an attribute for the connection to be used in an operation, the following format should be used.
+
+```json
+{
+ "type": "attribute",
+ "value": {
+   "name": "configRef",
+   "displayName": "Connection",
+   "inputType": "connection",
+   "allowedConnectionTypes": [
+     "SMTP",
+     "SMTPS"
+   ],
+   "defaultType": "connection.smtp",
+   "defaultValue": "",
+   "required": "true",
+   "helpTip": "Connection to be used"
+ }
+}
+```
+
+Additional parameters to be added.
+
+<table>
+    <tr>
+        <th>Property Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>allowedConnectionTypes</td>
+        <td>Names of the connection types to be used for the operation. The name should correspond to the “connectionName” attribute in the connection schema.</td>
+    </tr>
+    <tr>
+        <td>defaultType</td>
+        <td>Default connection type to be used.</td>
+    </tr>
+</table>
+
+### Samples
+
+**Connection** - imap.json
+```json
+{
+  "connectorName": "email",
+  "connectionName": "IMAP",
+  "title": "IMAP Connection",
+  "help": "<h1>Email Connector</h1> <b>The email connector supports IMAP, POP3 and SMTP protocols for handling emails</b>",
+  "elements": [
+    {
+      "type": "attribute",
+      "value": {
+        "name": "connectionName",
+        "displayName": "Connection Name",
+        "inputType": "string",
+        "defaultValue": "EMAIL_CONNECTION_1",
+        "required": "true",
+        "helpTip": "The name for the email connection",
+        "validation": "nameWithoutSpecialCharactors"
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "host",
+                    "displayName": "Host",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "true",
+                    "helpTip": "Host name of the mail server"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "Advanced",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "readTimeout",
+              "displayName": "Read Timeout",
+              "inputType": "stringOrExpression",
+              "defaultValue": "",
+              "required": "false",
+              "helpTip":"The socket read timeout value"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+**Operation** - send.json
+```json
+{
+  "connectorName": "email",
+  "operationName": "send",
+  "title": "Send Email",
+  "help": "<h1>Send Email</h1> <b>The send operation sends an email.</b><br><br><ul><li><a href=\"https://ei.docs.wso2.com/en/latest/micro-integrator/references/connectors/file-connector/file-connector-config/\"> More Help </a></li></ul>",
+  "elements": [
+    {
+      "type": "attributeGroup",
+      "value": {
+        "groupName": "General",
+        "elements": [
+          {
+            "type": "attribute",
+            "value": {
+              "name": "configRef",
+              "displayName": "Connection",
+              "inputType": "connection",
+              "allowedConnectionTypes": [
+                "SMTP",
+                "SMTPS"
+              ],
+              "defaultType": "connection.smtp",
+              "defaultValue": "",
+              "required": "true",
+              "helpTip": "Connection to be used"
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Basic",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "from",
+                    "displayName": "From",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "",
+                    "required": "false",
+                    "helpTip": "The 'From' address of the message sender"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "attributeGroup",
+            "value": {
+              "groupName": "Advanced",
+              "elements": [
+                {
+                  "type": "attribute",
+                  "value": {
+                    "name": "contentType",
+                    "displayName": "Content Type",
+                    "inputType": "stringOrExpression",
+                    "defaultValue": "text/html",
+                    "required": "false",
+                    "helpTip": "Content Type of the body"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+## Icons
+
+Icons for the connector must be added to the icon folder under the root folder of the connector.
+
+<img src="../../../assets/img/connectors/icon-folder.png" title="Icon folder" width="700" alt="Icon folder"/>
+
+The icon names are icon-large(72x80) and icon-small(25x25) and they should be in .png format.
