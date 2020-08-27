@@ -99,6 +99,20 @@ The following optional properties can be configured when [creating an RabbitMQ i
 Note that the optional properties related to defining a **queue** should contain the `rabbitmq.queue.optional.` prefix,
 and the optional properties related to defining an **exchange** should contain the `rabbitmq.exchange.optional.` prefix.
 
+!!! Tip
+    Note that keystore information is not required for an SSL connection if the <code>fail_if_no_peer_cert</code> parameter is set to 'false' in the RabbitMQ broker. You only need to enable SSL in the Micro Integrator (using the `rabbitmq.connection.ssl.enabled` parameter).
+
+    However, if the <code>fail_if_no_peer_cert</code> parameter is set to 'true' in RabbitMQ, the keystore configurations (given below) are also required for the Micro Integrator.
+
+    Shown below is an example of the config file where `fail_if_no_peer_cert` is set to `false`:
+    ```
+    ssl_options.cacertfile = /path/to/ca_certificate.pem
+    ssl_options.certfile   = /path/to/server_certificate.pem
+    ssl_options.keyfile    = /path/to/server_key.pem
+    ssl_options.verify     = verify_peer
+    ssl_options.fail_if_no_peer_cert = false
+    ```
+
 <table>
    <thead>
       <tr>
@@ -315,7 +329,7 @@ recreate the connection.
 If you want to enable connection recovery, you should configure the
 following parameters in the inbound endpoint:
 
-```
+```xml
 <parameter name="rabbitmq.connection.retry.interval" locked="false">10000</parameter>
 <parameter name="rabbitmq.connection.retry.count" locked="false">5</parameter>   
 ```

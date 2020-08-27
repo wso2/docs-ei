@@ -2,18 +2,18 @@
 
 This section describes how to configure WSO2 Micro Integrator to connect with RabbitMQ.
 
+!!! Tip
+	See the complete list of server-level configurations for the [RabbitMQ Listener](../../../references/config-catalog/#rabbitmq-listener) and [RabbitMQ Sender](../../../references/config-catalog/#rabbitmq-sender) in the `deployment.toml` file (stored in the `MI_HOME/conf` directory).
+
 ## Setting up RabbitMQ
 
 Please refer [RabbitMQ Deployment](deploy-rabbitMQ.md) 
 
-## Enabling the RabbitMQ transport 
+## Enabling the RabbitMQ Listener
 
-Uncomment the following parameters in the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Uncomment the following parameters in the `deployment.toml` file to configure the RabbitMQ listener.
 
 ```toml
-[transport.rabbitmq]
-sender_enable = true
-
 [[transport.rabbitmq.listener]]
 name = "AMQPConnectionFactory"
 parameter.hostname = "localhost"
@@ -22,9 +22,32 @@ parameter.username = "guest"
 parameter.password = "guest"
 ```
 
+## Enabling the RabbitMQ Sender
+
+Uncomment the following parameters in the `deployment.toml` file to enable the RabbitMQ sender.
+
+```toml
+[transport.rabbitmq]
+sender_enable = true
+```
+
 ## Enabling SSL
 
-Add the following parameters under the RabbitMQ configuration section to the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Add the following parameters to enable SSL for the RabbitMQ listener.
+
+!!! Tip
+	  Note that keystore information is not required for an SSL connection if the <code>fail_if_no_peer_cert</code> parameter is set to 'false' in the RabbitMQ broker. You only need to enable SSL in the Micro Integrator (using the `parameter.ssl_enable` parameter shown below).
+
+    However, if the <code>fail_if_no_peer_cert</code> parameter is set to 'true' in RabbitMQ, the keystore configurations (given below) are also required for the Micro Integrator.
+
+    Shown below is an example of the config file where `fail_if_no_peer_cert` is set to `false`:
+    ```
+    ssl_options.cacertfile = /path/to/ca_certificate.pem
+    ssl_options.certfile   = /path/to/server_certificate.pem
+    ssl_options.keyfile    = /path/to/server_key.pem
+    ssl_options.verify     = verify_peer
+    ssl_options.fail_if_no_peer_cert = false
+    ```
 
 ```toml
 [[transport.rabbitmq.listener]]
@@ -37,7 +60,6 @@ parameter.truststore_location ="repository/resources/security/client-truststore.
 parameter.truststore_type = "JKS"
 parameter.truststore_password = "wso2carbon"
 ```
-See the complete list of server-level configurations for the [RabbitMQ Listener](../../../references/config-catalog/#rabbitmq-listener) and [RabbitMQ Sender](../../../references/config-catalog/#rabbitmq-sender).
 
 ## Configuring connection recovery
 
@@ -55,7 +77,9 @@ If the parameters specified above are set, the Micro Integrator will retry 5 tim
 
 Optionally, you can configure the following parameter in your proxy service when you define your mediation sequence:
 
+```xml
 <parameter name="rabbitmq.server.retry.interval" locked="false">10000</parameter> 
+```
 
 The parameter specified above sets the retry interval with which the RabbitMQ client tries to reconnect. Generally having this value less than the value specified as `rabbitmq.connection.retry.interval` will help synchronize the reconnection of the Micro Integrator and the RabbitMQ client.
 
