@@ -108,13 +108,13 @@ The following optional properties can be configured when [creating an RabbitMQ i
 
     However, if the <code>fail_if_no_peer_cert</code> parameter is set to 'true' in RabbitMQ, the keystore configurations (given below) are also required for the Micro Integrator.
 
-    Shown below is a sample broker configuration where `fail_if_no_peer_cert` is set to `false`:
-    ```xml
-    {ssl_options, [{cacertfile,"/path/to/testca/cacert.pem"},
-                   {certfile,"/path/to/server/cert.pem"},
-                   {keyfile,"/path/to/server/key.pem"},
-                   {verify,verify_peer},
-                   {fail_if_no_peer_cert,false}]}   
+    Shown below is an example of the config file where `fail_if_no_peer_cert` is set to `false`:
+    ```
+    ssl_options.cacertfile = /path/to/ca_certificate.pem
+    ssl_options.certfile   = /path/to/server_certificate.pem
+    ssl_options.keyfile    = /path/to/server_key.pem
+    ssl_options.verify     = verify_peer
+    ssl_options.fail_if_no_peer_cert = false
     ```
 
 <table>
