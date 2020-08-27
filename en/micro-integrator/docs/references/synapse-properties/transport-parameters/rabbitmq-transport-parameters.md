@@ -34,7 +34,7 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
   </tr>
 </table>
 
-### Optional Parameters
+### Opther Parameters (Optional)
 
 <table>
    <tr>
@@ -161,8 +161,29 @@ To enable SSL support in RabbitMQ, you need to configure the following paramet
   <tr>
     <td>rabbitmq.connection.ssl.version</td>
     <td>
-       The SSL protocols that are supported.
+       When SSL is enabled, you can specify the SSL protocols that are supported.
     </td>
+  </tr>
+</table>
+
+!!! Tip
+    Note that keystore information is not required for an SSL connection if the <code>fail_if_no_peer_cert</code> parameter is set to 'false' in the RabbitMQ broker. You only need to enable SSL in the Micro Integrator (using the `rabbitmq.connection.ssl.enabled` parameter).
+
+    However, if the <code>fail_if_no_peer_cert</code> parameter is set to 'true' in RabbitMQ, the keystore configurations (given below) are also required for the Micro Integrator.
+
+    Shown below is an example of the config file where `fail_if_no_peer_cert` is set to `false`:
+    ```
+    ssl_options.cacertfile = /path/to/ca_certificate.pem
+    ssl_options.certfile   = /path/to/server_certificate.pem
+    ssl_options.keyfile    = /path/to/server_key.pem
+    ssl_options.verify     = verify_peer
+    ssl_options.fail_if_no_peer_cert = false
+    ```
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Description</th>
   </tr>
   <tr>
     <td>rabbitmq.connection.ssl.keystore.location</td>
