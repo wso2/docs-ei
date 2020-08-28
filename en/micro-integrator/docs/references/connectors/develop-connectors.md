@@ -92,22 +92,25 @@ All the operations exposed by the connector should be registered in this file. T
     </tr>
     <tr>
         <td>Dependancy</td>
-        <td>Defines the sub directories which contain the operations. E.g., According to the sample above, it contains two subdirectories named ‘config’ and ‘sample’ inside /resources.
-            └── resources
-                  ├── config
-                  │   ├── component.xml
-                  │   └── init.xml
-                  ├── connector.xml
-                  └── sample
-                         ├── component.xml
-                         └── operation1.xml
-        </td>
+        <td>Defines the sub directories which contain the operations.</td>
     </tr>
     <tr>
         <td>icon</td>
         <td>Path to the icon file of the connector.</td>
     </tr>
 </table>    
+
+E.g., According to the sample above, it contains two subdirectories named ‘config’ and ‘sample’ inside /resources.
+```
+     └── resources
+           ├── config
+           │   ├── component.xml
+           │   └── init.xml
+           ├── connector.xml
+           └── sample
+                  ├── component.xml
+                  └── operation1.xml
+```
 
 ### Subdirectory containing operations
 
@@ -136,20 +139,7 @@ Below is the component.xml in ‘sample’ subdirectory.
     </tr>
     <tr>
         <td>name</td>
-        <td>The name of the subdirectory. This is the name to be used as the ‘component’ attribute of the ‘dependency’ element in the connector.xml file. For example:
-            └── resources
-                  ├── config
-                  │   ├── component.xml
-                  │   └── init.xml
-                  ├── connector.xml
-                  └── sample
-                         ├── component.xml
-                         └── operation1.xml
-        The following is a sample available in the component.xml file.
-            <code>
-                <component name="sample" type="synapse/template">
-            </code>
-        </td>
+        <td>The name of the subdirectory. This is the name to be used as the ‘component’ attribute of the ‘dependency’ element in the connector.xml file.</td>
     </tr>
     <tr>
         <td>subComponents</td>
@@ -177,6 +167,24 @@ Below is the component.xml in ‘sample’ subdirectory.
         <td>Description of the operation</td>
     </tr>
 </table> 
+
+ For example:
+ ```
+      └── resources
+            ├── config
+            │   ├── component.xml
+            │   └── init.xml
+            ├── connector.xml
+            └── sample
+                   ├── component.xml
+                   └── operation1.xml
+```
+
+The following is a sample available in the component.xml file.
+
+```xml
+<component name="sample" type="synapse/template">
+```
 
 ### Operation
 
@@ -395,7 +403,7 @@ This builds the connector and generates a ZIP file named sample-connector-1.0.0.
 
 9. Select the artifacts to be exported and click **Finish**.
 
-    <img src="../../../assets/img/connectors/select-artifacts.png" title="Select Artifacts" width="300" alt="Select Artifacts"/>
+    <img src="../../../assets/img/connectors/select-artifacts.png" title="Select Artifacts" width="500" alt="Select Artifacts"/>
 
 10. Send a POST call to http://localhost:8290/sample/listVolume with the below request payload.
     ```json
@@ -422,7 +430,7 @@ This sample is an extension to the ‘Writing your first connector’ section. L
 
 In the same project, you may observe the sampleConnector class created under /src/main/java/org.wso2.carbon.connector/ directory.
 
-<img src="../../../assets/img/connectors/sampleConnector-class.png" title="sampleConnector class" width="200" alt="sampleConnector class"/>
+<img src="../../../assets/img/connectors/sampleConnector-class.png" title="sampleConnector class" width="300" alt="sampleConnector class"/>
 
 The class would look similar to the following.
 
@@ -600,11 +608,11 @@ In order to implement this, the below template can be used.
 </template>
 ```
 
-For example, https://github.com/wso2-extensions/esb-connector-salesforcerest/blob/master/src/main/resources/salesforcerest-config/callWithRetry.xml 
+For example, see [the sample code](https://github.com/wso2-extensions/esb-connector-salesforcerest/blob/master/src/main/resources/salesforcerest-config/callWithRetry.xml)
 
-Here, `salesforcerest.calloptions` will contain call mediators defined for HTTP methods GET, POST, DELETE, etc. (For example, https://github.com/wso2-extensions/esb-connector-salesforcerest/blob/master/src/main/resources/salesforcerest-config/callOptions.xml)
+Here, `salesforcerest.calloptions` will contain call mediators defined for HTTP methods GET, POST, DELETE, etc. (For example, [see the code](https://github.com/wso2-extensions/esb-connector-salesforcerest/blob/master/src/main/resources/salesforcerest-config/callOptions.xml))
 
-There are two class mediators made available in carbon-mediation for refreshing the access token. Ref: https://github.com/wso2/carbon-mediation/pull/1423
+There are two class mediators made available in carbon-mediation for refreshing the access token. See the [related pull request](https://github.com/wso2/carbon-mediation/pull/1423) for more information.
 
 1. **RefreshAccessToken.java** - In the above template, you may observe this class is being invoked using the below line.
     ```xml
@@ -622,9 +630,9 @@ In Technology connectors, when the logic is implemented using Java we often need
 
 In order to handle this, the connector core consists of a connection handler. Furthermore, it also consists of a generic connection pool to maintain a connection pool for each connector.
 
-When implementing a connection for a connector, it must implement the `Connection` class. https://github.com/wso2/carbon-mediation/blob/master/components/mediation-connector/org.wso2.carbon.connector.core/src/main/java/org/wso2/carbon/connector/core/connection/Connection.java 
+When implementing a connection for a connector, it must implement the `Connection` class. For more information, see the [code](https://github.com/wso2/carbon-mediation/blob/master/components/mediation-connector/org.wso2.carbon.connector.core/src/main/java/org/wso2/carbon/connector/core/connection/Connection.java).
 
-For example, https://github.com/wso2-extensions/esb-connector-email/blob/master/src/main/java/org/wso2/carbon/connector/connection/EmailConnection.java
+For example, see [the Java code](https://github.com/wso2-extensions/esb-connector-email/blob/master/src/main/java/org/wso2/carbon/connector/connection/EmailConnection.java).
 
 #### Connection Handler 
 
@@ -733,7 +741,7 @@ Following methods in `PayloadUtils` class can be used for payload building and t
 Every connector depends on [WSO2 EI Connector Core](https://github.com/wso2/carbon-mediation/tree/master/components/mediation-connector/org.wso2.carbon.connector.core), which acts as the interface between EI mediation engine and connector implementation. It is the SDK provided to develop WSO2 EI connectors. Connection pooling, OAuth-based authentication, JSON and XML utilities are there. 
 
 **Never use class level variables when you extend “AbstractConnector” class**
-The `connect` method of this class must be stateless as multiple threads will access it at the same time (e.g., [Email Send(https://github.com/wso2-extensions/esb-connector-email/blob/master/src/main/java/org/wso2/carbon/connector/operations/EmailSend.java)). Due to the same reason, avoid using class level variables to assign and keep values as that makes this method stateful. 
+The `connect` method of this class must be stateless as multiple threads will access it at the same time (e.g., [Email Send](https://github.com/wso2-extensions/esb-connector-email/blob/master/src/main/java/org/wso2/carbon/connector/operations/EmailSend.java)). Due to the same reason, avoid using class level variables to assign and keep values as that makes this method stateful. 
 
 **Add DEBUG and TRACE logs when required**
 This is extremely useful in production. It is always advised to add required DEBUG and TRACE logs when extended Java logic is written. Developers can also add debug and trace logs for sequence templates using log mediator. In both cases make sure to use the connector name as a prefix. Otherwise it will be hard to identify the logs related to the connector when runtime has multiple connectors deployed.
@@ -757,7 +765,7 @@ This helps for other developers to read through the implementation and understan
 If the connector has many operations, instead of adding templates for all the operations in the same level, developers can group them to folders for easy navigation and readability (i.e., [DayforceConnector](https://github.com/wso2-extensions/esb-connector-dayforce/tree/master/src/main/resources)).
 
 **Define private templates and reuse. Do not duplicate logic across templates**
-Developers may define a template with the `<hidden>true</hidden>` property in `component.xml` related to the template ([example component.xml](https://github.com/wso2-extensions/esb-connector-email/blob/master/src/main/resources/config/component.xml)). Then that template will not be presented as a connector operation to the users when rendered in WSO2 Integration Studio. It is a private template which you can refer to construct logic in other templates. This provides a way to keep a reusable logic inside the connector for easy maintenance. Please see here for an [example](https://github.com/niruhan/esb-connector-salesforcerest/tree/master/src/main/resources/salesforcerest-config). 
+Developers may define a template with the `<hidden>true</hidden>` property in `component.xml` related to the template ([example component.xml](https://github.com/wso2-extensions/esb-connector-email/blob/master/src/main/resources/config/component.xml)). Then that template will not be presented as a connector operation to the users when rendered in WSO2 Integration Studio. It is a private template which you can refer to construct logic in other templates. This provides a way to keep a reusable logic inside the connector for easy maintenance. See the [example](https://github.com/niruhan/esb-connector-salesforcerest/tree/master/src/main/resources/salesforcerest-config) for more information. 
 
 **Use property Group if there are a lot of properties to define** 
 Within some operations we need to define a number of properties together. When you use Integration Studio to develop the logic, this fact makes sequence template logic to render in a lengthy manner in the UI. It makes it harder to navigate. To prevent this and to make xml definition also more readable you can group properties together using [Property Group mediator](../mediators/property-Group-Mediator/). 
@@ -769,12 +777,12 @@ When you use the [property mediator](../mediators/property-Mediator/) to read pr
 Please do not use mediators like `<send/>`, `<loopback/>` in sequence templates. They are there for the sake of backward compatibility. Always stick to mediators like `<call/>` and `<respond/>`. 
 
 **Timeout configs for connections**
-Connection timeout is an environment dependent configuration. Developers may define a default value, however it should be available for users to configure. If it is a technology connector, timeout is a configuration of the “connection”. If it is a SaaS connector developer needs to template it so that it can be passed to `<call>` mediator. (Ref: https://github.com/wso2-extensions/esb-connector-salesforcerest/blob/df72e90af3781f995186ccb79ecfcb8ba71fe866/src/main/resources/salesforcerest-config/callOptions.xml#L32)
+Connection timeout is an environment dependent configuration. Developers may define a default value, however it should be available for users to configure. If it is a technology connector, timeout is a configuration of the “connection”. If it is a SaaS connector developer needs to template it so that it can be passed to `<call>` mediator.For more information, see [here](https://github.com/wso2-extensions/esb-connector-salesforcerest/blob/df72e90af3781f995186ccb79ecfcb8ba71fe866/src/main/resources/salesforcerest-config/callOptions.xml#L32).
 
 **Handle errors meaningfully. Use ERROR CODES**
 Sometimes it is required to handle errors within the connector. Sometimes it is required to let the calling template handle the error. Sometimes it is required to forward the error message back to the connector operation invoker as it is. It is good to analyse use cases, and then design which errors need to be handled at which instance. However, it is a good practice to define and use error codes. 
 
-Please read the WSO2 Error Code guide here. 
+Please read the WSO2 Error Code guide. 
 
 **Write test cases**
 
@@ -1236,6 +1244,6 @@ Additional parameters to be added.
 
 Icons for the connector must be added to the icon folder under the root folder of the connector.
 
-<img src="../../../assets/img/connectors/icon-folder.png" title="Icon folder" width="700" alt="Icon folder"/>
+<img src="../../../assets/img/connectors/icon-folder.png" title="Icon folder" width="300" alt="Icon folder"/>
 
 The icon names are icon-large(72x80) and icon-small(25x25) and they should be in .png format.
