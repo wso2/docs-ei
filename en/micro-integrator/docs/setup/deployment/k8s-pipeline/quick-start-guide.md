@@ -44,6 +44,7 @@ prerequisites in a running Kubernetes cluster.
     ``` bash
     $ helm install --name <RELEASE_NAME> wso2/kubernetes-pipeline --version 1.1.0 -f values-mi.yaml --namespace <NAMESPACE>
     ```   
+    
     !!! Info
         The installation will take up to 10 minutes.
     
