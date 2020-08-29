@@ -100,7 +100,7 @@ All the operations exposed by the connector should be registered in this file. T
     </tr>
 </table>    
 
-E.g., According to the sample above, it contains two subdirectories named ‘config’ and ‘sample’ inside /resources.
+For example, according to the sample above, it contains two subdirectories named ‘config’ and ‘sample’ inside /resources.
 ```
      └── resources
            ├── config
@@ -168,8 +168,8 @@ Below is the component.xml in ‘sample’ subdirectory.
     </tr>
 </table> 
 
- For example:
- ```
+For example:
+```
       └── resources
             ├── config
             │   ├── component.xml
@@ -692,7 +692,7 @@ You can also extend these two classes to change the behavior if the refresh endp
 
 ### Connection Handling
 
- 
+See the above section on Connection Handling.
 
 ### Read template parameters
 
@@ -782,7 +782,7 @@ Connection timeout is an environment dependent configuration. Developers may def
 **Handle errors meaningfully. Use ERROR CODES**
 Sometimes it is required to handle errors within the connector. Sometimes it is required to let the calling template handle the error. Sometimes it is required to forward the error message back to the connector operation invoker as it is. It is good to analyse use cases, and then design which errors need to be handled at which instance. However, it is a good practice to define and use error codes. 
 
-Please read the WSO2 Error Code guide. 
+Please read the [WSO2 Error Code guide](../error_handling/). 
 
 **Write test cases**
 
@@ -845,7 +845,7 @@ Output Schema
 
 In order to support the new Integration Studio (version 7.1.0 +) properties window shown below, the UI schema should be derived for each operation. If this schema is present in the connector,  when imported to the Integration Studio properties panel will automatically get generated as per the information there. 
 
-<img src="../../../assets/img/connectors/UI-schema.png" title="UI schema" width="300" alt="UI schema"/>
+<img src="../../../assets/img/connectors/UI-schema.png" title="UI schema" width="500" alt="UI schema"/>
 
 When adding the UI Model to the connector, the JSON files containing the schema should be included in a directory called ‘uischema’ under the resources directory.
 
