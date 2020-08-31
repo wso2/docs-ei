@@ -261,7 +261,7 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
         </tr>
         <tr>
             <td>poolingEnabled</td>
-            <td>Indicates whether connection pooling is enabled or not. True if pooling is enabled. False otherwise.</td>
+            <td>Indicates whether or not connection pooling is enabled. Set to 'true' if pooling is enabled and 'false' otherwise.</td>
             <td>Optional</td>
         </tr>
         <tr>
@@ -281,7 +281,7 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
         </tr>
         <tr>
             <td>minEvictionTime</td>
-            <td>The minimum amount of time an object may sit idle in the pool before it is eligible for eviction.</td>
+            <td>The minimum amount of time an object may remain idle in the pool before it is eligible for eviction.</td>
             <td>Optional</td>
         </tr>
         <tr>
@@ -291,7 +291,7 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
         </tr>
         <tr>
             <td>exhaustedAction</td>
-            <td>The behavior of the pool when the pool is exhausted. (WHEN_EXHAUSTED_FAIL/WHEN_EXHAUSTED_BLOCK/WHEN_EXHAUSTED_GROW)</td>
+            <td>The behavior of the pool when the pool is exhausted (WHEN_EXHAUSTED_FAIL/WHEN_EXHAUSTED_BLOCK/WHEN_EXHAUSTED_GROW).</td>
             <td>Optional</td>
         </tr>
     </table>
