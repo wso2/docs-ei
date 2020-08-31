@@ -33,7 +33,7 @@ Follow the instructions below to enable log4j2 logs for a sample proxy service (
     appender.SQ_PROXY_APPENDER.strategy.type = DefaultRolloverStrategy
     appender.SQ_PROXY_APPENDER.strategy.max = 20
     appender.SQ_PROXY_APPENDER.filter.threshold.type = ThresholdFilter
-    appender.SQ_PROXY_APPENDER.filter.threshold.level = DEBUG        
+    appender.SQ_PROXY_APPENDER.filter.threshold.level = DEBUG
     ```
     
 3. Register the appender (named `SQ_PROXY_APPENDER`):
@@ -71,7 +71,7 @@ The log4j2 configurations in the `log4j2.properties` file does not create logs f
 You can update the log level of the proxy service in a running Micro Integrator instance by using the **CLI Tool**. For exmaple, to change the log level to DEBUG, execute the following command on the CLI tool: 
 
 ```bash
-mi log-level StockQuoteProxy DEBUG
+mi log-level update StockQuoteProxy DEBUG
 ```
 
 Learn more about [using the command line interface](../administer-and-observe/using-the-command-line-interface.md).
