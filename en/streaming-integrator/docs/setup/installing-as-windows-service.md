@@ -1,23 +1,23 @@
-# Running the Micro Integrator as a Windows Service
+# Running the Streaming Integrator as a Windows Service
 
-Follow the instructions given below to run the Micro Integrator as a Windows service.
+Follow the instructions given below to run the Streaming Integrator as a Windows service.
 
 ## Prerequisites
 
 -	Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then click **Zip Archive** to download the product distribution as a ZIP file.
 
--	Extract the downloaded ZIP file to a location on your computer. The <b>micro-integrator</b> folder inside the extracted ZIP file will be your <b>MI_HOME</b> directory.
+-	Extract the downloaded ZIP file to a location on your computer. The <b>streaming-integrator</b> folder inside the extracted ZIP file is your <b><SI_HOME></b> directory.
 
 -	Set up a [JDK that is compatible with WSO2 Enterprise Integrator](../install_prerequisites/#environment-compatibility) and point the `java_home` variable to your JDK instance. 
  
--	Point the `wso2mi_home` environment variable to the `MI_HOME` directory.
+-	Point the `wso2si_home` environment variable to the `<SI_HOME>` directory.
 
 !!! Note 
-    Be sure to use **lower case** letters when setting the `java_home` and `wso2mi_home` in the Windows OS. That is, you must not use `JAVA_HOME` or `WSO2MI_HOME`.
+    Be sure to use **lower case** letters when setting the `java_home` and `wso2si_home` in the Windows OS. That is, you must not use `JAVA_HOME` or `WSO2SI_HOME`.
   
 ## Setting up the YAJSW wrapper 
 
-YASJW uses the configurations defined in the `<YAJSW_HOME>/conf/wrapper.conf` file to wrap Java applications. Replace the contents of this file with the configurations that are relevant to the Micro Integrator instance that you want to run as a service. Use the **wrapper.conf** file available in `<MI_HOME>/bin/yajsw` folder to get the relevant configurations.
+YASJW uses the configurations defined in the `<YAJSW_HOME>/conf/wrapper.conf` file to wrap Java applications. Replace the contents of this file with the configurations that are relevant to the Streaming Integrator instance that you want to run as a service. Use the **wrapper.conf** file available in `<SI_HOME>/bin/yajsw` folder to get the relevant configurations.
 
 !!! Info
     WSO2 recommends Yet Another Java Service Wrapper (YAJSW) version 12.14. If you are running on JDK 11, previous versions of YAJSW will not be compatible.
