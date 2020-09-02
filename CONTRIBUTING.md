@@ -8,7 +8,7 @@ We appreciate your help and contributions!
 
 ## Getting started with contribution
 
-* Get started with the WSO2 Enterprise Integrator by accessing the [documentation landing page](https://ei.docs.wso2.com/en/latest/) and navigating to the integrator of your choice. Start trying out our quick start guides and tutorials available in the Get Started and Learn sections.
+* Get started with the WSO2 Enterprise Integrator by accessing the [documentation landing page](https://ei.docs.wso2.com/en/latest/) and navigating to the section of your choice. Start trying out our quick start guides, tutorials, and examples available in the Get Started and Learn sections.
 * Submit issues and contribute content. Go to the **Issues** tab of this GitHub repo and click the New Issue button to file a bug report. To contribute, simply click the Edit on GitHub icon that is available on every page in the [documentation site](https://ei.docs.wso2.com/en/latest/).
 * Fix issues: Use comments on the issue itself to indicate that you will be working on it and get guidance and help.
 

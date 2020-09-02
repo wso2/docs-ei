@@ -4,7 +4,7 @@ Follow the steps given below to install the WSO2 Micro Integrator runtime and it
 
 ## Download and install
 
-Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then cick **Binary** to download the product distribution as a ZIP file.
+Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then click **Zip Archive** to download the product distribution as a ZIP file.
 
 Extract the download ZIP file to a location on your computer. 
 

@@ -1,7 +1,15 @@
 !!! note
     This section is still a work in progress and not tested.
 
-# Cloud Native Observability Deployment
+# Setting Up the Observability Solutions
+
+## Overview
+
+WSO2 Enterprise Integrator offers two observability solutions referred to as the classic observability deployment and cloud native observability deployment.
+
+If you already have an observability stack such as ELK,  or if you want more business analytics and less operational observability, it is recommended for you to use the [Classic Observability Deployment](../../administer-and-observe/using-the-analytics-dashboard.md).
+
+If 
 
 ## Setting up minimum basic observability deployment
 
@@ -274,7 +282,7 @@ After successfully setting up the Fluent Bit you need to set up Grafana Loki. Gr
 
 ### Configuring the EI to publish logs
 
-### Configuring Grafana to display logs
+### Configuring Grafana to visualize logs
 
 In order to configure Grafana to display logs, you need to add Loki as a data source in Grafana. To do this, follow the procedure below:
 
@@ -286,6 +294,8 @@ In order to configure Grafana to display logs, you need to add Loki as a data so
 2. Access Grafana via `http://localhost:3000/`.
 
 3. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Loki**.
+
+    ![Select Loki as Data Source](../assets/img/grafana-select-datasource.png)
 
 4. In the **Add data source** page -> **Settings** tab, update the configurations for Loki as follows.
 
@@ -330,6 +340,9 @@ To configure WSO2 EI to publish tracing information, follow the procedure below:
 
     ```
 
+### Configuring Grafana to visualize tracing information
+
+### Scaling the tracing add-on
 
 
 
