@@ -203,11 +203,15 @@ nav:
         - 'Publishing Aggregated Events to the Amazon AWS S3 Bucket': 'samples/AmazonS3SinkSample.md'
         - 'Publishing Events to a GCS Bucket': 'samples/GCSSinkSample.md'
   - 'Setup and Install':
-    - 'Install':
-      - 'Installing in a VM': 'setup/installing-si-in-vm.md'
-      - 'Installing in Docker': 'setup/installing-si-using-docker.md'
-      - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
-    - 'Migrate':
+      - 'Install':
+        - 'Installing the Streaming Integrator':
+          - 'Installing via the Installer': 'setup/installing-si-in-vm.md'
+          - 'Installing via the Binary': 'setup/installing-si-binary.md'
+          - 'Installing as a Windows Service': 'setup/installing-as-windows-service.md'
+        - 'Running the Streaming Integrator in Containers':
+          - 'Installing in Docker': 'setup/installing-si-using-docker.md'
+          - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
+      - 'Migrate':
       - 'Migrating from WSO2 SP': 'setup/migrating-from-stream-processor.md'
       - 'Upgrading from Streaming Integrator 1.0.0': 'setup/upgrading-from-previous-version.md'
     - 'Deploy':
