@@ -134,7 +134,7 @@ If you used the **installer** to install WSO2 Enterprise Integrator, you can uni
 </tr>
 <tr class="even">
 <td>Windows</td>
-<td>Go to <strong>Start Menu -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.1.0</strong> or search <strong>Uninstall Enterprise Integrator 7.1.0</strong> and click the shortcut icon. This will uninstall the product from your computer.</td>
+<td>Go to <strong>Start Menu -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.1.0</strong> or search <strong>Uninstall Enterprise Integrator 7.1.0</strong> and click the shortcut icon. This uninstalls the product from your computer.</td>
 </tr>
 <tr class="odd">
 <td>Linux</td>

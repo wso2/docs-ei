@@ -95,4 +95,4 @@ Once you try out this quick start guide, you can proceed to one of the following
 
 - To understand how to trigger integration flows via the Micro Integrator based on the results you generate via the Streaming Integrator, see [Getting SI Running with MI in Five Minutes](hello-world-with-mi.md).
 
-- Try out [Streaming Integrator tutorials](../examples/tutorials.overview.md).
+- Try out [Streaming Integrator tutorials](../examples/tutorials-overview.md).
