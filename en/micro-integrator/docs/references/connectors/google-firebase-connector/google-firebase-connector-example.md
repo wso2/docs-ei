@@ -273,5 +273,5 @@ If you have registered some devices to your application, the notification will a
 
 ## What's Next
 
-* You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* You can deploy and run your project on Docker or Kubernetes. See the instructions in [Running the Micro Integrator on Containers](../../../../setup/installation/run_in_containers).
 * Please read the [Google Firebase Connector reference guide](google-firebase-configuration.md) to learn more about the operations you can perform with the connector.

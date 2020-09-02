@@ -12,10 +12,10 @@ In order to configure a Grafana dashboard, follow the steps below:
 
 1. **Configure Prometheus reporter**
 
-   Enable statistics for the Prometheus reporter as follows.
+    Enable statistics for the Prometheus reporter as follows.
    
-   - To enable statistics for the Prometheus reporter, open the `<SI_HOME>/conf/server/deployment.yaml` file and set the `enabled` parameter in the `wso2.metrics` section to `true`, and update the other parameters in the section as shown below. You also need to add the `metrics.prometheus:` as shown.
-   
+    - To enable statistics for the Prometheus reporter, open the `<SI_HOME>/conf/server/deployment.yaml` file and set the `enabled` parameter in the `wso2.metrics` section to `true`, and update the other parameters in the section as shown below. You also need to add the `metrics.prometheus:` as shown.
+    
     ```yaml
      wso2.metrics:
        # Enable Metrics
@@ -39,8 +39,8 @@ In order to configure a Grafana dashboard, follow the steps below:
             enabled: true
             serverURL: "http://localhost:9005"
     ```
-   - To enable statistics for the Prometheus reporter at Siddhi application level, use the `@App:statistics` annotation in the required Siddhi applications to set the `reporter` parameter as shown in the example below.
-   
+    - To enable statistics for the Prometheus reporter at Siddhi application level, use the `@App:statistics` annotation in the required Siddhi applications to set the `reporter` parameter as shown in the example below.
+    
       ```
         @App:name('TestMetrics')
         @App:statistics(reporter = 'prometheus')

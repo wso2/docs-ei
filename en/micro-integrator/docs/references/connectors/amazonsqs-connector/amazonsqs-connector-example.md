@@ -214,5 +214,5 @@ You should get the following response with the 'sys_id' and keep it saved.
 
 ## What's Next
 
-* You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* You can deploy and run your project on Docker or Kubernetes. See the instructions in [Running the Micro Integrator on Containers](../../../../setup/installation/run_in_containers).
 

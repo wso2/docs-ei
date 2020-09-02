@@ -4,7 +4,9 @@ An integration project consists of one or several project directories. These dir
 
 An integration project is the recommended way of creating an “Integration Solution” for the WSO2 Enterprise Integrator as it simplifies the CICD workflow.
 
-**To create an integration project:**
+## Integration project
+
+To create an integration project:
 
 1. [Download](https://wso2.com/integration/integration-studio/) and [install WSO2 Integration Studio](installing-WSO2-Integration-Studio/).
 
@@ -18,43 +20,13 @@ An integration project is the recommended way of creating an “Integration Solu
 
 An integration project can consist of multiple sub-projects. So multiple small projects can exist under a single integration project, where each of these can be dependent on each other and can be grouped together. However, it is not necessary that all sub-projects in an integration project be dependent on every other sub-project.
 
-To add sub-projects to an existing integration project, right click on the integration project and hover over **New** to see the available project creation options.
+<img src="../../assets/img/new-project/sub-projects.png" title="Sub Projects" width="250" alt="Sub Project"/>
+
+To add sub-projects to an existing integration project, right-click the integration project and hover over **New** to see the available project creation options.
 
 <img src="../../assets/img/new-project/new-sub-project.png" title="Add a New Sub Project" width="250" alt="Add a New Sub Project"/>
 
 Once you create the new sub project, you can see this nested under your integration project folder in the project explorer.
-
-## About Maven Multi Module integration projects
-
-The Maven Multi Module (MMM) integration project is the parent project in an integration solution and sub-projects can be added under this parent project. By default, an integration project is an MMM project unless you specify otherwise. 
-
-By building the parent MMM project, you can build all the sub-projects in the integration solution simultaneously. This allows you to seamlessly push your integration solutions to a CI/CD pipeline. Therefore, it is recommended as a best practice to create your Config project and other projects inside an MMM integration project.
-
-This allows you to manage multiple projects such as Config projects, Composite Application projects, and Registry Resource projects as a single entity.
-
-Although the recommended approach is to create an integration project, which essentially has all the functionality of an MMM project, you can also create an MMM project separately.
-
-**To create the MMM project**:
-
-1.  Open **WSO2 Integration Studio** and click **New Maven Multi Module Project** in the **Getting Started** view.
-
-2.  In the **Maven Modules Creation Wizard** that opens, enter an artifact ID and other parameters as shown below. The artifact ID will be the name of your MMM project.
-
-    <img src="../../assets/img/create_project/new_maven_multi_module.png" width="500">
-
-3.  Click **Finish**. The MMM project is created in the project explorer. 
-
-    <img src="../../assets/img/create_project/proj_explorer_mmm.png" width="300">
-
-Now you can create other projects inside the MMM project. For example, let's create a **Config** project and a **Composite Application** project.
-
-You can create sub-projects under this parent MMM project.
-
-## Types of projects
-
-The integration project can have sub-projects that reside under the main integration project.
-
-<img src="../../assets/img/new-project/sub-projects.png" title="Sub Projects" width="250" alt="Sub Project"/>
 
 The following table lists out the available projects that can be associated with an integration project.
 
@@ -114,3 +86,90 @@ The following table lists out the available projects that can be associated with
         <td>A Kubernetes Exporter project allows you to deploy your integration solutions in a Kubernetes environment. This module allows you to package multiple integration projects and modules into a single Docker image. Also, a file named integration_cr.yaml is generated, which can be used to carry out Kubernetes deployments based on the <a href="../../setup/deployment/kubernetes_deployment/#ei-kubernetes-k8s-operator">k8s-ei-operator</a>. For more information on Kubernetes-specific project creation information, see <a href="develop/create-kubernetes-project">Create Kubernetes Project</a>.</td>
     </tr>
 </table>
+
+## Maven Multi Module projects
+
+The Maven Multi Module (MMM) integration project is the parent project in an integration solution and sub-projects can be added under this parent project. By default, an integration project is an MMM project unless you specify otherwise. 
+
+By building the parent MMM project, you can build all the sub-projects in the integration solution simultaneously. This allows you to seamlessly push your integration solutions to a CI/CD pipeline. Therefore, it is recommended as a best practice to create your Config project and other projects inside an MMM integration project.
+
+This allows you to manage multiple projects such as Config projects, Composite Application projects, and Registry Resource projects as a single entity.
+
+Although the recommended approach is to create an integration project, which essentially has all the functionality of an MMM project, you can also create an MMM project separately.
+
+**To create the MMM project**:
+
+1.  Open **WSO2 Integration Studio** and click **New Maven Multi Module Project** in the **Getting Started** view.
+
+2.  In the **Maven Modules Creation Wizard** that opens, enter an artifact ID and other parameters as shown below. The artifact ID will be the name of your MMM project.
+
+    <img src="../../assets/img/create_project/new_maven_multi_module.png" width="500">
+
+3.  Click **Finish**. The MMM project is created in the project explorer. 
+
+    <img src="../../assets/img/create_project/proj_explorer_mmm.png" width="300">
+
+Now you can create other projects inside the MMM project. For example, let's create a **Config** project and a **Composite Application** project.
+
+You can create sub-projects under this parent MMM project.
+
+## Moving sub projects to MMM project
+
+You can import existing sub projects (ESB Config project, Registry resource project, Composite project, etc.) into an existing Maven Multi Module Project (Integration Project).
+
+Right-click the project, and click <b>Import to Maven Muti Module</b>.
+
+<img src="../../assets/img/create_project/import-to-mmm.png" width="400" title="import to maven multi module" alt="import to maven multi module">
+
+## Building selected MMM profiles
+
+When you create an integration project, you have a parent MMM project with child modules (sub projects). The MMM project in WSO2 Integration Studio now includes multiple maven profiles. Therefore, you can build selected profiles instead of building the complete MMM project.
+
+Maven profiles:
+
+<table>
+	<tr>
+		<th>
+			Profile Name
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Solution
+		</td>
+		<td>
+			Builds the integration artifacts stored in the <b>ESB Config</b> sub project.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Docker
+		</td>
+		<td>
+			Builds the integration artifacts stored in the <b>ESB Config</b> and <b>Docker</b> sub projects.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Kubernetes
+		</td>
+		<td>
+			Builds the integration artifacts stored in the <b>ESB Config</b> and <b>Kubernetes</b> sub projects.
+		</td>
+	</tr>
+</table>
+
+To build a selected Maven profile:
+
+1.  Open a terminal and navigate to the MMM project folder.
+2.  Execute the following command:
+
+    ```bash
+    mvn clean install -P <Profile_name>
+    ```
+
+    !!! Tip
+        If you don't specify a profile name with the `-P` parameter, the default profile will apply.

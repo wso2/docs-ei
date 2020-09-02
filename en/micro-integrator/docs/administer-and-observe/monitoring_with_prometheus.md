@@ -1,6 +1,6 @@
 # Monitoring with Prometheus
 
-Prometheus is an open source toolkit that can monitor systems and produce useful information such as graphs and alerts. It collects statistical data exposed over an HTTP endpoint in the form of multi dimensional time series data, which can be then be visualized and queried. See the [Prometheus documentation](http://prometheus%202) for more information.
+Prometheus is an open source toolkit that can monitor systems and produce useful information such as graphs and alerts. It collects statistical data exposed over an HTTP endpoint in the form of multi dimensional time series data, which can be then be visualized and queried. See the [Prometheus documentation](https://prometheus.io/docs/introduction/overview/) for more information.
 
 ## Overview
 

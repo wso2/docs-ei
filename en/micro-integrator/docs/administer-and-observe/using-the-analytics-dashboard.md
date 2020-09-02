@@ -31,7 +31,7 @@ See the instructions given below on using the Analytics profile with the Micro I
 
 ## System Requirements
 
-- For EI nodes, see [Installation Prerequisites](../../setup/installation/install_prerequisites.md).
+- For EI nodes, see [Installation Prerequisites](../../setup/installation/install_prerequisites).
 
 - For the Analytics worker:
 
@@ -101,7 +101,7 @@ Let's use the integration artifacts from the [service chaining](../../use-cases/
 
 If you did not try the [service chaining](../../use-cases/tutorials/exposing-several-services-as-a-single-service) tutorial yet:
 
-1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip) for the **service chaining** use case.
+1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/service-orchestration-tutorial.zip) for the **service chaining** use case.
 2.  [Open WSO2 Integration Studio](../../develop/installing-WSO2-Integration-Studio) and [import the pre-packaged project](../../develop/importing-projects).
 
 Follow the steps below to enable statistics and tracing for the **REST API** artifact:
@@ -125,17 +125,13 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 2.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
 3.  Start the Analytics Worker runtime by executing the following command:
 
-    -   On **MacOS/Linux/CentOS**
+    ```bash tab='On MacOS/Linux/Centos'
+    sh worker.sh
+    ```
 
-        ```bash
-        sh worker.sh
-        ```
-
-    -   On **Windows**
-
-        ```bash
-        worker.bat
-        ```
+    ```bash tab='On Windows'
+    worker.bat
+    ```
 
 ## Starting the Micro Integrator
 
@@ -151,19 +147,15 @@ Once you have [started the Analytics Worker](#starting-the-analytics-worker), yo
 1.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
 2.  Start the Analytics Dashboard runtime by executing the following command:
 
-    -   On **MacOS/Linux/CentOS**
+    ```bash tab='On MacOS/Linux/Centos'
+    sh dashboard.sh
+    ```
 
-        ```bash
-        sh dashboard.sh
-        ```
+    ```bash tab='On Windows'
+    dashboard.bat
+    ```
 
-    -   On **Windows**
-
-        ```bash
-        dashboard.bat
-        ```
-
-In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal> . Use
+In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal>. Use
     `admin` for both the username and password.
 
 <img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
@@ -181,7 +173,7 @@ Let's start the hospital service that serves as the backend to the [service chai
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-JDK11.jar
+    java -jar Hospital-Service-JDK11-2.0.0.jar
     ```
 
 **Sending a message**

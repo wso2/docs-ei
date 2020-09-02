@@ -934,6 +934,7 @@ Note that the transformation (line 9 through 17) has added a new field
 `         id        ` from the request, and it has added a new tag
 `         pub        ` to the existing tags list of the payload.
 
+<!--
 For additional examples that demonstrate different ways to manipulate
 JSON payloads within the MI mediation flow, see the following samples:
 
@@ -941,6 +942,7 @@ JSON payloads within the MI mediation flow, see the following samples:
     XSLT](https://docs.wso2.com/display/ESB500/Sample+440%3A+Converting+JSON+to+XML+Using+XSLT)
 -   [Sample 441: Converting JSON to XML Using
     JavaScript](https://docs.wso2.com/display/ESB500/Sample+441%3A+Converting+JSON+to+XML+Using+JavaScript)
+-->
 
 ### XML to JSON transformation parameters
 

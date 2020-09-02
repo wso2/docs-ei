@@ -2,7 +2,7 @@
 
 This is the documentation for the upcoming release of the WSO2 Enterprise Integrator 7 family. Please note that this documentation is work in progress.
 
-To see the **latest released documentation** for the WSO2 Enterprise Integrator 7 family, go to: https://ei.docs.wso2.com/en/latest/
+To see the **latest released documentation** for the WSO2 Enterprise Integrator 7 family, go to: https://ei.docs.wso2.com/en/latest/. The source code for this can be found in a branch.
 
 ## Contributing to WSO2 EI documentation
 
@@ -14,7 +14,7 @@ As an open source project, WSO2 EI welcomes contributions from the community. To
 
     If the CLA gets changed for some (unlikely) reason, you will be presented with the new CLA text after sending your first PR after the change.
 
-2. Fork this repository, make your changes, and send in a pull request. Make sure you are contributing to the correct branch (for example, if your change is relevant to WSO2 EI 7.0.0 documentation, you should commit your changes to the 7.0.0 branch).
+2. Fork this repository, make your changes, and send in a pull request. Make sure you are contributing to the correct branch (for example, if your change is relevant to WSO2 EI 7.1.0 documentation, you should commit your changes to the 7.1.0 branch).
 
 Check the issue tracker for open issues that interest you. We look forward to receiving your contributions.
 
@@ -57,7 +57,7 @@ If pip is not already installed on your machine, download get-pip.py to install 
 
 Clone this GitHub repository.
 
-Navigate to the branch you want and the directory you want. For example, `cd docs-ei/en/micro-integrator/` in the `7.0.0` branch. Then run the following command:
+Navigate to the branch you want and the directory you want. For example, `cd docs-ei/en/micro-integrator/` in the `7.1.0` branch. Then run the following command:
 
 `mkdocs serve --dirtyreload`
   

@@ -56,4 +56,4 @@ MacOS security settings as described below.
 
 -   Take a [quick tour](../develop/WSO2-Integration-Studio.md) of the WSO2 Integration Studio interface.
 -   [Build a simple integration use case](../develop/integration-development-kickstart.md) to get familiar with the development workflow. 
--   Build [integration use cases](../use-cases/integration-use-cases.md) with WSO2 Integration Studio.
+-   Build [integration use cases](../../use-cases/learn-overview) with WSO2 Integration Studio.

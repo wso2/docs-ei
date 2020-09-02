@@ -405,3 +405,12 @@ This builds the connector and generates a ZIP file named sample-connector-1.0.0.
     <img src="../../../assets/img/connectors/json-response.png" title="JSON response" width="800" alt="JSON Response"/>
 
 
+## Extending Connector Capabilities with Java
+
+In cases where you need to provide custom capabilities that cannot be fulfilled using mediators, we are able to implement this logic in Java within the connector itself and invoking them using the Class Mediator. This capability is useful when creating Technology connectors.
+
+These Java classes should reside inside /src/main/java/org.wso2.carbon.connector/ directory.
+Sample
+
+This sample is an extension to the ‘Writing your first connector’ section. Let us improve the connector with a Java implementation. 
+In the same project, you may observe the sampleConnector class created under /src/main/java/org.wso2.carbon.connector/ directory.

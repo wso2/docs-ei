@@ -37,5 +37,5 @@ In WSO2 servers, audit logs are enabled by default. We can limit the audit log f
 
 Add the following two properties for `AUDIT_LOGFILE`:
 
-    -   `appender.AUDIT_LOGFILE.policies.size.size=10MB`
-    -   `appender.AUDIT_LOGFILE.strategy.max=20`
+-   `appender.AUDIT_LOGFILE.policies.size.size=10MB`
+-   `appender.AUDIT_LOGFILE.strategy.max=20`

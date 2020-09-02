@@ -292,12 +292,14 @@ nav:
       - Deploy:
         - Deploy on Kubernetes:
           - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
-          - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'
-          - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
-          - K8s Deployment Samples:
-            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
-            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
-            - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+          - 'Deploy using Helm resources': 'setup/deployment/deploying_in_kubernetes_with_helm.md'
+          - Deploy using K8s EI-Operator:
+              - 'Kubernetes EI Operator': 'setup/deployment/ei_kubernetes_operator.md'
+              - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
+              - K8s EI-Operator Deployment Samples:
+                - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
+                - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
+                - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
         - Deploy on a Virtual Machine:
           - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
           - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
@@ -579,7 +581,7 @@ nav:
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
-          - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
+          - 'Aggregate Mediator' : 'references/mediators/aggregate-Mediator.md'
           - 'Builder Mediator' : 'references/mediators/builder-Mediator.md'
           - 'Cache Mediator' : 'references/mediators/cache-Mediator.md'
           - 'Call Mediator' : 'references/mediators/call-Mediator.md'

@@ -232,7 +232,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="streaming-integrator/samples/CDCWithListeningMode">
+    <a style="color: #222222;" href="streaming-integrator/examples/performing-real-time-etl-with-mysql">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">

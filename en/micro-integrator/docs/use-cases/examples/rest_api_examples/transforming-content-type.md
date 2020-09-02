@@ -3,7 +3,7 @@ This section describes how you can transform the content type of a message using
     
 -  GET - Response is in JSON format.
 -  POST - Accepts JSON request and returns response in XML format.
--  DELETE - Empty request body should is required. RReturns response in XML format. 
+-  DELETE - Empty request body is required. Returns response in XML format. 
     
 ## Synapse configuration
     
