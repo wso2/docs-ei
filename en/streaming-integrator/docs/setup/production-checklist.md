@@ -22,7 +22,7 @@ This involves configuring the network firewall for opening the ports used by WSO
 
 ## Setting up databases
 
-If you are integrating data stores in your Streaming Integration flows, you need to set up databases. For information about supported database types and how to configure datasources for them, see [Configuring Datasources](setup/configuring-data-sources).
+If you are integrating data stores in your Streaming Integration flows, you need to set up databases. For information about supported database types and how to configure datasources for them, see [Configuring Datasources](/configuring-data-sources/).
 
 ## Configuring Transports
 
