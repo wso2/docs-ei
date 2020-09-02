@@ -205,7 +205,7 @@ nav:
   - 'Setup and Install':
     - 'Install':
       - 'Installing the Streaming Integrator':
-        - 'Installing via the Installer': 'setup/installing-si-in-vm.md'
+        - 'Installing via the Instaler': 'setup/installing-si-in-vm.md'
         - 'Installing via the Binary': 'setup/installing-si-binary.md'
         - 'Installing as a Windows Service': 'setup/installing-as-windows-service.md'
       - 'Running the Streaming Integrator in Containers':
