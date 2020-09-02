@@ -1,15 +1,7 @@
 !!! note
     This section is still a work in progress and not tested.
 
-# Setting Up the Observability Solutions
-
-## Overview
-
-WSO2 Enterprise Integrator offers two observability solutions referred to as the classic observability deployment and cloud native observability deployment.
-
-If you already have an observability stack such as ELK,  or if you want more business analytics and less operational observability, it is recommended for you to use the [Classic Observability Deployment](../../administer-and-observe/using-the-analytics-dashboard.md).
-
-If 
+# Cloud Native Observability Deployment
 
 ## Setting up minimum basic observability deployment
 

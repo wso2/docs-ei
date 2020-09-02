@@ -46,22 +46,22 @@ The following is the list of widgets displayed in this dashboard.
 
 | **Widget**                     | **Description**   |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| **Up Time**                    | The time duration that has elapsed since the node became active for the current session.|                                                                                                              |
-| **Service Count**              | The number of services (i.e., proxy services and REST API services) that are currently deployed in the node.|
-| **All Time Request Count**     | The total number of requests received by the node after it became a member of the current WSO2 EI setup.|
-| **All Time Error Count**       | The total number of requests handled by the node that have resulted in errors.|
-| **CPU Utilization**            | A visualization of the node's CPU consumption over time.|
-| **JVM Heap Memory**            | A visualization of the amount of JVM heap memory consumed by the node over time.|
-| **Thread Count**               | A visualization of the number of threads allocated to the node over time. |
-| **Open File Descriptor Count** ||
-| **Services List**              | The complete list of services (i.e., proxy services and REST API services) that are currently deployed in the node.|
-| **Request Rate**               | A visualization of the total number of requests received by the node over time. |
-| **Error Rate**                 | A visualization of the total number of requests handled by the node that have resulted in errors over time. |
-| **Response Time**              | A visualization of the amount of time taken by the node to respond to requests over time. |
+| **Up Time**                    |                                                                                                                   |
+| **Service Count**              |
+| **All Time Request Count**     |
+| **All Time Error Count**       |
+| **CPU Utilization**            |
+| **JVM Heap Memory**            |
+| **Thread Count**               |
+| **Open File Descriptor Count** |
+| **Services List**              |
+| **Request Rate**               |
+| **Error Rate**                 |
+| **Response Time**              |
 
 ## Proxy Service dashboard
 
-In the Proxy service dashboard, we can view information related to a specific Proxy service.
+In the Proxy service dashboard, we can view information related to a specific Proxy service. We can download this dashboard from here. In this dashboard, it will show us Up Time,, All Request Count, Successful Request Count, Error Count, Error Percentage, Deployed Node Count, Request Rate, Error Rate and Response Time. Basically this dashboard shows us the overall statistics related to a Proxy Service.
 
 ![Cluster Dashboard](../assets/img/monitoring-dashboard/grafana-proxy-services-dashboard.png)
 
@@ -73,22 +73,13 @@ You can download the dashboard from the [WSO2 EI Git repository]().
 
 The following is the list of widgets displayed in this dashboard.
 
-| **Widget**                    | **Description**                                                                                       |
-|-------------------------------|-------------------------------------------------------------------------------------------------------|
-| **Up Time**                   | The time duration that has elapsed since the proxy service started running during the current session.|
-| **All Request Count**         | The total number of requests received and handled by the proxy service.                               |
-| **Successful Request Count**  | The total number of requests that were successfully executed by the proxy service.                    |
-| **Error Count**               | The total number of requests handled by the proxy service that have resulted in errors.               |
-| **Error Percentage**          | The percentage of requests handled by the proxy service that have resulted in errors.                 |
-| **Deployed Node Count**       | The number of nodes in which the proxy service is deployed.                                           |
-| **Request Rate**              | A visualization of the total number of requests handled by the proxy service over time.               |
-| **Error Rate**                | A visualization of the total number of errors that have occurred for the proxy service over time.     |
-| **Response Time**             | A visualization of the time taken by the proxy service to respond to requests over time.              |
-                                                                                                                 
+| **Widget** | **Description** |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------|
+|                           |                                                                                                                   |
 
 ## API dashboard
 
-This dashboard displays overall statistics related to a specific API. 
+In the API dashboard, we can view information related to a specific API. We can download this dashboard from here. In this dashboard, it will show us Up Time,, All Request Count, Successful Request Count, Error Count, Error Percentage, Deployed Node Count, Request Rate, Error Rate and Response Time. Basically this dashboard shows us the overall statistics related to an API.
 
 ### Downloading the dashboard
 
@@ -98,17 +89,16 @@ You can download the dashboard from the [WSO2 EI Git repository]().
 
 The following is the list of widgets displayed in this dashboard.
 
-| **Widget**                    | **Description**                                                                                      |
-|-------------------------------|------------------------------------------------------------------------------------------------------|
-| **Up Time**                   | The time duration that has elapsed since the API service started running during the current session. |                                                                                                            |
-| **All Time Request Count**    | The total number of requests received and handled by the API service.                                |
-| **Approx. Request Count**     |                                                                                                      |
-| **All Time Error Count**      | The total number of requests handled by the proxy service that have resulted in errors.              |
-| **Approx. Error Count**       |                                                                                                      |
-| **Deployed Node Count**       | The number of nodes in which the API service is deployed.                                            |
-| **Request Rate**              | A visualization of the total number of requests handled by the API service over time.                |
-| **Error Rate**                | A visualization of the total number of errors that have occurred for the API service over time.      |
-| **Response Time**             | A visualization of the time taken by the API service to respond to requests over time.               |
+| **Widget** | **Description** |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------|
+| **Up Time**            |                                                                                                                   |
+| **All Request Count** |
+| **Successful Request Count** |
+| **Error Count** |
+| **Error Percentage** |
+| **Deployed Node Count** |
+| **Request Rate** |
+| **Error Rate and Response Time** |
 
 ## Inbound Endpoint dashboard
 
