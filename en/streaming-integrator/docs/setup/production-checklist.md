@@ -22,7 +22,7 @@ This involves configuring the network firewall for opening the ports used by WSO
 
 ## Setting up databases
 
-If you are integrating data stores in your Streaming Integration flows, you need to set up databases. For information about supported database types and how to configure datasources for them, see [Configuring Datasources](setup/configuring-data-sources).
+If you are integrating data stores in your Streaming Integration flows, you need to set up databases. For information about supported database types and how to configure datasources for them, see [Configuring Datasources](/configuring-data-sources/).
 
 ## Configuring Transports
 
@@ -30,7 +30,7 @@ In order to use certain transports to receive and send data, you are required to
 
 ## Minimizing the impact of system failure
 
-In order to minimize the loss of data that can result from a system failure, you can configure WSO2 Streaming Integrator to periodically save its state in a database. For more information, see [Configuring Database and File System State Persistence](admin/configuring-Database-and-File-System-State-Persistence).
+In order to minimize the loss of data that can result from a system failure, you can configure WSO2 Streaming Integrator to periodically save its state in a database. For more information, see [Configuring Database and File System State Persistence](../admin/configuring-Database-and-File-System-State-Persistence/).
 
 ## Creating Business Rules templates
 
