@@ -198,7 +198,7 @@ The following optional properties can be configured when [creating a JMS inbound
             <p>pinnedServers</p>
          </td>
          <td>
-            <p>The pinned server parameter is applicable only when in non-clustering mode. This is a list of synapse server names separated by commas or spaces where this inbound endpoint should be deployed. If there is no pinned server list, the inbound endpoint configuration will be deployed in all server instances.</p>
+            <p>The pinned server parameter is applicable only for tasks with co-ordination disabled. This is a list of synapse server names separated by commas or spaces where this inbound endpoint should be deployed. If there is no pinned server list, the inbound endpoint configuration will be deployed in all server instances.</p>
          </td>
       </tr>
       <tr>
