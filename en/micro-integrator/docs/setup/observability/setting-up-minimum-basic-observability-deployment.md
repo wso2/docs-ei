@@ -5,11 +5,42 @@
 
 ## Overview
 
+This section explains how to set up the observability solutions for WSO2 Enterprise Integrator.
+
 WSO2 Enterprise Integrator offers two observability solutions referred to as the classic observability deployment and cloud native observability deployment.
 
-If you already have an observability stack such as ELK,  or if you want more business analytics and less operational observability, it is recommended for you to use the [Classic Observability Deployment](../../administer-and-observe/using-the-analytics-dashboard.md).
+If you already have an observability stack such as ELK,  or if you want more business analytics and less operational observability, it is recommended for you to use the Classic Observability Deployment. For more information about this solution, see [Classic Observability Deployment](../../administer-and-observe/using-the-analytics-dashboard.md).
 
-If 
+If you are creating a new cloud-native deployment or if you have Prometheus, Grafana, and Jaeger as your in-house monitoring and observability tools, you can set  up and use the Cloud Native Observability Solution. For more information about this solution, see [Cloud Native Observability Solution](../../administer-and-observe/cloud-native-observability-dashboards.md).
+
+## Cloud native observability deployment
+
+Cloud-native observability deployment is based on proven projects in Cloud Native Computing Foundation to be cloud native and future proof. Following are the technologies used in the current solution:
+
+| **Feature**   | **Technology**              |
+|---------------|-----------------------------|
+| Metrics       | Prometheus                  |
+| Visualization | Grafana                     |
+| Logging       | Fluent-Bit and Grafana Loki |
+| Tracing       | Jaeger                      |
+
+!!! tip
+    The sample scenarioes provided in the documentation are using the technologies mentioned above. However, it is also technically feasible to integrate with other parallel technologies such as Filebeat, Logstash, and Elasticsearch.
+
+The following diagram depicts the high level architecture of the solution. 
+
+![Cloud Native Deployment Architecture](../../assets/img/monitoring-dashboard/cloud-native-deployment-architecture.png)
+
+For the ease of use, this deployment is offered in an add-on based approach. The basic deployment offers you metrics capabilities. You can set up the basic deployment with only Prometheus and Grafana to view and explore with the available Prometheus metrics.
+ 
+Once you set up the basic deployment, you can install either one or both of the following add-ons.
+
+- **Logging add-on**
+    This provides you with log-processing capabilities. To use this, you need to install Fluent-Bit as the logging agent and Loki as the log aggregator.
+
+- **Tracing add-on**
+    This provides you with Tracing capabilities. Tho use this you need to install Jaeger.
+
 
 ## Setting up minimum basic observability deployment
 
