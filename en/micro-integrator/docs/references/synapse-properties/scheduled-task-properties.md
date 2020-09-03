@@ -116,7 +116,7 @@ The following properties are required when [creating a scheduled task](../../../
             <div class="content-wrapper">
                <p>The list of Micro Integrator server nodes that will run the task. You can specify the IP addresses of the required nodes.</p>
                <b>Note</b>:
-               <p>This setting can be used if you want the task to run on a single node. Note that the task will only run on one of the nodes at a time and the pinned server setting is applicable only when in non-clustering mode. Pinned servers will override the default task handling behavior defined at server-level (for this particular task). However, if <strong>rule-based</strong> task handling is specified at server-level, you need to ensure that the same server nodes you specify as pinned servers for the task are also specified for the task handling rule at server-level.</p>
+               <p>This setting can be used if you want the task to run on a single node. Note that the task will only run on one of the nodes at a time and the pinned server parameter is applicable only for tasks with co-ordination disabled. Pinned servers will override the default task handling behavior defined at server-level (for this particular task). However, if <strong>rule-based</strong> task handling is specified at server-level, you need to ensure that the same server nodes you specify as pinned servers for the task are also specified for the task handling rule at server-level.</p>
             </div>
          </td>
       </tr>
