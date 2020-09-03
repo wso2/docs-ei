@@ -10,7 +10,7 @@ You can schedule a task to run after a time interval of 't' for an 'n' number of
     In a clustered environment, tasks are distributed among server nodes according to the round-robin method, by default. If required, you can change this default task handling behaviour so that tasks are distributed randomly, or according to a specific rule. 
     
     -   See the instructions on how to configure task scheduling for the Micro Integrator.
-    -   You can also configure the task handling behaviour at task-level, by specifying the Pinned Servers for a task. Note that this setting overrides the server-level configuration.
+    -   You can also configure the task handling behaviour at task-level, by specifying the Pinned Servers for a task. Note that this setting overrides the server-level configuration. However, the pinned server task is applicable only when in non-clustering mode.
 
     Also, note that a scheduled task will only run on one of the nodes (at a given time) in a clustered environment. The task will fail over to another node only if the first node fails.
 -->
@@ -116,7 +116,7 @@ The following properties are required when [creating a scheduled task](../../../
             <div class="content-wrapper">
                <p>The list of Micro Integrator server nodes that will run the task. You can specify the IP addresses of the required nodes.</p>
                <b>Note</b>:
-               <p>This setting can be used if you want the task to run on a selected set of nodes in a product cluster. Note that the task will only run on one of the nodes at a time. It will fail over to another node, only if the first node fails. Pinned servers will override the default task handling behavior defined at server-level (for this particular task). However, if <strong>rule-based</strong> task handling is specified at server-level, you need to ensure that the same server nodes you specify as pinned servers for the task are also specified for the task handling rule at server-level.</p>
+               <p>This setting can be used if you want the task to run on a single node. Note that the task will only run on one of the nodes at a time and the pinned server setting is applicable only when in non-clustering mode. Pinned servers will override the default task handling behavior defined at server-level (for this particular task). However, if <strong>rule-based</strong> task handling is specified at server-level, you need to ensure that the same server nodes you specify as pinned servers for the task are also specified for the task handling rule at server-level.</p>
             </div>
          </td>
       </tr>
