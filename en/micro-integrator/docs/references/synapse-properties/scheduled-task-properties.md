@@ -10,7 +10,7 @@ You can schedule a task to run after a time interval of 't' for an 'n' number of
     In a clustered environment, tasks are distributed among server nodes according to the round-robin method, by default. If required, you can change this default task handling behaviour so that tasks are distributed randomly, or according to a specific rule. 
     
     -   See the instructions on how to configure task scheduling for the Micro Integrator.
-    -   You can also configure the task handling behaviour at task-level, by specifying the Pinned Servers for a task. Note that this setting overrides the server-level configuration. However, the pinned server task is applicable only when in non-clustering mode.
+    -   You can also configure the task handling behaviour at task-level, by specifying the Pinned Servers for a task. Note that this setting overrides the server-level configuration. However, note that the pinned server parameter is applicable only for tasks with co-ordination disabled.
 
     Also, note that a scheduled task will only run on one of the nodes (at a given time) in a clustered environment. The task will fail over to another node only if the first node fails.
 -->
