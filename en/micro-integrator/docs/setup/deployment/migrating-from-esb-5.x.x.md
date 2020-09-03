@@ -2,19 +2,22 @@
 
 This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to the Micro Integrator of WSO2 EI 7.1. 
 
-## Before you begin
-
-WSO2 ESB 5.0 is the predecessor of the ESB profile of WSO2 EI 6.x series. 
-
-See the following topics to understand the benefits of moving to EI 7.1 from ESB 5.0:
-
--   [Comparison: ESB 5.0 vs EI 7.1](../../../references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
--   [Advantages of using the Micro Integrator in EI 7.1](../../../references/comparisong-mi7-ei6xx/#advantages-of-using-the-micro-integrator-in-ei-70)
--   [Features removed from the Micro Integrator of EI 7.1](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
-
-Note that EI 7 is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release.
-
 ## Why migrate to EI 7.1?
+
+Listed below are some of the advantages of moving to EI 7.1 from ESB 5.0.0.
+
+-	The Micro Integrator of EI 7.1 is now the most improved version of the battle-tested WSO2 ESB runtime.
+
+	WSO2 ESB 5.0, the ESB profile of WSO2 EI 6.x family, as well as the Micro Integrator of WSO2 EI 7.x family contains versions of the same WSO2 ESB runtine. 
+
+-	All the ESB runtimes of WSO2 can use the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. 
+
+-	All the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes.
+
+-	The Micro Integrator contains improvements to ease your product experiance.
+
+	!!! Note
+		The most significant change in EI 7.1 is the [Toml-based configuration strategy](../../../references/config-catalog), which replaces the XML configurations in previous versions of the ESB runtime. Some of the features are [removed from WSO2 Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not frequently used. 
 
 Migration from ESB 5.0 is recommended for the following requirements:
  
@@ -22,17 +25,17 @@ Migration from ESB 5.0 is recommended for the following requirements:
 -	You need a more lightweight, user-friendly version of the battle-tested WSO2 ESB.
 -	You need a more lightweight, container-friendly runtime in a centralized architecture.
 -	You need native support for Kubernetes.
-   
-The decision on migrating to the new platform needs to be taken by considering several factors including the preferred architectural style (centralized vs microservices), deployment environment in your organization, and the effort it takes to migrate existing integration configurations.
+
+## Before you begin
+
+Be sure to read the following resources before you start the migration. The Micro Integrator of EI 7.1 contains changes that will impact your migration process. 
+
+-   [Comparison: ESB vs the Micro Integrator](../../../references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
+-   [Features removed from the Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
+
+Note that EI 7.x is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release.
 
 ## Migrating to the Micro Integrator 
- 
-WSO2 ESB 5.0 and the Micro Integrator of EI 7.1 uses the same ESB runtime and the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. Most of the mediations (ESB) and data integration features available in ESB 5.0 are available in the Micro Integrator as well. Some of the features are [removed from WSO2 Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not needed for microservice deployments or they are not frequently used.
-
-In summary, all the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes. However, EI 7.1 comes with a [Toml-based configuration strategy](../../../references/config-catalog) to replace XML configurations, which simplifies your product configurations.
- 
-See the [detailed comparison of EI 6.x and EI 7.0](../../../references/comparisong-mi7-ei6xx) to understand what has 
-changed between the WSO2 ESB and the Micro Integrator of EI 7.0.
 
 Follow the instructions below to start the migration!
 
@@ -55,7 +58,7 @@ Follow the instructions below to start the migration!
 
 ### Migrating the user store
 
-If you are already using a JDBC or LDAP user store with ESB 5.0, you can simply connect the same to the Micro Integrator by updating the configuration details in the `deployment.toml` file. Following is a set of high-level configurations. 
+If you are already using a JDBC or LDAP as the primary user store of your ESB 5.0, you can simply connect the same to the Micro Integrator by updating the configuration details in the `deployment.toml` file. Following is a set of high-level configurations. 
 
 ```toml tab='RDBMS User Store'
 [user_store]
@@ -99,8 +102,11 @@ type = "read_write_ldap"
 [internal_apis.file_user_store]
 enable = false
 ```
-!!! Tip
-	See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
+
+See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
+
+!!! Note "Secondary users stores"
+	Note that secondary user stores are currently not supported in the Micro Integrator of EI 7.1.0.
 	
 ### Migrating the registry
 The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in ESB 5.0). Note the following when migrating the registry:
@@ -113,6 +119,8 @@ The Micro Integrator uses a [file based registry](../file_based_registry) instea
 	!!! Note
 	    Once you have imported the Registry Resources into WSO2 Integration Studio, open the resource editor and make sure that the <b>media type</b> of the resource is set properly.
 	    ![Registry Resource Editor](../../assets/img/migration/registry-resource-editor.png)
+
+-	If you have encrypted data in the ESB 5.0 registry, follow the instructions in [migrating passwords](#migrating-encrypted-passwords)
 
 ### Migrating artifacts
 
