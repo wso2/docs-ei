@@ -192,7 +192,7 @@ In the following example, parameters are configured as dynamic values in the dat
 The <b>pinned servers</b> parameter can be dynamically injected to a scheduled task or proxy service. See the example given below.
 
 !!! Note
-    The pinned server parameter is applicable only when in non-clustering mode.
+    The pinned server parameter is applicable only for tasks with co-ordination disabled.
 
 #### Example
 
@@ -297,7 +297,7 @@ In the following example, JMS transport parameters in an inbound endpoint are co
 The <b>pinned servers</b> parameter as well as all the service-level <b>transport parameters</b> can be dynamically injected to a proxy service.
 
 !!! Note
-    The pinned server parameter is applicable only when in non-clustering mode.
+    The pinned server parameter is applicable only for tasks with co-ordination disabled.
 
 -   [JMS parameters](../../references/synapse-properties/transport-parameters/jms-transport-parameters)
 -   [FIX parameters](../../references/synapse-properties/transport-parameters/fix-transport-parameters)
