@@ -95,7 +95,6 @@ WSO2 Micro Integrator uses Prometheus to expose its statistics to Grafana. To co
 
 Download the following dashboards as JSON files from [here]().
 
-- 
 
 #### Downloading, installing and starting Grafana
 
@@ -124,6 +123,8 @@ To import the required dashboards, follow the steps below:
 ## Scaling basic observability deployment
 
 ### Scaling Prometheus
+
+In a clustered environment, you can add the IP address and the port of each server in the respective `prometheus.yml` file.
 
 ### Scaling Grafana
 
