@@ -174,22 +174,30 @@ Expand the **Docker Exporter** in the project explorer. See that the following f
     
 ## Build and Push Docker images
 
-!!! Info
-    **Before you begin**:
+Before you begin:
 
-    -   Create your integration artifacts in an [integration project](../../develop/create-integration-project) and package the artifacts in a [Composite Exporter](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
-    
-        <img alt="Integration artifacts for Docker" src="../../assets/img/create_project/docker_k8s_project/integration-projects-for-docker.png" width="300">
+-   Create your integration artifacts in an [ESB Config sub project](../../develop/create-integration-project/#sub-projects) and package the artifacts in a [Composite Exporter](../../develop/packaging-artifacts/#sub-projects). For example, see the HelloWorld sample given below.
 
-    -   If you are using a Micro Integrator Docker image from a private registry as your base image:
+    <img alt="Integration artifacts for Docker" src="../../assets/img/create_project/docker_k8s_project/integration-projects-for-docker.png" width="300">
 
-        1.  Open a terminal and use the following command to log in to Docker:
-            ```bash 
-            docker login -u username -p password 
-            ```
-        2.  In the next step, specify the name of the private Docker registry.
+-   If you are using a Micro Integrator Docker image from a private registry as your base image:
 
-Follow the steps given below.
+    1.  Open a terminal and use the following command to log in to Docker:
+        ```bash 
+        docker login -u username -p password 
+        ```
+    2.  In the next step, specify the name of the private Docker registry.
+
+To <b>build</b> and <b>push</b> the Docker image:
+
+!!! Note
+    As an alternative, you can skip the steps given below and manually build and push the Docker images using <b>maven</b>. Open a terminal, navigate to the Docker exporter and execute the following command:
+
+    ```bash
+    mvn clean install -Dmaven.test.skip=true -Ddockerfile.username={username} -Ddockerfile.password={password} 
+    ```
+
+    However, note that you need **Maven 3.5.2** or a later version when you build the Docker image manually (without using WSO2 Integration Studio).
 
 1.  Open the **pom.xml** file inside the Docker project and click **Refresh** on the top-right. Your composite application project with integration artifacts will be listed under **Dependencies** as follows:
 
