@@ -8,13 +8,14 @@ Listed below are some of the advantages of moving to EI 7.1 from ESB 5.0.0.
 
 -	The Micro Integrator of EI 7.1 is now the most improved version of the battle-tested WSO2 ESB runtime.
 
-	WSO2 ESB 5.0, the ESB profile of WSO2 EI 6.x family, as well as the Micro Integrator of WSO2 EI 7.x family contains versions of the same WSO2 ESB runtine. 
+	!!! Tip
+		WSO2 ESB 5.0, the ESB profile of WSO2 EI 6.x family, as well as the Micro Integrator of WSO2 EI 7.x family contains versions of the same WSO2 ESB runtine. 
 
 -	All the ESB runtimes of WSO2 can use the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. 
 
 -	All the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes.
 
--	The Micro Integrator contains improvements to ease your product experiance.
+-	The Micro Integrator contains improvements to ease your product experience.
 
 	!!! Note
 		The most significant change in EI 7.1 is the [Toml-based configuration strategy](../../../references/config-catalog), which replaces the XML configurations in previous versions of the ESB runtime. Some of the features are [removed from WSO2 Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not frequently used. 
@@ -139,7 +140,7 @@ The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is t
 
 ### Migrating custom components
 
-Copy custom OSGI components in the `<ESB_5.0.0_HOME>/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<ESB_5.0.0_HOME>/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
+Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<ESB_5.0.0_HOME>/repository/components/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
 
 !!! Note
     To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
