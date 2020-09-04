@@ -25,7 +25,7 @@ Cloud-native observability deployment is based on proven projects in Cloud Nativ
 | Tracing       | Jaeger                      |
 
 !!! tip
-    The sample scenarioes provided in the documentation are using the technologies mentioned above. However, it is also technically feasible to integrate with other parallel technologies such as Filebeat, Logstash, and Elasticsearch.
+    The sample scenarios provided in the documentation are using the technologies mentioned above. However, it is also technically feasible to integrate with other parallel technologies such as Filebeat, Logstash, and Elasticsearch.
 
 The following diagram depicts the high level architecture of the solution. 
 

@@ -3,6 +3,30 @@
 
 # Viewing Cloud Native Observability Dashboards
 
+## Overview
+
+The cloud native observability deployment is an observability solution that allows you to monitor and troubleshoot you WSO2 Enterprise Integrator system with ease. This solution is based on proven projects in Cloud Native Computing Foundation to be cloud native and future proof. Also, this technology stack allows you to view and correlate all three pillars of observability (i.e., metrics, logging, and tracing) from a single location instead of using several tools, thereby unifying the monitoring experience. 
+
+Following are the technologies used in the current solution.
+
+| **Feature**   | **Technology**              |
+|---------------|-----------------------------|
+| Metrics       | Prometheus                  |
+| Visualization | Grafana                     |
+| Logging       | Fluent-Bit and Grafana Loki |
+| Tracing       | Jaeger                      |
+
+The WSO2 Enterprise Integrator team expects to add support for more technologies in the future based on the demands of the customers and industry. 
+
+The following diagram depicts the high level architecture of the solution.
+
+![Cloud Native Deployment Architecture](../../assets/img/monitoring-dashboard/cloud-native-deployment-architecture.png)
+
+As illustrated above, the main feature of this solution is the ability to view logs, metrics and traces from a single location. This is achieved by tagging logs and traces with same set of labels as Prometheus and then using those labels to correlate them within Grafana. This allows you to correlate all three aspects within a given time frame and analyze abnormalities in an effective manner. 
+
+Following sections explains the features and usage of this solution and how to get the maximum use out of this observability solution.
+
+
 ## Cluster dashboard
 
 In the Cluster dashboard visualizes the overall statistics relating to your WSO2 Micro Integrator cluster. we can view information related to our MI Cluster. 
