@@ -1,10 +1,10 @@
 # Debugging Mediation
 
-Once you [deploy and run](using-embedded-micro-integrator) your integration solution, you may encounter errors and identify the required modifications for your artifacts. Use the mediation debugging feature in WSO2 Integration Studio to troubleshoot errors.
+Once you [deploy and run](../deploy-artifacts) your integration solution, you may encounter errors and identify the required modifications for your artifacts. Use the mediation debugging feature in WSO2 Integration Studio to troubleshoot errors.
 
 There are two ways to debug a developed mediation flow.
 
-1.  Instant debugging using the Micro Integrator packaged with WSO2 Integration Studio.
+1.  Instant debugging using the embedded Micro Integrator of WSO2 Integration Studio.
 2.  Deploy artifacts to an external Micro Integrator server and debug.
 
 Above two approaches are discussed in detail below.
@@ -15,7 +15,7 @@ Above two approaches are discussed in detail below.
 
     ![select debugging](../assets/img/mediation-debugging/debugging-1.png)
 
-2.  It will ask to choose the artifacts those needs to be deployed to the embedded Micro Integrator. Internally WSO2 Integration Studio will generate a CAR application with choosed artifacts and deploy.  
+2.  Choose the artifacts that need to be deployed to the embedded Micro Integrator. Internally, WSO2 Integration Studio will generate a CAR application with the choosen artifacts and then deploy them.  
     ![select debugging](../assets/img/mediation-debugging/debugging-2.png)
 3.  On the console of WSO2 Integration Sturdio, notice that Micro
     Integrator is started with the artifacts deployed. HTTP traffic is

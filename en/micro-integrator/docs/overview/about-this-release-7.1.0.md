@@ -23,7 +23,7 @@ The following features and improvements are available for the <b>Micro Integrato
 -   [Environment/System variable support](../../setup/dynamic_server_configurations) for Kubernetes environments.
 -   [Enhanced Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface).
 
-### New in WSO2 Integration Studio**
+### New in WSO2 Integration Studio
 
 The following features and improvements are available for <b>WSO2 Integration Studio</b> EI 7.1.0:
 

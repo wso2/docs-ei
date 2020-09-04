@@ -1,36 +1,10 @@
 # Migrating from WSO2 EI 6.x to WSO2 EI 7.1
 
-This guide provides the recommended strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.1. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to the Micro Integrator in EI 7.1.
+This guide provides the recommended strategy for migrating from the ESB profile of WSO2 EI 6.x to the Micro Integrator of WSO2 EI 7.1. 
 
-## Before you begin
-
-See the following topics to understand the benefits of moving to EI 7.1 from EI 6.x:
-
--   [Comparison: EI 6.x vs EI 7.1](../../../references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
--   [Advantages of using the Micro Integrator in EI 7.1](../../../references/comparisong-mi7-ei6xx/#advantages-of-using-the-micro-integrator-in-ei-70)
--   [Comparison: ESB profile of EI 6.x vs Micro Integrator of EI 7.1](../../../references/comparisong-mi7-ei6xx/#comparison-esb-profile-of-ei-6x-vs-micro-integrator-of-ei-70)
--   [Features removed from the Micro Integrator of EI 7.1](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
-
-Note that EI 7 is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release.
-
-## Why migrate to EI 7.1?
-
-If you are an EI 6.x user, migration is recommended for the following requirements:
- 
--   You need to switch to a micro-services architecture from the conventional centralized architecture.
--   You need a more lightweight, container-friendly runtime in centralized architecture.
--   You need native support for Kubernetes.
-   
-The decision on migration to the new platform needs to be taken by considering several factors including the preferred architectural style (centralized vs microservices), deployment environment in your organization, and the effort it takes to migrate existing integration configurations.
+{!setup/pull/PULL-CONTENT-migration-esb-mi.md!} 
 
 ## Migrating to the Micro Integrator 
- 
-Both the ESB profile of EI 6.x and the Micro Integrator of EI 7.1 uses the same ESB runtime and the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. Most of the mediation(ESB) and data integration features available in the ESB profile of EI 6.x are available in the Micro Integrator as well. Some of the features are [removed from WSO2 Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not needed for microservice deployments or they are not frequently used.
-
-In summary, all the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes. However, EI 7.1 comes with a [Toml-based configuration strategy](../../../references/config-catalog) to replace XML configurations, which simplifies your product configurations.
- 
-See the [detailed comparison of EI 6.x and EI 7.0](../../../references/comparisong-mi7-ei6xx) to understand what has 
-changed between the ESB profile of EI 6.x.x and the Micro Integrator of EI 7.0.
 
 Follow the instructions below to start the migration!
 
