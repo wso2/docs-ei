@@ -1,4 +1,4 @@
-# Quick Start Guide
+# Pipeline Quick Start Guide
 Setting up a basic pipeline for WSO2 Micro Integrator on Kubernetes is
 quick and simple.
 
