@@ -5,7 +5,7 @@
 This document assumes that you have completed the instructions in the
 following pages.
 
-1.  [Quick Start Guide](../quick-start-guide/)
+1.  [Pipeline Quick Start Guide](../pipeline-quick-start-guide/)
 
 2.  [Testing The Pipeline Environment](../testing-the-pipeline-environment/)
 
@@ -39,8 +39,8 @@ Replace the `[git-username]` tag with the name of your GitHub username.
     
     2.  Change the chart data in the
         sample [values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
-        used in the [Quick Start
-        Guide](../quick-start-guide/) to
+        used in the [Pipeline Quick Start
+        Guide](../pipeline-quick-start-guide/) to
         use in the custom chart.
         
         ``` xml
@@ -70,8 +70,8 @@ Replace the `[git-username]` tag with the name of your GitHub username.
         
         
    **<RELEASE\_NAME\>** should be replaced with the release name
-        provided when the pipeline is installed initially in the [Quick Start
-        Guide](../quick-start-guide/).
+        provided when the pipeline is installed initially in the [Pipeline Quick Start
+        Guide](../pipeline-quick-start-guide/).
    
    4.  Restart the Jenkins pod by deleting the existing pod. This will
         cause the cluster to spawn a new pod for Jenkins.
