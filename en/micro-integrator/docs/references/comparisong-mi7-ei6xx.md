@@ -11,7 +11,6 @@ This [WSO2 EI 6.x product family](http://docs.wso2.com/enterprise-integrator) of
  
 The new WSO2 Enterprise Integrator (WSO2 EI 7.1.0) is a hybrid platform that enables API-centric integration supporting
  various integration architecture styles: microservices architecture, cloud-native architecture, or a centralized ESB architecture. This integration platform offers a graphical/configuration-driven approach to developing integrations for any of the architectural styles.
-The new WSO2 Enterprise Integrator (WSO2 EI 7.1.0) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: microservices architecture, cloud-native architecture, or a centralized ESB architecture. This integration platform offers a graphical/configuration-driven approach to developing integrations for any of the architectural styles.
  
 The following are the approaches to integration with EI 7.1.0.
  
