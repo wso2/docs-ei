@@ -53,10 +53,29 @@ The following is the list of widgets displayed in this dashboard.
 |**Error Rate**             |This is a graphical representation of the number of errors that have occurred for the cluster against time.                                                                                                                                                                                                                                                                                               |
 |**Response Time**          |The amount of time taken by the cluster to respond to a request against time.                                                                                                                                                                                                                                                                                                                             |
 
+### Purpose
+
+This dashboard serves the following purposes:
+ 
+- It provides an overview of how the cluster as a whole performs in terms of the successful execution of requests and the response time.
+
+- It also provides the basic details of the nodes and services deployed in the cluster. This can indicate how each node/service affects the overall cluster performance. e.g., If the **Error Rate** widget indicates a surge in the error rate at a particular time, you can identify a node/service that started at around the same time (as shown by the **Node List** and **Service List** widgets) as a possible cause of it.
+
+- It provides access to other dashboards that display statistics related to specific nodes and services so that you can carry out further analysis relating to the performance of your WSO2 Enterprise Integrator set up.
+
+### Recommended action
+
+- Identify the times at which the error rate and/or the response time has been rising. Depending on the time, you can investigate the cause of if (e.g., a node/service that started around the same time). 
+
+- Click on the nodes/services that you have identified as nodes/services to be further analyzed to improve the performance of your EI set up, and view the visualizations specific to them.
+
+- Based on the request count, make the appropriate decisions with regard to the resource allocation (i.e., whether to add or reduce the number of nodes to to leave the present number unchanged).
+
+- Identify the popular services and make business decisions accordingly. e.g., If there is a surge in the request rate, you can identify the services that were active  during that time. You can analyze such services in more detail by viewing information specific to them and decide whether to invest more in them.
 
 ## Node dashboard
 
-In the Node dashboard, we can view information related to a specific MI instance. We can download this dashboard from here. In this dashboard, it will show us Up Time, CPU Utilization, Thread Count,  JVM Heap Memory, Thread Count, Open File Descriptor Count, Service Count, Service List, All Time Request Count,  All Time Error Count, All Time Error Count, Request Rate, Error Rate and Response Time. Basically this dashboard shows us the overall statistics related to a MI Instance.
+This displays statistics specific to a selected node.
 
 ![Node Dashboard](../assets/img/monitoring-dashboard/grafana-node-metrics.png)
 
@@ -83,6 +102,22 @@ The following is the list of widgets displayed in this dashboard.
 | **Error Rate**                 | A visualization of the total number of requests handled by the node that have resulted in errors over time. |
 | **Response Time**              | A visualization of the amount of time taken by the node to respond to requests over time. |
 
+### Purpose
+
+The purposes of this dashboard are as follows:
+
+- It shows the performance of individual nodes in terms of the error count and the response time.
+
+- It allows you to track the resource consumption of individual nodes and make decisions accordingly (e.g., to allocate more CPU cores, undeploy services with a high throughput if the node does not have sufficient system resources to run them etc.).
+
+- By clicking on the name of a service deployed in the selected node, you can open the **Proxy Service Dashbaord** and the **API Dashboard** dashboard (depending on the type of the service) to view statistics specific to the selected service.
+
+### Recommended action
+
+- Evaluate whether the resources allocated to the node (i.e., system memory, CPU cores, etc.) are sufficient/excessive in proportion to the throughput it handles (i.e., the number of requests within a specific duration of time), and make changes accordingly. e.g., If the number of requests handles is less in proportion to the capacity of the node in terms of system resources, you can either reduce the number of resources to reduce your cost or deploy more services in the node to utilize the existing resources in a more optimum manner.
+
+- Click on the services deployed in the node to view statistics specific to those services. This allows you evaluate the throughput of each service to analyze further and make decisions on how to deploy the available services in the available nodes in a manner that optimizes the use of resources. It also allows you to identify the services that contribute to the total error count of the node and take appropriate action.
+
 ## Proxy Service dashboard
 
 In the Proxy service dashboard, we can view information related to a specific Proxy service.
@@ -108,7 +143,20 @@ The following is the list of widgets displayed in this dashboard.
 | **Request Rate**              | A visualization of the total number of requests handled by the proxy service over time.               |
 | **Error Rate**                | A visualization of the total number of errors that have occurred for the proxy service over time.     |
 | **Response Time**             | A visualization of the time taken by the proxy service to respond to requests over time.              |
-                                                                                                                 
+
+### Purpose
+
+The purposes of this dashboard is as follows:
+
+- To understand the performance of a selected proxy service in terms of the number of requests it processes within a given time duration, the number/percentage of errors that has resulted, and the time taken by the proxy service to respond to requests.
+
+- To understand the client demand for the related business based on the number of requests received by the proxy service.
+
+### Recommended action 
+
+- If the number of requests/response time is too high, deploy the proxy service in more nodes in the cluster so that the throughput is divided.
+
+- If there are errors, check the mediation flow of the proxy service and make changes to prevent the errors.                                                                                                               
 
 ## API dashboard
 
@@ -134,6 +182,18 @@ The following is the list of widgets displayed in this dashboard.
 | **Error Rate**                | A visualization of the total number of errors that have occurred for the API service over time.      |
 | **Response Time**             | A visualization of the time taken by the API service to respond to requests over time.               |
 
+### Purpose
+
+- To understand the performance of a selected API service in terms of the number of requests it processes within a given time duration, the number/percentage of errors that has resulted, and the time taken by the API service to respond to requests.
+
+- To understand the client demand for the related business based on the number of requests received by the API service.
+
+### Recommended action
+
+- If the number of requests/response time is too high, deploy the API service in more nodes in the cluster so that the throughput is divided.
+
+- If there are errors, check the mediation flow of the API service and make changes to prevent the errors.  
+
 ## Inbound Endpoint dashboard
 
 In the Inbound endpoint dashboard, we can view information related to a specific Inbound endpoint. We can download this dashboard from here. In this dashboard, it will show us Up Time,, All Request Count, Successful Request Count, Error Count, Error Percentage, Deployed Node Count, Request Rate, Error Rate and Response Time. Basically this dashboard shows us the overall statistics related to an Inbound endpoint.
@@ -146,4 +206,6 @@ You can download the dashboard from the [WSO2 EI Git repository]().
 
 The following is the list of widgets displayed in this dashboard.
 
-                                                                                                           |
+### Purpose
+
+### Recommended action                                                                                                       |
