@@ -3,6 +3,12 @@ The Micro Integrator of EI 7.1 is the latest most improved version of the WSO2 E
 
 Given below is a comparison of the Micro Integrator of EI 7.1 and the previous WSO2 ESB runtimes. This will help you understand the important changes in the Micro Integrator that will impact your migration.
 
+!!! Note
+	This guide is applicable to the following versions of the WSO2 ESB runtime:
+	
+	-	[WSO2 ESB 5.0](https://docs.wso2.com/display/ESB500/WSO2+Enterprise+Service+Bus+Documentation)
+	-	[ESB profile of WSO2 EI 6.x.x series](https://docs.wso2.com/display/EI660/WSO2+Enterprise+Integrator+Documentation)
+
 ## Feature comparison
 
 The following table explains the availability of the most critical features in each runtime.
