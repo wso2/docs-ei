@@ -152,7 +152,7 @@ When you have scheduled tasks in your integration deployment, each task should o
     ```
     
 !!!Note
-task_server_count applies each time a task is resolved. i.e when a node leaves the cluster, the task will be resolved (assgined) to another node only if the task_server_count is satified.
+task_server_count applies each time a task is resolved. i.e when a node leaves the cluster, the task will be resolved (assgined) to another node only if the task_server_count is satisfied.
 
 -   Task node resolver
 
