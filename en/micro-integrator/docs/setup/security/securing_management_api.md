@@ -98,6 +98,9 @@ enable = false
 If you want to enable authorization for any resources other than `/users`, open the `deployment.toml` file (stored in
 the `MI_HOME/conf/` directory) and add the following:
 
+!!! Tip
+    Note that the `/users` resource is secured by default. However, you need to redefine the `/users` resource (as shown below) in cases where you need to customize the resources that need authorization. Failing to do so will remove authorization from the `/users` resource.
+
 ```toml
 [[management_api.authorization_handler.resources]]
 path = "/users"
@@ -105,10 +108,6 @@ path = "/users"
 [[management_api.authorization_handler.resources]]
 path = "/apis"
 ```
-
-!!! Note
-    You need to redefine the `/users` resource in cases where you need to customize the resources that need
-    authorization. Failing to do so will remove authorization from the `/users` resource.
 
 ## Configuring CORS
 
