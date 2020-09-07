@@ -2,38 +2,7 @@
 
 This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to the Micro Integrator of WSO2 EI 7.1. 
 
-## Why migrate to EI 7.1?
-
-Listed below are some of the advantages of moving to EI 7.1 from ESB 5.0.0.
-
--	The Micro Integrator of EI 7.1 is now the most improved version of the battle-tested WSO2 ESB runtime.
-
-	WSO2 ESB 5.0, the ESB profile of WSO2 EI 6.x family, as well as the Micro Integrator of WSO2 EI 7.x family contains versions of the same WSO2 ESB runtine. 
-
--	All the ESB runtimes of WSO2 can use the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. 
-
--	All the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes.
-
--	The Micro Integrator contains improvements to ease your product experiance.
-
-	!!! Note
-		The most significant change in EI 7.1 is the [Toml-based configuration strategy](../../../references/config-catalog), which replaces the XML configurations in previous versions of the ESB runtime. Some of the features are [removed from WSO2 Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not frequently used. 
-
-Migration from ESB 5.0 is recommended for the following requirements:
- 
--	You need to switch to a micro-services architecture from the conventional centralized architecture.
--	You need a more lightweight, user-friendly version of the battle-tested WSO2 ESB.
--	You need a more lightweight, container-friendly runtime in a centralized architecture.
--	You need native support for Kubernetes.
-
-## Before you begin
-
-Be sure to read the following resources before you start the migration. The Micro Integrator of EI 7.1 contains changes that will impact your migration process. 
-
--   [Comparison: ESB vs the Micro Integrator](../../../references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
--   [Features removed from the Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
-
-Note that EI 7.x is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release.
+{!setup/pull/PULL-CONTENT-migration-esb-mi.md!}
 
 ## Migrating to the Micro Integrator 
 
@@ -120,7 +89,7 @@ The Micro Integrator uses a [file based registry](../file_based_registry) instea
 	    Once you have imported the Registry Resources into WSO2 Integration Studio, open the resource editor and make sure that the <b>media type</b> of the resource is set properly.
 	    ![Registry Resource Editor](../../assets/img/migration/registry-resource-editor.png)
 
--	If you have encrypted data in the ESB 5.0 registry, follow the instructions in [migrating passwords](#migrating-encrypted-passwords)
+-	If you have encrypted data in the ESB 5.0 registry, follow the instructions in [migrating passwords](#migrating-encrypted-passwords).
 
 ### Migrating artifacts
 
@@ -139,7 +108,7 @@ The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is t
 
 ### Migrating custom components
 
-Copy custom OSGI components in the `<ESB_5.0.0_HOME>/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<ESB_5.0.0_HOME>/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
+Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<ESB_5.0.0_HOME>/repository/components/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
 
 !!! Note
     To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
