@@ -75,7 +75,7 @@ enable = false
 	See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
 	
 ### Migrating the registry
-The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
+The Micro Integrator uses a [file-based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
 
 -	If the registry resources in EI 6.x are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<EI_6.x.x_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
 -	If the registry resources are added through the management console in EI 6.x.x, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
@@ -928,4 +928,4 @@ If you have used a custom log4j component in you you older EI version, apply the
 
 ### Migrating encrypted passwords
 
-To migrate the encrypted passwords from EI 6.x, you need to first obtain the plain-text passwords. Once you have them, follow the normal procedure of encrypting secrets in EI 7. See [Encrypt Secrets](../../security/encrypting_plain_text) for instructions.
+To migrate the encrypted passwords from EI 6.x, you need to first obtain the plain-text passwords. Once you have them, follow the normal procedure of encrypting secrets in EI 7. See [Encrypting Secrets](../../security/encrypting_plain_text) for instructions.

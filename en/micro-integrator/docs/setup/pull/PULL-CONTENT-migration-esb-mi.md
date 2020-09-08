@@ -18,14 +18,14 @@ Listed below are some of the advantages of moving to EI 7.1 from the ESB.
 
 Migration from the WSO2 ESB is recommended for the following requirements:
  
--	You need to switch to a micro-services architecture from the conventional centralized architecture.
+-	You need to switch to a microservices architecture from the conventional centralized architecture.
 -	You need a more lightweight, user-friendly version of the battle-tested WSO2 ESB.
 -	You need a more lightweight, container-friendly runtime in a centralized architecture.
 -	You need native support for Kubernetes.
 
 ## Before you begin
 
-Be sure to read the following resources before you start the migration. The Micro Integrator of EI 7.1 contains changes that will impact your migration process. 
+The Micro Integrator of EI 7.1 contains changes that will impact your migration process. Be sure to read the following resources before you start. 
 
 -   [Comparison: ESB vs the Micro Integrator](../../../overview/about-this-release-7.1.0/#feature-comparison)
 -   [Features removed from the Micro Integrator](../../../overview/about-this-release-7.1.0/#features-removed)
