@@ -372,9 +372,9 @@ nav:
         - 'Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
         - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Message Relay' : 'setup/message_builders_formatters/message-relay.md'
-        - 'Observability':
+        - Observability:
           - 'Observability Overview': 'administer-and-observe/observability-with-grafana-overview.md'
-          - 'Setting up Classic Observability Deployment': 'setup/observability/observability-with-grafana-overview.md'
+          - 'Setting up Classic Observability Deployment': 'setup/observability/setting-up-classic-observability-deployment.md'
           - 'Setting up Cloud Native Observability Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observability:
@@ -388,8 +388,8 @@ nav:
             - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
             - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
             - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
-      - 'Cloud Native Observability Deployment':
-        - 'Viewing Cloud Native Observability Dashboards': 'administer-and-observe/cloud-native-observability-dashboards.md'
+        - 'Cloud Native Observability Deployment':
+          - 'Viewing Cloud Native Observability Dashboards': 'administer-and-observe/cloud-native-observability-dashboards.md'
     - Management:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
