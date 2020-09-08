@@ -1,8 +1,7 @@
-# Migrating from WSO2 EI 6.x to WSO2 EI 7.1
+# Migrating from WSO2 ESB 5.0 to WSO2 EI 7.1
+This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to the Micro Integrator of WSO2 EI 7.1. 
 
-This guide provides the recommended strategy for migrating from the ESB profile of WSO2 EI 6.x to the Micro Integrator of WSO2 EI 7.1. 
-
-{!setup/pull/PULL-CONTENT-migration-esb-mi.md!} 
+{!setup/pull/PULL-CONTENT-migration-esb-mi.md!}
 
 ## Migrating to the Micro Integrator 
 
@@ -10,8 +9,8 @@ Follow the instructions below to start the migration!
 
 ### Set up the migration
 
--	Make a backup of the EI 6.x distribution (`<EI_6.x.x_HOME>` folder) to back up the product configurations.
--	Make a backup of the database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
+-	Make a backup of the ESB 5.0 distribution (`<ESB_5.0.0_HOME>` folder) to back up the product configurations.
+-	Make a backup of the database used by the current ESB 5.0 deployment. This backup is necessary in case the migration causes any issues in the existing database.
 -	Download and install EI 7.1 in your environment:
 
 	!!! Tip
@@ -20,14 +19,14 @@ Follow the instructions below to start the migration!
 	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer).
 	-	Install the product [using the binary distribution](../../../setup/installation/install_in_vm_binary).
 
--	Use [WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates for your EI 7.0 distribution.
+-	Use [WSO2 Update Manager](https://docs.wso2.com/display/updates/) to get the latest available updates for your EI 7.1 distribution.
 
 	!!! Info
 		Note that you need a valid [WSO2 subscription](https://wso2.com/subscription) to use updates in a production environment.
 
 ### Migrating the user store
 
-If you are already using a JDBC or LDAP user store with EI 6.x, you can simply connect the same to the Micro Integrator by updating the configuration details in `deployment.toml` file. Following is a set of high-level configurations. 
+If you are already using a JDBC or LDAP as the primary user store of your ESB 5.0, you can simply connect the same to the Micro Integrator by updating the configuration details in the `deployment.toml` file. Following is a set of high-level configurations. 
 
 ```toml tab='RDBMS User Store'
 [user_store]
@@ -71,59 +70,64 @@ type = "read_write_ldap"
 [internal_apis.file_user_store]
 enable = false
 ```
-!!! Tip
-	See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
+
+See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
+
+!!! Note "Secondary users stores"
+	Note that secondary user stores are currently not supported in the Micro Integrator of EI 7.1.0.
 	
 ### Migrating the registry
-The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
+The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in ESB 5.0). Note the following when migrating the registry:
 
--	If the registry resources in EI 6.x are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<EI_6.x.x_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
--	If the registry resources are added through the management console in EI 6.x.x, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
-	- [Checkout the Registry Resources](../../../develop/creating-artifacts/creating-registry-resources/#check-out-from-registry) from EI 6.x.x server directly into the Registry Resources module in WSO2 Integration Studio.
-	- Download the Registry Resources from EI 6.x.x and [import them](../../../develop/creating-artifacts/creating-registry-resources/#import-from-file-system) into the Registry Resources module in WSO2 Integration Studio.
+-	If the registry resources in ESB 5.0 are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+-	If the registry resources are added through the management console in ESB 5.0, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
+	- [Checkout the Registry Resources](../../../develop/creating-artifacts/creating-registry-resources/#check-out-from-registry) from the ESB 5.0 server directly into the Registry Resources module in WSO2 Integration Studio.
+	- Download the Registry Resources from ESB 5.0 and [import them](../../../develop/creating-artifacts/creating-registry-resources/#import-from-file-system) into the Registry Resources module in WSO2 Integration Studio.
 
 	!!! Note
 	    Once you have imported the Registry Resources into WSO2 Integration Studio, open the resource editor and make sure that the <b>media type</b> of the resource is set properly.
 	    ![Registry Resource Editor](../../assets/img/migration/registry-resource-editor.png)
 
+-	If you have encrypted data in the ESB 5.0 registry, follow the instructions in [migrating passwords](#migrating-encrypted-passwords).
+
 ### Migrating artifacts
 
-The recommended way to create integration artifacts (in EI 6.x or EI 7.x ) is to use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio):
+The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is to use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio):
 
-- If the artifacts are created in the recommended way, copy the CAR files inside `<EI_6.x.x_HOME>/repository/deployment/server/carbonapps` to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the artifacts are created using the management console of EI 6.x, you need to recreate them using WSO2 Integration Studio and package them as a composite application. See the instructions on [packaging artifacts](../../../develop/packaging-artifacts).
+- If the artifacts are created in the recommended way, copy the CAR files inside `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+- If the artifacts are created using the management console of ESB 5.0, you need to recreate them using WSO2 Integration Studio and package them as a composite application. See the instructions on [packaging artifacts](../../../develop/packaging-artifacts).
 
 !!! Tip
      For testing purposes, you can copy the artifacts to the same folder structure inside the `<MI_HOME>/repository/deployment/server/synapse-configs/default` directory.
 
 ### Migrating deployed Connectors
 
-- If the connector is added to EI 6.x via a composite application with the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors), the same can be used in EI 7.1 seamlessly. Simply copy the CAR file in EI 6.x to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the connector is added to EI 6.x via the management console, pack them using connector exporter project and deploy via composite application in EI 7.1. For more information, read about the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors).
+- If the connector is added to ESB 5.0 via a composite application with the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors), the same can be used in EI 7.1 seamlessly. Simply copy the CAR file in ESB 5.0 to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+- If the connector is added to ESB 5.0 via the management console, pack them using connector exporter project and deploy via composite application in EI 7.1. For more information, read about the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors).
 
 ### Migrating custom components
 
-Copy custom OSGI components in the `<EI_6.x.x_HOME>/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<EI_6.x.x_HOME>/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
+Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<ESB_5.0.0_HOME>/repository/components/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
 
 !!! Note
     To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
 
 ### Migrating keystores
-Copy the JKS files in the `<EI_6.x.x_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory. 
+Copy the JKS files in the `<ESB_5.0.0_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory. 
 
 ### Migrating configurations
 
-Configuration management was handled in WSO2 EI 6.x versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml`, etc.
+Configuration management was handled in WSO2 ESB 5.0 versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml`, etc.
 
 Micro Integrator of EI 7.1 provides a new configuration model where all of the product configurations are primarily managed by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). 
 
-In EI 7.1, the logging configurations are managed with log4j2, whereas the EI 6.x series (prior to EI 6.6.0) used log4j.
+In EI 7.1, the logging configurations are managed with log4j2, whereas the ESB 5.0 used log4j.
 
 The following sections of this document will guide you on how to migrate the Product Configurations including log4j.
 
 **Migrating to TOML configurations**
 
-Given below are the most critical XML configuraton files in the ESB profile of EI 6.x.x. Expand each section to find the TOML configurations corresponding to the XML configurations in the file. 
+Given below are the most critical XML configuraton files in ESB 5.0. Expand each section to find the TOML configurations corresponding to the XML configurations in the file. 
 
 !!! Tip
      If you have a [WSO2 subscription](https://wso2.com/subscription), it is highly recommended to reach WSO2 Support before attempting to proceed with the configuration migration.
@@ -887,9 +891,9 @@ The complete list of TOML configurations for the Micro Integrator are listed in 
 
 **Migrating Log4j configurations**
 
-Older versions of the WSO2 EI 6.x family (EI 6.5.0 and earlier) use log4j. In  WSO2 EI 7 Micro Integrator, the `carbon.logging.jar` file is not packed and the `pax-logging-api` is used instead. With this upgrade, the log4j version is also updated to log4j2.
+WSO2 ESB 5.0 (and all ESB versions prior to EI 6.6.0) use log4j. In  WSO2 EI 7 Micro Integrator, the `carbon.logging.jar` file is not packed and the `pax-logging-api` is used instead. With this upgrade, the log4j version is also updated to log4j2.
 
-Therefore, you need to follow the instructions given below to migrate from log4j (in EI 6.5.0 or earlier version) to log4j2 (in EI 7 Micro Integrator).
+Therefore, you need to follow the instructions given below to migrate from log4j (in your ESB 5.0) to log4j2 (in EI 7 Micro Integrator).
 
 If you have used a custom log4j component in you you older EI version, apply the following changes to your component:
 
@@ -915,9 +919,9 @@ If you have used a custom log4j component in you you older EI version, apply the
 			   <version>${pax.logging.log4j2.version}</version>
 			</dependency>
 			```
-	-	Replace the log4j dependency with pax-logging dependency and rewrite the loggers using commons.logging accordingly.
+	-	Replace the log4j dependency with pax-logging dependency and rewrite the loggers using `commons.logging` accordingly.
 
-3.	If commons.logging is imported using Import-Package, add the version range.
+3.	If `commons.logging` is imported using Import-Package, add the version range.
 		```xml
 		org.apache.commons.logging; 
 		version="${commons.logging.version.range}" 
@@ -928,4 +932,4 @@ If you have used a custom log4j component in you you older EI version, apply the
 
 ### Migrating encrypted passwords
 
-To migrate the encrypted passwords from EI 6.x, you need to first obtain the plain-text passwords. Once you have them, follow the normal procedure of encrypting secrets in EI 7. See [Encrypt Secrets](../../security/encrypting_plain_text) for instructions.
+To migrate the encrypted passwords from ESB 5.0, you need to first obtain the plain-text passwords. Once you have them, follow the normal procedure of encrypting secrets in EI 7. See [Encrypt Secrets](../../security/encrypting_plain_text) for instructions.

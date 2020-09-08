@@ -43,7 +43,8 @@ The installation guide of the Micro Integrator explains how to set up the Micro 
 
 Follow the topics in this section to migrate to the latest version of WSO2 EI 7 from a previous version.
 
--	[Migrating from WSO2 EI 6.x Family](../../setup/deployment/migrating-from-ei-6.x.x)
+-	[Migrating from WSO2 ESB 5.x](../../setup/deployment/migrating-from-esb-5.x.x)
+-	[Migrating from WSO2 EI 6.x](../../setup/deployment/migrating-from-ei-6.x.x)
 -	[Migrating from WSO2 EI 7.0](../../setup/deployment/migrating-from-ei-7.0.x)
 
 ## Deploy
