@@ -26,6 +26,6 @@ The older analytics distribution is referred to as the Classic Observability Dep
     
     - If you have Prometheus, Grafana and Jaeger as you in-house monitoring and observability tools.
     
-For instructions to set up the above observability solutions, see [Setting Up the Observability Solutions](../setup/observability/setting-up-minimum-basic-observability-deployment.md)
+
 
 
