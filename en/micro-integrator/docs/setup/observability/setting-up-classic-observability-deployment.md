@@ -36,60 +36,6 @@ This section provides you instructions to set up the Classic Observability Deplo
     </tbody>
     </table>
     
-## Setting up the dashboard
-
-See the following topics in the installation guide for instructions on how to install and set up the Micro Integrator and the Dashboard:
-
-<table>
-    <tr>
-        <td>
-            <a href="../../setup/installation/install_in_vm_installer">Using the Installer</a>
-        </td>
-        <td>
-            Download and run the <b>product installer</b> and then follow the instructions to start the Micro Integrator and the dashboard.
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="../../setup/installation/install_in_vm_binary">Using the Binary</a>
-        </td>
-        <td>
-            Download the binary distribution of the product, and then follow the instructions to start the Micro Integrator and the dashabord.
-        </td>
-    </tr>
-</table>
-
-## Installing the CLI
-
-To download the CLI:
-
-1.  Go to [**WSO2 Enterprise Integrator** website](https://wso2.com/integration/) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
-2.  If you are using a UNIX-based operating system (Linux, Solaris, and Mac OS X), be sure to set the `MI_CLI_HOME/bin` folder path as the PATH:
-
-    ```bash
-    export PATH=/path/to/mi/cli/directory/bin:$PATH
-    ```
-    
-## Enabling correlation logs
-
-You can enable correlation logging by passing a system property.
-
--   If you want correlation logs to be enabled every time the server
-    starts, add the following system property to the product start-up
-    script (stored in the `MI_HOME/bin/` directory) and set it to `true`.
-
-    ```bash
-    -DenableCorrelationLogs=true \
-    ```
-
--   Alternatively, you can pass the system property at the time of
-    starting the server by executing the following command:
-
-    - On **Linux/MacOS/CentOS**: `sh micro-integrator.sh -DenableCorrelationLogs=true`
-    - On **Windows**: `micro-integrator.bat -DenableCorrelationLogs=true`
-
-
-Now when you start the Micro Integrator, the `correlation.log` file is created in the `MI_HOME/repository/logs/` directory.
 
 ## Setting up the Analytics Dashboard
 
