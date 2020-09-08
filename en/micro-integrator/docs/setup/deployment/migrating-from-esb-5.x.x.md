@@ -1,4 +1,5 @@
 # Migrating from WSO2 ESB 5.0 to WSO2 EI 7.1
+The Micro Integrator of EI 7.1 is the latest most improved version of the WSO2 ESB runtime.Therefore, you can easily migrate to EI 7.1 Micro Integrator from any previous ESB runtime. 
 
 This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to the Micro Integrator of WSO2 EI 7.1. 
 

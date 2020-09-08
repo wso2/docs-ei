@@ -14,7 +14,7 @@ Listed below are some of the advantages of moving to EI 7.1 from the ESB.
 -	The Micro Integrator contains improvements to ease your product experience.
 
 	!!! Note
-		The most significant change in EI 7.1 is the [Toml-based configuration strategy](../../../references/config-catalog), which replaces the XML configurations in previous versions of the ESB runtime. Some of the features are [removed from WSO2 Micro Integrator](../../../setup/deployment/runtime-comparison-esb-mi/#features-removed) as they are not frequently used. 
+		The most significant change in EI 7.1 is the [Toml-based configuration strategy](../../../references/config-catalog), which replaces the XML configurations in previous versions of the ESB runtime. Some of the features are [removed from WSO2 Micro Integrator](../../../overview/about-this-release-7.1.0/#features-removed) as they are not frequently used. 
 
 Migration from the WSO2 ESB is recommended for the following requirements:
  
@@ -27,7 +27,7 @@ Migration from the WSO2 ESB is recommended for the following requirements:
 
 Be sure to read the following resources before you start the migration. The Micro Integrator of EI 7.1 contains changes that will impact your migration process. 
 
--   [Comparison: ESB vs the Micro Integrator](../../../setup/deployment/runtime-comparison-esb-mi/#feature-comparison)
--   [Features removed from the Micro Integrator](../../../setup/deployment/runtime-comparison-esb-mi/#features-removed)
+-   [Comparison: ESB vs the Micro Integrator](../../../overview/about-this-release-7.1.0/#feature-comparison)
+-   [Features removed from the Micro Integrator](../../../overview/about-this-release-7.1.0/#features-removed)
 
 Note that EI 7.x is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release.
