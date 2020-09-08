@@ -108,7 +108,7 @@ If you are migrating from a previous ESB, this comparison will help you understa
 
 ### Feature comparison
 
-The following table explains the availability of the most critical features in the ESB runtime and Micro Integrator runtime of EI 7.1.0. In addition to the following list, the Micro Integrator runtime also contains [new and improved features](#whats-new-in-this-release?) listed above.
+The following table explains the availability of the most critical features in the ESB runtime and Micro Integrator runtime of EI 7.1.0. In addition to the following list, the Micro Integrator runtime also contains [new and improved features](#whats-new-in-this-release) listed above.
 
 <table>
 	<tr>
