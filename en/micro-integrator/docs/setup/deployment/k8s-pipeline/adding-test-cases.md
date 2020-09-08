@@ -7,7 +7,7 @@ Often it is faster and simpler to perform local unit testing on your pipeline co
 This guide assumes that you have completed the instructions in the
 following pages.
 
-1.  [Quick Start Guide](../quick-start-guide/)
+1.  [Pipeline Quick Start Guide](../pipeline-quick-start-guide/)
 
 2.  [Testing The Pipeline
     Environment](../testing-the-pipeline-environment/)
@@ -59,8 +59,8 @@ directory named `tests`.
 
 5.  Change the chart repository in the
     sample [values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
-    used in the [Quick Start
-    Guide](../quick-start-guide/)
+    used in the [Pipeline Quick Start
+    Guide](../pipeline-quick-start-guide/)
     to use a custom chart.
     
     ``` xml

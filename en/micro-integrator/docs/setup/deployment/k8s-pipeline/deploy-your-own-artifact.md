@@ -7,7 +7,7 @@ This is done by providing a custom Dockerfile as shown in the steps below:
     project](../../../../develop/create-integration-project/).
 
 2.  Update the repositories in the  [sample values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
-    used in the  [Quick Start Guide](../quick-start-guide/) to
+    used in the  [Pipeline Quick Start Guide](../pipeline-quick-start-guide/) to
     include the forked repository in place of `[git-username]` as
     highlighted below.
     

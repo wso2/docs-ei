@@ -300,7 +300,7 @@ nav:
             - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
           - K8s Pipeline:
             - 'Overview': 'setup/deployment/k8s-pipeline/overview.md'
-            - 'Quick Start Guide': 'setup/deployment/k8s-pipeline/quick-start-guide.md'
+            - 'Pipeline Quick Start Guide': 'setup/deployment/k8s-pipeline/pipeline-quick-start-guide.md'
             - 'Testing the Pipeline Environment': 'setup/deployment/k8s-pipeline/testing-the-pipeline-environment.md'
             - 'Deploy Your Own Artifact': 'setup/deployment/k8s-pipeline/deploy-your-own-artifact.md'
             - 'Adding Testcases': 'setup/deployment/k8s-pipeline/adding-test-cases.md'
@@ -742,4 +742,4 @@ extra:
       link: https://twitter.com/wso2
     - type: linkedin
       link: https://www.linkedin.com/company/wso2
-  site_version: 7.0.0
+  site_version: 7.1.0

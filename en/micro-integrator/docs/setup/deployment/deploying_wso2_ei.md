@@ -150,6 +150,9 @@ When you have scheduled tasks in your integration deployment, each task should o
     [[task_resolver]]
     task_server_count = "3"
     ```
+    
+    !!! Note
+        The `task_server_count` applies each time a task is resolved. That is, when a node leaves the cluster, the task will be resolved (assigned) to another node only if the `task_server_count` is satisfied.
 
 -   Task node resolver
 
