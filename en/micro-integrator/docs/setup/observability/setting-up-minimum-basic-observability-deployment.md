@@ -360,9 +360,69 @@ To configure WSO2 EI to publish tracing information, follow the procedure below:
 
     ```
 
-### Configuring Grafana to visualize tracing information
+## Setting up the cloud native observability deployment in a Kubernetes environment
 
-### Scaling the tracing add-on
+To streamline the deployment of the cloud native observability solution in Kubernetes, WSO2 EI provides a  a Helm chart that you can utilize to deploy the solution to your Kubernetes cluster. The deployment installs the relevant products and adds the required configurations. After the installation, you can directly use the observability solution with a very few additional configurations. 
+
+### Setting up the basic cloud native observability solution
+
+The basic observability stack allows you to view metrics by installing and configuring Prometheus and Grafana. To install it, follow the steps below:
+
+!!! info
+    Do not follow the steps below if you want to install the solution with log processing and/or tracing capabilities. To install the solution including those capabilities, click on the appropriate link given below.  <br/><br/>
+    - **Log processing**: <INSERT_LINK> <br/><br/>
+    - **Tracing**: <INSERT_LINK> <br/><br/>
+    - **Log processing and Tracing** <INSERT_LINK> <br/><br/>
+    
+!!! tip "Before you begin:"
+    - Set up a Kubernetes cluster. For instructions, see [Kubernetes Documentation](https://kubernetes.io/docs/home/).
+    - Install Helm in the client machine.
+    
+1. Clone the [Helm repository](https://github.com/wso2/observability-ei).
+
+2. Navigate to the home directory of the cloned repository.
+
+3. To install the basic deployment with the `wso2-observability` release name, issue the following command.
+
+    `helm install wso2-observability . --render-subchart-notes`
+    
+The above step deploys the basic deployment and displays instructions to access the dashboards. This deployment allows you to access both Prometheus and Grafana UIs.
+
+**Configuring WSO2 EI to integrate with the observability deployment**
+
+To integrate with the observability deployment you are required to perform the following three main tasks in the EI containers:
+
+- **Engaging the statistics publishing handler**
+
+    To achieve this, add the following lines in the `<PATH>/deployment.toml`file in the Kubernetes project *before* creating your micro integrator image.
+    
+    ```
+    [[synapse_handlers]]
+    name="MetricHandler"
+    class="org.wso2.micro.integrator.observability.metric.handler.MetricHandler"
+    ``` 
+    
+    For more information about the Micro Integrator Kubernetes development flow, see [MI kubernetes guide]<LINK>.
+
+- **Enabling the metrics endpoint**
+
+    To achieve this, you need to set an environment variable in the Kubernetes resource definition. You can either add that at the time of creating the project using the wizard. Alternatively, you can open the <PATH>/integration_cr.yaml file in the Kubernetes project and add the following under the spec tag.
+    
+    ```
+    env:
+      - name: "JAVA_OPTS"
+        value: "-DenablePrometheusApi=true"
+    ```
+
+- **Enabling discovery for Prometheus**
+
+    This allows Prometheus to discover Micro Integrator targets through service discovery methods. To achieve this, set the following pod level annotations to the Micro Integrator pod.
+    
+    - `prometheus.io.wso2/path: /metric-service/metrics`
+    - `prometheus.io.wso2/port: "9201"`
+    - `prometheus.io.wso2/scrape: "true"`
+    
+Once the above tasks are completed, the container that is being deployed through the integration Kubernetes resource emits metric data, and the Observability deployment can discover and start without further configuration.
 
 
 
