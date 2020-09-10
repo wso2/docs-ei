@@ -280,7 +280,7 @@ Note that the maximum file size of the correlation log is set to
     exceeds 10MB, a new log file is created. If required, you can change
     this file size.
 
-**If required** , you can change the default HTTP header (which is
+**If required**, you can change the default HTTP header (which is
     'activity_id') that is used to carry the correlation ID by adding
     the following property to the
     `deployment.toml` file (stored in the `MI_HOME/conf/` directory). Replace
