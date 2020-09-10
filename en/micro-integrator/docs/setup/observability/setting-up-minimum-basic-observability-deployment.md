@@ -30,7 +30,7 @@ Once you set up the basic deployment, you can install either one or both of the 
     This provides you with Tracing capabilities. Tho use this you need to install Jaeger.
 
 
-## Setting up minimum basic observability deployment in a virtual machine
+## Setting up minimum basic observability deployment
 
 WSO2 Micro Integrator provides pre-configured dashboards in which you can visualize EI statistics. These dashboards are provided as JSON files that can be imported to Grafana. To set up the pre-configured dashboards and visualize statistics, follow the topics below.
 

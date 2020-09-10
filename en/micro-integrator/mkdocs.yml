@@ -379,8 +379,8 @@ nav:
         - 'Message Relay' : 'setup/message_builders_formatters/message-relay.md'
         - Observability:
           - 'Observability Deployment Strategy': 'setup/observability/observability-deployment-strategy.md'
-          - 'Setting up Cloud Native Observability in a VM': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
-          - 'Setting up Cloud Native Observability in Kubernetes': 'setup/observability/setting-up-cloud-native-observability-in-kubernetes.md'
+          - 'Setting up Cloud-Native Observability for a VM Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
+          - 'Setting up Cloud-Native Observability for a K8s Deployment': 'setup/observability/setting-up-cloud-native-observability-in-kubernetes.md'
           - 'Setting up Classic Observability Deployment': 'setup/observability/setting-up-classic-observability-deployment.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observe and Manage:
