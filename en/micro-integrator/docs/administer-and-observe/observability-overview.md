@@ -13,27 +13,50 @@ WSO2 Enterprise Integrator offers two observability solutions referred to as the
 
 <img src="../../assets/img/observability/observability-mi.png" title="Observability Solution" width="500" alt="Observability Solution"/>
 
-**Cloud Native Observability Deployment**
+**Cloud-native Observability Deployment**
 
 This solution is more suitable in the following scenarios:
 
-- If you are creating a new cloud native deployment
+- If you are creating a new cloud native deployment.
 - If you have Prometheus, Grafana and Jaeger as you in-house monitoring and observability tools.
 
-The cloud native observability solution can be set up to have any of the following combination of operations.
+The cloud-native observability solution can be set up to have any of the following combination of operations.
 
-- Metrics only
-- Metrics + Logging
-- Metrics + Tracing
-- Metrics + Logging + Tracing
+<table>
+    <tr>
+        <th>Cloud-native solution</th>
+        <th>Operations</th>
+    </tr>
+    <tr>
+        <td>Kubernetes deployment</td>
+        <td>
+            <ul>
+                <li>Metrics only</li>
+                <li>Metrics + Logging</li>
+                <li>Metrics + Tracing</li>
+                <li>Metrics + Logging + Tracing</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>VM deployment</td>
+        <td>
+            <ul>
+                <li>Metrics only</li>
+                <li>Logging (add-on)</li>
+                <li>Tracing (add-on)</li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
 **Classic Observability Deployment**
 
 This solution is more suitable in the following scenarios:
     
 - If you require more business analytics and less operation observability.    
-- If you want a simpler deployment
-- If you already have an observability stack such as ELK
+- If you want a simpler deployment.
+- If you already have an observability stack such as ELK.
 
 The classic observability solution can be setup to have only metrics, and have logging and tracing as add-ons.
 
