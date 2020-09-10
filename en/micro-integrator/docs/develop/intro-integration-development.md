@@ -100,10 +100,7 @@ Integration developers will follow the workflow illustrated by the following dia
 			artifacts that need to be pushed to a remote artifact repository for the continous deployment process: 
 			<ul>
 				<li>
-					<b>Docker images</b> in the <a href="../../develop/create-docker-project">Docker project</a> and <b>Kubernetes artifacts</b> in the <a href="../../develop/create-kubernetes-project">Kubernetes project</a> can be directly pushed to the remote artifact repository.
-				</li>
-				<li>
-					If you are using a <b>VM deployment</b>, <a href="../../develop/packaging-artifacts">package the integration artifacts</a> and deploy the CAR file in the remote repository.
+					If you have a <b>Kubernetes deployment</b>, see the instructions on how to use the <a href="../../setup/deployment/k8s-pipeline/overview">EI Kubernetes CICD pipeline</a>.
 				</li>
 			</ul>
 		</td>

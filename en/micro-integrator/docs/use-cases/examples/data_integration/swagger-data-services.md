@@ -1,8 +1,5 @@
 # Using Swagger Documents of RESTful Data Services
 
-!!! Warning
-    **The contents on this page is WIP**
-
 When RESTful resources are added to the data service, the Micro Integrator generates a corresponding swagger definition automatically. You can access this Swagger document by suffixing the service URL with `?swagger.json` or `?swagger.yaml` as shown below.
 
 -   JSON format
