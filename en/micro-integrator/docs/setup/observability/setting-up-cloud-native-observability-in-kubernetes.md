@@ -187,6 +187,28 @@ These settings enable the tracing data instrumentation and publishing to a jaege
 
 For more information about the Micro Integrator Kubernetes development flow, see [MI kubernetes guide]<LINK>.
 
+### Configuring Grafana to visualize tracing information
+
+The Helm chart configures the Jaeger datacsource automatically. Therefore, unlike in Setting up [Cloud Native Observability in a Virtual Machine](setting-up-minimum-basic-observability-deployment.md), it is not required to add it manually. However to configure the links into Jaeger UI from the service level dashboards, you need to perform the following steps:
+
+1. Navigate to settings section of the service level dashboard by clicking the cog wheel icon in the top right corner.
+
+2. Click **Variable**. This opens the following view.
+
+    ![Variables view](../../assets/img/monitoring-dashboard/variables.png)
+    
+3. Edit the JaegerHost variable and provide your Jaeger query component hostname and port in the `host:port` syntax as shown below.
+
+    ![constant options](../../assets/img/monitoring-dashboard/constant-options.png)
+    
+4. Click **Save**
+
+You need to perform the above steps for all the service level dashboards (i.e., Proxy Service dashboard, API Service Dashboard, and Inbound Endpoint dashboard).
+
+Once Grafana is successfully configured to visualize statistics, you should be correctly redirected to the Jaeger UI from the Response Time widget of each service level dashboard as shown below.
+
+![jaeger ui](../../assets/img/monitoring-dashboard/jaeger-ui.png)
+
 ## Setting up the observability solution with logging and tracing capabilities
 
 To install the cloud native observability solution with logging and tracing capabilities in your Kubernetes cluster, follow the steps below:
