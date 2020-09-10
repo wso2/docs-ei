@@ -24,7 +24,7 @@ Above two approaches are discussed in detail below.
     mediator as a breakpoint.  
     ![select debugging](../assets/img/mediation-debugging/debugging-3.png)
 5.  Invoke the service using SOAP UI or some external client. As soon as
-    a request comes to the proxy service fisrt break point will be triggered.  
+    a request comes to the proxy service, the first break point will be triggered.  
     ![select debugging](../assets/img/mediation-debugging/debugging-4.png)
     Note that you can view the payload that comes into the mediator and
     the properties that you can access on the message context.
