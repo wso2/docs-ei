@@ -50,7 +50,7 @@ When the client sends an HTTP request to the Micro Integrator, a correlation ID 
 the request can be passed using the correlation header that is
 configured in the Micro Integrator. By default, the correlation header is
 'activity_id'. If you want to change the default correlation header,
-wee the topic on [configuring correlation logs](#configuring-correlation-logs-optional). If the
+see the topic on [configuring correlation logs](#configuring-correlation-logs-optional). If the
 client does not pass a correlation ID in the request, the Micro Integrator will
 generate an internal value and assign it to the request. The correlation
 ID assigned to the incoming request is assigned to all the log entries
