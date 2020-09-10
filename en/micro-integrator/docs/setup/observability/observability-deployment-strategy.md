@@ -1,4 +1,4 @@
-# Observability Deployment Startegy
+# Observability Deployment Strategy
 
 WSO2 Enterprise Integrator 7.1 offers two observability solutions for monitoring and managing your integration deployments in the Micro Integrator. You can choose one of the two solutions depending on the nature of your Micro Integrator deployment. 
 
