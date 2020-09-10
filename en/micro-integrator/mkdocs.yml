@@ -386,16 +386,16 @@ nav:
         - 'Overview': 'administer-and-observe/observability-overview.md'
         - 'Observability':
           - 'Observability Solutions': 'administer-and-observe/observability-solutions-overview.md'
-            - 'Cloud Native Observability Solution':
-              - 'Viewing Cloud Native Observability Dashboards': 'administer-and-observe/cloud-native-observability-dashboards.md'
-            - 'Classic Observability Solution':
-              - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
-              - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
-              - Logging:
-                - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-                - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
-                - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
-                - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
+          - 'Cloud Native Observability Solution':
+            - 'Viewing Cloud Native Observability Dashboards': 'administer-and-observe/cloud-native-observability-dashboards.md'
+          - 'Classic Observability Solution':
+            - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
+            - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+            - Logging:
+              - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
+              - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+              - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
+              - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
         - 'Management':
           - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
           - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
