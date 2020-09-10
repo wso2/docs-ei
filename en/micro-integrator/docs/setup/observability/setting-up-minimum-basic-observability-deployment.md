@@ -128,7 +128,7 @@ To enable observability for WSO2 Micro Integrator, add the following Synapse han
     class="org.wso2.micro.integrator.observability.metric.handler.MetricHandler"
 ```
 
-## Configuring log processing in a virtual machine
+## Configuring log processing
 
 ### Setting up the log processing add-on
 
@@ -359,3 +359,48 @@ To configure WSO2 EI to publish tracing information, follow the procedure below:
         "opentracing.agent_host": "synapse_properties.'jaeger.sender.agent.host'"
 
     ```
+   
+### Configuring Grafana to visualize tracing data
+
+To configure Grafanato visualize the tracing information, follow the steps below:
+
+1. Add Jaeger as a data source. This can be done as follows:
+
+    1. Access Grafana via `localhost:3000` and sign in.
+    
+    2. Click on the **Configuration** icon in the left menu and then click **Data Sources**.
+    
+        ![Open Data sources](../../assets/img/monitoring-dashboard/open-datasources.png)
+        
+    3. Click **Add data source** to open the **Add data source** page where all the available data source types are displayed. Here, click **Jaeger**.
+    
+        ![Select Jaeger](../../assets/img/monitoring-dashboard/select-jaeger.png)
+        
+        This opens the **Data Sources/Jaeger** dialog box. 
+        
+    4. In the **Data Sources/Jaeger** dialog box, enter the URL of the Jaeger query component in the **URL** field in the `http://host:port` format as shown below.
+    
+        ![Enter Basic Jaeger Information](../../assets/img/monitoring-dashboard/enter-basic-jaeger-information.png)
+        
+    5. Click **Save and Test**. If the data source is successfully configured, it is indicated via a message.
+  
+
+2. Set up drill-down links  to Jaeger UI in service level dashboards. This can be done as follows.
+
+    1. Navigate to the settings section of the service level dashboard by clicking the cog wheel icon in the top right corner.
+    
+    2. Click **Variable**. This opens the following view.
+    
+        ![Variables view](../../assets/img/monitoring-dashboard/variables.png)
+        
+    3. Edit the JaegerHost variable and provide your Jaeger query component hostname and port in the `host:port` syntax as shown below.
+    
+        ![constant options](../../assets/img/monitoring-dashboard/constant-options.png)
+        
+    4. Click **Save**
+    
+    You need to perform the above steps for all the service level dashboards (i.e., Proxy Service dashboard, API Service Dashboard, and Inbound Endpoint dashboard).
+    
+    Once Grafana is successfully configured to visualize statistics, you should be correctly redirected to the Jaeger UI from the Response Time widget of each service level dashboard as shown below.
+    
+    ![jaeger ui](../../assets/img/monitoring-dashboard/jaeger-ui.png)

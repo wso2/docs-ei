@@ -189,19 +189,21 @@ For more information about the Micro Integrator Kubernetes development flow, see
 
 ### Configuring Grafana to visualize tracing information
 
-The Helm chart configures the Jaeger datacsource automatically. Therefore, unlike in Setting up [Cloud Native Observability in a Virtual Machine](setting-up-minimum-basic-observability-deployment.md), it is not required to add it manually. However to configure the links into Jaeger UI from the service level dashboards, you need to perform the following steps:
+The Helm chart configures the Jaeger data source automatically. Therefore, unlike in Setting up [Cloud Native Observability in a Virtual Machine](setting-up-minimum-basic-observability-deployment.md), it is not required to add it manually. However to configure the links into Jaeger UI from the service level dashboards, you need to perform the following steps:
 
-1. Navigate to settings section of the service level dashboard by clicking the cog wheel icon in the top right corner.
+1. Access Grafana via `localhost:3000` and sign in.
 
-2. Click **Variable**. This opens the following view.
+2. Navigate to the settings section of the service level dashboard by clicking the cog wheel icon in the top right corner.
+
+3. Click **Variable**. This opens the following view.
 
     ![Variables view](../../assets/img/monitoring-dashboard/variables.png)
     
-3. Edit the JaegerHost variable and provide your Jaeger query component hostname and port in the `host:port` syntax as shown below.
+4. Edit the JaegerHost variable and provide your Jaeger query component hostname and port in the `host:port` syntax as shown below.
 
     ![constant options](../../assets/img/monitoring-dashboard/constant-options.png)
     
-4. Click **Save**
+5. Click **Save**
 
 You need to perform the above steps for all the service level dashboards (i.e., Proxy Service dashboard, API Service Dashboard, and Inbound Endpoint dashboard).
 
