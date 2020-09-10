@@ -377,8 +377,8 @@ nav:
         - 'Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
         - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Message Relay' : 'setup/message_builders_formatters/message-relay.md'
-        - 'Observability' :
-          - 'Observability Overview': 'setup/observability/observability-overview.md'
+        - Observability:
+          - 'Observability Deployment Strategy': 'setup/observability/observability-deployment-strategy.md'
           - 'Setting up Cloud Native Observability Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
           - 'Setting up Classic Observability Deployment': 'setup/observability/setting-up-classic-observability-deployment.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
