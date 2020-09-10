@@ -1,26 +1,25 @@
-!!! note
-    This section is still a work in progress and not tested.
+# Observability Deployment Startegy
 
-# Observability Solutions
+WSO2 Enterprise Integrator 7.1 offers two observability solutions for monitoring and managing your integration deployments in the Micro Integrator. You can choose one of the two solutions depending on the nature of your Micro Integrator deployment. 
 
-This section explains how to set up the observability solutions for WSO2 Enterprise Integrator.
+Given below is a comparison of the two solutions that will help you choose the appropriate observability stategy.
 
-WSO2 Enterprise Integrator offers two observability solutions referred to as the classic observability deployment and cloud native observability deployment.
+## Cloud-Native Observability Deployment
 
-- **Classic Observability Deployment**
+This solution is more suitable in the following scenarios:
 
-    This solution is more suitable in the following scenarios:
-    
-    - If you require more business analytics and less operation observability.
-    
-    - If you want a simpler deployment
-    
-    - If you already have an observability stack such as ELK
+- If you are creating a new cloud-native Micro Integrator deployment. Refer the <a href="../../../setup/deployment/kubernetes_deployment_patterns">Micro Integrator Kubernetes Deployment</a> guide for details on how to setup a cloud-native Micro Integrator deployment on Kubernetes.
+- If you already have Prometheus, Grafana, and Jaeger as you in-house monitoring and observability tools.
 
-- **Cloud Native Observability Deployment**
+If you choose this option, see the instructions on <a href="../../../setup/observability/setting-up-minimum-basic-observability-deployment">setting up a cloud-native observability deployment</a>.
 
-    This solution is more suitable in the following scenarios:
+## Classic Observability Deployment
 
-    - If you are creating a new cloud native deployment
-    
-    - If you have Prometheus, Grafana and Jaeger as you in-house monitoring and observability tools.
+This solution is more suitable in the following scenarios:
+
+- If you require more business analytics and less operational observability.
+- If you want a simpler deployment.
+- If you already have an observability stack such as ELK.
+
+If you choose this option, see the instructions on <a href="../../../setup/observability/setting-up-classic-observability-deployment">setting up a classic observability deployment</a>.
+
