@@ -329,7 +329,7 @@ In order to configure Grafana to display logs, you need to add Loki as a data so
 5. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
 
 
-## Integrating the tracingadd-on to the minimum basic observability deployment
+## Integrating the tracing add-on to the minimum basic observability deployment
 
 ### Setting up the tracing add-on
 
