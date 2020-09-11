@@ -228,6 +228,4 @@ The following is the list of widgets displayed in this dashboard.
 | **Error Rate**                | A visualization of the total number of errors that have occurred for the inbound endpoint over time.                                    |
 | **Response Time**             | A visualization of the time taken by the inbound endpoint to respond to requests over time.                                             |
 
-### Purpose
-
-### Recommended action                                                                                                       
+                                                                                                    

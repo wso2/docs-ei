@@ -1,6 +1,3 @@
-!!! note
-    This section is still a work in progress and not tested.
-
 # Setting Up the Cloud Native Observability Deployment
 
 Cloud-native observability deployment is based on proven projects in Cloud Native Computing Foundation to be cloud native and future proof. Following are the technologies used in the current solution:
