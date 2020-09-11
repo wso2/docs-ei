@@ -246,8 +246,9 @@ and the optional properties related to defining an **exchange** should contain t
          <td>
            rabbitmq.queue.autodeclare
          </td>
-         <td>Whether or not to declare the queue. If set to 'false', 
-         the Micro Integrator assumes that a queue is already available
+         <td>
+           Whether or not to declare the queue. If set to <code>true</code>, the Micro Integrator creates queues if they are not already
+present. If set to <code>false</code>, the Micro Integrator will assume that a queue is already available. However, you should set this parameter to true only if queues are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
          </td>
       </tr>
       <tr>
@@ -273,9 +274,8 @@ and the optional properties related to defining an **exchange** should contain t
             rabbitmq.exchange.autodeclare
          </td>
          <td>
-         Whether or not to declare the exchange. If set to 'false', 
-         the Micro Integrator will assume that an exchange is already available.
-         </td>
+            Whether or not to declare the exchange. If set to <code>true</code>, the Micro Integrator creates exchanges. If set to <code>false</code>, the Micro Integrator will assume that an exchange is already available. However, you should set this parameter to true only if exchanges are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
+          </td>
       </tr>
       <tr>
          <td>
