@@ -316,10 +316,12 @@ In order to configure Grafana to display logs, you need to add Loki as a data so
 3. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Loki**.
 
     ![Select Loki as Data Source](../../assets/img/monitoring-dashboard/grafana-select-datasource.png)
+    
+    This opens the **Data Sources / Loki** dialog bog
 
-4. In the **Add data source** page -> **Settings** tab, update the configurations for Loki as follows.
+4. In the **URL** field, enter `http://localhost:3100/ `.
 
-    <ADD IMAGE>
+    ![Loki data source URL](../../assets/img/monitoring-dashboard/grafana-loki-datasource-url.png)
     
 5. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
 
