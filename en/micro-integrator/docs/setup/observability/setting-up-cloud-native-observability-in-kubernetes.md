@@ -168,18 +168,18 @@ This deployment installs Jaeger-Operator. To install the Jaeger deployment, foll
 
 To configure WSO2 EI to publish tracing information, add the following lines to the deployment.toml file in the Kubernetes project *before* creating your micro integrator container image.
 
-```
-[mediation]
-flow.statistics.capture_all= true
-stat.tracer.collect_payloads= true
-stat.tracer.collect_mediation_properties= true
-
-[opentracing]
-enable = true
-logs = true
-manager_host = <Manager_hostname_here>
-agent_host = <Agent_hostname_here>
-```
+    ```
+        [mediation]
+        flow.statistics.capture_all= true
+        stat.tracer.collect_payloads= true
+        stat.tracer.collect_mediation_properties= true
+        
+        [opentracing]
+        enable = true
+        logs = true
+        manager_host = <Manager_hostname_here>
+        agent_host = <Agent_hostname_here>
+    ```
 !!! tip
     Enter the host name of your Jaeger service as the value for `manager_host` and `agent_host` parameters. 
 
