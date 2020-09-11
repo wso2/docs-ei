@@ -102,7 +102,7 @@ To import the required dashboards, follow the steps below:
 
     The **Import** dialog box opens as follows.
     
-    ![Import Dashboards dialog box](../assets/img/monitoring-dashboard/grafana-import-dialog-box.png)
+    ![Import Dashboards dialog box](../../assets/img/monitoring-dashboard/grafana-import-dialog-box.png)
     
 2. Click **Upload .json file**. Then browse for one of the dashboards that you downloaded as a JSON file in the [Downloading the required dashboards section](#downloading-the-required-dashboards).
 
@@ -292,6 +292,7 @@ After successfully setting up the Fluent Bit you need to set up Grafana Loki. Gr
           retention_deletes_enabled: false
           retention_period: 0s
     ```
+   
  3. Unzip the file you downloaded in step 1. The directory that is created as a result is referred to as `<GrafanaLoki_Home>` from here onward.
  
  4. Open a new terminal window and navigate to the `<GrafanaLoki_Home>`. Then issue the following command.
@@ -300,7 +301,6 @@ After successfully setting up the Fluent Bit you need to set up Grafana Loki. Gr
     
 ## Integrating the log processing add-on to the minimum basic observability deployment
 
-### Configuring the EI to publish logs
 
 ### Configuring Grafana to visualize logs
 
@@ -315,7 +315,7 @@ In order to configure Grafana to display logs, you need to add Loki as a data so
 
 3. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Loki**.
 
-    ![Select Loki as Data Source](../assets/img/grafana-select-datasource.png)
+    ![Select Loki as Data Source](../../assets/img/monitoring-dashboard/grafana-select-datasource.png)
 
 4. In the **Add data source** page -> **Settings** tab, update the configurations for Loki as follows.
 
