@@ -115,7 +115,7 @@ In a clustered environment, you can add the IP address and the port of each serv
 
 In a clustered deployment, you can view the list of Micro Integrator instances in your Micro Integrator cluster under **MI Nodes** in the **WSO2 Node Metrics** dashboard.
 
-## Configuring EI to integrate with basic observability deployment
+## Configuring WSO2 EI to publish statistics
 
 To enable observability for WSO2 Micro Integrator, follow the steps below:
  
