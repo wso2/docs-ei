@@ -102,7 +102,7 @@ To import the required dashboards, follow the steps below:
 
     The **Import** dialog box opens as follows.
     
-    ![Import Dashboards dialog box](../assets/img/monitoring-dashboard/grafana-import-dialog-box.png)
+    ![Import Dashboards dialog box](../../assets/img/monitoring-dashboard/grafana-import-dialog-box.png)
     
 2. Click **Upload .json file**. Then browse for one of the dashboards that you downloaded as a JSON file in the [Downloading the required dashboards section](#downloading-the-required-dashboards).
 
@@ -315,7 +315,7 @@ In order to configure Grafana to display logs, you need to add Loki as a data so
 
 3. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Loki**.
 
-    ![Select Loki as Data Source](../assets/img/grafana-select-datasource.png)
+    ![Select Loki as Data Source](../../assets/img/monitoring-dashboard/grafana-select-datasource.png)
 
 4. In the **Add data source** page -> **Settings** tab, update the configurations for Loki as follows.
 
