@@ -1,6 +1,3 @@
-!!! note
-    This section is still a work in progress and not tested.
-
 # Setting Up the Cloud Native Observability Deployment
 
 Cloud-native observability deployment is based on proven projects in Cloud Native Computing Foundation to be cloud native and future proof. Following are the technologies used in the current solution:
@@ -81,7 +78,7 @@ WSO2 Micro Integrator uses Prometheus to expose its statistics to Grafana. To co
 
 #### Downloading the required dashboards
 
-Download the following dashboards as JSON files from [here]().
+Download the following dashboards as JSON files from [Grafana Labs - WSO2 Dashboards](https://grafana.com/orgs/wso2/dashboards).
 
 
 #### Downloading, installing and starting Grafana
@@ -118,7 +115,7 @@ In a clustered environment, you can add the IP address and the port of each serv
 
 In a clustered deployment, you can view the list of Micro Integrator instances in your Micro Integrator cluster under **MI Nodes** in the **WSO2 Node Metrics** dashboard.
 
-## Configuring EI to integrate with basic observability deployment
+## Configuring WSO2 EI to publish statistics
 
 To enable observability for WSO2 Micro Integrator, follow the steps below:
  
