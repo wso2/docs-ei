@@ -118,16 +118,21 @@ In a clustered environment, you can add the IP address and the port of each serv
 
 In a clustered deployment, you can view the list of Micro Integrator instances in your Micro Integrator cluster under **MI Nodes** in the **WSO2 Node Metrics** dashboard.
 
-### Configuring EI to integrate with basic observability deployment
+## Configuring EI to integrate with basic observability deployment
 
-To enable observability for WSO2 Micro Integrator, add the following Synapse handler to `<MI_HOME>/conf/deployment.toml` file.
+To enable observability for WSO2 Micro Integrator, follow the steps below:
+ 
+1. Add the following Synapse handler to `<MI_HOME>/conf/deployment.toml` file.
 
-```toml
-    [[synapse_handlers]]
-    name="CustomObservabilityHandler"
-    class="org.wso2.micro.integrator.observability.metric.handler.MetricHandler"
-```
+    ```toml
+        [[synapse_handlers]]
+        name="CustomObservabilityHandler"
+        class="org.wso2.micro.integrator.observability.metric.handler.MetricHandler"
+    ```
 
+2. After adding the above configuration, start the Micro Integrator with the `-DenablePrometheusApi=true` parameter so that the Micro Integrator can enable its Prometheus endpoint.
+    
+ 
 ## Configuring log processing
 
 ### Setting up the log processing add-on
