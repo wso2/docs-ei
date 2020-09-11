@@ -86,7 +86,7 @@ present. If set to <code>false</code>, the Micro Integrator will assume that a q
       <tr>
          <td>rabbitmq.exchange.autodeclare</td>
          <td>
-            Whether or not to declare the exchange. If set to <code>true</code>, the Micro Integrator creates exchanges, and if set to <code>false</code>, the Micro Integrator will assume that an exchange is already available. However, you should set this parameter to true only if exchanges are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
+            Whether or not to declare the exchange. If set to <code>true</code>, the Micro Integrator creates exchanges. If set to <code>false</code>, the Micro Integrator will assume that an exchange is already available. However, you should set this parameter to true only if exchanges are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
           </td>
       </tr>
       <tr>
