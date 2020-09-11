@@ -292,6 +292,7 @@ After successfully setting up the Fluent Bit you need to set up Grafana Loki. Gr
           retention_deletes_enabled: false
           retention_period: 0s
     ```
+   
  3. Unzip the file you downloaded in step 1. The directory that is created as a result is referred to as `<GrafanaLoki_Home>` from here onward.
  
  4. Open a new terminal window and navigate to the `<GrafanaLoki_Home>`. Then issue the following command.
@@ -300,7 +301,6 @@ After successfully setting up the Fluent Bit you need to set up Grafana Loki. Gr
     
 ## Integrating the log processing add-on to the minimum basic observability deployment
 
-### Configuring the EI to publish logs
 
 ### Configuring Grafana to visualize logs
 
