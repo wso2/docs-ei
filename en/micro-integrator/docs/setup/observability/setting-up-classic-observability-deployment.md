@@ -1,6 +1,6 @@
 # Setting Up the Classic Observability Deployment
 
-This section provides you instructions to set up the Classic Observability Deployment Solution. This is one of the two observability solutions offered by WSO2 EI. This solution is more suitable if you already have an observability stack such as ELK,  or if you want more business analytics and less operational observability. For morer information about the observability solution, see [Observability Overview](observability-with-grafana-overview.md).
+This section provides you instructions to set up the Classic Observability Deployment Solution. This is one of the two observability solutions offered by WSO2 EI. This solution is more suitable if you already have an observability stack such as ELK,  or if you want more business analytics and less operational observability. For morer information about the observability solution, see [Observability Overview](../../administer-and-observe/observability-overview.md).
 
 ## System requirements
 

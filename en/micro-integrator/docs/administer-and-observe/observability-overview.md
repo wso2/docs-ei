@@ -9,26 +9,22 @@ This section explains how to set up the observability solutions and perform mana
 
 Observability can be viewed as a superset of monitoring where monitoring is enriched with capabilities to perform debugging and profiling through rich context, log analysis, correlation, and tracing. Modern day observability resides on three pillars of **logs**, **metrics**, and **tracing**. Modern businesses require observability systems to self-sufficiently emit their current state(overview), generate alerts for any abnormalities detected to proactively identify failures, and to provide information to find the root causes of a system failure.
 
+### Observability solutions
+
 WSO2 Enterprise Integrator offers two observability solutions referred to as the cloud-native observability deployment and classic observability deployment.
 
-<img src="../../assets/img/observability/observability-mi.png" title="Observability Solution" width="500" alt="Observability Solution"/>
+<img src="../../assets/img/observability/observability-mi.png" title="Observability Solution" width="650" alt="Observability Solution"/>
 
-**Cloud-native Observability Deployment**
-
-This solution is more suitable in the following scenarios:
-
-- If you are creating a new cloud native deployment.
-- If you have Prometheus, Grafana and Jaeger as you in-house monitoring and observability tools.
-
-The cloud-native observability solution can be set up to have any of the following combination of operations.
+The cloud-native and classic observability solution are suitable for the following combination of operations.
 
 <table>
     <tr>
-        <th>Cloud-native solution</th>
+        <th>Observability solution</th>
         <th>Operations</th>
+        <th>Description</th>
     </tr>
     <tr>
-        <td>Kubernetes deployment</td>
+        <td>Kubernetes cloud-native solution</td>
         <td>
             <ul>
                 <li>Metrics only</li>
@@ -37,9 +33,10 @@ The cloud-native observability solution can be set up to have any of the followi
                 <li>Metrics + Logging + Tracing</li>
             </ul>
         </td>
+        <td>The default Kubernetes cloud-native solution comes with metrics enabled. You can also configure logging and tracing in combination with this. This solution is ideal if you want a complete cloud-native solution to observability and you already have Prometheus, Grafana, and Jaeger as your in-house monitoring and observability tools.</td>
     </tr>
     <tr>
-        <td>VM deployment</td>
+        <td>VM cloud-native deployment</td>
         <td>
             <ul>
                 <li>Metrics only</li>
@@ -47,18 +44,27 @@ The cloud-native observability solution can be set up to have any of the followi
                 <li>Tracing (add-on)</li>
             </ul>
         </td>
+        <td>The default VM cloud-native solution comes with metrics enabled. You can additionally set up logging or tracing separatly as part of this solution later. This solution is ideal if you want a complete cloud-native solution to observability, but you need to set this up on a VM. Ideally you would already have Prometheus, Grafana, and Jaeger as your in-house monitoring and observability tools.</td>
+    </tr>
+    <tr>
+        <td>Classic deployment</td>
+        <td>
+            <ul>
+                <li>Metrics only</li>
+                <li>Tracing only</li>
+                <li>Metrics and Tracing</li>
+                <li>Logging separately</li>
+            </ul>
+        </td>
+        <td>This solution uses the Analytics profile of WSO2 EI 6.x.x and if can be configured to have metrics and tracing by enabling them once set up. You will have to configure logging separately by setting it up in the Micro Integrator itself. This is useful if you require more business analytics and less operation observability and also if you already have an observability stack such as ELK.. This is a more simpler solution.</td>
     </tr>
 </table>
 
-**Classic Observability Deployment**
+* For instructions to set up the above observability solutions, see [Setting Up the cloud-native observability solutions](../setup/observability/setting-up-minimum-basic-observability-deployment.md) or [Setting up classic observability solution](../setup/observability/setting-up-classic-observability-deployment.md)
 
-This solution is more suitable in the following scenarios:
-    
-- If you require more business analytics and less operation observability.    
-- If you want a simpler deployment.
-- If you already have an observability stack such as ELK.
+* For more information on how to use the cloud-native solution, see [Cloud Native Observability Solution](cloud-native-observability-dashboards.md).
 
-The classic observability solution can be setup to have only metrics, and have logging and tracing as add-ons.
+* For more information on how to use the classic observability solution, see [Classic Observability Deployment](using-the-analytics-dashboard.md).
 
 ### Understanding observability solutions
 
@@ -67,14 +73,6 @@ WSO2 Enterprise Integrator 7.0.0 and older versions offer an analytics distribut
 To address that limitation, WSO2 Enterprise Integrator 7.1.0 introduced an observability solution that utilizes a selected set of external tools together with the older analytic distribution intact. This section explains the features and usage of both solutions. 
 
 The older analytics distribution is referred to as the Classic Observability Deployment, and the newer solution introduced with WSO2 Enterprise Integrator 7.1.0 is referred to as the Cloud Native Observability Deployment.
-
-### Next steps
-
-* If you are creating a new cloud-native deployment or if you have Prometheus, Grafana, and Jaeger as your in-house monitoring and observability tools, you can set  up and use the Cloud Native Observability Solution. For more information about this solution, see [Cloud Native Observability Solution](cloud-native-observability-dashboards.md).
-
-* If you already have an observability stack such as ELK, or if you want more business analytics and less operational observability, it is recommended for you to use the Classic Observability Deployment. For more information about this solution, see [Classic Observability Deployment](using-the-analytics-dashboard.md).
-
-* For instructions to set up the above observability solutions, see [Setting Up the Observability Solutions](../setup/observability/setting-up-minimum-basic-observability-deployment.md)
 
 ## Management
 
