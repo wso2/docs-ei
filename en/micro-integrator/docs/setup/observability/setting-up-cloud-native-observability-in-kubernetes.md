@@ -134,7 +134,7 @@ To integrate with the observability deployment you are required to perform the f
     
     `fluentbit.io/parser: wso2`
 
-## Setting up the observability solution with ltracing capabilities
+## Setting up the observability solution with tracing capabilities
 
 This involves deploying Prometheus, Grafana and Jaeger-operator with all the required configurations to integrate deployed products. To install the deployment using Helm, follow the steps below:
 
