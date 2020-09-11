@@ -304,8 +304,6 @@ After successfully setting up the Fluent Bit you need to set up Grafana Loki. Gr
  
     `./loki-darwin-amd64 -config.file=./loki-local-config.yaml`
     
-## Integrating the log processing add-on to the minimum basic observability deployment
-
 
 ### Configuring Grafana to visualize logs
 
@@ -331,7 +329,7 @@ In order to configure Grafana to display logs, you need to add Loki as a data so
 5. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
 
 
-## Integrating the tracing processing add-on to the minimum basic observability deployment
+## Integrating the tracing add-on to the minimum basic observability deployment
 
 ### Setting up the tracing add-on
 
