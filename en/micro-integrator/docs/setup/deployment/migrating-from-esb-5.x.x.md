@@ -950,9 +950,9 @@ Follow the instructions given below to use the password decryption tool.
 
 4. Copy the [migration-conf.properties](https://github.com/wso2-docs/WSO2_EI/blob/master/migration-client/migration-conf.properties) file into the migration directory, and update the following property. 
 
-| Property         | Description   |
-| ---------------- | ------------- |
-| admin.user.name  | The user name of the system [administrator](https://docs.wso2.com/display/EI660/Configuring+the+System+Administrator). |
+	| Property         | Description   |
+	| ---------------- | ------------- |
+	| admin.user.name  | The user name of the system [administrator](https://docs.wso2.com/display/EI660/Configuring+the+System+Administrator). |
 
 5. Start the server using the `migrate.from.product.version` system property as follows:
 
@@ -965,7 +965,6 @@ Follow the instructions given below to use the password decryption tool.
 	```
 
 	!!! Info
-		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to `<ESB_HOME>/migration/secure-vault-decrypted.properties` file and the `<ESB_HOME>/migration/cipher-text-decrypted.properties` file in the ESB 5.0.0.
+		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to the `<ESB_HOME>/migration/secure-vault-decrypted.properties` file and the `<ESB_HOME>/migration/cipher-text-decrypted.properties` file in ESB 5.0.0.
 
-	The encrypted passwords are now decrypted and you have access to the plain-text password values.
-
+The encrypted passwords are now decrypted and you have access to the plain-text password values.
