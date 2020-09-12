@@ -930,7 +930,7 @@ If you have used a custom log4j component in you you older EI version, apply the
 
 To migrate the encrypted passwords from EI 6.x, you need to first obtain the plain-text passwords. Once you have them, follow the normal procedure of encrypting secrets in EI 7. See [Encrypt Secrets](../../security/encrypting_plain_text) for instructions.
 
-In case you need to obtain the plaintext passwords from the encrypted passwords in the WSO2 ESB 5.0.0, 
+In case you need to obtain the plain-text passwords by decrypting the encrypted passwords in the EI 6.x, 
 you can use the [password decryption tool](https://github.com/wso2-docs/WSO2_EI/tree/master/migration-client).
 
 Follow the instructions given below to use the password decryption tool.
@@ -941,11 +941,11 @@ Follow the instructions given below to use the password decryption tool.
 
 3. Create a directory named migration in `EI_HOME`.
 
-4. Copy the [migration-conf.properties](https://github.com/wso2-docs/WSO2_EI/blob/master/migration-client/migration-conf.properties) file into the migration directory, and update the following property. 
+4. Copy the [migration-conf.properties](https://github.com/wso2-docs/WSO2_EI/blob/master/migration-client/migration-conf.properties) file into the migration directory and update the following property. 
 
-| Property         | Description   |
-| ---------------- | ------------- |
-| admin.user.name  | The user name of the system [administrator](https://docs.wso2.com/display/EI660/Configuring+the+System+Administrator). |
+	| Property         | Description   |
+	| ---------------- | ------------- |
+	| admin.user.name  | The user name of the system [administrator](https://docs.wso2.com/display/EI660/Configuring+the+System+Administrator). |
 
 5. Start the server using the `migrate.from.product.version` system property as follows:
 
@@ -958,6 +958,6 @@ Follow the instructions given below to use the password decryption tool.
 	```
 
 	!!! Info
-		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to `<EI_HOME>/migration/secure-vault-decrypted.properties` file and the `<EI_HOME>/migration/cipher-text-decrypted.properties` file in the WSO2 Enterprise Integrator.
+		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to the `<EI_HOME>/migration/secure-vault-decrypted.properties` file and the `<EI_HOME>/migration/cipher-text-decrypted.properties` file in EI 6.x.
 
-	The encrypted passwords are now decrypted and you have access to the plain-text password values.
+The encrypted passwords are now decrypted and you have access to the plain-text password values.
