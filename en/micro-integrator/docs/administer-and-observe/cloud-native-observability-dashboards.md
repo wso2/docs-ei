@@ -3,29 +3,17 @@
 
 # Viewing Cloud Native Observability Dashboards
 
-## Overview
+Let's use the **dashboards** from the cloud-native observability deployment to monitor **statistics** from your integration artifacts.
 
-The cloud native observability deployment is an observability solution that allows you to monitor and troubleshoot you WSO2 Enterprise Integrator system with ease. This solution is based on proven projects in Cloud Native Computing Foundation to be cloud native and future proof. Also, this technology stack allows you to view and correlate all three pillars of observability (i.e., metrics, logging, and tracing) from a single location instead of using several tools, thereby unifying the monitoring experience. 
+## Before you begin
 
-Following are the technologies used in the current solution.
+Set up the suitable cloud-native observability deployment. The dashboards described in this section applies to all the cloud-native deployment strategies.
 
-| **Feature**   | **Technology**              |
-|---------------|-----------------------------|
-| Metrics       | Prometheus                  |
-| Visualization | Grafana                     |
-| Logging       | Fluent-Bit and Grafana Loki |
-| Tracing       | Jaeger                      |
+See the following topics for information and instructions:
 
-The WSO2 Enterprise Integrator team expects to add support for more technologies in the future based on the demands of the customers and industry. 
-
-The following diagram depicts the high level architecture of the solution.
-
-![Cloud Native Deployment Architecture](../../assets/img/monitoring-dashboard/cloud-native-deployment-architecture.png)
-
-As illustrated above, the main feature of this solution is the ability to view logs, metrics and traces from a single location. This is achieved by tagging logs and traces with same set of labels as Prometheus and then using those labels to correlate them within Grafana. This allows you to correlate all three aspects within a given time frame and analyze abnormalities in an effective manner. 
-
-Following sections explains the features and usage of this solution and how to get the maximum use out of this observability solution.
-
+-	Learn about [Observability deployment strategy](../../setup/observability/observability-deployment-strategy).
+-	Setting up [cloud-native observability for a VM environment](../../setup/observability/setting-up-minimum-basic-observability-deployment)
+-	Setting up [cloud-native observability for a Kubernetes environment](../../setup/observability/setting-up-cloud-native-observability-in-kubernetes)
 
 ## Cluster dashboard
 
@@ -168,6 +156,7 @@ The purposes of this dashboard is as follows:
 
 This dashboard displays overall statistics related to a specific API. 
 
+
 ### Downloading the dashboard
 
 You can download the dashboard from the [Grafana Labs - WSO2 API Metrics](https://grafana.com/grafana/dashboards/12888).
@@ -227,5 +216,3 @@ The following is the list of widgets displayed in this dashboard.
 | **Request Rate**              | A visualization of the total number of requests handled by the inbound endpoint over time.                                              |
 | **Error Rate**                | A visualization of the total number of errors that have occurred for the inbound endpoint over time.                                    |
 | **Response Time**             | A visualization of the time taken by the inbound endpoint to respond to requests over time.                                             |
-
-                                                                                                    
