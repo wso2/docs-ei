@@ -1,11 +1,8 @@
-!!! note
-    This section is still a work in progress and not tested.
-
 # Setting up the cloud native observability deployment in a Kubernetes environment
 
 To streamline the deployment of the cloud native observability solution in Kubernetes, WSO2 EI provides a Helm chart that you can utilize to deploy the solution to your Kubernetes cluster. The deployment installs the relevant products and adds the required configurations. After the installation, you can directly use the observability solution with a very few additional configurations. 
 
-## Setting up the basic cloud native observability solution
+## Deploying the basic cloud native observability solution
 
 The basic observability stack allows you to view metrics by installing and configuring Prometheus and Grafana. To install it, follow the steps below:
 
@@ -31,7 +28,7 @@ The basic observability stack allows you to view metrics by installing and confi
     
 The above step deploys the basic deployment and displays instructions to access the dashboards. This deployment allows you to access both Prometheus and Grafana UIs, and provides you with ability to view and analyze metrics.
 
-### Configuring WSO2 EI to integrate with the observability deployment
+### Configuring WSO2 EI to publish statistics
 
 To integrate with the observability deployment you are required to perform the following three main tasks in the EI containers:
 
@@ -67,7 +64,7 @@ To integrate with the observability deployment you are required to perform the f
     
 Once the above tasks are completed, the container that is being deployed through the integration Kubernetes resource emits metric data, and the Observability deployment can discover and start without further configuration.
 
-## Setting up the observability solution with log processing capabilities
+## Deploying the observability solution with log processing capabilities
 
 This deployment involves deploying Prometheus, Grafana, Loki and Fluent-bit Daemon set with all the required configurations to integrate deployed products. To install the deployment using Helm, follow the steps below:
 
@@ -134,7 +131,7 @@ To integrate with the observability deployment you are required to perform the f
     
     `fluentbit.io/parser: wso2`
 
-## Setting up the observability solution with ltracing capabilities
+## Deploying the observability solution with tracing capabilities
 
 This involves deploying Prometheus, Grafana and Jaeger-operator with all the required configurations to integrate deployed products. To install the deployment using Helm, follow the steps below:
 
@@ -180,6 +177,7 @@ logs = true
 manager_host = <Manager_hostname_here>
 agent_host = <Agent_hostname_here>
 ```
+    
 !!! tip
     Enter the host name of your Jaeger service as the value for `manager_host` and `agent_host` parameters. 
 
@@ -211,7 +209,7 @@ Once Grafana is successfully configured to visualize statistics, you should be c
 
 ![jaeger ui](../../assets/img/monitoring-dashboard/jaeger-ui.png)
 
-## Setting up the observability solution with logging and tracing capabilities
+## Deploying the observability solution with logging and tracing capabilities
 
 To install the cloud native observability solution with logging and tracing capabilities in your Kubernetes cluster, follow the steps below:
 

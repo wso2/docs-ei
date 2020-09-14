@@ -1,5 +1,4 @@
 # Setting up the EI Analytics Profile for Observability
-
 Follow the instructions given below to enable observability for your Micro Integrator deployment using the [Analytics profile of WSO2 EI 6.6.0](https://docs.wso2.com/display/EI660/Using+the+WSO2+EI+Analytics+Profile). 
 
 ![EI-Analytics Observability](../../assets/img/monitoring-dashboard/classic-observability-architecture.png)

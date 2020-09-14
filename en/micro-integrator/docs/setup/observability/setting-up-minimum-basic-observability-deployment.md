@@ -1,6 +1,3 @@
-!!! note
-    This section is still a work in progress and not tested.
-
 # Setting Up the Cloud Native Observability Deployment
 
 Cloud-native observability deployment is based on proven projects in Cloud Native Computing Foundation to be cloud native and future proof. Following are the technologies used in the current solution:
@@ -81,7 +78,7 @@ WSO2 Micro Integrator uses Prometheus to expose its statistics to Grafana. To co
 
 #### Downloading the required dashboards
 
-Download the following dashboards as JSON files from [here]().
+Download the following dashboards as JSON files from [Grafana Labs - WSO2 Dashboards](https://grafana.com/orgs/wso2/dashboards).
 
 
 #### Downloading, installing and starting Grafana
@@ -118,16 +115,21 @@ In a clustered environment, you can add the IP address and the port of each serv
 
 In a clustered deployment, you can view the list of Micro Integrator instances in your Micro Integrator cluster under **MI Nodes** in the **WSO2 Node Metrics** dashboard.
 
-### Configuring EI to integrate with basic observability deployment
+## Configuring WSO2 EI to publish statistics
 
-To enable observability for WSO2 Micro Integrator, add the following Synapse handler to `<MI_HOME>/conf/deployment.toml` file.
+To enable observability for WSO2 Micro Integrator, follow the steps below:
+ 
+1. Add the following Synapse handler to `<MI_HOME>/conf/deployment.toml` file.
 
-```toml
-    [[synapse_handlers]]
-    name="CustomObservabilityHandler"
-    class="org.wso2.micro.integrator.observability.metric.handler.MetricHandler"
-```
+    ```toml
+        [[synapse_handlers]]
+        name="CustomObservabilityHandler"
+        class="org.wso2.micro.integrator.observability.metric.handler.MetricHandler"
+    ```
 
+2. After adding the above configuration, start the Micro Integrator with the `-DenablePrometheusApi=true` parameter so that the Micro Integrator can enable its Prometheus endpoint.
+    
+ 
 ## Configuring log processing
 
 ### Setting up the log processing add-on
@@ -299,8 +301,6 @@ After successfully setting up the Fluent Bit you need to set up Grafana Loki. Gr
  
     `./loki-darwin-amd64 -config.file=./loki-local-config.yaml`
     
-## Integrating the log processing add-on to the minimum basic observability deployment
-
 
 ### Configuring Grafana to visualize logs
 
@@ -316,15 +316,17 @@ In order to configure Grafana to display logs, you need to add Loki as a data so
 3. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Loki**.
 
     ![Select Loki as Data Source](../../assets/img/monitoring-dashboard/grafana-select-datasource.png)
+    
+    This opens the **Data Sources / Loki** dialog bog
 
-4. In the **Add data source** page -> **Settings** tab, update the configurations for Loki as follows.
+4. In the **URL** field, enter `http://localhost:3100/ `.
 
-    <ADD IMAGE>
+    ![Loki data source URL](../../assets/img/monitoring-dashboard/grafana-loki-datasource-url.png)
     
 5. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
 
 
-## Integrating the tracing processing add-on to the minimum basic observability deployment
+## Integrating the tracing add-on to the minimum basic observability deployment
 
 ### Setting up the tracing add-on
 
