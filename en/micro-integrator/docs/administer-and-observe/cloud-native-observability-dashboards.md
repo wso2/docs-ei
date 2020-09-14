@@ -195,7 +195,6 @@ The following is the list of widgets displayed in this dashboard.
 
 At a given time, the Inbound endpoint dashboard displays the overall statistics related to a selected endpoint. we can view information related to a specific Inbound endpoint. We can download this dashboard from here. In this dashboard, it will show us Up Time,, All Request Count, Successful Request Count, Error Count, Error Percentage, Deployed Node Count, Request Rate, Error Rate and Response Time.
 
-
 ### Downloading the dashboard
 
 You can download the dashboard from the [Grafana Labs - WSO2 Inbound Endpoint Metrics](https://grafana.com/grafana/dashboards/12890).
@@ -217,6 +216,3 @@ The following is the list of widgets displayed in this dashboard.
 | **Request Rate**              | A visualization of the total number of requests handled by the inbound endpoint over time.                                              |
 | **Error Rate**                | A visualization of the total number of errors that have occurred for the inbound endpoint over time.                                    |
 | **Response Time**             | A visualization of the time taken by the inbound endpoint to respond to requests over time.                                             |
-
-                                                                                                    
->>>>>>> bf1134b416b602596f7efc42ca566854631e2965
