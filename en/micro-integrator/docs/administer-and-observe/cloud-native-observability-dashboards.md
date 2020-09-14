@@ -3,29 +3,17 @@
 
 # Viewing Cloud Native Observability Dashboards
 
-## Overview
+Let's use the **dashboards** from the cloud-native observability deployment to monitor **statistics** from your integration artifacts.
 
-The cloud native observability deployment is an observability solution that allows you to monitor and troubleshoot you WSO2 Enterprise Integrator system with ease. This solution is based on proven projects in Cloud Native Computing Foundation to be cloud native and future proof. Also, this technology stack allows you to view and correlate all three pillars of observability (i.e., metrics, logging, and tracing) from a single location instead of using several tools, thereby unifying the monitoring experience. 
+## Before you begin
 
-Following are the technologies used in the current solution.
+Set up the suitable cloud-native observability deployment. The dashboards described in this section applies to all the cloud-native deployment strategies.
 
-| **Feature**   | **Technology**              |
-|---------------|-----------------------------|
-| Metrics       | Prometheus                  |
-| Visualization | Grafana                     |
-| Logging       | Fluent-Bit and Grafana Loki |
-| Tracing       | Jaeger                      |
+See the following topics for information and instructions:
 
-The WSO2 Enterprise Integrator team expects to add support for more technologies in the future based on the demands of the customers and industry. 
-
-The following diagram depicts the high level architecture of the solution.
-
-![Cloud Native Deployment Architecture](../../assets/img/monitoring-dashboard/cloud-native-deployment-architecture.png)
-
-As illustrated above, the main feature of this solution is the ability to view logs, metrics and traces from a single location. This is achieved by tagging logs and traces with same set of labels as Prometheus and then using those labels to correlate them within Grafana. This allows you to correlate all three aspects within a given time frame and analyze abnormalities in an effective manner. 
-
-Following sections explains the features and usage of this solution and how to get the maximum use out of this observability solution.
-
+-	Learn about [Observability deployment strategy](../../setup/observability/observability-deployment-strategy).
+-	Setting up [cloud-native observability for a VM environment](../../setup/observability/setting-up-minimum-basic-observability-deployment)
+-	Setting up [cloud-native observability for a Kubernetes environment](../../setup/observability/setting-up-cloud-native-observability-in-kubernetes)
 
 ## Cluster dashboard
 
@@ -33,9 +21,11 @@ In the Cluster dashboard visualizes the overall statistics relating to your WSO2
 
 ![Cluster Dashboard](../assets/img/monitoring-dashboard/grafana-cluster-dashboard.png)
 
+<!--
 ### Downloading the dashboard
 
 You can download the dashboard from the [WSO2 EI Git repository]().
+-->
 
 ### Statistic types
 
@@ -79,9 +69,11 @@ This displays statistics specific to a selected node.
 
 ![Node Dashboard](../assets/img/monitoring-dashboard/grafana-node-metrics.png)
 
+<!--
 ### Downloading the dashboard
 
 You can download the dashboard from the [WSO2 EI Git repository]().
+-->
 
 ### Statistic types
 
@@ -124,9 +116,11 @@ In the Proxy service dashboard, we can view information related to a specific Pr
 
 ![Cluster Dashboard](../assets/img/monitoring-dashboard/grafana-proxy-services-dashboard.png)
 
+<!--
 ### Downloading the dashboard
 
 You can download the dashboard from the [WSO2 EI Git repository]().
+-->
 
 ### Statistic types
 
@@ -162,9 +156,11 @@ The purposes of this dashboard is as follows:
 
 This dashboard displays overall statistics related to a specific API. 
 
+<!--
 ### Downloading the dashboard
 
 You can download the dashboard from the [WSO2 EI Git repository]().
+-->
 
 ### Statistic types
 
@@ -198,6 +194,8 @@ The following is the list of widgets displayed in this dashboard.
 
 In the Inbound endpoint dashboard, we can view information related to a specific Inbound endpoint. We can download this dashboard from here. In this dashboard, it will show us Up Time,, All Request Count, Successful Request Count, Error Count, Error Percentage, Deployed Node Count, Request Rate, Error Rate and Response Time. Basically this dashboard shows us the overall statistics related to an Inbound endpoint.
 
+<!--
+
 ### Downloading the dashboard
 
 You can download the dashboard from the [WSO2 EI Git repository]().
@@ -208,4 +206,5 @@ The following is the list of widgets displayed in this dashboard.
 
 ### Purpose
 
-### Recommended action                                                                                                       |
+### Recommended action         
+-->                                                                                              |
