@@ -11,7 +11,7 @@ To streamline the deployment of the cloud native observability solution in Kuber
 
 ## Setting up the observability deployment
 
-When you deployed the solution on a VM, you first set up the minimum deployment (with metrics monitoring capability) and then added log processing and message tracing capabilities (as add ons). However, when you deploy on Kubernetes, you must fist select all the required observability capabilities, and then deploy all the related technologies and configurations in one step. 
+When you deployed the solution on a VM, you first set up the minimum deployment (with metrics monitoring capability) and then added log processing and message tracing capabilities (as add ons). However, when you deploy on Kubernetes, you must first select the required observability capabilities, and then deploy all the related technologies and configurations in one step. 
 
 Select the required deployment option from the following list and follow the instructions.
 
