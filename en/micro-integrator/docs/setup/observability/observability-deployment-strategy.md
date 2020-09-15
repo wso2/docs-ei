@@ -6,14 +6,18 @@ WSO2 Enterprise Integrator 7.1 offers two observability solutions for monitoring
 
 The cloud-native solution is more suitable in the following scenarios:
 
-- If you are creating a new cloud-native Micro Integrator deployment. See the instructions on setting up a cloud-native [Micro Integrator deployment on Kubernetes](../../../setup/deployment/kubernetes_deployment_patterns).
-- If you already have Prometheus, Grafana, and Jaeger as your in-house monitoring and observability tools. This applies to both [VM deployments](../../../setup/deployment/deploying_wso2_ei) as well as [Kuberentes deployments](../../../setup/deployment/kubernetes_deployment_patterns).
+- You are creating a new cloud-native Micro Integrator deployment. 
+
+	!!! Note
+		See the instructions on setting up a cloud-native [Micro Integrator deployment on Kubernetes](../../../setup/deployment/kubernetes_deployment_patterns).
+
+- You already have Prometheus, Grafana, and Jaeger as your in-house monitoring and observability tools. This applies to [VM deployments](../../../setup/deployment/deploying_wso2_ei) as well as [Kuberentes deployments](../../../setup/deployment/kubernetes_deployment_patterns).
 
 The classic observability solution is more suitable in the following scenarios:
 
-- If you require more business analytics and less operational observability.
-- If you want a simpler deployment.
-- If you already have an observability stack such as ELK.
+- You require more business analytics and less operational observability.
+- You require a simpler deployment.
+- You already have an observability stack such as ELK.
 
 ## Cloud-Native Observability
 

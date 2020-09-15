@@ -2,7 +2,7 @@
 
 Follow the instructions given below to set up a cloud-native observability solution in a Kubernetes environment. 
 
-To streamline the deployment of the cloud native observability solution in Kubernetes, WSO2 EI provides a Helm chart to deploy the solution to your Kubernetes cluster. The deployment installs the relevant products and adds the required configurations. After the installation, you can directly use the observability solution with a very few additional configurations. 
+To streamline the deployment of the cloud native observability solution in Kubernetes, WSO2 EI provides a Helm chart via which you can deploy the solution to your Kubernetes cluster. The deployment installs the relevant products and adds the required configurations. After the installation, you can directly use the observability solution with a very few additional configurations. 
 
 ## Prerequisites
 
@@ -192,8 +192,8 @@ stat.tracer.collect_mediation_properties= true
 [opentracing]
 enable = true
 logs = true
-manager_host = <Manager_hostname_here>
-agent_host = <Agent_hostname_here>
+manager_host = Manager_hostname
+agent_host = Agent_hostname
 ```
 
 !!! tip
@@ -202,3 +202,7 @@ agent_host = <Agent_hostname_here>
 These settings enable the tracing data instrumentation and publishing to a jaeger instance.
 
 For more information about the Micro Integrator Kubernetes development flow, see [MI kubernetes guide](../../../setup/deployment/kubernetes_deployment_patterns).
+
+## What's Next?
+
+If you have successfully set up your anlaytics deployment, see the instructions on [using the Grafana dashboards](../../../administer-and-observe/cloud-native-observability-dashboards).

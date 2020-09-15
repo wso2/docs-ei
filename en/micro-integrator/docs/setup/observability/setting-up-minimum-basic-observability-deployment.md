@@ -57,7 +57,7 @@ To set up the Grafana server:
 
 1.  Download and install [Grafana](https://grafana.com/grafana/download/7.1.1). 
 
-    !!! Tip
+    !!! Info
         Following the instructions (for your operating system) on the Grafana web site.
 
 2. Start you Grafana server.
@@ -134,7 +134,8 @@ To set up Fluent Bit:
 
 2. Extract the downloaded file. 
 
-    !!! The directory is referred to as `<FluentBit_Home>` from hereon.
+    !!! Tip
+        The directory is referred to as `<FluentBit_Home>` from hereon.
 
 3. Create the following files and save them with the given extension in a preferred location. You can use any text editor of your choice.
 
@@ -387,3 +388,7 @@ In order to configure Grafana to display tracing information, follow the steps g
 Once Grafana is successfully configured to visualize statistics, you should be correctly redirected to the Jaeger UI from the Response Time widget of each service-level dashboard as shown below.
     
 ![jaeger ui](../../assets/img/monitoring-dashboard/jaeger-ui.png)
+
+## What's Next?
+
+If you have successfully set up your anlaytics deployment, see the instructions on [using the Grafana dashboards](../../../administer-and-observe/cloud-native-observability-dashboards).
