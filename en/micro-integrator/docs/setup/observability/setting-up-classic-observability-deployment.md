@@ -112,6 +112,6 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
      ![endpoint properties](../../assets/img/ei-analytics/endpoint-properties.png)
 
-## What's Next
+## What's Next?
 
 If you have successfully set up your anlaytics deployment, see the instructions on [using the Analytics dashboard](../../../administer-and-observe/using-the-analytics-dashboard).
