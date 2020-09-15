@@ -1,5 +1,8 @@
 # Setting up Cloud-Native Observability on Kubernetes
 
+!!! note
+    This section is still a work in progress and not tested.
+
 Follow the instructions given below to set up a cloud-native observability solution in a Kubernetes environment. 
 
 To streamline the deployment of the cloud native observability solution in Kubernetes, WSO2 EI provides a Helm chart via which you can deploy the solution to your Kubernetes cluster. The deployment installs the relevant products and adds the required configurations. After the installation, you can directly use the observability solution with a very few additional configurations. 
