@@ -1,5 +1,8 @@
 # Setting up Cloud-Native Observability on a VM
 
+!!! note
+    This section is still a work in progress and not tested.
+
 Follow the instructions given below to set up a cloud-native observability solution for your Micro Integrator deployment in a VM environment. 
 
 You need to start with the [minimum deployment](#setting-up-the-minimum-deployment), which enables metric monitoring. Once you have set up the minimum deployment, you can add [log processing](#integrating-the-log-processing-add-on) and [message tracing](#integrating-the-message-tracing-add-on) capabilities to your solution.
