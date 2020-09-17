@@ -4,6 +4,11 @@
 
 This quick start guide gets you started with the Streaming Integrator (SI), in just 5 minutes.
 
+In this guide, you will download the SI distribution as well as Kafka, and then try out a simple Siddhi application. This Siddhi application consumes messages from a file processes the data, generates an output, and then publishes that output to a Kafka topic.
+
+The following is the outline of this quick start guide.
+
+![Quick Start Guide Outline](../../images/qsg/qsg-outline.png)
 
 ## Step 1: Download the Streaming Integrator
 
