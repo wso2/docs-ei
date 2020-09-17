@@ -379,18 +379,18 @@ nav:
         - 'Message Relay' : 'setup/message_builders_formatters/message-relay.md'
         - Observability:
           - 'Observability Deployment Strategy': 'setup/observability/observability-deployment-strategy.md'
-          - 'Setting up Cloud Native Observability Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
+          - 'Setting up Cloud-Native Observability for a VM Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
+          - 'Setting up Cloud-Native Observability for a K8s Deployment': 'setup/observability/setting-up-cloud-native-observability-in-kubernetes.md'
           - 'Setting up Classic Observability Deployment': 'setup/observability/setting-up-classic-observability-deployment.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observe and Manage:
         - 'Overview': 'administer-and-observe/observability-overview.md'
         - 'Observability':
-          - 'Observability Solutions': 'administer-and-observe/observability-solutions-overview.md'
           - 'Cloud Native Observability Solution':
             - 'Viewing Cloud Native Observability Dashboards': 'administer-and-observe/cloud-native-observability-dashboards.md'
           - 'Classic Observability Solution':
             - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
-            - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+            - 'Using the EI Analytics Dashboard': 'administer-and-observe/using-the-analytics-dashboard.md'
             - Logging:
               - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
               - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'

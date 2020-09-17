@@ -322,7 +322,9 @@ Follow the topics in this section to configure security for your Micro Integrato
 	</tr>
 </table>
 
-### Performance
+### Performance and Capacity Planning
+
+You can have a look at the result of **performance tests** conducted for the Micro Integrator in the [Micro Integrator repo](https://github.com/wso2/micro-integrator/blob/e068750213ff699f6b8b457f1352afbccdfc9947/performance/benchmarks/summary.md).
 
 Follow the topics in this section to optimize the performance of your Micro Integrator instance.
 
@@ -411,10 +413,6 @@ The following topics explain how to connect the Micro Integrator with an externa
 		</td>
 	</tr>
 </table>
-
-### Performance and capacity Planning
-
-You can have a look at the result of performance tests conducted for Micro Integrator in the [Micro Integrator repo](https://github.com/wso2/micro-integrator/blob/e068750213ff699f6b8b457f1352afbccdfc9947/performance/benchmarks/summary.md). 
 
 ### Advanced
 
