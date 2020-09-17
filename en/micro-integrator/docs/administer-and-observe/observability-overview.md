@@ -1,6 +1,3 @@
-!!! note
-    This section is still a work in progress and not tested.
-
 # Observe and Manage Overview
 
 This section explains how to set up the observability solutions and perform management tasks for WSO2 Enterprise Integrator.
