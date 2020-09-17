@@ -328,3 +328,216 @@ The performance statistics of this scenario are as follows:
 - Average Publishing TPS from HTTP request sink: 29K
 - Average Consuming TPS from HTTP response source: 29K
 
+## Consuming messages from a Kafka source and publish to an HTTP endpoint
+
+### Specifications of EC2 Instances
+
+#### Docker resource allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Memory</th>
+<td> 3GB </td>
+</tr>
+<tr class="even">
+<th>CPU</th>
+<td> 2 Cores</td>
+</tr>
+</tbody>
+</table>
+
+#### Server memory allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Xms</th>
+<td> 256m </td>
+</tr>
+<tr class="even">
+<th>Xmx</th>
+<td> 1g </td>
+</tr>
+</tbody>
+</table>
+
+### Siddhi applications
+
+### Results
+
+- Memory consumed: 1g
+
+_ TPS: 10,000
+
+
+## Consuming messages from a CSV file and publish to a MySQL table
+
+### Specifications of EC2 Instances
+
+#### Docker resource allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Memory</th>
+<td> 8GB </td>
+</tr>
+<tr class="even">
+<th>CPU</th>
+<td> 4 Cores</td>
+</tr>
+</tbody>
+</table>
+
+#### Server memory allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Xms</th>
+<td> 2g </td>
+</tr>
+<tr class="even">
+<th>Xmx</th>
+<td> 4g </td>
+</tr>
+</tbody>
+</table>
+
+### Siddhi applications
+
+### Results
+
+- Memory consumed: 2.56g
+
+_ TPS: 9,000
+
+## Monitoring a database table in MySQL and publishing data to a Kafka topic
+
+### Specifications of EC2 Instances
+
+#### Docker resource allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Memory</th>
+<td> 8GB </td>
+</tr>
+<tr class="even">
+<th>CPU</th>
+<td> 4 Cores</td>
+</tr>
+</tbody>
+</table>
+
+#### Server memory allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Xms</th>
+<td> 2g </td>
+</tr>
+<tr class="even">
+<th>Xmx</th>
+<td> 4g </td>
+</tr>
+</tbody>
+</table>
+
+### Siddhi applications
+
+### Results
+
+- Memory Consumption: 1.5g
+
+- Time taken: 46 minutes
+
+- Data set size: 34,330,327
+
+## Read XML file and mapping to a stream
+
+### Specifications of EC2 Instances
+
+#### Docker resource allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Memory</th>
+<td> 8GB </td>
+</tr>
+<tr class="even">
+<th>CPU</th>
+<td> 4 Cores</td>
+</tr>
+</tbody>
+</table>
+
+#### Server memory allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Xms</th>
+<td> 2g </td>
+</tr>
+<tr class="even">
+<th>Xmx</th>
+<td> 4g </td>
+</tr>
+</tbody>
+</table>
+
+### Siddhi applications
+
+### Results
+
+- Memory consumption: 1.2g
+
+- TPS: 40,000
+
+## Reading an XML file and publishing to a Kafka topic
+
+### Specifications of EC2 Instances
+
+#### Docker resource allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Memory</th>
+<td> 8GB </td>
+</tr>
+<tr class="even">
+<th>CPU</th>
+<td> 4 Cores</td>
+</tr>
+</tbody>
+</table>
+
+#### Server memory allocation
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Xms</th>
+<td> 2g </td>
+</tr>
+<tr class="even">
+<th>Xmx</th>
+<td> 4g </td>
+</tr>
+</tbody>
+</table>
+
+### Siddhi applications
+
+### Results
+
+- Memory consumption: 1.7g
+
+- TPS: 38,000
+
