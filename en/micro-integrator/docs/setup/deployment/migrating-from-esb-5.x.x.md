@@ -1,6 +1,4 @@
 # Migrating from WSO2 ESB 5.0 to WSO2 EI 7.1
-The Micro Integrator of EI 7.1 is the latest most improved version of the WSO2 ESB runtime.Therefore, you can easily migrate to EI 7.1 Micro Integrator from any previous ESB runtime. 
-
 This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to the Micro Integrator of WSO2 EI 7.1. 
 
 {!setup/pull/PULL-CONTENT-migration-esb-mi.md!}
@@ -79,7 +77,7 @@ See the instructions on [configuring a user store](../../user_stores/setting_up_
 	Note that secondary user stores are currently not supported in the Micro Integrator of EI 7.1.0.
 	
 ### Migrating the registry
-The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in ESB 5.0). Note the following when migrating the registry:
+The Micro Integrator uses a [file-based registry](../file_based_registry) instead of a database (which is used in ESB 5.0). Note the following when migrating the registry:
 
 -	If the registry resources in ESB 5.0 are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
 -	If the registry resources are added through the management console in ESB 5.0, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
