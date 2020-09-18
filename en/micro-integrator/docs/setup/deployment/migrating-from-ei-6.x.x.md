@@ -75,7 +75,7 @@ enable = false
 	See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
 	
 ### Migrating the registry
-The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
+The Micro Integrator uses a [file-based registry](../file_based_registry) instead of a database (which is used in EI 6.x). Note the following when migrating the registry:
 
 -	If the registry resources in EI 6.x are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<EI_6.x.x_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
 -	If the registry resources are added through the management console in EI 6.x.x, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
