@@ -219,7 +219,7 @@ Active Directory as the kerberos server (KDC):
     </table>
 
 5.  Open a terminal and execute the command shown below to g enerate the keytab file for the above service. The keytab file contains the password for the service.
-6.  Download the `WSO2-REST-KerberosAuth-Handler-1.0.0-SNAPSHOT.jar` file and copy it to the `MI_HOME/lib` directory.
+6.  Download the `WSO2-REST-KerberosAuth-Handler-1.0.0-SNAPSHOT.jar` file from [here](../../../assets/attach/security/WSO2-REST-KerberosAuth-Handler-1.0.0-SNAPSHOT.jar) and copy it to the `MI_HOME/lib` directory.
 
 ### Creating the REST API
 
