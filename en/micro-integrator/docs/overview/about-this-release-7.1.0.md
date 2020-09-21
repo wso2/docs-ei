@@ -300,6 +300,17 @@ The following features, which are available in ESB runtimes, are removed from th
 			<a href="../../setup/deployment/file_based_registry">File system based Registry</a>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			Rule Mediator
+		</td>
+		<td>
+			The rule mediator has been removed from Ei 7.1.0 as it is not widely used.
+		</td>
+		<td>
+			-
+		</td>
+	</tr>
 </table>
 
 ## Known issues
