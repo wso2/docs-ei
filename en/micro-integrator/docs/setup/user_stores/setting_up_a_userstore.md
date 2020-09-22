@@ -1,18 +1,10 @@
 # Configuring a User Store
 
-A user store is a repository that stores user credentials (user names and passwords). WSO2 Micro Integrator requires <b>user</b> credentials for the following scenarios:
+A user store is a repository that stores user credentials (user names and passwords).
 
--	[Authentication](../../../setup/security/securing_management_api/#authentication-jwt) for internal APIs
+## Users in the Micro Integrator
 
-	Users accessing the management API and related tools (Micro Integrator dashboard/Micro Integrator CLI) for administration tasks should be authenticated.
-
--	Authentication for integration use cases
-
-	Some integration use cases require authentication by <b>dynamic username token</b> and similar <b>[WS-Security](../../../references/security/security-implementation)</b> options. User authentication is also required for [securing REST API artifacts](../../../develop/advanced-development/applying-security-to-an-api).
-
--	[Authorization](../../../setup/security/securing_management_api/#authorization) for internal APIs
-
-	 Certain resources of the management API are protected by <b>authorization</b>. Therefore, users should be granted admin privileges to operate those resources.
+Find about [user credentials in the Micro Integrator](../../../setup/user_stores/managing_users/#users-credentials-in-the-mi).
 
 ## File-based user store (Default)
 
