@@ -157,12 +157,50 @@ Copy the JKS files in the `<ESB_5.0.0_HOME>/repository/resources/security` direc
 
 The following sections of this document will guide you to migrate the product configurations including log4j.
 
-#### Migrating to TOML configurations
-
-Given below are the most critical XML configuraton files in ESB 5.0. Expand each section to find the TOML configurations corresponding to the XML configurations in the file. 
+#### Migrating to TOML configurations 
 
 !!! Tip
      If you have a [WSO2 subscription](https://wso2.com/subscription), it is highly recommended to reach WSO2 Support before attempting to proceed with the configuration migration.
+
+Given below are main configurations that have changed in the Micro integrator. Expand the sections to find the TOML configurations corresponding to the XML configurations.
+
+??? note "Clustering configurations"
+
+	In the Micro Integrator, you don't need to enable clustering as you did with previous ESB versions. Instead, you need to configure all nodes in the cluster to coordinate through an RDBMS. Find out more about [cluster coordination](../../../setup/deployment/deploying_wso2_ei/#cluster-coordination).
+
+    ```xml tab='XML configuration'
+    <clustering class="org.wso2.carbon.core.clustering.hazelcast.HazelcastClusteringAgent"
+                    enable="true">
+    <parameter name="clusteringPattern">nonWorkerManager</parameter>
+    </clustering>
+    ```
+       
+	```toml tab='TOML configuration'
+	# Cluster coordination database connection.
+	[[datasource]]
+    id = "WSO2_COORDINATION_DB"
+    url= "jdbc:mysql://localhost:3306/clusterdb"
+    username="root"
+    password="root"
+    driver="com.mysql.jdbc.Driver"
+
+    # Identifying nodes in the cluster.
+    [cluster_config]
+	node_id = "node-1"
+	```
+    
+    Find more [parameters](../../../setup/deployment/deploying_wso2_ei).
+
+??? note "Analytics configurations"
+
+	If you used EI Analytics with your ESB, you have configured the following to be able to publish statistics to the Analytics.
+
+	-	`<ESB_HOME>/repository/deployment/server/eventpublishers/MessageFlowConfigurationPublisher.xml`
+	-	`<ESB_HOME>/repository/deployment/server/eventpublishers/MessageFlowStatisticsPublisher.xml`
+
+	If you using EI Analytics with your new Micro Integrator solution, you can follow the instructions in [Setting up the EI Analytics Profile for Observability](../../../setup/observability/setting-up-classic-observability-deployment).
+
+Given below are some of the most critical XML configuraton files in ESB 5.0. Expand each section to find the TOML configurations corresponding to the XML configurations in the file.
 
 ??? note "carbon.xml"
 	
@@ -798,33 +836,6 @@ Given below are the most critical XML configuraton files in ESB 5.0. Expand each
 		```
 	    
 	    Find more [parameters](../../../references/config-catalog/#jms-transport-sender-non-blocking-mode).
-
-	-	Clustering
-
-		In the Micro Integrator, you don't need to enable clustering as you did with previous ESB versions. Instead, you need to configure all nodes in the cluster to coordinate through an RDBMS. Find out more about [cluster coordination](../../../setup/deployment/deploying_wso2_ei/#cluster-coordination).
-
-	    ```xml tab='XML configuration'
-	    <clustering class="org.wso2.carbon.core.clustering.hazelcast.HazelcastClusteringAgent"
-	                    enable="true">
-	    <parameter name="clusteringPattern">nonWorkerManager</parameter>
-	    </clustering>
-	    ```
-	       
-		```toml tab='TOML configuration'
-		# Cluster coordination database connection.
-		[[datasource]]
-	    id = "WSO2_COORDINATION_DB"
-	    url= "jdbc:mysql://localhost:3306/clusterdb"
-	    username="root"
-	    password="root"
-	    driver="com.mysql.jdbc.Driver"
-
-	    # Identifying nodes in the cluster.
-	    [cluster_config]
-		node_id = "node-1"
-		```
-	    
-	    Find more [parameters](../../../setup/deployment/deploying_wso2_ei).
 
 ??? note "synapse.properties"
 
