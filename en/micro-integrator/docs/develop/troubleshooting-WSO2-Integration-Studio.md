@@ -120,6 +120,10 @@ Follow the steps given below.
 
 4.  Restart Docker to apply the changes.
 
+## Getting Started page goes blank
+
+The Getting Started page of WSO2 Integration Studio goes blank on some occasions when using older Firefox browser versions like 59.0. Upgrade to a newer version of Firefox (for example, 77.0.1) to fix the problem and have a seamless experience when using this page.
+
 ## View WSO2 Integration Studio Error Log
 
 To get details of a WSO2 Integration Studio error:
