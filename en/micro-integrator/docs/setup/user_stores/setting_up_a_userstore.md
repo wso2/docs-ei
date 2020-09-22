@@ -125,7 +125,8 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 	- [Setting up a Postgre database](../../../setup/databases/setting-up-PostgreSQL)
 	- [Setting up an IBM database](../../../setup/databases/setting-up-IBM-DB2)
 
-2.	To connect the Micro Integrator to your RDBMS user store: 
+2.	Be sure to add the JDBC driver to the `<MI_HOME>/lib` folder.
+3.	To connect the Micro Integrator to your RDBMS user store: 
 
 	1.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
 	2.	Add the relevant configurations for your RDBMS type.
