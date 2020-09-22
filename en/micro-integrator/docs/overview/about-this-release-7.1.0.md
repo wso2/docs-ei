@@ -302,6 +302,22 @@ The following features, which are available in ESB runtimes, are removed from th
 	</tr>
 </table>
 
+### Mediators removed (After ESB 5.0.0)
+
+The following mediators are removed from the ESB runtime in all versions after ESB 5.0.0. If you are migrating from ESB 5.0.0 to the Micro Integrator of EI 7.1.0, note that these mediators are no longer supported.
+
+-	Priority Executors
+-	Enqueue Mediator
+-	Bean Mediator
+-	POJO Command Mediator
+-	Spring Mediator
+-	Conditional Router Mediator
+-	In, Out Mediators
+-	Event Mediator
+-	In memory Topics
+-	Router Mediator
+-	Publish Event Mediator
+
 ## Known issues
 
 -   [Micro Integrator - Known Issues](https://github.com/wso2/micro-integrator/issues)
