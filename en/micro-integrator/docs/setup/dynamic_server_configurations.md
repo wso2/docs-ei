@@ -5,7 +5,7 @@ When you have multiple environments (Dev, QA, UAT, Prod), you need the flexibili
 ## Managing Server Configurations
 
 All the server configurations of the Micro Integrator are specified in a single
-[TOML-based configuration file](../../references/config-catalog) ()`deployment.toml` file). To be able to dynamically inject values, define your server configurations as environment variables or system properties. You can then separately inject configuration values to each environment.
+[TOML-based configuration file](../../references/config-catalog) (`deployment.toml` file). To be able to dynamically inject values, define your server configurations as environment variables or system properties. You can then separately inject configuration values to each environment.
 
 You can define the server configurations in one of three ways based on your preference:
 
