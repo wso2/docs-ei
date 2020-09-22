@@ -26,58 +26,85 @@ Follow the instructions below to start the migration!
 
 ### Migrating the user store
 
-If you are already using a JDBC or LDAP as the primary user store of your ESB 5.0, you can simply connect the same to the Micro Integrator by updating the configuration details in the `deployment.toml` file. Following is a set of high-level configurations. 
+If you are already using a JDBC or LDAP as the **primary** user store of your ESB 5.0, you can simply connect the same to the Micro Integrator. 
 
-```toml tab='RDBMS User Store'
-[user_store]
-type = "database"
-read_only = "false"
+Note that **secondary** user stores are currently not supported in the Micro Integrator of EI 7.1.0.
 
-[[datasource]]
-id = "WSO2_USER_DB"
-url= "jdbc:mysql://localhost:3306/userdb"
-username="root"
-password="root"
-driver="com.mysql.jdbc.Driver"
+!!! tip "Before you begin"
+	Read about [users and roles in the Micro Integrator](../../../setup/user_stores/managing_users) and how they function. Note the following important facts:
 
-[realm_manager]
-data_source = "WSO2_USER_DB" 
+	- Users in the Micro Intgrator are categorized as <b>admin</b> users and <b>non-admin</b> users.
+	- All admin users in your existing ESB user store will function as admin users in the Micro integrator.
+	- Tenant admins are no longer valid because the Micro Integrator does not support multitenancy.
 
-[internal_apis.file_user_store]
-enable = false
-```
+To connect the Micro Integrator to the primary user store:
 
-```toml tab='Read-Only LDAP User Store'
-[user_store]
-connection_url = "ldap://localhost:10389"  
-connection_name = "uid=admin,ou=system"
-connection_password = "admin"  
-user_search_base = "ou=Users,dc=wso2,dc=org"
-type = "read_only_ldap"
-   
-[internal_apis.file_user_store]
-enable = false
-```
+1.	Open the `deployment.toml` file of your Micro Integrator.
+2.	Note that you have the `[user_store]` section enabled by default.
 
-```toml tab='Read-Write LDAP User Store'
-[user_store]
-connection_url = "ldap://localhost:10389"  
-connection_name = "uid=admin,ou=system"
-connection_password = "admin"  
-user_search_base = "ou=Users,dc=wso2,dc=org"
-type = "read_write_ldap"
-   
-[internal_apis.file_user_store]
-enable = false
-```
+	```toml
+	[user_store]
+	type = "read_only_ldap"
+	```
+
+3.	Update the `[user_store]` section and other configurations as given below.
+
+	```toml tab='RDBMS User Store'
+	[user_store]
+	type = "database"
+	read_only = "false"
+
+	[[datasource]]
+	id = "WSO2_USER_DB"
+	url= "jdbc:mysql://localhost:3306/userdb"
+	username="root"
+	password="root"
+	driver="com.mysql.jdbc.Driver"
+
+	[realm_manager]
+	data_source = "WSO2_USER_DB" 
+
+	[internal_apis.file_user_store]
+	enable = false
+	```
+
+	```toml tab='Read-Only LDAP User Store'
+	[user_store]
+	connection_url = "ldap://localhost:10389"  
+	connection_name = "uid=admin,ou=system"
+	connection_password = "admin"  
+	user_search_base = "ou=Users,dc=wso2,dc=org"
+	type = "read_only_ldap"
+	   
+	[internal_apis.file_user_store]
+	enable = false
+	```
+
+	```toml tab='Read-Write LDAP User Store'
+	[user_store]
+	connection_url = "ldap://localhost:10389"  
+	connection_name = "uid=admin,ou=system"
+	connection_password = "admin"  
+	user_search_base = "ou=Users,dc=wso2,dc=org"
+	type = "read_write_ldap"
+	   
+	[internal_apis.file_user_store]
+	enable = false
+	```
+
+4.	If your user store is an RDBMS, be sure to add the client JAR of your RDBMS to the `<MI_HOME>/lib` folder.
 
 See the instructions on [configuring a user store](../../user_stores/setting_up_a_userstore) for more information.
-
-!!! Note "Secondary users stores"
-	Note that secondary user stores are currently not supported in the Micro Integrator of EI 7.1.0.
 	
 ### Migrating the registry
-The Micro Integrator uses a [file-based registry](../file_based_registry) instead of a database (which is used in ESB 5.0). Note the following when migrating the registry:
+
+!!! tip "Before you begin"
+    Note the following:
+
+	-	Your ESB 5.0 registry may have the following partitions: <b>Local</b>, <b>Config</b>, and <b>Gov</b>. Note that you only need to migrate the <b>Config</b> and <b>Gov</b> registry partitions. See the instructions on configuring [registry partitions in the Micro Integrator](../file_based_registry).
+	-	If you have shared the registry of ESB 5.0 among multiple nodes, you can do the same for the file-based registery of EI 7.1. However, note that registry mounting/sharing is only required for [**persisting message processor states** among nodes of EI 7.1](../../../setup/deployment/deploying_wso2_ei/#registry-synchronization-sharing).
+
+The Micro Integrator uses a [file-based registry](../file_based_registry) instead of a database (which is used in ESB 5.0). Follow the guidelines given below when you migrate the registry artifacts.
 
 -	If the registry resources in ESB 5.0 are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
 -	If the registry resources are added through the management console in ESB 5.0, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
@@ -90,7 +117,7 @@ The Micro Integrator uses a [file-based registry](../file_based_registry) instea
 
 -	If you have encrypted data in the ESB 5.0 registry, follow the instructions in [migrating passwords](#migrating-encrypted-passwords).
 
-### Migrating artifacts
+### Migrating integration artifacts
 
 The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is to use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio):
 
@@ -103,34 +130,77 @@ The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is t
 ### Migrating deployed Connectors
 
 - If the connector is added to ESB 5.0 via a composite application with the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors), the same can be used in EI 7.1 seamlessly. Simply copy the CAR file in ESB 5.0 to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the connector is added to ESB 5.0 via the management console, pack them using connector exporter project and deploy via composite application in EI 7.1. For more information, read about the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors).
+- If the connector is added to ESB 5.0 via the management console, pack them using [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors) and deploy via a composite application in EI 7.1.
 
 ### Migrating custom components
 
-Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<ESB_5.0.0_HOME>/repository/components/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
+Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<ESB_5.0.0_HOME>/repository/components/lib` folder, copy those components to the `<MI_HOME>/lib` directory.
 
 !!! Note
     To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
+
+### Migrating tenants
+
+Multitenancy within one JVM is not supported in the Micro Integrator of EI 7.1. Therefore, if you used multiple tenants in your ESB deployment, you can replicate the set up in EI 7.1 by using separate Micro Integrator nodes.
 
 ### Migrating keystores
 Copy the JKS files in the `<ESB_5.0.0_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory. 
 
 ### Migrating configurations
 
-Configuration management was handled in WSO2 ESB 5.0 versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml`, etc.
+!!! tip "Before you begin"
+	Note the following:
 
-Micro Integrator of EI 7.1 provides a new configuration model where all of the product configurations are primarily managed by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). 
+	- 	Configuration management was handled in WSO2 ESB 5.0 versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml`, etc.
+	-	Micro Integrator of EI 7.1 provides a new configuration model where most of the product configurations are managed by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). 
+	-	Log configurations are managed with log4j2 (whereas the ESB 5.0 used log4j), which are configured in the `log4j2.properties` file.
 
-In EI 7.1, the logging configurations are managed with log4j2, whereas the ESB 5.0 used log4j.
+The following sections of this document will guide you to migrate the product configurations including log4j.
 
-The following sections of this document will guide you on how to migrate the Product Configurations including log4j.
-
-**Migrating to TOML configurations**
-
-Given below are the most critical XML configuraton files in ESB 5.0. Expand each section to find the TOML configurations corresponding to the XML configurations in the file. 
+#### Migrating to TOML configurations 
 
 !!! Tip
      If you have a [WSO2 subscription](https://wso2.com/subscription), it is highly recommended to reach WSO2 Support before attempting to proceed with the configuration migration.
+
+Given below are main configurations that have changed in the Micro integrator. Expand the sections to find the TOML configurations corresponding to the XML configurations.
+
+??? note "Clustering configurations"
+
+	In the Micro Integrator, you don't need to enable clustering as you did with previous ESB versions. Instead, you need to configure all nodes in the cluster to coordinate through an RDBMS. Find out more about [cluster coordination](../../../setup/deployment/deploying_wso2_ei/#cluster-coordination).
+
+    ```xml tab='XML configuration'
+    <clustering class="org.wso2.carbon.core.clustering.hazelcast.HazelcastClusteringAgent"
+                    enable="true">
+    <parameter name="clusteringPattern">nonWorkerManager</parameter>
+    </clustering>
+    ```
+       
+	```toml tab='TOML configuration'
+	# Cluster coordination database connection.
+	[[datasource]]
+    id = "WSO2_COORDINATION_DB"
+    url= "jdbc:mysql://localhost:3306/clusterdb"
+    username="root"
+    password="root"
+    driver="com.mysql.jdbc.Driver"
+
+    # Identifying nodes in the cluster.
+    [cluster_config]
+	node_id = "node-1"
+	```
+    
+    Find more [parameters](../../../setup/deployment/deploying_wso2_ei).
+
+??? note "Analytics configurations"
+
+	If you used EI Analytics with your ESB, you have configured the following to be able to publish statistics to the Analytics.
+
+	-	`<ESB_HOME>/repository/deployment/server/eventpublishers/MessageFlowConfigurationPublisher.xml`
+	-	`<ESB_HOME>/repository/deployment/server/eventpublishers/MessageFlowStatisticsPublisher.xml`
+
+	If you using EI Analytics with your new Micro Integrator solution, you can follow the instructions in [Setting up the EI Analytics Profile for Observability](../../../setup/observability/setting-up-classic-observability-deployment).
+
+Given below are some of the most critical XML configuraton files in ESB 5.0. Expand each section to find the TOML configurations corresponding to the XML configurations in the file.
 
 ??? note "carbon.xml"
 	
@@ -425,6 +495,11 @@ Given below are the most critical XML configuraton files in ESB 5.0. Expand each
 	    text_plain = "org.apache.axis2.format.PlainTextFormatter"
 	    application_json =  "org.wso2.micro.integrator.core.json.JsonStreamFormatter"
 	    octet_stream = "org.wso2.carbon.relay.ExpandingMessageFormatter"
+
+	    # Custom message formatters.
+	    [[custom_message_formatters]]
+		content_type = "application/json/badgerfish"
+		class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
 	    ```
 	    
 	    Find more [parameters](../../../references/config-catalog/#message-formatters-non-blocking-mode).
@@ -456,6 +531,11 @@ Given below are the most critical XML configuraton files in ESB 5.0. Expand each
 	    text_plain = "org.apache.axis2.format.PlainTextBuilder"
 	    application_json = "org.wso2.micro.integrator.core.json.JsonStreamBuilder"
 	    octet_stream =  "org.wso2.carbon.relay.BinaryRelayBuilder"
+
+	    # Custom message builders
+	    [[custom_message_builders]]
+		content_type = "application/json/badgerfish"
+		class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
 		```
 	    
 	    Find more [parameters](../../../references/config-catalog/#message-builders-non-blocking-mode).
@@ -621,6 +701,9 @@ Given below are the most critical XML configuraton files in ESB 5.0. Expand each
 
 	-	HTTP transport sender
 
+		!!! Warning
+			Do not duplicate the `[transport.http]` TOML header when you enable both the JMS listener and sender. Use the TOML header once and add both parameters (`listener_enabled` and `sender_enabled`).
+
 	    ```xml tab='XML configuration'
 		<transportSender name="http" class="org.apache.synapse.transport.passthru.PassThroughHttpSender">
 	            <parameter name="non-blocking" locked="false">true</parameter>
@@ -628,8 +711,9 @@ Given below are the most critical XML configuraton files in ESB 5.0. Expand each
 	    ```
 	       
 		```toml tab='TOML configuration'
-		[transport.http] 
-	    sender.enable = true 
+		[transport.http]
+		#listener_enable = true
+	    sender.enable = true
 		```
 	    
 	    Find more [parameters](../../../references/config-catalog/#https-transport-non-blocking-mode).
@@ -739,7 +823,7 @@ Given below are the most critical XML configuraton files in ESB 5.0. Expand each
 	    Find more [parameters](../../../references/config-catalog/#rabbitmq-sender).
 
 
-	-	RabbitMQ transport sender
+	-	JMS transport sender
 
 	    ```xml tab='XML configuration'
 	    <transportSender name="jms" class="org.apache.axis2.transport.jms.JMSSender"/>	
@@ -747,30 +831,11 @@ Given below are the most critical XML configuraton files in ESB 5.0. Expand each
 	       
 		```toml tab='TOML configuration'
 		[transport.jms]
+		#
 	    sender_enable = true
 		```
 	    
 	    Find more [parameters](../../../references/config-catalog/#jms-transport-sender-non-blocking-mode).
-
-	-	Clustering
-
-	    ```xml tab='XML configuration'
-	    <clustering class="org.wso2.carbon.core.clustering.hazelcast.HazelcastClusteringAgent"
-	                    enable="true">
-	    <parameter name="clusteringPattern">nonWorkerManager</parameter>
-	    </clustering>
-	    ```
-	       
-		```toml tab='TOML configuration'
-		[[datasource]]
-	    id = "WSO2_COORDINATION_DB"
-	    url= "jdbc:mysql://localhost:3306/clusterdb"
-	    username="root"
-	    password="root"
-	    driver="com.mysql.jdbc.Driver"
-		```
-	    
-	    Find more [parameters](../../../setup/deployment/deploying_wso2_ei).
 
 ??? note "synapse.properties"
 
@@ -889,15 +954,22 @@ Given below are the most critical XML configuraton files in ESB 5.0. Expand each
 
 The complete list of TOML configurations for the Micro Integrator are listed in the [product configuration catalog](../../../references/config-catalog).
 
-**Migrating Log4j configurations**
+#### Migrating Log4j configurations
 
 WSO2 ESB 5.0 (and all ESB versions prior to EI 6.6.0) use log4j. In  WSO2 EI 7 Micro Integrator, the `carbon.logging.jar` file is not packed and the `pax-logging-api` is used instead. With this upgrade, the log4j version is also updated to log4j2.
 
-Therefore, you need to follow the instructions given below to migrate from log4j (in your ESB 5.0) to log4j2 (in EI 7 Micro Integrator).
+See the topics given below to configure log4j2 in EI 7 Micro Integrator.
 
-If you have used a custom log4j component in you you older EI version, apply the following changes to your component:
+-	[Log4j2 properties](../../../administer-and-observe/logs/configuring_log4j_properties)
+-	[Correlation logs](../../../administer-and-observe/observability)
+-	[Wire logs](../../../develop/using-wire-logs)
+-	[Service-level logs](../../../develop/enabling-logs-for-services)
+-	[REST API Access logs](../../../develop/enabling-logs-for-api)
+-	[Managing Log Growth](../../../administer-and-observe/logs/managing_log_growth)
 
-1.	Replace carbon logging or commons.logging dependencies with pax-logging dependency as shown below.
+Follow the instructions given below if you have used a **custom log4j component** in your older ESB version.
+
+1.	Replace carbon logging or `commons.logging` dependencies with pax-logging dependency as shown below.
 		```xml
 		<!-- Pax Logging -->
 		<dependency>
@@ -965,4 +1037,6 @@ Follow the instructions given below to use the password decryption tool.
 	!!! Info
 		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to the `<ESB_HOME>/migration/secure-vault-decrypted.properties` file and the `<ESB_HOME>/migration/cipher-text-decrypted.properties` file in ESB 5.0.0.
 
-The encrypted passwords are now decrypted and you have access to the plain-text password values.
+	The encrypted passwords are now decrypted and you have access to the plain-text password values.
+
+6.	You can now follow the instructions in [Encrypting Secrets](../../security/encrypting_plain_text) to re-encrypt the plain text secrets for the Micro Integrator.
