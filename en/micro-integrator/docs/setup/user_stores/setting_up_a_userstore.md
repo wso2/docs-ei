@@ -112,9 +112,9 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 !!! note "Before you begin"
 	[Disable the file-based user store](#disabling-the-file-based-user-store).
 
-If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.6.0)), you can connect the same database to the Micro Integrator of EI 7.1. Alternatively, you create a new RDMS user store and connect it to the Micro Integrator.
+If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.6.0)), you can connect the same database to the Micro Integrator of EI 7.1. Alternatively, you can create a new RDBMS user store and connect it to the Micro Integrator.
 
-1.	To set up a new RDBMS, select the link corresponding to the preferred RDBMS type and follow the instructions. 
+1.	To set up a new RDBMS, select the preferred RDBMS type and follow the instructions. 
 
 	!!! Tip
 		If you already have an RDBMS user store set up, you can skip this step.
@@ -252,7 +252,8 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 	3.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
 
 		!!! Tip
-				If you want to be able to modify the data in your user store, be sure to enable write access to the user store.
+			-	If you want to be able to modify the data in your user store, be sure to enable write access to the user store.
+			-	Note that the `[user_store]` section is enabled by default. Be sure to update the section without duplicating the `[user_store]` header.
 
 		```toml
 		[user_store]
