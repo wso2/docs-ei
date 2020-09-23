@@ -819,7 +819,7 @@ The following generic properties can be used in the [Property mediator](../../..
 			Description
 		</td>
 		<td>
-			When a message is read from an inbound (RabbitMQ) message queue via an <b>Inbound Endpoint</b>, it will be sent to a service running in the backend. If a failure occurs, the transaction will roll back avoiding message loss.
+			When a message is read from an inbound (RabbitMQ) message queue via an <b>Inbound Endpoint</b>, it will be sent to a service running in the backend. If a failure occurs, the Micro Integrator will do a <b>basicReject</b> with the requeue flag set to 'false'. In that case, the user must configure a Dead Letter Exchange to avoid losing messages. The same concept could be used to control the number of retries and delay messages. Please refer to the documentation for more details.
 
 			Note that you need to set the SET_ROLLBACK_ONLY property in the fault handler (e.g., the fault sequence). 
 		</td>
