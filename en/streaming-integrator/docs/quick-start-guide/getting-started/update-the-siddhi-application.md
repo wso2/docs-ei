@@ -2,6 +2,15 @@
 
 A Siddhi application can be easily extended to consume messages from more sources, to carry out more processing activities for data or to publish data to more destinations. For this example, consider a scenario where you also need to filter out the production data of eclairs and publish it to a Kafka topic so that applications that cannot read streaming data can have access to it. This involves extending the `SweetFactoryApp` Siddhi application to include Kafka in the streaming flow. To do this, follow the steps below:
 
+!!! tip "Before you begin:"
+    To use the Kafka source that you are introducing in this section, you need to install the `siddhi-io-kafka` extension in the Streaming Integrator. To do this, navigate to the `<SI_HOME>bin` directory and issue the following command:<br/><br/>
+    - **For Linux**: `./extension-installer.sh install`<br/>
+    - **For Windows**: `extension-installer.bat install`<br/><br/>
+    When the extension is successfully installed, the following is displayed in the log:<br/><br/>
+    ```
+    Installation completed with status: INSTALLED. Please restart the server.
+    ```
+
 1. Open the `<SI_HOME>/wso2/server/deployment/siddhi-files/SweetFactoryApp` Siddhi application in a text editor of your choice.
 
     !!! tip

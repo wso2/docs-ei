@@ -1,4 +1,4 @@
-# Step 1: Download Streaming Integrator and Set It Up
+# Step 1: Download Streaming Integrator and Dependencies
 
 First, you are required to download the Streaming Integrator and the other software needed for the scenario you are trying out. To do this, follow the topics below.
 
@@ -12,7 +12,7 @@ First, you are required to download the Streaming Integrator and the other softw
 
 - To download Streaming Integrator Tooling, click **Tooling** in the [Streaming Integrator Product Page](https://wso2.com/integration/streaming-integrator/). Enter you email address and agree to the license. Then click **MacOS Installer pkg** download the Streaming Integrator as a zip file.
 
-## Setting up your production environment
+## Downloading the other dependencies for your scenario
 
 This section shows how to prepare your production environment for the scenario described in the [Streaming Integration Overview section](download-install-and-start-si.md).
 
@@ -49,6 +49,28 @@ In this scenario, the Streaming Integrator reads input data from a MySQL databas
         `use production;`<br/>
         `CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));`<br/> 
 
+## Download Kafka and create topics
+
+This scenario involves publishing some filtered production data to a Kafka topic named `eclair_production`. 
+
+1. Download the Kafka broker from [the Apache site](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.12-2.3.0.tgz) and extract it.
+   This directory is referred to as `<KAFKA_HOME>` from here on.
+   
+2. Start Kafka as follows:
+
+    1. First, start a zoo keeper node. To do this, navigate to the `<KAFKA_HOME>` directory and issue the following command.
+    
+        `sh bin/zookeeper-server-start.sh config/zookeeper.properties`
+    
+    2. Next, start a Kafka server node. To do this, issue the following command from the same directory.
+    
+        `sh bin/kafka-server-start.sh config/server.properties`
+        
+    3. To create a Kafka topic named `eclair_production`, issue the following command from the same directory.
+    
+        `bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic total_production`
+       
+   
 ## What's Next?
 
 Once you have successfully downloaded the WSO2 Streaming Integrator, you can proceed to [Step 2: Create a Siddhi Application](create-the-siddhi-application.md).
