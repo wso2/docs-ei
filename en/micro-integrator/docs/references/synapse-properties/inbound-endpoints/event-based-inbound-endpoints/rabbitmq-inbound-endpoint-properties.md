@@ -341,4 +341,4 @@ fails after 5 retry attempts, the Micro Integrator terminates the connection.
 
 ### Mediator Properties
 
-In addition to the parameters described above, you can define RabbitMQ properties using the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).
+In addition to the parameters described above, you can define RabbitMQ properties using the [Property mediator](../../../../../references/mediators/property-Mediator) and the [Property Group mediator](../../../../../references/mediators/property-Group-Mediator).
