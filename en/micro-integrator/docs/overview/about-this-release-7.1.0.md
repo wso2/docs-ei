@@ -300,7 +300,34 @@ The following features, which are available in ESB runtimes, are removed from th
 			<a href="../../setup/deployment/file_based_registry">File system based Registry</a>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			Rule Mediator
+		</td>
+		<td>
+			The rule mediator has been removed from Ei 7.1.0 as it is not widely used.
+		</td>
+		<td>
+			-
+		</td>
+	</tr>
 </table>
+
+### Mediators and artifacts removed (After ESB 5.0.0)
+
+The following mediators and artifacts are removed from the ESB runtime in all versions after ESB 5.0.0. If you are migrating from ESB 5.0.0 to the Micro Integrator of EI 7.1.0, note that these artifacts are no longer supported.
+
+-	Priority Executors
+-	Enqueue Mediator
+-	Bean Mediator
+-	POJO Command Mediator
+-	Spring Mediator
+-	Conditional Router Mediator
+-	In, Out Mediators
+-	Event Mediator
+-	In memory Topics
+-	Router Mediator
+-	Publish Event Mediator
 
 ## Known issues
 
