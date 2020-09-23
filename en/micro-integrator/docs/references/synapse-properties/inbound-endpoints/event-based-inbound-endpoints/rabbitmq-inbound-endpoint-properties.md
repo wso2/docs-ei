@@ -338,3 +338,7 @@ If the parameters are configured with sample values as given above, the
 server makes 5 retry attempts with a time interval of 10000 miliseconds between each
 retry attempt to reconnect when the connection is lost. If reconnecting
 fails after 5 retry attempts, the Micro Integrator terminates the connection.
+
+### Mediator Properties
+
+In addition to the parameters described above, you can define RabbitMQ properties using the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).
