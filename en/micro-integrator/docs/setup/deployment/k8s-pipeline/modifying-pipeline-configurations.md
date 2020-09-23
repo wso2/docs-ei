@@ -12,7 +12,7 @@ configurations could be modified upon deployment. Once a configuration
 change has been made, run the helm upgrade command to apply the changes.
 
 ``` bash
-$ helm upgrade <RELEASE_NAME> wso2/kubernetes-pipeline --version 1.0.0 -f values.yaml
+helm upgrade <RELEASE_NAME> wso2/kubernetes-pipeline --version 1.0.0 -f values.yaml
 ```
 >
 
@@ -198,4 +198,45 @@ spinnaker:
           $HAL_COMMAND config ci jenkins enable
           echo $PASSWORD | $HAL_COMMAND config ci jenkins master edit master --address http://jenkins-service.{{ .Release.Namespace }}.svc.cluster.local:8080 --username $USERNAME --password || echo $PASSWORD | $HAL_COMMAND config ci jenkins master add master --address http://jenkins-service.{{ .Release.Namespace }}.svc.cluster.local:8080 --username $USERNAME --password
           $HAL_COMMAND config features edit --pipeline-templates true
+```
+### Enable remote Synapse Test Server
+Run Unit Test Suites using a remote unit testing server.
+
+1. Deploy Micro Integrator helm chart in synapse unit testing server mode with the following command
+``` bash
+helm install --name synapse-test  wso2/micro-integrator --version 1.2.0-3 --namespace <NAMESPACE> --set wso2.deployment.wso2microIntegrator.synapseTest.enabled=true
+```
+2. Obtain the Kubernetes service name(SVC_NAME) for the Helm release **synapse-test** 
+``` bash
+kubectl get svc -n <NAMESPACE> -l app=synapse-test
+```
+
+3. Construct the FQDN for the Kubernetes service as below
+``` bash
+<SVC_NAME>.<NAMESPACE>.svc.cluster.local
+```
+4. Enable remote synapse testing for the Pipeline 
+``` yaml
+applications:
+- name: wso2mi
+email: <EMAIL>
+testScript:
+    path: tests
+    command: test.sh
+chart:
+    customChart: false
+    name: micro-integrator
+    version: 1.2.0-3
+    repo: 'https://github.com/wso2-incubator/cicd-sample-chart-mi'
+images:
+    - organization: *reg_username
+    repository: wso2mi
+    deployment: wso2microIntegrator
+    wso2microIntegrator:
+        baseImage: 'wso2/wso2mi:1.2.0'
+        gitRepository: 'https://github.com/wso2-incubator/cicd-sample-docker-mi'
+    remoteSynapseTestServer:
+        enabled: true
+        hostname: <SVC_NAME>.<NAMESPACE>.svc.cluster.local
+        port: 9008
 ```
