@@ -58,3 +58,41 @@ A Siddhi application can be easily extended to consume messages from more source
     In the `from` clause, `[name=='Eclairs']` filters all production runs where the name of the sweet produced is `Eclairs`. Then all the filtered events are inserted into the `PublishFilteredDataStream` stream so that they can be published in the `eclair_production` Kafka topic.
     
 6. Save your changes.
+
+The completed Siddhi application looks as follows:
+
+```
+@App:name('SweetFactoryApp')
+
+@App:statistics(reporter = 'prometheus')
+
+
+@source(type='cdc',url = "jdbc:mysql://localhost:3306/production",username = "wso2si",password = "wso2",table.name = "SweetProductionTable",operation = "insert",
+	@map(type='keyvalue'))
+define stream InsertSweetProductionStream (name string,amount double);
+
+@source(type='file', mode='LINE',
+   file.uri='file:/Users/foo/productions.csv',
+   tailing='true',
+   @map(type='csv'))
+define stream FilterStream (name string,amount double);
+
+@sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
+	@map(type='text'))
+define stream ProductionUpdatesStream (name string,amount double);
+
+@sink(type = 'kafka', bootstrap.servers = "localhost:9092", topic = "eclair_production", is.binary.message = "false", partition.no = "0",
+         @map(type = 'json'))
+define stream PublishFilteredDataStream (name string,amount double);
+
+@info(name='query1')
+from InsertSweetProductionStream 
+select str:upper(name) as name, amount 
+group by name 
+insert  into ProductionUpdatesStream;
+
+from FilterStream [name=='Eclairs']
+select * 
+group by name 
+insert  into PublishFilteredDataStream;
+```
