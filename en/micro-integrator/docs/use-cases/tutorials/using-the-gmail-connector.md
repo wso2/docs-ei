@@ -231,6 +231,11 @@ Right-click the composite exporter module and click **Export Project Artifacts a
 
 <img src="../../../assets/img/tutorials/119132294/restart_server.png" width="400">
 
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
+
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Runtime Services** tab.
+
 #### Send the client request
 
 Let's send a request to the API resource. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
