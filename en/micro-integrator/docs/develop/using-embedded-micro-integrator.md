@@ -24,13 +24,13 @@ Once you have the [integration artifacts packaged](../../develop/packaging-artif
 
 ## View deployed endpoints in the (embedded) server
 
-Use the <b>Deployed Endpoints</b> tab in WSO2 Integration Studio to view the endpoint URLs of the artifacts deployed in the embedded Micro Integrator.
+Use the <b>Runtime Services</b> tab in WSO2 Integration Studio to view the endpoint URLs of the artifacts deployed in the embedded Micro Integrator.
 
-When you [deploy tha artifacts and start](#deploy-and-run-artifacts-in-the-embedded-server) the embedded Micro Integrator, the <b>Console</b> tab prints the server startup logs and the <b>Deployed Endpoints</b> tab will open as shown below. 
+When you [deploy tha artifacts and start](#deploy-and-run-artifacts-in-the-embedded-server) the embedded Micro Integrator, the <b>Console</b> tab prints the server startup logs and the <b>Runtime Services</b> tab will open as shown below. 
 
 <img src="../../assets/img/testing-integrations/deployed-endpoints.png">
 
-If you have closed the tab and you want to open it again, go to <b>Window -> Show View -> Other</b> and select <b>Deployed Endpoints</b>.
+If you have closed the tab and you want to open it again, go to <b>Window -> Show View -> Other</b> and select <b>Runtime Services</b>.
 
 <img src="../../assets/img/testing-integrations/show-deployed-endpoints.png" width="300">
 
