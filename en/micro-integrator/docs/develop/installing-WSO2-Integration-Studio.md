@@ -28,7 +28,7 @@ Follow the steps given below.
     application. 
     !!! note
         * If you are a MacOS user, be sure to add it to the **Applications** directory.
-        * If you are a Microsoft Windows user, extract it outside the **Programs** directory.
+        * If you are a Microsoft Windows user, extract it outside the **Programs** directory. This is done because the Integration Studio requires permission to write to files.
 3.  Run the **IntegrationStudio** application to start the tool.
 
 !!! info
