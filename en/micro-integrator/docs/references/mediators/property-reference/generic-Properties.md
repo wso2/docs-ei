@@ -819,8 +819,7 @@ The following generic properties can be used in the [Property mediator](../../..
 			Description
 		</td>
 		<td>
-			When a message is read from an inbound (RabbitMQ) message queue via an <b>Inbound Endpoint</b>, it will be sent to a service running in the backend. If a failure occurs, the Micro Integrator will do a <b>basicReject</b> with the requeue flag set to 'false'. In that case, the user must configure a Dead Letter Exchange to avoid losing messages. The same concept could be used to control the number of retries and delay messages. Please refer to the documentation for more details.
-
+			When a message is read from an inbound (RabbitMQ) message queue via an <b>Inbound Endpoint</b>, it will be sent to a service running in the backend. If a failure occurs, the Micro Integrator will do a <b>basicReject</b> with the <b>requeue</b> flag set to 'false'. In that case, the user must <a href="../../../../use-cases/examples/rabbitmq_examples/move-msgs-to-dlq-rabbitmq">configure a Dead Letter Exchange</a> to avoid losing messages. The same concept could be used to <a href="../../../../use-cases/examples/rabbitmq_examples/retry-delay-failed-msgs-rabbitmq">control the number of retries and to delay messages</a>.</br></br>
 			Note that you need to set the SET_ROLLBACK_ONLY property in the fault handler (e.g., the fault sequence). 
 		</td>
 	</tr>
@@ -880,8 +879,7 @@ The following generic properties can be used in the [Property mediator](../../..
 			Description
 		</td>
 		<td>
-			If this property is set to true in the fault sequence, when a message is read from an inbound (RabbitMQ) message queue via an <b>Inbound Endpoint</b>, the Micro Integrator will do a <b>basicReject</b> with the requeue flag set to 'true'. This allows RabbitMQ to immediately redeliver the rejected messages to the consumer.
-
+			If this property is set to true in the fault sequence, when a message is read from an inbound (RabbitMQ) message queue via an <b>Inbound Endpoint</b>, the Micro Integrator will do a <b>basicReject</b> with the <b>requeue</b> flag set to 'true'. This allows RabbitMQ to immediately redeliver the rejected messages to the consumer.</br></br>
 			Note that you need to set the SET_REQUEUE_ON_ROLLBACK property in the fault handler (e.g., the fault sequence). 
 		</td>
 	</tr>
