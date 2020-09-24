@@ -6,35 +6,39 @@ This is done by providing a custom Dockerfile as shown in the steps below:
     Multi-Module
     project](../../../../develop/create-integration-project/).
 
-2.  Update the repositories in the  [sample values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
+2.  Update the repositories in the  [sample values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/kubernetes-pipeline/samples/values-mi.yaml) file
     used in the  [Pipeline Quick Start Guide](../pipeline-quick-start-guide/) to
     include the forked repository in place of `[git-username]` as
-    highlighted below.
+    highlighted below:
     
-    ``` xml
+    ``` yaml
     applications:
-      - name: wso2mi
-        email: <EMAIL>
-        testScript:
-          path: tests
-          command: test.sh
-        chart:
-          customChart: false
-          name: micro-integrator
-          version: 1.2.0-1
-          repo: 'https://github.com/wso2-incubator/cicd-sample-chart-mi'
-        images:
-          - organization: *reg_username
-            repository: wso2mi
-            deployment: wso2microIntegrator
-            customImage:
-              baseImage: 'wso2/wso2mi:1.2.0'
-              dockerfileGitRepo: 'https://github.com/[git-username]/cicd-sample-docker-mi'
+    - name: wso2mi
+     email: <EMAIL>
+    testScript:
+        path: tests
+        command: test.sh
+    chart:
+    customChart: false
+    name: micro-integrator
+    version: 1.2.0-3
+    repo: 'https://github.com/wso2-incubator/cicd-sample-chart-mi'
+    images:
+        - organization: *reg_username
+        repository: wso2mi
+         deployment: wso2microIntegrator
+        wso2microIntegrator:
+            baseImage: 'wso2/wso2mi:1.2.0'
+            gitRepository: 'https://github.com/[git-username]/cicd-sample-docker-mi'
+            remoteSynapseTestServer:
+            enabled: false
+            hostname: ''
+            port: 9008 
     ```
 
 3.  Upgrade the Helm chart with the command below.
     
-    ``` xml
+    ``` bash
     $ helm upgrade <RELEASE_NAME> wso2/kubernetes-pipeline -f values-mi.yaml
     ```
 
@@ -62,9 +66,8 @@ This is done by providing a custom Dockerfile as shown in the steps below:
     
     Replace the `[git-username]` tag with the name of your GitHub username.
 
-6.  Modify the Proxy service located at
-    **cicd-sample-docker-mi > helloworld/src/main/synapse-config/proxy-services/HelloWorld.xml** to
-    return a new response as bellow,
+6. Modify the API located at **cicd-sample-docker-mi>helloworldConfigs/src/main/synapse-config/apis/HelloWorld.xml**
+ to return a new response as below:
     
     [ ![Proxy-Service](../../../assets/img/k8s_pipeline/Deploying/deploy-mi1.png)](../../../assets/img/k8s_pipeline/Deploying/deploy-mi1.png)
 

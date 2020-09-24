@@ -58,7 +58,7 @@ directory named `tests`.
     ```
 
 5.  Change the chart repository in the
-    sample [values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
+    sample [values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/kubernetes-pipeline/samples/values-mi.yaml) file
     used in the [Pipeline Quick Start
     Guide](../pipeline-quick-start-guide/)
     to use a custom chart.
