@@ -77,4 +77,4 @@ To test the `TemperatureApp` Siddhi application you created in [Step 2: Create a
     
 ## What's Next?
 
-Once you have tested and ensured that the `TemperatureApp` Siddhi application functions as expected, you can deploy it to process actual data. To do this, proceed to [Step 4: Deploy the Siddhi Application](deploy-siddhi-application.md).
+When you are designing Siddhi applications, you may need to use functions, transports, formats that the WSO2 Streaming Integrator does not support by default. In such situations, you can extend the Streaming Integrator by installing the required Siddhi extensions. To try out installing a Siddhi extension that is not shipped with WSO2 Streaming Integrator by default, proceed to [Step 6: Extend Streaming Integrator](extend-si.md).

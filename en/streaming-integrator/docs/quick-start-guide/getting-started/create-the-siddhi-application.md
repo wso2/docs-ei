@@ -101,4 +101,4 @@ insert  into ProductionUpdatesStream;
 
 ## What's Next?
 
-To test the `TemperatureApp` Siddhi application you created, proceed to [Step 3: Test the Siddhi Application](test-siddhi-application.md).
+Now you can deploy the `SweetFactoryApp` Siddhi application you created. To do this, proceed to [Step 3: Deploy the Siddhi Application](deploy-siddhi-application.md).
