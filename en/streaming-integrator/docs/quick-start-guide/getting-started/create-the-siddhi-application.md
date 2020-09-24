@@ -98,7 +98,6 @@ select str:upper(name) as name, amount
 group by name 
 insert  into ProductionUpdatesStream;
 ```
-```
 
 ## What's Next?
 
