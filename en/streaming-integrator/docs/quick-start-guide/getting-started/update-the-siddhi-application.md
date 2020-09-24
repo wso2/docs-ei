@@ -1,4 +1,4 @@
-# Extend the Siddhi Application
+# Step 6: Update the Siddhi Application
 
 A Siddhi application can be easily extended to consume messages from more sources, to carry out more processing activities for data or to publish data to more destinations. For this example, consider a scenario where you also need to filter out the production data of eclairs and publish it to a Kafka topic so that applications that cannot read streaming data can have access to it. This involves extending the `SweetFactoryApp` Siddhi application to include Kafka in the streaming flow. To do this, follow the steps below:
 

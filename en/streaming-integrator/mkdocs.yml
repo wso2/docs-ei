@@ -57,6 +57,8 @@ nav:
         - 'Step 4: Test the Siddhi Application': 'quick-start-guide/getting-started/test-siddhi-application.md'
         - 'Step 5: Extend WSO2 SI': 'quick-start-guide/getting-started/extend-si.md'
         - 'Step 6: Update the Siddhi Application': 'quick-start-guide/getting-started/update-the-siddhi-application.md'
+        - 'Step 7: Handle Errors': 'quick-start-guide/getting-started/handle-errors.md'
+        - 'Step 8: Monitor Statistics': 'quick-start-guide/getting-started/monitor-statistics.md'
     - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
     - 'Architecture': 'overview/architecture.md'
     - 'Key Concepts': 'concepts/concepts.md'
