@@ -1,2 +1,114 @@
 # Step 7: Handle Errors
 
+The events handled by Siddhi applications can result in errors due to multiple reasons such as errors in the transport, mapping errors, etc. WSO2 Streeaming Integrator allows you to specify how you want such errors to be managed if they occur. For the different types of actions you can take to manage errors, see the [Error Handling Guide](../../guides/handling-errors.md).
+
+Let's assume that the foreman of the Sweet Factory in this scenario requires errors to be stored in an error store so that they can be checked and replayed after making a correction.
+
+To implement the above, follow the topics below.
+
+## Configuring the error store
+
+To configure a new error store in which you can store the events with errors, follow the steps below:
+
+1. Start the MySQL server if it is not already started.
+
+2. Create a new database named `siddhierrorstoredb`; by issuing the following command in the MySQL console.
+
+    `mysql> create database siddhierrorstoredb;`
+    
+3. To switch to the new database, issue the following command.
+
+    `mysql> use siddhierrorstoredb;`
+    
+4. To enable the error store, open the `<SI_HOME>/conf/server/deployment.yaml` file and add a configuration as follows:
+
+    ```
+    error.store:
+      enabled: true
+      bufferSize: 1024
+      dropWhenBufferFull: true
+      errorStore: org.wso2.carbon.streaming.integrator.core.siddhi.error.handler.DBErrorStore
+      config:
+        datasource: SIDDHI_ERROR_STORE_DB
+        table: SIDDHI_ERROR_STORE_TABLE
+    ```
+5. The above configuration refers to a data source named `SIDDHI_ERROR_STORE_DB`. Define this data source as follows under `Data sources` in the `<SI_HOME>/conf/server/deployment.yaml` file.
+
+    ```
+    - name: SIDDHI_ERROR_STORE_DB
+      description: The datasource used for Siddhi error handling feature
+      jndiConfig:
+        name: jdbc/SiddhiErrorStoreDB
+      definition:
+        type: RDBMS
+        configuration:
+          jdbcUrl: 'jdbc:mysql://localhost:3306/siddhierrorstoredb?useSSL=false'
+          username: root
+          password: root
+          driverClassName: com.mysql.jdbc.Driver
+          minIdle: 5
+          maxPoolSize: 50
+          idleTimeout: 60000
+          connectionTestQuery: SELECT 1
+          validationTimeout: 30000
+          isAutoCommit: false
+    ```
+   
+## Configuring the Siddhi application to store events with errors
+
+In this section, let's update the `SweetFactoryApp` Siddhi application to store mapping errors that may occur when it reads events  from the `production.csv` file.
+
+The stream that reads the events from the file is `ProductionUpdatesStream`. Therefore, add the `@OnError` annotation to it as shown below.
+
+```
+@sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
+	@map(type='text'))
+@OnError(action='STORE')
+define stream ProductionUpdatesStream (name string,amount double);
+```
+
+
+The completed Siddhi application looks as follows
+
+```
+@App:name('SweetFactoryApp')
+
+@App:statistics(reporter = 'prometheus')
+
+
+@source(type='cdc',url = "jdbc:mysql://localhost:3306/production",username = "wso2si",password = "wso2",table.name = "SweetProductionTable",operation = "insert",
+	@map(type='keyvalue'))
+define stream InsertSweetProductionStream (name string,amount double);
+
+@source(type='file', mode='LINE',
+   file.uri='file:/Users/foo/productions.csv',
+   tailing='true',
+   @map(type='csv'))
+define stream FilterStream (name string,amount double);
+
+@sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
+	@map(type='text'))
+@OnError(action='STORE')
+define stream ProductionUpdatesStream (name string,amount double);
+
+@sink(type = 'kafka', bootstrap.servers = "localhost:9092", topic = "eclair_production", is.binary.message = "false", partition.no = "0",
+         @map(type = 'json'))
+define stream PublishFilteredDataStream (name string,amount double);
+
+@info(name='query1')
+from InsertSweetProductionStream 
+select str:upper(name) as name, amount 
+group by name 
+insert  into ProductionUpdatesStream;
+
+from FilterStream [name=='Eclairs']
+select * 
+group by name 
+insert  into PublishFilteredDataStream;
+```
+
+## Testing the Siddhi aplication
+
+
+
+

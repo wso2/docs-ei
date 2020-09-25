@@ -41,7 +41,7 @@ This can be used with the following:
     insert into StreamB;
     ```
   
-  If you do not specify the on-error action for a stream  via the `@OnError()` annotation, the event is logged and dropped.
+    If you do not specify the on-error action for a stream  via the `@OnError()` annotation, the event is logged and dropped.
     
 - Sinks
 
@@ -56,7 +56,7 @@ This can be used with the following:
 
 - Source mappers
 
-   If the `error.store` is enabled in the `<SI_HOME>/conf/server/deployment.yaml` file, mapping errors are automatically added to the error store.
+    If the `error.store` is enabled in the `<SI_HOME>/conf/server/deployment.yaml` file, mapping errors are automatically added to the error store.
 
 ### LOG
 
@@ -128,8 +128,8 @@ This can be used with the following:
     insert into tempStream;
     ```
 
-!!! Note
-    This on.error action is not applicable for source mappers.
+    !!! Note
+        This on.error action is not applicable for source mappers.
 
 ### WAIT
 
