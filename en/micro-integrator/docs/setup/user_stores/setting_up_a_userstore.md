@@ -247,7 +247,7 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 				</td>
 			</tr>
 		</table>
-
+		
 		See the complete list of [database connection parameters](../../../references/config-catalog/#database-connection) and their descriptions. Also, see the recommendations for [tuning the JDBC connection pool](../../../setup/performance_tuning/jdbc_tuning).
 
 	3.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
@@ -264,8 +264,8 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 		# Add the following parameter only if you want to disable write access to the user store.
 		read_only = true
 		```
+		
 		The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator. 
-   
 
 ## What's next?
 
