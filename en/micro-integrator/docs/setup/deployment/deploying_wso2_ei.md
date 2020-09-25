@@ -37,7 +37,7 @@ Most of the integration artifacts in your deployment are stateless and don't act
 
 When the nodes in the cluster need to communicate with each other, the Micro Integrator uses RDBMS-based coordination among the server nodes. That is, all the nodes communicate via a database. Hence, you need to have a database to enable coordination among the artifacts.
 
-1.  Create a database named `clusterdb`. Select a database type from the following list:
+1.  Create a database named `clusterdb`.
 
     - [Setting up a MySQL database](../../../setup/databases/setting-up-MySQL)
     - [Setting up an MSSQL database](../../../setup/databases/setting-up-MSSQL)

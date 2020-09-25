@@ -91,7 +91,7 @@ Follow the steps below to set up an Oracle database.
 !!! Tip
     If you get a "`timezone region not found"` error when using the `         ojdbc6.jar        ` file with the Micro Integrator, set the Java property as follows: `export JAVA_OPTS="-Duser.timezone='+05:30'"` the value of this property should be the GMT difference of the country. If it is necessary to set this property permanently, define it inside the `micro-integrator.sh        ` as a new `JAVA_OPT` property.
 
-## Connecting to the database
+## Connecting the database to the server
 
 Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need separate configurations corresponding to the separate databases (`clusterdb`, `userdb`, and `transactiondb`).
 
@@ -135,5 +135,7 @@ enable = true
 data_source = "WSO2_TRANSACTION_DB"
 update_interval = 2
 ```
+
+{!setup/pull/PULL-CONTENT-user-store-db-id.md!}
 
 See the descriptions of [database connection parameters](../../../references/config-catalog/#database-connection).
