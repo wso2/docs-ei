@@ -1,7 +1,7 @@
 # Property Mediator
 
 The **Property Mediator** has no direct impact on the message, but rather on the message context flowing through Synapse. You can retrieve
-the properties set on a message later through the Synapse XPath Variables or the `         get-property()        ` extension function. A property can have a defined scope for which it is valid. If a property has no defined scope, it defaults to the Synapse message context scope. Using the property element with the **action** specified as `remove,` you can remove any existing message context properties.
+the properties set on a message later through the Synapse XPath Variables or the `get-property()` extension function. A property can have a defined scope for which it is valid. If a property has no defined scope, it defaults to the Synapse message context scope. Using the property element with the **action** specified as `remove`, you can remove any existing message context properties.
 
 !!! Info
     The Property mediator is a [conditionally content aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
@@ -45,7 +45,7 @@ by using an XPath function. You can use any of the <a href="../../mediators/prop
     </li>
   </ul>
 <p>For names of the generic properties that come by default, see <a href="../../mediators/property-reference/generic-Properties">Generic Properties</a> . You can select them from the drop-down list if you are adding the Property Mediator as shown below.</p>
-<p><img src="/assets/img/mediators/119131214/119131215.png" title="generic properties list" width="800" alt="generic properties list" /></p>
+<p><img src="../../../assets/img/mediators/119131214/119131215.png" title="generic properties list" width="800" alt="generic properties list" /></p>
 </div></td>
 </tr>
 <tr class="even">

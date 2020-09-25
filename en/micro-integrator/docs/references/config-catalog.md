@@ -9560,8 +9560,8 @@ flow.statistics.enable=false
 flow.statistics.capture_all=false
 statistics.enable_clean=true
 statistics.clean_interval = "1000ms"
-flow.statistics.tracer.collect_payloads=false
-flow.statistics.tracer.collect_properties=false
+stat.tracer.collect_payloads=false
+stat.tracer.collect_mediation_properties=false
 inbound.core_threads = 20
 inbound.max_threads = 100
 </code></pre>
