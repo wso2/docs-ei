@@ -20,7 +20,7 @@ You can use the dashboard to perform the following administration tasks related 
 
 -   <b>Manage users</b>
 
-    You can view details of users stored in the external user store. If you are logged in to the dashsboard with administrator credentials, you can also add new users, and remove users from the user store.
+    You can view details of users stored in the [external user store](../../setup/user_stores/managing_users). If you are logged in to the dashboard with administrator credentials, you can also add new users, and remove users from the user store.
 
 ## Setting up the Dashboard
 
