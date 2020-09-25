@@ -53,7 +53,41 @@ To configure a new error store in which you can store the events with errors, fo
           validationTimeout: 30000
           isAutoCommit: false
     ```
+
+## Connecting the Error Store Explorer to the SI server
+
+The Error Store Explorer is a tool that allows you to view, correct and replay events with errors. It order to use it, it needs to be connected to the SI server.
+
+To connect the Error Store Explorer to the SI server, follow the procedure below:
+
+1. If you have not already started the Streaming Integrator Tooling server, start it by navigating to the `<SI_TOOLING_HOME>/bin` directory and issuing one of the following commands as appropriate, based on your operating system:
+                                                 
+     - For Windows: `streaming-integrator-tooling.bat`
+    
+     - For Linux: `./streaming-integrator-tooling.sh`
+     
+    Then Access the Streaming Integrator Tooling via the URL that appears in the start up log with the text `Editor Started on:`.
+       
+2. To open the Error Store Explorer, click **Tools** and then click **Error Store Explorer**.
+
+    The Error Store Explorer opens as shown below. 
    
+    ![Access Error Store](../../images/handling-requests-with-errors/error-store-explorer-without-server.png)
+   
+3. Click **Connect to Server**. Then enter information as follows:
+   To check the port of the Streaming Integrator Server, Open <SI_HOME>/conf/server/deployment.yaml file. Under Listener Configurations of wso2.transport.http, locate the listener configuration with msf4j-https as the ID and specify its port as shown in the extract below.
+
+    ![Server Configuration](../../images/quick-start-guide-101/connect-error-store.png)
+
+    |**Parameter**|**Value**    |
+    |-------------|-------------|
+    |**Host**     | `localhost` |
+    |**Port**     | `9443`      |
+    |**Username** | `admin`     |
+    |**Password** | `admin`     |
+    
+    Then click **Connect**.
+
 ## Configuring the Siddhi application to store events with errors
 
 In this section, let's update the `SweetFactoryApp` Siddhi application to store mapping errors that may occur when it reads events  from the `production.csv` file.
@@ -108,6 +142,10 @@ insert  into PublishFilteredDataStream;
 ```
 
 ## Testing the Siddhi aplication
+
+For testing purposes, let's generate an error with a mapping error as follows:
+
+
 
 
 
