@@ -1,6 +1,6 @@
 # Managing Grafana Dashboards
 
-WSO2 Enterprise Integrator uses Grafana to host and view its pre-configured dashboards that are designed to view statistics relating to its streaming activities. The pre-configured dashboards are imported to Grafana as JSON files. Once they are imported, you can organize them in folders, view them, and/or delete them.
+WSO2 Streaming Integrator uses Grafana to host and view its pre-configured dashboards that are designed to view statistics relating to its streaming activities. The pre-configured dashboards are imported to Grafana as JSON files. Once they are imported, you can organize them in folders, view them, and/or delete them.
 
 ## Importing dashboards
 
