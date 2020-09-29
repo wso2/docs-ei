@@ -83,16 +83,14 @@ In order to configure a Grafana dashboard, follow the steps below:
    
     4. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Prometheus**.
     
-    5. In the **Add data source** page -> **Settings** tab, update the configurations for Prometheus as follows.
-    
-       ![prometheus configuration](../images/cdc-monitoring/prometheus-configurations.png)
-    
+    5. In the **Add data source** page -> **Settings** tab, update the configurations for Prometheus as follows.<br/>   
+        ![prometheus configuration](../images/cdc-monitoring/prometheus-configurations.png)<br/>    
         1. Click **Default** to make Prometheus the default data source.
         
         2. Under **HTTP**, enter `http://localhost:9090` as the URL.
         
         3. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
-       ![Save and Test](../images/cdc-monitoring/save-and-test.png)
+            ![Save and Test](../images/cdc-monitoring/save-and-test.png)
 
 5. **Load dashboards into Grafana**
 
