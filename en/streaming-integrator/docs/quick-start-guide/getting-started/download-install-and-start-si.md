@@ -176,7 +176,18 @@ The pre-configured dashboards provided by WSO2 Streaming Integrator which you pr
    3. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
        ![Save and Test](../images/cdc-monitoring/save-and-test.png)
        
-       
+   4. To import the dashboards that you previously downloaded as JSON files, follow the procedure below:
+   
+        1. Start Grafana and access it via http://localhost:3000/.
+        
+        2. To load a new dashboard, click the plus icon **(+)** in the side panel. Then click **Import**.
+        
+        3. In the **Import** page, click **Upload .json** file. Then browse and select the .json file of the preconfigured dashboard that you downloaded (i.e., in step 5, substep 1).
+        
+        4. If required, change the unique identifier displayed in the **Unique Identifier (uid)**.
+        
+        5. Click **Import**.           
+              
 Now you have completed a WSO2 Streaming Integrator setup that is capable of the following:
 
 - Design, test and deploy Siddhi applications via Streaming Integrator Tooling.
