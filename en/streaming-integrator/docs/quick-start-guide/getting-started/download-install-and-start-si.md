@@ -68,7 +68,7 @@ This scenario involves publishing some filtered production data to a Kafka topic
         
     3. To create a Kafka topic named `eclair_production`, issue the following command from the same directory.
     
-        `bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic total_production`
+        `bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic eclair-production`
         
 ## Configuring WSO2 SI to visualize statistics
 
