@@ -168,13 +168,13 @@ The pre-configured dashboards provided by WSO2 Streaming Integrator which you pr
 3. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Prometheus**.
        
 4. In the **Add data source** page -> **Settings** tab, update the configurations for Prometheus as follows.<br/>   
-   ![prometheus configuration](../images/cdc-monitoring/prometheus-configurations.png)<br/>    
+   ![prometheus configuration](../../images/cdc-monitoring/prometheus-configurations.png)<br/>    
    1. Click **Default** to make Prometheus the default data source.
    
    2. Under **HTTP**, enter `http://localhost:9090` as the URL.
    
    3. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
-       ![Save and Test](../images/cdc-monitoring/save-and-test.png)
+       ![Save and Test](../../images/cdc-monitoring/save-and-test.png)
        
    4. To import the dashboards that you previously downloaded as JSON files, follow the procedure below:
    
