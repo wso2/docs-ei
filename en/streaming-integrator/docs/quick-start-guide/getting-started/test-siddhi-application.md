@@ -1,4 +1,4 @@
-# Step 4: Test the Siddhi Application
+# Step 5: Test the Siddhi Application
 
 Any Siddhi application created for a business purpose needs to be tested before it is used to process actual data in order to ensure that it functions as expected. 
 
@@ -14,4 +14,6 @@ Then open the `/Users/foo/productions.csv` file. The following record should be 
     
 ## What's Next?
 
-When you are designing Siddhi applications, you may need to use functions, transports, formats that the WSO2 Streaming Integrator does not support by default. In such situations, you can extend the Streaming Integrator by installing the required Siddhi extensions. To try out installing a Siddhi extension that is not shipped with WSO2 Streaming Integrator by default, proceed to [Step 6: Extend Streaming Integrator](extend-si.md).
+
+
+To update the `SweetFactoryApp` Siddhi application you created so that it can publish to Kafka topics via the Kafka extension you installed, proceed to [Step 6: Update the Siddhi Application](update-the-siddhi-application.md)

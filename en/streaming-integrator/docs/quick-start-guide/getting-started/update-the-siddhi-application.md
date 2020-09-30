@@ -84,3 +84,7 @@ select *
 group by name 
 insert  into PublishFilteredDataStream;
 ```
+!!! tip
+    If you have not already installed the `kafka` extension, install it by issuing the following command from the `<SI_HOME>bin` directory.<br/><br/>
+        `./extension-installer.sh install install kafka`
+    

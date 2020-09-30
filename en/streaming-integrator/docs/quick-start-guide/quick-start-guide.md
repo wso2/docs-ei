@@ -77,11 +77,10 @@ The `ManageProductionStats` Siddhi application uses a Kafka sink. However, the S
     - **For Linux**: `./extension-installer.sh install`
     - **For Windows**: `extension-installer.bat install`
     
-    As a result, the following message appears in the terminal.
+    As a result, a message appears in the terminal with a list of extensions used in your Siddhi application that are not completely installed, and requests you to confirm whether the system should proceed to install them
     
-    ![Confirm Extension Installation](../../images/qsg/confirm-extension-install.png)
     
-2. Enter `Y` in the terminal to confirm that you want to proceed to install the required extensions, and then press the return key. Then the following message is displayed to indicate that the extension is installed.
+2. Enter `Y` in the terminal to confirm that you want to proceed to install the required extensions, and then press the return key. Then the following message is displayed to indicate that the extension isinstalled.
 
     ![Extention Installed](../../images/qsg/extension-installed.png)
     

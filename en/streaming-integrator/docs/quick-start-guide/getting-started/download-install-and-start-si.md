@@ -32,7 +32,6 @@ In this scenario, the Streaming Integrator reads input data from a MySQL databas
     
     3. Copy the `mysql-connector-java-5.1.45-bin.jar` to the `<SI_HOME>/lib` directory.
     
-    4. Start the SI server.
     
 4. Once you install MySQL and start the MySQL server, create the database and the database table you require as follows:
 
@@ -48,6 +47,7 @@ In this scenario, the Streaming Integrator reads input data from a MySQL databas
     3. Switch to the `production` database and create a new table, by executing the following queries:<br/>
         `use production;`<br/>
         `CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));`<br/> 
+               
 
 ## Download Kafka and create topics
 
@@ -186,7 +186,14 @@ The pre-configured dashboards provided by WSO2 Streaming Integrator which you pr
         
         4. If required, change the unique identifier displayed in the **Unique Identifier (uid)**.
         
-        5. Click **Import**.           
+        5. Click **Import**.
+        
+## Starting the WSO2 Streaming Integrator Server
+
+To start WSO2 Streaming Integrator, navigate to the `<SI_HOME>/bin` directory from the CLI, and issue the appropriate command based on your operating system:
+
+- **For Linux**: `./server.sh`
+- **For Windows**: `server.bat --run`           
               
 Now you have completed a WSO2 Streaming Integrator setup that is capable of the following:
 
