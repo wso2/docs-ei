@@ -14,6 +14,4 @@ Then open the `/Users/foo/productions.csv` file. The following record should be 
     
 ## What's Next?
 
-
-
 To update the `SweetFactoryApp` Siddhi application you created so that it can publish to Kafka topics via the Kafka extension you installed, proceed to [Step 6: Update the Siddhi Application](update-the-siddhi-application.md)

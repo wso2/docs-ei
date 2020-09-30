@@ -91,4 +91,4 @@ To export the `SweetFactoryApp` Siddhi application as a Docker artifact, follow 
     
 ## What's Next?
 
-When you are designing Siddhi applications, you may need to use functions, transports, formats that the WSO2 Streaming Integrator does not support by default. In such situations, you can extend the Streaming Integrator by installing the required Siddhi extensions. To try out installing a Siddhi extension that is not shipped with WSO2 Streaming Integrator by default, proceed to [Step 4: Extend Streaming Integrator](extend-si.md).
+To install any additional extensions you may need to run the `SweetFactoryApp` Siddhi application you deployed, proceed to [Step 4: Extend Streaming Integrator](extend-si.md).
