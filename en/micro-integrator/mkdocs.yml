@@ -511,6 +511,10 @@ nav:
           - 'Database Event Listener Overview': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-overview.md'
           - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
           - 'Database Event Listener Reference': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - Documentum Connector:
+          - 'Documentum Overview': 'references/connectors/documentum/documentum-overview.md'
+          - 'Documentum Example': 'references/connectors/documentum/documentum-example.md'
+          - 'Documentum Reference': 'references/connectors/documentum/documentum-reference.md'
         - Email Connector:
           - 'Email Connector Overview': 'references/connectors/email-connector/email-connector-overview.md'
           - 'Email Connector Example': 'references/connectors/email-connector/email-connector-example.md'
