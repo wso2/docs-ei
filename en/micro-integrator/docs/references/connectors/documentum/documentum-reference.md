@@ -1,6 +1,3 @@
-!!! note
-    This documentation is still work in progress.
-
 # Documentum Connector Reference
 
 The following operations allow you to work with the Documentum Connector. Find an operation name to see parameter details and samples on how to use it.

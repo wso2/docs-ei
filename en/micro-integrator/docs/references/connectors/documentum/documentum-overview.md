@@ -1,7 +1,3 @@
-!!! note
-    This documentation is still work in progress.
-
-
 # Documentum Overview
 
 Content, in a broad sense, is information stored as computer data files. It can include word processing, spreadsheet, graphics, video and audio files. Most content is stored locally on personal computers, organized arbitrarily, and only available to a single user. This means that valuable data is subject to loss, and projects are subject to delay when people cannot get the information they need.
@@ -30,7 +26,7 @@ The Documentum Connector allows you to do the following operations.
 
 To see the Documentum connector, navigate to the [connector store](https://store.wso2.com/store/assets/esbconnector/list) and search for "Documentum". **Documentum Connector** is the name of the connector that has this functionality.
 
-<img src="../../../../assets/img/connectors/db-event-store.png" title="Documentum Connector Store" width="200" alt="Documentum Connector Store"/>
+<img src="../../../../assets/img/connectors/documentum-store.png" title="Documentum Connector Store" width="200" alt="Documentum Connector Store"/>
 
 ## Compatibility
 
