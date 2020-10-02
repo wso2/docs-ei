@@ -1,6 +1,3 @@
-!!! note
-    This documentation is still work in progress.
-
 # Documentum Connector Example
 
 Documentum Connector can be used to perform operations on OpenText Documentum Enterprise content management system.
