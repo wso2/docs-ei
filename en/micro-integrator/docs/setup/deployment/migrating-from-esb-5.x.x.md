@@ -85,7 +85,7 @@ If you are already using a JDBC or LDAP as the **primary** user store of your ES
 
 Note that **secondary** user stores are currently not supported in the Micro Integrator of EI 7.1.0.
 
-!!! tip "Before you begin"
+!!! info "Before you begin"
 	Read about [users and roles in the Micro Integrator](../../../setup/user_stores/managing_users) and how they function. Note the following important facts:
 
 	- Users in the Micro Intgrator are categorized as <b>admin</b> users and <b>non-admin</b> users.
@@ -153,7 +153,7 @@ See the instructions on [configuring a user store](../../user_stores/setting_up_
 	
 ### Migrating the registry
 
-!!! tip "Before you begin"
+!!! info "Before you begin"
     Note the following:
 
 	-	Your ESB 5.0 registry may have the following partitions: <b>Local</b>, <b>Config</b>, and <b>Gov</b>. Note that you only need to migrate the <b>Config</b> and <b>Gov</b> registry partitions. See the instructions on configuring [registry partitions in the Micro Integrator](../file_based_registry).
@@ -163,7 +163,16 @@ See the instructions on [configuring a user store](../../user_stores/setting_up_
 The Micro Integrator uses a [file-based registry](../file_based_registry) instead of a database (which is used in ESB 5.0). Follow the guidelines given below when you migrate the registry artifacts.
 
 -	If the registry resources in ESB 5.0 are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
--	If the registry resources are added through the management console in ESB 5.0, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
+-	If the registry resources are added through the management console in ESB 5.0, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. 
+
+	!!! warning "Known Issues"
+		A registry migration using this method is currently not possible due to the known issues listed below. Please contact WSO2 if you require a registry migration.
+
+		 - https://github.com/wso2/devstudio-tooling-ei/issues/1258
+		 - https://github.com/wso2/micro-integrator/issues/1977
+		 - https://github.com/wso2/devstudio-tooling-ei/issues/1257
+
+	Use one of the following approaches:
 	- [Checkout the Registry Resources](../../../develop/creating-artifacts/creating-registry-resources/#check-out-from-registry) from the ESB 5.0 server directly into the Registry Resources module in WSO2 Integration Studio.
 	- Download the Registry Resources from ESB 5.0 and [import them](../../../develop/creating-artifacts/creating-registry-resources/#import-from-file-system) into the Registry Resources module in WSO2 Integration Studio.
 
@@ -175,7 +184,7 @@ The Micro Integrator uses a [file-based registry](../file_based_registry) instea
 
 ### Migrating integration artifacts
 
-!!! tip "Before you begin"
+!!! info "Before you begin"
 
 	Note that the following changes are effective in the Micro Integrator of EI 7.1 when you migrate from WSO2 ESB 5.0.0 to the Micro Integrator.
 
@@ -242,7 +251,7 @@ Copy the JKS files from the `<ESB_5.0.0_HOME>/repository/resources/security` fol
 
 ### Migrating configurations
 
-!!! tip "Before you begin"
+!!! info "Before you begin"
 	Note the following:
 
 	- 	Configuration management was handled in WSO2 ESB 5.0 versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml`, etc.
