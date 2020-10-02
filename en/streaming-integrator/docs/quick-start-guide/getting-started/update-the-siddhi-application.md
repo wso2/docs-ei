@@ -84,6 +84,7 @@ A Siddhi application can be easily extended to consume messages from more source
     group by name 
     insert  into PublishFilteredDataStream;
     ```
+   
     !!! tip
         If you have not already installed the `kafka` extension, install it by issuing the following command from the `<SI_HOME>bin` directory.<br/><br/>
             `./extension-installer.sh install install kafka`
@@ -96,7 +97,7 @@ A Siddhi application can be easily extended to consume messages from more source
     
     `insert into SweetProductionTable values('toffee',40.0);`
     
-8. To check the messages in the `total_production` topic, navigate to the `<KAFKA_HOME>` directory and issue the following command:
+8. To check the messages in the `eclair_production` topic, navigate to the `<KAFKA_HOME>` directory and issue the following command:
 
     `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic eclair-production --from-beginning`
     
