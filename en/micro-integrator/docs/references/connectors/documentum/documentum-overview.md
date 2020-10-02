@@ -36,7 +36,7 @@ To see the Documentum connector, navigate to the [connector store](https://store
 
 | Connector Version | Supported WSO2 EI version |
 | ------------- |-------------|
-| 1.0.0    | EI 7.0.x |
+| 1.0.0    | EI 7.1.0, 7.0.x |
 
 For older versions, see the details in the connector store.
 
@@ -52,6 +52,6 @@ As an open source project, WSO2 extensions welcome contributions from the commun
 
 To contribute to the code for this connector, create a pull request in the following repository. 
 
-* [Documentum](https://github.com/wso2-extensions/esb-documentum)
+* [Documentum Connector repository](https://github.com/wso2-extensions/esb-connector-documentum)
 
 Check the issue tracker for open issues that interest you. We look forward to receiving your contributions.

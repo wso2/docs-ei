@@ -12,7 +12,7 @@ To see the Amazon DynamoDB connector, navigate to the [connector store](https://
 
 | Connector version | Supported WSO2 EI version |
 | ------------- |------------- |
-|  [1.0.1](https://github.com/wso2-extensions/esb-connector-amazondynamodb/tree/1.0.1)        |  EI 7.0.x, EI 6.6.0 |
+|  [1.0.1](https://github.com/wso2-extensions/esb-connector-amazondynamodb/tree/1.0.1)        |  EI 7.1.0, EI 7.0.x, EI 6.6.0 |
 
 For older versions, see the details in the connector store.
 

@@ -12,7 +12,7 @@ To see the Amazon S3 connector, navigate to the [connector store](https://store.
 
 | Connector Version | Supported WSO2 EI version |
 | ------------- |-------------|
-| 1.0.10    | EI 7.0.x, EI 6.6.0, EI 6.5.0 |
+| 1.0.10    | EI 7.1.0, EI 7.0.x, EI 6.6.0, EI 6.5.0 |
 
 For older versions, see the details in the connector store.
 

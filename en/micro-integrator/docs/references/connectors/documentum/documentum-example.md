@@ -20,7 +20,7 @@ The example consists of an API named as Documentum API with two resources create
 
 The following diagram shows the overall solution.
 
-
+<img src="../../../../assets/img/connectors/Documentum-example.png" title="Documentum connector example" width="400" alt="Documentum connector example"/>
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
@@ -67,6 +67,18 @@ Now the connector is added to the palette.
     </proxy>
     ```
 
+You can see the newly added connector in the design palette.
+
+<img src="../../../../assets/img/connectors/Documentum-proxy.png" title="Documentum proxy" width="800" alt="Documentum proxy"/>
+
+### Configure the connection and create folder operation
+
+1. Do the following configurations to initialize the connector.
+    <img src="../../../../assets/img/connectors/Documentum-connection.png" title="Documentum connection" width="800" alt="Documentum connection"/>
+
+2. Do the following configurations to set up the `create folder` operation.
+    <img src="../../../../assets/img/connectors/Documentum-create-folder.png" title="Documentum create folder" width="800" alt="Documentum create folder"/>
+
 Now we can export the imported connector and the API into a single CAR application. CAR application is the one we are going to deploy to server runtime. 
 
 {!references/connectors/exporting-artifacts.md!}
@@ -104,7 +116,8 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     ```
 
 2. You will see the following sample response payload.
-    ```json
+
+```json
     {
         "name":"folder",
         "type":"dm_folder",
@@ -212,7 +225,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
             "r_object_id": "0b0277b6800584f7"
         }
     }
-    ```
+```
 
 ## What's next
 
