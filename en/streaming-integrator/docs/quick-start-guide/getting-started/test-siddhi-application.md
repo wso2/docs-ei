@@ -8,7 +8,7 @@ To do this, issue the following command in the MySQL console.
 
 `insert into SweetProductionTable values('chocolate',100.0);`
 
-Then open the `/Users/foo/productions.csv` file. The following record should be displayed.
+Then open the `/Users/foo/productioninserts.csv` file. The following record should be displayed.
 
 ![Updated File](../../images/quick-start-guide-101/updated-file.png)
     

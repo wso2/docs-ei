@@ -28,7 +28,7 @@ A Siddhi application can be easily extended to consume messages from more source
         
     ```
     @source(type='file', mode='LINE',
-       file.uri='file:/Users/foo/productions.csv',
+       file.uri='file:/Users/foo/productioninserts.csv',
        tailing='true',
        @map(type='csv'))
     define stream FilterStream (name string,amount double);
