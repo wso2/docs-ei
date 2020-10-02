@@ -10,7 +10,7 @@ To see the Gmail Connector, navigate to the [connector store](https://store.wso2
 
 | Connector Version | Supported WSO2 EI version |
 | ------------- |-------------|
-| 3.0.8    | EI 7.0.x EI 6.6.0 EI 6.5.0 |
+| 3.0.8    | EI 7.1.0, EI 7.0.x EI 6.6.0 EI 6.5.0 |
 
 For older versions, see the details in the connector store.
 

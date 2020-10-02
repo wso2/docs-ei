@@ -36,7 +36,7 @@ To see the Documentum connector, navigate to the [connector store](https://store
 
 | Connector Version | Supported WSO2 EI version |
 | ------------- |-------------|
-| 1.0.0    | EI 7.0.x |
+| 1.0.0    | EI 7.1.0, 7.0.x |
 
 For older versions, see the details in the connector store.
 
