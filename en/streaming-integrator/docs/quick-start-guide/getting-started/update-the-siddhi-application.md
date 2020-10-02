@@ -14,12 +14,12 @@ A Siddhi application can be easily extended to consume messages from more source
 3. To publish the events filtered into the `PublishFilteredDataStream` stream, connect a source of the `kafa` type to it as shown below.
 
     ```
-    @sink(type = 'kafka', bootstrap.servers = "localhost:9092", topic = "eclair_production", is.binary.message = "false", partition.no = "0",
+    @sink(type = 'kafka', bootstrap.servers = "localhost:9092", topic = "eclair-production", is.binary.message = "false", partition.no = "0",
              @map(type = 'json'))
     define stream PublishFilteredDataStream (name string,amount double);
     ```
    
-   The above sink annotation publishes all the events received into the `PublishFilteredDataStream` stream into a topic named `eclair_production` in `json` format.
+   The above sink annotation publishes all the events received into the `PublishFilteredDataStream` stream into a topic named `eclair-production` in `json` format.
    
 4. Let's create another stream to read from the `/Users/foo/productioninserts.csv` file to which you have been publishing data.
 
@@ -28,7 +28,7 @@ A Siddhi application can be easily extended to consume messages from more source
         
     ```
     @source(type='file', mode='LINE',
-       file.uri='file:/Users/foo/productions.csv',
+       file.uri='file:/Users/foo/productioninserts.csv',
        tailing='true',
        @map(type='csv'))
     define stream FilterStream (name string,amount double);
@@ -50,40 +50,57 @@ A Siddhi application can be easily extended to consume messages from more source
     
 6. Save your changes.
 
-The completed Siddhi application looks as follows:
+    The completed Siddhi application looks as follows:
+    
+    ```
+    @App:name('SweetFactoryApp')
+    
+    @source(type='cdc',url = "jdbc:mysql://localhost:3306/production",username = "wso2si",password = "wso2",table.name = "SweetProductionTable",operation = "insert",
+        @map(type='keyvalue'))
+    define stream InsertSweetProductionStream (name string,amount double);
+    
+    @source(type='file', mode='LINE',
+       file.uri='file:/Users/foo/productions.csv',
+       tailing='true',
+       @map(type='csv'))
+    define stream FilterStream (name string,amount double);
+    
+    @sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
+        @map(type='text'))
+    define stream ProductionUpdatesStream (name string,amount double);
+    
+    @sink(type = 'kafka', bootstrap.servers = "localhost:9092", topic = "eclair_production", is.binary.message = "false", partition.no = "0",
+             @map(type = 'json'))
+    define stream PublishFilteredDataStream (name string,amount double);
+    
+    @info(name='query1')
+    from InsertSweetProductionStream 
+    select str:upper(name) as name, amount 
+    group by name 
+    insert  into ProductionUpdatesStream;
+    
+    from FilterStream [name=='Eclairs']
+    select * 
+    group by name 
+    insert  into PublishFilteredDataStream;
+    ```
+    !!! tip
+        If you have not already installed the `kafka` extension, install it by issuing the following command from the `<SI_HOME>bin` directory.<br/><br/>
+            `./extension-installer.sh install install kafka`
+            
+7. To test the Siddhi application after the update, insert records into the `production` database as follows.
 
-```
-@App:name('SweetFactoryApp')
+    `insert into SweetProductionTable values('eclairs',100.0);`
+    
+    `insert into SweetProductionTable values('eclairs',60.0);`
+    
+    `insert into SweetProductionTable values('toffee',40.0);`
+    
+8. To check the messages in the `total_production` topic, navigate to the `<KAFKA_HOME>` directory and issue the following command:
 
-@App:statistics(reporter = 'prometheus')
-
-
-@source(type='cdc',url = "jdbc:mysql://localhost:3306/production",username = "wso2si",password = "wso2",table.name = "SweetProductionTable",operation = "insert",
-	@map(type='keyvalue'))
-define stream InsertSweetProductionStream (name string,amount double);
-
-@source(type='file', mode='LINE',
-   file.uri='file:/Users/foo/productions.csv',
-   tailing='true',
-   @map(type='csv'))
-define stream FilterStream (name string,amount double);
-
-@sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
-	@map(type='text'))
-define stream ProductionUpdatesStream (name string,amount double);
-
-@sink(type = 'kafka', bootstrap.servers = "localhost:9092", topic = "eclair_production", is.binary.message = "false", partition.no = "0",
-         @map(type = 'json'))
-define stream PublishFilteredDataStream (name string,amount double);
-
-@info(name='query1')
-from InsertSweetProductionStream 
-select str:upper(name) as name, amount 
-group by name 
-insert  into ProductionUpdatesStream;
-
-from FilterStream [name=='Eclairs']
-select * 
-group by name 
-insert  into PublishFilteredDataStream;
-```
+    `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic eclair-production --from-beginning`
+    
+    You can see the following message in the Kafka Consumer log.
+    
+    
+    

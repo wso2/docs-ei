@@ -32,7 +32,6 @@ In this scenario, the Streaming Integrator reads input data from a MySQL databas
     
     3. Copy the `mysql-connector-java-5.1.45-bin.jar` to the `<SI_HOME>/lib` directory.
     
-    4. Start the SI server.
     
 4. Once you install MySQL and start the MySQL server, create the database and the database table you require as follows:
 
@@ -48,6 +47,7 @@ In this scenario, the Streaming Integrator reads input data from a MySQL databas
     3. Switch to the `production` database and create a new table, by executing the following queries:<br/>
         `use production;`<br/>
         `CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));`<br/> 
+               
 
 ## Download Kafka and create topics
 
@@ -68,7 +68,7 @@ This scenario involves publishing some filtered production data to a Kafka topic
         
     3. To create a Kafka topic named `eclair_production`, issue the following command from the same directory.
     
-        `bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic total_production`
+        `bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic eclair-production`
         
 ## Configuring WSO2 SI to visualize statistics
 
@@ -168,15 +168,33 @@ The pre-configured dashboards provided by WSO2 Streaming Integrator which you pr
 3. In the **Data Sources** section, click **Add your first data source**. In the **Add data source** page that appears, click **Select** for **Prometheus**.
        
 4. In the **Add data source** page -> **Settings** tab, update the configurations for Prometheus as follows.<br/>   
-   ![prometheus configuration](../images/cdc-monitoring/prometheus-configurations.png)<br/>    
+   ![prometheus configuration](../../images/cdc-monitoring/prometheus-configurations.png)<br/>    
    1. Click **Default** to make Prometheus the default data source.
    
    2. Under **HTTP**, enter `http://localhost:9090` as the URL.
    
    3. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
-       ![Save and Test](../images/cdc-monitoring/save-and-test.png)
+       ![Save and Test](../../images/cdc-monitoring/save-and-test.png)
        
-       
+   4. To import the dashboards that you previously downloaded as JSON files, follow the procedure below:
+   
+        1. Start Grafana and access it via http://localhost:3000/.
+        
+        2. To load a new dashboard, click the plus icon **(+)** in the side panel. Then click **Import**.
+        
+        3. In the **Import** page, click **Upload .json** file. Then browse and select the .json file of the preconfigured dashboard that you downloaded (i.e., in step 5, substep 1).
+        
+        4. If required, change the unique identifier displayed in the **Unique Identifier (uid)**.
+        
+        5. Click **Import**.
+        
+## Starting the WSO2 Streaming Integrator Server
+
+To start WSO2 Streaming Integrator, navigate to the `<SI_HOME>/bin` directory from the CLI, and issue the appropriate command based on your operating system:
+
+- **For Linux**: `./server.sh`
+- **For Windows**: `server.bat --run`           
+              
 Now you have completed a WSO2 Streaming Integrator setup that is capable of the following:
 
 - Design, test and deploy Siddhi applications via Streaming Integrator Tooling.

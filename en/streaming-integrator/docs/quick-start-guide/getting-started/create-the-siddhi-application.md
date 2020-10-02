@@ -81,8 +81,6 @@ The completed Siddhi application looks as follows:
 
 ```
 @App:name('SweetFactoryApp')
-@App:statistics(reporter = 'prometheus')
-
 
 @source(type='cdc',url = "jdbc:mysql://localhost:3306/production",username = "wso2si",password = "wso2",table.name = "SweetProductionTable",operation = "insert",
 	@map(type='keyvalue'))

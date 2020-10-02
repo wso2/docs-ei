@@ -1,13 +1,8 @@
-# Step 5: Extend the Streaming Integrator
+# Step 4: Extend the Streaming Integrator
 
-The Streaming Integrator is by default shipped with most of the available Siddhi extensions by default. If a Siddhi extension you require is not shipped by default, you can download and install it.
+The Streaming Integrator is by default shipped with most of the available Siddhi extensions by default. If a Siddhi extension you require is not shipped by default, you can download and install it via the Extension Installer tool.
 
-In [Step 2: Create the Siddhi Application](create-the-siddhi-application.md), the Siddhi application you created processes data recived from a database and publishes the output to a file. Assume that you need to enable certain parties (e.g., product managers, brand managers, etc.) to subscribe for production data related to specific products of their choice. To do this, you need to use a messaging system such as Kafka so that you can filter production data for each product and publish it in a separate topic, allowing each party to subscribe only for topics of their choice.
-
-WSO2 Streaming Integrator is not fully configured to integrate with Kafka by default. Therefore, let's install the `siddhi-io-kafa` extension and its dependencies as follows.
-
-!!! tip "Before you begin:"
-    You need to download Kafka from [the Apache site](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.12-2.3.0.tgz) as already instructed under [Step 1: Download Streaming Integrator and Dependencies](download-install-and-start-si.md).
+To check the extensions you need in your use case and install them, follow the steps below:
 
 1. Be sure that the WSO2 Streaming Integrator server is started.
 
@@ -21,8 +16,12 @@ WSO2 Streaming Integrator is not fully configured to integrate with Kafka by def
     ```
     Installation completed with status: INSTALLED. Please restart the server.
     ```
+    !!! tip
+        You can also install a selected installment individually. To try this out, let's issue the following command from the `<SI_HOME>bin` directory and install the `kafka` extension that you will be using later in this scenario.<br/><br/>
+            `./extension-installer.sh install install kafka`
+   
 3. Restart the Streaming Integrator server as instructed.
 
 ## What's Next?
 
-To update the `SweetFactoryApp` Siddhi application you created so that it can publish to Kafka topics via the Kafka extension you installed, proceed to [Step 6: ]
+Now you can run the `SweetFactoryApp` Siddhi application in a production environment and see whether it functions as expected. To do this, proceed to [Step 5: Test the Siddhi Application](test-siddhi-application.md).

@@ -115,7 +115,7 @@ The completed Siddhi application looks as follows
 define stream InsertSweetProductionStream (name string,amount double);
 
 @source(type='file', mode='LINE',
-   file.uri='file:/Users/foo/productions.csv',
+   file.uri='file:/Users/foo/productioninserts.csv',
    tailing='true',
    @map(type='csv'))
 define stream FilterStream (name string,amount double);
