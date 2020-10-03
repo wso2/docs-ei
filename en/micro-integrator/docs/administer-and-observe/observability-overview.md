@@ -87,7 +87,6 @@ You can integrate with external tools to do the following.
 
 - [JMX Monitoring](jmx_monitoring.md)
 - [SNMP Monitoring](snmp_monitoring.md)
-- [Prometheus for Monitoring](monitoring_with_prometheus.md)
 
 **TCP Message Monitoring**
 
