@@ -75,9 +75,6 @@ Disadvantages of asynchronous messaging includes the additional component of a m
 				<li>
 					<a href="../../../use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages">Delivery Delay on Messages</a>
 				</li>
-				<li>
-					<a href="../../../use-cases/examples/jms_examples/rabbitmq-examples">RabbitMQ Examples</a>
-				</li>
 			</ul>
 		</td>
 	</tr>
