@@ -112,13 +112,14 @@ The Micro Integrator uses a [file-based registry](../file_based_registry) instea
 	!!! warning "Known Issues"
 		A registry migration using this method is currently not possible due to the known issues listed below. Please contact WSO2 if you require a registry migration.
 
-		- https://github.com/wso2/devstudio-tooling-ei/issues/1258
+		 - [issue1258](https://github.com/wso2/devstudio-tooling-ei/issues/1258)
 
-		- https://github.com/wso2/micro-integrator/issues/1977
-		
-		- https://github.com/wso2/devstudio-tooling-ei/issues/1257
+		 - [issue19770](https://github.com/wso2/micro-integrator/issues/1977)
+
+		 - [issue1257](https://github.com/wso2/devstudio-tooling-ei/issues/1257)
 
 	Use one of the following approaches:
+	
 	- [Checkout the Registry Resources](../../../develop/creating-artifacts/creating-registry-resources/#check-out-from-registry) from the EI 6.x.x server directly into the Registry Resources module in WSO2 Integration Studio.
 	- Download the Registry Resources from EI 6.x.x and [import them](../../../develop/creating-artifacts/creating-registry-resources/#import-from-file-system) into the Registry Resources module in WSO2 Integration Studio.
 
