@@ -11,16 +11,18 @@ To check the extensions you need in your use case and install them, follow the s
     - **For Linux**: `./extension-installer.sh install`<br/>
     - **For Windows**: `extension-installer.bat install`
     
+    Enter `Y` when you are prompted to confirm whether WSO2 Streaming Integrator should proceed to install the extensions listed.
+    
     When the extension is successfully installed, the following is displayed in the log.
     
     ```
     Installation completed with status: INSTALLED. Please restart the server.
     ```
-    !!! tip
-        You can also install a selected installment individually. To try this out, let's issue the following command from the `<SI_HOME>bin` directory and install the `kafka` extension that you will be using later in this scenario.<br/><br/>
-            `./extension-installer.sh install install kafka`
+3. You can also install a selected installment individually. To try this out, let's issue the following command from the `<SI_HOME>bin` directory and install the `kafka` extension that you will be using later in this scenario.<br/><br/>
+
+    `./extension-installer.sh install install kafka`
    
-3. Restart the Streaming Integrator server as instructed.
+4. Restart the Streaming Integrator server as instructed.
 
 ## What's Next?
 

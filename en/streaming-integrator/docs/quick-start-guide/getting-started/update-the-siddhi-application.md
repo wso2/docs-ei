@@ -84,10 +84,6 @@ A Siddhi application can be easily extended to consume messages from more source
     group by name 
     insert  into PublishFilteredDataStream;
     ```
-   
-    !!! tip
-        If you have not already installed the `kafka` extension, install it by issuing the following command from the `<SI_HOME>bin` directory.<br/><br/>
-            `./extension-installer.sh install install kafka`
             
 7. To test the Siddhi application after the update, insert records into the `production` database as follows.
 
@@ -109,6 +105,9 @@ A Siddhi application can be easily extended to consume messages from more source
     ```
    
    Note that the third record you inserted does not appear in the Kafka consumer log because the value for the `name` field is not `ECLAIRS` and therefore, it is filtered out.
+   
+## What's Next?
+Next, you can configure WSO2 Streaming Integrator to handle errors that can occur in the Streaming Integration flow of the `SweetFactoryApp` Siddhi application. To do this, proceed to [Step 7: Handle Errors](handle-errors.md).
     
     
     
