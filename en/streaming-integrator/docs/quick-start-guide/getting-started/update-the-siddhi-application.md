@@ -30,7 +30,7 @@ A Siddhi application can be easily extended to consume messages from more source
     @source(type='file', mode='LINE',
        file.uri='file:/Users/foo/productioninserts.csv',
        tailing='true',
-       @map(type='csv'))
+       @map(type=''))
     define stream FilterStream (name string,amount double);
     ```
    
@@ -40,13 +40,13 @@ A Siddhi application can be easily extended to consume messages from more source
 5. Now let's add the query to filter the required information and publish it.
 
     ```
-    from FilterStream [name=='Eclairs']
+    from FilterStream [name=='ECLAIRS']
     select * 
     group by name 
     insert  into PublishFilteredDataStream;
     ```
    
-    In the `from` clause, `[name=='Eclairs']` filters all production runs where the name of the sweet produced is `Eclairs`. Then all the filtered events are inserted into the `PublishFilteredDataStream` stream so that they can be published in the `eclair_production` Kafka topic.
+    In the `from` clause, `[name=='ECLAIRS']` filters all production runs where the name of the sweet produced is `Eclairs`. Then all the filtered events are inserted into the `PublishFilteredDataStream` stream so that they can be published in the `eclair_production` Kafka topic.
     
 6. Save your changes.
 
@@ -66,7 +66,7 @@ A Siddhi application can be easily extended to consume messages from more source
     define stream FilterStream (name string,amount double);
     
     @sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
-        @map(type='text'))
+        @map(type='csv'))
     define stream ProductionUpdatesStream (name string,amount double);
     
     @sink(type = 'kafka', bootstrap.servers = "localhost:9092", topic = "eclair_production", is.binary.message = "false", partition.no = "0",
@@ -79,14 +79,11 @@ A Siddhi application can be easily extended to consume messages from more source
     group by name 
     insert  into ProductionUpdatesStream;
     
-    from FilterStream [name=='Eclairs']
+    from FilterStream [name=='ECLAIRS']
     select * 
     group by name 
     insert  into PublishFilteredDataStream;
     ```
-    !!! tip
-        If you have not already installed the `kafka` extension, install it by issuing the following command from the `<SI_HOME>bin` directory.<br/><br/>
-            `./extension-installer.sh install install kafka`
             
 7. To test the Siddhi application after the update, insert records into the `production` database as follows.
 
@@ -96,11 +93,21 @@ A Siddhi application can be easily extended to consume messages from more source
     
     `insert into SweetProductionTable values('toffee',40.0);`
     
-8. To check the messages in the `total_production` topic, navigate to the `<KAFKA_HOME>` directory and issue the following command:
+8. To check the messages in the `eclair_production` topic, navigate to the `<KAFKA_HOME>` directory and issue the following command:
 
     `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic eclair-production --from-beginning`
     
-    You can see the following message in the Kafka Consumer log.
+    You can see the following messages in the Kafka Consumer log.
+    
+    ```text
+    {"event":{"name":"ECLAIRS","amount":100.0}}
+    {"event":{"name":"ECLAIRS","amount":60.0}}
+    ```
+   
+   Note that the third record you inserted does not appear in the Kafka consumer log because the value for the `name` field is not `ECLAIRS` and therefore, it is filtered out.
+   
+## What's Next?
+Next, you can configure WSO2 Streaming Integrator to handle errors that can occur in the Streaming Integration flow of the `SweetFactoryApp` Siddhi application. To do this, proceed to [Step 7: Handle Errors](handle-errors.md).
     
     
     

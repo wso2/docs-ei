@@ -56,7 +56,7 @@ The following image depicts the procedure to be followed by the Siddhi applicati
 
     ```
     @sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
-   	@map(type='text'))
+   	@map(type='csv'))
     define stream ProductionUpdatesStream (name string,amount double);
     ```
    
@@ -87,7 +87,7 @@ The completed Siddhi application looks as follows:
 define stream InsertSweetProductionStream (name string,amount double);
 
 @sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
-	@map(type='text'))
+	@map(type='csv'))
 define stream ProductionUpdatesStream (name string,amount double);
 
 @info(name='query1')
