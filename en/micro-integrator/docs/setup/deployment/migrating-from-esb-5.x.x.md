@@ -224,6 +224,9 @@ The Micro Integrator uses a [file-based registry](../file_based_registry) instea
 The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is to use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio):
 
 - If the artifacts are created in the recommended way, copy the CAR files inside `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+- If you have a custom mediator packed in a CAR, do one of the following:
+	- Include all the artifacts (using that mediator) in the same CAR. 
+	- Alternatively, you can add the JAR of the mediator to the `<MI_HOME>/lib/dropins` folder so that it can be shared by artifacts in multiple CARs.
 - If the artifacts are created using the management console of ESB 5.0, you need to recreate them using WSO2 Integration Studio and package them as a composite application. See the instructions on [packaging artifacts](../../../develop/packaging-artifacts).
 
 !!! Tip
