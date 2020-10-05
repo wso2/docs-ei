@@ -69,9 +69,9 @@ There are two ways to manually offset the [default ports](#default-ports).
 
 !!! Tip
 	-	The internal offset of 10 is overriden by this manual offset. That is, if the manual offset is 3, the default ports will change as follows:
-		- `8293` -> `8290`
-		- `8253` -> `8250`
-		- `9164` -> `9161`
+		- `8290` -> `8283` (8290 - 10 + 3)
+		- `8253` -> `8246` (8253 - 10 + 3)
+		- `9164` -> `9157` (9164 - 10 + 3)
 	-	Note that if you manually set an offset of 10 using the following method, you will get the same [default ports](#default-ports).
 
 -   Pass the port offset to the server during startup.
