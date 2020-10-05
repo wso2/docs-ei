@@ -38,6 +38,14 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
+### Add the connector to the Connector Exporter project
+
+Follow these steps to add the Redis connector to the Connector Exporter project. This is needed to access the Redis connector and its operations at runtime.
+
+1. Right click on the connector exporter project and click on New-> Add/Remove Connectors.
+2. Then in the Add or Remove Connectors window, click on Next -> Workspace. The Redis connector should be available. Select it and click on OK. Then click on Finish.
+3. The Redis connector zip file should be now be present under the Connector Exporter project.
+
 ### Add integration logic
 
 First create an API, which will be where we configure the integration logic. Right click on the created Integration Project and select, **New** -> **Rest API** to create the REST API. Specify the API name as `SampleRdisAPI` and API context as `/resources`.
