@@ -21,7 +21,7 @@ By default, the Micro Integrator is **internally** configured with a port offset
 			<code>8290</code>
 		</td>
 		<td>
-			HTTP Passthrough transport.
+			The port of the HTTP Passthrough transport.
 		</td>
 	</tr>
 	<tr>
@@ -29,7 +29,22 @@ By default, the Micro Integrator is **internally** configured with a port offset
 			<code>8253</code>
 		</td>
 		<td>
-			HTTPS Passthrough transport
+			The port of the HTTPS Passthrough transport.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>9201</code>
+		</td>
+		<td>
+			The HTTP port of the <a href="../../administer-and-observe/working-with-management-api">Management API</a> of WSO2 Micro Integrator.</br></br>
+			<b>Configuring the default HTTP port</b></br>
+			If required, you can manually change the HTTP port in the <code>deployment.toml</code> file (stored in the <code>MI_HOME/conf</code> folder) as shown below.</br></br>
+			<div>
+				<code>[mediation]</code></br>
+				<code>internal.http.api.port = http_port </code></br>
+			</div></br>
+			<b>Note</b>: With the default internal port offset, the effective port will be <code>http_port + 10</code>.
 		</td>
 	</tr>
 	<tr>
@@ -37,14 +52,14 @@ By default, the Micro Integrator is **internally** configured with a port offset
 			<code>9164</code>
 		</td>
 		<td>
-			The <a href="../../administer-and-observe/working-with-management-api">Management API</a> of WSO2 Micro Integrator is an internal REST API, which is used to obtain administrative information of the server instance.</br></br>
-			<b>Configuring the Management API port</b></br>
-			The Management API port can be configured in the <code>deployment.toml</code> file (stored in the <code>MI_HOME/conf</code> folder) as shown below.</br>
+			The HTTPS port of the <a href="../../administer-and-observe/working-with-management-api">Management API</a> of WSO2 Micro Integrator.</br></br>
+			<b>Configuring the default HTTPS port</b></br>
+			If required, you can manually change the HTTPS port in the <code>deployment.toml</code> file (stored in the <code>MI_HOME/conf</code> folder) as shown below.</br></br>
 			<div>
 				<code>[mediation]</code></br>
-				<code>internal_http_api_enable = true </code></br>
-				<code>internal_https_api_port = 9154 </code>
-			</div>
+				<code>internal_https_api_port = https_port </code>
+			</div></br>
+			<b>Note</b>: With the default internal port offset, the effective port will be <code>https_port + 10</code>.
 		</td>
 	</tr>
 </table>
