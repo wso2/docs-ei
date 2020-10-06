@@ -22,7 +22,7 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>foldername</td>
-            <td>Folder name. For example, “Sample123”</td>
+            <td>The Folder name to be given which is user Specific. For example, “Sample123”</td>
             <td>Yes.</td>
         </tr>
     </table>
