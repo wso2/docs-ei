@@ -12,12 +12,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>objectcodeID</td>
-            <td>Object Code ID. For example, "0c0277b68002952c"</td>
+            <td>The Documentum Object Code ID for the parent folder. For example, "0c0277b68002952c"</td>
             <td>Yes.</td>
         </tr>
         <tr>
@@ -47,12 +47,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>folderObjectID</td>
-            <td>Folder object ID. For example, “Sample123”</td>
+            <td>The Folder object ID of the Documentum to find. For example, “0b0277b680048998”</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -76,12 +76,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>folderObjectID</td>
-            <td>Folder object ID. For example, “Sample123”</td>
+            <td>The Folder object ID of the documentum to be deleted. For example, “0b0277b680048998”</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -105,22 +105,22 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>FolderID</td>
-            <td>The ID of the folder. For example, "0b0277b68004e7de"</td>
+            <td>The Documentum object ID of the folder where the document has to be created. For example, "0b0277b68004e7de"</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>object_name</td>
-            <td>The name of the document. For example, “TestingJul24”</td>
+            <td>The name of the document which is user specific. For example, “TestDoc1”</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>a_content_type</td>
-            <td>The content type of the document. For example, "pdf"</td>
+            <td>The content type of the document(pdf,gif,csv,png,etc.). For example, "pdf"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -146,12 +146,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>FolderID</td>
-            <td>The ID of the folder. For example, "0b0277b68004e7de"</td>
+            <td>The documentum object ID of the document to find . For example, "0b0277b68004e7de"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -175,12 +175,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>FolderID</td>
-            <td>The ID of the folder. For example, "0b0277b68004e7de"</td>
+            <td>The documentum object ID of the document to be deleted. For example, "0b0277b68004e7de"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -204,22 +204,22 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>objectID</td>
-            <td>Object ID of the document. For example, "090277b68002952c"</td>
+            <td>The documentum Object ID of the document where the content to be added. For example, "090277b68002952c"</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>format</td>
-            <td>The format of the document. For example, "pdf".</td>
+            <td>The format of the present document(pdf,gif,png,csv,etc..). For example, "pdf".</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>overwrite</td>
-            <td>Overwrite the content in the document. For example, "true" or "false".</td>
+            <td>Whether to Overwrite the content in the document. For example, "true" or "false".</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -249,27 +249,27 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>objectID</td>
-            <td>Object ID of the document. For example, "090277b68002952c"</td>
+            <td>The documentum Folder Object ID where the document to be created. For example, "090277b68002952c"</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>format</td>
-            <td>The format of the document. For example, "pdf".</td>
+            <td>The format of the document(png,gif,pdf,csv,etc..). For example, "pdf".</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>count</td>
-            <td>The count of the document. For example, "1" or "2".</td>
+            <td>The no of the documents added to the content. For example, "1" or "2".</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>primary</td>
-            <td>The primary content of the document. For example, "true" or "false".</td>
+            <td>To make all data as primary content of the document. For example, "true" or "false".</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -303,12 +303,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>documentObjectID</td>
-            <td>Document object ID. For example, "090277b6800600a3"</td>
+            <td>The documentum object ID of the document to get content. For example, "090277b6800600a3"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -332,12 +332,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>object_name</td>
-            <td>The name of the cabinet. For example, "TestCabinet6"</td>
+            <td>The name of the cabinet to be created which is user specific. For example, "TestCabinet6"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -361,12 +361,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>cabinateObjectID</td>
-            <td>The object ID of the cabinet. For example, "0c0277b68004dbc1"</td>
+            <td>The documentum object ID of the cabinet to find. For example, "0c0277b68004dbc1"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -390,12 +390,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>cabinateObjectID</td>
-            <td>The object ID of the cabinet. For example, "0c0277b68004dbc1"</td>
+            <td>The documentum object ID of the cabinet to be deleted. For example, "0c0277b68004dbc1"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -419,7 +419,7 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum which list all child cabinets. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -442,22 +442,22 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>object_name</td>
-            <td>The name of the ACL. For example, "Testacl8"</td>
+            <td>The name of the ACL to be created which is user specific. For example, "Testacl8"</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>description</td>
-            <td>The description of the ACL. For example, "TestaclJul8".</td>
+            <td>The description of the ACL for details. For example, "TestaclonJul8".</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>owner_name</td>
-            <td>The name of the App owner. For example, "appowner".</td>
+            <td>The name of the Application admin/other privilege to be applied on the new ACL. For example, "appowner".</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -483,17 +483,17 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>objectID</td>
-            <td>The ID of the object. For example, "Testacl8"</td>
+            <td>The documentum odject ID of the docuement where ACL has to be applied. For example, "Testacl8"</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>acl_name</td>
-            <td>The name of the ACL. For example, "TestaclJul8".</td>
+            <td>The name of the ACL to be applied. For example, "TestaclJul8".</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -518,12 +518,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>aclObjectID</td>
-            <td>The ACL ID of the object. For example, "450277b680001d42"</td>
+            <td>The ACL documentum object ID of the object(folder/document/cabinet) to be removed. For example, "450277b680001d42"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -547,7 +547,7 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum which list all ACL's created under that. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -570,12 +570,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>chronical_id</td>
-            <td>The ACL ID of the object. For example, "090277b680053e99"</td>
+            <td>The documentum chronical object ID of the document. For example, "090277b680053e99"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -599,12 +599,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>chronical_id</td>
-            <td>The ACL ID of the object. For example, "090277b680053e99"</td>
+            <td>The documentum chronical object ID of the document version to be deleted. For example, "090277b680053e99"</td>
             <td>Yes.</td>
         </tr>
     </table>
@@ -628,12 +628,12 @@ The following operations allow you to work with the Documentum Connector. Find a
         </tr>
         <tr>
             <td>repos</td>
-            <td>The name of the repository. For example, doctest.</td>
+            <td>The name of the root repository being created in Documentum. For example, doctest.</td>
             <td>Yes.</td>
         </tr>
         <tr>
             <td>objectID</td>
-            <td>The ID of the object. For example, "090277b680047c89"</td>
+            <td>The documentum object ID of any kind of object to find. For example, "090277b680047c89"</td>
             <td>Yes.</td>
         </tr>
     </table>
