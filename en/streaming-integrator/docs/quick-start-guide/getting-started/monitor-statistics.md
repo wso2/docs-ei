@@ -63,11 +63,11 @@ This step shows how you can monitor the CDC and file statistics of the WSO2 Stre
                                                                                    
 12. In the **overview-statistics / WSO2 Streaming Integrator App Statistics** dashboard -> **CDC** section, click on the **SweetProductionTable** link. The **cdc-statistics / WSO2 Streaming Integrator / CDC Statistics**  dashboard opens with statistics generated for the `cdc` source in the `SweetFactoryApp` Siddhi application.
 
-    ![CDC Statistics](../../images/quick-start-guide-101/cdc-statistics-sink.png)
+    ![CDC Statistics](../../images/quick-start-guide-101/cdc-statistics.png)
     
     Under **Streaming**, click on the **SweetProductionTable** link. The **cdc-statistics / WSO2 Streaming Integrator / CDC Streaming Statistics** dashboard opens as follows.
     
-    ![CDC Streaming Statistics](../../images/quick-start-guide-101/cdc-streaming-statistics-sink.png)
+    ![CDC Streaming Statistics](../../images/quick-start-guide-101/cdc-streaming-statistics.png)
     
     
 
