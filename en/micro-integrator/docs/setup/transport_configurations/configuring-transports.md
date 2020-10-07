@@ -116,6 +116,9 @@ For more information, see [service-level VFS parameters](../../../references/syn
 
 ## Configuring the HL7 transport
 
+!!! Warning
+    <b>This content is currently work in progress!</b>
+
 The HL7 transport allows you to handle Health Level 7 International (HL7) messages. Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder: 
 
 ```toml tab='HL7 Listener'
