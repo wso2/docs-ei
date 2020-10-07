@@ -22,9 +22,13 @@ As shown above, if your organization is running on a decentralized, cloud-native
 
 The WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio); a comprehensive graphical integration flow designer for building integrations using a simple drag-and-drop functionality.
 
+<img src="../../assets/img/intro/integration-studio.png" alt="Integration Studio" name="Integration Studio" width="700">
+
 ## Administration
 
 The [Micro Integrator Dashboard](../../administer-and-observe/working-with-monitoring-dashboard) and [CLI](../../administer-and-observe/using-the-command-line-interface) are specifically designed for monitoring and administration of the Micro Integrator instances. Each of these tools are capable of binding to a single server instance by invoking the [management API](../../administer-and-observe/working-with-management-api) that is exposed by the server. This allow you to view and manage artifacts, logs/log configurations, and users of a server instance.
+
+<img src="../../assets/img/intro/cli-dashboard.png" alt="CLI and dashboard" name="CLI and dashboard" width="700">
 
 ## Streaming integration
 
