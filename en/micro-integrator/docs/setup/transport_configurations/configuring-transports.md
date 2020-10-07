@@ -114,6 +114,23 @@ The VFS transport is enabled in the Micro Integrator server by default. Also, th
 
 For more information, see [service-level VFS parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters).
 
+## Configuring the HL7 transport
+
+The HL7 transport allows you to handle Health Level 7 International (HL7) messages. Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder: 
+
+```toml tab='HL7 Listener'
+[[custom_transport.listener]]
+class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
+protocol = "hl7"
+parameter.'transport.hl7.TimeOut' = 10000
+```
+
+```toml tab='HL7 Sender'
+[[custom_transport.sender]]
+class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender"
+protocol = "hl7"
+```
+
 ## Configuring the TCP transport
 
 To enable the TCP transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
