@@ -69,6 +69,14 @@ This step shows how you can monitor the CDC and file statistics of the WSO2 Stre
     
     ![CDC Streaming Statistics](../../images/quick-start-guide-101/cdc-streaming-statistics.png)
     
+## What's Next
+
+- To learn more about the key concepts of WSO2 Streaming Integrator, see [Key Concepts](../../concepts/concepts.md).
+
+- For more hands-on experience with WSO2 Streaming Integrator, try the [Tutorials](../../examples/tutorials-overview.md).
+
+- For more guidance as you use WSO2 Streaming Integrator for your Streaming Integration use cases, see [Use Cases](../../guides/use-cases.md).
+
     
 
     
