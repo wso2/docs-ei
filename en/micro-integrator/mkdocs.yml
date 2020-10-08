@@ -698,6 +698,7 @@ nav:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
           - 'RabbitMQ Parameters': 'references/synapse-properties/transport-parameters/rabbitmq-transport-parameters.md'
+          - 'HL7 Parameters': 'references/synapse-properties/transport-parameters/hl7-transport-parameters.md'
           - 'FIX Parameters': 'references/synapse-properties/transport-parameters/fix-transport-parameters.md'
           - 'MailTo Parameters': 'references/synapse-properties/transport-parameters/mailto-transport-parameters.md'
           - 'MQTT Parameters': 'references/synapse-properties/transport-parameters/mqtt-transport-parameters.md'
