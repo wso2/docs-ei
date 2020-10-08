@@ -1,8 +1,5 @@
 # HL7 Parameters
 
-!!! Warning
-    <b>This content is currently work in progress!</b>
-
 When you implement an integration use case that handles HL7 messsages, you can use the following HL7 parameters in your [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) artifact.
 
 !!! Info
@@ -18,7 +15,7 @@ Add the parameter "transport.hl7.ConformanceProfilePath" in the proxy service to
 
 ## Message pre-processing
 
-Add the "transport.hl7.MessagePreprocessorClass" parameter in the proxy service to point to an implementation class of the interface "org.wso2.carbon.business.messaging.hl7.common.HL7MessagePreprocessor", which is used to process raw HL7 messages before parsing them so that potential errors in the messages can be rectified using the transport.
+Add the "transport.hl7.MessagePreprocessorClass" parameter in the proxy service to point to an implementation class of the interface "org.wso2.micro.integrator.business.messaging.hl7.common.HL7MessagePreprocessor", which is used to process raw HL7 messages before parsing them so that potential errors in the messages can be rectified using the transport.
 
 ## Acknowledgement
 
@@ -151,8 +148,9 @@ The HL7 transport uses a thread pool to manage connections. A larger thread pool
 You can create a proxy service that uses the HL7 transport, to connect to an HL7 server. This proxy service will receive HL7-client connections and send them to the HL7 server. It can also receive XML messages over HTTP/HTTPS and transform them into HL7 before sending them to the server, and it will transform the HL7 responses back into XML.
 
 !!! Info
-    If you want to try the example configurations on this page, you must have an HL7 client and HL7 back-end application set up and running. To see a sample that illustrates how to create an HL7 client and back-end application, see: https://github.com/wso2/carbon-mediation/tree/v4.6.6/components/business-adaptors/hl7/org.wso2.carbon.business.messaging.hl7.samples/src/main/java/org/wso2/carbon/business/messaging/hl7/samples
-
+    If you want to try the example configurations on this page, you must have an HL7 client and HL7 back-end 
+    application set up and running. To see a sample that illustrates how to create an HL7 client and back-end 
+    application, see: [WSO2 Hl7 Samples](https://github.com/wso2/carbon-mediation/tree/v4.7.61/components/business-adaptors/hl7/org.wso2.carbon.business.messaging.hl7.samples/src/main/java/org/wso2/carbon/business/messaging/hl7/samples)
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="hl7testproxy" transports="https,http,hl7" statistics="disable" trace="disable" startOnLoad="true">
  <target>
@@ -221,7 +219,7 @@ You can use the HL7 message store to automatically store HL7 messages, allowing 
 ```
 
 ```xml tab='Message Store'
-<messageStore class="org.wso2.carbon.business.messaging.hl7.store.jpa.JPAStore"
+<messageStore class="org.wso2.micro.integrator.business.messaging.hl7.store.jpa.JPAStore"
                  name="HL7StoreJPA">
    <parameter name="openjpa.ConnectionDriverName">org.apache.commons.dbcp.BasicDataSource</parameter>
    <parameter name="openjpa.ConnectionProperties">DriverClassName=com.mysql.jdbc.Driver, Url=jdbc:mysql://localhost/hl7storejpa,  MaxActive=100,  MaxWait=10000,  TestOnBorrow=true,  Username=root,  Password=root</parameter>
@@ -231,7 +229,7 @@ You can use the HL7 message store to automatically store HL7 messages, allowing 
 
 In this configuration, when the HL7 proxy service runs, an HL7 service will start listening on the port defined in the transport.hl7.Port service parameter. When an HL7 message arrives, the proxy will send an ACK back to the client as specified in the HL7_RESULT_MODE property. The Clone mediator is used inside the proxy to replicate the message into the Send and Store sequences, where the message is sent to the specified endpoint and is also stored in the message store HL7StoreJPA.
 
-The HL7StoreJPA message store is a custom message store implemented in org.wso2.carbon.business.messaging.hl7.store.jpa.JPAStore. It takes OpenJPA properties as parameters. In this example, the openjpa.ConnectionProperties and openjpa.ConnectionDriverName properties are used to create an Apache DBCP pooled connection set to a MySQL database. You will need to create the database specified in the connection properties and provide the database authentication details matching your database. You may also need to place the JDBC drivers for your database into <EI_HOME>/lib . 
+The HL7StoreJPA message store is a custom message store implemented in org.wso2.micro.integrator.business.messaging.hl7.store.jpa.JPAStore. It takes OpenJPA properties as parameters. In this example, the openjpa.ConnectionProperties and openjpa.ConnectionDriverName properties are used to create an Apache DBCP pooled connection set to a MySQL database. You will need to create the database specified in the connection properties and provide the database authentication details matching your database. You may also need to place the JDBC drivers for your database into <EI_HOME>/lib . 
 
 You can view the messages in this message store using the HL7 Console UI. You can search for messages on the unique message UUID or HL7 specific Control ID. The search field supports the wildcard ‘%’ to allow LIKE queries. The table can also be filtered to search for content within messages.
 
