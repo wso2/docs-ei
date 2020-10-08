@@ -19,7 +19,7 @@ This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to 
 				<code><ESB_HOME>/repository/conf</code>
 			</td>
 			<td>
-				<code><EI_HOME>/conf</code>
+				<code><MI_HOME>/conf</code>
 			</td>
 		</tr>
 		<tr>
@@ -27,7 +27,7 @@ This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to 
 				<code><ESB_HOME>/repository/components/dropins</code>
 			</td>
 			<td>
-				<code><EI_HOME>/dropins</code>
+				<code><MI_HOME>/dropins</code>
 			</td>
 		</tr>
 		<tr>
@@ -35,7 +35,7 @@ This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to 
 				<code><ESB_HOME>/repository/components/extensions</code>
 			</td>
 			<td>
-				<code><EI_HOME>/extensions</code>
+				<code><MI_HOME>/extensions</code>
 			</td>
 		</tr>
 		<tr>
@@ -43,7 +43,7 @@ This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to 
 				<code><ESB_HOME>/repository/components/lib</code>
 			</td>
 			<td>
-				<code><EI_HOME>/lib</code>
+				<code><MI_HOME>/lib</code>
 			</td>
 		</tr>
 		<tr>
@@ -53,7 +53,7 @@ This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to 
 				</code>
 			</td>
 			<td>
-				<code><EI_HOME>/wso2/components/plugins</code>
+				<code><MI_HOME>/wso2/components/plugins</code>
 			</td>
 		</tr>
 	</table>
@@ -940,7 +940,6 @@ Given below are some of the most critical XML configuraton files in ESB 5.0. Exp
 	       
 		```toml tab='TOML configuration'
 		[transport.jms]
-		#
 	    sender_enable = true
 		```
 	    
@@ -1071,7 +1070,7 @@ See the topics given below to configure log4j2 in EI 7 Micro Integrator.
 
 -	[Log4j2 properties](../../../administer-and-observe/logs/configuring_log4j_properties)
 -	[Correlation logs](../../../administer-and-observe/observability)
--	[Wire logss](../../../develop/using-wire-logs)
+-	[Wire logs](../../../develop/using-wire-logs)
 -	[Service-level logs](../../../develop/enabling-logs-for-services)
 -	[REST API Access logs](../../../develop/enabling-logs-for-api)
 -	[Managing Log Growth](../../../administer-and-observe/logs/managing_log_growth)
