@@ -57,10 +57,11 @@ In general, we don't wait for the back-end application's response before sending
 
 In this case, the request thread will wait until the back-end application returns the response before sending the "accept-acknowledgement" message to the client. You can configure how long request threads wait for the application's response by configuring the time-out in milliseconds at the transport level:
 
-```xml
-<transportReceiver name="hl7" class="org.wso2.carbon.business.messaging.hl7.transport.HL7TransportListener">
-    <parameter name="transport.hl7.TimeOut">1000</parameter>
-</transportReceiver>
+```toml'
+[[custom_transport.listener]]
+class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
+protocol = "hl7"
+parameter.'transport.hl7.TimeOut' = 1000
 ```
 
 For more information on configuring the proxy service for application acknowledgment, see Application acknowledgement in Creating an HL7 Proxy Service.
@@ -161,7 +162,7 @@ You can create a proxy service that uses the HL7 transport, to connect to an HL7
        <log level="full" />
        <send />
     </outSequence>
-    <endpoint name="endpoint_urn_uuid_9CB8D06C91A1E996796270828144799-1418795938">
+    <endpoint name="hl7_endpoint">
        <address uri="hl7://localhost:9988" />
     </endpoint>
  </target>
@@ -247,7 +248,7 @@ If user doesn't want to wait for the back-end service to process the message and
             <property name="HL7_RESULT_MODE" value="ACK" scope="axis2"/>
             <property name="HL7_GENERATE_ACK" value="true" scope="axis2"/>
             <send>
-               <endpoint name="endpoint_urn_uuid_9CB8D06C91A1E996796270828144799-1418795938">
+               <endpoint name="hl7_endpoint">
                     <address uri="hl7://localhost:9988"/>
                 </endpoint>
             </send>
@@ -261,6 +262,7 @@ If user doesn't want to wait for the back-end service to process the message and
      </target>
      <parameter name="transport.hl7.AutoAck">false</parameter>
      <parameter name="transport.hl7.ValidateMessage">false</parameter>
+     <parameter name="transport.hl7.Port">9293</parameter>
 </proxy>
 ```
 
@@ -287,6 +289,7 @@ If you want to wait for the application's response before sending the acknowledg
   </target>
   <parameter name="transport.hl7.AutoAck">false</parameter>
   <parameter name="transport.hl7.ValidateMessage">true</parameter>
+  <parameter name="transport.hl7.Port">9294</parameter>
   <description></description>
 </proxy>
 ```

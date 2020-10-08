@@ -132,7 +132,7 @@ Add the following configurations to the `deployment.toml` file (stored in the `<
 [[custom_transport.listener]]
 class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
 protocol = "hl7"
-parameter.'transport.hl7.TimeOut' = 10000
+parameter.'transport.hl7.TimeOut' = 1000
 ```
 
 ```toml tab='HL7 Sender'
