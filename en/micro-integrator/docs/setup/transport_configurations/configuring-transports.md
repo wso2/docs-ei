@@ -116,10 +116,17 @@ For more information, see [service-level VFS parameters](../../../references/syn
 
 ## Configuring the HL7 transport
 
-!!! Warning
-    <b>This content is currently work in progress!</b>
+The HL7 transport allows you to handle Health Level 7 International (HL7) messages. 
 
-The HL7 transport allows you to handle Health Level 7 International (HL7) messages. Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder: 
+### Adding the transport
+
+HL7 is not shipped by default in the pack. To make the transport available, download the [HL7_ZIP](https://github
+.com/wso2-docs/WSO2_EI/raw/master/micro-integrator-resources/hl7/1.2.0/wso2mi-hl7-1.2.0.zip), extract it and add both
+ the jars inside it to the `<MI_HOME>/dropins` folder.
+
+### Enabling the transport
+
+Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder) to enable it. 
 
 ```toml tab='HL7 Listener'
 [[custom_transport.listener]]
