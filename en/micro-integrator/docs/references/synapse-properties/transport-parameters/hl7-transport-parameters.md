@@ -57,7 +57,7 @@ In general, we don't wait for the back-end application's response before sending
 
 In this case, the request thread will wait until the back-end application returns the response before sending the "accept-acknowledgement" message to the client. You can configure how long request threads wait for the application's response by configuring the time-out in milliseconds at the transport level:
 
-```toml'
+```toml
 [[custom_transport.listener]]
 class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
 protocol = "hl7"
