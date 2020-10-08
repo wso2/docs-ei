@@ -1044,4 +1044,4 @@ Follow the instructions given below to use the password decryption tool.
 ### Migrating Hl7 Transport
 
 HL7 transport is not shipped by default in the pack and the jars need to be added to the product manually. Please 
-refer [Configuring the HL7 transport](../transport_configurations/configuring-transports.md) for more details.
+refer [Configuring the HL7 transport](../transport_configurations/configuring-transports/#configuring-the-hl7-transport) for more details.
