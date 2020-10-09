@@ -6,7 +6,7 @@ For this purpose, you can consider an example where production information is pu
 
 The following image depicts the procedure to be followed by the Siddhi application you create.
 
-![Siddhi Application Flow](../../images/quick-start-guide-101/)
+![Siddhi Application Flow](../../images/quick-start-guide-101/scenario.png)
 
 1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_TOOLING_HOME>`.
 
@@ -97,6 +97,72 @@ group by name
 insert  into ProductionUpdatesStream;
 ```
 
-## What's Next?
+## Installing the required extensions
 
-Now you can deploy the `SweetFactoryApp` Siddhi application you created. To do this, proceed to [Step 3: Deploy the Siddhi Application](deploy-siddhi-application.md).
+The Streaming Integrator is by default shipped with most of the available Siddhi extensions by default. If a Siddhi extension you require is not shipped by default, you can download and install it via the Extension Installer tool. The `SweetFactoryApp` Siddhi application you created uses a source of the `cdc` type. The `cdc-mysql` extension that is required for this source is not shipped with WSO2 Streaming Integrator by default. Therefore, let's install it it both the Streaming Integrator server and Streaming Integrator Tooling as follows.
+
+**For the Streaming Integrator server**:
+
+1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing the appropriate command based on your operating system:</br>
+   
+   - For Windows: `server.bat --run`</br>
+   - For Linux/Mac OS:  `./server.sh`
+   
+2. To install the `cdc-mysql` extension, issue the following command from the `<SI_HOME>/bin` directory. 
+
+    - For Windows: `extension-installer.bat install cdc-mysql`</br>
+    - For Linux/Mac OS:  `./extension-installer.sh install install cdc-mysql`
+    
+    Once the installation is complete, a message is logged to inform you that the extension is successfully installed.
+    
+3. Restart the Streaming Integrator server.
+
+**For the Streaming Integrator Tooling**:
+
+1. In Streaming Integrator Tooling, click **Tools**, and then click **Extension Installer**. The **Extension Installer** dialog box opens.
+
+    ![Extension Installer Dialog Box](../../images/quick-start-guide-101/extension-installer-dialog.png)
+    
+    Click **Install** for **Change Data Capture - MySQL**.
+    
+2. Restart Streaming Integrator Tooling.
+
+## Testing the Siddhi application
+
+Before deploying the `SweetFactoryApp` Siddhi application to the Streaming Integrator Server, you need to test it to check whether the Siddhi queries you wrote work as expected. For this purpose, you can simulate events via the Event Simulator in Streaming Integrator Tooling as follows:
+
+!!! tip
+    Although you are using the Event Simulateor instead of performing an insert operation in the MySQL database table you created, you need to start the MySQL server before following the steps below.
+
+1. In Streaming Integrator Tooling, click the **Event Simulator** icon in the left pane of the editor to open the **Single Simulation** panel.
+
+    ![Event Simulation icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
+
+    It opens the left panel for event simulation as follows.
+
+    ![Event Simulation Panel](../../images/Testing-Siddhi-Applications/Event_Simulation_Panel.png)
+
+2.  Enter Information in the **Single Simulation** panel as described below.
+
+    ![Simulate Single Event](../../images/quick-start-guide-101/simulate-single-event.png)
+
+    1. In the **Siddhi App Name** field, select **SweetFactoryApp**.
+    
+    2. In the **Stream Name** field, select **InsertSweetProductionStream**.
+    
+    3. Under **Attributes**, enter values as follows:
+    
+        | **Attribute**       | **Value**           |
+        |---------------------|---------------------|
+        | **name (STRING)**   | `gingerbread`       |
+        | **amount (DOUBLE)** | `100`               |
+        
+3. Click **Start and Send**. 
+
+4. Open the `/Users/foo/productioninserts.csv`. It should contain the following row.
+
+    `GINGERBREAD,100.0`
+   
+
+!!! tip "What's Next?"
+    Now you can deploy the `SweetFactoryApp` Siddhi application you created. To do this, proceed to [Step 3: Deploy the Siddhi Application](deploy-siddhi-application.md).

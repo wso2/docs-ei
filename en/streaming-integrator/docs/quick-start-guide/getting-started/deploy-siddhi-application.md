@@ -89,6 +89,5 @@ To export the `SweetFactoryApp` Siddhi application as a Docker artifact, follow 
     
     Click **Export**. The Siddhi application is exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
     
-## What's Next?
-
-To install any additional extensions you may need to run the `SweetFactoryApp` Siddhi application you deployed, proceed to [Step 4: Extend Streaming Integrator](extend-si.md).
+!!! tip "What's Next?"
+    Now you can run the `SweetFactoryApp` in the Streaming Integrator server. To do this, proceed to [Step 4: Running the Siddhi Application](test-siddhi-application.md)
