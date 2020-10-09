@@ -34,4 +34,6 @@ The [Micro Integrator Dashboard](../../administer-and-observe/working-with-monit
 
 The [Streaming Integrator](https://ei.docs.wso2.com/en/latest/streaming-integrator/overview/overview/) of WSO2 EI 7.1 is a cloud-native, lightweight component that understands, captures, analyzes, processes, and acts upon streaming data and events in real-time. It utilizes the SQL-like query language ‘Siddhi’ to implement the solution.
 
+<img src="../../assets/img/intro/mstreaming-integrator.png" alt="Streaming Integrator" name="Streaming Integrator" width="600">
+
 The Streaming Integrator allows you to integrate static data sources with streaming data sources. Thus, it enables various types of applications (e.g., files, cloud based applications, data stores, streaming applications) to access streaming data and also exposes their output in a streaming manner. This is useful for performing ETL (Extract, Transform, Load) operations, capturing change data (i.e., CDC operations), and stream processing.
