@@ -1,5 +1,8 @@
 # HL7 Parameters
 
+!!! Warning
+    This content is currently Work in Progress!
+
 When you implement an integration use case that handles HL7 messsages, you can use the following HL7 parameters in your [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) artifact.
 
 !!! Info
