@@ -205,17 +205,21 @@ You can use the HL7 message store to automatically store HL7 messages, allowing 
 
 ```xml tab='Send Sequence'
 <sequence name="SendSequence">
-   <in>
-      <send>
-         <endpoint>
-            <address uri="hl7://localhost:9988"/>
-         </endpoint>
-      </send>
-   </in>
-   <out>
-      <log level="full"/>
-      <drop/>
-   </out>
+    <call>
+        <endpoint>
+            <address uri="hl7://localhost:9988">
+                <suspendOnFailure>
+                    <initialDuration>-1</initialDuration>
+                    <progressionFactor>1</progressionFactor>
+                </suspendOnFailure>
+                <markForSuspension>
+                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                </markForSuspension>
+            </address>
+        </endpoint>
+    </call>
+    <log level="full"/>
+    <drop/>
 </sequence>
 ```
 
@@ -296,7 +300,9 @@ If you want to wait for the application's response before sending the acknowledg
 
 ## Transferring messages from file system to file system
 
-WSO2 Enterprise Integrator(WSO2 EI) allows messages to be transferred between HL7 and the file system using the HL7 and VFS transports. To begin, ensure that you have the VFS and HL7 transports enabled by uncommenting the relevant transportReceiver and transportSender elements inside the <EI_HOME>/conf/axis2/axis2.xml file. You must also uncomment the relevant builder/formatter pair to enable WSO2 EI to work with the HL7 message format. For more information, see HL7 Transport and VFS Transport .
+WSO2 Enterprise Integrator(WSO2 EI) allows messages to be transferred between HL7 and the file system using the HL7 
+and VFS transports. For information on configuring Hl7 transport, see [HL7 transport]
+(../../../../setup/transport_configurations/configuring-transports/#configuring-the-hl7-transport).
 
 Once you have enabled the transports and started the WSO2 EI server, use the following proxy service configuration to run the sample. 
 
