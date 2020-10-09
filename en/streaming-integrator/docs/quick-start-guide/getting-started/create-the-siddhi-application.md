@@ -2,11 +2,11 @@
 
 Let's create your first Siddhi application.
 
-For this purpose, you can use the same example of temperature readings via a sensor mentioned in [Streaming Integration Overview](getting-started-guide-overview.md). You can consider a simple use case where you need to do view the temperature readings on your terminal. Also, instead of viewing all the temperature readings, you want to view the average of every three readings in a sliding manner.
+For this purpose, you can consider an example where production information is published in a database table. This information needs to be captured as and when it is published in the database, and published in a file after changing the case of the product name.
 
 The following image depicts the procedure to be followed by the Siddhi application you create.
 
-![Siddhi Application Flow](../../images/quick-start-guide-101/siddhi-application-flow.png)
+![Siddhi Application Flow](../../images/quick-start-guide-101/scenario.png)
 
 1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_TOOLING_HOME>`.
 
@@ -31,73 +31,138 @@ The following image depicts the procedure to be followed by the Siddhi applicati
     
     ![New Siddhi File](../../images/Creating-Siddhi-Applications/New_Siddhi_File.png)
     
-5. Specify a name for the new Siddhi application via the `@App:name` annotation, and a description via the `@App:description` annotation.
+5. Specify a name for the new Siddhi application via the `@App:name` annotation.
 
     ```
-    @App:name("TemperatureApp")
-    @App:description("This application captures the room temperature and analyzes it, and presents the results as logs in the output console.")
+    @App:name("SweetFactoryApp")
+    ```
+   
+6. First, let's define the stream that receives the input data. 
+
+    `define stream InsertSweetProductionStream (name string,amount double);`
+    
+7. To allow the `InsertSweetProductionStream` stream to capture inserts from the `productions` database, connect a source of the `cdc` type to it as shown below.
+
+    ```
+    @source(type='cdc',url = "jdbc:mysql://localhost:3306/production",username = "wso2si",password = "wso2",table.name = "SweetProductionTable",operation = "insert",
+    	@map(type='keyvalue'))
+    define stream InsertSweetProductionStream (name string,amount double);
+    ```
+8. To publish the captured data into a file, define an output stream as follows.
+
+    `define stream ProductionUpdatesStream (name string,amount double);`
+
+9. To publish the output events to a file, connect a file source to the stream as shown below:
+
+    ```
+    @sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
+   	@map(type='csv'))
+    define stream ProductionUpdatesStream (name string,amount double);
+    ```
+   
+   Here, you are publishing the output in the text format to a file named `productioninserts.csv` in the `/Users/foo` directory.
+   
+10. To convert the case of the product name from lower case to title case, and then publish the converted events to the file, write a query as follows.
+
+    ```
+    @info(name='query1')
+    from InsertSweetProductionStream 
+    select str:upper(name) as name, amount 
+    group by name 
+    insert  into ProductionUpdatesStream;
     ```
     
-6. The details to be captures include the room ID, device ID, and the temperature. To specify this, define an input stream with attributes to capture each of these details.
-
-    `define stream TempStream(roomNo string, deviceID long, temp double)`
+    This query gets the information inserted into the `productions` database table from the `InsertSweetProductionStream`stream. The `str:upper()` function included in the `select` clause converts the product name from lower case to title case. Once this conversion is done, the converted events are directed to the `ProductionUpdatesStream` stream. These events are written into the `/Users/foo/productioninserts.csv` file because it is configured via the `file` source you previously annotated to the `ProductionUpdatesStream` stream.
     
-7. The technicians need to know the average temperature with each new temperature reading. To publish this information, define an output stream including these details as attributes in the schema.
+11. Save the Siddhi application.
 
-    `define stream AverageTempStream(roomNo string, deviceID long, avgTemp double)`
-    
-8. The average temperature needs to be logged. Therefore, connect a sink of the `log` type to the output stream as shown below.
 
-    ```
-    @sink(type = 'log', 
-        @map(type = 'passThrough'))
-    define stream AverageTempStream (roomNo string, deviceID long, avgTemp double);
-    ```
+The completed Siddhi application looks as follows:
 
-    `passThrough` is specified as the mapping type because in this scenario, the attribute names are received as they are defined in the stream and do not need to be mapped.
-
-9. To get the input events, calculate the average temperature and direct the results to the output stream, add a query below the stream definitions as follows:
-
-    1. To name the query, add the `@info` annotation and enter `CalculateAverageTemperature` as the query name.
-
-        `@info(name = 'CalculateAvgTemp')`
-
-    2. To indicate that the input is taken from the `TempStream` stream, add the `from` clause as follows:
-
-        `from TempStream#window.length(3)`
-        
-        Here, `#window.length(3)` is a length window connected to the `TempStream` input stream indicates that the calculations are applied to every three input events in a sliding manner.
-        
-        !!! tip
-            For more information about all the supported window types, see [Siddhi Query Guide - Siddhi Execution Unique](https://siddhi-io.github.io/siddhi-execution-unique).
-
-    3. Specify how the values for the output stream attributes are derived by adding a `select` clause as follows.
-
-        `select roomNo, deviceID, avg(temp)`
-        
-        Here, you are applying the `avg()` function to the `temp` attribute in order to calculate the average for that attribute. However, this average calculation is applied to every subset of three events due to the length window connected to the `from` clause.
-
-    4. To insert the results into the output stream, add the `insert into` clause as follows.
-
-        `insert into AverageTempStream;`
-        
-The completed Siddhi application is as follows:
-        
 ```
-@App:name('TemperatureApp')
+@App:name('SweetFactoryApp')
 
-@App:description('This application captures the room temperature and analyzes it, and presents the results as logs in the output console.')
-define stream TempStream (roomNo string, deviceID string, temp double);
-@sink(type = 'log', 
-	@map(type = 'passThrough'))
-define stream AverageTempStream (roomNo string, deviceID string, avgTemp double);
+@source(type='cdc',url = "jdbc:mysql://localhost:3306/production",username = "wso2si",password = "wso2",table.name = "SweetProductionTable",operation = "insert",
+	@map(type='keyvalue'))
+define stream InsertSweetProductionStream (name string,amount double);
 
-@info(name = 'CalculateAvgTemp')
-from TempStream#window.length(3)
-select roomNo, deviceID, avg(temp) as avgTemp
-insert into AverageTempStream;
+@sink(type='file',file.uri = "/Users/foo/productioninserts.csv",
+	@map(type='csv'))
+define stream ProductionUpdatesStream (name string,amount double);
+
+@info(name='query1')
+from InsertSweetProductionStream 
+select str:upper(name) as name, amount 
+group by name 
+insert  into ProductionUpdatesStream;
 ```
 
-## What's Next?
+## Installing the required extensions
 
-To test the `TemperatureApp` Siddhi application you created, proceed to [Step 3: Test the Siddhi Application](test-siddhi-application.md).
+The Streaming Integrator is by default shipped with most of the available Siddhi extensions by default. If a Siddhi extension you require is not shipped by default, you can download and install it via the Extension Installer tool. The `SweetFactoryApp` Siddhi application you created uses a source of the `cdc` type. The `cdc-mysql` extension that is required for this source is not shipped with WSO2 Streaming Integrator by default. Therefore, let's install it it both the Streaming Integrator server and Streaming Integrator Tooling as follows.
+
+**For the Streaming Integrator server**:
+
+1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing the appropriate command based on your operating system:</br>
+   
+   - For Windows: `server.bat --run`</br>
+   - For Linux/Mac OS:  `./server.sh`
+   
+2. To install the `cdc-mysql` extension, issue the following command from the `<SI_HOME>/bin` directory. 
+
+    - For Windows: `extension-installer.bat install cdc-mysql`</br>
+    - For Linux/Mac OS:  `./extension-installer.sh install install cdc-mysql`
+    
+    Once the installation is complete, a message is logged to inform you that the extension is successfully installed.
+    
+3. Restart the Streaming Integrator server.
+
+**For the Streaming Integrator Tooling**:
+
+1. In Streaming Integrator Tooling, click **Tools**, and then click **Extension Installer**. The **Extension Installer** dialog box opens.
+
+    ![Extension Installer Dialog Box](../../images/quick-start-guide-101/extension-installer-dialog.png)
+    
+    Click **Install** for **Change Data Capture - MySQL**.
+    
+2. Restart Streaming Integrator Tooling.
+
+## Testing the Siddhi application
+
+Before deploying the `SweetFactoryApp` Siddhi application to the Streaming Integrator Server, you need to test it to check whether the Siddhi queries you wrote work as expected. For this purpose, you can simulate events via the Event Simulator in Streaming Integrator Tooling as follows:
+
+!!! tip
+    Although you are using the Event Simulateor instead of performing an insert operation in the MySQL database table you created, you need to start the MySQL server before following the steps below.
+
+1. In Streaming Integrator Tooling, click the **Event Simulator** icon in the left pane of the editor to open the **Single Simulation** panel.
+
+    ![Event Simulation icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
+
+    It opens the left panel for event simulation as follows.
+
+    ![Event Simulation Panel](../../images/Testing-Siddhi-Applications/Event_Simulation_Panel.png)
+
+2.  Enter Information in the **Single Simulation** panel as described below.
+
+    ![Simulate Single Event](../../images/quick-start-guide-101/simulate-single-event.png)
+
+    1. In the **Siddhi App Name** field, select **SweetFactoryApp**.
+    
+    2. In the **Stream Name** field, select **InsertSweetProductionStream**.
+    
+    3. Under **Attributes**, enter values as follows:
+    
+        | **Attribute**       | **Value**           |
+        |---------------------|---------------------|
+        | **name (STRING)**   | `gingerbread`       |
+        | **amount (DOUBLE)** | `100`               |
+        
+3. Click **Start and Send**. 
+
+4. Open the `/Users/foo/productioninserts.csv`. It should contain the following row.
+
+    `GINGERBREAD,100.0`
+   
+
+!!! tip "What's Next?"
+    Now you can deploy the `SweetFactoryApp` Siddhi application you created. To do this, proceed to [Step 3: Deploy the Siddhi Application](deploy-siddhi-application.md).
