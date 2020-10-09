@@ -1,5 +1,8 @@
 # HL7 Parameters
 
+!!! Warning
+    This content is currently Work in Progress!
+
 When you implement an integration use case that handles HL7 messsages, you can use the following HL7 parameters in your [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) artifact.
 
 !!! Info
@@ -297,119 +300,3 @@ If you want to wait for the application's response before sending the acknowledg
   <description></description>
 </proxy>
 ```
-
-## Transferring messages from file system to file system
-
-WSO2 Enterprise Integrator(WSO2 EI) allows messages to be transferred between HL7 and the file system using the HL7 
-and VFS transports. For information on configuring Hl7 transport, see [HL7 transport]
-(../../../../setup/transport_configurations/configuring-transports/#configuring-the-hl7-transport).
-
-Once you have enabled the transports and started the WSO2 EI server, use the following proxy service configuration to run the sample. 
-
-!!! Info
-    This sample uses the UNIX temporary directory /tmp/ in several VFS parameters; be sure to change them to match a location in your file system.
-
-```xml
-<proxy xmlns="http://ws.apache.org/ns/synapse" name="FileSystemToFileSystem" transports="vfs">
-  <target>
-    <inSequence>
-      <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
-      <property name="transport.vfs.ReplyFileName" expression="get-property('transport','FILE_NAME')" scope="transport" type="STRING"/>
-      <log level="full"/>
-      <send>
-        <endpoint>
-          <address uri="vfs:file:///tmp/out"/>
-        </endpoint>
-      </send>
-    </inSequence>
-  </target>
-  <parameter name="transport.PollInterval">5</parameter>
-  <parameter name="transport.vfs.FileURI">/tmp/in</parameter>
-  <parameter name="transport.vfs.FileNamePattern">.*\.hl7</parameter>
-  <parameter name="transport.vfs.ContentType">application/edi-hl7;charset="iso-8859-15"</parameter>
-  <parameter name="transport.hl7.ValidateMessage">false</parameter>
-</proxy>
-```
-
-Now, copy the following HL7 message into a text editor and save it as an .hl7 file inside the directory you specified with the transport.vfs.FileURI parameter (/tmp/in in the above example).
-
-`MSH|^~\&|Abc|Def|Ghi|JKL|20131231000000||ADT^A01|1234567|P|2.6|||NE|NE|CH|`
-
-The proxy service is configured to detect .hl7 files in the transport.vfs.FileURI directory. We have also configured the VFS content type as the application/edi-hl7 MIME type with an optional charset encoding. When you save the .hl7 file to that directory, the proxy service invokes the HL7 builders/formatters and builds the HL7 message into its equivalent XML format. It then prints the XML representation of the message on the management console and forwards the message to the VFS endpoint ‘/tmp/out’.
-
-## Transferring messages between HL7 and the file system
-
-Now, let's look at how we can send and receive files between an HL7 service and the file system. For this scenario, we will use the HAPI Test Panel to send messages to WSO2 EI. As with the previous example, ensure that you have the VFS and HL7 transports and their builders/formatters enabled, and replace the temporary directories shown in the sample with actual directories on your file system.
-
-```xml
-<proxy xmlns="http://ws.apache.org/ns/synapse"
-     name="HL7ToFileSystem"
-     transports="hl7"
-     statistics="disable"
-     trace="disable"
-     startOnLoad="true">
- <target>
-    <inSequence>
-       <log level="full"/>
-       <property name="HL7_RESULT_MODE" value="ACK" scope="axis2"/>
-       <property name="OUT_ONLY" value="true"/>
-       <property name="transport.vfs.ReplyFileName"
-                 expression="fn:concat(get-property('SYSTEM_DATE', 'yyyyMMdd.HHmmssSSS'), '.xml')"
-                 scope="transport"/>
-       <send>
-          <endpoint>
-             <address uri="vfs:file:///tmp/out"/>
-          </endpoint>
-       </send>
-    </inSequence>
- </target>
- <parameter name="transport.hl7.AutoAck">false</parameter>
- <parameter name="transport.hl7.Port">55555</parameter>
- <parameter name="transport.hl7.ValidateMessage">false</parameter>
- <description/>
-</proxy>
-```
-
-To invoke this proxy, use the HAPI Test Panel to connect to the HL7 service at the specified port and send a test message. When this proxy service runs, an HL7 service will start listening on the port defined in the transport.hl7.Port parameter. When the HL7 message arrives, the proxy will send an ACK back to the client as specified in the HL7_RESULT_MODE property. The HL7 message is then processed through WSO2 EI and sent to the VFS endpoint, which will save the HL7 message in ‘/tmp/out’.
-
-## Transferring messages between HL7 and FTP
-
-The following configuration is similar to the previous example, but it illustrates how to process files between an HL7 endpoint and files accessed through FTP. To run this sample, first set up an endpoint by starting a new receiver connection in the HAPI Test Panel on port 9988. You then configure this endpoint in the Send mediator as shown in the following proxy service example. The proxy service will detect .hl7 files in the transport.vfs.FileURI directory and send them to the HL7 endpoint.
-
-```xml
-<proxy xmlns="http://ws.apache.org/ns/synapse"
-       name="SFTPToHL7"
-       transports="vfs"
-       statistics="disable"
-       trace="disable"
-       startOnLoad="true">
-   <target>
-      <inSequence>
-         <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
-         <log level="full"/>
-         <send>
-            <endpoint>
-               <address uri="hl7://localhost:9988"/>
-            </endpoint>
-         </send>
-      </inSequence>
-      <outSequence>
-         <drop/>
-      </outSequence>
-   </target>
-   <parameter name="transport.vfs.ReconnectTimeout">2</parameter>
-   <parameter name="transport.vfs.ActionAfterProcess">MOVE</parameter>
-   <parameter name="transport.PollInterval">5</parameter>
-   <parameter name="transport.hl7.AutoAck">false</parameter>
-   <parameter name="transport.vfs.MoveAfterProcess">vfs:sftp://user:pass@localhost/vfs/out</parameter>
-   <parameter name="transport.vfs.FileURI">vfs:sftp://user:pass@localhost/vfs/in</parameter>
-   <parameter name="transport.vfs.MoveAfterFailure">vfs:sftp://user:pass@localhost/vfs/failed</parameter>
-   <parameter name="transport.vfs.FileNamePattern">.*\.hl7</parameter>
-   <parameter name="transport.vfs.ContentType">application/edi-hl7;charset="iso-8859-15"</parameter>
-   <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
-   <parameter name="transport.hl7.ValidateMessage">false</parameter>
-   <description/>
-</proxy>
-```
-
-Once you start the endpoint of the WSO2 EI server, if you place an HL7 message in the transport.vfs.FileURI directory, you will be able to see the message passed to the HL7 endpoint in the HAPI Test Panel.
