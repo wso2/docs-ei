@@ -1,11 +1,13 @@
-# Step 6: Update the Siddhi Application
+# Step 5: Update the Siddhi Application
 
-A Siddhi application can be easily extended to consume messages from more sources, to carry out more processing activities for data or to publish data to more destinations. For this example, consider a scenario where you also need to filter out the production data of eclairs and publish it to a Kafka topic so that applications that cannot read streaming data can have access to it. This involves extending the `SweetFactoryApp` Siddhi application to include Kafka in the streaming flow. To do this, follow the steps below:
+A Siddhi application can be easily extended to consume messages from more sources, to carry out more processing activities for data or to publish data to more destinations. For this example, consider a scenario where you also need to filter out the production data of eclairs and publish it to a Kafka topic so that applications that cannot read streaming data can have access to it. This involves extending the `SweetFactoryApp` Siddhi application to include Kafka in the streaming flow so that it functions as shown in the diagram below.
 
-1. Open the `<SI_HOME>/wso2/server/deployment/siddhi-files/SweetFactoryApp` Siddhi application in a text editor of your choice.
+![Updated Siddhi Application](../../images/quick-start-guide-101/updated-siddhi-application.png) 
 
-    !!! tip
-        Alternatively, you can open this file in Streaming Integrator Tooling and deploy it again after completing the changes and saving it.
+To update the `SweetFactoryApp` Siddhi application so that it functions as described, follow the steps below:
+
+1. Start and access Streaming Integrator Tooling. Click the **File Explorer** icon in the side panel and then click **SweetFactoryApp.siddhi** to open the Siddhi application that you already created and saved.
+
 
 2. Define another stream to which you can direct the filtered events you need to publish in a the Kafka topic.
 
@@ -84,8 +86,15 @@ A Siddhi application can be easily extended to consume messages from more source
     group by name 
     insert  into PublishFilteredDataStream;
     ```
+   
+7. Deploy the updated `SweetFactoryApp` Siddhi application as you previously did in [Step 3: Deploy the Siddhi Application](deploy-siddhi-application.md).
+
+8. The `kafka` extension is not shipped with the Streaming Integrator Server by default. Therefore, install it via the Extension Installer Tool. You can do this by starting the Streaming Integrator server and then issuing the appropriate command (based on your operating system) from the `<SI_HOME>/bin` directory.
+
+    - **For Linux**: `./extension-installer.sh install kafka`<br/>
+    - **For Windows**: `extension-installer.bat install kafka`
             
-7. To test the Siddhi application after the update, insert records into the `production` database as follows.
+9. To test the Siddhi application after the update, insert records into the `production` database as follows.
 
     `insert into SweetProductionTable values('eclairs',100.0);`
     
@@ -93,7 +102,7 @@ A Siddhi application can be easily extended to consume messages from more source
     
     `insert into SweetProductionTable values('toffee',40.0);`
     
-8. To check the messages in the `eclair_production` topic, navigate to the `<KAFKA_HOME>` directory and issue the following command:
+10. To check the messages in the `eclair_production` topic, navigate to the `<KAFKA_HOME>` directory and issue the following command:
 
     `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic eclair-production --from-beginning`
     
@@ -106,8 +115,5 @@ A Siddhi application can be easily extended to consume messages from more source
    
    Note that the third record you inserted does not appear in the Kafka consumer log because the value for the `name` field is not `ECLAIRS` and therefore, it is filtered out.
    
-## What's Next?
-Next, you can configure WSO2 Streaming Integrator to handle errors that can occur in the Streaming Integration flow of the `SweetFactoryApp` Siddhi application. To do this, proceed to [Step 7: Handle Errors](handle-errors.md).
-    
-    
-    
+!!! tip "What's Next?"
+    Next, you can configure WSO2 Streaming Integrator to handle errors that can occur in the Streaming Integration flow of the `SweetFactoryApp` Siddhi application. To do this, proceed to [Step 7: Handle Errors](handle-errors.md).
