@@ -39,7 +39,7 @@ Follow these steps to set up the Integration Project and import AmazonS3 connect
 
 2. Specify the API name as `S3ConnectorTestAPI` and API context as `/s3connector`. You can go to the source view of the XML configuration file of the API and copy the following configuration.
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/s3connector" name="S3ConnectorTestAPI" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="PUT" uri-template="/createbucket">
@@ -57,7 +57,6 @@ Follow these steps to set up the Integration Project and import AmazonS3 connect
                 <secretAccessKey>H/P/H6Tey2fQODHAU1JBbl/NhL/WpSaEkebvLlp4</secretAccessKey>
                 <region>us-east-2</region>
                 <methodType>{$ctx:REST_METHOD}</methodType>
-                <contentType>{$axis2:ContentType}</contentType>
                 <addCharset>false</addCharset>
                 <host>s3.us-east-2.amazonaws.com</host>
                 <isXAmzDate>true</isXAmzDate>

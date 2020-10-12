@@ -22,12 +22,18 @@ As shown above, if your organization is running on a decentralized, cloud-native
 
 The WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio); a comprehensive graphical integration flow designer for building integrations using a simple drag-and-drop functionality.
 
+<img src="../../assets/img/intro/integration-studio.png" alt="Integration Studio" name="Integration Studio" width="700">
+
 ## Administration
 
 The [Micro Integrator Dashboard](../../administer-and-observe/working-with-monitoring-dashboard) and [CLI](../../administer-and-observe/using-the-command-line-interface) are specifically designed for monitoring and administration of the Micro Integrator instances. Each of these tools are capable of binding to a single server instance by invoking the [management API](../../administer-and-observe/working-with-management-api) that is exposed by the server. This allow you to view and manage artifacts, logs/log configurations, and users of a server instance.
 
+<img src="../../assets/img/intro/cli-dashboard.png" alt="CLI and dashboard" name="CLI and dashboard" width="700">
+
 ## Streaming integration
 
 The [Streaming Integrator](https://ei.docs.wso2.com/en/latest/streaming-integrator/overview/overview/) of WSO2 EI 7.1 is a cloud-native, lightweight component that understands, captures, analyzes, processes, and acts upon streaming data and events in real-time. It utilizes the SQL-like query language ‘Siddhi’ to implement the solution.
+
+<img src="../../assets/img/intro/streaming-integrator.png" alt="Streaming Integrator" name="Streaming Integrator" width="600">
 
 The Streaming Integrator allows you to integrate static data sources with streaming data sources. Thus, it enables various types of applications (e.g., files, cloud based applications, data stores, streaming applications) to access streaming data and also exposes their output in a streaming manner. This is useful for performing ETL (Extract, Transform, Load) operations, capturing change data (i.e., CDC operations), and stream processing.

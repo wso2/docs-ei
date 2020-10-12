@@ -23,7 +23,7 @@ All three operations are exposed via an API. The API with the context `/resource
 > **Note**: In this example we will be using XPath 2.0 which needs to be enabled in the product as shown below before starting the WSO2 EI service. If you are using EI7, you need to enable this property by adding the following to the PRODUCT-HOME/conf/deployment.toml file. You can further refer to the [Product Configurations](../../../references/config-catalog/#http-transport). If you are using EI 6, you can enable this property by uncommenting **synapse.xpath.dom.failover.enabled=true** property in PRODUCT-HOME/conf/synapse.properties file. 
    ```   
    [mediation]
-   synapse.enable_xpath_dom_failover="true"
+   synapse.enable_xpath_dom_failover=true
    ```
    
 The following diagram shows the overall solution. The user creates a topic, stores some company update notifications, and then receives it back. To invoke each operation, the user uses the same API.
@@ -186,7 +186,7 @@ First create an API, which will be where we configure the integration logic. Rig
    3. Add the property mediator to capture the `subscriptionName` values. Follow the steps given in createTopicSubscription operation.     
            
 Now you can switch into the Source view and check the XML configuration files of the created API and sequences.    
-    ??? note "pubsubApi.xml"
+    !!! note "pubsubApi.xml"
         ```
         <?xml version="1.0" encoding="UTF-8"?>
         <api context="/resources" name="pubsubApi" xmlns="http://ws.apache.org/ns/synapse">
@@ -261,6 +261,7 @@ Now you can switch into the Source view and check the XML configuration files of
             </resource>
         </api>
         ```
+
 ## Get the project
 
 You can download the ZIP file and extract the contents to get the project code.

@@ -961,3 +961,8 @@ Follow the instructions given below to use the password decryption tool.
 		Upon successful execution, the decrypted (plain-text) values in the `secure-vault.properties` and `cipher-text.properties` files will be written respectively to the `<EI_HOME>/migration/secure-vault-decrypted.properties` file and the `<EI_HOME>/migration/cipher-text-decrypted.properties` file in EI 6.x.
 
 The encrypted passwords are now decrypted and you have access to the plain-text password values.
+
+### Migrating Hl7 Transport
+
+HL7 transport is not shipped by default in the pack and the jars need to be added to the product manually. Please 
+refer [Configuring the HL7 transport](../transport_configurations/configuring-transports/#configuring-the-hl7-transport) for more details.

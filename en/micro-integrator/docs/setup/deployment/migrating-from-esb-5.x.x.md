@@ -1040,3 +1040,8 @@ Follow the instructions given below to use the password decryption tool.
 	The encrypted passwords are now decrypted and you have access to the plain-text password values.
 
 6.	You can now follow the instructions in [Encrypting Secrets](../../security/encrypting_plain_text) to re-encrypt the plain text secrets for the Micro Integrator.
+
+### Migrating Hl7 Transport
+
+HL7 transport is not shipped by default in the pack and the jars need to be added to the product manually. Please 
+refer [Configuring the HL7 transport](../transport_configurations/configuring-transports/#configuring-the-hl7-transport) for more details.
