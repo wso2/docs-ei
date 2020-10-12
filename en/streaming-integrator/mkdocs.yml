@@ -50,8 +50,6 @@ nav:
     - 'Introduction': 'overview/overview.md'
     - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
     - 'Creating Your First Siddhi Application':
-    - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
-    - 'Creating Your First Siddhi Application':
       - 'Streaming Integration Overview': 'quick-start-guide/getting-started/getting-started-guide-overview.md'
       - 'Step 1: Download and Install Streaming Integrator': 'quick-start-guide/getting-started/download-install-and-start-si.md'
       - 'Step 2: Create the Siddhi Application': 'quick-start-guide/getting-started/create-the-siddhi-application.md'
