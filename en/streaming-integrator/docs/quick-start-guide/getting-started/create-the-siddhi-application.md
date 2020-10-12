@@ -99,8 +99,25 @@ insert  into ProductionUpdatesStream;
 
 ## Installing the required extensions
 
-The Streaming Integrator is by default shipped with most of the available Siddhi extensions by default. If a Siddhi extension you require is not shipped by default, you can download and install it via the Extension Installer tool. The `SweetFactoryApp` Siddhi application you created uses a source of the `cdc` type. The `cdc-mysql` extension that is required for this source is not shipped with WSO2 Streaming Integrator by default. Therefore, let's install it as follows.
+The Streaming Integrator is by default shipped with most of the available Siddhi extensions by default. If a Siddhi extension you require is not shipped by default, you can download and install it via the Extension Installer tool. The `SweetFactoryApp` Siddhi application you created uses a source of the `cdc` type. The `cdc-mysql` extension that is required for this source is not shipped with WSO2 Streaming Integrator by default. Therefore, let's install it it both the Streaming Integrator server and Streaming Integrator Tooling as follows.
 
+**For the Streaming Integrator server**:
+
+1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing the appropriate command based on your operating system:</br>
+   
+   - For Windows: `server.bat --run`</br>
+   - For Linux/Mac OS:  `./server.sh`
+   
+2. To install the `cdc-mysql` extension, issue the following command from the `<SI_HOME>/bin` directory. 
+
+    - For Windows: `extension-installer.bat install cdc-mysql`</br>
+    - For Linux/Mac OS:  `./extension-installer.sh install install cdc-mysql`
+    
+    Once the installation is complete, a message is logged to inform you that the extension is successfully installed.
+    
+3. Restart the Streaming Integrator server.
+
+**For the Streaming Integrator Tooling**:
 
 1. In Streaming Integrator Tooling, click **Tools**, and then click **Extension Installer**. The **Extension Installer** dialog box opens.
 
