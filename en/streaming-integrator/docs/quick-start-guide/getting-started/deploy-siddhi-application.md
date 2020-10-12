@@ -1,6 +1,6 @@
-# Step 4: Deploy the Siddhi Application
+# Step 3: Deploy the Siddhi Application
 
-In [Step 3: Test the Siddhi Application](test-siddhi-application.md), you tested the `TemperatureApp` Siddhi application and confirmed that it is working as expected. Now you are ready to deploy it in the Streaming Integrator server, export it as a Docker image, or deploy in Kubernetes.
+The `SweetFactoryApp` that you created in [Step 2: Create the Siddhi Application](create-the-siddhi-application.md) is now ready to be deployed in the Streaming Integrator server, exported as a Docker image, or deployed in Kubernetes.
 
 ## Deploying in Streaming Integrator server
 
@@ -34,20 +34,20 @@ To deploy your Siddhi application in the Streaming Integrator server, follow the
 
     Then click **Add**.
 
-4. Select the check boxes for the **TemperatureApp.siddhi** Siddhi application and the server you added as shown below.
+4. Select the check boxes for the **SweetFactoryApp.siddhi** Siddhi application and the server you added as shown below.
 
     ![Deploy Siddhi Apps to Server](../../images/quick-start-guide-101/select-siddhi-app-and-server.png)
 
 5. Click **Deploy**.
 
-    As a result, the `TemperatureApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory, and the following is message displayed in the dialog box.
+    As a result, the `SweetFactoryApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory, and the following is message displayed in the dialog box.
 
     ![Siddhi App successfully deployed](../../images/quick-start-guide-101/siddhi-app-successfully-deployed.png)
 
 
 ## Deploying in Docker
 
-To export the `TemperatureApp` Siddhi application as a Docker artifact, follow the procedure below:
+To export the `SweetFactoryApp` Siddhi application as a Docker artifact, follow the procedure below:
 
 1. Open the Streaming Integrator Tooling.
 
@@ -59,7 +59,7 @@ To export the `TemperatureApp` Siddhi application as a Docker artifact, follow t
     
     ![Export as Docker dialog box](../../images/quick-start-guide-101/export-as-docker-dialog-box.png)
     
-3. Select the **TemperatureApp.siddhi** check box and click **Next**.
+3. Select the **SweetFactoryApp.siddhi** check box and click **Next**.
     
 4. In **Step 2**, you can template values of the Siddhi Application.
     
@@ -89,6 +89,5 @@ To export the `TemperatureApp` Siddhi application as a Docker artifact, follow t
     
     Click **Export**. The Siddhi application is exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
     
-## What's Next?
-
-When you are designing Siddhi applications, you may need to use functions, transports, formats that the WSO2 Streaming Integrator does not support by default. In such situations, you can extend the Streaming Integrator by installing the required Siddhi extensions. To try out installing a Siddhi extension that is not shipped with WSO2 Streaming Integrator by default, proceed to [Extend Streaming Integrator](extend-si.md). 
+!!! tip "What's Next?"
+    Now you can run the `SweetFactoryApp` in the Streaming Integrator server. To do this, proceed to [Step 4: Running the Siddhi Application](test-siddhi-application.md)
