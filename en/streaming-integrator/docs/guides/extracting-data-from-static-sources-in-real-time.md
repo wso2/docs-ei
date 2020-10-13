@@ -122,6 +122,38 @@ This generates the following log in the console.
 
 ``INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - VacationsApp : LogStream : Event{timestamp=1563378804914, data=[1, 1602506739000, john doe, garden tour, 1], isExpired=false}``
 
+**To capture updates**:
+
+Specify `update` as the value for the `operation` parameter of the CDC source as shown below:
+
+```sql
+@source(type = 'cdc', url = "jdbc:mysql://localhost:3306/tours?useSSL=false", username = "wso2si", password = "wso2", table.name = "OnlineBookingsTable", operation = "update", mode = "listening", jdbc.driver.name = "com.mysql.jdbc.Driver",
+	@map(type = 'keyvalue'))
+define stream OnlineBookingsStream (ref int, timestamp int, name string, package string, people int);
+```
+
+**To capture deletes**:
+
+Specify `delete` as the value for the `operation` parameter of the CDC source as shown below:
+
+```sql
+@source(type = 'cdc', url = "jdbc:mysql://localhost:3306/tours?useSSL=false", username = "wso2si", password = "wso2", table.name = "OnlineBookingsTable", operation = "delete", mode = "listening", jdbc.driver.name = "com.mysql.jdbc.Driver",
+	@map(type = 'keyvalue'))
+define stream OnlineBookingsStream (ref int, timestamp int, name string, package string, people int);
+```
+
+### Supporting Siddhi extensions
+
+The following is a list of Siddhi extensions that support change data capturing to allow you to extract database records as input events in real time.
+
+| **Extension**                    | **Name**         | **Description**                                 |
+|----------------------------------|------------------|-------------------------------------------------|
+| Change Data Capture - Mongo DB   | `cdc-mongodb`    | Captures change data from Mongo DB databases.   | 
+| Change Data Capture - MS SQL     | `cdc-mssql`      | Captures change data from MS SQL databases.     |
+| Change Data Capture - MySQL      | `cdc-mysql`      | Captures change data from MySQL databases.      | 
+| Change Data Capture - Oracle     | `cdc-oracle`     | Captures change data from Oracle databases.     |
+| Change Data Capture - PostgreSQL | `cdc-postgresql` | Captures change data from PostgreSQL databases. |
+
 
 ## Consuming data from files
 
