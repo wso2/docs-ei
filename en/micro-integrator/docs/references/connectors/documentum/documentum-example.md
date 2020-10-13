@@ -15,6 +15,9 @@ The example consists of an API named as Documentum API with two resources create
 **Get Cabinets**
 /getcabinets: The user sends the request payload, containing the repository name to list cabinets present under that in Documentum. This request is sent to WSO2 EI where the Documentum Connector API resides. Once the API is invoked, it returns the list of cabinets.
 
+**Create Document**
+/createdocument: The user sends the request payload which includes the folder ID and document name. This request is sent to WSO2 EI where the Documentum Connector API resides. Once the API is invoked, it will create the new Document in Documentun under the given folder ID.
+
 The following diagram shows the overall solution.
 
 <img src="../../../../assets/img/connectors/Documentum-example.png" title="Documentum connector example" width="400" alt="Documentum connector example"/>
