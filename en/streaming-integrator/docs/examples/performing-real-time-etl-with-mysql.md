@@ -35,11 +35,6 @@ You can capture following type of changes done to a database table:
 !!!info "Before you begin:"
     - You need to have access to a MySQL instance.<br/>
     - Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/>
-    - Add the MySQL JDBC driver into the `<SI_HOME>/lib` directoryas follows:<br/>
-        1. Download the MySQL JDBC driver from [the MySQL site](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).<br/>
-        2. Unzip the archive.<br/>
-        3. Copy the `mysql-connector-java-5.1.45-bin.jar` to the `<SI_HOME>/lib` directory.<br/>
-        4. Start the SI server.<br/>
     - Once you install MySQL and start the MySQL server, create the database and the database table you require as follows:
         1. Let's create a new database in the MySQL server which you are to use throughout this tutorial. To do this, execute the following query.<br/>
             ```
@@ -53,7 +48,6 @@ You can capture following type of changes done to a database table:
             `use production;`<br/>
             `CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));`<br/>            
     - Download and install the [siddhi-io-cdc](https://siddhi-io.github.io/siddhi-io-cdc/) extension. For instructions, see [Downloading and Instaling Siddhi Connectors](../connectors/downloading-and-Installing-Siddhi-Extensions/).
-
 
 
 #### Capturing inserts
@@ -86,12 +80,10 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
     !!!info
         This Siddhi application captures all the inserts made to the `SweetProductionTable` database table and logs them.
         
-3. To install the extensions required for the `CDCListenForInserts` Siddhi application you deployed, open a new terminal window and navigate to the `<SI_HOME>/bin` directory and issue one of the following commands as appropriate, based on your operating system:
-    <br/>
-    - For Windows: `extension-installer.bat`<br/>
-    <br/>
-    - For Linux:  `sh extension-installer.sh`<br/>
-    <br/>
+3. Start the WSO2 Streaming Integrator server by issuing the appropriate command from the `<SI_HOME>/bin` directory based on your operating system.
+
+    - **For Linux**: `./server.sh`
+    - **For Windows**: `server.bat --run`
 
 4. Now let's perform an insert operation on the MySQL table by executing the following MySQL query on the database:
 
