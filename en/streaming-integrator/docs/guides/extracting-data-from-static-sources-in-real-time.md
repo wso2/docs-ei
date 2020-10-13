@@ -14,6 +14,13 @@ You can use the [siddhi-io-cdc](https://siddhi-io.github.io/siddhi-io-cdc/api/la
     Here, the data source is periodically polled in order to capture changes. The polling period can be specified. This mode allows only `insert` and `update` operations to be captured.
 
 - Listening Mode
+    Here, the source continuously listens to the change log of the database and notifies as soon as a change takes place. Unlike the polling mode, change data is captured immediately instead of periodically. This mode allows `insert`, `update`, and `delete` operations to be captured.
+    
+Let's understand how to capture change data in both the modes.
+
+### Polling mode
+
+### Listening mode
 
 ## Consuming data from files
 
