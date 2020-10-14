@@ -200,4 +200,3 @@ See the following examples demonstrating HL7 use cases:
 - [Enabling HL7](../../../../setup/transport_configurations/configuring-transports/#configuring-the-hl7-transport)
 - [Mediating HL7 Messages](../../../../use-cases/examples/hl7-examples/HL7_proxy_service)
 - [Configuring Message Acknowledgement for HL7 Messages](../../../../use-cases/examples/hl7-examples/acknowledge_hl7_messages)
-- [Storing HL7 Incoming Messages](../../../../use-cases/examples/hl7-examples/HL7_message_store)
