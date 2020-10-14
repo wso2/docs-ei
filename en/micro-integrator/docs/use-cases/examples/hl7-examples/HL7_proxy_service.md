@@ -1,6 +1,6 @@
 # Mediating HL7 Messages
 
-You can create a proxy service that uses the HL7 transport, to connect to an HL7 server. This proxy service will receive HL7-client connections and send them to the HL7 server. It can also receive XML messages over HTTP/HTTPS and transform them into HL7 before sending them to the server, and it will transform the HL7 responses back into XML.
+You can create a proxy service that uses the HL7 transport to connect to an HL7 server. This proxy service will receive HL7-client connections and send them to the HL7 server. It can also receive XML messages over HTTP/HTTPS and transform them into HL7 before sending them to the server, and it will transform the HL7 responses back into XML.
 
 ## Synapse configuration
 

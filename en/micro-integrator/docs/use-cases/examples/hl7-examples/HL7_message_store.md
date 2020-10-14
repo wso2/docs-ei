@@ -1,6 +1,6 @@
 # Storing HL7 Messages
 
-You can use the HL7 message store to automatically store HL7 messages, allowing you to audit and replay messages as needed. The HL7 store is a custom message store implementation on top of Open JPA. 
+You can use the HL7 message store to automatically store HL7 messages. This allows you to audit and replay messages as needed. The HL7 store is a custom message store implementation on top of Open JPA. 
 
 ## Synapse configuration
 

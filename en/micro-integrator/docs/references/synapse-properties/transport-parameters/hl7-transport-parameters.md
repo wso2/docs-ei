@@ -11,7 +11,7 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
 
 ## Service-level Parameters
 
-### Receiver port (Required)
+### HL7 receiver port (Required)
 
 <table>
   <tr>
