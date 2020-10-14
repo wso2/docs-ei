@@ -238,3 +238,300 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 | **Scope**            | axis2                                                                                                                                                                                      |
 | **Description**      | Specifies the encoding type used for the content of the files processed by the transport. Note that this property cannot be used if the 'setCharacterEncoding' property is set to 'false'. |
 | **Example**          | `             <property name="CHARACTER_SET_ENCODING" value="UTF-8" scope="axis2" type="STRING"/>            `                                                                             |
+
+## HL7 Properties
+
+### HL7_GENERATE_ACK
+
+<table>
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			HL7_GENERATE_ACK
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Possible Values
+		</td>
+		<td>
+			true/false
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Scope
+		</td>
+		<td>
+			axis2
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Description
+		</td>
+		<td>
+			Use this property to disable auto acknowledgement of HL7 messages that are received by the Micro Integrator. By default, auto acknowledgement is enabled in the Micro Integrator. You can disable this by setting this property to 'false'.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Example
+		</td>
+		<td>
+			<div class="content-wrapper">
+			<div class="code panel pdl" style="border-width: 1px;">
+			<div class="codeContent panelContent pdl">
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_GENERATE_ACK&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;true&quot;</span><span class="kw">&lt;/parameter&gt;</span></span></code></pre></div>
+			</div>
+			</div>
+			</div>
+		</td>
+	</tr>
+</table>
+
+### HL7_RESULT_MODE
+
+<table>
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			HL7_RESULT_MODE
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Possible Values
+		</td>
+		<td>
+			<code>ACK</code> or <code>NACK</code>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Scope
+		</td>
+		<td>
+			axis2
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Description
+		</td>
+		<td>
+			Use this property to specify whether an ACK or NACK should be returned to the messaging client as an acknowledgement. If you select a NACK response, you need to specify a custom NACK message by using the <code>HL7_NACK_MESSAGE</code> as given below.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Example
+		</td>
+		<td>
+			<div class="content-wrapper">
+			<div class="code panel pdl" style="border-width: 1px;">
+			<div class="codeContent panelContent pdl">
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_RESULT_MODE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;ACK|NACK&quot;</span><span class="kw">&lt;/parameter&gt;</span></span></code></pre></div>
+			</div>
+			</div>
+			</div>
+		</td>
+	</tr>
+</table>
+
+### HL7_NACK_MESSAGE
+
+<table>
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			HL7_NACK_MESSAGE
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Possible Values
+		</td>
+		<td>
+			User defined string value.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Scope
+		</td>
+		<td>
+			axis2
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Description
+		</td>
+		<td>
+			Use this property to set a custom NACK message that should be sent to the HL7 client as an acknowledgement. This property can be used only if the HL7 result mode is set to <code>NACK</code>.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Example
+		</td>
+		<td>
+			<div class="content-wrapper">
+			<div class="code panel pdl" style="border-width: 1px;">
+			<div class="codeContent panelContent pdl">
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_NACK_MESSAGE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;error message&quot;</span><span class="kw">&lt;/parameter&gt;</span></span></code></pre></div>
+			</div>
+			</div>
+			</div>
+		</td>
+	</tr>
+</table>
+
+### HL7_APPLICATION_ACK
+
+<table>
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			HL7_APPLICATION_ACK
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Possible Values
+		</td>
+		<td>
+			true/false
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Scope
+		</td>
+		<td>
+			axis2
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Description
+		</td>
+		<td>
+			Use this property to specify whether the Micro Integrator should wait for the backend to process the message before sending an acknowledgement (ACK or NACK message) back to the messaging client.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Example
+		</td>
+		<td>
+			<div class="content-wrapper">
+			<div class="code panel pdl" style="border-width: 1px;">
+			<div class="codeContent panelContent pdl">
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_APPLICATION_ACK&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;true|false&quot;</span><span class="kw">&lt;/parameter&gt;</span></span></code></pre></div>
+			</div>
+			</div>
+			</div>
+		</td>
+	</tr>
+</table>
+
+### HL7_RAW_MESSAGE
+
+<table>
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			HL7_RAW_MESSAGE
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Possible Values
+		</td>
+		<td>
+			$axis2:HL7_RAW_MESSAGE
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Scope
+		</td>
+		<td>
+			axis2
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Description
+		</td>
+		<td>
+			Use this property to retrieve the original raw EDI format HL7 message in an InSequence.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Example
+		</td>
+		<td>
+			<div class="content-wrapper">
+			<div class="code panel pdl" style="border-width: 1px;">
+			<div class="codeContent panelContent pdl">
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_RAW_MESSAGE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;$axis2:HL7_RAW_MESSAGE&quot;</span><span class="kw">&lt;/parameter&gt;</span></span></code></pre></div>
+			</div>
+			</div>
+			</div>
+		</td>
+	</tr>
+</table>

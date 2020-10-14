@@ -206,6 +206,10 @@ nav:
           - 'Using the TCP Transport': 'use-cases/examples/transport_examples/tcp-transport-examples.md'
           - 'Using the FIX Transport': 'use-cases/examples/transport_examples/fix-transport-examples.md'
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
+          - HL7 Examples:
+            - 'Mediating HL7 Messages': 'use-cases/examples/hl7-examples/HL7_proxy_service.md'
+            - 'Acknowledging HL7 Messages': 'use-cases/examples/hl7-examples/acknowledge_hl7_messages.md'
+            - 'Storing HL7 Messages': 'use-cases/examples/hl7-examples/HL7_message_store.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
     - Develop:
