@@ -126,13 +126,13 @@ HL7 is not shipped by default in the pack. To make the transport available, down
 
 ### Enabling the transport
 
-Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder) to enable it. 
+Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder: 
 
 ```toml tab='HL7 Listener'
 [[custom_transport.listener]]
 class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
 protocol = "hl7"
-parameter.'transport.hl7.TimeOut' = 1000
+parameter.'transport.hl7.TimeOut' = 10000
 ```
 
 ```toml tab='HL7 Sender'
@@ -140,6 +140,8 @@ parameter.'transport.hl7.TimeOut' = 1000
 class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender"
 protocol = "hl7"
 ```
+
+You can configure how long request threads wait for the application's response by specifying the `parameter.'transport.hl7.TimeOut'` parameter as shown above. This configures the timeout in milliseconds at the transport level.
 
 ## Configuring the TCP transport
 
