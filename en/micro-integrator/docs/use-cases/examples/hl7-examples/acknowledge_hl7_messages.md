@@ -90,14 +90,15 @@ Create the artifacts:
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
-4. [Enable the HL7 transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-hl7-transport) in your Micro Integrator.
+4. [Configure the HL7 transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-hl7-transport) in your Micro Integrator.
 5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
-To test this scenario, you need an HL7 client and HL7 back-end application set up and running. 
+To test this scenario, you need the following:
 
-!!! Info
-    To see a sample that illustrates how to create an HL7 client and back-end 
-    application, see [WSO2 Hl7 Samples](https://github.com/wso2/carbon-mediation/tree/v4.7.61/components/business-adaptors/hl7/org.wso2.carbon.business.messaging.hl7.samples/src/main/java/org/wso2/carbon/business/messaging/hl7/samples).
+- An HL7 client that sends messages to the port specified by the `transport.hl7.Port` parameter.
+- An HL7 back-end application that recieves messages from the Micro Integrator.
+
+You can simulate the HL7 client and back-end application using a tool such as <b>HAPI</b>.
 
 ## Example 2: Generate ACK/NACK after the backend responds
 
@@ -139,11 +140,12 @@ Create the artifacts:
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
-4. [Enable the HL7 transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-hl7-transport) in your Micro Integrator.
+4. [Configure the HL7 transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-hl7-transport) in your Micro Integrator.
 5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
-To test this scenario, you need an HL7 client and HL7 back-end application set up and running. 
+To test this scenario, you need the following:
 
-!!! Info
-    To see a sample that illustrates how to create an HL7 client and back-end 
-    application, see [WSO2 Hl7 Samples](https://github.com/wso2/carbon-mediation/tree/v4.7.61/components/business-adaptors/hl7/org.wso2.carbon.business.messaging.hl7.samples/src/main/java/org/wso2/carbon/business/messaging/hl7/samples).
+- An HL7 client that sends messages to the port specified by the `transport.hl7.Port` parameter.
+- An HL7 back-end application that recieves messages from the Micro Integrator.
+
+You can simulate the HL7 client and back-end application using a tool such as <b>HAPI</b>.
