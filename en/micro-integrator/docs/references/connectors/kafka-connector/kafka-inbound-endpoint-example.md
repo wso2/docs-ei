@@ -81,7 +81,7 @@ Before you begin, set up Kafka by following the instructions in [Setting up Kafk
 
 You can download the ZIP file and extract the contents to get the project code.
 
-<a href="../../../../assets/attach/connectors/FileConnector.zip">
+<a href="../../../../assets/attach/connectors/Kafka-connector.zip">
     <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
 
