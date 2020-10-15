@@ -6,7 +6,7 @@ The **DB Report Mediator** is similar to the [DBLookup Mediator](dBLookup-Mediat
     The DB Report mediator is a [content-aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 !!! Note
-    Currently, the 'DB-Report-Mediator' does not supporting the 'json-eval' expressions to extract the parameters.
+    Currently, the 'DB-Report-Mediator' does not support the 'json-eval' expression used to extract the parameters.
 
 ## Syntax
 
