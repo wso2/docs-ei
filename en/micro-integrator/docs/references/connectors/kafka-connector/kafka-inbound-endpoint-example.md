@@ -12,6 +12,10 @@ The following diagram illustrates all the required functionality of the Kafka se
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
+## Set up Kafka
+
+Before you begin, set up Kafka by following the instructions in the [Setting up Kafka documentation](setting-up-kafka.md).
+
 ## Configure inbound endpoint using WSO2 Integration Studio
 
 1. Download [WSO2 Integration Studio](https://wso2.com/integration/integration-studio/). Create an **Integration Project** as below. 
@@ -61,6 +65,7 @@ If you do not want to configure this yourself, you can simply [get the project](
          </log>
       </sequence>
    ```
+
 ## Exporting Integration Logic as a CApp
 
 **CApp (Carbon Application)** is the deployable artefact on the Enterprise Integrator runtime. Let us see how we can export integration logic we developed into a CApp. To export the `Solution Project` as a CApp, a `Composite Application Project` needs to be created. Usually, when a solution project is created, this project is automatically created by Integration Studio. If not, you can specifically create it by navigating to  **File** -> **New** -> **Other** -> **WSO2** -> **Distribution** -> **Composite Application Project**. 

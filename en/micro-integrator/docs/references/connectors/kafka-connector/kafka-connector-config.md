@@ -15,6 +15,11 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
             <th>Required</th>
         </tr>
         <tr>
+            <td>name</td>
+            <td>Unique name to identify the connection.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
             <td>bootstrapServers</td>
             <td>The Kafka brokers listed as host1:port1 and host2:port2.</td>
             <td>Yes</td>
@@ -310,6 +315,7 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
 
     ```xml
     <kafkaTransport.init>
+        <name>Sample_Kafka</name>
         <bootstrapServers>localhost:9092</bootstrapServers>
         <keySerializerClass>org.apache.kafka.common.serialization.StringSerializer</keySerializerClass>
         <valueSerializerClass>org.apache.kafka.common.serialization.StringSerializer</valueSerializerClass>
@@ -320,6 +326,7 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
 
     ```xml
     <kafkaTransport.init>
+        <name>Sample_Kafka</name>
         <bootstrapServers>localhost:9092</bootstrapServers>
         <keySerializerClass>org.apache.kafka.common.serialization.StringSerializer</keySerializerClass>
         <valueSerializerClass>org.apache.kafka.common.serialization.StringSerializer</valueSerializerClass>
