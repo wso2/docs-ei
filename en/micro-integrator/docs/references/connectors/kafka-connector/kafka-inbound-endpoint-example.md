@@ -14,7 +14,7 @@ If you do not want to configure this yourself, you can simply [get the project](
 
 ## Set up Kafka
 
-Before you begin, set up Kafka by following the instructions in the [Setting up Kafka documentation](setting-up-kafka.md).
+Before you begin, set up Kafka by following the instructions in [Setting up Kafka](setting-up-kafka.md).
 
 ## Configure inbound endpoint using WSO2 Integration Studio
 
