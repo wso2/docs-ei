@@ -1,4 +1,4 @@
-# Extracting Data from Static Sources
+# Extracting Data from Static Sources in Real Time
 
 WSO2 Streaming Integrator can extract data from static sources such as databases, files and cloud storages in real-tme. 
 
@@ -10,14 +10,20 @@ A database table is a stored collection of records of a specific schema. Each re
 
 To understand how data is extracted from a database into a streaming flow, consider a scenario where an online booking site automatically save all online bookings of vacation packages in a database. The company wants to monitor the bookings in real-time. Therefore, this data stored in the database needs to be extracted in real time. You can either capture this data as change data or poll the database. The `cdc` Siddhi extensions can be used for both methods as explained in the following subsections.
 
-### Capturing change data.
+### Change data capture
 
-Capturing change data involves extracting any change that takes place in a selected database (i.e., any insert, update or a deletion) in real-time.
+Change data capture involves extracting any change that takes place in a selected database (i.e., any insert, update or a deletion) in real-time.
 
 To capture change data via the WSO2 Streaming Integrator Tooling, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) with the appropriate schema to capture the information you require, and then connect a [source](https://siddhi.io/en/v5.1/docs/query-guide/#source) of the `cdc` type as shown in the example below.
 
 ```sql
-@source(type = 'cdc', url = "jdbc:mysql://localhost:3306/tours?useSSL=false", username = "wso2si", password = "wso2", table.name = "OnlineBookingsTable", operation = "insert", mode = "listening", jdbc.driver.name = "com.mysql.jdbc.Driver",
+@source(type = 'cdc', 
+    url = "jdbc:mysql://localhost:3306/tours?useSSL=false", 
+    username = "wso2si", 
+    password = "wso2", 
+    table.name = "OnlineBookingsTable", 
+    operation = "insert", 
+    mode = "listening", jdbc.driver.name = "com.mysql.jdbc.Driver",
 	@map(type = 'keyvalue'))
 define stream OnlineBookingsStream (ref int, timestamp int, name string, package string, people int);
 ```
@@ -40,7 +46,7 @@ define stream OnlineBookingsStream (ref int, timestamp int, name string, package
 
 ### Polling databases
 
-This method involves periodically polling a database table to capture changes in the data. Similar to capturing change data, you can  define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) with the appropriate schema to capture the information you require, and then connect a [source](https://siddhi.io/en/v5.1/docs/query-guide/#source) of the `cdc` type as shown in the example below. However, for polling, the value for the `mode` parameter must be `polling`
+This method involves periodically polling a database table to capture changes in the data. Similar to change data capture, you can  define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) with the appropriate schema to capture the information you require, and then connect a [source](https://siddhi.io/en/v5.1/docs/query-guide/#source) of the `cdc` type as shown in the example below. However, for polling, the value for the `mode` parameter must be `polling`
 
 ```sql
 @source(type = 'cdc',
@@ -61,68 +67,212 @@ The above source polls the `OnlineBookingsTable`table every 10 seconds and captu
     - The `polling` mode only captures insert and update operations. Unlike in the `listening` mode, you do not need to specify the operation.
     
 
-If you want to try out the use case described above, click the link below.
+### Try out an example
 
-??? tip "Try out an example"
-    Let's try out the example where you want to view the online bookings saved in a database in real time. To do this, follow the steps below:<br/><br/>
-    1. Download and install MySQL.
-    2. Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/><br/>
-    3. Start the MySQL server, create the database and the database table you require as follows:<br/><br/>
-        1. To create a new database, issue the following MySQL command.
-            ```
-            CREATE SCHEMA tours;
-            ```<br/><br/>   
-        2. Create a new user by executing the following SQL query.<br/><br/>
-           ```
-           GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'wso2si' IDENTIFIED BY 'wso2';
-           ```<br/><br/>
-        3. Switch to the `tours` database and create a new table, by executing the following queries:<br/><br/>
-            `use tours;`<br/><br/>
-            `CREATE TABLE production.new_table (
-              ref INT NOT NULL AUTO_INCREMENT,
-              timestamp LONGTEXT NULL,
-              name VARCHAR(45) NULL,
-              package VARCHAR(45) NULL,
-              people INT NULL,
-              PRIMARY KEY (ref));`<br/><br/>
-        4. [Start the Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md/#starting-streaming-integrator-tooling).<br/><br/>
-        5. Download the `cdc-mysql`Siddhi extension for Streaming Integrator Tooling. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md/#installing-an-extension).<br/><br/>
-        6. In Streaming Integrator Tooling, open a new file. Copy and paste the following Siddhi application to it.<br/><br/>
-            ```sql
-            @App:name("VacationsApp")<br/>
-            @App:description("Captures cdc events from MySQL table")<br/><br/>          
-            @source(type = 'cdc', url = "jdbc:mysql://localhost:3306/tours?useSSL=false", username = "wso2si", password = "wso2", table.name = "OnlineBookingsTable", operation = "insert", mode = "listening", jdbc.driver.name = "com.mysql.jdbc.Driver",
-                @map(type = 'keyvalue'))<br/>
-            define stream OnlineBookingsStream (ref int, timestamp long, name string, package string, people int);<br/><br/>           
-            @sink(type = 'log')<br/>
-            define stream LogStream (ref int, timestamp long, name string, package string, people int);<br/><br/>       
-            @info(name = 'query')<br/>
-            from OnlineBookingsStream<br/>
-            select *<br/>
-            insert into LogStream;
-            ```<br/><br/>
-            Then save the Siddhi application.<br/><br/>This Siddhi application uses a `cdc` source that extracts events in the change data capturing (i.e., listening) mode and logs the captured records in the console via a `log` sink
-        7. Start the Siddhi Application  by clicking the play button.<br/>
-            ![Play](../images/extracting-data-from-static-sources/play.png)<br/><br/>
-        8. To insert a record into the `OnlineBookingsTable`, issue the following MySQL command:<br/><br/>
-            `insert into OnlineBookingsTable(ref,timestamp,name,package,people) values('1',1602506738000,'jem','best of rome',2);`<br/><br/>
-            The following is logged in the Streaming Integrator Tooling terminal.<br/><br/>            
-            `INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - VacationsApp : LogStream : Event{timestamp=1563378804914, data=[1, 1602506738000, jem, best of rome, 2], isExpired=false}`
+Let's try out the example where you want to view the online bookings saved in a database in real time. To do this, follow the steps below:
+
+1. Download and install MySQL.
+
+2. Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).
+
+3. Start the MySQL server, create the database and the database table you require as follows:
+
+    1. To create a new database, issue the following MySQL command.
+    
+        ```
+        CREATE SCHEMA tours;
+        ```
+                        
+    2. Create a new user by executing the following SQL query.
+        
+       ```
+       GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'wso2si' IDENTIFIED BY 'wso2';
+       ```
+       
+    3. Switch to the `tours` database and create a new table, by executing the following queries.
+    
+        `use tours;`
+        
+        `CREATE TABLE production.new_table (
+          ref INT NOT NULL AUTO_INCREMENT,
+          timestamp LONGTEXT NULL,
+          name VARCHAR(45) NULL,
+          package VARCHAR(45) NULL,
+          people INT NULL,
+          PRIMARY KEY (ref));`
+          
+    4. [Start the Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md/#starting-streaming-integrator-tooling).
+    
+    5. Download the `cdc-mysql`Siddhi extension for Streaming Integrator Tooling. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md/#installing-an-extension).
+    
+    6. In Streaming Integrator Tooling, open a new file. Copy and paste the following Siddhi application to it.
+    
+        ```siddhi
+        @App:name("VacationsApp")
+        @App:description("Captures cdc events from MySQL table")
+               
+        @source(type = 'cdc', url = "jdbc:mysql://localhost:3306/tours?useSSL=false", username = "wso2si", password = "wso2", table.name = "OnlineBookingsTable", operation = "insert", mode = "listening", jdbc.driver.name = "com.mysql.jdbc.Driver",
+            @map(type = 'keyvalue'))
+        define stream OnlineBookingsStream (ref int, timestamp long, name string, package string, people int);
+                  
+        @sink(type = 'log')
+        define stream LogStream (ref int, timestamp long, name string, package string, people int);
+              
+        @info(name = 'query')
+        from OnlineBookingsStream
+        select *
+        insert into LogStream;
+        ```
+       
+        Then save the Siddhi application.<br/><br/>This Siddhi application uses a `cdc` source that extracts events in the change data capturing (i.e., listening) mode and logs the captured records in the console via a `log` sink.
+        
+    7. Start the Siddhi Application  by clicking the play button.
+    
+        ![Play](../images/extracting-data-from-static-sources/play.png)
+        
+    8. To insert a record into the `OnlineBookingsTable`, issue the following MySQL command:
+    
+        `insert into OnlineBookingsTable(ref,timestamp,name,package,people) values('1',1602506738000,'jem','best of rome',2);`
+        
+        The following is logged in the Streaming Integrator Tooling terminal.
+                   
+        `INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - VacationsApp : LogStream : Event{timestamp=1563378804914, data=[1, 1602506738000, jem, best of rome, 2], isExpired=false}`
 
 
-### Supporting Siddhi extensions
+### Supported databases
+
+[siddhi-io-cdc source](https://siddhi-io.github.io/siddhi-io-cdc/api/latest/) via which the WSO2 Steaming Integrator extracts database records supports the following database types.
 
 The following is a list of Siddhi extensions that support change data capturing to allow you to extract database records as input events in real time.
 
-| **Extension**                    | **Name**         | **Description**                                 |
-|----------------------------------|------------------|-------------------------------------------------|
-| Change Data Capture - Mongo DB   | `cdc-mongodb`    | Captures change data from Mongo DB databases.   | 
-| Change Data Capture - MS SQL     | `cdc-mssql`      | Captures change data from MS SQL databases.     |
-| Change Data Capture - MySQL      | `cdc-mysql`      | Captures change data from MySQL databases.      | 
-| Change Data Capture - Oracle     | `cdc-oracle`     | Captures change data from Oracle databases.     |
-| Change Data Capture - PostgreSQL | `cdc-postgresql` | Captures change data from PostgreSQL databases. |
+| **Database Type** | **Extension Name** | **Description**                                 |
+|-------------------|--------------------|-------------------------------------------------|
+| Mongo DB          | `cdc-mongodb`      | Captures change data from Mongo DB databases.   | 
+| MS SQL            | `cdc-mssql`        | Captures change data from MS SQL databases.     |
+| MySQL             | `cdc-mysql`        | Captures change data from MySQL databases.      | 
+| Oracle            | `cdc-oracle`       | Captures change data from Oracle databases.     |
+| PostgreSQL        | `cdc-postgresql`   | Captures change data from PostgreSQL databases. |
 
 
-## Consuming data from files
+## File Processing
+
+File Processing involves two types of operations related to files:
+
+- **Extracting data from files**: This involves extracting the content of file as input data for further processing.
+
+- **Managed file transfer**: This involves using statistics of operations carried out for files (e.g., creating, editing, moving, deleting, etc.) as input data for further processing.
+
+e.g., In a sweet factory where the production bots publishes the production statistics in a file after each production run. Extracting the production statistics from the files for further processing can be considered reading files and extracting data. Checking whether a file is generated to indicate a completed production run, and checking whether a file is moved to a different location after its content is processed can be considered as managed file transfer.
+
+To understand how you can perform these file processing activities via the WSO2 Streaming Integrator, see the subtopics below.
+
+
+### Extracting data from files
+
+WSO2 Streaming Integrator extracts data from files via the [File Source](https://siddhi-io.github.io/siddhi-io-file/api/latest/#file-source). Once it extracts the data, it can publish it in a streaming manner so that other streaming applications that cannot read static data from files.
+
+![Extracting data from databases](../images/extracting-data-from-static-sources/file-content-processing.png)
+
+To further understand this, let's try out designing a solution for the Sweet Factory that needs to expose its production statitstics in the file generated by production bots in a streaming manner to the production manager so thyat the statistics can be viewed and analyzed in real time.
+
+#### Selecting the file(s) to read
+
+You can extract data from a single file or from multiple files in a directory. This is specified via the `file.uri` and `dir.uri` parameters as shown below:
+
+- **Reading a single file**
+
+    In the following example, the `file.uri` parameter specifies the `productioninserts.csv` file in the `/Users/foo` directory as the file from which the source should extract data. 
+    
+    ```
+    @source(type = 'file',file.uri = "file:/Users/foo/productioninserts.csv",
+        @map(type = 'csv'))
+    define stream ProductionStream (name string, amount double);
+    ```
+    
+- **Reading multiple files within a directory**
+
+    In the following example, the `dir.uri` parameter specifies the `/Users/foo/production` as the directory with the files from which the source extracts information. According to the following configuration, all the files in the directory are read.
+    
+    ```
+    @source(type = 'file',
+        dir.uri = "file:/Users/foo/production",
+        @map(type = 'csv'))
+    define stream ProductionStream (name string, amount double);
+    ```
+  
+    If you want the source to read only specific files within the directory, you need to specify the required files via the `file.name.list` parameter as shown below.
+    
+    ```
+    @source(type = 'file', 
+        dir.uri = "file:/Users/foo/production", 
+        file.name.list = "productioninserts.csv,AssistantFile.csv,ManagerFile.csv",
+    	@map(type = 'csv'))
+    define stream ProductionStream (name string, amount double);
+    ```
+#### Selecting the mode in which the file is read
+ 
+The `file` source can read the selected file(s) in many modes. The available modes are as follows.
+
+| **Mode**          | **Description**                                    |
+|-------------------|----------------------------------------------------|
+| `TEXT.FULL`       | Reads a text file completely in one reading.       |
+| `BINARY.FULL`     | Reads a binary file completely in one reading.     |
+| `BINARY.CHUNKED`  | Reads a binary file chunk by chunk.                |
+| `LINE`            | Reads a text file line by line                     |
+| `REGEX`           | Reads a text file and extracts data using a regex. |
+
+You can specify the required mode via the `mode` parameter as shown in the example below.
+
+```
+@source(type = 'file',
+    file.uri = "file:/Users/foo/productioninserts.csv",
+    mode='LINE'
+    @map(type = 'csv'))
+define stream ProductionStream (name string, amount double);
+```
+#### Moving or deleting files after reading/failure
+
+If required, you can configure a `file` source to move or delete the files after they are read or after an attempt to read them has resulted in a failure. In both scenarios, the defauly action is to delete the file.
+
+e.g., If you want to move the `productioninserts.csv` file in the previous example after it is read, specify `move` as the value for `action.after.process`. Then add the `move.after.process` to specify the location to which the file should be moved after processing.
+
+```
+@source(type = 'file', file.uri = "file:/Users/foo/productioninserts.csv", 
+    mode = "line",
+    tailing = "false",
+    action.after.process = "move", 
+    move.after.process = "file:/Users/processedfiles/productioninserts.csv", 
+	@map(type = 'csv'))
+define stream ProductionStream (name string, amount double);
+```
+Here, you are  moving the `productioninserts.csv` file from the `/Users/foo` directory to the `/Users/processedfiles` after it is processed. 
+
+Note that this extract also includes `tailing = "false"`. When tailing is enabled, the source reports any change made to the file immediately. Tailing is available only when the mode is set to `LINE` or `REGEX`, and it is enabled for these modes by default. Therefore, if you are using one of these modes and you want to set the `action.after.process` to `move` you need to disable tailing.
+
+For more information about the available functions when you extract information from files via the `file` source, see [Siddhi Query Guide - File Source](https://siddhi-io.github.io/siddhi-io-file/api/latest/#source).
+
+## Performing managed file transfers
+
+WSO2 Streaming Integrator supports managed file transfers via the [fileeventlistener source](https://siddhi-io.github.io/siddhi-io-file/api/latest/#fileeventlistener-source).
+
+![Managed File Transfers](../images/extracting-data-from-static-sources/file-events-processing.png)
+
+To understand how this is done, let's address the requirement of the Sweet Factoy where the management needs to monitor whether the file with production statistics is created by the production bots after each successful production run, and then move it to archives after the content in it has been processed.
+
+#### Checking whether a file is created
+
+To check whether any file is generated in a specific directory, you can configure a source of the `fileeventlistener` connected to an event stream as follows.
+
+```siddhi
+@source(type = 'fileeventlistener', 
+    dir.uri = "file:/Users/foo",
+	@map(type = 'passThrough'))
+define stream FileListenerStream (filepath string, filename string, status string);
+```
+The above configuration monitors whether any file is created in the `/Users/foo` directory.
+
+
+
+
 
 ## Consuming data from cloud storages
