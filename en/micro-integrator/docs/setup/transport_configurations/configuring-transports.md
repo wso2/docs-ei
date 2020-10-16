@@ -143,6 +143,10 @@ protocol = "hl7"
 
 You can configure how long request threads wait for the application's response by specifying the `parameter.'transport.hl7.TimeOut'` parameter as shown above. This configures the timeout in milliseconds at the transport level.
 
+### Change message encoding type
+
+To control the encoding type of incoming HL7 messages, set the following JAVA system property: `ca.uhn.hl7v2.llp.charset`.
+
 ## Configuring the TCP transport
 
 To enable the TCP transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).

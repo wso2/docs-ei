@@ -305,7 +305,29 @@ The following features, which are available in ESB runtimes, are removed from th
 			Rule Mediator
 		</td>
 		<td>
-			The rule mediator has been removed from Ei 7.1.0 as it is not widely used.
+			The rule mediator has been removed from EI 7.1.0 as it is not widely used.
+		</td>
+		<td>
+			-
+		</td>
+	</tr>
+	<tr>
+		<td>
+			HL7 Console
+		</td>
+		<td>
+			The HL7 Console, which was available in the management console of previous ESBs, is removed in EI 7.x as it is not widely used.
+		</td>
+		<td>
+			-
+		</td>
+	</tr>
+	<tr>
+		<td>
+			HL7 Message Store
+		</td>
+		<td>
+			In previous ESBs, an HL7 Message Store could be configured using the custom message store implementation. Due to limited capabilities and tight coupling with the Hl7 console (which is now removed), this functionality is not usable in EI 7.x. 
 		</td>
 		<td>
 			-
