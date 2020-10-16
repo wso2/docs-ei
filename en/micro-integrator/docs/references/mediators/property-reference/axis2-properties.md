@@ -340,7 +340,7 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 			Description
 		</td>
 		<td>
-			Use this property to specify whether an ACK or NACK should be returned to the messaging client as an acknowledgement. If you select a NACK response, you need to specify a custom NACK message by using the <code>HL7_NACK_MESSAGE</code> as given below.
+			Use this property to specify whether an ACK or NACK should be returned to the messaging client as an acknowledgement. If you select a NACK response, you have the option to specify a custom NACK message that should be sent to the client along with the NACK.
 		</td>
 	</tr>
 	<tr>
