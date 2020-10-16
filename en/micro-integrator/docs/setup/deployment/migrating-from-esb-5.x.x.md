@@ -137,7 +137,8 @@ The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is t
 Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<ESB_5.0.0_HOME>/repository/components/lib` folder, copy those components to the `<MI_HOME>/lib` directory.
 
 !!! Note
-    To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
+    -	To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
+    -	If you used an <b>HL7 Message Store</b> (custom message store) implementation, note that the Micro Integrator does not support this functionality. See the list of [removed features](../../../overview/about-this-release-7.1.0/#features-removed) for details.
 
 ### Migrating tenants
 
