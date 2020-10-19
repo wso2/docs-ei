@@ -14,7 +14,7 @@ To understand how data is extracted from a database into a streaming flow, consi
 
 Change data capture involves extracting any change that takes place in a selected database (i.e., any insert, update or a deletion) in real-time.
 
-To capture change data via the WSO2 Streaming Integrator Tooling, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) with the appropriate schema to capture the information you require, and then connect a [source](https://siddhi.io/en/v5.1/docs/query-guide/#source) of the `cdc` type as shown in the example below.
+To capture change data via the [WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md), define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) with the appropriate schema to capture the information you require, and then connect a [source](https://siddhi.io/en/v5.1/docs/query-guide/#source) of the `cdc` type as shown in the example below.
 
 ```sql
 @source(type = 'cdc', 
@@ -261,7 +261,7 @@ To understand how this is done, let's address the requirement of the Sweet Facto
 
 #### Checking whether a file is created
 
-To check whether any file is generated in a specific directory, you can configure a source of the `fileeventlistener` connected to an event stream as follows.
+To check whether any file is created, modified or removed in a specific directory, you can configure a source of the `fileeventlistener` connected to an event stream as follows.
 
 ```siddhi
 @source(type = 'fileeventlistener', 
@@ -269,10 +269,123 @@ To check whether any file is generated in a specific directory, you can configur
 	@map(type = 'passThrough'))
 define stream FileListenerStream (filepath string, filename string, status string);
 ```
-The above configuration monitors whether any file is created in the `/Users/foo` directory.
+The above configuration monitors whether any activity is generated for any file in the `/Users/foo` directory. If any file was created/modified/removed in the directory, an event is generated in the `FileListenerStream` stream. This event reports the name of the file, the file path, and the status of the file.
 
+If you want to monitor only activities generated for a specific file, you need to specify the names of the files via the  `file.name.list` parameter as shown in the example below.
 
+```siddhi
+@source(type = 'fileeventlistener', 
+    dir.uri = "file:/Users/foo",
+    file.name.list = "productioninserts 18.01.22.csv,materialconsumption.txt",
+	@map(type = 'passThrough'))
+define stream FileListenerStream (filepath string, filename string, status string);
+```
+The above source configuration generates an event in the `FileListenerStream` only when the `productioninserts 18.01.22.csv` and `materialconsumption.txt` are created, modified, and/or removed.
 
+If you want the directory to be monitored for file events periodically, you can specify the required monitoring interval in milliseconds via the `monitoring.interval` parameter as shown in the example below.
 
+```siddhi
+@source(type = 'fileeventlistener', 
+        dir.uri = "file:/Users/foo", 
+        monitoring.interval = "200", 
+        file.name.list = "productioninserts 18.01.22.csv,materialconsumption.txt",
+        @map(type = 'passThrough'))
+define stream FileListenerStream (filepath string, filename string, status string);
+```
+The above source configuration checks the `/Users/foo` directory every 200 milliseconds, and an event is generated in the `FileListenerStream` for each file transaction that involved creating/modifying/removing a file named `productioninserts 18.01.22.csv` or `materialconsumption.txt`.
+
+### Try out an example
+
+To try out reading the content of a file and file events, let's address the requirement of the example mentioned before of a sweet factory that publishes production details in a file. 
+
+1. Start and access [WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md).
+
+2. Open a new file and add the following Siddhi application. 
+
+    ```siddhi
+        @App:name('LogFileEventsApp')
+        @App:description('Description of the plan')
+        
+        @source(type = 'fileeventlistener', 
+                dir.uri = "file:/Users/production", 
+                @map(type = 'passThrough'))
+        define stream FileListenerStream (filepath string, filename string, status string);
+        
+        @sink(type = 'log',
+        	@map(type = 'passThrough'))
+        define stream LogFileEventsStream (filepath string, filename string, status string);
+        
+        @info(name = 'Query')
+        from FileListenerStream 
+        select * 
+        insert into LogFileEventsStream;
+    ```
+   
+    !!! tip
+        You can change the `Users/production` directory path to the path of a preferred directory in your machine.
+
+    Then save the file as `LogFileEventsApp`.
+    
+    The above Siddhi Application monitors the `Users/production` directory and generates an event in the `FileListenerStream` if any file is created/modified/removed in it.
+    
+2. Start the `LogFileEventsApp` Siddhi application you created by clicko=ing on the play icon in the top panel.
+
+    ![Play](../images/extracting-data-from-static-sources/play.png)
+    
+3. Open a new file in a text editor of your choice, and save it as `productionstats.csv` in the `Users/production` directory.
+
+    As a result, the following is logged in the Streaming Integrator Tooling terminal to indicate that the `productionstats.csv` is created in the `Users/production` directory.
+    
+    `INFO {io.siddhi.core.stream.output.sink.LogSink} - LogFileEventsApp : LogFileEventsStream : Event{timestamp=1603105747423, data=[/Users/rukshani/documents/production/productionstats.csv, productionstats.csv, created], isExpired=false} `
+    
+4. Create and save the following Siddhi application in Streaming Integrator Tooling.
+
+    ```siddhi
+    @App:name("FileReadingApp")
+    
+    @source(type = 'file', 
+        file.uri = "file:/Users/production/productionstats.csv", 
+        mode = "line", 
+        tailing = "false", 
+        action.after.process = "move", 
+        move.after.process = "file:/Users/processedfiles/productionstats.csv",
+        @map(type = 'csv'))
+    define stream ProductionStream (name string, amount double);
+    
+    @sink(type = 'log',
+    @map(type = 'passThrough'))
+    define stream LogStream (name string, amount double);
+    
+    @info(name = 'Query')
+    from ProductionStream 
+    select * 
+    insert into LogStream;
+    ```
+   
+   This Siddhi application reads the content of the `/Users/production/productionstats.csv` file that you previously created and generates an event per row in the `ProductionStream` stream. After reading the file, the Siddhi app moves it to the `/Users/processedfiles` directory.
+   
+5. Start the `FileReadingApp` Siddhi application.
+
+6. Open the `/Users/production/productionstats.csv` file, add the following content to it, and then save the file.
+
+    ```csv
+    Almond cookie,100.0
+    Baked alaska,20.0
+    ```
+    The following is logged in the Streaming Integrator Tooling terminal:
+    
+    - **For the `FileReadingApp` Siddhi application**
+    
+        `INFO {io.siddhi.core.stream.output.sink.LogSink} - FileReadingApp : LogStream : Event{timestamp=1603106006720, data=[Almond cookie, 100.0], isExpired=false} `
+        
+        `INFO {io.siddhi.core.stream.output.sink.LogSink} - FileReadingApp : LogStream : Event{timestamp=1603106006720, data=[Baked alaska, 20.0], isExpired=false} `
+        
+        These logs show the content of the `productionstats.csv` file that is read by WSO2 Streaming Integrator.
+    
+    - **For the `LogFileEventsApp` Siddhi application**
+
+        `INFO {io.siddhi.core.stream.output.sink.LogSink} - LogFileEventsApp : LogFileEventsStream : Event{timestamp=1603106006807, data=[/Users/rukshani/documents/production/productionstats.csv, productionstats.csv, removed], isExpired=false}`
+        
+        This log indicates that the WSO2 Streaming Integrator has detected that the 'productionstats.csv` file is removed from the `/Users/production` directory.
 
 ## Consuming data from cloud storages
