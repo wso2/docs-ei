@@ -259,7 +259,7 @@ WSO2 Streaming Integrator supports managed file transfers via the [fileeventlist
 
 To understand how this is done, let's address the requirement of the Sweet Factoy where the management needs to monitor whether the file with production statistics is created by the production bots after each successful production run, and then move it to archives after the content in it has been processed.
 
-#### Checking whether a file is created
+#### Detecting file events
 
 To check whether any file is created, modified or removed in a specific directory, you can configure a source of the `fileeventlistener` connected to an event stream as follows.
 
