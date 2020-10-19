@@ -393,3 +393,34 @@ To try out reading the content of a file and file events, let's address the requ
               
 
 ## Consuming data from cloud storages
+
+WSO2 Streaming Integrator allows you to access data in cloud storages (such as Amazon Web Services - SQS, Amazon Web Services - S3, and Google Cloud Platform), process it and expose it in a streaming manner to applications that cannot access cloud storages.
+
+![Accessing Data in Cloud Storages](../images/extracting-data-from-static-sources/cloud-storages.png)
+
+The following is an example where the WSO2 Streaming Integrator retrieves messages from an SQS queue. A source of the `sqs`type is used for this purpose where you can provide the URL to the SQS queue that you want to subscribe to, and provide the access key and thge secret to access it. the queue is polled periodically (i.e., every 5000 milliseconds). The source generates an event in the `InStream` stream for each message it retrieves.
+
+```siddhi
+@source(type='sqs',
+    queue='http://aws.sqs.queue.url',
+    access.key='aws.access.key',
+    secret.key='aws.secret.key',
+    region='us-east-2',
+    polling.interval='5000',
+    max.number.of.messages='10',
+    number.of.parallel.consumers='1',
+    purge.messages='true',
+    wait.time='2',
+    visibility.timeout='30',
+    delete.retry.interval='1000',
+    max.number.of.delete.retry.attempts='10',
+    @map(type='xml',enclosing.element="//events",@attributes(symbol='symbol', message_id='trp:MESSAGE_ID') ))
+define stream InStream (symbol string, message_id string);
+```
+
+### Supporting Siddhi extensions
+
+[SQS](https://siddhi-io.github.io/siddhi-io-sqs/api/2.0.0/#source)
+
+
+
