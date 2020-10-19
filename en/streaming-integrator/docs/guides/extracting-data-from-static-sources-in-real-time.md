@@ -249,17 +249,16 @@ Here, you are  moving the `productioninserts.csv` file from the `/Users/foo` dir
 
 Note that this extract also includes `tailing = "false"`. When tailing is enabled, the source reports any change made to the file immediately. Tailing is available only when the mode is set to `LINE` or `REGEX`, and it is enabled for these modes by default. Therefore, if you are using one of these modes and you want to set the `action.after.process` to `move` you need to disable tailing.
 
-For more information about the available functions when you extract information from files via the `file` source, see [Siddhi Query Guide - File Source](https://siddhi-io.github.io/siddhi-io-file/api/latest/#source).
+#### Supporting Siddhi extension
 
-## Performing managed file transfers
+[file](https://siddhi-io.github.io/siddhi-io-file/api/latest/#source).
 
-WSO2 Streaming Integrator supports managed file transfers via the [fileeventlistener source](https://siddhi-io.github.io/siddhi-io-file/api/latest/#fileeventlistener-source).
+### Performing managed file transfers
+
+WSO2 Streaming Integrator supports managed file transfers which involves detecting whether a file is created/modified/removed.
 
 ![Managed File Transfers](../images/extracting-data-from-static-sources/file-events-processing.png)
 
-To understand how this is done, let's address the requirement of the Sweet Factoy where the management needs to monitor whether the file with production statistics is created by the production bots after each successful production run, and then move it to archives after the content in it has been processed.
-
-#### Checking whether a file is created
 
 To check whether any file is created, modified or removed in a specific directory, you can configure a source of the `fileeventlistener` connected to an event stream as follows.
 
@@ -293,6 +292,10 @@ If you want the directory to be monitored for file events periodically, you can 
 define stream FileListenerStream (filepath string, filename string, status string);
 ```
 The above source configuration checks the `/Users/foo` directory every 200 milliseconds, and an event is generated in the `FileListenerStream` for each file transaction that involved creating/modifying/removing a file named `productioninserts 18.01.22.csv` or `materialconsumption.txt`.
+
+#### Supporting Siddhi extension
+
+[fileeventlistener](https://siddhi-io.github.io/siddhi-io-file/api/latest/#fileeventlistener-source)
 
 ### Try out an example
 
@@ -387,5 +390,6 @@ To try out reading the content of a file and file events, let's address the requ
         `INFO {io.siddhi.core.stream.output.sink.LogSink} - LogFileEventsApp : LogFileEventsStream : Event{timestamp=1603106006807, data=[/Users/rukshani/documents/production/productionstats.csv, productionstats.csv, removed], isExpired=false}`
         
         This log indicates that the WSO2 Streaming Integrator has detected that the 'productionstats.csv` file is removed from the `/Users/production` directory.
+              
 
 ## Consuming data from cloud storages
