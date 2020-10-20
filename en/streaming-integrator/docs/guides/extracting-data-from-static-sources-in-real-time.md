@@ -16,7 +16,7 @@ Change data capture involves extracting any change that takes place in a selecte
 
 To capture change data via the [WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md), define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) with the appropriate schema to capture the information you require, and then connect a [source](https://siddhi.io/en/v5.1/docs/query-guide/#source) of the `cdc` type as shown in the example below.
 
-```sql
+```
 @source(type = 'cdc', 
     url = "jdbc:mysql://localhost:3306/tours?useSSL=false", 
     username = "wso2si", 
@@ -31,15 +31,29 @@ Here, note that the `mode` parameter of the `cdc` source is set to `listening`. 
 
 If you want to capture updates to the records in the `OnlineBookingsTable` database table in real time, you can change the value for the `operation` parameter to `update` as shown below.
 
-```sql
-@source(type = 'cdc', url = "jdbc:mysql://localhost:3306/tours?useSSL=false", username = "wso2si", password = "wso2", table.name = "OnlineBookingsTable", operation = "update", mode = "listening", jdbc.driver.name = "com.mysql.jdbc.Driver",
+```
+@source(type = 'cdc', 
+    url = "jdbc:mysql://localhost:3306/tours?useSSL=false", 
+    username = "wso2si", 
+    password = "wso2", 
+    table.name = "OnlineBookingsTable", 
+    operation = "update", 
+    mode = "listening", 
+    jdbc.driver.name = "com.mysql.jdbc.Driver",
 	@map(type = 'keyvalue'))
 define stream OnlineBookingsStream (ref int, timestamp int, name string, package string, people int);
 ```
 Similarly, if you want to capture deletions in the `OnlineBookingsTable` database table in real time, you can change the value for the `operation` parameter to `delete` as shown below.
 
-```sql
-@source(type = 'cdc', url = "jdbc:mysql://localhost:3306/tours?useSSL=false", username = "wso2si", password = "wso2", table.name = "OnlineBookingsTable", operation = "delete", mode = "listening", jdbc.driver.name = "com.mysql.jdbc.Driver",
+```
+@source(type = 'cdc', 
+    url = "jdbc:mysql://localhost:3306/tours?useSSL=false", 
+    username = "wso2si", 
+    password = "wso2", 
+    table.name = "OnlineBookingsTable", 
+    operation = "delete", 
+    mode = "listening", 
+    jdbc.driver.name = "com.mysql.jdbc.Driver",
 	@map(type = 'keyvalue'))
 define stream OnlineBookingsStream (ref int, timestamp int, name string, package string, people int);
 ```
@@ -48,7 +62,7 @@ define stream OnlineBookingsStream (ref int, timestamp int, name string, package
 
 This method involves periodically polling a database table to capture changes in the data. Similar to change data capture, you can  define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) with the appropriate schema to capture the information you require, and then connect a [source](https://siddhi.io/en/v5.1/docs/query-guide/#source) of the `cdc` type as shown in the example below. However, for polling, the value for the `mode` parameter must be `polling`
 
-```sql
+```
 @source(type = 'cdc',
     url = 'jdbc:mysql://localhost:3306/tours?useSSL=false',
     mode = 'polling',
@@ -107,7 +121,7 @@ Let's try out the example where you want to view the online bookings saved in a 
     
     6. In Streaming Integrator Tooling, open a new file. Copy and paste the following Siddhi application to it.
     
-        ```siddhi
+        ```
         @App:name("VacationsApp")
         @App:description("Captures cdc events from MySQL table")
                
@@ -252,7 +266,7 @@ Note that this extract also includes `tailing = "false"`. When tailing is enable
 
 #### Supporting Siddhi extension
 
-[file](https://siddhi-io.github.io/siddhi-io-file/api/latest/#source).
+Reading content in files are supported via the [file Siddhi extension](https://siddhi-io.github.io/siddhi-io-file/api/latest/#source).
 
 ### Performing managed file transfers
 
@@ -263,7 +277,7 @@ WSO2 Streaming Integrator supports managed file transfers which involves detecti
 
 To check whether any file is created, modified or removed in a specific directory, you can configure a source of the `fileeventlistener` connected to an event stream as follows.
 
-```siddhi
+```
 @source(type = 'fileeventlistener', 
     dir.uri = "file:/Users/foo",
 	@map(type = 'passThrough'))
@@ -273,7 +287,7 @@ The above configuration monitors whether any activity is generated for any file 
 
 If you want to monitor only activities generated for a specific file, you need to specify the names of the files via the  `file.name.list` parameter as shown in the example below.
 
-```siddhi
+```
 @source(type = 'fileeventlistener', 
     dir.uri = "file:/Users/foo",
     file.name.list = "productioninserts 18.01.22.csv,materialconsumption.txt",
@@ -284,7 +298,7 @@ The above source configuration generates an event in the `FileListenerStream` on
 
 If you want the directory to be monitored for file events periodically, you can specify the required monitoring interval in milliseconds via the `monitoring.interval` parameter as shown in the example below.
 
-```siddhi
+```
 @source(type = 'fileeventlistener', 
         dir.uri = "file:/Users/foo", 
         monitoring.interval = "200", 
@@ -296,7 +310,7 @@ The above source configuration checks the `/Users/foo` directory every 200 milli
 
 #### Supporting Siddhi extension
 
-[fileeventlistener](https://siddhi-io.github.io/siddhi-io-file/api/latest/#fileeventlistener-source)
+Capturing file events is supported via the [fileeventlistener Siddhi extension](https://siddhi-io.github.io/siddhi-io-file/api/latest/#fileeventlistener-source).
 
 ### Try out an example
 
@@ -306,7 +320,7 @@ To try out reading the content of a file and file events, let's address the requ
 
 2. Open a new file and add the following Siddhi application. 
 
-    ```siddhi
+    ```
         @App:name('LogFileEventsApp')
         @App:description('Description of the plan')
         
@@ -346,7 +360,7 @@ To try out reading the content of a file and file events, let's address the requ
    
 4. Create and save the following Siddhi application in Streaming Integrator Tooling.
 
-    ```siddhi
+    ```
     @App:name("FileReadingApp")
     
     @source(type = 'file', 
@@ -374,7 +388,7 @@ To try out reading the content of a file and file events, let's address the requ
 
 6. Open the `/Users/production/productionstats.csv` file, add the following content to it, and then save the file.
 
-    ```csv
+    ```
     Almond cookie,100.0
     Baked alaska,20.0
     ```
@@ -402,13 +416,13 @@ To try out reading the content of a file and file events, let's address the requ
 
 ## Consuming data from cloud storages
 
-WSO2 Streaming Integrator allows you to access data in cloud storages (such as Amazon Web Services - SQS, Amazon Web Services - S3, and Google Cloud Platform), process it and expose it in a streaming manner to applications that cannot access cloud storages.
+WSO2 Streaming Integrator allows you to access data in cloud storages (such as Amazon Web Services - SQS, Amazon Web Services - S3, and Google Cloud Platform) and expose it in a streaming manner to applications that cannot access cloud storages. Cloud-based data sources generally cannot be tailed and therefore, it is challenging to expose changes to the stored data in real time. WSO2 Streaming Integrator addresses this issue by periodically polling the cloud storage, transferring the changes detected during those polling intervals to a file, and then tailing the file to expose the data in a streaming manner as illustrated in the following diagram.
 
 ![Accessing Data in Cloud Storages](../images/extracting-data-from-static-sources/cloud-storages.png)
 
 The following is an example where the WSO2 Streaming Integrator retrieves messages from an SQS queue. A source of the `sqs`type is used for this purpose where you can provide the URL to the SQS queue that you want to subscribe to, and provide the access key and thge secret to access it. the queue is polled periodically (i.e., every 5000 milliseconds). The source generates an event in the `InStream` stream for each message it retrieves.
 
-```siddhi
+```
 @source(type='sqs',
     queue='http://aws.sqs.queue.url',
     access.key='aws.access.key',
