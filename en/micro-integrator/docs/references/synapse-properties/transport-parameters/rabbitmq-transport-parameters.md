@@ -34,7 +34,7 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
   </tr>
 </table>
 
-### Opther Parameters (Optional)
+### Other Parameters (Optional)
 
 <table>
    <tr>

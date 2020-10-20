@@ -247,6 +247,7 @@ Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropi
 !!! Note
     -	To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
     -	WSO2 EI no longer packs the VFS/SMB provider by default. If you need to use the <b>VFS SMB</b> feature, download `jcifs-1.3.17.jar` and add it to the `<MI_HOME/lib` folder. Since this library is licensed under LGPL version 2.1, you have to comply with the [terms of LGPL version 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html) and its restrictions.
+    -	If you used an <b>HL7 Message Store</b> (custom message store) implementation, note that the Micro Integrator does not support this functionality. See the list of [removed features](../../../overview/about-this-release-7.1.0/#features-removed) for details.
 
 ### Migrating tenants
 
@@ -1148,3 +1149,8 @@ Follow the instructions given below to use the password decryption tool.
 	The encrypted passwords are now decrypted and you have access to the plain-text password values.
 
 6.	You can now follow the instructions in [Encrypting Secrets](../../security/encrypting_plain_text) to re-encrypt the plain text secrets for the Micro Integrator.
+
+### Migrating Hl7 Transport
+
+HL7 transport is not shipped by default in the pack and the jars need to be added to the product manually. Please 
+refer [Configuring the HL7 transport](../transport_configurations/configuring-transports/#configuring-the-hl7-transport) for more details.
