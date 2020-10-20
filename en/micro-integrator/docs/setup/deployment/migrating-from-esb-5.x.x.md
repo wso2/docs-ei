@@ -3,6 +3,61 @@ This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to 
 
 {!setup/pull/PULL-CONTENT-migration-esb-mi.md!}
 
+-	If you are migrating from a version older than WSO2 ESB 5.0.0, you should first migrate to ESB 5.0.0 and then migrate to the Micro Integrator of EI 7.1.0.
+-	The distribution folder structure has changed from ESB 5.0.0 to EI 7.1:
+	<table>
+		<tr>
+			<th>
+				WSO2 ESB 5.0.0
+			</th>
+			<th>
+				Micro Integrator of EI 7.1.0
+			</th>
+		</tr>
+		<tr>
+			<td>
+				<code><ESB_HOME>/repository/conf</code>
+			</td>
+			<td>
+				<code><MI_HOME>/conf</code>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code><ESB_HOME>/repository/components/dropins</code>
+			</td>
+			<td>
+				<code><MI_HOME>/dropins</code>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code><ESB_HOME>/repository/components/extensions</code>
+			</td>
+			<td>
+				<code><MI_HOME>/extensions</code>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code><ESB_HOME>/repository/components/lib</code>
+			</td>
+			<td>
+				<code><MI_HOME>/lib</code>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code>
+					<code><ESB_HOME>/repository/components/plugins</code>
+				</code>
+			</td>
+			<td>
+				<code><MI_HOME>/wso2/components/plugins</code>
+			</td>
+		</tr>
+	</table>
+
 ## Migrating to the Micro Integrator 
 
 Follow the instructions below to start the migration!
@@ -30,7 +85,7 @@ If you are already using a JDBC or LDAP as the **primary** user store of your ES
 
 Note that **secondary** user stores are currently not supported in the Micro Integrator of EI 7.1.0.
 
-!!! tip "Before you begin"
+!!! info "Before you begin"
 	Read about [users and roles in the Micro Integrator](../../../setup/user_stores/managing_users) and how they function. Note the following important facts:
 
 	- Users in the Micro Intgrator are categorized as <b>admin</b> users and <b>non-admin</b> users.
@@ -98,16 +153,29 @@ See the instructions on [configuring a user store](../../user_stores/setting_up_
 	
 ### Migrating the registry
 
-!!! tip "Before you begin"
+!!! info "Before you begin"
     Note the following:
 
 	-	Your ESB 5.0 registry may have the following partitions: <b>Local</b>, <b>Config</b>, and <b>Gov</b>. Note that you only need to migrate the <b>Config</b> and <b>Gov</b> registry partitions. See the instructions on configuring [registry partitions in the Micro Integrator](../file_based_registry).
-	-	If you have shared the registry of ESB 5.0 among multiple nodes, you can do the same for the file-based registery of EI 7.1. However, note that registry mounting/sharing is only required for [**persisting message processor states** among nodes of EI 7.1](../../../setup/deployment/deploying_wso2_ei/#registry-synchronization-sharing).
+	-	Message processor tasks stored in the registry should be stored with a new naming convention in the Micro Integrator. Therefore, all entries in the registry with the `MSMP` prefix should not be migrated to the Micro Integrator. New entries will be automatically created when you start the Micro Integrator server.
+	-	If you have shared the registry of ESB 5.0 among multiple nodes, you can do the same for the file-based registry of EI 7.1. However, note that registry mounting/sharing is only required for [**persisting message processor states** among nodes of EI 7.1](../../../setup/deployment/deploying_wso2_ei/#registry-synchronization-sharing).
 
 The Micro Integrator uses a [file-based registry](../file_based_registry) instead of a database (which is used in ESB 5.0). Follow the guidelines given below when you migrate the registry artifacts.
 
 -	If the registry resources in ESB 5.0 are added via carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.1. Copy the carbon applications from the `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` folder to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
--	If the registry resources are added through the management console in ESB 5.0, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. Use one of the following approaches:
+-	If the registry resources are added through the management console in ESB 5.0, you need to convert them to a Registry Resources module in WSO2 Integration Studio and deploy them via a Carbon Application. 
+
+	!!! warning "Known Issues"
+		A registry migration using this method is currently not possible due to the known issues listed below. Please contact WSO2 if you require a registry migration.
+
+		 - [issue1258](https://github.com/wso2/devstudio-tooling-ei/issues/1258)
+
+		 - [issue19770](https://github.com/wso2/micro-integrator/issues/1977)
+
+		 - [issue1257](https://github.com/wso2/devstudio-tooling-ei/issues/1257)
+
+	Use one of the following approaches:
+	
 	- [Checkout the Registry Resources](../../../develop/creating-artifacts/creating-registry-resources/#check-out-from-registry) from the ESB 5.0 server directly into the Registry Resources module in WSO2 Integration Studio.
 	- Download the Registry Resources from ESB 5.0 and [import them](../../../develop/creating-artifacts/creating-registry-resources/#import-from-file-system) into the Registry Resources module in WSO2 Integration Studio.
 
@@ -119,9 +187,49 @@ The Micro Integrator uses a [file-based registry](../file_based_registry) instea
 
 ### Migrating integration artifacts
 
+!!! info "Before you begin"
+
+	Note that the following changes are effective in the Micro Integrator of EI 7.1 when you migrate from WSO2 ESB 5.0.0 to the Micro Integrator.
+
+	??? note "Removed mediators"
+
+		The following mediators and artifacts are removed in the ESB/Micro Integrator runtime after ESB 5.0.0.
+
+		-	Priority Executors
+		-	Enqueue Mediator
+		-	Bean Mediator
+		-	POJO Command Mediator
+		-	Spring Mediator
+		-	Conditional Router Mediator
+		-	In, Out Mediators
+		-	Event Mediator
+		-	In memory Topics
+		-	Router Mediator
+		-	Publish Event Mediator
+
+	??? note "Message mediation"
+
+		-	If you have used the `$ctx` function inline (in the Payload Factory mediator) to get property values, you need to change this to the full XPath. The `$ctx` function or the `get-property()` function can be used inside the argument (args) tags to get property values.
+		-	The XSLT mediator writes response messages to the JSON stream. In ESB versions prior to EI 6.4.0, the XSLT mediator was not doing any changes to the JSON stream after message transformation.
+		-	There are validations affecting the <b>Enrich</b> mediator, which prevents the source and target in the message body.
+		-	If you have specified an XPath value in your mediation sequence, the response message generated by the ESB will include the element tags of your XPath value. For example, if your XPath value is "//faultdescription", the response message will be `<faultdescription>DESCRIPTION</faultdescription>`. If you want the response message to contain only the DESCRIPTION, you need to specify the XPath value as "//faultdescription/text()".
+		-	If you are using the MailTo transport to send emails through a mediation sequence, note that the email sender specified in the mediation sequence overrides the email sender configured in the Micro Integrator configurations.
+
+	??? note "HTTP content negotiation"
+
+		HTTP content negotiation is enabled in the Micro Integrator by default. This setting transforms the message (at the time of building the message) according to the content type specified using the 'Accept' header of the request message. You can disable this behavior by updating the `deployment.toml` file as shown below.
+		```toml
+		[server]
+		hostname = "localhost"
+		http_content_negotiation = true
+		```
+
 The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is to use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio):
 
 - If the artifacts are created in the recommended way, copy the CAR files inside `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+- If you have a custom mediator packed in a CAR, do one of the following:
+	- Include all the artifacts (using that mediator) in the same CAR. 
+	- Alternatively, you can add the JAR of the mediator to the `<MI_HOME>/lib/dropins` folder so that it can be shared by artifacts in multiple CARs.
 - If the artifacts are created using the management console of ESB 5.0, you need to recreate them using WSO2 Integration Studio and package them as a composite application. See the instructions on [packaging artifacts](../../../develop/packaging-artifacts).
 
 !!! Tip
@@ -130,7 +238,7 @@ The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is t
 ### Migrating deployed Connectors
 
 - If the connector is added to ESB 5.0 via a composite application with the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors), the same can be used in EI 7.1 seamlessly. Simply copy the CAR file in ESB 5.0 to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
-- If the connector is added to ESB 5.0 via the management console, pack them using [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors) and deploy via a composite application in EI 7.1.
+- If the connector is added to ESB 5.0 via the management console, pack them using the [Connector Exporter Project](../../../develop/creating-artifacts/adding-connectors) and deploy via a composite application in EI 7.1.
 
 ### Migrating custom components
 
@@ -138,6 +246,7 @@ Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropi
 
 !!! Note
     -	To provide seamless integration with RabbitMQ, the Rabbitmq client lib is included in the Micro Integrator by default. Hence, you don't need to manually add any RabbitMQ components.
+    -	WSO2 EI no longer packs the VFS/SMB provider by default. If you need to use the <b>VFS SMB</b> feature, download `jcifs-1.3.17.jar` and add it to the `<MI_HOME/lib` folder. Since this library is licensed under LGPL version 2.1, you have to comply with the [terms of LGPL version 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html) and its restrictions.
     -	If you used an <b>HL7 Message Store</b> (custom message store) implementation, note that the Micro Integrator does not support this functionality. See the list of [removed features](../../../overview/about-this-release-7.1.0/#features-removed) for details.
 
 ### Migrating tenants
@@ -145,11 +254,11 @@ Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropi
 Multitenancy within one JVM is not supported in the Micro Integrator of EI 7.1. Therefore, if you used multiple tenants in your ESB deployment, you can replicate the set up in EI 7.1 by using separate Micro Integrator nodes.
 
 ### Migrating keystores
-Copy the JKS files in the `<ESB_5.0.0_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory. 
+Copy the JKS files from the `<ESB_5.0.0_HOME>/repository/resources/security` folder to the `<MI_HOME>/repository/resources/security` folder. 
 
 ### Migrating configurations
 
-!!! tip "Before you begin"
+!!! info "Before you begin"
 	Note the following:
 
 	- 	Configuration management was handled in WSO2 ESB 5.0 versions via multiple files such as `carbon.xml`, `synapse.properties`, `axis2.xml`, etc.
@@ -194,7 +303,7 @@ Given below are main configurations that have changed in the Micro integrator. E
 
 ??? note "Analytics configurations"
 
-	If you used EI Analytics with your ESB, you have configured the following to be able to publish statistics to the Analytics.
+	If you used EI Analytics with your ESB, you have configured the following to be able to publish statistics to the Analytics server.
 
 	-	`<ESB_HOME>/repository/deployment/server/eventpublishers/MessageFlowConfigurationPublisher.xml`
 	-	`<ESB_HOME>/repository/deployment/server/eventpublishers/MessageFlowStatisticsPublisher.xml`
@@ -832,7 +941,6 @@ Given below are some of the most critical XML configuraton files in ESB 5.0. Exp
 	       
 		```toml tab='TOML configuration'
 		[transport.jms]
-		#
 	    sender_enable = true
 		```
 	    
