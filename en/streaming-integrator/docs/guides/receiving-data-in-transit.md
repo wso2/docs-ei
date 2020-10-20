@@ -96,7 +96,7 @@ The following are Siddhi extensions that allow you to capture data in transit/fl
 
 - [HTTP](https://siddhi-io.github.io/siddhi-io-http/api/latest/#source)
 - [TCP](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#source)
-- [email]
+- [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source)
 
 ## Receiving data from pull sources
 
