@@ -136,8 +136,9 @@ Let's try out the example where you want to view the online bookings saved in a 
         
         The following is logged in the Streaming Integrator Tooling terminal.
                    
-        `INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - VacationsApp : LogStream : Event{timestamp=1563378804914, data=[1, 1602506738000, jem, best of rome, 2], isExpired=false}`
-
+        ```
+        INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - VacationsApp : LogStream : Event{timestamp=1563378804914, data=[1, 1602506738000, jem, best of rome, 2], isExpired=false}
+        ```
 
 ### Supported databases
 
@@ -339,8 +340,10 @@ To try out reading the content of a file and file events, let's address the requ
 
     As a result, the following is logged in the Streaming Integrator Tooling terminal to indicate that the `productionstats.csv` is created in the `Users/production` directory.
     
-    `INFO {io.siddhi.core.stream.output.sink.LogSink} - LogFileEventsApp : LogFileEventsStream : Event{timestamp=1603105747423, data=[/Users/rukshani/documents/production/productionstats.csv, productionstats.csv, created], isExpired=false} `
-    
+    ```
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - LogFileEventsApp : LogFileEventsStream : Event{timestamp=1603105747423, data=[/Users/production/productionstats.csv, productionstats.csv, created], isExpired=false} 
+    ```
+   
 4. Create and save the following Siddhi application in Streaming Integrator Tooling.
 
     ```siddhi
@@ -379,18 +382,23 @@ To try out reading the content of a file and file events, let's address the requ
     
     - **For the `FileReadingApp` Siddhi application**
     
-        `INFO {io.siddhi.core.stream.output.sink.LogSink} - FileReadingApp : LogStream : Event{timestamp=1603106006720, data=[Almond cookie, 100.0], isExpired=false} `
-        
-        `INFO {io.siddhi.core.stream.output.sink.LogSink} - FileReadingApp : LogStream : Event{timestamp=1603106006720, data=[Baked alaska, 20.0], isExpired=false} `
-        
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - FileReadingApp : LogStream : Event{timestamp=1603106006720, data=[Almond cookie, 100.0], isExpired=false} 
+        ```
+      
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - FileReadingApp : LogStream : Event{timestamp=1603106006720, data=[Baked alaska, 20.0], isExpired=false} 
+        ```
+      
         These logs show the content of the `productionstats.csv` file that is read by WSO2 Streaming Integrator.
     
     - **For the `LogFileEventsApp` Siddhi application**
 
-        `INFO {io.siddhi.core.stream.output.sink.LogSink} - LogFileEventsApp : LogFileEventsStream : Event{timestamp=1603106006807, data=[/Users/rukshani/documents/production/productionstats.csv, productionstats.csv, removed], isExpired=false}`
-        
-        This log indicates that the WSO2 Streaming Integrator has detected that the 'productionstats.csv` file is removed from the `/Users/production` directory.
-              
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - LogFileEventsApp : LogFileEventsStream : Event{timestamp=1603106006807, data=[/Users/production/productionstats.csv, productionstats.csv, removed], isExpired=false}
+        ```
+      
+        This log indicates that the WSO2 Streaming Integrator has detected that the 'productionstats.csv` file is removed from the `/Users/production` directory.    
 
 ## Consuming data from cloud storages
 
