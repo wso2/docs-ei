@@ -332,7 +332,7 @@ To try out reading the content of a file and file events, let's address the requ
     
     The above Siddhi Application monitors the `Users/production` directory and generates an event in the `FileListenerStream` if any file is created/modified/removed in it.
     
-2. Start the `LogFileEventsApp` Siddhi application you created by clicko=ing on the play icon in the top panel.
+2. Start the `LogFileEventsApp` Siddhi application you created by clicking on the play icon in the top panel.
 
     ![Play](../images/extracting-data-from-static-sources/play.png)
     
