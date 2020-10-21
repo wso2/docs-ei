@@ -420,7 +420,7 @@ WSO2 Streaming Integrator allows you to access data in cloud storages (such as A
 
 ![Accessing Data in Cloud Storages](../images/extracting-data-from-static-sources/cloud-storages.png)
 
-The following is an example where the WSO2 Streaming Integrator retrieves messages from an SQS queue. A source of the `sqs`type is used for this purpose where you can provide the URL to the SQS queue that you want to subscribe to, and provide the access key and thge secret to access it. the queue is polled periodically (i.e., every 5000 milliseconds). The source generates an event in the `InStream` stream for each message it retrieves.
+The following is an example where the WSO2 Streaming Integrator retrieves messages from an SQS queue. A source of the `sqs`type is used for this purpose where you can provide the URL to the SQS queue that you want to subscribe to, and provide the access key and the secret to access it. the queue is polled periodically (i.e., every 5000 milliseconds). The source generates an event in the `InStream` stream for each message it retrieves.
 
 ```
 @source(type='sqs',
@@ -440,9 +440,60 @@ The following is an example where the WSO2 Streaming Integrator retrieves messag
 define stream InStream (symbol string, message_id string);
 ```
 
-### Supporting Siddhi extensions
+To transfer the content of the cloud storage to a file, add another stream with a sink of the `file` type as shown in the example below.
 
-[SQS](https://siddhi-io.github.io/siddhi-io-sqs/api/2.0.0/#source)
+!!! tip
+    To learn more about publishing data to files, see [Loading and Writing Data](Loading and Writing Data).
+
+```
+@sink(type = 'file', 
+    file.uri = "/Users/messages/messages.csv",
+	@map(type = 'json'))
+define stream ExtractCloudDataStream (symbol string, message_id string);
+```
+
+Then write a query as follows to send all the events in the `InStream` stream to the `ExtractCloudDataStream` stream so that all the events extracted from the cloud can be transferred to the `/Users/messages/messages.csv` file.
+
+```
+@info(name = 'MoveCloudContentToFile')
+from InStream 
+select * 
+insert into ExtractCloudDataStream;
+```
+The complete Siddhi application with the above configurations is as follows.
+
+```
+@App:name('CloudProcessingApp')
+@App:description('Description of the plan')
+
+@source(type = 'sqs', queue = "http://aws.sqs.queue.url", access.key = "aws.access.key", secret.key = "aws.secret.key", region = "us-east-2", polling.interval = "5000", max.number.of.messages = "10", number.of.parallel.consumers = "1", purge.messages = "true", wait.time = "2", visibility.timeout = "30", delete.retry.interval = "1000", max.number.of.delete.retry.attempts = "10",
+	@map(type = 'xml', enclosing.element = "//events",
+		@attributes(symbol = "symbol", message_id = "trp:MESSAGE_ID")))
+define stream InStream (symbol string, message_id string);
+
+@sink(type = 'file', 
+    file.uri = "/Users/messages/messages.csv",
+	@map(type = 'json'))
+
+define stream ExtractCloudDataStream (symbol string, message_id string);
+
+@info(name = 'MoveCloudContentToFile')
+from InStream 
+select * 
+insert into ExtractCloudDataStream;
+```
+
+Now you can tail the data that is stored in the cloud by tailing the `/Users/messages/messages.csv` file. For more information about extracting information from files, see [Extracting data from files](#extracting-data-from-files).
 
 
+### Supported cloud platforms
 
+The following is a list of cloud platforms from which you can extract stored data via WSO2 Streaming Integrator.
+
+| **Cloud Platform**            | **Extension**                                                                                         |
+|-------------------------------|-------------------------------------------------------------------------------------------------------|
+| AWS SQS                       | [SQS](https://siddhi-io.github.io/siddhi-io-sqs/api/2.0.0/#source)                                    |
+| AWS Simple Cloud Storage (S3) | [S3](https://siddhi-io.github.io/siddhi-io-s3/api/latest/)                                            |
+| Google Cloud Storage          | [GCS](https://siddhi-io.github.io/siddhi-io-gcs/api/latest/)                                          |
+| CosmosDB                      | [CosmosDB](https://github.com/wso2-extensions/siddhi-store-cosmosdb/blob/master/docs/api/latest.md)   |
+| Azure Data Lake               | [azuredatalake](https://siddhi-io.github.io/siddhi-io-azuredatalake/api/latest/#source)               |
