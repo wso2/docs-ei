@@ -90,14 +90,115 @@ To try out the example given above, let's include the source configuration in a 
     INFO {io.siddhi.core.stream.output.sink.LogSink} - New Student : Event{timestamp=1603185486763, data=[Michelle Cole, Graphic Design, 2], isExpired=false}
     ```
     
-### Supporting Siddhi extensions
+### Supported transports
 
-The following are Siddhi extensions that allow you to capture data in transit/flight.
+The following are the supported transports to capture data in transit from push sources.
 
-- [HTTP](https://siddhi-io.github.io/siddhi-io-http/api/latest/#source)
-- [TCP](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#source)
-- [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source)
+| **Transport** | **Siddhi Extension**                                                          |
+|---------------|-------------------------------------------------------------------------------|
+| HTTP          | [http](https://siddhi-io.github.io/siddhi-io-http/api/latest/#source)         |
+| TCP           | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#source)           |
+| Email         | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source) |
 
 ## Receiving data from pull sources
 
-### Supporting Siddhi extensions
+To receive data from a push data source, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) and connect a [source] annotation of a type that receives data from a pull data source.
+
+For example, consider a weather broadcasting application that publishes the temperature and humidity for each region is monitors in a separate Kafka topic. The local weather broadcasting firm of Houston wants to subscribe to receive weather broadcasts for Houston.
+
+```
+@source(type='kafka',
+        topic.list='houston',
+        threading.option='single.thread',
+        group.id="group1",
+        bootstrap.servers='localhost:9092',
+        @map(type='json'))
+define stream TemperatureHumidityStream (temperature double, humidity double);
+```
+
+The above Kafka source listens at bootstrap server `localhost:9092` for messages in the kafka topic named `houston` sent in JSON format. For each message, it generates an event in the `TemperatureHumidityStream` stream.
+
+### Try it out
+
+To try the above example, follow the steps below.
+
+1. Download the Kafka broker from [the Apache site](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.12-2.3.0.tgz) and extract it.
+   This directory is referred to as `<KAFKA_HOME>` from here on.
+   
+2. Start Kafka as follows:
+
+    1. First, start a zoo keeper node. To do this, navigate to the `<KAFKA_HOME>` directory and issue the following command.
+    
+        `sh bin/zookeeper-server-start.sh config/zookeeper.properties`
+    
+    2. Next, start a Kafka server node. To do this, issue the following command from the same directory.
+    
+        `sh bin/kafka-server-start.sh config/server.properties`
+        
+    3. To create a Kafka topic named `houston`, issue the following command from the same directory.
+    
+        `bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic houston`
+        
+3. Prepare WSO2 Streamning to consume Kafka messages as follows:
+
+    1. Start and access [WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md). 
+    
+    2. Download and install the Kafka extention to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).
+    
+    3. Open a new file and add the following Siddhi application to it.
+
+        ```
+        @App:name('TemperatureReportingApp')
+        @App:description('Description of the plan')
+       
+        @source(type = 'kafka', topic.list = "houston", threading.option = "single.thread", group.id = "group1", bootstrap.servers = "localhost:9092",
+        @map(type = 'json'))
+        define stream TemperatureHumidityStream (temperature double, humidity double);
+        
+        @sink(type = 'log', prefix = "Temperature Update",
+        	@map(type = 'passThrough'))
+        
+        define stream OutputStream (temperature double, humidity double);
+                
+        @info(name = 'query1')
+        from TemperatureHumidityStream 
+        select * 
+        insert into OutputStream;
+        ```
+       
+       This Siddhi application includes the Kafka source that subscribes to the `houston` kafka source and generates an event in the `TemperatureHumidityStream` stream for each message in the topic (as described in the example inj the previous section). `query1` query gets all these messages from the `TemperatureHumidityStream` stream and inserts them into the `OutputStream` stream so that they can be logged via the log sink connected to the latter.
+       
+       Save the Siddhi application.
+       
+    4. Start the `TemperatureReportingApp` Siddhi application that you created and saved.
+        
+4. To generate a message in the `houston` Kafka topic, follow the steps below:
+
+    1. To run the Kafka command line client, issue the following command from the `<KAFKA_HOME>` directory.
+    
+        `bin/kafka-console-producer.sh --broker-list localhost:9092 --topic houston`
+        
+    2. When you are prompted to type messages in the console. Type the following in the command prompt.
+    
+        `{"event":{ "temperature":23, "humidity":99}}`
+        
+        This pushes a message to the Kafka Server. Then, the Siddhi application you deployed in the Streaming Integrator consumes this message. As a result, the Streaming Integrator log displays the following:
+        
+5. Check the logs of Streaming Integrator Tooling. The Kafka message you generated is logged as follows:
+
+    ```
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - Temperature Update : Event{timestamp=1603339705244, data=[23, 99], isExpired=false}
+    ```
+
+### Supported transports
+
+The following are the supported transports to capture data in transit from pull sources.
+
+| **Transport** | **Siddhi Extension**                                                                               |
+|---------------|----------------------------------------------------------------------------------------------------|
+| NATS          | [nats](https://siddhi-io.github.io/siddhi-io-nats/api/latest/#nats-source)                         |
+| Kafka         | [kafka](https://siddhi-io.github.io/siddhi-io-kafka/api/latest/#kafka-source)                      |
+| googlepubsub  | [googlepubsub](https://siddhi-io.github.io/siddhi-io-googlepubsub/api/latest/#googlepubsub-source) |
+| RabbitMQ      | [rabbitmq](https://siddhi-io.github.io/siddhi-io-rabbitmq/api/latest/#rabbitmq-source)             |
+| JMS           | [JMS](https://siddhi-io.github.io/siddhi-io-jms/api/latest/#jms-source)                            |
+| MQTT          | [MQTT](https://siddhi-io.github.io/siddhi-io-mqtt/api/3.0.0/#mqtt-source)                          |
