@@ -10,12 +10,17 @@ The sources from which data in transit/flight are received can be classified int
 
 ## Receiving data from push sources
 
+Push data sources are transports from which WSO2 SI can receive messages without subscribing for them. In a typical scenario, you are required to open a port in the WSO2 Streaming Integrator that is dedicated to listen to messages from the relevant push data source.
+
+![receiving data from a push source](../images/receiving-data-in-transit/push-data-sources.png)
+
 To receive data from a push data source, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) and connect a [source] annotation of a type that receives data from a push data source as shown in the example below.
 
 ```siddhi
 @source(type='http', 
     receiver.url='http://localhost:5005/StudentRegistrationEP', 
     @map(type = 'json'))
+
 define stream StudentRegistrationStream (name string, course string);
 ```
 In this example, an online student registration results in an HTTP request in JSON format being sent to the endpoint named `StudentRegistrationEP` to the `5005` port of the localhost. The source generates an event in the `StudentRegistrationStream` stream for each of these requests.
@@ -101,6 +106,10 @@ The following are the supported transports to capture data in transit from push 
 | Email         | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source) |
 
 ## Receiving data from pull sources
+
+Pull data sources are messaging systems where WSO2 Streaming Integrator needs to subscribe to specific queues/topics in order to receive messages from them.
+
+![receiving data from a pull source](../images/receiving-data-in-transit/pull-data-sources.png)
 
 To receive data from a push data source, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) and connect a [source] annotation of a type that receives data from a pull data source.
 
