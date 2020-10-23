@@ -89,9 +89,7 @@ To try out the example given above, let's include the source configuration in a 
    
     ```text
     INFO {io.siddhi.core.stream.output.sink.LogSink} - New Student : Event{timestamp=1603185021250, data=[John Doe, Graphic Design, 1], isExpired=false}
-    ```
-   
-    ```text
+
     INFO {io.siddhi.core.stream.output.sink.LogSink} - New Student : Event{timestamp=1603185486763, data=[Michelle Cole, Graphic Design, 2], isExpired=false}
     ```
     
@@ -122,7 +120,7 @@ For example, consider a weather broadcasting application that publishes the temp
         group.id="group1",
         bootstrap.servers='localhost:9092',
         @map(type='json'))
-define stream TemperatureHumidityStream (temperature double, humidity double);
+define stream TemperatureHumidityStream (temperature int, humidity int);
 ```
 
 The above Kafka source listens at bootstrap server `localhost:9092` for messages in the kafka topic named `houston` sent in JSON format. For each message, it generates an event in the `TemperatureHumidityStream` stream.
@@ -162,12 +160,12 @@ To try the above example, follow the steps below.
        
         @source(type = 'kafka', topic.list = "houston", threading.option = "single.thread", group.id = "group1", bootstrap.servers = "localhost:9092",
         @map(type = 'json'))
-        define stream TemperatureHumidityStream (temperature double, humidity double);
+        define stream TemperatureHumidityStream (temperature int, humidity int);
         
         @sink(type = 'log', prefix = "Temperature Update",
         	@map(type = 'passThrough'))
         
-        define stream OutputStream (temperature double, humidity double);
+        define stream OutputStream (temperature int, humidity int);
                 
         @info(name = 'query1')
         from TemperatureHumidityStream 

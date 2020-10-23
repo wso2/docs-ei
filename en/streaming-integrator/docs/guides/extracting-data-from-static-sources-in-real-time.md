@@ -107,7 +107,7 @@ Let's try out the example where you want to view the online bookings saved in a 
     
         `use tours;`
         
-        `CREATE TABLE production.new_table (
+        `CREATE TABLE tours.tours (
           ref INT NOT NULL AUTO_INCREMENT,
           timestamp LONGTEXT NULL,
           name VARCHAR(45) NULL,
@@ -140,7 +140,7 @@ Let's try out the example where you want to view the online bookings saved in a 
        
         Then save the Siddhi application.<br/><br/>This Siddhi application uses a `cdc` source that extracts events in the change data capturing (i.e., listening) mode and logs the captured records in the console via a `log` sink.
         
-    7. Start the Siddhi Application  by clicking the play button.
+    7. Start the Siddhi Application by clicking the play button.
     
         ![Play](../images/extracting-data-from-static-sources/play.png)
         
