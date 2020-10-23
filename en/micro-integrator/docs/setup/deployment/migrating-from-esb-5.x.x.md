@@ -227,6 +227,15 @@ The Micro Integrator uses a [file-based registry](../file_based_registry) instea
 The recommended way to create integration artifacts (in ESB 5.0 or EI 7.x ) is to use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio):
 
 - If the artifacts are created in the recommended way, copy the CAR files inside `<ESB_5.0.0_HOME>/repository/deployment/server/carbonapps` to the `<MI_HOME>/repository/deployment/server/carbonapps` folder.
+
+	!!! warning "Changed package names"
+		Note that some of the class names of packages used inside your integration artifacts have changed in the Micro Integrator. 
+
+		For example, if you have used a <b>Token Store</b> when [applying security policy to a proxy service](../../../develop/advanced-development/applying-security-to-a-proxy-service) in the ESB, the token store class has changed from `org.wso2.carbon.security.util.SecurityTokenStore` to `org.wso2.micro.integrator.security.extensions.SecurityTokenStore` in the Micro Integrator. 
+
+
+		Therefore, these artifacts have to be updated with the correct class name and packaged into a new CAR file before migration.
+
 - If you have a custom mediator packed in a CAR, do one of the following:
 	- Include all the artifacts (using that mediator) in the same CAR.
 	- Alternatively, you can add the JAR of the mediator to the `<MI_HOME>/lib/dropins` folder so that it can be shared by artifacts in multiple CARs.
