@@ -4,11 +4,11 @@ Loading and writing data involves publishing the data in a destination where it 
 
 ## Loading data to databases
 
-WSO2 Streaming Integrator allows you to load information to databases by defining [Siddhi tables](https://siddhi.io/en/v5.1/docs/query-guide/#table) that are connected to database tables, and then writing queries to publish data into those tables so that it can be transferred to the connected database tables. This is useful when you need to save data in a static manner to be used for further processing when you perform ETL (Extract, Transform, Load) operations. This data could be unprocessed data recived from another source or the results of any processing carried out by WSO2 Streaming Integrator.
+WSO2 Streaming allows you to load data into databases so that the data can be available in a static manner for further processing. You can load the data received from another source unchanged or after processing it. This is achieved by defining [Siddhi tables](https://siddhi.io/en/v5.1/docs/query-guide/#table) that are connected to database tables, and then writing queries to publish data into those tables so that it can be transferred to the connected database tables.
 
 ![Loading Data to Databases](../images/loading-and-writing-data/load-data-to_database.png)
 
-To understand this, consider an example of an online store that needs to save all its sales records in a database table. To address this, you can write a Siddhi application as follows:
+To understand this, consider an example of an sweet shop that needs to save all its sales records in a database table. To address this, you can write a Siddhi application as follows:
 
 - **Define a table**
 
@@ -137,4 +137,74 @@ WSO2 Streaming supports the following database types via Siddhi extensions:
 
 ## Writing data to files
 
+WSO2 Streaming allows you to write data into files so that the data can be available in a static manner for further processing. You can write the data received from another source unchanged or after processing it. This is achieved by defining an output [stream](https://ei.docs.wso2.com/en/7.2.0/streaming-integrator/guides/loading-and-writing-date/) and then connecting a [sink](https://siddhi.io/en/v5.1/docs/query-guide/#sink) of the [file]()
+
+![Loading Data to Databases](../images/loading-and-writing-data/load-data-to-file.png)
+
+To understand this, consider the example of a lab with a sensor that reports the temperature at different times. These temperature readings need to be saved in a file for reference when carrying out further analysis.  
+
+To address the above requirement via WSO2 Streaming Integrator, define an output stream and connect a file source to it as shown below.
+
+```
+@sink(type = 'file', 
+    file.uri = "/users/temperature/temperature.csv",
+	@map(type = 'passThrough'))
+define stream TemperatureLogStream (timestamp long, temperature int);
+```
+Here, any event directed to the `TemperatureLogStream` is written into the `/users/temperature/temperature.csv` file.
+
+### Try it out
+
+To try out the above example by including the given output stream and the sink configuration in a complete Siddhi application, follow the steps below:
+
+1. [Start and access WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md/#starting-streaming-integrator-tooling).
+
+2. Open a new file and copy the following Siddhi Application to it.
+
+    ```
+    @App:name('LabTemperatureApp')
+    
+    define stream LabTemperatureStream (timestamp long, temperature int);
+    
+    @sink(type = 'file', 
+        file.uri = "/users/temperature/temperature.csv",
+    	@map(type = 'passThrough'))
+    define stream TemperatureLogStream (timestamp long, temperature int);
+    
+    from LabTemperatureStream 
+    select * 
+    insert into TemperatureLogStream;
+    ```
+   This Siddhi application includes the file sink from the previous example.
+   
+   !!! tip
+       If required, you can replace the value for the `file.uri` parameter to a preferred location in your machine.
+   
+3. To simulate an event to the `LabTemperatureApp` Siddhi application, click the **Event Simulator** icon in the side panel. 
+
+    ![simulate event](../images/loading-and-writing-data/event-simulator-icon.png)
+
+    Then simulate an event as follows:
+    
+    ![Simulate Single Event](../images/loading-and-writing-data/simulate-single-event-for-file.png)
+    
+    1. In the **Siddhi App Name** field, select **LabTemperatureApp**.
+    
+    2. In the **Stream Name** field, select **LabTemperatureStream**.
+    
+    3. In the **Attributes** section, enter values for the attributes as follows:    
+    
+        | **Attribute**   | **Value**       |
+        |-----------------|-----------------|
+        | **timestamp**   | `1603461542000` |
+        | **temperature** | `27`            |
+       
+    4. Click **Start and Send**.
+    
+4. Open the `/users/temperature/temperature.csv` file. It contains a line as shown below.
+
+    ![Updated File](../images/loading-and-writing-data/updated-file.png)
+
+    This is the event that you simulated that has been written into the file by WSO2 Streaming Integrator.
+    
 ## Storing data in Cloud storage
