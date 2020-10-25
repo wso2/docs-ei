@@ -346,6 +346,7 @@ WSO2 Integration Studio allows you to seamlessly generate the input-output mappi
 !!! Note "Important"
 	The AI Data Mapping generator uploads the data to an internal WSO2 server for processing. However, your data is <b>not</b> stored by WSO2.
 
+
 ![example one Data mapper diagram](../../assets/img/mediators/119131284/ai_datamapper.png)
 
 ## Examples
