@@ -343,6 +343,9 @@ whether the input match with a (JS) Regular Expression
 
 WSO2 Integration Studio allows you to seamlessly generate the input-output mapping using its sophisticated AI Data Mapping generator. You simply have to load the input and output to the relevant sections as shown below and click **Apply**. Alternatively, you can manually create the mapping using the graphical drag-and-drop tool.
 
+!!! Note "Important"
+	The AI Data Mapping generator uploads the data to an internal WSO2 server for processing. However, your data is <b>not</b> stored by WSO2.
+
 ![example one Data mapper diagram](../../assets/img/mediators/119131284/ai_datamapper.png)
 
 ## Examples
