@@ -175,3 +175,21 @@ Mock services give the opportunity to simulate the actual endpoint.
 Once you have entered the required details, click **Add**. It will list the resource under the **Add Service Resource** table with **Sub Context** and **Method**. After that click **Finish** to create a Mock Service. It will locate under the **test → resources → mock-services** directory.
 
 ![Mock Service Form](../assets/img/create_project/synapse_unit_test/mock-service-form.png)     
+
+## Debug the Unit Test Suite
+
+If you encounter errors with the unit testing framework, you can debug the framework for troubleshooting as follows:
+
+1. Select the WSO2 Integration Studio and go to **Run -> Run Configurations..** to open the <b>Run Configurations</b> dialog box.
+
+2. Expand <b>Maven Build</b> and click <b>Run Unit Test Internal Configuration</b>.
+3. In the <b>Goals</b> field, add `-X` to the end of the command as shown below. 
+
+    !!! Tip 
+        This enables <b>maven debug</b> for the testing framework.
+
+    <img src="../../assets/img/create_project/synapse_unit_test/debug-unit-testing.png" alt="troubleshooting unit testing">
+
+4. Click <b>Apply</b> and then click <b>Run</b>.
+
+5. Return to the <b>Console</b> and see that the unit tests are running on debug mode.
