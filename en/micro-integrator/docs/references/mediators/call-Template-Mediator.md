@@ -62,6 +62,13 @@ When a target template is selected, the parameter section will be displayed as s
 <td><strong>Action</strong></td>
 <td>Click <strong>Delete</strong> <strong></strong> to delete a parameter.</td>
 </tr>
+<tr>
+  <td>
+    <b>onError</b>
+  </td>
+  <td>
+    Use this parameter to specify the error handling sequence that should be called if there is an error when the Call Template logic is executed.
+</tr>
 </tbody>
 </table>
 
@@ -144,4 +151,40 @@ dynamically set via the message context.
                 xmlns:ns2="http://org.apache.synapse/xsd" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"/>
         </sequence>
     </template>
+```
+
+### Example 3
+
+Consider an example where the sequence template is configured to log the greeting message that is passed from the mediation sequence in the REST API. According to the sequence template, a value for the greeting message is mandatory. 
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="sequence-temp" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter isMandatory="false" defaultValue="Welcome" name="greeting_message"/>
+    <sequence>
+        <log level="custom">
+            <property expression="$func:greeting_message" name="greeting"/>
+        </log>
+    </sequence>
+</template>
+```
+
+However, this REST API is not passing a greeting message to this template. Also, a <b>default</b> greeting message is not defined in the template. To handle this error <b>at the point of calling the template</b>, you can add the 'onError' parameter to the Call Template mediator and call an error-handling sequence.
+
+```xml tab="Call Template"
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/test" name="test" xmlns="http://ws.apache.org/ns/synapse">
+    ......
+      <call-template target="sequence-temp" onError="error-handling-sequence" />
+    ........
+</api>
+```
+
+```xml tab="error-handling-sequence"
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="error-handling-sequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property name="faultMessage" value="Call Template Error"/>
+    </log>
+</sequence>
 ```
