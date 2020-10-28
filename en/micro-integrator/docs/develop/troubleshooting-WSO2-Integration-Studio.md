@@ -136,3 +136,15 @@ To get details of a WSO2 Integration Studio error:
     ![error log tab](../../assets/img/error-log-tab.png)
 
 3.  Double-click the required error to see the details.
+
+## Changing the property view
+
+By default, WSO2 Micro Integrator is configured with a user-friendly properties view for integration artifacts. For example, see the property view of a REST API resource shown below:
+
+<img src="../../assets/img/property-view-new-design.png" alt="default design of property view">
+
+However, the older (legacy) view of the <b>Property</b> tab will be available if you add the following to the `IntegrationStudio.ini` file in your WSO2 Integration Studio distribution before starting the tool:
+
+```shell
+-Dorg.wso2.developerstudio.properties.legacy
+```
