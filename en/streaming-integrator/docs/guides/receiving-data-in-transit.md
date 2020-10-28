@@ -146,17 +146,16 @@ To try the above example, follow the steps below.
     
         `bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic houston`
         
-3. Prepare WSO2 Streamning to consume Kafka messages as follows:
+3. Prepare WSO2 Streaming Integrator Tooling to consume Kafka messages as follows:
 
     1. Start and access [WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md). 
     
-    2. Download and install the Kafka extention to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).
+    2. Download and install the Kafka extension to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).
     
     3. Open a new file and add the following Siddhi application to it.
 
         ```
         @App:name('TemperatureReportingApp')
-        @App:description('Description of the plan')
        
         @source(type = 'kafka', topic.list = "houston", threading.option = "single.thread", group.id = "group1", bootstrap.servers = "localhost:9092",
         @map(type = 'json'))
