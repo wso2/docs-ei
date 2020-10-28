@@ -65,18 +65,56 @@ To try out the above example, follow the steps below:
    
     This Siddhi application listens for events in the `http://localhost:5005/stocks` endpoint and logs them in the Streaming Integrator Tooling console.
     
-4. Start both the Siddhi applications. To do this, opoen each siddhi application and click the **Play** icon.
+4. Start both the Siddhi applications. To do this, open each siddhi application and click the **Play** icon.
 
     ![Play](../images/extracting-data-from-static-sources/play.png)
     
-5. Simulate an event with the following values to the `InputStream` stream of the `PublishStockUpdatesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md)
+5. Simulate an event with the following values for the `InputStream` stream of the `PublishStockUpdatesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
 
+    | **Attribute** | **Value** |
+    |---------------|-----------|
+    | **symbol**    | `ABC`     |
+    | **price**     | `100`     |
+    | **volume**    | `20`      |
+    
+    As a result, the `ListenToStockUpdates` Siddhi applications prints the following log in the Streaming Integrator Tooling Console.
+    
+    ```
+    [2020-10-28_10-59-20_463] INFO {io.siddhi.core.stream.output.sink.LogSink} - Stock Updates : Event{timestamp=1603862960462, data=[ABC, 100.0, 20], isExpired=false} 
+    ```
 
+### Supported transports
 
+WSO2 Streaming Integrator supports the following transport types to send messages to destinations.
+
+| **Transport** | **Supporting Siddhi Extension**                                       |
+|---------------|-----------------------------------------------------------------------|
+| `http`        | [http](https://siddhi-io.github.io/siddhi-io-http/api/latest/#sink)   |
+| `tcp`         | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#sink)     |
+| `email`       | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#sink) |
+| `grpc`        | [grpc](https://siddhi-io.github.io/siddhi-io-grpc/api/latest/#sink)   |
+| `Thrift`      |                                                                       |
+
+### Supported mappers
+
+Mappers determine the format in which the event is published. For information about transforming events by changing the formet in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+
+The following are the supported mappers when you publish data to destinations.
+
+| **Transport** | **Supporting Siddhi Extension**                                                        |
+|---------------|----------------------------------------------------------------------------------------|
+| `json`        | [json](https://siddhi-io.github.io/siddhi-map-json/api/latest/#sinkmapper)             |
+| `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)               |
+| `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)             |
+| `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)             |
+| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) |                                                                   |
+    
 ## Publishing data to messaging systems
 
 WSO2 Streaming Integrator allows you to publish data to messaging systems such as Kafka, JMS, NATS, GoolePbSub, etc. so that you can expose streaming data to applications that cannot read streaming data, but are able to subscribe for data in messaging systems.
 
 ![Publishing to messaging systems](../images/publishing-data/publishing-to-message-broker.png)
+
+To understand this, consider a scenario where a 
 
 
