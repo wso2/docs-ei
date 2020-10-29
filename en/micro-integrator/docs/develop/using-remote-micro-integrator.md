@@ -36,5 +36,5 @@ You can disable this feature by using the following system property when you sta
 	
 
 ```bash
-- DgracefulShutdown=false
+-DgracefulShutdown=false
 ``` 
