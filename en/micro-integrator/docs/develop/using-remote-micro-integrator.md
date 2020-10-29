@@ -33,6 +33,7 @@ You can disable this feature by using the following system property when you sta
 
 !!! Warning
 	Disabling graceful shutdown is only recommended for a development environment for the purpose of making the development and testing process faster. Be sure to have graceful shutdown enabled when you move to production.
+	
 
 ```bash
 - DgracefulShutdown=false
