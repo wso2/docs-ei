@@ -111,7 +111,7 @@ Mappers determine the format in which the event is received. For information abo
 
 The following are the supported mappers when you receive data from data publishers.
 
-| **Transport** | **Supporting Siddhi Extension**                                                        |
+| **Mapper** | **Supporting Siddhi Extension**                                                        |
 |---------------|----------------------------------------------------------------------------------------|
 | `json`        | [json](https://siddhi-io.github.io/siddhi-map-json/api/latest/#sinkmapper)             |
 | `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)               |
@@ -232,7 +232,7 @@ Mappers determine the format in which the event is received. For information abo
 
 The following are the supported mappers when you receive data from messaging systems.
 
-| **Transport** | **Supporting Siddhi Extension**                                                        |
+| **Mapper** | **Supporting Siddhi Extension**                                                        |
 |---------------|----------------------------------------------------------------------------------------|
 | `json`        | [json](https://siddhi-io.github.io/siddhi-map-json/api/latest/#sinkmapper)             |
 | `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)               |

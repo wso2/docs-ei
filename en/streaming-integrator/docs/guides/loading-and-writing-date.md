@@ -135,6 +135,12 @@ WSO2 Streaming supports the following database types via Siddhi extensions:
 | Redis             | [redis](https://siddhi-io.github.io/siddhi-store-redis/api/latest/#store)           |
 | elasticsearch     | [elasticsearch](https://siddhi-io.github.io/siddhi-store-elasticsearch/api/latest/) |
 
+### Supported Mappers
+
+Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+
+The mapper available for loading data to databases is [Keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sinkmapper).
+
 ## Writing data to files
 
 WSO2 Streaming allows you to write data into files so that the data can be available in a static manner for further processing. You can write the data received from another source unchanged or after processing it. This is achieved by defining an output [stream](https://ei.docs.wso2.com/en/7.2.0/streaming-integrator/guides/loading-and-writing-date/) and then connecting a [sink](https://siddhi.io/en/v5.1/docs/query-guide/#sink) of the [file](https://siddhi-io.github.io/siddhi-io-file/api/2.0.10/#sink) type.
@@ -206,6 +212,18 @@ To try out the above example by including the given output stream and the sink c
     ![Updated File](../images/loading-and-writing-data/updated-file.png)
 
     This is the event that you simulated that has been written into the file by WSO2 Streaming Integrator.
+    
+### Supported Mappers
+
+Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+
+The following mappers are supported for the File extension.
+
+| **Transport** | **Supporting Siddhi Extension**                                                        |
+|---------------|----------------------------------------------------------------------------------------|
+| `csv`         | [csv](https://siddhi-io.github.io/siddhi-map-csv/api/2.1.0/#csv-source-mapper)         |
+| `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sourcemapper)             |
+| `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sourcemapper)           |
     
 ## Storing data in Cloud storage
 
@@ -288,10 +306,27 @@ To try out the above example, follow the steps below:
 
 The following is a list of cloud platforms in which you can store data via WSO2 Streaming Integrator.
 
-| **Cloud Platform**            | **Extension**                                                                                         |
-|-------------------------------|-------------------------------------------------------------------------------------------------------|
+| **Cloud Platform**            | **Extension**                                                                                       |
+|-------------------------------|-----------------------------------------------------------------------------------------------------|
 | AWS SQS                       | [SQS](https://siddhi-io.github.io/siddhi-io-sqs/api/2.0.0/#sink)                                    |
-| AWS Simple Cloud Storage (S3) | [S3](https://siddhi-io.github.io/siddhi-io-s3/api/latest/#s3-sink)                                            |
-| Google Cloud Storage          | [GCS](https://siddhi-io.github.io/siddhi-io-gcs/)                                          |
-| CosmosDB                      | [CosmosDB](https://github.com/wso2-extensions/siddhi-store-cosmosdb/blob/master/docs/api/latest.md)   |
+| AWS Simple Cloud Storage (S3) | [S3](https://siddhi-io.github.io/siddhi-io-s3/api/latest/#s3-sink)                                  |
+| Google Cloud Storage          | [GCS](https://siddhi-io.github.io/siddhi-io-gcs/)                                                   |
+| CosmosDB                      | [CosmosDB](https://github.com/wso2-extensions/siddhi-store-cosmosdb/blob/master/docs/api/latest.md) |
 | Azure Data Lake               | [azuredatalake](https://siddhi-io.github.io/siddhi-io-azuredatalake/api/latest/#sink)               |
+
+### Supported mappers
+
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+
+WSO2 Streaming Integrator supports the following mappers for the cloud-based storages in which it stores data.
+
+| **Mapper** | **Supporting Siddhi Extension**                                                                  |
+|---------------|-----------------------------------------------------------------------------------------------|
+| `json`        | [json](https://siddhi-io.github.io/siddhi-map-json/api/latest/#sinkmapper)                    |
+| `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)                      |
+| `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)                    |
+| `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)                    |
+| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper)        | 
+| `keyvalue`    | [keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sourcemapper)           |
+| `csv`         | [csv](https://siddhi-io.github.io/siddhi-map-csv/api/2.1.0/#sourcemapper)                     |
+| `protobuf`    | [protobuf](https://siddhi-io.github.io/siddhi-map-protobuf/api/1.1.0/#protobuf-source-mapper) |
