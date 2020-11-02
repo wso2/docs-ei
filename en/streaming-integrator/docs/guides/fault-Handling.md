@@ -1,6 +1,24 @@
 # Handling Errors
 
-WSO2 Streaming Integrator allows you to handle any errors that may occur when handling streaming data in a graceful manner. Thgis section explains the different types of errors that can occur and how they can be handled.
+WSO2 Streaming Integrator allows you to handle any errors that may occur when handling streaming data in a graceful manner. This section explains hopw the different types of errors can be handled.
+
+There are four ways in which you can handle errors.
+
+## Storing errors
+
+This method involves storing the errors that occur in a database so that they can be replayed and re-sent.
+
+To do this, you need to enable the error store in the `<SI_HOME>/conf/server/deployment.yaml` file. 
+
+You can configure WSO2 Streaming Integrator to store errors in three methods:
+
+- 
+
+## Logging errors
+
+## Streaming errors
+
+## Dropping errors
 
 ## Types of errors
 
