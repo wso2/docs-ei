@@ -36,6 +36,8 @@ This can be used with the following:
 
 - Siddhi Streams
 
+    ![Store Stream Errors](../images/handling-requests-with-errors/store-stream-error.png)
+
     This on-error action can be specified for a  stream via the `@OnError()` annotation. 
 
     The Siddhi query uses the `cast("abc", "double")` which intentionally generates an error for testing purposes. 
@@ -51,6 +53,8 @@ This can be used with the following:
   If you do not specify the on-error action for a stream  via the `@OnError()` annotation, the event is logged and dropped.
     
 - Sinks
+
+    ![Store Sink Errors](../images/handling-requests-with-errors/store-sink-error.png)
 
     You can specify an on-error action by including the `on-error` parameter within the sink configuration as shown below.
     
@@ -152,13 +156,13 @@ To try out storing errors in the store, follow the steps below:
    
     The Error Store Explorer opens as shown below. 
       
-    ![Access Error Store](../../images/handling-requests-with-errors/error-store-explorer-without-server.png)
+    ![Access Error Store](../images/handling-requests-with-errors/error-store-explorer-without-server.png)
     
 7. Click **Connect to Server**. Then enter information as follows:
 
     To check the port of the Streaming Integrator Server, Open <SI_HOME>/conf/server/deployment.yaml file. Under Listener Configurations of wso2.transport.http, locate the listener configuration with msf4j-https as the ID and specify its port as shown in the extract below.
    
-    ![Server Configuration](../../images/quick-start-guide-101/connect-error-store.png)
+    ![Server Configuration](../images/quick-start-guide-101/connect-error-store.png)
     
     |**Parameter**|**Value**    |
     |-------------|-------------|
@@ -222,6 +226,8 @@ This involves logging the event with details of the error and then dropping it. 
 
 - Siddhi Streams
 
+    ![Log Stream Errors](../images/handling-requests-with-errors/log-stream-error.png)
+
     You can specify this on-error action for streams via the `@OnError` annotation as shown below.
 
     ```
@@ -231,6 +237,8 @@ This involves logging the event with details of the error and then dropping it. 
     If you do not specify the on-error action for a stream  via the `@OnError()` annotation, the event is logged and dropped.
     
 - Sinks
+
+    ![Log Sink Errors](../images/handling-requests-with-errors/log-sink-error.png)
 
     You can specify this on-error action by including the `on-error` parameter within the sink configuration as shown below.
     ```
@@ -301,6 +309,8 @@ This can be used with the following:
 
 - Siddhi Streams
 
+    ![Stream Stream Errors](../images/handling-requests-with-errors/stream-stream-error.png)
+
     This on-error action can be specified for a  stream via the `@OnError()` annotation. 
     
     In the following example, the Siddhi query uses the `cast("abc", "double")` function that intentionally generates an error for testing purposes.
@@ -320,6 +330,8 @@ This can be used with the following:
     If you do not specify the on-error action for a stream  via the `@OnError()` annotation, the event is logged and dropped.
     
 - Sinks
+
+    ![Stream Sink Errors](../images/handling-requests-with-errors/log-sink-error.png)
 
     You can specify this on-error action by including the `on-error` parameter within the sink configuration as shown below.
 
@@ -353,58 +365,37 @@ To try out streaming events with errors, follow the procedure below.
        tailing='true',
        @map(type='csv'))
     @onError(action='STREAM') 
-    define stream ProductionStream (name string,amount double);
+    define stream ProductionStream (name string,amount string);
     
     @sink(type='file',
         on.error='STREAM',
-        file.uri = "/Users/foo/manager/managercopy.csv",
+        file.uri = "/Users/foo/managercopy.csv",
         @map(type='csv'))
     define stream CopyProductionStream (name string,amount double);
     
-    @sink(type = 'log', prefix = "Copying Stats Error",
-        @map(type = 'csv'))
-    define stream LogStream (name string, amount double, _error object);
-    
-    from ProductionStream
-    select *
+    @info(name = 'FilterEvents')
+    from ProductionStream[cast(amount, "double") > 100]
+    select name, cast(amount, "double") as amount
     insert into CopyProductionStream;
     
     @info(name = 'streamerrors')
     from !ProductionStream#log("Error Occured")
     select name, amount, _error
     insert into ErrorStream;
-    
-    @info(name = 'logerrors')
-    from ErrorStream
-    select *
-    insert into LogStream;
     ```
-   Here, the on error action is changed to `STREAM` for both the stream and the sink. The `streamerrors` captures the errors that occur and inserts them into a separate stream named `ErrorStream`. The events with errors that are sent to the `ErrorStream` stream have the two attributes of the `ProductionStream` input stream, and in addition, an attribute named `_error` to capture the details of the error.
+   Here, the on error action is changed to `STREAM` for both the stream and the sink. Any stream errors that occur for the `ProductionStream` are directed to an error stream named `!ProductionStream`. The events with errors that are sent to the `!ProductionStream` stream have the two attributes of the `ProductionStream` input stream, and in addition, an attribute named `_error` to capture the details of the error. A log is connected to it with the prefix `Error Occurred`
    
-   To observe the erroneous events being received into the `ErrorStream` stream, the `logerrors` query inserts all the events in it to the `LogStream` stream so that they could be logged via the connected log sink.
+   The `ProductionStream` stream receives events with two string values each. The `FilterEvents` query casts value for the `amount` attribute as a value of the `double` type and filters events where the value for this field is greater than `100`. This results in an error when events are sent to this Siddhi application. 
    
-2. To generate a sink error, give an incorrect destination path for your output file. For example, in this scenario, be sure that the `manager` directory does not exist in the `/Users/foo/manager/managercopy.csv` path. 
-
-    Then generate an input event by adding the foillowing row in the `Users/foo/productions.csv` input file.
+2. To generate an error, add the following row with two string values in the `Users/foo/productions.csv` input file.
     
-    `Crossaints,90.0`
+    `Crossaints,abc`
     
     As a result, the following is logged in the Streaming Integrator terminal.
     
     ```text
-
-    ```
-    
-3. To generate a mapping error, open the input file (in this scenario, `/Users/foo/productions.csv`) and enter a new row in it in the wrong format as shown below.
-
-    `Fudge,Gateaux,80.0`
-    
-    As a result, the following is logged in the Streaming Integrator console.
-    
-    ```text
-
-    ```
-
+    INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - CopyingProductionStatsApp: Error Occured, StreamEvent{ timestamp=1604408058031, beforeWindowData=null, onAfterWindowData=null, outputData=[Crossaints, abc, java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Double (java.lang.String and java.lang.Double are in module java.base of loader 'bootstrap')], type=CURRENT, next=null} 
+    ```   
 
 ## Waiting 
 
