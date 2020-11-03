@@ -151,7 +151,7 @@ To create and deploy a Siddhi application, follow the steps below:
     
     ```
         @App:name("StoreRdbmsError")
-        @App:description('Receive events via simulator and persist the received data in the store.')
+        @App:description('Receive events via HTTP and persist the received data in the store.')
         
         @sink(type='log')
         define stream logStream(batchID int, amount double, factoryID int);
@@ -405,7 +405,7 @@ Check the contents of `SweetProductionTable` to see the published event successf
 
 Use the same curl command as above to publish another event. However, this time our event will fail since the batchID 
 column which is defined as the primary key has a duplicate value of 1 in the second message. You will see the following 
-log in the wso2si terminal.
+log in the wso2si terminal. It shows that the erroneous event has been captured and stored in error store.
 
     ```
     [2020-11-03 11:48:28,951] ERROR {io.siddhi.core.table.Table} - Error on 'StoreRdbmsError' while performing add for events  at 'SweetProductionTable'. Events saved 'EventChunk{first=StreamEvent{ timestamp=1604384308930, beforeWindowData=null, onAfterWindowData=null, outputData=[1, 45.6, 102], type=CURRENT, next=null}}'
@@ -424,7 +424,7 @@ To manage the error in the Error Store Explorer, follow the procedure below:
     
     ![Error Store Explorer](../../images/handling-requests-with-errors/error-store-explorer-with-StoreRdbmsError.png)
     
-    This indicates that the event was dropped because the end point was not available.
+    This indicates that the event was dropped to database constrained violation.
     
 2. To view details of the error, click **Detailed Info**. The following is displayed.
 
@@ -450,6 +450,6 @@ To manage the error in the Error Store Explorer, follow the procedure below:
         2 rows in set (0.00 sec)
     ```
 
-Similarly, other databases errors such as foreign key violation errors, not null errors etc. and even database 
-connection errors that can occur if the database goes down when an event is sent will be caught and saved in the Error 
-Store for replaying.
+Similarly the following dsatabase errors will also be captured and stored in error store for replaying.
+1. Other databases errors such as foreign key violation errors, not null errors etc.
+2. Database connection errors that can occur if the database goes down when an event is published
