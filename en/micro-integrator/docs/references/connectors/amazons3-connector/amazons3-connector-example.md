@@ -1,6 +1,6 @@
 # Amazon S3 Connector Example 
 
-The AmazonS3 Connector allows you to access the REST API of Amazon Simple Storage Service (Amazon S3).  
+The AmazonS3 Connector allows you to access the Amazon Simple Storage Service (Amazon S3) via the AWS [SDK](https://aws.amazon.com/sdk-for-java/).
 
 ## What you'll build
 
@@ -49,24 +49,16 @@ Follow these steps to set up the Integration Project and import AmazonS3 connect
             </log>
             <propertyGroup description="message inputs">
                 <property expression="//bucketName" name="bucketName" scope="default" type="STRING"/>
-                <property expression="fn:concat('http://s3.us-east-2.amazonaws.com/',get-property('bucketName'))" name="bucketUrl" scope="default" type="STRING"/>
                 <property expression="//bucketRegion" name="bucketRegion" scope="default" type="STRING"/>
             </propertyGroup> 
             <amazons3.init>
-                <accessKeyId>AKICJA4J6GE6D6JSVB7B</accessKeyId>
-                <secretAccessKey>H/P/H6Tey2fQODHAU1JBbl/NhL/WpSaEkebvLlp4</secretAccessKey>
+                <awsAccessKeyId>AKIXXXXXXXXXXA</awsAccessKeyId>
+                <awsSecretAccessKey>qHZXXXXXXQc4oMQMnAOj+340XXxO2s</awsSecretAccessKey>
                 <region>us-east-2</region>
-                <methodType>{$ctx:REST_METHOD}</methodType>
-                <contentType>{$axis2:ContentType}</contentType>
-                <addCharset>false</addCharset>
-                <host>s3.us-east-2.amazonaws.com</host>
-                <isXAmzDate>true</isXAmzDate>
-                <bucketName>{$ctx:bucketName}</bucketName>
-                <expect>100-continue</expect>
-                <xAmzAcl>public-read</xAmzAcl>
+                <name>amazons3</name>
             </amazons3.init>
             <amazons3.createBucket>
-                <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+                <bucketName>{$ctx:bucketName}</bucketName>
                 <bucketRegion>{$ctx:bucketRegion}</bucketRegion>
             </amazons3.createBucket>
             <respond/>
@@ -80,105 +72,67 @@ Follow these steps to set up the Integration Project and import AmazonS3 connect
                 <property name="message" value="Store into S3 bucket"/>
             </log>
             <propertyGroup description="message properties">
-                <property expression="//bucketName/text()" name="targetBucketName" scope="default" type="STRING"/>
-                <property expression="//message/text()" name="msgContent" scope="default" type="STRING"/>
-                <property expression="//objectName" name="objectName" scope="default" type="STRING"/>
+                <property expression="//bucketName/text()" name="bucketName" scope="default" type="STRING"/>
+                <property expression="//objectKey" name="objectKey" scope="default" type="STRING"/>
+                <property name="filePath" value="/Users/mine/Desktop/S3_img.jpg" scope="default" type="STRING"/>
             </propertyGroup> 
             <propertyGroup description="init properties">
-                <property name="accessKeyId" scope="default" type="STRING" value="AKIAJA3J6GE646JSVA7A"/>
-                <property name="secretAccessKey" scope="default" type="STRING" value="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"/>
-                <property expression="fn:concat(get-property('targetBucketName'),'.','s3.us-east-2.amazonaws.com')" name="host" scope="default" type="STRING"/>
-                <property expression="fn:concat('http://',get-property('targetBucketName'),'.s3.us-east-2.amazonaws.com')" name="bucketUrl" scope="default" type="STRING"/>
+                <property name="awsAccessKeyId" scope="default" type="STRING" value="AKIXXXXXXXXXXA"/>
+                <property name="awsSecretAccessKey" scope="default" type="STRING" value="qHZXXXXXXQc4oMQMnAOj+340XXxO2s"/>
                 <property name="region" scope="default" type="STRING" value="us-east-2"/>
-                <property name="ContentType" scope="axis2" type="STRING" value="application/xml"/>
-                <property name="addCharset" scope="default" type="STRING" value="false"/>
-                <property name="isXAmzDate" scope="default" type="STRING" value="true"/>
+                <property name="connectionName" scope="default" type="STRING" value="amazons3"/>
             </propertyGroup> 
             <!-- initialize multiPart upload -->
-            <property name="methodType" scope="default" type="STRING" value="POST"/>
             <amazons3.init>
-                <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-                <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
+                <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+                <awsSecretAccessKey>{$ctx:awsSecretAccessKey}</awsSecretAccessKey>
                 <region>{$ctx:region}</region>
-                <methodType>{$ctx:methodType}</methodType>
-                <contentType>{$ctx:ContentType}</contentType>
-                <addCharset>{$ctx:addCharset}</addCharset>
-                <host>{$ctx:host}</host>
-                <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-                <expect>100-continue</expect>
+                <name>{$ctx:connectionName}</name>
             </amazons3.init>
-            <amazons3.initMultipartUpload>
-                <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-                <objectName>{$ctx:objectName}</objectName>
-            </amazons3.initMultipartUpload>
+            <amazons3.createMultipartUpload>
+                <bucketName>{$ctx:bucketName}</bucketName>
+                <objectKey>{$ctx:objectKey}</objectKey>
+            </amazons3.createMultipartUpload>
             <!-- We need to interpret the response as application/xml-->
             <property name="ContentType" scope="axis2" type="STRING" value="application/xml"/>
             <log level="full"/>
             <!-- Extract generated uploadId -->
-            <property expression="$body//m0:UploadId" name="uploadId" scope="default" type="STRING" xmlns:m0="http://s3.amazonaws.com/doc/2006-03-01/"/>
+            <property expression="//UploadId/text()" name="uploadId" scope="default" type="STRING"/>
             <log level="custom">
-                <property expression="$ctx:uploadId" name="uploadId"/>
+                <property expression="$ctx:uploadId" name="Upload Id"/>
             </log>
-            <!-- execute multiPart upload -->
-            <property name="methodType" scope="default" type="STRING" value="PUT"/>
-            <amazons3.init>
-                <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-                <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-                <region>{$ctx:region}</region>
-                <methodType>{$ctx:methodType}</methodType>
-                <contentType>{$ctx:ContentType}</contentType>
-                <addCharset>{$ctx:addCharset}</addCharset>
-                <host>{$ctx:host}</host>
-                <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-                <expect>100-continue</expect>
-            </amazons3.init>
-            <!--Create body of the message to upload-->
-            <payloadFactory media-type="text">
-                <format>$1</format>
-                <args>
-                    <arg evaluator="xml" expression="$ctx:msgContent"/>
-                </args>
-            </payloadFactory>
+            <!-- Execute multiPart upload -->
             <property name="partNumber" scope="default" type="STRING" value="1"/>
             <amazons3.uploadPart>
-                <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-                <objectName>{$ctx:objectName}</objectName>
+                <bucketName>{$ctx:bucketName}</bucketName>
+                <objectKey>{$ctx:objectKey}</objectKey>
                 <uploadId>{$ctx:uploadId}</uploadId>
                 <partNumber>{$ctx:partNumber}</partNumber>
+                <filePath>{$ctx:filePath}</filePath>
             </amazons3.uploadPart>
-            <property expression="$trp:ETag" name="eTag" scope="default" type="STRING"/>
+            <property expression="//ETag/text()" name="eTag" scope="default" type="STRING"/>
             <log level="custom">
-                <property expression="$trp:ETag" name="eTag"/>
+                <property expression="$ctx:eTag" name="e Tag"/>
             </log>
             <payloadFactory media-type="xml">
                 <format>
-                    <partDetails xmlns="">
-                        <Part>
+                    <CompletedPartDetails xmlns="">
+                        <CompletedPart>
                             <PartNumber>1</PartNumber>
                             <ETag>$1</ETag>
-                        </Part>
-                    </partDetails>
+                        </CompletedPart>
+                    </CompletedPartDetails>
                 </format>
                 <args>
                     <arg evaluator="xml" expression="$ctx:eTag"/>
                 </args>
             </payloadFactory>
             <!--complete multiPart upload-->
-            <property name="methodType" scope="default" type="STRING" value="POST"/>
-            <amazons3.init>
-                <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-                <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-                <methodType>{$ctx:methodType}</methodType>
-                <contentType>{$ctx:contentType}</contentType>
-                <addCharset>{$ctx:addCharset}</addCharset>
-                <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-                <bucketName>{$ctx:bucketName}</bucketName>
-            </amazons3.init>
             <amazons3.completeMultipartUpload>
                 <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-                <objectName>{$ctx:objectName}</objectName>
+                <objectKey>{$ctx:objectKey}</objectKey>
                 <uploadId>{$ctx:uploadId}</uploadId>
-                <partDetails>{//partDetails/*}</partDetails>
+                <partDetails>{//CompletedPartDetails}</partDetails>
             </amazons3.completeMultipartUpload>
             <respond/>
         </inSequence>
@@ -190,24 +144,17 @@ Follow these steps to set up the Integration Project and import AmazonS3 connect
             <log description="identifier log" level="custom">
                 <property name="message" value="getting information from amazon S3"/>
             </log>
-            <property name="contentType" scope="default" type="STRING" expression="$axis2:ContentType"/>
-            <property expression="//bucketName/text()" name="targetBucketName" scope="default" type="STRING"/>
-            <property expression="//objectName/text()" name="objectName" scope="default" type="STRING"/>
-            <property expression="fn:concat('http://',get-property('targetBucketName'),'.s3-us-east-2.amazonaws.com')" name="bucketUrl" scope="default" type="STRING"/>
-            <property expression="fn:concat(get-property('targetBucketName'),'.s3-us-east-2.amazonaws.com')" name="host" scope="default" type="STRING"/>
+            <property expression="//bucketName/text()" name="bucketName" scope="default" type="STRING"/>
+            <property expression="//objectKey/text()" name="objectKey" scope="default" type="STRING"/>
             <amazons3.init>
-                <accessKeyId>AKIAJA3J6GE646JSVA7A</accessKeyId>
-                <secretAccessKey>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</secretAccessKey>
-                <region>us-east-2</region>
-                <methodType>GET</methodType>
-                <contentType>{$ctx:contentType}</contentType>
-                <addCharset>false</addCharset>
-                <host>{$ctx:host}</host>
-                <isXAmzDate>true</isXAmzDate>
+                <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+                <awsSecretAccessKey>{$ctx:awsSecretAccessKey}</awsSecretAccessKey>
+                <region>{$ctx:region}</region>
+                <name>{$ctx:connectionName}</name>
             </amazons3.init>
             <amazons3.getObject>
-                <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-                <objectName>{$ctx:objectName}</objectName>
+                <bucketName>{$ctx:bucketName}</bucketName>
+                <objectKey>{$ctx:objectKey}</objectKey>
             </amazons3.getObject>
             <respond/>
         </inSequence>
@@ -219,13 +166,13 @@ Follow these steps to set up the Integration Project and import AmazonS3 connect
 
 **Note**:
 
-* As `accessKeyId` use the access key obtained from Amazon S3 setup and update the above API configuration. 
-* As `secretAccessKey` use the secret key obtained from Amazon S3 setup and update the above API configuration.
+* As `awsAccessKeyId` use the access key obtained from Amazon S3 setup and update the above API configuration. 
+* As `awsSecretAccessKey` use the secret key obtained from Amazon S3 setup and update the above API configuration.
 * Note that When you configure the `addobject` resource, there are three parts to it. You need to use three operations of the connector in order. 
     * initMultipartUpload - initialize the upload to the bucket. In the response of this operation you will receive generated `uploadId` by amazon S3
     * uploadPart - upload message part. There can be multiple parts to the same object. When you invoke the operation, feed `uploadId` and the correct `partNumber`. 
     * completeMultipartUpload - once all parts are done uploading, call this operation. It will add up all the parts and create the object in the requested bucket. 
-* Note that `region` at `host` and `bucketUrl` properties are hard coded. Please change them as per the requirement. 
+* Note that `region`, `connectionName` and credentials are hard coded. Please change them as per the requirement.
 * For more information please refer the [reference guide](amazons3-connector-reference.md) for Amazon S3 connector. 
 
 Now we can export the imported connector and the API into a single CAR application. CAR application is the one we are going to deploy to server runtime. 
@@ -275,12 +222,12 @@ We can use Curl or Postman to try the API. The testing steps are provided for cu
 
 ### Post a message into Amazon S3 bucket
 
-1. Create a file called data.xml with the following content.
+1. Create a file called data.xml with the following source file path (/Users/mine/Desktop/Julian.txt).
     ```
     <addMessage>
-        <objectName>Julian.txt</objectName>
+        <objectKey>Julian.txt</objectKey>
         <bucketName>wso2engineers</bucketName>
-        <message>Julian Garfield, Software Engineer, Integration Group</message>
+        <filePath>/Users/mine/Desktop/Julian.txt</filePath>
     </addMessage>
     ```
 2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
@@ -308,7 +255,7 @@ Now let us read the information on `wso2engineers` that we stored in the Amazon 
 1. Create a file called data.xml with the following content. It specifies which bucket to read from and what the filename is. This example assumes that the object is stored at root level inside the bucket. You can also read a object stored in a folder inside the bucket. 
     ```
     <getObject>
-    <objectName>Julian.txt</objectName>
+    <objectKey>Julian.txt</objectKey>
     <bucketName>wso2engineers</bucketName>
     </getObject>
     ```

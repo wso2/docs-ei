@@ -6,7 +6,7 @@ The following operations allow you to work with the Amazon S3 Connector. Click a
 
 ## Initialize the connector
 
-To use the Amazon S3 connector, add the <amazons3.init> element in your configuration before carrying out any Amazon S3 operations. This Amazon S3 configuration authenticates with Amazon S3 by specifying the AWS access key ID and secret access key ID, which are used for every operation. The signature is used with every request and thus differs based on the request the user makes.
+To use the Amazon S3 connector, add the <amazons3.init> element in your configuration before carrying out any Amazon S3 operations. This Amazon S3 configuration authenticates with Amazon S3 by specifying the AWS access key ID and secret access key ID, which are used for every operation.
 
 ??? note "init"
     The init operation is used to initialize the connection to Amazon S3.
@@ -17,13 +17,18 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>accessKeyId</td>
+            <td>awsAccessKeyId</td>
             <td>AWS access key ID.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>secretAccessKey</td>
+            <td>awsawsSecretAccessKey</td>
             <td>AWS secret access key.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>Unique name to identify the connection by.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -31,232 +36,26 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Region which is used select a regional endpoint to make requests.</td>
             <td>Yes</td>
         </tr>
-        <tr>
-            <td>methodType</td>
-            <td>Type of the HTTP method.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentLength</td>
-            <td>Length of the message without the headers according to RFC 2616.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentType</td>
-            <td>The content type of the resource in case the request content in the body.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>addCharset</td>
-            <td>To add the char set to ContentType header. Set to true to add the charset in the ContentType header of POST and HEAD methods.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>host</td>
-            <td>For path-style requests, the value is s3.amazonaws.com. For virtual-style requests, the value is BucketName.s3.amazonaws.com.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>isXAmzDate</td>
-            <td>The current date and time according to the requester.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>bucketName</td>
-            <td>Name of the bucket required.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>blocking</td>
-            <td>The blocking parameter helps the connector to perform the blocking invocations to Amazon S3.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>privateKeyFilePath</td>
-            <td>Path of AWS private Key File.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>keyPairId</td>
-            <td>Key pair ID of AWS cloud front.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>policyType</td>
-            <td>Policy for the URL signing. It can be custom or canned policy.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>urlSign</td>
-            <td>Specify whether to create Signed URL or not. It can be true or false.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>dateLessThan</td>
-            <td>Can access the object before this specific date only.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>dateGreaterThan</td>
-            <td>Can access the object before this specific date only.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ipAddress</td>
-            <td>IP address for creating Policy.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentMD5</td>
-            <td>Base64 encoded 128-bit MD5 digest of the message without the headers according to RFC 1864.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>expect</td>
-            <td>This header can be used only if a body is sent to not to send the request body until it recieves an acknowledgment.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzSecurityToken</td>
-            <td>The security token based on whether using Amazon DevPay operations or temporary security credentials.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzAcl</td>
-            <td>Sets the ACL of the bucket using the specified canned ACL.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantRead</td>
-            <td>Allows the specified grantee or grantees to list the objects in the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantWrite</td>
-            <td>Allows the specified grantee or grantees to create, overwrite, and delete any object in the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantReadAcp</td>
-            <td>Allows the specified grantee or grantees to read the bucket ACL.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantWriteAcp</td>
-            <td>Allows the specified grantee or grantees to write the ACL for the applicable bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantFullControl</td>
-            <td>Allows the specified grantee or grantees the READ, WRITE, READ_ACP, and WRITE_ACP permissions on the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzMeta</td>
-            <td>Field names prefixed with x-amz-meta- contain user-specified metadata.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzServeEncryption</td>
-            <td>Specifies server-side encryption algorithm to use when Amazon S3 creates an object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzStorageClass</td>
-            <td>Storage class to use for storing the object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzWebsiteLocation</td>
-            <td>Amazon S3 stores the value of this header in the object metadata.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzMfa</td>
-            <td>The value is the concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzCopySource</td>
-            <td>The name of the source bucket and key name of the source object, separated by a slash.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzCopySourceRange</td>
-            <td>The range of bytes to copy from the source object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzMetadataDirective</td>
-            <td>Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzCopySourceIfMatch</td>
-            <td>Copies the object if its entity tag (ETag) matches the specified tag.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzCopySourceIfNoneMatch</td>
-            <td>Copies the object if its entity tag (ETag) is different than the specified ETag.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzCopySourceIfUnmodifiedSince</td>
-            <td>Copies the object if it hasn't been modified since the specified time.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzCopySourceIfModifiedSince</td>
-            <td>Copies the object if it has been modified since the specified time.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzServerSideEncryption</td>
-            <td>Specifies the server-side encryption algorithm to use when Amazon S3 creates the target object.</td>
-            <td>Yes</td>
-        </tr>
     </table>
 
-    > **Note**: You need to pass the bucketName within init configuration only if you use the bucketURL in path-style (e.g., BucketName.s3.amazonaws.com). For the virtual-style bucketUrl (e.g., s3.amazonaws.com) you should not pass the bucketName.
+    > **Note**: You can either pass credentials within init configuration or set the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as environment variables. The AWS SDK uses provider chains to look for AWS credentials in system/user environment variables.
+
+    To set these environment variables on Linux, macOS, or Unix, use export :
+    export AWS_ACCESS_KEY_ID=AKIXXXXXXXXXXA
+    export AWS_SECRET_ACCESS_KEY=qHZXXXXXXQc4oMQMnAOj+340XXxO2s
+
+    To set these environment variables on Windows, use set :
+    set AWS_ACCESS_KEY_ID=AKIXXXXXXXXXXA
+    set AWS_SECRET_ACCESS_KEY=qHZXXXXXXQc4oMQMnAOj+340XXxO2s
 
     **Sample configuration**
 
     ```xml
     <amazons3.init>
-        <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-        <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-        <methodType>{$ctx:methodType}</methodType>
+        <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+        <awsawsSecretAccessKey>{$ctx:awsawsSecretAccessKey}</awsawsSecretAccessKey>
+        <name>{$ctx:connectionName}</name>
         <region>{$ctx:region}</region>
-        <contentType>{$ctx:contentType}</contentType>
-        <addCharset>{$ctx:addCharset}</addCharset>
-        <bucketName>{$ctx:bucketName}</bucketName>
-        <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-        <expect>{$ctx:expect}</expect>
-        <contentMD5>{$ctx:contentMD5}</contentMD5>
-        <xAmzSecurityToken>{$ctx:xAmzSecurityToken}</xAmzSecurityToken>
-        <contentLength>{$ctx:contentLength}</contentLength>
-        <host>{$ctx:host}</host>
-        <xAmzAcl>{$ctx:xAmzAcl}</xAmzAcl>
-        <xAmzGrantRead>{$ctx:xAmzGrantRead}</xAmzGrantRead>
-        <xAmzGrantWrite>{$ctx:xAmzGrantWrite}</xAmzGrantWrite>
-        <xAmzGrantReadAcp>{$ctx:xAmzGrantReadAcp}</xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp>{$ctx:xAmzGrantWriteAcp}</xAmzGrantWriteAcp>
-        <xAmzGrantFullControl>{$ctx:xAmzGrantFullControl}</xAmzGrantFullControl>
-        <uriRemainder>{$ctx:uriRemainder}</uriRemainder>
-        <xAmzCopySource>{$ctx:xAmzCopySource}</xAmzCopySource>
-        <xAmzCopySourceRange>{$ctx:xAmzCopySourceRange}</xAmzCopySourceRange>
-        <xAmzCopySourceIfMatch>{$ctx:xAmzCopySourceIfMatch}</xAmzCopySourceIfMatch>
-        <xAmzCopySourceIfNoneMatch>{$ctx:xAmzCopySourceIfNoneMatch}</xAmzCopySourceIfNoneMatch>
-        <xAmzCopySourceIfUnmodifiedSince>{$ctx:xAmzCopySourceIfUnmodifiedSince}</xAmzCopySourceIfUnmodifiedSince>
-        <xAmzCopySourceIfModifiedSince>{$ctx:xAmzCopySourceIfModifiedSince}</xAmzCopySourceIfModifiedSince>
-        <cacheControl>{$ctx:cacheControl}</cacheControl>
-        <contentEncoding>{$ctx:contentEncoding}</contentEncoding>
-        <expires>{$ctx:expires}</expires>
-        <xAmzMeta>{$ctx:xAmzMeta}</xAmzMeta>
-        <xAmzServeEncryption>{$ctx:xAmzServeEncryption}</xAmzServeEncryption>
-        <xAmzStorageClass>{$ctx:xAmzStorageClass}</xAmzStorageClass>
-        <xAmzWebsiteLocation>{$ctx:xAmzWebsiteLocation}</xAmzWebsiteLocation>
     </amazons3.init>
     ```
     
@@ -264,57 +63,24 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
 ### Buckets
 
-??? note "getBuckets"
-    The getBuckets implementation of the GET operation returns a list of all buckets owned by the authenticated sender of the request. To authenticate a request, use a valid AWS Access Key ID that is registered with Amazon S3. Anonymous requests cannot list buckets, and a user cannot list buckets that were not created by that particular user. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTServiceGET.html) for more information.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>apiUrl</td>
-            <td>Amazon S3 API URL, e.g.: http://s3.amazonaws.com</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>region</td>
-            <td>Amazon S3 region, e.g.: us-east-1</td>
-            <td>Yes</td>
-        </tr>
-    </table>
+??? note "listBuckets"
+    The listBuckets implementation returns a list of all buckets owned by the authenticated sender of the request. To authenticate a request, use a valid AWS Access Key ID that is registered with Amazon S3. Anonymous requests cannot list buckets, and a user cannot list buckets that were not created by that particular user.
 
     **Sample configuration**
 
     ```xml
-    <amazons3.getBuckets>
-        <apiUrl>{$ctx:apiUrl}</apiUrl>
-        <region>{$ctx:region}</region>
-    <amazons3.getBuckets>
+    <amazons3.listBuckets/>
     ```
     
     **Sample request**
 
     ```xml
-    <getBuckets>
-        <accessKeyId>AKIAXXXXXXXXXXQM7G5EA</accessKeyId>
-        <secretAccessKey>qHZBBzXXXXXXXXXXDYQc4oMQMnAOj+34XXXXXXXXXXO2s</secretAccessKey>
-        <methodType>GET</methodType>
-        <contentLength></contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect>100-continue</expect>
-        <host>s3.amazonaws.com</host>
-        <region>us-east-1</region>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <apiUrl>https://s3.amazonaws.com</apiUrl>
-    </getBuckets>
+    <listBuckets/>
     ```
     
     
 ??? note "createBucket"
-    The createBucket implementation of the PUT operation creates a new bucket. To create a bucket, the user should be registered with Amazon S3 and have a valid AWS Access Key ID to authenticate requests. Anonymous requests are never allowed to create buckets. By creating the bucket, the user becomes the owner of the bucket. Not every string is an acceptable bucket name. For information on bucket naming restrictions, see [Working with Amazon S3 Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html). By default, the bucket is created in the US Standard region. The user can optionally specify a region in the request body. For example, if the user resides in Europe, the user will probably find it advantageous to create buckets in the EU (Ireland) region. For more information, see [How to Select a Region for Your Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro). See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUT.html) for more information.
+    The createBucket operation creates a new bucket. To create a bucket, the user should be registered with Amazon S3 and have a valid AWS Access Key ID to authenticate requests. Anonymous requests are never allowed to create buckets. By creating the bucket, the user becomes the owner of the bucket. Not every string is an acceptable bucket name. For information on bucket naming restrictions, see [Working with Amazon S3 Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html). By default, the bucket is created in the US Standard region. The user can optionally specify a region in the request body. For example, if the user resides in Europe, the user will probably find it advantageous to create buckets in the EU (Ireland) region. For more information, see [How to Select a Region for Your Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro). See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/CreateBucketRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -322,8 +88,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -331,66 +97,75 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Region for the created bucket.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>acl</td>
+            <td>The canned ACL to apply to the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantRead</td>
+            <td>Allows the specified grantee or grantees to list the objects in the bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantWrite</td>
+            <td>Allows the specified grantee or grantees to create, overwrite, and delete any object in the bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantReadACP</td>
+            <td>Allows the specified grantee or grantees to read the bucket ACL.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantWriteACP</td>
+            <td>Allows the specified grantee or grantees to write the ACL for the applicable bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantFullControl</td>
+            <td>Allows the specified grantee or grantees the READ, WRITE, READ_ACP, and WRITE_ACP permissions on the bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockEnabledForBucket</td>
+            <td>The object lock mode that you want to apply to the copied object.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.createBucket>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <bucketRegion>{$ctx:bucketRegion}</bucketRegion>
+        <acl>{$ctx:acl}</acl>
+        <grantFullControl>{$ctx:grantFullControl}</grantFullControl>
+        <grantRead>{$ctx:grantRead}</grantRead>
+        <grantReadACP>{$ctx:grantReadACP}</grantReadACP>
+        <grantWrite>{$ctx:grantWrite}</grantWrite>
+        <grantWriteACP>{$ctx:grantWriteACP}</grantWriteACP>
+        <objectLockEnabledForBucket>{$ctx:objectLockEnabledForBucket}</objectLockEnabledForBucket>
     </amazons3.createBucket>
     ```
     
     **Sample request**
 
     ```xml
-    <createBucketWebsiteConfiguration>
-        <accessKeyId>AKIXXXXXXXXXXA</accessKeyId>
-        <secretAccessKey>qHZXXXXXXQc4oMQMnAOj+340XXxO2s</secretAccessKey>
+    <createBucket>
+        <awsAccessKeyId>AKIXXXXXXXXXXA</awsAccessKeyId>
+        <awsawsSecretAccessKey>qHZXXXXXXQc4oMQMnAOj+340XXxO2s</awsawsSecretAccessKey>
+        <connectionName>amazonS3</connectionName>
         <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentLength>256</contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect></expect>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
         <bucketName>signv4test</bucketName>
         <bucketRegion>us-east-2</bucketRegion>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <websiteConfig>
-            <IndexDocument>
-                <Suffix>index2.html</Suffix>
-            </IndexDocument>
-            <ErrorDocument>
-                <Key>Error2.html</Key>
-            </ErrorDocument>
-            <RoutingRules>
-                <RoutingRule>
-                    <Condition>
-                        <KeyPrefixEquals>docs/</KeyPrefixEquals>
-                    </Condition>
-                    <Redirect>
-                        <ReplaceKeyPrefixWith>documents/</ReplaceKeyPrefixWith>
-                    </Redirect>
-                </RoutingRule>
-                <RoutingRule>
-                    <Condition>
-                        <KeyPrefixEquals>images/</KeyPrefixEquals>
-                    </Condition>
-                    <Redirect>
-                        <ReplaceKeyPrefixWith>documents/</ReplaceKeyPrefixWith>
-                    </Redirect>
-                </RoutingRule>
-            </RoutingRules>
-        </websiteConfig>
-    </createBucketWebsiteConfiguration>
-    ```    
-    
+        <objectLockEnabledForBucket>false</objectLockEnabledForBucket>
+    </createBucket>
+    ```
 
-??? note "createBucketWebsiteConfiguration"
+
+??? note "putBucketWebsite"
     Sets the configuration of the website that is specified in the website subresource.
     <table>
         <tr>
@@ -399,13 +174,13 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>websiteConfig</td>
-            <td>Website configuration information. For information on the elements you use in the request to specify the website configuration, see [here](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTwebsite.html).</td>
+            <td>Website configuration information. For information on the elements you use in the request to specify the website configuration, see [here](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketWebsiteRequest.html).</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -413,30 +188,22 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketWebsiteConfiguration>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.putBucketWebsite>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <websiteConfig>{$ctx:websiteConfig}</websiteConfig>
-    </amazons3.createBucketWebsiteConfiguration>
+    </amazons3.putBucketWebsite>
     ```
-    
+
     **Sample request**
 
     ```xml
-    <createBucketWebsiteConfiguration>
-        <accessKeyId>AKIXXXXXXXXXXA</accessKeyId>
-        <secretAccessKey>qHZXXXXXXQc4oMQMnAOj+340XXxO2s</secretAccessKey>
+    <putBucketWebsite>
+        <awsAccessKeyId>AKIXXXXXXXXXXA</awsAccessKeyId>
+        <awsawsSecretAccessKey>qHZXXXXXXQc4oMQMnAOj+340XXxO2s</awsawsSecretAccessKey>
+        <connectionName>amazonS3</connectionName>
         <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentLength>256</contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect></expect>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
         <bucketName>signv4test</bucketName>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <websiteConfig>
+        <WebsiteConfiguration>
             <IndexDocument>
                 <Suffix>index2.html</Suffix>
             </IndexDocument>
@@ -461,16 +228,16 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
                     </Redirect>
                 </RoutingRule>
             </RoutingRules>
-        </websiteConfig>
-    </createBucketWebsiteConfiguration>
+        </WebsiteConfiguration>
+    </putBucketWebsite>
     ```
 
-??? note "createBucketPolicy"
-    The createBucketPolicy implementation of the PUT operation adds or replaces a policy on a bucket. If the bucket already has a policy, the one in this request completely replaces it. To perform this operation, you must be the bucket owner.
+??? note "putBucketPolicy"
+    The putBucketPolicy operation adds or replaces a policy on a bucket. If the bucket already has a policy, the one in this request completely replaces it. To perform this operation, you must be the bucket owner.
 
     If you are not the bucket owner but have PutBucketPolicy permissions on the bucket, Amazon S3 returns a 405 Method Not Allowed. In all other cases, for a PUT bucket policy request that is not from the bucket owner, Amazon S3 returns 403 Access Denied. There are restrictions about who can create bucket policies and which objects in a bucket they can apply to.
 
-    When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTpolicy.html) for more information.
+    See the [https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketPolicyRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -478,8 +245,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -487,51 +254,50 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Policy of the bucket.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>confirmRemoveSelfBucketAccess</td>
+            <td>Use this to change this bucket policy in the future.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketPolicy>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.putBucketPolicy>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <bucketPolicy>{$ctx:bucketPolicy}</bucketPolicy>
-    </amazons3.createBucketPolicy>
+        <confirmRemoveSelfBucketAccess>{$ctx:confirmRemoveSelfBucketAccess}</confirmRemoveSelfBucketAccess>
+    </amazons3.putBucketPolicy>
     ```
     
     **Sample request**
 
     ```json
     {
-        "accessKeyId": "AKXXXXXXXXX5EAS",
-        "secretAccessKey": "qHXXXXXXNMDYadDdsQMnAOj+3XXXXPs",
+        "awsAccessKeyId": "AKXXXXXXXXX5EAS",
+        "awsawsSecretAccessKey": "qHXXXXXXNMDYadDdsQMnAOj+3XXXXPs",
         "region":"us-east-2",
-        "methodType": "PUT",
-        "contentType": "application/json",
+        "connectionName": "amazonS3",
         "bucketName": "signv4test",
-        "isXAmzDate": "true",
-        "bucketUrl": "http://s3.us-east-2.amazonaws.com/signv4test",
-        "contentMD5":"",
-        "xAmzSecurityToken":"",
-        "host":"s3.us-east-2.amazonaws.com",
-        "expect":"",
-        "contentLength":"",
         "bucketPolicy": {
                     "Version":"2012-10-17",
                     "Statement":[{
                         "Sid":"AddPerm",
-                            "Effect":"Allow",
+                        "Effect":"Allow",
                         "Principal": {
-                                "AWS": "*"
+                                "AWS": ["*"]
                             },
-                         "Action":["s3:GetObject"],
+                        "Action":["s3:*"],
                         "Resource":["arn:aws:s3:::signv4test/*"]
                         }]
-                    }
+                    },
+        "confirmRemoveSelfBucketAccess":""
     }
     ```
 
-??? note "createBucketACL"
-    The createBucketACL operation uses the ACL sub-resource to set the permissions on an existing bucket using access control lists (ACL). See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTacl.html) for more information.
+??? note "putBucketACL"
+    The putBucketACL operation uses the ACL sub-resource to set the permissions on an existing bucket using access control lists (ACL). See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketAclRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -539,18 +305,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ownerId</td>
-            <td>The ID of the bucket owner.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ownerDisplayName</td>
-            <td>The screen name of the bucket owner.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -577,34 +333,17 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketACL>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <ownerId>{$ctx:ownerId}</ownerId>
-        <ownerDisplayName>{$ctx:ownerDisplayName}</ownerDisplayName>
+    <amazons3.putBucketACL>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <accessControlList>{$ctx:accessControlList}</accessControlList>
-    </amazons3.createBucketACL>
+    </amazons3.putBucketACL>
     ```
     
     **Sample request**
 
     ```xml
-    <createBucketACL>
-        <accessKeyId>AKIXXXXXXXXXG5EA</accessKeyId>
-        <secretAccessKey>qHZXXXXXXXDYQc4oMQXXXOj+340pXXX23s</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <addCharset>false</addCharset>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
+    <putBucketACL>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <region>us-east-2</region>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <ownerId>9a48e6b16816cc75df306d35bb5d0bd0778b61fbf49b8ef4892143197c84a867</ownerId>
-        <ownerDisplayName>admin+aws+connectors+secondary</ownerDisplayName>
         <accessControlList>
             <Grants>
                 <Grant>
@@ -622,11 +361,11 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
                 </Grant>
             </Grants>
         </accessControlList>
-    </createBucketACL>
+    </putBucketACL>
     ```
 
-??? note "createBucketLifecycle"
-    The createBucketLifecycle operation uses the acl subresource to set the permissions on an existing bucket using access control lists (ACL). See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlifecycle.html) for more information.
+??? note "putBucketLifecycleConfiguration"
+    The putBucketLifecycleConfiguration operation uses the acl subresource to set the permissions on an existing bucket using access control lists (ACL). See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketLifecycleConfigurationRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -634,8 +373,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -669,35 +408,17 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketLifecycle>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.putBucketLifecycleConfiguration>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <lifecycleConfiguration>{$ctx:lifecycleConfiguration}</lifecycleConfiguration>
-    </amazons3.createBucketLifecycle>
+    </amazons3.putBucketLifecycleConfiguration>
     ```
     
     **Sample request**
 
     ```xml
-    <createBucketLifecycle>
-        <accessKeyId>AKXXXXXXXXXXX5EA</accessKeyId>
-        <secretAccessKey>qHXXXXXXXXXXXqQc4oMQMnAOj+33XXXXXDPO2s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
+    <putBucketLifecycleConfiguration>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
         <lifecycleConfiguration>
             <Rule>
                 <ID>id1</ID>
@@ -717,11 +438,11 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
                 </Expiration>
             </Rule>
         </lifecycleConfiguration>
-    </createBucketLifecycle>
+    </putBucketLifecycleConfiguration>
     ```
 
-??? note "createBucketReplication"
-    The createBucketReplication operation uses the acl subresource to set the permissions on an existing bucket using access control lists (ACL). See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTreplication.html) for more information.
+??? note "putBucketReplication"
+    The putBucketReplication operation uses the acl subresource to set the permissions on an existing bucket using access control lists (ACL). See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketReplicationRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -729,18 +450,13 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>role</td>
-            <td>Amazon Resource Name (ARN) of an IAM role for Amazon S3 to assume when replicating the objects.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>rules</td>
-            <td>Container for replication rules, which includes the following:
+            <td>replicationConfiguration</td>
+            <td>Container for replication configuration (Amazon Resource Name (ARN) of an IAM role and set of replication rules):
                 <ul>
                     <li>Rule: Container for information about a particular replication rule.
                         <ul>
@@ -754,6 +470,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
                             </li>
                         </ul>
                     </li>
+                    <li>Role: Amazon Resource Name (ARN) of an IAM role for Amazon S3 to assume when replicating the objects.</li>
                 </ul>
             </td>
             <td>Yes</td>
@@ -763,38 +480,19 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketReplication>
-        <role>{$ctx:role}</role>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <rules>{$ctx:rules}</rules>
-    </amazons3.createBucketReplication>
+    <amazons3.putBucketReplication>
+        <bucketName>signv4test</bucketName>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <replicationConfiguration>{$ctx:replicationConfiguration}</replicationConfiguration>
+    </amazons3.putBucketReplication>
     ```
     
     **Sample request**
 
     ```xml
-    <createBucketReplication>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
+    <putBucketReplication>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
-        <role>arn:aws:iam::35667example:role/CrossRegionReplicationRoleForS3</role>
-        <rules>
+        <ReplicationConfiguration>
             <Rule>
                 <ID>id1</ID>
                 <Prefix>documents/</Prefix>
@@ -803,12 +501,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
                     <Bucket>arn:aws:s3:::signv4testq23aa1</Bucket>
                 </Destination>
             </Rule>
-        </rules>
-    </createBucketReplication>
+        </ReplicationConfiguration>
+    </putBucketReplication>
     ```
 
-??? note "createBucketTagging"
-    The createBucketTagging operation uses the tagging subresource to add a set of tags to an existing bucket. Use tags to organize your AWS bill to reflect your own cost structure. To do this, sign up to get your AWS account bill with tag key values included. Then, to see the cost of combined resources, organize your billing information according to resources with the same tag key values. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTtagging.html) for more information.
+??? note "putBucketTagging"
+    The putBucketTagging operation uses the tagging subresource to add a set of tags to an existing bucket. Use tags to organize your AWS bill to reflect your own cost structure. To do this, sign up to get your AWS account bill with tag key values included. Then, to see the cost of combined resources, organize your billing information according to resources with the same tag key values. For example, you can tag several resources with a specific application name, and then organize your billing information to see the total cost of that application across several services. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketTaggingRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -816,8 +514,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -839,36 +537,18 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketTagging>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.putBucketTagging>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <tagSet>{$ctx:tagSet}</tagSet>
-    </amazons3.createBucketTagging>
+    </amazons3.putBucketTagging>
     ```
-    
+
     **Sample request**
 
     ```xml
-    <createBucketTagging>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
+    <putBucketTagging>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
-        <tagSet>
+        <TagSet>
             <Tag>
                 <Key>Project</Key>
                 <Value>Project One</Value>
@@ -877,12 +557,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
                 <Key>User</Key>
                 <Value>jsmith</Value>
             </Tag>
-        </tagSet>
-    </createBucketTagging>
+        </TagSet>
+    </putBucketTagging>
     ```
 
-??? note "createBucketRequestPayment"
-    The createBucketRequestPayment operation uses the requestPayment subresource to set the request payment configuration of a bucket. By default, the bucket owner pays for downloads from the bucket. This configuration parameter enables the bucket owner (only) to specify that the person requesting the download will be charged for the download. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTrequestPaymentPUT.html) for more information.
+??? note "putBucketRequestPayment"
+    The putBucketRequestPayment operation uses the requestPayment subresource to set the request payment configuration of a bucket. By default, the bucket owner pays for downloads from the bucket. This configuration parameter enables the bucket owner (only) to specify that the person requesting the download will be charged for the download. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketRequestPaymentRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -890,8 +570,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -904,41 +584,23 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketRequestPayment>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.putBucketRequestPayment>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <payer>{$ctx:payer}</payer>
-    </amazons3.createBucketRequestPayment>
+    </amazons3.putBucketRequestPayment>
     ```
     
     **Sample request**
 
     ```xml
-    <createBucketRequestPayment>
-        <accessKeyId>AKXXXXXXXXXXX5EA</accessKeyId>
-        <secretAccessKey>qHXXXXXXXXXXXqQc4oMQMnAOj+33XXXXXDPO2s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
+    <putBucketRequestPayment>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
         <payer>Requester</payer>
-    </createBucketRequestPayment>
+    </putBucketRequestPayment>
     ```
 
-??? note "createBucketVersioning"
-    The createBucketVersioning operation uses the requestPayment subresource to set the request payment configuration of a bucket. By default, the bucket owner pays for downloads from the bucket. This configuration parameter enables the bucket owner (only) to specify that the person requesting the download will be charged for the download. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html) for more information.
+??? note "putBucketVersioning"
+    The putBucketVersioning operation uses the requestPayment subresource to set the request payment configuration of a bucket. By default, the bucket owner pays for downloads from the bucket. This configuration parameter enables the bucket owner (only) to specify that the person requesting the download will be charged for the download. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketVersioningRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -946,61 +608,48 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>status</td>
             <td>Sets the versioning state of the bucket.</td>
-            <td>Yes</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>mfa</td>
+            <td>The concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>mfaDelete</td>
             <td>Specifies whether MFA Delete is enabled in the bucket versioning configuration.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketVersioning>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.putBucketVersioning>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <status>{$ctx:status}</status>
         <mfaDelete>{$ctx:mfaDelete}</mfaDelete>
-    </amazons3.createBucketVersioning>
+    </amazons3.putBucketVersioning>
     ```
-    
+
     **Sample request**
 
     ```xml
-    <createBucketVersioning>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
+    <putBucketVersioning>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
         <status>Enabled</status>
-    </createBucketVersioning>
+    </putBucketVersioning>
     ```
 
 ??? note "deleteBucket"
-    The deleteBucket implementation of the DELETE operation deletes the bucket named in the URI. All objects (including all object versions and Delete Markers) in the bucket must be deleted before the bucket itself can be deleted. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETE.html) for more information.
+    The deleteBucket operation deletes the bucket named in the URI. All objects (including all object versions and Delete Markers) in the bucket must be deleted before the bucket itself can be deleted. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/DeleteBucketRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1008,8 +657,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1018,32 +667,20 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.deleteBucket>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    <amazons3.deleteBucket>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.deleteBucket>
     ```
     
     **Sample request**
 
     ```xml
     <deleteBucket>
-        <accessKeyId>AKIAIGURZM7SDFGJ7TRO6KSFSQ</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzeOgfdgd0Ve5dMCFk4STUFDdfgdgRHkGX6m0CcY</secretAccessKey>
-        <methodType>DELETE</methodType>
-        <region>us-east-2</region>
-        <contentLength></contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect></expect>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </deleteBucket>
     ```
 
 ??? note "deleteBucketPolicy"
-    The deleteBucketPolicy implementation of the DELETE operation deletes the policy on a specified bucket. To use the operation, you must have DeletePolicy permissions on the specified bucket and be the bucket owner. If there are no DeletePolicy permissions, Amazon S3 returns a 403 Access Denied error. If there is the correct permission, but you are not the bucket owner, Amazon S3 returns a 405 Method Not Allowed error. If the bucket does not have a policy, Amazon S3 returns a 204 No Content error. There are restrictions about who can create bucket policies and which objects in a bucket they can apply to. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETE.html) for more information.
+    The deleteBucketPolicy operation deletes the policy on a specified bucket. To use the operation, you must have DeletePolicy permissions on the specified bucket and be the bucket owner. If there are no DeletePolicy permissions, Amazon S3 returns a 403 Access Denied error. If there is the correct permission, but you are not the bucket owner, Amazon S3 returns a 405 Method Not Allowed error. If the bucket does not have a policy, Amazon S3 returns a 204 No Content error. There are restrictions about who can create bucket policies and which objects in a bucket they can apply to. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/DeleteBucketPolicyRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1051,8 +688,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1061,32 +698,20 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.deleteBucketPolicy>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    <amazons3.deleteBucketPolicy>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.deleteBucketPolicy>
     ```
     
     **Sample request**
 
     ```xml
     <deleteBucketPolicy>
-        <accessKeyId>AKIAQEIGURZSDFDM7GJ7TRO6KQ</accessKeyId>
-        <secretAccessKey>asAX8CJoDvcvKzeOd0Ve5dMjkjCFk4STUFDRHkGX6m0CcY</secretAccessKey>
-        <methodType>DELETE</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength>256</contentLength>
-        <contentMD5></contentMD5>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <expect></expect>
-        <region>us-east-2</region>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </deleteBucketPolicy>
     ```
 
-??? note "deleteBucketCors"
-    The deleteBucketCors operation deletes the cors configuration information set for the bucket. To use this operation, you must have permission to perform the s3:PutCORSConfiguration action. The bucket owner has this permission by default and can grant this permission to others. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEcors.html) for more information.
+??? note "deleteBucketCORS"
+    The deleteBucketCORS operation deletes the cors configuration information set for the bucket. To use this operation, you must have permission to perform the s3:PutCORSConfiguration action. The bucket owner has this permission by default and can grant this permission to others. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/DeleteBucketCorsRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1094,8 +719,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1103,39 +728,21 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.deleteBucketCors>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    <amazons3.deleteBucketCors>
+    <amazons3.deleteBucketCORS>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.deleteBucketCORS>
     ```
     
     **Sample request**
 
     ```xml
-    <deleteBucketCors>
-        <accessKeyId>AKIAIGURZMSDFD7GJ7TRO6KQDFD</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzeOd0Ve5dfgdgdfMCFk4STUFDRHSFSDkGX6m0CcY</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
-        <region>us-east-2</region>
+    <deleteBucketCORS>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
-    </deleteBucketCors>
+    </deleteBucketCORS>
     ```
 
 ??? note "deleteBucketLifecycle"
-    The deleteBucketLifecycle operation deletes the lifecycle configuration from the specified bucket. Amazon S3 removes all the lifecycle configuration rules in the lifecycle subresource associated with the bucket. Your objects never expire, and Amazon S3 no longer automatically deletes any objects on the basis of rules contained in the deleted lifecycle configuration. To use this operation, you must have permission to perform the s3:PutLifecycleConfiguration action. By default, the bucket owner has this permission and the bucket owner can grant this permission to others. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETElifecycle.html) for more information.
+    The deleteBucketLifecycle operation deletes the lifecycle configuration from the specified bucket. Amazon S3 removes all the lifecycle configuration rules in the lifecycle subresource associated with the bucket. Your objects never expire, and Amazon S3 no longer automatically deletes any objects on the basis of rules contained in the deleted lifecycle configuration. To use this operation, you must have permission to perform the s3:PutLifecycleConfiguration action. By default, the bucket owner has this permission and the bucket owner can grant this permission to others. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/DeleteBucketLifecycleRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1143,8 +750,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1153,38 +760,20 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.deleteBucketLifecycle>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    <amazons3.deleteBucketLifecycle>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.deleteBucketLifecycle>
     ```
     
     **Sample request**
 
     ```xml
     <deleteBucketLifecycle>
-        <accessKeyId>AKIAIGURZMSDFD7GJ7TRO6KQDFD</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzeOd0Ve5dfgdgdfMCFk4STUFDRHSFSDkGX6m0CcY</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
-        <region>us-east-2</region>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
     </deleteBucketLifecycle>
     ```
 
 ??? note "deleteBucketReplication"
-    The deleteBucketReplication operation deletes the replication sub-resource associated with the specified bucket. This operation requires permission for the s3:DeleteReplicationConfiguration action. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEreplication.html) for more information.
+    The deleteBucketReplication operation deletes the replication sub-resource associated with the specified bucket. This operation requires permission for the s3:DeleteReplicationConfiguration action. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/DeleteBucketReplicationRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1192,8 +781,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1202,38 +791,20 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.deleteBucketReplication>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    <amazons3.deleteBucketReplication>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.deleteBucketReplication>
     ```
     
     **Sample request**
 
     ```xml
     <deleteBucketReplication>
-        <accessKeyId>AKIAIGURZMSDFD7GJ7TRO6KQDFD</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzeOd0Ve5dfgdgdfMCFk4STUFDRHSFSDkGX6m0CcY</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
-        <region>us-east-2</region>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
     </deleteBucketReplication>
     ```
 
 ??? note "deleteBucketTagging"
-    The deleteBucketTagging operation uses the tagging sub-resource to remove a tag set from the specified bucket. To use this operation, you must have permission to perform the s3:PutBucketTagging action. By default, the bucket owner has this permission and can grant this permission to others. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEtagging.html) for more information.
+    The deleteBucketTagging operation uses the tagging sub-resource to remove a tag set from the specified bucket. To use this operation, you must have permission to perform the s3:PutBucketTagging action. By default, the bucket owner has this permission and can grant this permission to others. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/DeleteBucketTaggingRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1241,8 +812,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1251,38 +822,20 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.deleteBucketTagging>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    <amazons3.deleteBucketTagging>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.deleteBucketTagging>
     ```
     
     **Sample request**
 
     ```xml
     <deleteBucketTagging>
-        <accessKeyId>AKIAIGURZMSDFD7GJ7TRO6KQDFD</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzeOd0Ve5dfgdgdfMCFk4STUFDRHSFSDkGX6m0CcY</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
-        <region>us-east-2</region>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
     </deleteBucketTagging>
     ```
 
 ??? note "deleteBucketWebsiteConfiguration"
-    The deleteBucketWebsiteConfiguration operation removes the website configuration for a bucket. Amazon S3 returns a 207 OK response upon successfully deleting a website configuration on the specified bucket. It will give a 200 response if the website configuration you are trying to delete does not exist on the bucket, and a 404 response if the bucket itself does not exist. This DELETE operation requires the S3: DeleteBucketWebsite permission. By default, only the bucket owner can delete the website configuration attached to a bucket. However, bucket owners can grant other users permission to delete the website configuration by writing a bucket policy granting them the S3: DeleteBucketWebsite permission. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEwebsite.html) for more information.
+    The deleteBucketWebsiteConfiguration operation removes the website configuration for a bucket. Amazon S3 returns a 207 OK response upon successfully deleting a website configuration on the specified bucket. It will give a 200 response if the website configuration you are trying to delete does not exist on the bucket, and a 404 response if the bucket itself does not exist. This operation requires the S3: DeleteBucketWebsite permission. By default, only the bucket owner can delete the website configuration attached to a bucket. However, bucket owners can grant other users permission to delete the website configuration by writing a bucket policy granting them the S3: DeleteBucketWebsite permission. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/DeleteBucketWebsiteRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1290,8 +843,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1300,32 +853,20 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.deleteBucketWebsiteConfiguration>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    <amazons3.deleteBucketWebsiteConfiguration>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.deleteBucketWebsiteConfiguration>
     ```
     
     **Sample request**
 
     ```xml
     <deleteBucketWebsiteConfiguration>
-        <accessKeyId>AKIAIGURZM7GDFDJ7TRO6KQDFD</accessKeyId>
-        <secretAccessKey>asAdfsX8CJoDKzeOd0Ve5dMCdfsdFk4STUFDRHkdsfGX6m0CcY</secretAccessKey>
-        <methodType>DELETE</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <region>us-east-2</region>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <contentMD5></contentMD5>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <expect></expect>
     </deleteBucketWebsiteConfiguration>
     ```
 
-??? note "getObjectsInBucket"
-    The getObjectsInBucket implementation of the GET operation returns some or all (up to 1000) of the objects in a bucket. The request parameters act as selection criteria to return a subset of the objects in a bucket. To use this implementation of the operation, the user must have READ access to the bucket. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGET.html)) for more information.
+??? note "listObjects"
+    The listObjects operation returns some or all (up to 1000) of the objects in a bucket. The request parameters act as selection criteria to return a subset of the objects in a bucket. To use this implementation of the operation, the user must have READ access to the bucket. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/ListObjectsRequest.html)) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1333,8 +874,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1362,49 +903,40 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Limits the response to keys that begin with the specified prefix.</td>
             <td>Optional</td>
         </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
-    <amazons3.getObjectsInBucket>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.listObjects>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <delimiter>{$ctx:delimiter}</delimiter>
         <encodingType>{$ctx:encodingType}</encodingType>
         <marker>{$ctx:marker}</marker>
         <maxKeys>{$ctx:maxKeys}</maxKeys>
         <prefix>{$ctx:prefix}</prefix>
-    </amazons3.getObjectsInBucket>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
+    </amazons3.listObjects>
     ```
     
     **Sample request**
 
     ```xml
-    <getObjectsInBucket>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
+    <listObjects>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <prefix>t</prefix>
-        <marker>obj</marker>
-        <expect/>
         <maxKeys>3</maxKeys>
-        <encodingType>url</encodingType>
+        <encodingType>The name of the bucket.</encodingType>
         <delimiter>images</delimiter>
-    </getObjectsInBucket>
+    </listObjects>
     ```
 
-??? note "getBucketLifeCycle"
-    The getBucketLifeCycle operation returns the lifecycle configuration information set on the bucket. To use this operation, permissions should be given to perform the s3:GetLifecycleConfiguration action. The bucket owner has this permission by default and can grant this permission to others. There is usually some time lag before lifecycle configuration deletion is fully propagated to all the Amazon S3 systems. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlifecycle.html) for more information.
+??? note "getBucketLifecycleConfiguration"
+    The getBucketLifecycleConfiguration operation returns the lifecycle configuration information set on the bucket. To use this operation, permissions should be given to perform the s3:GetLifecycleConfiguration action. The bucket owner has this permission by default and can grant this permission to others. There is usually some time lag before lifecycle configuration deletion is fully propagated to all the Amazon S3 systems. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketLifecycleConfigurationRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1412,8 +944,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1421,33 +953,21 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.getBucketLifeCycle>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    </amazons3.getBucketLifeCycle>
+    <amazons3.getBucketLifecycleConfiguration>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.getBucketLifecycleConfiguration>
     ```
     
     **Sample request**
 
     ```xml
-    <getBucketLifeCycle>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
+    <getBucketLifecycleConfiguration>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-    </getBucketLifeCycle>
+    </getBucketLifecycleConfiguration>
     ```
 
-??? note "createBucketCors"
-    The createBucketCors operation returns the cors configuration information set for the bucket. To use this operation, you must have permission to perform the s3:CreateBucketCORS action. By default, the bucket owner has this permission and can grant it to others. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTcors.html) for more information.
+??? note "putBucketCORS"
+    The putBucketCORS operation returns the cors configuration information set for the bucket. To use this operation, you must have permission to perform the s3:putBucketCORS action. By default, the bucket owner has this permission and can grant it to others. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutBucketCorsRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1455,8 +975,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1469,41 +989,30 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.createBucketCors>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.putBucketCORS>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <corsConfiguration>{$ctx:corsConfiguration}</corsConfiguration>
-    </amazons3.createBucketCors>
+    </amazons3.putBucketCORS>
     ```
     
     **Sample request**
 
     ```xml
-    <createBucketCors>
-        <accessKeyId>AKXXXXXXXXXXX5EA</accessKeyId>
-        <secretAccessKey>qHXXXXXXXXXXXqQc4oMQMnAOj+33XXXXXDPO2s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentLength>256</contentLength>
-        <contentType>application/xml</contentType>
-        <expect></expect>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
+    <putBucketCORS>
         <bucketName>signv4test</bucketName>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <corsConfiguration>
+        <CORSConfiguration>
             <CORSRule>
                 <AllowedOrigin>*</AllowedOrigin>
                 <AllowedMethod>GET</AllowedMethod>
                 <AllowedHeader>*</AllowedHeader>
                 <MaxAgeSeconds>3000</MaxAgeSeconds>
             </CORSRule>
-        </corsConfiguration>
-    </createBucketCors>
+        </CORSConfiguration>
+    </putBucketCORS>
     ```
 
-??? note "getBucketCors"
-    The getBucketCors operation returns the cors configuration information set for the bucket. To use this operation, you must have permission to perform the s3:GetBucketCORS action. By default, the bucket owner has this permission and can grant it to others. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETcors.html) for more information.
+??? note "getBucketCORS"
+    The getBucketCORS operation returns the cors configuration information set for the bucket. To use this operation, you must have permission to perform the s3:getBucketCORS action. By default, the bucket owner has this permission and can grant it to others. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketCorsRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1511,8 +1020,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1520,33 +1029,21 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.getBucketCors>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    </amazons3.getBucketCors>
+    <amazons3.getBucketCORS>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.getBucketCORS>
     ```
     
     **Sample request**
 
     ```xml
-    <getBucketCors>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength>256</contentLength>
-        <contentMD5></contentMD5>
+    <getBucketCORS>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-    </getBucketCors>
+    </getBucketCORS>
     ```
 
 ??? note "getBucketLocation"
-    The getBucketLocation operation returns the lifecycle configuration information set on the bucket. To use this operation, you must be the bucket owner. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlocation.html) for more information.
+    The getBucketLocation operation returns the lifecycle configuration information set on the bucket. To use this operation, you must be the bucket owner. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketLocationRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1554,8 +1051,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1564,7 +1061,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.getBucketLocation>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.getBucketLocation>
     ```
     
@@ -1572,24 +1069,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getBucketLocation>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketLocation>
     ```
 
 ??? note "getBucketLogging"
-    The getBucketLogging operation returns the logging status of a bucket and the permissions users have to view and modify that status. To use this operation, you must be the bucket owner. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlogging.html) for more information.
+    The getBucketLogging operation returns the logging status of a bucket and the permissions users have to view and modify that status. To use this operation, you must be the bucket owner. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketLoggingRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1597,8 +1082,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1607,7 +1092,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.getBucketLogging>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.getBucketLogging>
     ```
     
@@ -1615,24 +1100,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getBucketLogging>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketLogging>
     ```
 
-??? note "getBucketNotification"
-    The getBucketNotification operation returns the lifecycle configuration information set on the bucket. To use this operation, you must be the bucket owner to read the notification configuration of a bucket. However, the bucket owner can use a bucket policy to grant permission to other users to read this configuration with the s3:GetBucketNotification permission. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETnotification.html) for more information.
+??? note "getBucketNotificationConfiguration"
+    The getBucketNotificationConfiguration operation returns the lifecycle configuration information set on the bucket. To use this operation, you must be the bucket owner to read the notification configuration of a bucket. However, the bucket owner can use a bucket policy to grant permission to other users to read this configuration with the s3:getBucketNotificationConfiguration permission. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketNotificationConfigurationRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1640,8 +1113,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1649,33 +1122,21 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.getBucketNotification>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    </amazons3.getBucketNotification>
+    <amazons3.getBucketNotificationConfiguration>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.getBucketNotificationConfiguration>
     ```
     
     **Sample request**
 
     ```xml
-    <getBucketNotification>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
+    <getBucketNotificationConfiguration>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-    </getBucketNotification>
+    </getBucketNotificationConfiguration>
     ```
 
 ??? note "getBucketTagging"
-    The getBucketTagging operation returns the lifecycle configuration information set on the bucket. To use this operation, you must have permission to perform the s3:GetBucketTagging action. By default, the bucket owner has this permission and can grant this permission to others. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETtagging.html) for more information.
+    The getBucketTagging operation returns the lifecycle configuration information set on the bucket. To use this operation, you must have permission to perform the s3:GetBucketTagging action. By default, the bucket owner has this permission and can grant this permission to others. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketTaggingRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1683,8 +1144,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1693,7 +1154,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.getBucketTagging>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.getBucketTagging>
     ```
     
@@ -1701,24 +1162,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getBucketTagging>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketTagging>
     ```
 
 ??? note "getBucketReplication"
-    The getBucketReplication operation returns the lifecycle configuration information set on the bucket. To use this operation, you must have permission to perform the s3:GetReplicationConfiguration action. For more information about permissions, go to Using Bucket Policies and User Policies in the Amazon Simple Storage Service Developer Guide. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETreplication.html) for more information.
+    The getBucketReplication operation returns the lifecycle configuration information set on the bucket. To use this operation, you must have permission to perform the s3:GetReplicationConfiguration action. For more information about permissions, go to Using Bucket Policies and User Policies in the Amazon Simple Storage Service Developer Guide. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketReplicationRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1726,8 +1175,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1736,7 +1185,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.getBucketReplication>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.getBucketReplication>
     ```
     
@@ -1744,24 +1193,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getBucketReplication>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketReplication>
     ```
 
 ??? note "getBucketPolicy"
-    The getBucketPolicy implementation of the GET operation returns the policy of a specified bucket. To use this operation, the user must have GetPolicy permissions on the specified bucket, and the user must be the bucket owner. If the user does not have GetPolicy permissions, Amazon S3 returns a 403 Access Denied error. If the user has correct permissions, but the user is not the bucket owner, Amazon S3 returns a 405 Method Not Allowed error. If the bucket does not have a policy, Amazon S3 returns a 404 Policy Not found error. There are restrictions about who can create bucket policies and which objects in a bucket they can apply to. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETpolicy.html) for more information.
+    The getBucketPolicy operation returns the policy of a specified bucket. To use this operation, the user must have GetPolicy permissions on the specified bucket, and the user must be the bucket owner. If the user does not have GetPolicy permissions, Amazon S3 returns a 403 Access Denied error. If the user has correct permissions, but the user is not the bucket owner, Amazon S3 returns a 405 Method Not Allowed error. If the bucket does not have a policy, Amazon S3 returns a 404 Policy Not found error. There are restrictions about who can create bucket policies and which objects in a bucket they can apply to. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketPolicyRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1769,8 +1206,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1779,7 +1216,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.getBucketPolicy>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.getBucketPolicy>
     ```
     
@@ -1787,24 +1224,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getBucketPolicy>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketPolicy>
     ```
 
-??? note "getBucketObjectVersions"
-    The getBucketObjectVersions operation lists metadata about all of the versions of objects in a bucket. Request parameters can be used as selection criteria to return metadata about a subset of all the object versions. To use this operation, the user must have READ access to the bucket. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETVersion.html) for more information.
+??? note "listObjectVersions"
+    The listObjectVersions operation lists metadata about all of the versions of objects in a bucket. Request parameters can be used as selection criteria to return metadata about a subset of all the object versions. To use this operation, the user must have READ access to the bucket. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/ListObjectVersionsRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1812,8 +1237,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1851,44 +1276,30 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.getBucketObjectVersions>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    <amazons3.listObjectVersions>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <delimiter>{$ctx:delimiter}</delimiter>
         <encodingType>{$ctx:encodingType}</encodingType>
         <keyMarker>{$ctx:keyMarker}</keyMarker>
         <maxKeys>{$ctx:maxKeys}</maxKeys>
         <prefix>{$ctx:prefix}</prefix>
         <versionIdMarker>{$ctx:versionIdMarker}</versionIdMarker>
-    </amazons3.getBucketObjectVersions>
+    </amazons3.listObjectVersions>
     ```
     
     **Sample request**
 
     ```xml
-    <getBucketObjectVersions>
-	    <accessKeyId>AKXXXXXS3KJA</accessKeyId>
-        <secretAccessKey>ieXXHXXTVh/12hL2VxxJJS</secretAccessKey>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-	    <contentLength>256</contentLength>
-	    <contentMD5></contentMD5>
+    <listObjectVersions>
         <bucketName>testkeerthu1234</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-	    <xAmzSecurityToken></xAmzSecurityToken>
-	    <host></host>
-	    <expect></expect>
-        <bucketUrl>http://s3.amazonaws.com/testkeerthu1234</bucketUrl>
         <delimiter>/</delimiter>
-        <encodingType></encodingType>
-        <keyMarker></keyMarker>
         <maxKeys>3</maxKeys>
         <prefix>images</prefix>
-        <versionIdMarker></versionIdMarker>
-    </getBucketObjectVersions>
+    </listObjectVersions>
     ```
 
 ??? note "getBucketRequestPayment"
-    The getBucketRequestPayment implementation of the GET operation returns the request payment configuration of a bucket. To use this operation, the user must be the bucket owner. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETpolicy.html) for more information.
+    The getBucketRequestPayment operation returns the request payment configuration of a bucket. To use this operation, the user must be the bucket owner. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketRequestPaymentRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1896,8 +1307,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1906,7 +1317,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.getBucketRequestPayment>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.getBucketRequestPayment>
     ```
     
@@ -1914,24 +1325,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getBucketRequestPayment>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketRequestPayment>
     ```
 
 ??? note "getBucketVersioning"
-    The getBucketVersioning implementation of the GET operation returns the versioning state of a bucket. To retrieve the versioning state of a bucket, the user must be the bucket owner. This implementation also returns the MFA Delete status of the versioning state. If the MFA Delete status is enabled, the bucket owner must use an authentication device to change the versioning state of the bucket. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETpolicy.html) for more information.
+    The getBucketVersioning operation returns the versioning state of a bucket. To retrieve the versioning state of a bucket, the user must be the bucket owner. This implementation also returns the MFA Delete status of the versioning state. If the MFA Delete status is enabled, the bucket owner must use an authentication device to change the versioning state of the bucket. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketVersioningRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1939,8 +1338,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1949,7 +1348,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.getBucketVersioning>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.getBucketVersioning>
     ```
     
@@ -1957,24 +1356,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getBucketVersioning>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketVersioning>
     ```
 
-??? note "getWebSiteConfiguration"
-    The getWebSiteConfiguration implementation of the GET operation returns the website configuration associated with a bucket. To host the website on Amazon S3, a bucket can be configured as a website by adding a website configuration. This GET operation requires the S3:GetBucketWebsite permission. By default, only the bucket owner can read the bucket website configuration. However, bucket owners can allow other users to read the website configuration by writing a bucket policy granting them the S3:GetBucketWebsite permission. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETwebsite.html) for more information.
+??? note "getBucketWebsite"
+    The getBucketWebsite operation returns the website configuration associated with a bucket. To host the website on Amazon S3, a bucket can be configured as a website by adding a website configuration. This operation requires the S3:GetBucketWebsite permission. By default, only the bucket owner can read the bucket website configuration. However, bucket owners can allow other users to read the website configuration by writing a bucket policy granting them the S3:GetBucketWebsite permission. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketWebsiteRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1982,8 +1369,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1991,33 +1378,21 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample configuration**
 
     ```xml
-    <amazons3.getWebSiteConfiguration>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    </amazons3.getWebSiteConfiguration>
+    <amazons3.getBucketWebsite>
+        <bucketName>{$ctx:bucketName}</bucketName>
+    </amazons3.getBucketWebsite>
     ```
     
     **Sample request**
 
     ```xml
-    <getWebSiteConfiguration>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
+    <getBucketWebsite>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-    </getWebSiteConfiguration>
+    </getBucketWebsite>
     ```
 
 ??? note "getBucketACL"
-    The getBucketACL implementation of the GET operation returns the access control list (ACL) of a bucket. To use GET to return the ACL of the bucket, the user must have READ_ACP access to the bucket. If READ_ACP permission is granted to the anonymous user, you can return the ACL of the bucket without using an authorization header. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETacl.html) for more information.
+    The getBucketACL operation returns the access control list (ACL) of a bucket. To return the ACL of the bucket, the user must have READ_ACP access to the bucket. If READ_ACP permission is granted to the anonymous user, you can return the ACL of the bucket without the authorization. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetBucketAclRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2025,8 +1400,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2035,7 +1410,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.getBucketACL>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.getBucketACL>
     ```
     
@@ -2043,166 +1418,11 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getBucketACL>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength>256</contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketACL>
     ```
-
-??? note "checkBucketPermission"
-    The checkBucketPermission operation determines whether a bucket exists and you have permission to access it. The operation returns a 200 OK if the bucket exists and you have permission to access it. Otherwise, the operation might return responses such as 404 Not Found and 403 Forbidden. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/bucket-permissions-check.html) for more information.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-
-    ```xml
-    <amazons3.getBucketACL>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    </amazons3.getBucketACL>
-    ```
-    
-    **Sample request**
-
-    ```xml
-    <checkBucketPermission>
-        <accessKeyId>AKXXXXXXXXXXX5EA</accessKeyId>
-        <secretAccessKey>qHXXXXXXXXXXXqQc4oMQMnAOj+33XXXXXDPO2s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>HEAD</methodType>
-        <contentType>application/xml</contentType>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
-        <expect></expect>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-    </checkBucketPermission>
-    ```
-
-??? note "setBucketACL"
-    The setBucketACL implementation of the PUT operation sets the permissions on an existing bucket using access control lists (ACL). You set the permissions by specifying the ACL in the request body. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTacl.html) for more information.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>accessControlPolicy</td>
-            <td>Contains the following elements that set the ACL permissions for an object per grantee:
-                <ul>
-                    <li>Owner: Container for the bucket owner's ID and display name.
-                        <ul>
-                            <li>ID: ID of the bucket owner, or the ID of the grantee.</li>
-                            <li>DisplayName: Screen name of the bucket owner.</li>
-                        </ul>
-                    </li>
-                    <li>AccessControlList: Container for the grants.
-                        <ul>
-                            <li>Grant: Container for the grantee and the permissions of this grant.
-                                <ul>
-                                    <li>Grantee: The subject whose permissions are being set.
-                                        <ul>
-                                            <li>URI: Granting permission to a predefined Amazon S3 group.</li>
-                                        </ul>
-                                    </li>
-                                    <li>Permission: Specifies the permission given to the grantee.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </td>
-            <td>Yes</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-
-    ```xml
-    <amazons3.setBucketACL>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <accessControlPolicy>{$ctx:accessControlPolicy}</accessControlPolicy>
-    </amazons3.setBucketACL>
-    ```
-    
-    **Sample request**
-
-    ```xml
-    <setBucketACL>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>PUT</methodType>
-        <contentLength>2000</contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect></expect>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <bucketName>signv4test</bucketName>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <accessControlPolicy>
-            <Owner>
-                <ID>9a48e6b16816cc75df306d35bb5d0bd0778b61fbf49b8ef4892143197c84a867</ID>
-                <DisplayName>admin+aws+connectors+secondary</DisplayName>
-            </Owner>
-            <AccessControlList>
-                <Grant>
-                    <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
-                        <ID>9a48e6b16816cc75df306d35bb5d0bd0778b61fbf49b8ef4892143197c84a867</ID>
-                        <DisplayName>admin+aws+connectors+secondary</DisplayName>
-                    </Grantee>
-                    <Permission>FULL_CONTROL</Permission>
-                </Grant>
-                <Grant>
-                    <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Group">
-                        <URI xmlns="">http://acs.amazonaws.com/groups/global/AllUsers</URI>
-                    </Grantee>
-                    <Permission xmlns="">READ</Permission>
-                </Grant>
-                <Grant>
-                    <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Group">
-                        <URI xmlns="">http://acs.amazonaws.com/groups/s3/LogDelivery</URI>
-                    </Grantee>
-                    <Permission xmlns="">WRITE</Permission>
-                </Grant>
-            </AccessControlList>
-        </accessControlPolicy>
-    </setBucketACL>
-    ```
-
 ??? note "headBucket"
-    The headBucket operation is useful to determine if a bucket exists and you have permission to access it. The operation returns a 200 OK if the bucket exists and you have permission to access it. Otherwise, the operation might return responses such as 404 Not Found and 403 Forbidden. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketHEAD.html) for more information.
+    The headBucket operation is useful to determine if a bucket exists and you have permission to access it. The operation returns a 200 OK if the bucket exists and you have permission to access it. Otherwise, the operation might return responses such as 404 Not Found and 403 Forbidden. See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/HeadBucketRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2210,8 +1430,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2220,7 +1440,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.headBucket>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
     </amazons3.headBucket>
     ```
     
@@ -2228,20 +1448,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <headBucket>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-west-2</region>
-        <methodType>HEAD</methodType>
-        <contentType>application/xml</contentType>
-        <addCharset>false</addCharset>
-        <contentLength></contentLength>
-        <contentMD5></contentMD5>
         <bucketName>1513162931643testconbkt2</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <host>s3-us-west-2.amazonaws.com</host>
-        <expect></expect>
-        <bucketUrl>http://s3-us-west-2.amazonaws.com/1513162931643testconbkt2</bucketUrl>
     </headBucket>
     ```
 
@@ -2250,7 +1457,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     In the response, the uploads are sorted by key. If the application has initiated more than one multipart upload using the same object key, uploads in the response are first sorted by key. Additionally, uploads are sorted in ascending order within each key by the upload initiation time.
 
-    When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/glacier/model/ListMultipartUploadsRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2258,39 +1465,39 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>delimiter</td>
             <td>A delimiter is a character you use to group keys. All keys that contain the same string between the prefix, if specified, and the first occurrence of the delimiter after the prefix are grouped under a single result element CommonPrefixes. If you do not specify the prefix parameter, the substring starts at the beginning of the key. The keys that are grouped under the CommonPrefixesresult element are not returned elsewhere in the response.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>encodingType</td>
             <td>Requests Amazon S3 to encode the response and specifies the encoding method to use. An object key can contain any Unicode character. However, XML 1.0 parser cannot parse some characters such as characters with an ASCII value from 0 to 10. For characters that are not supported in XML 1.0, you can add this parameter to request Amazon S3 to encode the keys in the response.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>maxUploads</td>
             <td>Sets the maximum number of multipart uploads, from 1 to 1,000, to return in the response body. 1,000 is the maximum number of uploads that can be returned in a response.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>keyMarker</td>
             <td>Specifies the key to start with when listing objects in a bucket. Amazon S3 lists objects in alphabetical order.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>prefix</td>
             <td>Limits the response to keys that begin with the specified prefix.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>versionIdMarker</td>
-            <td>Together with keyMarker, specifies the multipart upload after which listing should begin. If keyMarker is not specified, the uploadIdMarker parameter is ignored. Otherwise, any multipart uploads for a key equal to the keyMarker might be included in the list only if they have an upload ID lexicographically greater than the specified uploadIdMarker.</td>
-            <td>Yes</td>
+            <td>uploadIdMarker</td>
+            <td>Specifies the multipart upload after which listing should begin.</td>
+            <td>Optional</td>
         </tr>
     </table>
 
@@ -2298,7 +1505,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.listMultipartUploads>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <delimiter>{$ctx:delimiter}</delimiter>
         <encodingType>{$ctx:encodingType}</encodingType>
         <maxUploads>{$ctx:maxUploads}</maxUploads>
@@ -2312,25 +1519,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <listMultipartUploads>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <region>us-east-2</region>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <contentLength>0</contentLength>
-        <contentMD5></contentMD5>
         <bucketName>signv4test</bucketName>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <expect></expect>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
     </listMultipartUploads>
     ```
 
@@ -2339,11 +1528,11 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 ??? note "deleteObject"
     The deleteObject operation removes the null version (if there is one) of an object and inserts a delete marker, which becomes the latest version of the object. If there is no null version, Amazon S3 does not remove any objects.
 
-    If the object you want to delete is in a bucket where the bucket versioning configuration is MFA Delete enabled, you must include the xAmzMfa header in the request. Requests that include xAmzMfa must use HTTPS. For more information about MFA Delete, see Using MFA Delete .
+    If the object you want to delete is in a bucket where the bucket versioning configuration is MFA Delete enabled, you must include the mfa in the request. For more information about MFA Delete, see Using MFA Delete .
 
-    Following is the proxy configuration for init and deleteObject. The init section has additional parameters and parameters that need to be removed apart from those mentioned in the Connecting to Amazon S3 section.
+    Following is the proxy configuration for init and deleteObject. The init section has connection parameters.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/clouddirectory/model/DeleteObjectRequest.html) for more information.
 
     <table>
         <tr>
@@ -2352,84 +1541,34 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>accessKeyId</td>
-            <td>AWS access key ID.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>secretAccessKey</td>
-            <td>AWS secret access key.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>methodType</td>
-            <td>HTTP method type.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentType</td>
-            <td>Content type of the resource.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
             <td>bucketName</td>
-            <td>Name of the bucket.</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>isXAmzDate</td>
-            <td>Indicates whether the current date and time are considered to calculate the signature. Valid values: true or false.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentMD5</td>
-            <td>Base64 encoded 128-bit MD5 digest of the message according to RFC 1864.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzSecurityToken</td>
-            <td>The security token based on whether Amazon DevPay operations or temporary security credentials are used.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>host</td>
-            <td>The path-style requests (s3.amazonaws.com) or virtual-style requests (BucketName.s3.amazonaws.com).</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>region</td>
-            <td>Region that is used select a regional endpoint to make requests.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>expect</td>
-            <td>When this property is set to 100-continue, the request does not send the request body until it receives an acknowledgment. If the message is rejected based on the headers, the body of the message is not sent.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentLength</td>
-            <td>Length of the message without the headers according to RFC 2616.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzMfa</td>
-            <td>Required to permanently delete a versioned object if versioning is configured with MFA Delete enabled. The value is the concatenation of the authentication device's serial number, a space, and the value displayed on your authentication device.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name of the object to be deleted.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>versionId</td>
             <td>Version Id of an object to remove a specific object version.</td>
-            <td>Yes</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>bypassGovernanceRetention</td>
+            <td>Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>mfa</td>
+            <td>Required to permanently delete a versioned object if versioning is configured with MFA Delete enabled. The value is the concatenation of the authentication device's serial number, a space, and the value displayed on your authentication device.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
         </tr>
     </table>
 
@@ -2439,25 +1578,18 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.init>
-        <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-        <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-        <methodType>{$ctx:methodType}</methodType>
-        <contentType>{$ctx:contentType}</contentType>
-        <bucketName>{$ctx:bucketName}</bucketName>
-        <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-        <contentMD5>{$ctx:contentMD5}</contentMD5>
-        <xAmzSecurityToken>{$ctx:xAmzSecurityToken}</xAmzSecurityToken>
-        <host>{$ctx:host}</host>
+        <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+        <awsawsSecretAccessKey>{$ctx:awsawsSecretAccessKey}</awsawsSecretAccessKey>
+        <name>{$ctx:connectionName}</name>
         <region>{$ctx:region}</region>
-        <expect>{$ctx:expect}</expect>
-        <contentLength>{$ctx:contentLength}</contentLength>
-        <xAmzMfa>{$ctx:xAmzMfa}</xAmzMfa>
     </amazons3.init>
 
     <amazons3.deleteObject>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <objectName>{$ctx:objectName}</objectName>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
         <versionID>{$ctx:versionId}</versionID>
+        <bypassGovernanceRetention>{$ctx:bypassGovernanceRetention}</bypassGovernanceRetention>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.deleteObject>
     ```
     
@@ -2465,35 +1597,22 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <deleteObject>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <methodType>DELETE</methodType>
-        <contentLength></contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect>100-continue</expect>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzMfa></xAmzMfa>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <objectName>testObject1</objectName>
+        <objectKey>testObject1</objectKey>
         <versionId>FHbrL3xf2TK54hLNWWArYI79woSElvHf</versionId>
     </deleteObject>
     ```
 
-??? note "deleteMultipleObjects"
-    The deleteMultipleObjects operation deletes multiple objects from a bucket using a single HTTP request. If object keys that need to be deleted are known, this operation provides a suitable alternative to sending individual delete requests (deleteObject). The deleteMultipleObjects request contains a list of up to 1000 keys that the user wants to delete. In the XML, you provide the object key names, and optionally provide version IDs if you want to delete a specific version of the object from a versioning-enabled bucket. For each key, Amazon S3 performs a delete operation and returns the result of that deletion, success or failure, in the response. Note that if the object specified in the request is not found, Amazon S3 returns the result as deleted.
+??? note "deleteObjects"
+    The deleteObjects operation deletes multiple objects from a bucket using a single HTTP request. If object keys that need to be deleted are known, this operation provides a suitable alternative to sending individual delete requests (deleteObject). The deleteObjects request contains a list of up to 1000 keys that the user wants to delete. In the XML, you provide the object key names, and optionally provide version IDs if you want to delete a specific version of the object from a versioning-enabled bucket. For each key, Amazon S3 performs a delete operation and returns the result of that deletion, success or failure, in the response. Note that if the object specified in the request is not found, Amazon S3 returns the result as deleted.
 
-    The deleteMultipleObjects operation supports two modes for the response: verbose and quiet. By default, the operation uses the verbose mode in which the response includes the result of deletion of each key in your request. In the quiet mode, the response includes only keys where the delete operation encountered an error. For a successful deletion, the operation does not return any information about the deletion in the response body.
+    The deleteObjects operation supports two modes for the response: verbose and quiet. By default, the operation uses the verbose mode in which the response includes the result of deletion of each key in your request. In the quiet mode, the response includes only keys where the delete operation encountered an error. For a successful deletion, the operation does not return any information about the deletion in the response body.
 
-    When using the deleteMultipleObjects operation that attempts to delete a versioned object on an MFA Delete enabled bucket, you must include an MFA token. If you do not provide one, even if there are non-versioned objects you are attempting to delete. Additionally, f you provide an invalid token, the entire request will fail, regardless of whether there are versioned keys in the request. For more information about MFA Delete, see MFA Delete.
+    When using the deleteObjects operation that attempts to delete a versioned object on an MFA Delete enabled bucket, you must include an MFA token. If you do not provide one, even if there are non-versioned objects you are attempting to delete. Additionally, f you provide an invalid token, the entire request will fail, regardless of whether there are versioned keys in the request. For more information about MFA Delete, see MFA Delete.
 
-    Following is the proxy configuration for init and deleteMultipleObjects. The init section has additional parameters and parameters that need to be removed apart from those mentioned in the Connecting to Amazon S3 section.
+    Following is the proxy configuration for init and deleteObjects. The init section has connection parameters.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketHEAD.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/DeleteObjectsRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2501,68 +1620,18 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>accessKeyId</td>
-            <td>AWS access key ID.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>secretAccessKey</td>
-            <td>AWS secret access key.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>methodType</td>
-            <td>HTTP method type.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentType</td>
-            <td>Content type of the resource.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
             <td>bucketName</td>
             <td>Name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>isXAmzDate</td>
-            <td>Indicates whether the current date and time are considered to calculate the signature. Valid values: true or false.</td>
-            <td>Yes</td>
+            <td>bypassGovernanceRetention</td>
+            <td>Indicates whether S3 Object Lock should bypass Governance-mode restrictions to process this operation.</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzSecurityToken</td>
-            <td>The security token based on whether Amazon DevPay operations or temporary security credentials are used.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>host</td>
-            <td>The path-style requests (s3.amazonaws.com) or virtual-style requests (BucketName.s3.amazonaws.com).</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>region</td>
-            <td>Region that is used select a regional endpoint to make requests.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>expect</td>
-            <td>When this property is set to 100-continue, the request does not send the request body until it receives an acknowledgment. If the message is rejected based on the headers, the body of the message is not sent.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentLength</td>
-            <td>Length of the message without the headers according to RFC 2616.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzMfa</td>
+            <td>mfa</td>
             <td>Required to permanently delete a versioned object if versioning is configured with MFA Delete enabled. The value is the concatenation of the authentication device's serial number, a space, and the value displayed on your authentication device.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2582,51 +1651,38 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             </td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.init>
-        <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-        <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-        <methodType>{$ctx:methodType}</methodType>
-        <contentType>{$ctx:contentType}</contentType>
-        <bucketName>{$ctx:bucketName}</bucketName>
-        <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-        <xAmzSecurityToken>{$ctx:xAmzSecurityToken}</xAmzSecurityToken>
-        <host>{$ctx:host}</host>
+        <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+        <awsawsSecretAccessKey>{$ctx:awsawsSecretAccessKey}</awsawsSecretAccessKey>
+        <name>{$ctx:connectionName}</name>
         <region>{$ctx:region}</region>
-        <expect>{$ctx:expect}</expect>
-        <contentLength>{$ctx:contentLength}</contentLength>
-        <xAmzMfa>{$ctx:xAmzMfa}</xAmzMfa>
     </amazons3.init>
 
-    <amazons3.deleteMultipleObjects>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <quiet>{$ctx:quiet}</quiet>
+    <amazons3.deleteObjects>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <bypassGovernanceRetention>{$ctx:bypassGovernanceRetention}</bypassGovernanceRetention>
         <deleteConfig>{$ctx:deleteConfig}</deleteConfig>
-    </amazons3.deleteMultipleObjects>
+        <mfa>{$ctx:mfa}</mfa>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
+    </amazons3.deleteObjects>
     ```
     
     **Sample request**
 
     ```xml
-    <deleteMultipleObjects>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <methodType>POST</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken/>
-        <expect/>
-        <xAmzMfa/>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    <deleteObjects>
         <bucketName>signv4test</bucketName>
-        <quiet>true</quiet>
-        <deleteConfig>
+        <Delete>
             <Objects>
                 <Object>
                     <Key>testobject33</Key>
@@ -2637,20 +1693,18 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
                     <VersionId>PwbvPU.yn3YcHOCF8bntKeTdzfKQC6jN</VersionId>
                 </Object>
             </Objects>
-        </deleteConfig>
-    </deleteMultipleObjects>
+        </Delete>
+    </deleteObjects>
     ```
 
 ??? note "getObject"
-    The getObject operation retrieves objects from Amazon S3. To use this operation, the user must have READ access to the object. If the user grants READ access to the anonymous user, the object can be returned without using an authorization header. By default, this operation returns the latest version of the object.
+    The getObject operation retrieves objects from Amazon S3. To use this operation, the user must have READ access to the object. If the user grants READ access to the anonymous user, the object can be returned without the authorization. By default, this operation returns the latest version of the object.
 
     An Amazon S3 bucket has no directory hierarchy such as in a typical computer file system. However, a logical hierarchy can be created by using object key names that imply a folder structure. For example, instead of naming an object sample.jpg, it could be named photos/2006/February/sample.jpg. To retrieve an object from such a logical hierarchy, the full key name for the object should be specified.
 
-    For a virtual hosted-style request example, if you have the object photos/2006/February/sample.jpg, specify the resource as /photos/2006/February/sample.jpg. For a path-style request example, if you have the object photos/2006/February/sample.jpg in the bucket named examplebucket, specify the resource as /examplebucket/photos/2006/February/sample.jpg. If the object to be retrieved is a GLACIER storage class object, the object is archived in Amazon Glacier, and you must first restore a copy using the POST Object restore API before retrieving the object. Otherwise, this operation returns the "InvalidObjectStateError" error.
+    For a virtual hosted-style request example, if you have the object photos/2006/February/sample.jpg, specify the resource as /photos/2006/February/sample.jpg. For a path-style request example, if you have the object photos/2006/February/sample.jpg in the bucket named examplebucket, specify the resource as /examplebucket/photos/2006/February/sample.jpg. If the object to be retrieved is a GLACIER storage class object, the object is archived in Amazon Glacier, and you must first restore a copy before retrieving the object. Otherwise, this operation returns the "InvalidObjectStateError" error.
 
-    When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl.
-
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/mediastoredata/model/GetObjectRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2658,86 +1712,108 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name of the object to retrieve details for.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>query</td>
-            <td>Query for search parameters.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
             <td>responseContentType</td>
-            <td>Content-Type header of the response.</td>
-            <td>Yes</td>
+            <td>Content-Type of the response.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>responseContentLanguage</td>
-            <td>Content-Language header of the response.</td>
-            <td>Yes</td>
+            <td>Content-Language of the response.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>responseExpires</td>
-            <td>Expires header of the response.</td>
-            <td>Yes</td>
+            <td>Expires of the response.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>responseCacheControl</td>
-            <td>Cache-Control header of the response.</td>
-            <td>Yes</td>
+            <td>Cache-Control of the response.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>responseContentDisposition</td>
-            <td>Content-Disposition header of the response.</td>
-            <td>Yes</td>
+            <td>Content-Disposition of the response.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>responseContentEncoding</td>
-            <td>Content-Encoding header of the response.</td>
-            <td>Yes</td>
+            <td>Content-Encoding of the response.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>range</td>
-            <td>HTTP range header.</td>
-            <td>Yes</td>
+            <td>HTTP range.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>ifModifiedSince</td>
             <td>Return the object only if it has been modified.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>ifUnmodifiedSince</td>
             <td>Return the object only if it has not been modified.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>ifMatch</td>
             <td>Return the object only if its ETag is the same.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>ifNoneMatch</td>
             <td>Returns the object only if its ETag is not the same as the one specified.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
-            <td>Return the object only if its ETag is not same.</td>
-            <td>Yes</td>
-        </tr>        
+        <tr>
+            <td>versionId</td>
+            <td>VersionId used to reference a specific version of the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerAlgorithm</td>
+            <td>Specifies the algorithm to use to when encrypting the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>partNumber</td>
+            <td>Part number of the object being read.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.getObject>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <objectName>{$ctx:objectName}</objectName>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
         <responseContentType>{$ctx:responseContentType}</responseContentType>
         <responseContentLanguage>{$ctx:responseContentLanguage}</responseContentLanguage>
         <responseExpires>{$ctx:responseExpires}</responseExpires>
@@ -2749,6 +1825,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         <ifUnmodifiedSince>{$ctx:ifUnmodifiedSince}</ifUnmodifiedSince>
         <ifMatch>{$ctx:ifMatch}</ifMatch>
         <ifNoneMatch>{$ctx:ifNoneMatch}</ifNoneMatch>
+        <versionId>{$ctx:versionId}</versionId>
+        <sseCustomerAlgorithm>{$ctx:sseCustomerAlgorithm}</sseCustomerAlgorithm>
+        <sseCustomerKey>{$ctx:sseCustomerKey}</sseCustomerKey>
+        <sseCustomerKeyMD5>{$ctx:sseCustomerKeyMD5}</sseCustomerKeyMD5>
+        <partNumber>{$ctx:partNumber}</partNumber>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.getObject>
     ```
     
@@ -2756,40 +1838,20 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getObject>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <methodType>GET</methodType>
-        <contentType>application/xml</contentType>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken/>
-        <contentMD5/>
-        <objectName>Tree2.png</objectName>
-        <rangeBytes/>
-        <responseContentType/>
-        <responseContentLanguage/>
-        <responseExpires/>
-        <responseCacheControl/>
-        <responseContentDisposition/>
-        <range/>
-        <ifModifiedSince/>
-        <ifUnmodifiedSince/>
-        <ifMatch/>
-        <ifNoneMatch/>
+        <objectKey>Tree2.png</objectKey>
+        <partNumber>1</partNumber>
     </getObject>
     ```
 
-??? note "createObject"
-    The createObject operation adds an object to a bucket. You must have WRITE permissions on a bucket to add an object to it. Amazon S3 does not add partial objects, so if a success response is received, the entire object is added to the bucket. Because Amazon S3 is a distributed system, if it receives multiple write requests for the same object simultaneously, it overwrites all but the last object written.
+??? note "putObject"
+    The putObject operation adds an object to a bucket. You must have WRITE permissions on a bucket to add an object to it. Amazon S3 does not add partial objects, so if a success response is received, the entire object is added to the bucket. Because Amazon S3 is a distributed system, if it receives multiple write requests for the same object simultaneously, it overwrites all but the last object written.
 
-    To ensure that data is not corrupted traversing the network, use the Content-MD5 header. When it is used, Amazon S3 checks the object against the provided MD5 value and, if they do not match, it returns an error. Additionally, you can calculate the MD5 value while putting an object to Amazon S3 and compare the returned ETag with the calculated MD5 value.
+    To ensure that data is not corrupted traversing the network, use the Content-MD5 parameter. When it is used, Amazon S3 checks the object against the provided MD5 value and, if they do not match, it returns an error. Additionally, you can calculate the MD5 value while putting an object to Amazon S3 and compare the returned ETag with the calculated MD5 value.
 
-    When uploading an object, you can specify the accounts or groups that should be granted specific permissions on the object. There are two ways to grant the appropriate permissions using the request headers: either specify a canned (predefined) ACL using the "x-amz-acl" request header, or specify access permissions explicitly using the "x-amz-grant-read", "x-amz-grant-read-acp", "x-amz-grant-write-acp", and "x-amz-grant-full-control" headers. These headers map to the set of permissions Amazon S3 supports in an ACL. Use only one approach, not both.
+    When uploading an object, you can specify the accounts or groups that should be granted specific permissions on the object. There are two ways to grant the appropriate permissions using the request parameters: either specify a canned (predefined) ACL using the "acl", or specify access permissions explicitly using the "grantRead", "grantReadACP", "grantWriteACP", and "grantFullControl" parameters. These parameters map to the set of permissions that Amazon S3 supports in an ACL. Use only one approach, not both.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/clouddirectory/model/putObjectRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2797,32 +1859,203 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name of the object to retrieve details for.</td>
             <td>Yes</td>
-        </tr>   
+        </tr>
+        <tr>
+            <td>filePath</td>
+            <td>The path of the source file to be uploaded.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>acl</td>
+            <td>The canned ACL to apply to the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>cacheControl</td>
+            <td>This can be used to specify caching behavior along the request or reply chain.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>contentDisposition</td>
+            <td>This specifies presentational information for the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>contentEncoding</td>
+            <td>The language the content is in.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>contentLanguage</td>
+            <td>This specifies what content encodings have been applied to the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>contentType</td>
+            <td>A standard MIME type describing the format of the object data.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>contentMD5</td>
+            <td>The base64-encoded 128-bit MD5 digest of the message according to RFC 1864.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>expires</td>
+            <td>This specifies the date and time at which the object is no longer cacheable.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantRead</td>
+            <td>Allows the specified grantee or grantees to list the objects in the bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantReadACP</td>
+            <td>Allows the specified grantee or grantees to read the bucket ACL.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantWriteACP</td>
+            <td>Allows the specified grantee or grantees to write the ACL for the applicable bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantFullControl</td>
+            <td>Allows the specified grantee or grantees the READ, WRITE, READ_ACP, and WRITE_ACP permissions on the bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>metadata</td>
+            <td>The metadata. Comma separated key value pair. The key and value are separated by ':'t.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>serverSideEncryption</td>
+            <td>Specifies the server-side encryption algorithm to use when Amazon S3 creates the target object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>storageClass</td>
+            <td>RRS enables customers to reduce their costs by storing non-critical, reproducible data at lower levels of redundancy than Amazon S3's standard storage.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>websiteRedirectLocation</td>
+            <td>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this parameter in the object metadata.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>sseCustomerAlgorithm</td>
+            <td>Specifies the algorithm to use to when encrypting the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ssekmsKeyId</td>
+            <td>Specifies the ID of the symmetric customer managed AWS KMS CMK to use for object encryption.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ssekmsEncryptionContext</td>
+            <td>Specifies the AWS KMS Encryption Context to use for object encryption.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>tagging</td>
+            <td>The tag-set for the object. The tag-set must be encoded as URL Query parameters. (For example, "Key1=Value1"). This must be used in conjunction with the TaggingDirective.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockMode</td>
+            <td>The object lock mode that you want to apply to the uploaded object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockRetainUntilDate</td>
+            <td>Specifies the date and time when you want the Object Lock to expire.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockLegalHoldStatus</td>
+            <td>Specifies whether you want to apply a Legal Hold to the uploaded object.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
-    <amazons3.createObject>
-        <bucketUrl>{$url:bucketUrl}</bucketUrl>
-        <objectName>{$url:objectName}</objectName>
-    </amazons3.createObject>
+    <amazons3.putObject>
+        <bucketName>{$url:bucketName}</bucketName>
+        <objectKey>{$url:objectKey}</objectKey>
+        <filePath>{$url:filePath}</filePath>
+        <acl>{$ctx:acl}</acl>
+        <cacheControl>{$ctx:cacheControl}</cacheControl>
+        <contentDisposition>{$ctx:contentDisposition}</contentDisposition>
+        <contentEncoding>{$ctx:contentEncoding}</contentEncoding>
+        <contentLanguage>{$ctx:contentLanguage}</contentLanguage>
+        <contentType>{$ctx:contentType}</contentType>
+        <expires>{$ctx:expires}</expires>
+        <grantRead>{$ctx:grantRead}</grantRead>
+        <grantReadACP>{$ctx:grantReadACP}</grantReadACP>
+        <grantWriteACP>{$ctx:grantWriteACP}</grantWriteACP>
+        <grantFullControl>{$ctx:grantFullControl}</grantFullControl>
+        <metadata>{$ctx:metadata}</metadata>
+        <serverSideEncryption>{$ctx:serverSideEncryption}</serverSideEncryption>
+        <storageClass>{$ctx:storageClass}</storageClass>
+        <websiteRedirectLocation>{$ctx:websiteRedirectLocation}</websiteRedirectLocation>
+        <sseCustomerAlgorithm>{$ctx:sseCustomerAlgorithm}</sseCustomerAlgorithm>
+        <sseCustomerKey>{$ctx:sseCustomerKey}</sseCustomerKey>
+        <sseCustomerKeyMD5>{$ctx:sseCustomerKeyMD5}</sseCustomerKeyMD5>
+        <ssekmsKeyId>{$ctx:ssekmsKeyId}</ssekmsKeyId>
+        <ssekmsEncryptionContext>{$ctx:ssekmsEncryptionContext}</ssekmsEncryptionContext>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
+        <tagging>{$ctx:tagging}</tagging>
+        <objectLockMode>{$ctx:objectLockMode}</objectLockMode>
+        <objectLockRetainUntilDate>{$ctx:objectLockRetainUntilDate}</objectLockRetainUntilDate>
+        <objectLockLegalHoldStatus>{$ctx:objectLockLegalHoldStatus}</objectLockLegalHoldStatus>
+    </amazons3.putObject>
     ```
-    
-??? note "createObjectACL"
-    The createObjectACL operation sets the access control list (ACL) permissions for an object that already exists in a bucket. You can specify the ACL in the request body or specify permissions using request headers, depending on the application needs. For example, if there is an existing application that updates an object ACL using the request body, you can continue to use that approach.
 
-    The ACL of an object is set at the object version level. By default, createObjectACL sets the ACL of the latest version of an object. To set the ACL of a different version, use the versionId property.
+    **Sample request**
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) for more information.
+    ```xml
+    <putObject>
+        <bucketName>signv4test</bucketName>
+        <objectKey>s3_image.jpg</objectKey>
+        <filePath>/Users/mine/Desktop/S3_img.jpg</filePath>
+    </putObject>
+    ```
+
+??? note "putObjectAcl"
+    The putObjectAcl operation sets the access control list (ACL) permissions for an object that already exists in a bucket. You can specify the ACL in the request body or specify permissions using request, depending on the application needs. For example, if there is an existing application that updates an object ACL using the request body, you can continue to use that approach.
+
+    The ACL of an object is set at the object version level. By default, putObjectAcl sets the ACL of the latest version of an object. To set the ACL of a different version, use the versionId property.
+
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/PutObjectAclRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2830,23 +2063,13 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>Name of the object whose acl needs to be set.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ownerId</td>
-            <td>ID of the bucket owner.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ownerDisplayName</td>
-            <td>Screen name of the bucket owner.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2869,51 +2092,79 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         <tr>
             <td>versionId</td>
             <td>Version Id of an object to remove a specific object version.</td>
-            <td>Yes</td>
-        </tr>  
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>acl</td>
+            <td>The canned ACL to apply to the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantRead</td>
+            <td>Allows the specified grantee or grantees to list the objects in the bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantWrite</td>
+            <td>Allows the specified grantee or grantees to create, overwrite, and delete any object in the bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantReadACP</td>
+            <td>Allows the specified grantee or grantees to read the bucket ACL.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantWriteACP</td>
+            <td>Allows the specified grantee or grantees to write the ACL for the applicable bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>grantFullControl</td>
+            <td>Allows the specified grantee or grantees the READ, WRITE, READ_ACP, and WRITE_ACP permissions on the bucket.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
-    <amazons3.createObjectACL>
-        <objectName>{$ctx:objectName}</objectName>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <ownerId>{$ctx:ownerId}</ownerId>
-        <ownerDisplayName>{$ctx:ownerDisplayName}</ownerDisplayName>
+    <amazons3.putObjectAcl>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <accessControlList>{$ctx:accessControlList}</accessControlList>
         <versionId>{$ctx:versionId}</versionId>
-    </amazons3.createObjectACL>
+        <acl>{$ctx:acl}</acl>
+        <grantRead>{$ctx:grantRead}</grantRead>
+        <grantReadACP>{$ctx:grantReadACP}</grantReadACP>
+        <grantWrite>{$ctx:grantWrite}</grantWrite>
+        <grantWriteACP>{$ctx:grantWriteACP}</grantWriteACP>
+        <grantFullControl>{$ctx:grantFullControl}</grantFullControl>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
+    </amazons3.putObjectAcl>
     ```
     
     **Sample request**
 
     ```xml
-    <createObjectACL>
-        <accessKeyId>AKIAIGURZMDFG7TRO6KQ</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzdfg0Ve5dMCFk4STUFDRHkGX6m0CcY</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentLength>256</contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect></expect>
+    <putObjectAcl>
+        <awsAccessKeyId>AKIXXXXXXXXXXA</awsAccessKeyId>
+        <awsawsSecretAccessKey>qHZXXXXXXQc4oMQMnAOj+340XXxO2s</awsawsSecretAccessKey>
         <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+        <connectionName>amazonS3</connectionName>
         <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <objectName>testObject2</objectName>
+        <objectKey>testObject2</objectKey>
         <versionId>FHbrL3xf2TK54hLNWWArYI79woSElvHf</versionId>
-        <xAmzAcl></xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
-        <ownerId>f422baefcd6a519ea3c43bec8874b6c3f71c83f72549f4fb4c0e23044efd2531</ownerId>
-        <ownerdisplayName>rhettige@yahoo.com</ownerdisplayName>
-        <accessControlList>
+        <acl>authenticated-read</acl>
+        <AccessControlPolicy>
+            <Owner>
+                <ID>c6567b8c9274b78d6af4a3080c5e43e700f560f3517b7d9acc87251412044c35</ID>
+            </Owner>
             <Grant>
                 <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
                     <ID>c6567b8c9274b78d6af4a3080c5e43e700f560f3517b7d9acc87251412044c35</ID>
@@ -2928,22 +2179,22 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
                 </Grantee>
                 <Permission>READ</Permission>
             </Grant>
-        </accessControlList>
-    </createObjectACL>
+        </AccessControlPolicy>
+    </putObjectAcl>
     ```
 
-??? note "createObjectCopy"
-    The createObjectCopy operation creates a copy of an object that is already stored in Amazon S3. This operation is the same as performing a GET and then a PUT. Adding the request header "x-amz-copy-source" enables the PUT operation to copy the source object into the destination bucket.
+??? note "copyBucketObject"
+    The copyBucketObject operation creates a copy of an object that is already stored in Amazon S3. This operation is the same as performing a GET and then a PUT. Adding the "copySource" enables to copy the source object into the destination bucket.
 
-    When copying an object, most of the metadata (default) can be preserved, or new metadata can be specified. However, the ACL is not preserved and is set to "private" for the user making the request. All copy requests must be authenticated and cannot contain a message body. Additionally, the user must have the READ access to the source object and WRITE access to the destination bucket. To copy an object only under certain conditions, such as whether the ETag matches or whether the object was modified before or after a specified date, the request headers such as "x-amz-copy-source-if-match", "x-amz-copy-source-if-none-match", "x-amz-copy-source-if-unmodified-since", or "x-amz-copy-source-if-modified-since" must be used (all headers prefixed with "x-amz-" must be signed, including "x-amz-copy-source").
+    When copying an object, most of the metadata (default) can be preserved, or new metadata can be specified. However, the ACL is not preserved and is set to "private" for the user making the request. All copy requests must be authenticated and cannot contain a message body. Additionally, the user must have the READ access to the source object and WRITE access to the destination bucket. To copy an object only under certain conditions, such as whether the ETag matches or whether the object was modified before or after a specified date with the parameters such as "copySourceIfMatch", "copySourceIfNoneMatch", "copySourceIfUnmodifiedSince", or "copySourceIfModifiedSince" must be used.
 
     There are two instances when the copy request could return an error. One is when Amazon S3 receives the copy request, and the other can occur while Amazon S3 is copying the files. If the error occurs before the copy operation starts, you receive a standard Amazon S3 error. If the error occurs during the copy operation, the error response is embedded in the 200 OK response. This means that a 200 OK response can contain either a success or an error. If the request is an HTTP 1.1 request, the response is chunk encoded. Otherwise, it will not contain the content-length, and you will need to read the entire body.
 
-    When copying an object, the accounts or groups that should be granted specific permissions on the object can be specified. There are two ways to grant the appropriate permissions using the request headers: one is to specify a canned (predefined) ACL using the "x-amz-acl" request header, and the other is to s pecify access permissions explicitly using the "x-amz-grant-read", "x-amz-grant-read-acp", "x-amz-grant-write-acp", and "x-amz-grant-full-control" headers. These headers map to the set of permissions Amazon S3 supports in an ACL. Use one approach, not both .
+    When copying an object, the accounts or groups that should be granted specific permissions on the object can be specified. There are two ways to grant the appropriate permissions using the request: one is to specify a canned (predefined) ACL using the "acl" parameter, and the other is to specify access permissions explicitly using the "grantRead", "grantReadACP", "grantWriteACP", and "grantFullControl" parameters. These parameters map to the set of permissions that Amazon S3 supports in an ACL. Use only one approach, not both.
 
-    Following is the proxy configuration for init and createObjectCopy. The init section has additional parameters and parameters that need to be removed apart from those mentioned in the Connecting to Amazon S3 section.
+    Following is the proxy configuration for init and copyBucketObject. The init section has connection parameters.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/CopyObjectRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2951,147 +2202,187 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>accessKeyId</td>
-            <td>AWS access key ID.</td>
-            <td>Yes</td>
+            <td>acl</td>
+            <td>The canned ACL to apply to the object.</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>secretAccessKey</td>
-            <td>AWS secret access key.</td>
-            <td>Yes</td>
+            <td>cacheControl</td>
+            <td>This can be used to specify caching behavior along the request or reply chain.</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>methodType</td>
-            <td>HTTP method type.</td>
-            <td>Yes</td>
+            <td>contentDisposition</td>
+            <td>This specifies presentational information for the object.</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>contentLength</td>
-            <td>Length of the message without the headers according to RFC 2616.</td>
-            <td>Yes</td>
+            <td>contentEncoding</td>
+            <td>The language the content is in.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>contentLanguage</td>
+            <td>This specifies what content encodings have been applied to the object.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>contentType</td>
-            <td>Content type of the resource.</td>
-            <td>Yes</td>
+            <td>A standard MIME type describing the format of the object data.</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>contentMD5</td>
-            <td>Base64 encoded 128-bit MD5 digest of the message according to RFC 1864.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>expect</td>
-            <td>When this property is set to 100-continue, the request does not send the request body until it receives an acknowledgment. If the message is rejected based on the headers, the body of the message is not sent.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>host</td>
-            <td>The path-style requests (s3.amazonaws.com) or virtual-style requests (BucketName.s3.amazonaws.com).</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>region</td>
-            <td>Region that is used to select a regional endpoint to make requests.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>isXAmzDate</td>
-            <td>Specifies whether the current date and time are considered to calculate the signature. Valid values: true or false.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzSecurityToken</td>
-            <td>The security token based on whether Amazon DevPay operations or temporary security credentials are used.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>bucketName</td>
-            <td>Name of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzAcl</td>
-            <td>The canned ACL to apply to the object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantRead</td>
+            <td>grantRead</td>
             <td>Allows the specified grantee or grantees to list the objects in the bucket.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzGrantWrite</td>
-            <td>Allows the specified grantee or grantees to create, overwrite, and delete any object in the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantReadAcp</td>
+            <td>grantReadACP</td>
             <td>Allows the specified grantee or grantees to read the bucket ACL.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzGrantWriteAcp</td>
+            <td>grantWriteACP</td>
             <td>Allows the specified grantee or grantees to write the ACL for the applicable bucket.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzGrantFullControl</td>
+            <td>grantFullControl</td>
             <td>Allows the specified grantee or grantees the READ, WRITE, READ_ACP, and WRITE_ACP permissions on the bucket.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzCopySource</td>
+            <td>copySource</td>
             <td>The name of the source bucket and key name of the source object, separated by a slash (/).</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>xAmzMetadataDirective</td>
+            <td>metadataDirective</td>
             <td>Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request.</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzCopySourceIfMatch</td>
+            <td>metadata</td>
+            <td>New metadata to replace. Comma separated key value pair. The key and value are separated by ':'.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>taggingDirective</td>
+            <td>Specifies whether the object tag-set are copied from the source object or replaced with tag-set provided in the request.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>copySourceIfMatch</td>
             <td>Copies the object if its entity tag (ETag) matches the specified tag. Otherwise, the request returns a 412 HTTP status code error (failed precondition).</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzCopySourceIfNoneMatch</td>
+            <td>copySourceIfNoneMatch</td>
             <td>Copies the object if its entity tag (ETag) is different from the specified ETag. Otherwise, the request returns a 412 HTTP status code error (failed precondition).</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzCopySourceIfUnmodifiedSince</td>
+            <td>copySourceIfUnmodifiedSince</td>
             <td>Copies the object if it has not been modified since the specified time. Oherwise, the request returns a 412 HTTP status code error (failed precondition).</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzCopySourceIfModifiedSince</td>
+            <td>copySourceIfModifiedSince</td>
             <td>Copies the object if it has been modified since the specified time. Otherwise, the request returns a 412 HTTP status code error (failed condition).</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzServeEncryption</td>
+            <td>expires</td>
+            <td>The date and time at which the object is no longer cacheable.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>serverSideEncryption</td>
             <td>Specifies the server-side encryption algorithm to use when Amazon S3 creates the target object.</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzStorageClass</td>
+            <td>storageClass</td>
             <td>RRS enables customers to reduce their costs by storing non-critical, reproducible data at lower levels of redundancy than Amazon S3's standard storage.</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzWebsiteLocation</td>
-            <td>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.</td>
+            <td>websiteRedirectLocation</td>
+            <td>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this parameter in the object metadata.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerAlgorithm</td>
+            <td>Specifies the algorithm to use to when encrypting the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ssekmsKeyId</td>
+            <td>Specifies the ID of the symmetric customer managed AWS KMS CMK to use for object encryption.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ssekmsEncryptionContext</td>
+            <td>Specifies the AWS KMS Encryption Context to use for object encryption.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>copySourceSSECustomerAlgorithm</td>
+            <td>Specifies the algorithm to use when decrypting the source object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>copySourceSSECustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>copySourceSSECustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>tagging</td>
+            <td>The tag-set for the object. The tag-set must be encoded as URL Query parameters. (For example, "Key1=Value1"). This must be used in conjunction with the TaggingDirective.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockMode</td>
+            <td>The object lock mode that you want to apply to the uploaded object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockRetainUntilDate</td>
+            <td>Specifies the date and time when you want the Object Lock to expire.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockLegalHoldStatus</td>
+            <td>Specifies whether you want to apply a Legal Hold to the uploaded object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>destinationBucket</td>
+            <td>Name of the destination bucket to copy the object.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>destinationObject</td>
+            <td>destinationKey</td>
             <td>The destination where the source will be copied.</td>
             <td>Yes</td>
         </tr> 
@@ -3101,174 +2392,71 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.init>
-        <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-        <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-        <methodType>{$ctx:methodType}</methodType>
-        <contentLength>{$ctx:contentLength}</contentLength>
-        <contentType>{$ctx:contentType}</contentType>
-        <contentMD5>{$ctx:contentMD5}</contentMD5>
-        <expect>{$ctx:expect}</expect>
-        <host>{$ctx:host}</host>
+        <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+        <awsSecretAccessKey>{$ctx:awsSecretAccessKey}</awsSecretAccessKey>
+        <name>{$ctx:connectionName}</name>
         <region>{$ctx:region}</region>
-        <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-        <xAmzSecurityToken>{$ctx:xAmzSecurityToken}</xAmzSecurityToken>
-        <bucketName>{$ctx:bucketName}</bucketName>
-        <xAmzAcl>{$ctx:xAmzAcl}</xAmzAcl>
-        <xAmzGrantRead>{$ctx:xAmzGrantRead}</xAmzGrantRead>
-        <xAmzGrantWrite>{$ctx:xAmzGrantWrite}</xAmzGrantWrite>
-        <xAmzGrantReadAcp>{$ctx:xAmzGrantReadAcp}</xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp>{$ctx:xAmzGrantWriteAcp}</xAmzGrantWriteAcp>
-        <xAmzGrantFullControl>{$ctx:xAmzGrantFullControl}</xAmzGrantFullControl>
-        <xAmzCopySource>{$ctx:xAmzCopySource}</xAmzCopySource>
-        <xAmzMetadataDirective>{$ctx:xAmzMetadataDirective}</xAmzMetadataDirective>
-        <xAmzCopySourceIfMatch>{$ctx:xAmzCopySourceIfMatch}</xAmzCopySourceIfMatch>
-        <xAmzCopySourceIfNoneMatch>{$ctx:xAmzCopySourceIfNoneMatch}</xAmzCopySourceIfNoneMatch>
-        <xAmzCopySourceIfUnmodifiedSince>{$ctx:xAmzCopySourceIfUnmodifiedSince}</xAmzCopySourceIfUnmodifiedSince>
-        <xAmzCopySourceIfModifiedSince>{$ctx:xAmzCopySourceIfModifiedSince}</xAmzCopySourceIfModifiedSince>
-        <xAmzServeEncryption>{$ctx:xAmzServeEncryption}</xAmzServeEncryption>
-        <xAmzStorageClass>{$ctx:xAmzStorageClass}</xAmzStorageClass>
-        <xAmzWebsiteLocation>{$ctx:xAmzWebsiteLocation}</xAmzWebsiteLocation>
     </amazons3.init>
-
-    <amazons3.createObjectCopy>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <destinationObject>{$ctx:destinationObject}</destinationObject>
-    </amazons3.createObjectCopy>
+    
+    <amazons3.copyBucketObject>
+        <copySource>{$ctx:copySource}</copySource>
+        <acl>{$ctx:acl}</acl>
+        <cacheControl>{$ctx:cacheControl}</cacheControl>
+        <contentDisposition>{$ctx:contentDisposition}</contentDisposition>
+        <contentEncoding>{$ctx:contentEncoding}</contentEncoding>
+        <contentLanguage>{$ctx:contentLanguage}</contentLanguage>
+        <contentType>{$ctx:contentType}</contentType>
+        <copySourceIfMatch>{$ctx:copySourceIfMatch}</copySourceIfMatch>
+        <copySourceIfModifiedSince>{$ctx:copySourceIfModifiedSince}</copySourceIfModifiedSince>
+        <copySourceIfNoneMatch>{$ctx:copySourceIfNoneMatch}</copySourceIfNoneMatch>
+        <copySourceIfUnmodifiedSince>{$ctx:copySourceIfUnmodifiedSince}</copySourceIfUnmodifiedSince>
+        <expires>{$ctx:expires}</expires>
+        <grantRead>{$ctx:grantRead}</grantRead>
+        <grantReadACP>{$ctx:grantReadACP}</grantReadACP>
+        <grantWriteACP>{$ctx:grantWriteACP}</grantWriteACP>
+        <grantFullControl>{$ctx:grantFullControl}</grantFullControl>
+        <metadataDirective>{$ctx:metadataDirective}</metadataDirective>
+        <metadata>{$ctx:metadata}</metadata>
+        <taggingDirective>{$ctx:taggingDirective}</taggingDirective>
+        <tagging>{$ctx:tagging}</tagging>
+        <serverSideEncryption>{$ctx:serverSideEncryption}</serverSideEncryption>
+        <storageClass>{$ctx:storageClass}</storageClass>
+        <websiteRedirectLocation>{$ctx:websiteRedirectLocation}</websiteRedirectLocation>
+        <sseCustomerAlgorithm>{$ctx:sseCustomerAlgorithm}</sseCustomerAlgorithm>
+        <sseCustomerKey>{$ctx:sseCustomerKey}</sseCustomerKey>
+        <sseCustomerKeyMD5>{$ctx:sseCustomerKeyMD5}</sseCustomerKeyMD5>
+        <ssekmsKeyId>{$ctx:ssekmsKeyId}</ssekmsKeyId>
+        <ssekmsEncryptionContext>{$ctx:ssekmsEncryptionContext}</ssekmsEncryptionContext>
+        <copySourceSSECustomerAlgorithm>{$ctx:copySourceSSECustomerAlgorithm}</copySourceSSECustomerAlgorithm>
+        <copySourceSSECustomerKey>{$ctx:copySourceSSECustomerKey}</copySourceSSECustomerKey>
+        <copySourceSSECustomerKeyMD5>{$ctx:copySourceSSECustomerKeyMD5}</copySourceSSECustomerKeyMD5>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
+        <objectLockMode>{$ctx:objectLockMode}</objectLockMode>
+        <objectLockRetainUntilDate>{$ctx:objectLockRetainUntilDate}</objectLockRetainUntilDate>
+        <objectLockLegalHoldStatus>{$ctx:objectLockLegalHoldStatus}</objectLockLegalHoldStatus>
+        <destinationBucket>{$ctx:destinationBucket}</destinationBucket>
+        <destinationKey>{$ctx:destinationKey}</destinationKey>
+    </amazons3.copyBucketObject>
     ```
     
     **Sample request**
 
     ```xml
-    <createObjectCopy>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentLength></contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect></expect>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    <copyBucketObject>
         <bucketName>signv4test</bucketName>
+        <copySource>/imagesBucket5/testObject37</copySource>
         <destinationObject>testObject5</destinationObject>
-        <xAmzAcl></xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
-        <xAmzCopySource>/imagesBucket5/testObject37</xAmzCopySource>
-        <xAmzMetadataDirective></xAmzMetadataDirective>
-        <xAmzCopySourceIfMatch></xAmzCopySourceIfMatch>
-        <xAmzCopySourceIfNoneMatch></xAmzCopySourceIfNoneMatch>
-        <xAmzCopySourceIfUnmodifiedSince></xAmzCopySourceIfUnmodifiedSince>
-        <xAmzCopySourceIfModifiedSince></xAmzCopySourceIfModifiedSince>
-        <xAmzServeEncryption></xAmzServeEncryption>
-        <xAmzStorageClass></xAmzStorageClass>
-        <xAmzWebsiteLocation></xAmzWebsiteLocation>
-    </createObjectCopy>
-    ```
-
-??? note "getObjectMetaData"
-    The getObjectMetaData operation retrieves metadata from an object without returning the object itself. This operation is useful if you are interested only in an object's metadata. To use this operation, you must have READ access to the object. The response is identical to the GET response except that there is no response body.
-
-    When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl.
-
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html) for more information.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>objectName</td>
-            <td>The name of the object to retrieve details for.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>range</td>
-            <td>Downloads the specified range bytes of an object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ifModifiedSince</td>
-            <td>Returns the object only if it has been modified since the specified time. Otherwise, returns 304.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ifUnmodifiedSince</td>
-            <td>Returns the object only if it has not been modified since the specified time. Otherwise, returns 412.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ifMatch</td>
-            <td>Returns the object only if its entity tag (ETag) is the same as the one specified. Otherwise, returns 412.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ifNoneMatch</td>
-            <td>Returns the object only if its entity tag (ETag) is different from the one specified. Otherwise, returns 304.</td>
-            <td>Yes</td>
-        </tr>        
-    </table>
-
-    **Sample configuration**
-
-    ```xml
-    <amazons3.getObjectMetaData>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <objectName>{$ctx:objectName}</objectName>
-        <range>{$ctx:range}</range>
-        <ifModifiedSince>{$ctx:ifModifiedSince}</ifModifiedSince>
-        <ifUnmodifiedSince>{$ctx:ifUnmodifiedSince}</ifUnmodifiedSince>
-        <ifMatch>{$ctx:ifMatch}</ifMatch>
-        <ifNoneMatch>{$ctx:ifNoneMatch}</ifNoneMatch>
-    </amazons3.getObjectMetaData>
-    ```
-    
-    **Sample request**
-
-    ```xml
-    <getObjectMetaData>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
-        <methodType>HEAD</methodType>
-        <contentLength></contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect></expect>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <bucketName>signv4test</bucketName>
-        <objectName>testObject2</objectName>
-        <range></range>
-        <ifModifiedSince></ifModifiedSince>
-        <ifUnmodifiedSince></ifUnmodifiedSince>
-        <ifMatch></ifMatch>
-        <ifNoneMatch></ifNoneMatch>
-    </getObjectMetaData>
+    </copyBucketObject>
     ```
 
 ??? note "uploadPart"
-    The uploadPart operation uploads a part in a multipart upload. In this operation, you provide part data in your request. However, you have an option to specify your existing Amazon S3 object as the data source for the part being uploaded. You must initiate a multipart upload (see initMultipartUpload) before you can upload any part. In response to your initiate request, Amazon S3 returns an upload ID, which is the unique identifier that must be included in the upload part request.
+    The uploadPart operation uploads a part in a multipart upload. In this operation, you provide part data in your request. However, you have an option to specify your existing Amazon S3 object as the data source for the part being uploaded. You must initiate a multipart upload (see createMultipartUpload) before you can upload any part. In response to your initiate request, Amazon S3 returns an upload ID, which is the unique identifier that must be included in the upload part request.
 
     Part numbers can be any number from 1 to 10,000 (inclusive). A part number uniquely identifies a part and also defines its position within the object being created. If a new part is uploaded using the same part number that was used with a previous part, the previously uploaded part is overwritten. Each part must be at least 5 MB in size, except the last part. There is no size limit on the last part of your multipart upload.
 
-    To ensure that data is not corrupted when traversing the network, specify the Content-MD5 header in the upload part request. Amazon S3 checks the part data against the provided MD5 value. If they do not match, Amazon S3 returns an error. After the multipart upload is initiated and one or more parts are uploaded, you must either complete or abort multipart upload in order to stop getting charged for storage of the uploaded parts. Only after you either complete or abort multipart upload will Amazon S3 free up the parts storage and stop charging you for the parts storage.
+    To ensure that data is not corrupted when traversing the network, specify the Content-MD5 parameter in the upload part request. Amazon S3 checks the part data against the provided MD5 value. If they do not match, Amazon S3 returns an error. After the multipart upload is initiated and one or more parts are uploaded, you must either complete or abort multipart upload in order to stop getting charged for storage of the uploaded parts. Only after you either complete or abort multipart upload will Amazon S3 free up the parts storage and stop charging you for the parts storage.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPart.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/UploadPartRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -3276,12 +2464,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name to give for the newly created object.</td>
             <td>Yes</td>
         </tr>
@@ -3295,36 +2483,67 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Part number that identifies the part.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>filePath</td>
+            <td>Path of the file to be uploaded.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>sseCustomerAlgorithm</td>
+            <td>Specifies the algorithm to use to when encrypting the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.uploadPart>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <uploadId>{$ctx:uploadId}</uploadId>
+        <partNumber>{$ctx:partNumber}</partNumber>
+        <filePath>{$url:filePath}</filePath>
+        <sseCustomerAlgorithm>{$ctx:sseCustomerAlgorithm}</sseCustomerAlgorithm>
+        <sseCustomerKey>{$ctx:sseCustomerKey}</sseCustomerKey>
+        <sseCustomerKeyMD5>{$ctx:sseCustomerKeyMD5}</sseCustomerKeyMD5>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
+    </amazons3.uploadPart>
+    ```
 
     **Sample request**
 
     ```xml
-    <amazons3.init>
-        <accessKeyId>AKIAIGUASDRZM7GJ7TRO6KQAD</accessKeyId>
-        <secretAccessKey>asAX8CJoDKsdfzeOd0Ve5dMCFk4STUFDRHkGX6m0CSLKcY</secretAccessKey>
-        <isXAmzDate>true</isXAmzDate>
-        <contentType>text/plain</contentType>
-        <methodType>PUT</methodType>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    <amazons3.uploadPart>
         <bucketName>signv4test</bucketName>
-    </amazons3.init>
-
-    <!-- Use the following for the uploading part method -->
-
-    http://localhost:8889/services/multipart?objectName=testFile1.txt&uploadId=VSMdi3EgFYBq_DpBv6G0LWXydidqO9WIw90UIp81EripQrJNuxOo.jf3tkA.23aURwTOZPBD4iCfcogwtMc8_A--&partNumber=1&bucketUrl=http://sinhala.com.s3-us-west-2.amazonaws.com&accessKeyId=AKIAIGUASDRZM7GJ7TRO6KQAD&secretAccessKey=asAX8CJoDKsdfzeOd0Ve5dMCFk4STUFDRHkGX6m0CSLKcY&bucketName=sinhala.com&isXAmzDate=true&methodType=PUT
+        <objectKey>testObj.jpg</objectKey>
+        <uploadId>cI0BzCZ7cx69YP.dhqpwEZAhgH7IzLVuOYjZVZdrmR9LSYAnxPqyYXlzHWGG3hgyH_MuJkTO8cltkaOK.TeG_7zBjFrjJduFCuFLDwah.ZXK7pvlTTDPQAaTRLW_o4FR</uploadId>
+        <partNumber>1</partNumber>
+        <filePath>/Users/mine/Desktop/S3_img.jpg</filePath>
+    </amazons3.uploadPart>
     ```
     
 ??? note "completeMultipartUpload"
-    The completeMultipartUpload operation completes a multipart upload by assembling previously uploaded parts. You should first initiate the multipart upload using initMultipartUpload, and then upload all parts using uploadParts. After you successfully upload all relevant parts of an upload, call completeMultipartUpload to complete the upload. When you call completeMultipartUpload, Amazon S3 concatenates all the parts in ascending order by part number to create a new object. In the completeMultipartUpload request, you must provide the complete parts list (see listParts). For each part in the list, the part number and the ETag header value must be provided. When the part is uploaded the part number and the ETag header value should be returned.
+    The completeMultipartUpload operation completes a multipart upload by assembling previously uploaded parts. You should first initiate the multipart upload using createMultipartUpload, and then upload all parts using uploadParts. After you successfully upload all relevant parts of an upload, call completeMultipartUpload to complete the upload. When you call completeMultipartUpload, Amazon S3 concatenates all the parts in ascending order by part number to create a new object. In the completeMultipartUpload request, you must provide the complete parts list (see listParts). For each part in the list, the part number and the ETag value must be provided. When the part is uploaded the part number and the ETag value should be returned.
 
     Processing of a completeMultipartUpload request can take several minutes. After Amazon S3 begins processing the request, it sends an HTTP response header that specifies a 200 OK response. While processing is in progress, Amazon S3 periodically sends whitespace characters to keep the connection from timing out. Because a request could fail after the initial 200 OK response has been sent, it is important that you check the response body to determine whether the request succeeded. If completeMultipartUpload fails, applications should be prepared to retry the failed requests.
 
-    When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl.
-
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadComplete.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/glacier/model/CompleteMultipartUploadRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -3332,12 +2551,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>partDetails</td>
-            <td>The container that holds the part details. The part details are as follows:
+            <td>completedPartDetails</td>
+            <td>The container that holds the completed part details. The part details are as follows:
                     <ul>
                         <li>part: The container for elements related to a previously uploaded part.</li>
                             <ul>
-                                <li>partNumber: The part number that identifies the part.</li>
+                                <li>PartNumber: The part number that identifies the part.</li>
                                 <li>ETag: The entity tag returned when the part is uploaded.</li>
                             </ul>
                     </ul>
@@ -3345,33 +2564,13 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Yes</td>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name to give the newly created object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>cacheControl</td>
-            <td>This can be used to specify caching behavior along the request or reply chain.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentDisposition</td>
-            <td>This specifies presentational information for the object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentEncoding</td>
-            <td>This specifies what content encodings have been applied to the object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>expires</td>
-            <td>This specifies the date and time at which the object is no longer cacheable.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3380,20 +2579,21 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Yes</td>
         </tr>
         <tr>
-            <td>partDetails</td>
-            <td>This contains all the part numbers and the corresponding Etags.</td>
-            <td>Yes</td>
-        </tr>           
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.completeMultipartUpload>
-        <partDetails>{$ctx:partDetails}</partDetails>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <objectName>{$ctx:objectName}</objectName>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
         <uploadId>{$ctx:uploadId}</uploadId>
+        <completedPartDetails>{$ctx:completedPartDetails}</completedPartDetails>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.completeMultipartUpload>
     ```
     
@@ -3401,37 +2601,24 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <completeMultipartUpload>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-        <methodType>POST</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <contentMD5></contentMD5>
-        <objectName>myimage.png</objectName>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
+        <objectKey>myimage.png</objectKey>
         <uploadId>VONszTPldyDo80ARdEMI2kVxEBLQYY1tncD7PpB54WDtLTACJIn.jWRIGo7iL_EkJYn9Z2BT3MM.kEqju9CgLyUveDtl6MgXzRYqjb8R4L.ZVpUhv25d56P2Tk1XnD0C</uploadId>
-        <partDetails>
-            <Part>
+        <CompletedPartDetails>
+            <CompletedPart>
                 <PartNumber>1</PartNumber>
                 <ETag>LKJLINTLNM9879NL7jNLk</ETag>
-            </Part>
-        </partDetails>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <expect></expect>
-        <contentLength></contentLength>
-        <expires></expires>
+            </CompletedPart>
+        </CompletedPartDetails>
     </completeMultipartUpload>
     ```
 
 ??? note "abortMultipartUpload"
     The abortMultipartUpload operation aborts a multipart upload. After a multipart upload is aborted, no additional parts can be uploaded using that upload ID. The storage consumed by any previously uploaded parts will be freed. However, if any part uploads are currently in progress, those part uploads might or might not succeed. As a result, it might be necessary to abort a given multipart upload multiple times in order to completely free all storage consumed by all parts. To verify that all parts have been removed so that you do not get charged for the part storage, call the listParts operation and ensure the parts list is empty.
 
-    Following is the proxy configuration for init and abortMultipartUpload. The init section has additional parameters and parameters that need to be removed apart from those mentioned in the Connecting to Amazon S3 section.
+    Following is the proxy configuration for init and abortMultipartUpload. The init section has connection parameters.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadAbort.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/glacier/model/AbortMultipartUploadRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -3439,142 +2626,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>accessKeyId</td>
-            <td>AWS access key ID.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>secretAccessKey</td>
-            <td>AWS secret access key.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>methodType</td>
-            <td>HTTP method type.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentLength</td>
-            <td>Length of the message without the headers according to RFC 2616.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentType</td>
-            <td>Content type of the resource.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentMD5</td>
-            <td>Base64 encoded 128-bit MD5 digest of the message according to RFC 1864.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>expect</td>
-            <td>When this property is set to 100-continue, the request does not send the request body until it receives an acknowledgment. If the message is rejected based on the headers, the body of the message is not sent.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>host</td>
-            <td>The path-style requests (s3.amazonaws.com) or virtual-style requests (BucketName.s3.amazonaws.com).</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>region</td>
-            <td>Region that is used to select a regional endpoint to make requests.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>isXAmzDate</td>
-            <td>Specifies whether the current date and time are considered to calculate the signature. Valid values: true or false.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzSecurityToken</td>
-            <td>The security token based on whether Amazon DevPay operations or temporary security credentials are used.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
             <td>bucketName</td>
-            <td>Name of the bucket.</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>xAmzAcl</td>
-            <td>The canned ACL to apply to the object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantRead</td>
-            <td>Allows the specified grantee or grantees to list the objects in the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantWrite</td>
-            <td>Allows the specified grantee or grantees to create, overwrite, and delete any object in the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantReadAcp</td>
-            <td>Allows the specified grantee or grantees to read the bucket ACL.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantWriteAcp</td>
-            <td>Allows the specified grantee or grantees to write the ACL for the applicable bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantFullControl</td>
-            <td>Allows the specified grantee or grantees the READ, WRITE, READ_ACP, and WRITE_ACP permissions on the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzMeta</td>
-            <td>Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>xAmzServeEncryption</td>
-            <td>Specifies the server-side encryption algorithm to use when Amazon S3 creates the target object.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>xAmzStorageClass</td>
-            <td>RRS enables customers to reduce their costs by storing non-critical, reproducible data at lower levels of redundancy than Amazon S3's standard storage.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>xAmzWebsiteLocation</td>
-            <td>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>cacheControl</td>
-            <td>This can be used to specify caching behavior along the request or reply chain.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentDisposition</td>
-            <td>This specifies presentational information for the object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentEncoding</td>
-            <td>This specifies what content encodings have been applied to the object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>expires</td>
-            <td>The Expires header of the response.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name of the object.</td>
             <td>Yes</td>
         </tr>
@@ -3582,45 +2639,29 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>uploadId</td>
             <td>This specifies the ID of the current multipart upload.</td>
             <td>Yes</td>
-        </tr>         
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.init>
-        <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-        <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-        <methodType>{$ctx:methodType}</methodType>
-        <contentLength>{$ctx:contentLength}</contentLength>
-        <contentType>{$ctx:contentType}</contentType>
-        <contentMD5>{$ctx:contentMD5}</contentMD5>
-        <expect>{$ctx:expect}</expect>
-        <host>{$ctx:host}</host>
+        <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+        <awsSecretAccessKey>{$ctx:awsSecretAccessKey}</awsSecretAccessKey>
+        <name>{$ctx:connectionName}</name>
         <region>{$ctx:region}</region>
-        <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-        <xAmzSecurityToken>{$ctx:xAmzSecurityToken}</xAmzSecurityToken>
-        <bucketName>{$ctx:bucketName}</bucketName>
-        <xAmzAcl>{$ctx:xAmzAcl}</xAmzAcl>
-        <xAmzGrantRead>{$ctx:xAmzGrantRead}</xAmzGrantRead>
-        <xAmzGrantWrite>{$ctx:xAmzGrantWrite}</xAmzGrantWrite>
-        <xAmzGrantReadAcp>{$ctx:xAmzGrantReadAcp}</xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp>{$ctx:xAmzGrantWriteAcp}</xAmzGrantWriteAcp>
-        <xAmzGrantFullControl>{$ctx:xAmzGrantFullControl}</xAmzGrantFullControl>
-        <xAmzMeta>{$ctx:xAmzMeta}</xAmzMeta>
-        <xAmzServeEncryption>{$ctx:xAmzServeEncryption}</xAmzServeEncryption>
-        <xAmzStorageClass>{$ctx:xAmzStorageClass}</xAmzStorageClass>
-        <xAmzWebsiteLocation>{$ctx:xAmzWebsiteLocation}</xAmzWebsiteLocation>
     </amazons3.init>
-
+    
     <amazons3.abortMultipartUpload>
-        <cacheControl>{$ctx:cacheControl}</cacheControl>
-        <contentDisposition>{$ctx:contentDisposition}</contentDisposition>
-        <contentEncoding>{$ctx:contentEncoding}</contentEncoding>
-        <expires>{$ctx:expires}</expires>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <objectName>{$ctx:objectName}</objectName>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
         <uploadId>{$ctx:uploadId}</uploadId>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.abortMultipartUpload>
     ```
     
@@ -3628,44 +2669,20 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <abortMultipartUpload>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-        <methodType>DELETE</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <contentMD5></contentMD5>
-        <objectName>myimage.png</objectName>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
+        <objectKey>myimage.png</objectKey>
         <uploadId>VONszTPldyDo80ARdEMI2kVxEBLQYY1tncD7PpB54WDtLTACJIn.jWRIGo7iL_EkJYn9Z2BT3MM.kEqju9CgLyUveDtl6MgXzRYqjb8R4L.ZVpUhv25d56P2Tk1XnD0C</uploadId>
-        <expect></expect>
-        <xAmzAcl></xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
-        <contentDisposition></contentDisposition>
-        <contentEncoding></contentEncoding>
-        <contentLength></contentLength>
-        <expires></expires>
-        <xAmzMeta>Content-Language:enus</xAmzMeta>
-        <xAmzStorageClass>STANDARD</xAmzStorageClass>
-        <xAmzWebsiteLocation></xAmzWebsiteLocation>
     </abortMultipartUpload>
     ```
 
 ??? note "listParts"
     The listParts operation lists the parts that have been uploaded for a specific multipart upload.
 
-    This operation must include the upload ID, which can be obtained using the initMultipartUpload operation. The listParts operation returns a maximum of 1,000 uploaded parts. The default number of parts returned is 1,000 parts, but you can restrict the number of parts using the maxParts property. If the multipart upload consists of more than 1,000 parts, the response returns an IsTruncated field with the value of true and a NextPartNumberMarker element. In subsequent listParts requests, you can include the partNumberMarker query string parameter and set its value to the NextPartNumberMarker field value from the previous response.
+    This operation must include the upload ID, which can be obtained using the createMultipartUpload operation. The listParts operation returns a maximum of 1,000 uploaded parts. The default number of parts returned is 1,000 parts, but you can restrict the number of parts using the maxParts property. If the multipart upload consists of more than 1,000 parts, the response returns an IsTruncated field with the value of true and a NextPartNumberMarker element. In subsequent listParts requests, you can include the partNumberMarker query string parameter and set its value to the NextPartNumberMarker field value from the previous response.
 
-    Following is the proxy configuration for init and listParts. The init section has additional parameters and parameters that need to be removed apart from those mentioned in the Connecting to Amazon S3 section.
+    Following is the proxy configuration for init and listParts. The init section has connection parameters.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListParts.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/glacier/model/ListPartsRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -3673,68 +2690,18 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>accessKeyId</td>
-            <td>AWS access key ID.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>secretAccessKey</td>
-            <td>AWS secret access key.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>methodType</td>
-            <td>HTTP method type.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentType</td>
-            <td>Content type of the resource.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
             <td>bucketName</td>
-            <td>Name of the bucket.</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>isXAmzDate</td>
-            <td>Specifies whether the current date and time are considered to calculate the signature. Valid values: true or false.</td>
+            <td>objectKey</td>
+            <td>The name of the object.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>expect</td>
-            <td>When this property is set to 100-continue, the request does not send the request body until it receives an acknowledgment. If the message is rejected based on the headers, the body of the message is not sent.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentMD5</td>
-            <td>Base64 encoded 128-bit MD5 digest of the message according to RFC 1864.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzSecurityToken</td>
-            <td>The security token based on whether Amazon DevPay operations or temporary security credentials are used.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>host</td>
-            <td>The path-style requests (s3.amazonaws.com) or virtual-style requests (BucketName.s3.amazonaws.com).</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>region</td>
-            <td>Region that is used to select a regional endpoint to make requests.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>uriRemainder</td>
-            <td>The URI syntax consists of a sequence of components separated by reserved characters, with the first component defining the semantics for the remainder of the URI string.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentLength</td>
-            <td>Length of the message without the headers according to RFC 2616.</td>
+            <td>uploadId</td>
+            <td>The ID of the upload.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3748,29 +2715,9 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Yes</td>
         </tr>
         <tr>
-            <td>contentEncoding</td>
-            <td>The Content-Encoding header of the request.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>encodingType</td>
-            <td>Requests Amazon S3 to encode the response and specifies the encoding method to use.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>objectName</td>
-            <td>The name of the object.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>uploadId</td>
-            <td>The ID of the upload.</td>
-            <td>Yes</td>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
         </tr>
     </table>
 
@@ -3778,29 +2725,19 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.init>
-        <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-        <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-        <methodType>{$ctx:methodType}</methodType>
-        <contentType>{$ctx:contentType}</contentType>
-        <bucketName>{$ctx:bucketName}</bucketName>
-        <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-        <expect>{$ctx:expect}</expect>
-        <contentMD5>{$ctx:contentMD5}</contentMD5>
-        <xAmzSecurityToken>{$ctx:xAmzSecurityToken}</xAmzSecurityToken>
-        <host>{$ctx:host}</host>
+        <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+        <awsSecretAccessKey>{$ctx:awsSecretAccessKey}</awsSecretAccessKey>
+        <name>{$ctx:connectionName}</name>
         <region>{$ctx:region}</region>
-        <uriRemainder>{$ctx:uriRemainder}</uriRemainder>
-        <contentLength>{$ctx:contentLength}</contentLength>
     </amazons3.init>
 
     <amazons3.listParts>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <uploadId>{$ctx:uploadId}</uploadId>
         <maxParts>{$ctx:maxParts}</maxParts>
         <partNumberMarker>{$ctx:partNumberMarker}</partNumberMarker>
-        <contentEncoding>{$ctx:contentEncoding}</contentEncoding>
-        <encodingType>{$ctx:encodingType}</encodingType>
-        <uploadId>{$ctx:uploadId}</uploadId>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <objectName>{$ctx:objectName}</objectName>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.listParts>
     ```
     
@@ -3808,36 +2745,22 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <listParts>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>oSDz22F2mwtR+qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-        <methodType>GET</methodType>
-        <contentLength></contentLength>
-        <contentEncoding></contentEncoding>
-        <encodingType>url</encodingType>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <uploadId>KyxZ7yjpSSZM9f0bdRectMF5dPg2h08BqTsmWf.8OEIq2Z4YvYg01LmJL0kVDqVcz2utci2CDE2Cn7k647j_84GhExGAN9uer65jljH_oapI758RA_AmcyW4N2usGHH0</uploadId>
-        <expect></expect>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
-        <objectName>myimage.png</objectName>
-        <isXAmzDate>true</isXAmzDate>
+        <objectKey>myimage.png</objectKey>
+        <uploadId>KyxZ7yjpSSZM9f0bdRectMF5dPg2h08BqTsmWf.8OEIq2Z4YvYg01LmJL0kVDqVcz2utci2CDE2Cn7k647j_84GhExGAN9uer65jljH_oapI758RA_AmcyW4N2usGHH0</uploadId>
         <maxParts>100</maxParts>
         <partNumberMarker>8</partNumberMarker>
-        <xAmzSecurityToken></xAmzSecurityToken>
     </listParts>
     ```
 
-??? note "initMultipartUpload"
-    The initMultipartUpload operation initiates a multipart upload and returns an upload ID. This upload ID is used to associate all the parts in the specific multipart upload. You specify this upload ID in each of your subsequent uploadPart requests. You also include this upload ID in the final request to either complete or abort the multipart upload request.
+??? note "createMultipartUpload"
+    The createMultipartUpload operation initiates a multipart upload and returns an upload ID. This upload ID is used to associate all the parts in the specific multipart upload. You specify this upload ID in each of your subsequent uploadPart requests. You also include this upload ID in the final request to either complete or abort the multipart upload request.
 
     For request signing, multipart upload is just a series of regular requests: you initiate multipart upload, send one or more requests to upload parts (uploadPart), and finally complete multipart upload (completeMultipartUpload). You sign each request individually. After you initiate multipart upload and upload one or more parts, you must either complete or abort multipart upload in order to stop getting charged for storage of the uploaded parts. Only after you either complete or abort multipart upload will Amazon S3 free up the parts storage and stop charging you for the parts storage.
 
-    Following is the proxy configuration for init and initMultipartUpload. The init section has additional parameters and parameters that need to be removed apart from those mentioned in the Connecting to Amazon S3 section.
+    Following is the proxy configuration for init and createMultipartUpload. The init section has connection parameters.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/CreateMultipartUploadRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -3845,149 +2768,139 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>accessKeyId</td>
-            <td>AWS access key ID.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>secretAccessKey</td>
-            <td>AWS secret access key.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>methodType</td>
-            <td>HTTP method type.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentType</td>
-            <td>Content type of the resource.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
             <td>bucketName</td>
-            <td>Name of the bucket.</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>isXAmzDate</td>
-            <td>Specifies whether the current date and time are considered to calculate the signature. Valid values: true or false.</td>
+            <td>objectKey</td>
+            <td>The name of the object.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>expect</td>
-            <td>When this property is set to 100-continue, the request does not send the request body until it receives an acknowledgment. If the message is rejected based on the headers, the body of the message is not sent.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentMD5</td>
-            <td>Base64 encoded 128-bit MD5 digest of the message according to RFC 1864.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzSecurityToken</td>
-            <td>The security token based on whether Amazon DevPay operations or temporary security credentials are used.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>host</td>
-            <td>The path-style requests (s3.amazonaws.com) or virtual-style requests (BucketName.s3.amazonaws.com).</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>region</td>
-            <td>Region that is used to select a regional endpoint to make requests.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>uriRemainder</td>
-            <td>The URI syntax consists of a sequence of components separated by reserved characters, with the first component defining the semantics for the remainder of the URI string.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentLength</td>
-            <td>Length of the message without the headers according to RFC 2616.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzAcl</td>
+            <td>acl</td>
             <td>The canned ACL to apply to the object.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzGrantRead</td>
+            <td>grantRead</td>
             <td>Allows the specified grantee or grantees to list the objects in the bucket.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzGrantWrite</td>
-            <td>Allows the specified grantee or grantees to create, overwrite, and delete any object in the bucket.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>xAmzGrantReadAcp</td>
+            <td>grantReadACP</td>
             <td>Allows the specified grantee or grantees to read the bucket ACL.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzGrantWriteAcp</td>
+            <td>grantWriteACP</td>
             <td>Allows the specified grantee or grantees to write the ACL for the applicable bucket.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzGrantFullControl</td>
+            <td>grantFullControl</td>
             <td>Allows the specified grantee or grantees the READ, WRITE, READ_ACP, and WRITE_ACP permissions on the bucket.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzMeta</td>
+            <td>metadata</td>
             <td>Specifies whether the metadata is copied from the source object or replaced with metadata provided in the request.</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzServeEncryption</td>
+            <td>serverSideEncryption</td>
             <td>Specifies the server-side encryption algorithm to use when Amazon S3 creates the target object.</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzStorageClass</td>
+            <td>storageClass</td>
             <td>RRS enables customers to reduce their costs by storing non-critical, reproducible data at lower levels of redundancy than Amazon S3's standard storage.</td>
             <td>Optional</td>
         </tr>
         <tr>
-            <td>xAmzWebsiteLocation</td>
-            <td>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.</td>
-            <td>Yes</td>
+            <td>websiteRedirectLocation</td>
+            <td>If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this parameter in the object metadata.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerAlgorithm</td>
+            <td>Specifies the algorithm to use to when encrypting the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ssekmsKeyId</td>
+            <td>Specifies the ID of the symmetric customer managed AWS KMS CMK to use for object encryption.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ssekmsEncryptionContext</td>
+            <td>Specifies the AWS KMS Encryption Context to use for object encryption.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>cacheControl</td>
             <td>This can be used to specify caching behavior along the request or reply chain.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>contentDisposition</td>
             <td>This specifies presentational information for the object.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>contentEncoding</td>
             <td>This specifies what content encodings have been applied to the object.</td>
-            <td>Yes</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>contentLanguage</td>
+            <td>This specifies what content encodings have been applied to the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>contentType</td>
+            <td>A standard MIME type describing the format of the object data.</td>
+            <td>Optional</td>
         </tr>
         <tr>
             <td>expires</td>
             <td>The date and time at which the object is no longer cacheable.</td>
-            <td>Yes</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
-            <td>Yes</td>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
         </tr>
         <tr>
-            <td>objectName</td>
-            <td>The name of the object.</td>
-            <td>Yes</td>
+            <td>tagging</td>
+            <td>The tag-set for the object. The tag-set must be encoded as URL Query parameters. (For example, "Key1=Value1"). This must be used in conjunction with the TaggingDirective.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockMode</td>
+            <td>The object lock mode that you want to apply to the uploaded object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockRetainUntilDate</td>
+            <td>Specifies the date and time when you want the Object Lock to expire.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>objectLockLegalHoldStatus</td>
+            <td>Specifies whether you want to apply a Legal Hold to the uploaded object.</td>
+            <td>Optional</td>
         </tr>
     </table>
 
@@ -3995,81 +2908,60 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <amazons3.init>
-        <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-        <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-        <methodType>{$ctx:methodType}</methodType>
-        <contentType>{$ctx:contentType}</contentType>
-        <bucketName>{$ctx:bucketName}</bucketName>
-        <isXAmzDate>{$ctx:isXAmzDate}</isXAmzDate>
-        <expect>{$ctx:expect}</expect>
-        <contentMD5>{$ctx:contentMD5}</contentMD5>
-        <xAmzSecurityToken>{$ctx:xAmzSecurityToken}</xAmzSecurityToken>
-        <host>{$ctx:host}</host>
+        <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+        <awsSecretAccessKey>{$ctx:awsSecretAccessKey}</awsSecretAccessKey>
+        <name>{$ctx:connectionName}</name>
         <region>{$ctx:region}</region>
-        <uriRemainder>{$ctx:uriRemainder}</uriRemainder>
-        <contentLength>{$ctx:contentLength}</contentLength>
-        <xAmzAcl>{$ctx:xAmzAcl}</xAmzAcl>
-        <xAmzGrantRead>{$ctx:xAmzGrantRead}</xAmzGrantRead>
-        <xAmzGrantWrite>{$ctx:xAmzGrantWrite}</xAmzGrantWrite>
-        <xAmzGrantReadAcp>{$ctx:xAmzGrantReadAcp}</xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp>{$ctx:xAmzGrantWriteAcp}</xAmzGrantWriteAcp>
-        <xAmzGrantFullControl>{$ctx:xAmzGrantFullControl}</xAmzGrantFullControl>
-        <xAmzMeta>{$ctx:xAmzMeta}</xAmzMeta>
-        <xAmzServeEncryption>{$ctx:xAmzServeEncryption}</xAmzServeEncryption>
-        <xAmzStorageClass>{$ctx:xAmzStorageClass}</xAmzStorageClass>
-        <xAmzWebsiteLocation>{$ctx:xAmzWebsiteLocation}</xAmzWebsiteLocation>
     </amazons3.init>
-
-    <amazons3.initMultipartUpload>
+    
+    <amazons3.createMultipartUpload>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <acl>{$ctx:acl}</acl>
         <cacheControl>{$ctx:cacheControl}</cacheControl>
         <contentDisposition>{$ctx:contentDisposition}</contentDisposition>
         <contentEncoding>{$ctx:contentEncoding}</contentEncoding>
+        <contentLanguage>{$ctx:contentLanguage}</contentLanguage>
+        <contentType>{$ctx:contentType}</contentType>
         <expires>{$ctx:expires}</expires>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <objectName>{$ctx:objectName}</objectName>
-    </amazons3.initMultipartUpload>
+        <grantRead>{$ctx:grantRead}</grantRead>
+        <grantReadACP>{$ctx:grantReadACP}</grantReadACP>
+        <grantWriteACP>{$ctx:grantWriteACP}</grantWriteACP>
+        <grantFullControl>{$ctx:grantFullControl}</grantFullControl>
+        <metadata>{$ctx:metadata}</metadata>
+        <serverSideEncryption>{$ctx:serverSideEncryption}</serverSideEncryption>
+        <storageClass>{$ctx:storageClass}</storageClass>
+        <websiteRedirectLocation>{$ctx:websiteRedirectLocation}</websiteRedirectLocation>
+        <sseCustomerAlgorithm>{$ctx:sseCustomerAlgorithm}</sseCustomerAlgorithm>
+        <sseCustomerKey>{$ctx:sseCustomerKey}</sseCustomerKey>
+        <sseCustomerKeyMD5>{$ctx:sseCustomerKeyMD5}</sseCustomerKeyMD5>
+        <ssekmsKeyId>{$ctx:ssekmsKeyId}</ssekmsKeyId>
+        <ssekmsEncryptionContext>{$ctx:ssekmsEncryptionContext}</ssekmsEncryptionContext>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
+        <tagging>{$ctx:tagging}</tagging>
+        <objectLockMode>{$ctx:objectLockMode}</objectLockMode>
+        <objectLockRetainUntilDate>{$ctx:objectLockRetainUntilDate}</objectLockRetainUntilDate>
+        <objectLockLegalHoldStatus>{$ctx:objectLockLegalHoldStatus}</objectLockLegalHoldStatus>
+    </amazons3.createMultipartUpload>
     ```
     
     **Sample request**
 
     ```xml
-    <initMultipartUpload>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-        <methodType>POST</methodType>
-        <contentType>application/xml</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <contentMD5></contentMD5>
-        <objectName>myImage.png</objectName>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    <createMultipartUpload>
         <bucketName>signv4test</bucketName>
-        <expect></expect>
-        <xAmzAcl></xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
-        <contentDisposition></contentDisposition>
-        <contentEncoding></contentEncoding>
-        <contentLength></contentLength>
-        <expires></expires>
-        <xAmzMeta>Content-Language:enus</xAmzMeta>
-        <xAmzServeEncryption>AES256</xAmzServeEncryption>
-        <xAmzStorageClass>STANDARD</xAmzStorageClass>
-        <xAmzWebsiteLocation></xAmzWebsiteLocation>
-    </initMultipartUpload>
+        <objectKey>upload.png</objectKey>
+        <metadata>Content-Language:enus</metadata>
+        <serverSideEncryption>AES256</serverSideEncryption>
+        <storageClass>STANDARD</storageClass>
+    </createMultipartUpload>
     ```
 
-??? note "getObjectACL"
-    The getObjectACL operation uses the ACL subresource to return the access control list (ACL) of an object. To use this operation, you must have READ_ACP access to the object.
+??? note "multipartUpload"
+    The multipartUpload operation initializes and completes a multipart upload by uploading parts to that specific multipart upload.
 
-    Following is the proxy configuration for getObjectACL.
+    Following is the proxy configuration for init and multipartUpload. The init section has connection parameters.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETacl.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -4077,23 +2969,111 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name of the object.</td>
             <td>Yes</td>
-        </tr>      
+        </tr>
+        <tr>
+            <td>partDetails</td>
+            <td>This contains all the parts with the part numbers.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>filePath</td>
+            <td>Path of the file to be uploaded.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.init>
+        <awsAccessKeyId>{$ctx:awsAccessKeyId}</awsAccessKeyId>
+        <awsSecretAccessKey>{$ctx:awsSecretAccessKey}</awsSecretAccessKey>
+        <name>{$ctx:connectionName}</name>
+        <region>{$ctx:region}</region>
+    </amazons3.init>
+    
+    <amazons3.multipartUpload>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <partDetails>{$ctx:partDetails}</partDetails>
+        <filePath>{$ctx:filePath}</filePath>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
+    </amazons3.multipartUpload>
+    ```
+
+    **Sample request**
+
+    ```xml
+    <multipartUpload>
+        <bucketName>signv4test</bucketName>
+        <objectKey>myimage.png</objectKey>
+        <filePath>/Users/mine/Desktop/10MB.mp4</filePath>
+        <PartDetails>
+            <Part>
+                <PartNumber>1</PartNumber>
+            </Part>
+            <Part>
+                <PartNumber>2</PartNumber>
+            </Part>
+        </PartDetails>
+    </multipartUpload>
+    ```
+
+??? note "getObjectACL"
+    The getObjectACL operation uses the ACL subresource to return the access control list (ACL) of an object. To use this operation, you must have READ_ACP access to the object.
+
+    Following is the proxy configuration for getObjectACL.
+
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetObjectAclRequest.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>objectKey</td>
+            <td>The name of the object.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>versionId</td>
+            <td>VersionId used to reference a specific version of the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.getObjectACL>
-        <objectName>{$ctx:objectName}</objectName>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <versionId>{$ctx:versionId}</versionId>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.getObjectACL>
     ```
     
@@ -4101,27 +3081,61 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getObjectACL>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-        <methodType>GET</methodType>
-        <contentType>application/xml; charset=UTF-8</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <contentMD5></contentMD5>
-        <expect>100-continue</expect>
-        <contentLength></contentLength>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead>GrantRead</xAmzGrantRead>
-        <xAmzGrantWrite>Grantwrite</xAmzGrantWrite>
-        <xAmzGrantReadAcp>GrantReadAcp</xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp>GrantWriteAcp</xAmzGrantWriteAcp>
-        <xAmzGrantFullControl>GrantFullControl</xAmzGrantFullControl>
-        <objectName>testFile.txt</objectName>
+        <objectKey>testFile.txt</objectKey>
     </getObjectACL>
+    ```
+
+??? note "getObjectTagging"
+    The getObjectTagging operation returns the tag-set of an object. You send the request against the tagging subresource associated with the object.
+
+    By default, this operation returns information about current version of an object. To retrieve tags of any other version, use the versionId parameter.
+
+    To use this operation, you must have permission to perform the s3:GetObjectTagging action. To retrieve tags of a version, you need permission for the s3:GetObjectVersionTagging action.
+
+    Following is the proxy configuration for getObjectTagging.
+
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetObjectTaggingRequest.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>objectKey</td>
+            <td>The name of the object.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>versionId</td>
+            <td>The version id of the object.</td>
+            <td>Optional</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getObjectTagging>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <versionId>{$ctx:versionId}</versionId>
+    </amazons3.getObjectTagging>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getObjectTagging>
+        <bucketName>signv4test</bucketName>
+        <objectKey>testFile.txt</objectKey>
+    </getObjectTagging>
     ```
 
 ??? note "getObjectTorrent"
@@ -4133,7 +3147,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     Following is the proxy configuration for getObjectTorrent.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETtorrent.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/GetObjectTorrentRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -4141,50 +3155,45 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name of the object.</td>
             <td>Yes</td>
-        </tr>      
+        </tr>
+        <tr>
+            <td>torrentFilePath</td>
+            <td>The path of the torrent file to be created.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.getObjectTorrent>
-        <objectName>{$ctx:objectName}</objectName>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <torrentFilePath>{$ctx:torrentFilePath}</torrentFilePath>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.getObjectTorrent>
     ```
-    
+
     **Sample request**
 
     ```xml
     <getObjectTorrent>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-        <methodType>GET</methodType>
-        <contentType>application/xml; charset=UTF-8</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <contentMD5></contentMD5>
-        <expect>100-continue</expect>
-        <contentLength></contentLength>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead>GrantRead</xAmzGrantRead>
-        <xAmzGrantWrite>Grantwrite</xAmzGrantWrite>
-        <xAmzGrantReadAcp>GrantReadAcp</xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp>GrantWriteAcp</xAmzGrantWriteAcp>
-        <xAmzGrantFullControl>GrantFullControl</xAmzGrantFullControl>
-        <objectName>testFile.txt</objectName>
+        <objectKey>testFile.txt</objectKey>
+        <torrentFilePath>/Users/mine/Desktop/testFile.torrent</torrentFilePath>
     </getObjectTorrent>
     ```
 
@@ -4195,7 +3204,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     Following is the proxy configuration for restoreObject.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/RestoreObjectRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -4203,35 +3212,41 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name of the object.</td>
             <td>Yes</td>
-        </tr>   
-        <tr>
-            <td>numberOfDays</td>
-            <td>Lifetime of the restored (active) copy.</td>
-            <td>Yes</td>
-        </tr>  
+        </tr>
         <tr>
             <td>versionId</td>
             <td>Version Id of an object to restore a specific object version.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>restoreRequest</td>
+            <td>Container for the RestoreRequest parameters (Days, Description, GlacierJobParameters, OutputLocation, SelectParameters, Tier and Type).</td>
             <td>Yes</td>
-        </tr>       
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.restoreObject>
-        <objectName>{$ctx:objectName}</objectName>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <numberOfDays>{$ctx:numberOfDays}</numberOfDays>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <versionId>{$ctx:versionId}</versionId>
+        <restoreRequest>{$ctx:restoreRequest}</restoreRequest>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.restoreObject>
     ```
     
@@ -4239,35 +3254,21 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <restoreObject>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-        <methodType>POST</methodType>
-        <contentType>application/xml; charset=UTF-8</contentType>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <contentMD5></contentMD5>
-        <expect>100-continue</expect>
-        <contentLength></contentLength>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
-        <xAmzAcl>public-read</xAmzAcl>
-        <xAmzGrantRead>GrantRead</xAmzGrantRead>
-        <xAmzGrantWrite>Grantwrite</xAmzGrantWrite>
-        <xAmzGrantReadAcp>GrantReadAcp</xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp>GrantWriteAcp</xAmzGrantWriteAcp>
-        <xAmzGrantFullControl>GrantFullControl</xAmzGrantFullControl>
-        <objectName>testFile.txt</objectName>
-        <numberOfDays>7</numberOfDays>
-        <versionId></versionId>
+        <objectKey>testFile.txt</objectKey>
+        <RestoreRequest>
+            <Days>2</Days>
+            <GlacierJobParameters>
+                <Tier>Expedited</Tier>
+            </GlacierJobParameters>
+        </RestoreRequest>
     </restoreObject>
     ```
 
 ??? note "uploadPartCopy"
-    The uploadPartCopy operation uploads a part by copying data from an existing object as data source. You specify the data source by adding the x-amz-copy-source in your request and a byte range by adding the x-amz-copy-source-range in your request. The minimum allowable part size for a multipart upload is 5 MB.
+    The uploadPartCopy operation uploads a part by copying data from an existing object as data source. You specify the data source by adding the copySource in your request and a byte range by adding the copySourceRange in your request. The minimum allowable part size for a multipart upload is 5 MB.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPartCopy.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/UploadPartCopyRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -4275,35 +3276,113 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name to give the newly created object.</td>
             <td>Yes</td>
         </tr>   
         <tr>
             <td>uploadId</td>
-            <td>This specifiy the ID of the initiated multipart upload.</td>
+            <td>This specify the ID of the initiated multipart upload.</td>
             <td>Yes</td>
         </tr>  
         <tr>
             <td>partNumber</td>
-            <td>This specifiy the number or the index of the uploaded part.</td>
+            <td>This specify the number or the index of the uploaded part.</td>
             <td>Yes</td>
-        </tr>       
+        </tr>
+        <tr>
+            <td>copySource</td>
+            <td>The name of the source bucket and key name of the source object, separated by a slash (/).</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>copySourceRange</td>
+            <td>Copy the specified range bytes of an object.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>ifModifiedSince</td>
+            <td>Return the object only if it has been modified.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ifUnmodifiedSince</td>
+            <td>Return the object only if it has not been modified.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ifMatch</td>
+            <td>Return the object only if its ETag is the same.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>ifNoneMatch</td>
+            <td>Returns the object only if its ETag is not the same as the one specified.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>copySourceSSECustomerAlgorithm</td>
+            <td>Specifies the algorithm to use when decrypting the source object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>copySourceSSECustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use to decrypt the source object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>copySourceSSECustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerAlgorithm</td>
+            <td>Specifies the algorithm to use to when encrypting the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.uploadPartCopy>
-        <objectName>{$ctx:objectName}</objectName>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <objectKey>{$ctx:objectKey}</objectKey>
+        <bucketName>{$ctx:bucketName}</bucketName>
         <uploadId>{$ctx:uploadId}</uploadId>
         <partNumber>{$ctx:partNumber}</partNumber>
+        <copySource>/imagesBucket5/testObject37</copySource>
+        <copySourceRange>{$ctx:copySourceRange}</copySourceRange>
+        <ifModifiedSince>{$ctx:ifModifiedSince}</ifModifiedSince>
+        <ifUnmodifiedSince>{$ctx:ifUnmodifiedSince}</ifUnmodifiedSince>
+        <ifMatch>{$ctx:ifMatch}</ifMatch>
+        <ifNoneMatch>{$ctx:ifNoneMatch}</ifNoneMatch>
+        <copySourceSSECustomerAlgorithm>{$ctx:copySourceSSECustomerAlgorithm}</copySourceSSECustomerAlgorithm>
+        <copySourceSSECustomerKey>{$ctx:copySourceSSECustomerKey}</copySourceSSECustomerKey>
+        <copySourceSSECustomerKeyMD5>{$ctx:copySourceSSECustomerKeyMD5}</copySourceSSECustomerKeyMD5>
+        <sseCustomerAlgorithm>{$ctx:sseCustomerAlgorithm}</sseCustomerAlgorithm>
+        <sseCustomerKey>{$ctx:sseCustomerKey}</sseCustomerKey>
+        <sseCustomerKeyMD5>{$ctx:sseCustomerKeyMD5}</sseCustomerKeyMD5>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.uploadPartCopy>
     ```
     
@@ -4311,36 +3390,19 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <uploadPartCopy>
-        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentType>application/xml; charset=UTF-8</contentType>
-        <contentLength>256</contentLength>
-        <contentMD5></contentMD5>
-        <objectName>testFile1.txt</objectName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
         <bucketName>signv4test</bucketName>
-        <expect></expect>
+        <objectKey>testFile1.txt</objectKey>
         <uploadId>SsNUDqUklMaoV_IfePCpGAZHjaxJx.cGXEcX6TVW4I6WzOQFnAKomYevz5qi5LtkfTvlpwjY9M6QDGsIIvdGEQzBURo3MMU2Yh.ZEQDsk_lsnx3Z8m9jsglW6FIfKGQ_</uploadId>
         <partNumber>2</partNumber>
-        <uriRemainder>/testFile1.txt?partNumber=2&amp;uploadId=SsNUDqUklMaoV_IfePCpGAZHjaxJx.cGXEcX6TVW4I6WzOQFnAKomYevz5qi5LtkfTvlpwjY9M6QDGsIIvdGEQzBURo3MMU2Yh.ZEQDsk_lsnx3Z8m9jsglW6FIfKGQ_</uriRemainder>
-        <xAmzCopySource>/testBucket1/testFile.jpg</xAmzCopySource>
-        <xAmzCopySourceRange>bytes=0-9</xAmzCopySourceRange>
-        <xAmzCopySourceIfMatch></xAmzCopySourceIfMatch>
-        <xAmzCopySourceIfNoneMatch></xAmzCopySourceIfNoneMatch>
-        <xAmzCopySourceIfUnmodifiedSince></xAmzCopySourceIfUnmodifiedSince>
-        <xAmzCopySourceIfModifiedSince></xAmzCopySourceIfModifiedSince>
+        <copySource>/testBucket1/testFile.jpg</copySource>
+        <range>bytes=0-9</range>
     </uploadPartCopy>
     ```
 
 ??? note "headObject"
     The headObject operation retrieves metadata from an object without returning the object itself. This operation is useful if you are interested only in an object's metadata. To use this operation, you must have READ access to that object. A HEAD request has the same options as a GET operation on an object. The response is identical to the GET response except that there is no response body.
 
-    See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html) for more information.
+    See the [related API documentation](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/model/HeadObjectRequest.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -4348,12 +3410,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <th>Required</th>
         </tr>
         <tr>
-            <td>bucketUrl</td>
-            <td>The URL of the bucket.</td>
+            <td>bucketName</td>
+            <td>The name of the bucket.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>objectName</td>
+            <td>objectKey</td>
             <td>The name to give the newly created object.</td>
             <td>Yes</td>
         </tr>   
@@ -4381,51 +3443,65 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>ifNoneMatch</td>
             <td>Return the object only if its entity tag (ETag) is different from the one specified.</td>
             <td>Optional</td>
-        </tr>      
+        </tr>
+        <tr>
+            <td>versionId</td>
+            <td>VersionId used to reference a specific version of the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerAlgorithm</td>
+            <td>Specifies the algorithm to use to when encrypting the object.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKey</td>
+            <td>Specifies the customer-provided encryption key for Amazon S3 to use in encrypting data.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sseCustomerKeyMD5</td>
+            <td>Specifies the 128-bit MD5 digest of the encryption key according to RFC 1321.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>partNumber</td>
+            <td>Part number of the object being read.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>requestPayer</td>
+            <td>Confirms that the requester knows that they will be charged for the request.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
 
     ```xml
     <amazons3.headObject>
-        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-        <objectName>{$ctx:objectName}</objectName>
+        <bucketName>{$ctx:bucketName}</bucketName>
+        <objectKey>{$ctx:objectKey}</objectKey>
         <range>{$ctx:range}</range>
         <ifModifiedSince>{$ctx:ifModifiedSince}</ifModifiedSince>
         <ifUnmodifiedSince>{$ctx:ifUnmodifiedSince}</ifUnmodifiedSince>
         <ifMatch>{$ctx:ifMatch}</ifMatch>
         <ifNoneMatch>{$ctx:ifNoneMatch}</ifNoneMatch>
+        <versionId>{$ctx:versionId}</versionId>
+        <sseCustomerAlgorithm>{$ctx:sseCustomerAlgorithm}</sseCustomerAlgorithm>
+        <sseCustomerKey>{$ctx:sseCustomerKey}</sseCustomerKey>
+        <sseCustomerKeyMD5>{$ctx:sseCustomerKeyMD5}</sseCustomerKeyMD5>
+        <partNumber>{$ctx:partNumber}</partNumber>
+        <requestPayer>{$ctx:requestPayer}</requestPayer>
     </amazons3.headObject>
     ```
     
     **Sample request**
 
     ```xml
-      <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
-      <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
-      <methodType>PUT</methodType>
-      <contentLength>256</contentLength>
-      <contentType>application/xml</contentType>
-      <contentMD5></contentMD5>
-      <expect></expect>
-      <region>us-east-2</region>
-      <host>s3.us-east-2.amazonaws.com</host>
-      <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    <headObject>
       <bucketName>signv4test</bucketName>
-      <isXAmzDate>true</isXAmzDate>
-      <xAmzSecurityToken></xAmzSecurityToken>
-      <objectName>testObject2</objectName>
-      <xAmzAcl></xAmzAcl>
-      <xAmzGrantRead></xAmzGrantRead>
-      <xAmzGrantWrite></xAmzGrantWrite>
-      <xAmzGrantReadAcp></xAmzGrantReadAcp>
-      <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-      <xAmzGrantFullControl></xAmzGrantFullControl>
-      <range></range>
-      <ifModifiedSince></ifModifiedSince>
-      <ifMatch></ifMatch>
-      <ifNoneMatch></ifNoneMatch>
-      <ifUnmodifiedSince></ifUnmodifiedSince>
+      <objectKey>testObject2</objectKey>
     </headObject>
     ``` 
     

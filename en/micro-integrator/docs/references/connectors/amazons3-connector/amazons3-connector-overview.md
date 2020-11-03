@@ -2,7 +2,8 @@
 
 Amazon S3 is a web-based storage service that can be used to store and retrieve data at anytime from anywhere on the web. Amazon uses the same service to run its own network that proves its scalability, reliability, and security.
 
-The Amazon S3 Connector allows you to access the REST API of [Amazon Storage Service S3](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html), which lets you store your information and retrieve them back when needed. WSO2 EI AmazonS3 Connector is useful to take your on-premise data to the cloud. The advantage is, you do not need to worry about managing and replicating data on-premise.
+The Amazon S3 Connector versions 1.0.10 and below allow you to access REST API of [Amazon Storage Service S3](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html), which lets you store your information and retrieve them back when needed. WSO2 EI AmazonS3 Connector is useful to take your on-premise data to the cloud. The advantage is, you do not need to worry about managing and replicating data on-premise.
+And the versions 2.0.0 and above allow you to access the AWS component via AWS [SDK](https://aws.amazon.com/sdk-for-java/). The SDK makes it easy to call AWS services using idiomatic Java APIs.
 
 To see the Amazon S3 connector, navigate to the [connector store](https://store.wso2.com/store/assets/esbconnector/list) and search for "Amazon".
 
@@ -10,9 +11,10 @@ To see the Amazon S3 connector, navigate to the [connector store](https://store.
 
 ## Compatibility
 
-| Connector Version | Supported WSO2 EI version |
-| ------------- |-------------|
-| 1.0.10    | EI 7.0.x, EI 6.6.0, EI 6.5.0 |
+| Connector Version | Supported WSO2 EI version | Supported API |
+| ------------- |-------------|-------------|
+| 2.0.0    | EI 7.0.x | AWS SDK |
+| 1.0.10    | EI 7.0.x, EI 6.6.0, EI 6.5.0 | REST |
 
 For older versions, see the details in the connector store.
 
