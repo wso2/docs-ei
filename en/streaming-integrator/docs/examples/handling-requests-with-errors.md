@@ -451,5 +451,5 @@ To manage the error in the Error Store Explorer, follow the procedure below:
     ```
 
 Similarly the following dsatabase errors will also be captured and stored in error store for replaying.
-1. Other databases errors such as foreign key violation errors, not null errors etc.
+1. Other databases errors such as violation of foreign key, not null errors etc.
 2. Database connection errors that can occur if the database goes down when an event is published
