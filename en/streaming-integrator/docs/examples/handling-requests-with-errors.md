@@ -148,6 +148,32 @@ To create and deploy a Siddhi application, follow the steps below:
        select count() as totalCount
        insert into TotalCountStream;
     ```
+    
+    ```
+        @App:name("StoreRdbmsError")
+        @App:description('Receive events via HTTP and persist the received data in the store.')
+        
+        @sink(type='log')
+        define stream logStream(batchID int, amount double, factoryID int);
+        
+        @Store(type="rdbms",
+               on.error="STORE",
+               jdbc.url="jdbc:mysql://localhost:3306/production?useSSL=false",
+               username="root",
+               password="root",
+               jdbc.driver.name="com.mysql.jdbc.Driver")
+        @primaryKey('batchID')
+        define table SweetProductionTable (batchID int, amount double, factoryID int);
+        
+        @Source(type = 'http',
+                receiver.url='http://localhost:8006/insertStream',
+                basic.auth.enabled='false',
+                @map(type='json'))
+        define stream insertStream (batchID int, amount double, factoryID int);
+        
+        from insertStream
+        insert into SweetProductionTable;
+    ```
 
 3. To deploy the Siddhi file, follow the procedure below:
 
@@ -327,3 +353,103 @@ To manage the error in the Error Store Explorer, follow the procedure below:
     ```
     INFO {io.siddhi.core.stream.output.sink.LogSink} - ReceiveAndCount : TotalCountStream : Event{timestamp=1597857170244, data=[1], isExpired=false}    
     ```
+
+### Step 7: Test event failing at database level
+
+#### Step 7.1: Create a table
+
+Create database named `production` and select the production database for use. Use the following MySQL query to create 
+a table named `SweetProductionTable`
+
+    ```
+    CREATE TABLE SweetProductionTable (
+        batchID int NOT NULL,
+        amount double,
+        factoryID int,
+        PRIMARY KEY (batchID)
+    );
+    ```
+#### Step 7.2: Deploy the StoreRdbmsError siddhi application
+
+In this step, let's start the service at `http://localhost:8006/insertStream` via the `StoreRdbmsError` Siddhi 
+application
+
+In the **Siddhi Apps to Deploy** section, select the check box for the **StoreRdbmsError.siddhi** application. In the 
+**Servers** section, select the check box for the server you added. Then click **Deploy**.
+
+   ![Select StoreRdbmsError Siddhi Application and Server](../../images/handling-requests-with-errors/select-StoreRdbmsError-app-and-server.png)
+
+The following log is displayed in the Streaming Integrator console.
+    ```
+    INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App StoreRdbmsError deployed successfully
+    ```
+
+#### Step 7.2: Publish an event into StoreRdbmsError Siddhi application
+
+Send an event to the insertStream stream of the StoreRdbmsError Siddhi application by issuing the following CURL 
+command.
+
+    `curl --location --request POST 'http://localhost:8006/insertStream' --header 'Content-Type: application/json' --data-raw ' { "event": { "batchID": 1, "amount": 45.6, "factoryID": 102 } }'`
+
+Check the contents of `SweetProductionTable` to see the published event successfully stored in the table
+
+    ```
+    mysql> select * from SweetProductionTable;
+    +---------+--------+-----------+
+    | batchID | amount | factoryID |
+    +---------+--------+-----------+
+    |       1 |   45.6 |       102 |
+    +---------+--------+-----------+
+    1 row in set (0.00 sec)
+    ```
+
+Use the same curl command as above to publish another event. However, this time our event will fail since the batchID 
+column which is defined as the primary key has a duplicate value of 1 in the second message. You will see the following 
+log in the wso2si terminal. It shows that the erroneous event has been captured and stored in error store.
+
+    ```
+    [2020-11-03 11:48:28,951] ERROR {io.siddhi.core.table.Table} - Error on 'StoreRdbmsError' while performing add for events  at 'SweetProductionTable'. Events saved 'EventChunk{first=StreamEvent{ timestamp=1604384308930, beforeWindowData=null, onAfterWindowData=null, outputData=[1, 45.6, 102], type=CURRENT, next=null}}'
+    ```
+#### Step 7.3: Manage the error in the Error Store Explorer
+To manage the error in the Error Store Explorer, follow the procedure below:
+    
+1. To open the Error Store Explorer, open Streaming Integrator Tooling, click **Tools** and then click 
+**Error Store Explorer**.
+
+    ![Access Error Store](../../images/handling-requests-with-errors/access-error-store-explorer.png)
+    
+2. In the **Siddhi app** field, select **StoreRdbmsError** Siddhi application and then click **Fetch**.
+    
+    As a result, an error is displayed as follows.
+    
+    ![Error Store Explorer](../../images/handling-requests-with-errors/error-store-explorer-with-StoreRdbmsError.png)
+    
+    This indicates that the event was dropped to database constrained violation.
+    
+2. To view details of the error, click **Detailed Info**. The following is displayed.
+
+    ![Error Entry](../../images/handling-requests-with-errors/error-entry-for-StoreRdbmsError.png)
+    
+    The erroneous event is displayed as a editable table as shown below. Change to value of batchID from 1 to 2 and 
+    click replay.
+    
+    ![Replay Error](../../images/handling-requests-with-errors/replay-error-StoreRdbmsError.png)
+    
+    As a result, the **Error Entry** dialog box closes, and the **Error Store Explorer** dialog box is displayed with 
+    no errors.
+    
+    You can select all from `SweetProductionTable` to verify if the edited event has been added successfuly.
+    ```
+        mysql> select * from SweetProductionTable;
+        +---------+--------+-----------+
+        | batchID | amount | factoryID |
+        +---------+--------+-----------+
+        |       1 |   45.6 |       102 |
+        |       2 |   45.6 |       102 |
+        +---------+--------+-----------+
+        2 rows in set (0.00 sec)
+    ```
+
+Similarly the following dsatabase errors will also be captured and stored in error store for replaying.
+1. Other databases errors such as violation of foreign key, not null errors etc.
+2. Database connection errors that can occur if the database goes down when an event is published
