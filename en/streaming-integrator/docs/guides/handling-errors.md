@@ -156,7 +156,7 @@ To try out storing errors in the store, follow the steps below:
    
     The Error Store Explorer opens as shown below. 
       
-    ![Access Error Store](../images/handling-errors/error-store-explorer-without-server.png)
+    ![Access Error Store](../images/handling-requests-with-errors/error-store-explorer-without-server.png)
     
 7. Click **Connect to Server**. Then enter information as follows:
 
@@ -213,9 +213,7 @@ To try out storing errors in the store, follow the steps below:
         
             ![Mapping Error Details](../images/handling-errors/mapping-error-details.png)
             
-        2. In the text field, edit the event and correct the format by removing one of the string values as shown below:
-        
-            ![Corrected Error](../images/handling-errors/corrected-error.png)
+        2. In the text field, edit the event and correct the format by removing one of the string values.
             
             As a result, the **Error Entry** dialog box closes, and the **Error Store Explorer** dialog box does not display any errors.
     
