@@ -160,7 +160,7 @@ Consider an example where the sequence template is configured to log the greetin
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <template name="sequence-temp" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter isMandatory="false" defaultValue="Welcome" name="greeting_message"/>
+    <parameter isMandatory="true" defaultValue="Welcome" name="greeting_message"/>
     <sequence>
         <log level="custom">
             <property expression="$func:greeting_message" name="greeting"/>
