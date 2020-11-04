@@ -169,7 +169,7 @@ Consider an example where the sequence template is configured to log the greetin
 </template>
 ```
 
-However, this REST API is not passing a greeting message to this template. Also, a <b>default</b> greeting message is not defined in the template. To handle this error <b>at the point of calling the template</b>, you can add the 'onError' parameter to the Call Template mediator and call an error-handling sequence.
+However, in the following example, the Call template mediator in the REST API is not passing a greeting message to the template. Also, a <b>default</b> greeting message is not defined in the template. In this scenario, an error will get triggered when the REST API calls the template. If you need to handle this error, or in general any error that may occur at execution of the mediation logic inside the template, you can add the 'onError' parameter to the Call Template mediator and call an error-handling sequence.
 
 ```xml tab="Call Template"
 <?xml version="1.0" encoding="UTF-8"?>
