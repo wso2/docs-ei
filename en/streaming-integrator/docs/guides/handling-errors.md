@@ -36,7 +36,7 @@ This can be used with the following:
 
 - Siddhi Streams
 
-    ![Store Stream Errors](../images/handling-requests-with-errors/store-stream-error.png)
+    ![Store Stream Errors](../images/handling-errors/store-stream-error.png)
 
     This on-error action can be specified for a  stream via the `@OnError()` annotation. 
 
@@ -54,7 +54,7 @@ This can be used with the following:
     
 - Sinks
 
-    ![Store Sink Errors](../images/handling-requests-with-errors/store-sink-error.png)
+    ![Store Sink Errors](../images/handling-errors/store-sink-error.png)
 
     You can specify an on-error action by including the `on-error` parameter within the sink configuration as shown below.
     
@@ -156,7 +156,7 @@ To try out storing errors in the store, follow the steps below:
    
     The Error Store Explorer opens as shown below. 
       
-    ![Access Error Store](../images/handling-requests-with-errors/error-store-explorer-without-server.png)
+    ![Access Error Store](../images/handling-errors/error-store-explorer-without-server.png)
     
 7. Click **Connect to Server**. Then enter information as follows:
 
@@ -226,7 +226,7 @@ This involves logging the event with details of the error and then dropping it. 
 
 - Siddhi Streams
 
-    ![Log Stream Errors](../images/handling-requests-with-errors/log-stream-error.png)
+    ![Log Stream Errors](../images/handling-errors/log-stream-error.png)
 
     You can specify this on-error action for streams via the `@OnError` annotation as shown below.
 
@@ -238,7 +238,7 @@ This involves logging the event with details of the error and then dropping it. 
     
 - Sinks
 
-    ![Log Sink Errors](../images/handling-requests-with-errors/log-sink-error.png)
+    ![Log Sink Errors](../images/handling-errors/log-sink-error.png)
 
     You can specify this on-error action by including the `on-error` parameter within the sink configuration as shown below.
     ```
@@ -309,7 +309,7 @@ This can be used with the following:
 
 - Siddhi Streams
 
-    ![Stream Stream Errors](../images/handling-requests-with-errors/stream-stream-error.png)
+    ![Stream Stream Errors](../images/handling-errors/stream-stream-error.png)
 
     This on-error action can be specified for a  stream via the `@OnError()` annotation. 
     
@@ -331,7 +331,7 @@ This can be used with the following:
     
 - Sinks
 
-    ![Stream Sink Errors](../images/handling-requests-with-errors/log-sink-error.png)
+    ![Stream Sink Errors](../images/handling-errors/log-sink-error.png)
 
     You can specify this on-error action by including the `on-error` parameter within the sink configuration as shown below.
 
