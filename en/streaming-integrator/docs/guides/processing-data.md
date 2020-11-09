@@ -435,8 +435,8 @@ To try out the transformations described above with some of the given examples, 
     define stream ProductionTotalsStream (name string, amount double, total double, average double);
     
     @sink(type = 'log', prefix = "Exceeds Average",
-        @map(type = 'xml'))
-    define stream MonitorProductionTrendStream (name string, amount double, total double, average double, exceedsAverage bool);
+        @map(type = 'text'))
+    define stream MonitorProductionTrendStream (name string, exceedsAverage bool);
     
     @info(name = 'Calculate Total and Average')
     from SweetProductionStream 
@@ -446,7 +446,7 @@ To try out the transformations described above with some of the given examples, 
     
     @info(name = 'Compare with Average')
     from ProductionTotalsStream 
-    select name, amount, total, average, js:eval("amount > average", 'bool') as exceedsAverage
+    select name, js:eval("('amount' > 'average')", 'bool') as exceedsAverage
     group by name 
     insert into MonitorProductionTrendStream;
     ```
@@ -462,7 +462,7 @@ To try out the transformations described above with some of the given examples, 
    
    - Calculates the total production amount and the average production amount per sweet, and presents them as values for the `total` and `average` attributes in the output event published in the `productions.json` file.
    
-   - Uses a custom script to check whether the amount produced of a sweet in the production run is greater than the average production for that sweets, and logs `true` or `false` in the terminal.
+   - Uses a custom script to check whether the amount produced of a sweet in the production run is greater than the average production for that sweets, and logs `true` or `false` in the terminal in the text format.
    
 3. To simulate events for this Siddhi application, issue the following six CURL commands.
 
@@ -546,11 +546,11 @@ To try out the transformations described above with some of the given examples, 
     
 4. Open the `Users/foo/productions.json` file. The following content is available in it.
 
-    ```
-
-    ```
+    ![File Log](../images/transforming-date/output.png)
 
 5. Check the Streaming Integrator Tooling terminal. The following is logged in it.
+
+    ![Termial Log](../images/transforming-date/terminal-log.png)
 
 ## Enriching data
 
