@@ -273,7 +273,7 @@ In this example, we will define a new student inline and add it to the `students
                 "name": "Nick",
                 "lastname": "Thameson",
                 "modules": ["CS011", "CS012"]
-            }
+            },
             {
                 "id": "03",
                 "name": "Mary",
@@ -309,12 +309,15 @@ INFO {LogMediator} - {proxy:TestEnrich} Student name is :  = "Tom"
 
 !!! Info
     This feature is currently supported only for JSON.
+    
+!!! Info
+    We can provide comma-separated multiple JSONPath expression for this `remove` operations as in the following example.
 
-In this example, we will remove the `modules` from every student.
+In this example, we will remove the `modules` from every student and the first student in the array.
 
 ```xml
 <enrich>
-    <source clone="true" xpath="json-eval($.data.students[*].modules)"/>
+    <source clone="true" xpath="json-eval($.data.students[*].modules, $.data.students[0])"/>
     <target type="body" action="remove"/>
 </enrich>
 ```
@@ -326,11 +329,6 @@ In this example, we will remove the `modules` from every student.
     "data": {
         "students": [
             {
-                "id": "01",
-                "name": "Tom",
-                "lastName": "Price"
-            },
-            {
                 "id": "02",
                 "name": "Nick",
                 "lastname": "Thameson"
@@ -340,7 +338,34 @@ In this example, we will remove the `modules` from every student.
 }
 ```
 
-### Example 10 - Updating a value of an existing object
+### Example 10 - Removing selected parts from a property
+
+Similar to example 9, we can perform the remove action on synapse properties also.
+
+```xml
+ <enrich>
+    <source type="body" clone="false"/>
+    <target type="property" property="students"/>
+ </enrich>
+ <enrich>
+    <source clone="true"
+          xpath="json-eval($.data.students[*].modules,$.data.students[0])"/>
+    <target type="property" action="remove" property="students"/>
+ </enrich>
+<log>
+    <property name="result" expression="$ctx:students"/>
+</log>
+```
+
+Here we create a property called `students` with the incoming message payload using the first enrich mediator. 
+In the second enrich we are removing selected parts from the property and finally we are logging the property. 
+
+After invoking we can see the following log appearing in the terminal.
+```
+result = {"data":{"students":[{"id":"02","name":"Nick","lastname":"Thameson"}]}
+```
+
+### Example 11 - Updating a value of an existing object
 
 In this example, we will replace the `modules` array of every student with `[]`.
 
@@ -374,7 +399,7 @@ In this example, we will replace the `modules` array of every student with `[]`.
 }
 ```
 
-### Example 11 - Updating the key name of an existing object
+### Example 12 - Updating the key name of an existing object
 
 !!! Info
     This feature is supported only for JSON.
@@ -426,6 +451,46 @@ In this example, we will replace the key name `name` of every student with `firs
 }
 ```
 
+### Example 13 - Enriching JSON primitive values
+
+We can use property mediators with `JSON` data type to enrich any JSON primitive , object or an array to a given target.
+
+!!! Note 
+    When we use property with `STRING` data type in the Enrich mediator, it supports native JSON capabilities, 
+    only if the property contains a JSON object or JSON array only. Rest of the values considered as XML.
+
+```xml
+<property name="NewSubject" value="&quot;CS013 II&quot;" type="JSON"/>	
+<enrich>     
+    <source type="property" property="NewSubject"/>	    
+    <target action="child"  xpath="json-eval(data.students[1].modules)"/>	
+</enrich>
+```
+!!! Note
+    please note that when the JSON primitive string contains white spaces, we should enclose them with quotes as shown
+  in the example. (due to restrictions enforced from JSON schema)
+#### Response
+```json
+{
+    "data": {
+        "students": [
+            {
+                "id": "01",
+                "name": "Tom",
+                "lastName": "Price",
+                "modules": ["CS001", "CS002", "CS003"]
+            },
+            {
+                "id": "02",
+                "name": "Nick",
+                "lastname": "Thameson",
+                "modules": ["CS011", "CS012", "CS013 II"
+                ]
+            }
+        ]
+    }
+}
+```
 <!--
 For other example using the Enrich mediator, see [Sample 15: Using the
     Enrich Mediator for Message Copying and Content
