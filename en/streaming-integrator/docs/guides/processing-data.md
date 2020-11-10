@@ -546,11 +546,46 @@ To try out the transformations described above with some of the given examples, 
     
 4. Open the `Users/foo/productions.json` file. The following content is available in it.
 
-    ![File Log](../images/transforming-date/output.png)
+    ```json
+    {"Product":{"ProductionData":{"Name":"Jaffa Cake","Quantity":"10.0","Total":10.0,"Average":10.0}
+    {"Product":{"ProductionData":{"Name":"Gingerbread","Quantity":"65.0","Total":65.0,"Average":65.0}
+    {"Product":{"ProductionData":{"Name":"Jaffa Cake","Quantity":"15.0","Total":25.0,"Average":12.5}
+    {"Product":{"ProductionData":{"Name":"Gingerbread","Quantity":"55.0","Total":120.0,"Average":60.0}
+    {"Product":{"ProductionData":{"Name":"Jaffa Cake","Quantity":"25.0","Total":50.0,"Average":16.666666666666668}
+    {"Product":{"ProductionData":{"Name":"Gingerbread","Quantity":"45.0","Total":165.0,"Average":55.0}
+    ```
 
 5. Check the Streaming Integrator Tooling terminal. The following is logged in it.
 
-    ![Terminal Log](../images/transforming-date/terminal-log.png)
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - Exceeds Average : name:"Jaffa Cake",
+    exceedsAverage:false
+    ```
+   
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - Exceeds Average : name:"Gingerbread",
+    exceedsAverage:false
+    ```
+   
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - Exceeds Average : name:"Jaffa Cake",
+    exceedsAverage:true
+    ```
+   
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - Exceeds Average : name:"Gingerbread",
+    exceedsAverage:false
+    ```
+   
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - Exceeds Average : name:"Jaffa Cake",
+    exceedsAverage:true
+    ```
+   
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - Exceeds Average : name:"Gingerbread",
+    exceedsAverage:false
+    ```
     
 ## Summarizing data
 
@@ -573,7 +608,7 @@ To understand this, consider a scenario where the production statistics generate
 
 define stream ProductionStream (name string, amount double, timestamp long);
 
-@store(type='rdbms', jdbc.url="jdbc:mysql://localhost:3306/ProductionDB", username="root", password="root" , jdbc.driver.name="com.mysql.jdbc.Driver")
+@store(type='rdbms', jdbc.url="jdbc:mysql://localhost:3306/Production", username="root", password="root" , jdbc.driver.name="com.mysql.jdbc.Driver")
 define aggregation ProductionAggregation
 from ProductionStream
 select name, amount, sum(amount) as total, avg(amount) as average 
@@ -602,10 +637,280 @@ Observe the following in the above Siddhi application:
 
 #### Retrieving previously calculated aggregations for selected time granularities
 
-To retrieve the aggregates stored via the Siddhi application in the previous section, 
+To retrieve the aggregates stored via the Siddhi application in the previous section, you need to create a new stream for data retrieval and join it with the aggregation that you previously created. In this example, let's assume that you need to production statistics for the period 12th October 2020 to 16th October 2020.
+
+For this, you can update the `ProductionAggregatesApp` Siddhi application that you previously created as follows:
+
+1. Define a stream in which you want to generate the event (request) to retrieve data as follows.
+
+    ```
+    define stream ProductionSummaryRetrievalStream (name string);
+    ```
+
+2. Define a query that specifies the criteria for retrieving data as follows.
+
+    ```
+    @info(name = 'RetrievingAggregates') 
+    from ProductionSummaryRetrievalStream as b join ProductionAggregation as a
+    on a.name == b.name 
+    within "2020-10-12 00:00:00 +00:00", "2020-10-17 00:00:00 +00:00" 
+    per "days" 
+    select a.name, a.total, a.average 
+    insert into ProductionSummaryStream;
+    ```
+    Observe the following in the above Siddhi query:
+    
+    - The join
+    
+        The above query joins the `ProductionsSummaryRetyrievalStream` stream and the `ProductionAggregation` aggregation. The `ProductionsSummaryRetyrievalStream` stream is assigned `b` as the short name, and the aggregation is assigned `a`. Therefore, `a.name == b.name` specifies that a matching event is identified when the value for the `name` attribute is the same. 
+
+        For more information about how to perform joins, see [Enriching Data](#enriching-data).
+        
+    - `within` clause 
+    
+        This specifies the time interval for which the aggregates should be retrieved. You are requesting data for the period between 00.00 AM of 12th October 2020 and 00.00 AM of 17th October 2020 so that the days 12th, 13th, 14th, 15th, and the 16th of October are covered.
+        
+    - `per` clause
+    
+        This specifies that the aggregates should be summarized per day.
+        
+    - `select` clause
+    
+        This selects the `name`, `total` and `average` attributes to be selected from the aggregate to be included in the output event.
+        
+    The output event is inserted into the `ProductionSummaryStream` stream.
+    
+    
+#### Try it out
+
+To try out the example given above, follow the procedure below:
+
+1. Download and install MySQL. Then start the MySQL server and create a new database in it by issuing the following command:
+
+    `CREATE SCHEMA production;`
+    
+    Then open the `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file and add the following datasource configuration under `datasources`.
+    
+    ```
+      - name: Production_DB
+        description: The datasource used for Production Statistics
+        jndiConfig:
+          name: jdbc/production
+        definition:
+          type: RDBMS
+          configuration:
+            jdbcUrl: 'jdbc:mysql://localhost:3306/production?useSSL=false'
+            username: root
+            password: root
+            driverClassName: com.mysql.jdbc.Driver
+            minIdle: 5
+            maxPoolSize: 50
+            idleTimeout: 60000
+            connectionTestQuery: SELECT 1
+            validationTimeout: 30000
+            isAutoCommit: false
+    ```
+    
+2. [Start and Access Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md/#starting-streaming-integrator-tooling).
+
+3. Open a new file in Streaming Integrator Tooling. Then add and save the following Siddhi application.
+
+    ```
+    @App:name('ProductionAggregatesApp')
+    @App:description('Description of the plan')
+    
+    define stream ProductionStream (name string, amount double, timestamp long);
+    
+    define stream ProductionSummaryRetrievalStream (name string);
+    
+    @sink(type = 'log', prefix = "Production Summary",
+    	@map(type = 'text'))
+    define stream ProductionSummaryStream (name string, total double, average double);
+    
+    
+    @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/production?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
+    define aggregation ProductionAggregation
+    from ProductionStream
+    select name, amount, sum(amount) as total, avg(amount) as average
+    	aggregate by timestamp every seconds...years;
+    
+    @info(name = 'RetrievingAggregates')
+    from ProductionSummaryRetrievalStream as b 
+    join ProductionAggregation as a 
+    	on a.name == b.name
+    within "2020-10-12 00:00:00 +00:00", "2020-10-17 00:00:00 +00:00"
+    per "days" 
+    select a.name as name, a.total as total, a.average as average 
+    insert into ProductionSummaryStream;
+    ```
+   
+   This is the complete `ProductionAggregatesApp` Siddhi application with the queries given in the examples to store and retrieve aggregates. You are annotating a sink of the `log` type to the `ProductionSummaryStream` stream to which the retrieved aggregates are sent so that you can view the retrieved information in the terminal logs.
+   
+4. To store aggregates, simulate five events with the following values for the `ProductionStream` stream via the Event Simulator tool. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+
+    | **name**  | **amount** | **timestamp**   |
+    |-----------|------------|-----------------|
+    | `brownie` | `90`      | `1602489419000` |
+    | `brownie` | `90`       | `1602488519000` |
+    | `eclairs` | `95`       | `1602661319000` |
+    | `brownie` | `100`      | `1602747719000` |
+    | `brownie` | `120`      | `1602834119000` |
+    
+    The above events are stored in the `production` database that you previously defined.
+    
+    
+5. To retrieve the information you stored, simulate an event for the `ProductionSummaryRetrievalStream` stream with `brownie` as the value for `name'. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+
+    The Streaming Integrator Tooling terminal displays the following logs.
+    
+    ![Aggregate Logs](../images/processing-data/aggregate-logs.png)
 
 ### Performing short term summarizations
 
+This section explains how to apply Siddhi logic to process a subset of events received to a stream based on time or the number of events. This is achieved via [Siddi Windows]().
+The window can apply to a batch of events or in a sliding manner. 
+
+The following are a few examples of how short time summarizations can be performed based on time or the number of events.
+
+- **Performing a time-based summarization in a sliding manner**
+
+    This involves selecting a subset of events based on a specified duration of time in a sliding manner as illustrated via an example in the diagram below.
+    
+    ![Time Sliding Window](../images/processing-data/time-sliding-window.png)
+    
+    For example, consider that the factory foreman of a sweet factory wants to calculate the production total and average per product every four minutes in a sliding manner. To address this, you can write a query as follows.
+
+    ```
+    from ProductionStream#window.time(4 min)
+    select name, sum(amount) as pastFourMinTotal, avg(amount) as pastFourMinAvg
+    group by name
+    insert into TimeSlidingOutputStream;
+    ```  
+    Here, `#window.time(4 min)` represents a sliding time window of four minutes. Based on this, the total for the last four minutes is calculated and presented as `pastFourMinTotal`, and the average for the last four minutes is calculated and presented as `pastFourMinAvg`.
+
+- **Performing a time-based summarization in a tumbling manner**
+
+    This involves selecting a subset of events based on a specified duration of time in a tumbling manner as illustrated via an example in the diagram below.
+    
+    ![Time Batch Window](../images/processing-data/time-batch-window.png)
+    
+    For example, consider that the factory foreman of a sweet factory wants to calculate the production total and average per product every four minutes in a tumbling manner. To address this, you can write a query as follows.
+
+    ```
+    from ProductionStream#window.timeBatch(4 min)
+    select name, sum(amount) as pastFourMinTotal, avg(amount) as pastFourMinAvg
+    group by name
+    insert into TimeBatchOutputStream;
+    ```
+    Here, `#window.timeBatch(4 min)` represents a tumbling time window of four minutes. Based on this, the total for the last four minutes is calculated and presented as `pastFourMinTotal`, and the average for the last four minutes is calculated and presented as `pastFourMinAvg`.
+
+- **Performing a length-based summarization in a sliding manner**
+
+    This involves selecting a batch of events based on the number of events specified in a sliding manner as illustrated via an example in the diagram below.
+    
+    ![Length Sliding Window](../images/processing-data/length-sliding-window.png)
+    
+    For example, consider that the factory foreman of a sweet factory wants to calculate the production total and average per product for every three events in a sliding manner. To address this, you can write a query as follows.
+
+    ```
+    from ProductionStream#window.length(3)
+    select name, sum(amount) as lastBatchTotal, avg(amount) as lastBatchAvg
+    group by name
+    insert into LengthSlidingOutputStream;
+    ```
+    Here, `#window.length(3)` represents a sliding length window of 3 events. Based on this, the total for the last three events is calculated and presented as `lastBatchTotal`, and the average for the last three events is calculated and presented as `lastBatchAvg`.
+
+- **Performing a length-based summarization to a batch of events** 
+
+    This involves selecting a batch of events based on the number of events specified in a sliding manner as illustrated via an example in the diagram below.
+    
+    ![Length Batch Window](../images/processing-data/length-batch-window.png)
+    
+    For example, consider that the factory foreman of a sweet factory wants to calculate the production total and average per product for every three events in a sliding manner. To address this, you can write a query as follows.
+
+    ```
+    from ProductionStream#window.lengthBatch(3)
+    select name, sum(amount) as lastBatchTotal, avg(amount) as lastBatchAvg
+    group by name
+    insert into LengthBatchOutputStream;
+    ```
+    Here, `#window.lengthBatch(3)` represents a sliding length window of 3 events. Based on this, the total for the last three events is calculated and presented as `lastBatchTotal`, and the average for the last three events is calculated and presented as `lastBatchAvg`.
+    
+#### Try it out
+
+To try out the four sample queries given above, follow the steps below:
+
+1. [Start and Access Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md/#starting-streaming-integrator-tooling).
+
+2. Open a new file. Then add and save the following Siddhi application.
+
+    ```
+    @App:name('ProductionSummaryApp')
+    
+    
+    @sink(type = 'log', prefix = "Four Minute Summary",
+    	@map(type = 'text'))
+    define stream TimeSlidingOutputStream (name string, pastFourMinTotal double, pastFourMinAvg double);
+    
+    @sink(type = 'log', prefix = "Three Production Run Summary",
+    	@map(type = 'passThrough'))
+    define stream LengthSlidingOutputStream (name string, lastBatchTotal double, lastBatchAvg double);
+    
+    define stream ProductionStream (name string, amount double, timestamp long);
+    
+    @sink(type = 'log', prefix = "Four Minute Summary - Batch",
+    	@map(type = 'text'))
+    define stream TimeBatchOutputStream (name string, pastFourMinTotal double, pastFourMinAvg double);
+    
+    @sink(type = 'log', prefix = "Three Production Run Summary - Batch",
+    	@map(type = 'passThrough'))
+    define stream LengthBatchOutputStream (name string, lastBatchTotal double, lastBatchAvg double);
+    
+    @info(name = 'query1')
+    from ProductionStream#window.time(4 min) 
+    select name, sum(amount) as pastFourMinTotal, avg(amount) as pastFourMinAvg 
+    	group by name 
+    insert into TimeSlidingOutputStream;
+    
+    @info(name = 'query2')
+    from ProductionStream#window.timeBatch(4 min) 
+    select name, sum(amount) as pastFourMinTotal, avg(amount) as pastFourMinAvg 
+    	group by name 
+    insert into TimeBatchOutputStream;
+    
+    @info(name = 'query3')
+    from ProductionStream#window.length(3) 
+    select name, sum(amount) as lastBatchTotal, avg(amount) as lastBatchAvg 
+    	group by name 
+    insert into LengthSlidingOutputStream;
+    
+    @info(name = 'query4')
+    from ProductionStream#window.lengthBatch(3) 
+    select name, sum(amount) as lastBatchTotal, avg(amount) as lastBatchAvg 
+    	group by name 
+    insert into LengthBatchOutputStream;
+    ```
+   
+   The above Siddhi application has all four sample queries used as examples in this section. Those queries insert their output into four different output streams connected to log sinks to log the output of each query.
+   
+3. Simulate eight events for the `ProductionStream` input stream of the above Siddhi application as follows. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+
+    | **name**    | **amount** | **timestamp**   |
+    |-------------|------------|-----------------|
+    | `doughnuts` | `10`       | `1602486060000` |
+    | `doughnuts` | `10`       | `1602486120000` |
+    | `doughnuts` | `10`       | `1602486180000` |
+    | `doughnuts` | `10`       | `1602486240000` |
+    | `doughnuts` | `20`       | `1602486300000` |
+    | `doughnuts` | `20`       | `1602486360000` |
+    | `doughnuts` | `20`       | `1602486420000` |
+    | `doughnuts` | `30`       | `1602486480000` |
+    
+    The above simulation results in the following logs.
+    
+    ![Summarization Logs](../images/processing-data/summary-logs.png)
+        
+    
 ## Enriching data
 
 Enriching data involves integrated the data received into a streaming integration flow with data from other medium such as a data store, another data stream, or an external service to derive an expected result.
