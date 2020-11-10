@@ -90,28 +90,14 @@ To try out the example given above, follow the steps below:
    
    Save the Siddhi application.   
     
-5. To simulate an event to the `SalesApp` Siddhi application, click the **Event Simulator** icon in the side panel. 
-
-    ![simulate event](../images/loading-and-writing-data/event-simulator-icon.png)
-
-    Then simulate an event as follows:
+5. Simulate an event with the following values for the `SalesRecordsStream` stream of the `SalesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
     
-    1. In the **Siddhi App Name** field, select **SalesApp**.
-    
-    2. In the **Stream Name** field, select **SalesRecordsStream**.
-    
-    3. In the **Attributes** section, enter values for the attributes as follows:
-    
-        ![Simulate Single Event](../images/loading-and-writing-data/simulate-single-event.png)
-    
-        | **Attribute** | **Value**        |
-        |---------------|------------------|
-        | **ref**       | `AA000000000001` |
-        | **name**      | `fruit cake`     |
-        | **amount**    | `100`            |
+    | **Attribute** | **Value**        |
+    |---------------|------------------|
+    | **ref**       | `AA000000000001` |
+    | **name**      | `fruit cake`     |
+    | **amount**    | `100`            |
         
-    4. Click **Start and Send**.
-
 6. To check whether the `sales` mysql table is updated, issue the following command in the MySQL server.
 
     `select * from SalesRecords;`
@@ -186,26 +172,12 @@ To try out the above example by including the given output stream and the sink c
     !!! tip
         If required, you can replace the value for the `file.uri` parameter to a preferred location in your machine.
    
-3. To simulate an event to the `LabTemperatureApp` Siddhi application, click the **Event Simulator** icon in the side panel. 
-
-    ![simulate event](../images/loading-and-writing-data/event-simulator-icon.png)
-
-    Then simulate an event as follows:
+3. Simulate an event with the following values for the `LabTemperatureStream` stream of the `LabTemperatureApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).  
     
-    ![Simulate Single Event](../images/loading-and-writing-data/simulate-single-event-for-file.png)
-    
-    1. In the **Siddhi App Name** field, select **LabTemperatureApp**.
-    
-    2. In the **Stream Name** field, select **LabTemperatureStream**.
-    
-    3. In the **Attributes** section, enter values for the attributes as follows:    
-    
-        | **Attribute**   | **Value**       |
-        |-----------------|-----------------|
-        | **timestamp**   | `1603461542000` |
-        | **temperature** | `27`            |
-       
-    4. Click **Start and Send**.
+    | **Attribute**   | **Value**       |
+    |-----------------|-----------------|
+    | **timestamp**   | `1603461542000` |
+    | **temperature** | `27`            |
     
 4. Open the `/users/temperature/temperature.csv` file. It contains a line as shown below.
 
@@ -279,26 +251,12 @@ To try out the above example, follow the steps below:
    
    The above Siddhi application gets all the events in the `LabTemperatureStream` stream and inserts them into the `TemperatureLogStream` stream so that they can be stored in the `temperaturelog` bucket in the Google Cloud Console via the sink connected to the `TemperatureLogStream` stream.
    
-4. To simulate an event to the `LabTemperatureApp` Siddhi application, click the **Event Simulator** icon in the side panel. 
-
-    ![simulate event](../images/loading-and-writing-data/event-simulator-icon.png)
-
-    Then simulate an event as follows:
+4. Simulate an event to the `LabTemperatureStream` stream of the `LabTemperatureApp` Siddhi application with the following values via the Event Simulator tool. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md). 
     
-    ![Simulate Single Event](../images/loading-and-writing-data/simulate-single-event-for-file.png)
-    
-    1. In the **Siddhi App Name** field, select **LabTemperatureApp**.
-    
-    2. In the **Stream Name** field, select **LabTemperatureStream**.
-    
-    3. In the **Attributes** section, enter values for the attributes as follows:    
-    
-        | **Attribute**   | **Value**       |
-        |-----------------|-----------------|
-        | **timestamp**   | `1603461542000` |
-        | **temperature** | `27`            |
-       
-    4. Click **Start and Send**.
+    | **Attribute**   | **Value**       |
+    |-----------------|-----------------|
+    | **timestamp**   | `1603461542000` |
+    | **temperature** | `27`            |       
     
     This generates an output event that is updated in the `temperaturelog`bucket.
     
