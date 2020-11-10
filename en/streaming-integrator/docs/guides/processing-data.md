@@ -909,6 +909,16 @@ To try out the four sample queries given above, follow the steps below:
     The above simulation results in the following logs.
     
     ![Summarization Logs](../images/processing-data/summary-logs.png)
+    
+#### Supported methods of summarization
+
+WSO2 Streaming Integrator supports the following methods of summarization via Siddhi extensions. For more information about a summarization method, click on the relevant Siddhi link.
+
+| **Siddhi Extension** | **Summarization Method** |
+|----------------------|--------------------------|
+| deduplicate
+| ever
+
         
     
 ## Enriching data
@@ -917,14 +927,51 @@ Enriching data involves integrated the data received into a streaming integratio
 
 ### Integrating data streams and static data
 
+This involves enriching a data stream by joining it with a data store.
+
+For example, consider a scenario where a sweet factory reports its production data in a streaming manner after each run. To update the stock with the latest amount produced, you need to add the latest production amounts to the stock amounts saved in a database.
+
+To address this, you can write a query as follows.
+
+```
+from ProductionStream as p 
+join StocksTable as s 
+	on p.name == s.name 
+select p.name as name, sum(p.amount) + s.amount as amount 
+	group by p.name 
+insert into UpdateStockwithProductionStream;
+```
+
 ### Integrating multiple data streams
+
+This involves enriching a data stream by joining it with another data stream.
+
+To understand this, consider the example you used in the previous [Integrating data streams and static data section](#integrating-data-streams-and-static-data) where you directed the stock amounts updated with the latest stock into a stream. Assume another stream reports the sale of stock in a streaming manner. To further update the stock by deducting the amounts sold, you need to join the data stream that has the latest stock amounts with the data stream that has the sales amounts.
+
+To address the above requirement, you can write a query as follows.
+
+```text
+from UpdateStockwithProductionStream as u 
+join SalesStream as s 
+	on u.name == s.name 
+select u.name as name, sum(u.amount) + sum(s.amount) as amount 
+insert into LatestStockStream;
+```
 
 ### Integrating data streams with external services
 
+This involves enriching a data stream by incorporating information received from an external service to it.
+
 ### Enriching data with built-in extensions
 
+The following is a list of Siddhi extensions with which you can enrich data.
 
-
+ - [Siddhi-execution-streamingml](https://siddhi-io.github.io/siddhi-execution-streamingml/)
+ - [Siddhi-execution-env](https://wso2-extensions.github.io/siddhi-execution-env/)
+ - [Siddhi-execution-math](https://wso2-extensions.github.io/siddhi-execution-math/)
+ - [Siddhi-execution-string](https://siddhi-io.github.io/siddhi-execution-string/)
+ - [Siddhi-execution-time](https://siddhi-io.github.io/siddhi-execution-time/)
+ - [Siddhi-execution-json](https://siddhi-io.github.io/siddhi-execution-json/)
 
 
 ## Correlating data
