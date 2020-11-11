@@ -914,11 +914,6 @@ To try out the four sample queries given above, follow the steps below:
 
 WSO2 Streaming Integrator supports the following methods of summarization via Siddhi extensions. For more information about a summarization method, click on the relevant Siddhi link.
 
-| **Siddhi Extension** | **Summarization Method** |
-|----------------------|--------------------------|
-| deduplicate
-| ever
-
         
     
 ## Enriching data
@@ -1194,6 +1189,13 @@ To try out the examples given above, follow the steps below.
         ```
 
 ## Correlating data
+
+The streaming integrator can correlate data in order to detect patterns and trends in streaming data. Correlating can be done via patterns as well as sequences.
+
+![patterns-sequences-matrix](../images/correlating-events/patterns-sequences-matrix.png)
+
+The difference between patterns and sequence is that sequences require all the matching events to arrive consecutively to
+ match the sequence condition, whereas patterns identify events that match the pattern condition irrespective of the order in which they arrive.
 
 ### Correlating events to find a pattern
 
