@@ -5,10 +5,9 @@ Statistical data helps to do proper capacity planning, to keep the runtimes in a
 and for debugging and troubleshooting problems. 
 When it comes to troubleshooting, the ability to trace messages that pass through the mediation flows of the 
 Micro Integrator is very useful. 
-For monitoring statistics and tracing, we can use the Analytics profile of 
-[WSO2 Enterprise Integrator 6.x family](https://docs.wso2.com/display/EI660). 
+For monitoring statistics and tracing, we can use the WSO2 EI Analytics distribution. 
 
-You can monitor the following statistics through the EI Analytics profile:
+You can monitor the following statistics through the EI Analytics Dashboard:
 
 - Request Count
 - Overall TPS
@@ -22,24 +21,23 @@ You can monitor the following statistics through the EI Analytics profile:
 Please see [this documentation](https://docs.wso2.com/display/EI660/Analyzing+the+ESB+Profile+Statistics+Overview) 
 for more information on what you can monitor using EI Analytics.
 
-The Analytics profile consists of two components: **Worker** and **Dashboard**. 
-The worker is the server that processes the data streams that are sent from the Micro Integrator and publishes 
-the statistics to a database. The dashboard reads the statistics published by the worker and displays the statistics. 
-The worker and dashboard are connected through the database.
+The EI Analytics consists of two components: **Server** and **Portal**. 
+The server processes the data streams that are sent from the micro integrator and publishes the statistics to a database.
+The portal reads the statistics published by the server and displays the statistics on the dashboard. The server and portal are connected through the database.
 
-See the instructions given below on using the Analytics profile with the Micro Integrator.
+See the instructions given below on using the EI Analytics with the Micro Integrator.
 
 ## System Requirements
 
 - For EI nodes, see [Installation Prerequisites](../../setup/installation/install_prerequisites).
 
-- For the Analytics worker:
+- For the EI Analytics server:
 
     <table>
     <tbody>
     <tr class="odd">
     <th>Memory</th>
-    <td><p><ul><li>~ 2 GB per worker node (and therefore, 4 GB for the recommended Minimum HA cluster<li>2 CPU cores minimum. It is recommended to allocate 4 cores.</li></li><li>~ 2 GB is the initial heap (-Xms)  required for the server startup. The maximum heap size is 4 GB (-Xmx)</li></ul></p></td>
+    <td><p><ul><li>~ 2 GB per server node (and therefore, 4 GB for the recommended Minimum HA cluster<li>2 CPU cores minimum. It is recommended to allocate 4 cores.</li></li><li>~ 2 GB is the initial heap (-Xms)  required for the server startup. The maximum heap size is 4 GB (-Xmx)</li></ul></p></td>
     </tr>
     <tr class="even">
     <th>Disk</th>
@@ -48,7 +46,7 @@ See the instructions given below on using the Analytics profile with the Micro I
     </tbody>
     </table>
 
-- For the Analytics Dashboard:
+- For the EI Analytics portal:
 
     <table>
     <tbody>
@@ -83,7 +81,7 @@ You must enable statistics/tracing for the integration artifacts that you wish t
 
 ### Enabling statistics for ALL artifacts
 
-If you want to collect statistics for **all** your integration artifacts, be sure to add the following parameter to the `deployment.toml` file in addition the [parameters explained above](#configuring-the-micro-integrator):
+If you want to collect statistics for **all** your integration artifacts, be sure to add the following parameter to the `deployment.toml` file in addition to the [parameters explained above](#configuring-the-micro-integrator):
 
 ```toml
 [mediation]
@@ -97,7 +95,7 @@ Alternatively, you can enable statistics for selected artifacts as explained bel
 Let's use the integration artifacts from the [service chaining](../../use-cases/tutorials/exposing-several-services-as-a-single-service) tutorial.
 
 !!! Warning
-    It is not recommended to enable **tracing** in production environments as it generates a large number of events that reduces the performance of the analytics profile. Therefore, tracing should only be enabled in development environments.
+    It is not recommended to enable **tracing** in production environments as it generates a large number of events that reduces the performance of the EI Analytics. Therefore, tracing should only be enabled in development environments.
 
 If you did not try the [service chaining](../../use-cases/tutorials/exposing-several-services-as-a-single-service) tutorial yet:
 
@@ -116,21 +114,20 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
      ![endpoint properties](../assets/img/ei-analytics/endpoint-properties.png)
 
-## Starting the Analytics Worker
+## Starting the EI Analytics server
 
 !!! Note
-    Be sure to start the **Analytics** worker before [starting the Micro Integrator](#starting-the-micro-integrator).
+    Be sure to start the **Analytics** server before [starting the Micro Integrator](#starting-the-micro-integrator).
 
-1.  Download and install [WSO2 Enterprise Integrator 6.x.x](https://docs.wso2.com/display/EI660/Installing+the+Product). The location of your WSO2 EI 6.x.x installation will be referred to as `<EI_6.x.x_HOME>` from hereon.
-2.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
-3.  Start the Analytics Worker runtime by executing the following command:
+1. Open a terminal and navigate to the <EI_ANALYTICS_HOME>/bin directory.
+2. Start the Streaming Integrator by executing the following command:
 
     ```bash tab='On MacOS/Linux/Centos'
-    sh worker.sh
+    sh server.sh
     ```
 
     ```bash tab='On Windows'
-    worker.bat
+    server.bat
     ```
 
 ## Starting the Micro Integrator
@@ -138,24 +135,22 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 !!! Warning
     To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certificates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../setup/security/importing_ssl_certificate).
     
-    For testing, you can simply copy the keystore files from the `<EI_6.5.0_HOME>/wso2/analytics/resources/security` directory to the `MI_HOME/resources/security` directory.
+Once you have [started the Analytics Server](#starting-the-ei-analytics-server), you can [start the Micro Integrator](../../develop/deploy-and-run) with your integration artifacts.
 
-Once you have [started the Analytics Worker](#starting-the-analytics-worker), you can [start the Micro Integrator](../../develop/deploy-and-run) with your integration artifacts.
+## Starting the EI Analytics Dashboard
 
-## Starting the Analytics Dashboard
-
-1.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
+1.  Open a terminal and navigate to the `<EI_ANALYTICS_HOME>/bin` directory.
 2.  Start the Analytics Dashboard runtime by executing the following command:
 
     ```bash tab='On MacOS/Linux/Centos'
-    sh dashboard.sh
+    sh portal.sh
     ```
 
     ```bash tab='On Windows'
-    dashboard.bat
+    portal.bat
     ```
 
-In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal>. Use
+In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9645/analytics-dashboard>. Use
     `admin` for both the username and password.
 
 <img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
