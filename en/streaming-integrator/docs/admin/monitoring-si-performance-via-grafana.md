@@ -8,7 +8,11 @@
 
 ## Setting Up Grafana to Monitor WSO2 Streaming Integrator
 
-For the purpose of monitoring the performance of WSO2 Streaming Integrator, it provides ten pre-configured dashboards. To view them in Grafana, follow the steps below:
+WSO2 Streaming Integrator performs streaming operations via Siddhi applications, which are applications written in the [Siddhi Query Language](https://siddhi.io/en/v5.1/docs/). 
+
+Each Siddhi application contains a combination ofSiddhi components.
+
+For the purpose of monitoring the performance of the Siddhi components used in your WSO2 Streaming Integrator instance, it provides ten pre-configured dashboards. To view them in Grafana, follow the steps below:
  
  1. Download the following dashboards (i.e., the JSON file with the dashboard configuration) by clicking on them.
  
@@ -47,23 +51,67 @@ To navigate through the Grafana dashboards you set up for monitoring WSO2 Stream
 2. In the left pane, click the **Dashboards** icon, and then click **Manage** to open the **Dashboards** page. Here, you can click on the following dashboards:
 
     - **Siddhi Overall Statistics**
+        
+        This displays the overall statistics related to your Streaming Integrator instance and the Siddhi components of the Siddhi applications that are currently deployed in it.
+        
+        For a detailed description of the information displayed in this dashboard, see [Viewing Overall Statistics](viewing-overall-statistics.md).
     
     - **Siddhi Server Statistics**
     
+        This displays statistics related to the Siddhi server. 
+        
+        For a detailed description of the information displayed in this dashboard, see [Viewing Server Statistics](viewing-overall-statistics.md).
+    
     - **Siddhi Stream Statistics**
+    
+        This displays statistics related to [streams](https://siddhi.io/en/v5.1/docs/query-guide/#stream) in the Siddhi applications currently deployed in your WSO2 Streaming Integrator server
+            
+        For a detailed description of the information displayed in this dashboard, see [Viewing Stream Statistics](viewing-stream-statistics.md).
     
     - **Siddhi Source Statistics**
     
+        This displays statistics related to [sources](https://siddhi.io/en/v5.1/docs/query-guide/#source) in the Siddhi applications currently deployed in your WSO2 Streaming Integrator server
+                
+        For a detailed description of the information displayed in this dashboard, see [Viewing Source Statistics](viewing-source-statistics.md).
+    
     - **Siddhi Sink Statistics**
+    
+        This displays statistics related to [sinks](https://siddhi.io/en/v5.1/docs/query-guide/#sink) in the Siddhi applications currently deployed in your WSO2 Streaming Integrator server
+                    
+        For a detailed description of the information displayed in this dashboard, see [Viewing Sink Statistics](viewing-sink-statistics.md).
     
     - **Siddhi Query Statistics**
     
+        This displays statistics related to [queries](https://siddhi.io/en/v5.1/docs/query-guide/#query) in the Siddhi applications currently deployed in your WSO2 Streaming Integrator server
+            
+        For a detailed description of the information displayed in this dashboard, see [Viewing Query Statistics](viewing-query-statistics.md).
+    
     - **Siddhi Window Statistics**
     
+        This displays statistics related to [windows](https://siddhi.io/en/v5.1/docs/query-guide/#named-window) in the Siddhi applications currently deployed in your WSO2 Streaming Integrator server
+            
+        For a detailed description of the information displayed in this dashboard, see [Viewing Window Statistics](viewing-window-statistics.md).
+    
     - **Siddhi Trigger Statistics**
+    
+        This displays statistics related to [triggers](https://siddhi.io/en/v5.1/docs/query-guide/#trigger) in the Siddhi applications currently deployed in your WSO2 Streaming Integrator server
+            
+        For a detailed description of the information displayed in this dashboard, see [Viewing Trigger Statistics](viewing-trigger-statistics.md).
 
     - **Siddhi Table Statistics**
+    
+        This displays statistics related to [tables](https://siddhi.io/en/v5.1/docs/query-guide/#table) in the Siddhi applications currently deployed in your WSO2 Streaming Integrator server
+            
+        For a detailed description of the information displayed in this dashboard, see [Viewing Table Statistics](viewing-table-statistics.md).
 
     - **Siddhi Aggregation Statistics**
     
+        This displays statistics related to [aggregations](https://siddhi.io/en/v5.1/docs/query-guide/#named-aggregation) in the Siddhi applications currently deployed in your WSO2 Streaming Integrator server
+            
+        For a detailed description of the information displayed in this dashboard, see [Viewing Aggregation Statistics](viewing-aggregation-statistics.md).
+    
     - **Siddhi On Demand Query Statistics**
+    
+        This displays statistics related to on-demand-queries in your WSO2 Streaming Integrator server
+            
+        For a detailed description of the information displayed in this dashboard, see [Viewing Server Statistics](viewing-on-demand-query-statistics.md).
