@@ -1,6 +1,6 @@
-# Monitoring Statistics via Grafana Dashboards
+# Setting up Grafana to Display WSO2 SI Statistics
 
-This section explains how WSO2 Streaming Integrator can be configured to display statistics relating to change data in files and databases in Grafana dashboards.
+This section explains how WSO2 Streaming Integrator can be configured to display statistics in Grafana dashboards.
 
 !!! tip "Before you begin:"
     - Download and install Prometheus. For instructions, see [the Prometheus Getting Started Guide](https://prometheus.io/docs/prometheus/latest/getting_started/). <br/>
@@ -110,44 +110,7 @@ In order to configure a Grafana dashboard, follow the steps below:
     
     6. Click **Import**.
     
-    The pre-configured dashboards in Streaming Integrator are as follows:
-    
-    - **cdc-statistics**
-    
-        This category includes the following dashboards:
-        
-        - CDC Scheduled Statistics
-        
-        - CDC Statistics
-        
-        - CDC Streaming Statistics
-        
-    - **file-statistics**
-    
-        This category includes the following dashboards:
-        
-        - File Sink Statistics
-        
-        - File Source Statistics
-        
-        - File Statistics
-        
-    - **overview-statistics**
-    
-        This category includes the following dashboards:
-        
-        - Overall Statistics
-        
-        - Application Statistics
-        
-    - **rdbms-statistics**
-    
-        This category includes the following dashboards:
-        
-        - RDBMS Statistics
-        
-        - RDBMS Table Statistics
-    
+
     
 
     

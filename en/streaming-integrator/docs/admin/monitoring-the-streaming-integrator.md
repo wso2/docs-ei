@@ -88,37 +88,48 @@ Set up a database of the required type by following the steps below. In this sec
 
 1. Download and install the required database type. For this example, let's download and install [MySQL Server](http://dev.mysql.com/downloads/).
 
-2. Download the required database driver. For this example, download the [MySQL JDBC driver](http://dev.mysql.com/downloads/connector/j/).
+2. Configure WSO2 Streaming Integrator to work with MySQL as follows.
 
-3. Unzip the database driver you downloaded, copy its JAR file (`mysql-connector-java-x.x.xx-bin.jar` in this example), and place it in the `<DASHBOARD_HOME>/lib` directory.
+    1. Start the WSO2 Streaming Integrator server by navigating to the `<SI_HOME>/bin`directory, and issuing the appropriate command out of the following based on your operating system.
+    
+        - For Linux: `./server.sh`
+        - For Windows: `server.bat`
+        
+    2. To install the extension for MySQL by navigating to the `<SI_HOME>/bin`directory, and issuing the appropriate command out of the following based on your operating system.
+    
+        - For Linux: `./extension-installer.sh install rdbms-mysql`
+        - For Windows: `extension-installer.bat install rdbms-mysql`
+        
+    3. Once the extension is successfully installed, restart the WSO2 Streaming Integrator server.
+    
+    4. To configure the WSO2 Analytics Dashboard to work with MySQL, download the relevant MySQL driover from [MySQL Community Downloads](https://dev.mysql.com/downloads/connector/j/). 
+    
+        Then unzip the database driver you downloaded, copy its JAR file (mysql-connector-java-x.x.xx-bin.jar in this example), and place it in the <DASHBOARD_HOME>/lib directory.
 
-4. Enter the following command in a terminal/command window, where `username` is the username you want to use to access the databases.
+3. Start the MySQL server in a terminal.
 
-    `mysql -u username -p`
+4. Create two databases named `WSO2_METRICS_DB` (to store metrics data) and `WSO2_STATUS_DASHBOARD_DB` (to store statistics) with tables. To create MySQL databases and tables for this example, run the following commands.
 
-5. When prompted, specify the password you are using to access the databases with the username you specified.
-
-6. Create two databases named `WSO2_METRICS_DB` (to store metrics data) and `WSO2_STATUS_DASHBOARD_DB` (to store statistics) with tables. To create MySQL databases and tables for this example, run the following commands.
-
-    ``` java
-        mysql> create database WSO2_METRICS_DB;
-        mysql> use WSO2_METRICS_DB;
-        mysql> source <DASHBOARD_HOME>/wso2/monitor/dbscripts/metrics/mysql.sql;
-        mysql> grant all privileges on WSO2_METRICS_DB.* TO 'username'@'localhost';
+    ``` 
+    mysql> create database WSO2_METRICS_DB;
+    mysql> use WSO2_METRICS_DB;
+    mysql> source <DASHBOARD_HOME>/wso2/monitor/dbscripts/metrics/mysql.sql;
+    mysql> grant all privileges on WSO2_METRICS_DB.* TO 'username'@'localhost';
     ```
 
-    ``` java
-            mysql> create database WSO2_STATUS_DASHBOARD_DB;
-            mysql> use WSO2_STATUS_DASHBOARD_DB;
-            mysql> source <DASHBOARD_HOME>/wso2/monitor/dbscripts/metrics/mysql.sql;
-            mysql> grant all privileges on WSO2_STATUS_DASHBOARD_DB.* TO 'username'@'localhost';
     ```
+    mysql> create database WSO2_STATUS_DASHBOARD_DB;
+    mysql> use WSO2_STATUS_DASHBOARD_DB;
+    mysql> source <DASHBOARD_HOME>/wso2/monitor/dbscripts/metrics/mysql.sql;
+    mysql> grant all privileges on WSO2_STATUS_DASHBOARD_DB.* TO 'username'@'localhost';
+    ```
+   
     !!! tip
         - The syntax of the MySQL commands depend on the MySQL version. The given systax is for MySQL 8x versions. Check the syntax for the version you are using when performing this step. 
         - Replace <DASHBOARD_HOME> with the path to your <DASHBOARD_HOME>.
         - Replace `'username'@'localhost'` with your username and host name (e.g., `'root'@'localhost'`)
 
-7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<DASHBOARD_HOME>/conf/monitor/deployment.yaml` file.
+7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following data source configurations under the `wso2.datasources:` section of the `<DASHBOARD_HOME>/conf/monitor/deployment.yaml` file.
 
     !!! info
         The names of the data sources must be the same as the names of the database tables you created for metrics and statistics. You need to change the values for the `username` and `password` parameters to the username and password that you are using to access the MySQL database.

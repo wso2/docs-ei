@@ -238,7 +238,7 @@ To learn how to design an ETL application via the Wizard view, see the [Creating
 
 WSO2 Streaming Integrator provides nine pre-configured dashboards to visualize the overall ETLS statistics for your Streaming Integrator deployment, as well as the ETL statistics per Siddhi application and per ETL-related Siddhi extension type (i.e., CDC statistics, file statistics and RDBMS statistics).
 
-You can set up the pre-configured dashboards in Grafana. For instructions to set up these dashboards and visualize your ETL statistics, see [Monitoring Statistics via Grafana Dashboards](../admin/setting-up-grafana-dashboards.md).
+You can set up the pre-configured dashboards in Grafana. For instructions to set up these dashboards and visualize your ETL statistics, see [Monitoring ETL Statistics with Grafana](../guides/viewing-dashboards.md).
 
 ## Processing high volumes of data at high speed
 
