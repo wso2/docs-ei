@@ -19,7 +19,7 @@ Using function scope or 'func' in the XPath expression allows us to refer a part
 
 See the examples given below.
 
-## Example 1
+## Example 1: Calling a sequence template
 
 Let's illustrate the sequence template with a simple example. Suppose we have a sequence that logs the text "hello" in three different languages. We shall make use of a proxy to which we shall send a payload. The switch statement will log a greeting based on the language.
 
@@ -61,53 +61,50 @@ Instead of printing our "hello" message for each and every language inside the s
 
 ### Synapse configuration
 
-Following are the integration artifacts we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+Following are the integration artifacts we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-1) this example.
 
--   **Sequence template**:
+```xml tab="Sequence template"
+<template name="Hello_Logger" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="message"/>
+    <sequence>
+        <log level="custom">
+            <property expression="$func:message" name="GREETING_MESSAGE"/>
+        </log>
+    </sequence>
+</template>
+```
 
-    ```xml
-    <template name="Hello_Logger" xmlns="http://ws.apache.org/ns/synapse">
-        <parameter name="message"/>
-        <sequence>
-            <log level="custom">
-                <property expression="$func:message" name="GREETING_MESSAGE"/>
-            </log>
-        </sequence>
-    </template>
-    ```
-
--   **Proxy service**:
-    ```xml
-    <proxy name="HelloProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
-        <target>
-            <inSequence>
-                <switch source="//lang[1]/text()">
-                    <case regex="English">
-                        <call-template target="Hello_Logger">
-                            <with-param name="message" value="Hello"/>
-                        </call-template>
-                    </case>
-                    <case regex="French">
-                        <call-template target="Hello_Logger">
-                            <with-param name="message" value="Bonjour"/>
-                        </call-template>
-                    </case>
-                    <case regex="Japanese">
-                        <call-template target="Hello_Logger">
-                            <with-param name="message" value="Konnichiwa"/>
-                        </call-template>
-                    </case>
-                    <default>
-                        <call-template target="Hello_Logger"/>
-                    </default>
-                </switch>
-                <drop/>
-            </inSequence>
-            <outSequence/>
-            <faultSequence/>
-        </target>
-    </proxy>
-    ```
+```xml tab="Proxy Service"
+<proxy name="HelloProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <switch source="//lang[1]/text()">
+                <case regex="English">
+                    <call-template target="Hello_Logger">
+                        <with-param name="message" value="Hello"/>
+                    </call-template>
+                </case>
+                <case regex="French">
+                    <call-template target="Hello_Logger">
+                        <with-param name="message" value="Bonjour"/>
+                    </call-template>
+                </case>
+                <case regex="Japanese">
+                    <call-template target="Hello_Logger">
+                        <with-param name="message" value="Konnichiwa"/>
+                    </call-template>
+                </case>
+                <default>
+                    <call-template target="Hello_Logger"/>
+                </default>
+            </switch>
+            <drop/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+</proxy>
+```
 
 Note the following;
 
@@ -146,13 +143,13 @@ sequence.
 
 -   The `target` attribute is used to specify the sequence template you want to use. The `<with-param>` element is used to parse parameter values to the target sequence template. The parameter names should be the same as the names specified in target template. The parameter value can contain a string, an XPath expression (passed in with curly braces { }), or a dynamic XPath expression (passed in with double curly braces) of which the values are compiled dynamically.
 
-### Build and run
+### Build and run (Example 1)
 
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
-3. Create the [proxy service](../../../../develop/creating-artifacts/creating-an-api) and [sequence template](../../../../develop/creating-artifacts/creating-sequence-templates) with the configurations given above.
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) and [sequence template](../../../../develop/creating-artifacts/creating-sequence-templates) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 You can test this out with the following payload sent to the proxy via `http://localhost:8290/services/HelloProxy`:
@@ -165,7 +162,53 @@ You can test this out with the following payload sent to the proxy via `http://l
 </body>
 ```
 
-## Example 2
+## Example 2: Mandatory parameters and default values
+
+Following are the integration artifacts we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-2) this example.
+
+### Synapse configuration
+
+In this example, the sequence template is configured to log the greeting message that is passed from the mediation sequence in the REST API. According to the sequence template, a value for the greeting message is mandatory. However, the REST API is not passing a greeting message to this template. Therefore, the <b>default</b> greeting message specified in the template is effectively applied.
+
+```xml tab='Sequence Template'
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="sequence-temp" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter isMandatory="false" defaultValue="Welcome" name="greeting_message"/>
+    <sequence>
+        <log level="custom">
+            <property expression="$func:greeting_message" name="greeting"/>
+        </log>
+    </sequence>
+</template>
+```
+
+```xml tab='REST API'
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/test" name="test" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <call-template target="sequence-temp" />
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
+```
+
+### Build and run (Example 2)
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
+3. Create the [REST API](../../../../develop/creating-artifacts/creating-an-api) and [sequence template](../../../../develop/creating-artifacts/creating-sequence-templates) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
+
+Invoke this REST API using the HTTP client in WSO2 Integration Studio. 
+See that the default greeting message (`Welcome`) is logged on the console.
+
+## Example 3: Calling the sequence template using dynamic XPATH expression
 
 The following Call Template mediator configuration populates a sequence template named `Testtemp` with a dynamic XPath expression.
 
