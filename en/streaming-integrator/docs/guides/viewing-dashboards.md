@@ -1,8 +1,11 @@
-# Monitoring the WSO2 Streaming Integrator with Grafana
+# Monitoring ETL Statistics with Grafana
+
+!!! tip "Before you begin:"
+    To enable WSO2 Streaming Integrator to publish statistics in Grafana, follow the instructions in [Setting up Grafana to Display WSO2 SI Statistics](../admin/setting-up-grafana-dashboards.md).
 
 ## Setting Up Grafana to Monitor WSO2 Streaming Integrator
 
-For the purpose of monitoring WSO2 Streaming Integrator, WSO2 provides nine pre-configured dashboards. To use them to monitor the Streaming Integrator, set them up as follows:
+For the purpose of monitoring ETL (Extract, Transform, Load) statistics WSO2 provides nine pre-configured dashboards. To view them in Grafana, follow the steps below:
  
  1. Download the following dashboards (i.e., the JSON file with the dashboard configuration) from [here](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards).
  
@@ -21,12 +24,29 @@ For the purpose of monitoring WSO2 Streaming Integrator, WSO2 provides nine pre-
         The following is a suggested method to organize your dashboards, and the following instructions are provided based on this structure.
  
     ![Organize Dashboards](../images/managing-wso2-dashboards/organized-dashboards.png)
+    
  
 ## Accessing Grafana Dashboards for Monitoring
 
 To navigate through the Grafana dashboards you set up for monitoring WSO2 Streaming Integrator and to analyze statistics, follow the procedure below:
 
-1. Start Grafana and access it via `http://localhost:3000/`.
+1. To start and access the dashboards in Grafana, follow the steps below:
+
+    1. Start the Prometheus server by issung the following command from the `<PROMETHEUS_HOME>` directory.
+    
+        `./prometheus`
+        
+    2. Start Grafana.
+    
+        !!! info
+            The procedure to start Grafana depends on your operating system and the installation process. e.g., If your operating system is Mac OS and you have installed Grafana via Homebrew, you start Grafana by issuing the `brew services start grafana` command.
+            
+    3. Start the WSO2 Streaming Integrator server by navigating to the `<SI_HOME>/bin`directory, and issuing the appropriate command out of the following based on your operating system.
+           
+        - For Linux: `./server.sh`
+        - For Windows: `server.bat`
+
+    Access Grafana via `http://localhost:3000/`.
 
 2. In the left pane, click the **Dashboards** icon, and then click **Manage** to open the **Dashboards** page.
 

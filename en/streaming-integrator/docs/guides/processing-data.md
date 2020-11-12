@@ -912,9 +912,7 @@ To try out the four sample queries given above, follow the steps below:
     
 #### Supported methods of summarization
 
-WSO2 Streaming Integrator supports the following methods of summarization via Siddhi extensions. For more information about a summarization method, click on the relevant Siddhi link.
-
-        
+WSO2 Streaming Integrator supports the following methods of summarization via Siddhi extensions. For more information about a summarization method, click on the relevant Siddhi link.      
     
 ## Enriching data
 
@@ -1197,11 +1195,17 @@ The streaming integrator can correlate data in order to detect patterns and tren
 The difference between patterns and sequence is that sequences require all the matching events to arrive consecutively to
  match the sequence condition, whereas patterns identify events that match the pattern condition irrespective of the order in which they arrive.
 
-### Correlating events to find a pattern
+### Identifying patterns
+
+A pattern identifies a correlation between two events that may or may not arrive in a specific sequence.
+
+
 
 #### Count and match multiple events for a given pattern condition
 
 #### Combine several patterns logically and match events
+
+To understand how to combine several patterns logically and match events, consider an example of a factory foreman who needs to observe the factory output, identify any production decreases and check whether those decreases have reached maximum threshold which requires him to take action. To do this, you can create a Siddhi application as follows:
 
 #### Find non-occurrence of events
 
