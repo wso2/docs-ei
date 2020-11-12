@@ -31,14 +31,75 @@ See the topics given below for the list of properties that can be configured whe
 
 The parameters available to [configure the Sequence Template](../../develop/creating-artifacts/creating-sequence-templates.md) are as follows.
 
-| Parameter Name      | Description                                                       |
-|---------------------|-------------------------------------------------------------------|
-| Name                | The name of the Sequence Template                                 |
-| onError             | Select the error sequence that needs to be invoked.               |
-| Trace Enabled       | Whether or not trace is to be enabled for the sequence.           |
-| Statistics Enabled  | Whether or not statistics is to be enabled for the sequence.      |
-| Template Parameters | The input parameter that are supported by this Sequence Template. |
-
+<table>
+    <tr>
+        <th>
+            Parameter
+        </th>
+        <th>
+            Description
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            The name of the Sequence Template.
+        </td>
+    </tr>
+    <tr>
+        <td>
+           onError 
+        </td>
+        <td>
+           Select the error sequence that needs to be invoked. 
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Trace Enabled 
+        </td>
+        <td>
+            Whether or not trace is to be enabled for the sequence. 
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Statistics Enabled 
+        </td>
+        <td>
+            Whether or not statistics is to be enabled for the sequence.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Template Parameters
+        </td>
+        <td>
+            The input parameter that are supported by this Sequence Template.
+        </td>
+    </tr>
+    <tr>
+        <td>
+            isMandatory
+        </td>
+        <td>
+            Set this parameter to 'true' if a value is required to be passed for the configuration.</br></br>
+            When this parameter is 'true', if a value is not passed from a Call Template mediator as shown below, the Micro Integrator will first check for a <a href="#defaultValue">defaultvalue</a>. If a <a href="#defaultValue">defaultValue</a> does not exist, the 'onError' sequence of the <a href="../../references/synapse-properties/template-properties/call-Template-Mediator">Call Template mediator</a> will be called.</br></br>
+            If an empty value is passed in the Call Template mediator, the empty value will be used instead of using the default value.</br></br>
+            See the <a href="../../use-cases/examples/template_examples/using-sequence-templates/">example use cases</a> for details.
+        </td>
+    </tr>
+    <tr id="defaultValue">
+        <td>
+            defaultValue
+        </td>
+        <td>
+            Specifies a default value that should apply when a value is not passed when calling the template. See the <a href="../../use-cases/examples/template_examples/using-sequence-templates/">example use cases</a> for details.
+        </td>
+    </tr>
+</table>
 
 ## Endpoint Template Properties
 
