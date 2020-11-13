@@ -1086,7 +1086,7 @@ To try out the examples given above, follow the steps below.
     insert into UpdateStockwithProductionStream;
     
     @info(name='UpdateStockwithSales') 
-    from UpdateStockwithProductionStream as u 
+    from UpdateStockwithProductionStream#window.time(5 min) as u 
     join SalesStream as s 
     	on u.name == s.name 
     select u.name as name, sum(u.amount) - sum(s.amount) as amount 
@@ -1199,20 +1199,44 @@ The difference between patterns and sequence is that sequences require all the m
 
 A pattern identifies a correlation between two events that may or may not arrive in a specific sequence.
 
+#### Combine several patterns logically and match events
 
+Logical patterns involve  combining several patterns logically and matching events. 
+
+To understand this type of pattern, consider an example where you need to calculate the average shelf life of a production batch by calculating the amount of time it takes to sell the total amount in a batch. For this purpose, let's assume that an amount of 10 is produced in each production batch, and the products are sold on a FIFO (First In First Out) basis.
+
+The above requirement can be addressed by the following Siddhi application.
 
 #### Count and match multiple events for a given pattern condition
 
-#### Combine several patterns logically and match events
+Counting patterns involve counting and matching multiple events for a given pattern condition. 
 
-To understand how to combine several patterns logically and match events, consider an example of a factory foreman who needs to observe the factory output, identify any production decreases and check whether those decreases have reached maximum threshold which requires him to take action. To do this, you can create a Siddhi application as follows:
+To understand this type of patterns, consider an example where the manager of a Sweet Factory needs to count the number of times one or more items in a production batch remained unsold for a period of two days.
+
+The above requirement can be addressed by the following Siddhi application.
 
 #### Find non-occurrence of events
 
+To understand how to detect the non occurrence of events, consider a scenario where the production manager of sa sweet factory needs to count the number of times a wastage occurred due to a product not being sold within four days since it was produced and having to be scrapped as a result.
+
+The above requirement can be addressed by the following Siddhi application.
+
 ### Correlating events to find a trend(sequence)
 
-#### Count and match multiple events for a given trend
+Sequences are identified by observing trends in events that occur consecutively.
 
 #### Combine several trends logically and match events
 
-The streaming integrator can correlate data in order to detect patterns and trends in streaming data. Correlating can be done via patterns as well as sequences.
+Logical sequences are trends observed when consecutively occurring events match a given condition.
+
+To understand logical sequences, consider a production manager identifying a increasing trend in production when he/she observes an increase with three consecutive production batches.
+
+The above requirement can be addressed by the following Siddhi application.
+
+#### Count and match multiple events for a given trend
+
+Counting sequences involves counting and matching multiple consecutively occuring events that match a given condition.
+
+To understand this, consider a scenario where the productivity of a production bot changes since it is started. To use them in an optimum way, the production manager wants to identify the peaks and slumps in the production by observing every six production runs.
+
+The above requirement can be addressed by the following Siddhi application.
