@@ -252,6 +252,7 @@ nav:
       - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
       - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
       - 'Monitoring the WSO2 SI with Grafana': 'admin/monitoring-si-performance-via-grafana.md'
+      - 'Monitoring ETL Flows with Grafana': 'admin/viewing-dashboards.md'
     - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'
