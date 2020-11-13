@@ -198,6 +198,13 @@ assumed by default. For example:
 </tbody>
 </table>
 
+!!! Note
+    To evaluate the json-path against a property we can use the following syntax.
+    ```
+    <arg expression="$ctx:property.user.id" evaluator="json" />
+    ```
+    For more information on json-path syntax please refer [here](../../use-cases/examples/json_examples/json-examples.md).
+
 ### Adding arguments
 
 In the following configuration, the values for format parameters
