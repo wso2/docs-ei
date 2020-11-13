@@ -61,7 +61,6 @@ This involves deploying Prometheus, Grafana, and Jaeger-operator with all the re
 1. Clone the [Helm repository](https://github.com/wso2/observability-ei).
 
 2. Navigate to the home directory of the cloned repository.
-
 3. Open the `values.yaml` file and set the `enabled` parameter to `true` for Jaeger as shown in the extract below.
 
     ```yaml
@@ -124,7 +123,7 @@ To install the cloud native observability solution with logging and tracing capa
     `helm install wso2-observability . --render-subchart-notes`
     
 5. Make changes to the default settings of the chart if required. For information about configurable parameters, see [Enterprise Integrator Observability - Configuration](https://github.com/wso2/observability-ei#configuration).
-    
+
 The above step deploys the complete deployment and displays instructions to access the dashboards. This deployment allows you to access Prometheus, Grafana, and Jaeger UIs.
 
 ## Setting up the Micro Integrator deployment

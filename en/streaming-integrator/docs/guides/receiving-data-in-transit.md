@@ -166,8 +166,7 @@ To try the above example, follow the steps below.
 
     1. Start and access [WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md). 
     
-    2. Download and install the Kafka extension to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).
-    
+    2. Download and install the Kafka extension to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).    
     3. Open a new file and add the following Siddhi application to it.
 
         ```
@@ -238,4 +237,4 @@ The following are the supported mappers when you receive data from messaging sys
 | `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)               |
 | `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)             |
 | `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)             |
-| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) | 
+| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) |

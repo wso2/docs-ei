@@ -1,8 +1,8 @@
 # Using the EI Analytics Dashboard
 
-Let's use the **Analytics profile** of [WSO2 EI 6.6.0](https://docs.wso2.com/display/EI660) to view and monitor **statistics** and **message tracing**.
+Let's use **EI Analytics** to view and monitor **statistics** and **message tracing**.
 
-You can monitor the following statistics and more through the EI Analytics profile:
+You can monitor the following statistics and more through the EI Analytics dashboard:
 
 - Request Count
 - Overall TPS
@@ -49,17 +49,17 @@ Let's start the servers in the given order.
 ### Starting the Analytics Worker
 
 !!! Note
-    Be sure to start the **Analytics** worker before [starting the Micro Integrator](#starting-the-micro-integrator).
+    Be sure to start the **Analytics** server before [starting the Micro Integrator](#starting-the-micro-integrator).
 
 1.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
 2.  Start the Analytics Worker runtime by executing the following command:
 
     ```bash tab='On MacOS/Linux/Centos'
-    sh worker.sh
+    sh server.sh
     ```
 
     ```bash tab='On Windows'
-    worker.bat
+    server.bat
     ```
 
 ### Starting the Micro Integrator
@@ -75,16 +75,16 @@ Once you have [started the Analytics Worker](#starting-the-analytics-worker), yo
 2.  Start the Analytics Dashboard runtime by executing the following command:
 
     ```bash tab='On MacOS/Linux/Centos'
-    sh dashboard.sh
+    sh portal.sh
     ```
 
     ```bash tab='On Windows'
-    dashboard.bat
+    portal.bat
     ```
 
 In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal>. Use `admin` for both the username and password.
 
-<img src="../../../assets/img/ei-analytics/dashboard-login.png" width="500">
+<img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
 
 ## Publishing statistics to the dashboard
 

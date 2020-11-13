@@ -5,7 +5,7 @@ Listed below are some of the advantages of moving to EI 7.1 from the ESB.
 -	The Micro Integrator of EI 7.1 is now the most improved version of the battle-tested WSO2 ESB runtime.
 
 	!!! Tip
-		WSO2 ESB 5.0, the ESB profile of WSO2 EI 6.x, as well as the Micro Integrator of WSO2 EI 7.x contains versions of the same WSO2 ESB runtine. 
+		WSO2 ESB 5.0, the ESB profile of WSO2 EI 6.x, as well as the Micro Integrator of WSO2 EI 7.x contains versions of the same WSO2 ESB runtine.
 
 -	All the ESB runtimes of WSO2 can use the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. 
 

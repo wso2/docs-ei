@@ -109,12 +109,4 @@ In order to configure a Grafana dashboard, follow the steps below:
     5. If required, change the unique identifier displayed in the **Unique Identifier (uid)**.
     
     6. Click **Import**.
-    
-
-    
-
-    
-
-
-
   

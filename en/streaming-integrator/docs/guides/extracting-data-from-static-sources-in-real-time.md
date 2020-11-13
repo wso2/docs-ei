@@ -186,7 +186,6 @@ e.g., In a sweet factory where the production bots publishes the production stat
 
 To understand how you can perform these file processing activities via the WSO2 Streaming Integrator, see the subtopics below.
 
-
 ### Extracting data from files
 
 WSO2 Streaming Integrator extracts data from files via the [File Source](https://siddhi-io.github.io/siddhi-io-file/api/latest/#file-source). Once it extracts the data, it can publish it in a streaming manner so that other streaming applications that cannot read static data from files.
@@ -282,6 +281,7 @@ The following mappers are supported for the File extension.
 | `csv`         | [csv](https://siddhi-io.github.io/siddhi-map-csv/api/2.1.0/#csv-source-mapper)         |
 | `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sourcemapper)             |
 | `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sourcemapper)           |
+
 
 ### Performing managed file transfers
 
@@ -529,5 +529,3 @@ WSO2 Streaming Integrator supports the following mappers for the cloud-based sto
 | `keyvalue`    | [keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sourcemapper)           |
 | `csv`         | [csv](https://siddhi-io.github.io/siddhi-map-csv/api/2.1.0/#sourcemapper)                     |
 | `protobuf`    | [protobuf](https://siddhi-io.github.io/siddhi-map-protobuf/api/1.1.0/#protobuf-source-mapper) |
-
-

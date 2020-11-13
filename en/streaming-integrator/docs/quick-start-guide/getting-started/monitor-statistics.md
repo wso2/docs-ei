@@ -190,7 +190,3 @@ To generate some statistics and view them, follow the procedure below.
     - To learn more about the key concepts of WSO2 Streaming Integrator, see [Key Concepts](../../concepts/concepts.md).<br/>    
     - For more hands-on experience with WSO2 Streaming Integrator, try the [Tutorials](../../examples/tutorials-overview.md).<br/>    
     - For more guidance as you use WSO2 Streaming Integrator for your Streaming Integration use cases, see [Use Cases](../../guides/use-cases.md).<br/>
-
-    
-
-    

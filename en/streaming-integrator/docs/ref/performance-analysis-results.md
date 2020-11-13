@@ -807,4 +807,3 @@ insert into kafkaStream;
 - Memory consumption: 1.7g
 
 - TPS: 38,000
-

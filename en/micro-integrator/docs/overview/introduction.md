@@ -12,13 +12,13 @@ The heart of WSO2 EI 7.1 is the Micro Integrato server, which is an event-driven
 
 ## Microservices 
 
-The Micro Integrator of WSO2 EI is also lightweight and container friendly. This allows you to leverage the comprehensive enterprise messaging capabilities of the Micro Integrator in your decentralized, cloud-native integrations. 
+The Micro Integrator of WSO2 EI is also lightweight and container friendly. This allows you to leverage the comprehensive enterprise messaging capabilities of the Micro Integrator in your decentralized, cloud-native integrations.
 
 <img src="../../assets/img/intro/mi-microservices-architecture.png" alt="decentralized micro services" name="decentralized microservices" width="700">
 
 As shown above, if your organization is running on a decentralized, cloud-native, integration architecture where microservices are used for integrating the various APIs, events, and systems, WSO2 Micro Integrator can easily function as your **Integration** (micro) services and **API** (micro) services.
 
-## Low code integration
+## Low-code integration
 
 The WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio); a comprehensive graphical integration flow designer for building integrations using a simple drag-and-drop functionality.
 

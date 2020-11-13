@@ -135,6 +135,7 @@ The following is the list of widgets displayed in this dashboard.
 | **Error Rate**                | A visualization of the total number of errors that have occurred for the proxy service during the selected time interval. |
 | **Response Time**             | A visualization of the time taken by the proxy service to respond to requests during the selected time interval. |
 
+
 ### Purpose
 
 The purposes of this dashboard is as follows:

@@ -1,4 +1,4 @@
-# Deploy on Kubernetes
+# Deploy on Kubernetes using K8s EI-Operator
 
 
 ##  Prerequisites (system requirements)
@@ -6,7 +6,7 @@
 Listed below are the system requirements for deploying integration solutions in Kubernetes using the EI K8s operator.
 
 !!! Info
-    The EI K8s Operator (k8s-ei-operator) is built with **operator-sdk v0.7.0** and supported in the below environments.
+    The K8s EI Operator (k8s-ei-operator) is built with **operator-sdk v0.7.0** and supported in the below environments.
 
 -   [Kubernetes](https://kubernetes.io/docs/setup/) cluster and **v1.11+** client. 
 -   [Docker](https://docs.docker.com/)
@@ -22,7 +22,7 @@ Listed below are the system requirements for deploying integration solutions in 
 
 Given below are the main steps your will follow when you deploy integration solutions in a Kubernetes cluster.
 
-1.  Be sure that the [system requirements](#prerequisites-system-requirements) are fulfilled, and that the [EI K8s operator](#install-the-ei-k8s-operator) is installed in your Kuberenetes environment.
+1.  Be sure that the [system requirements](#prerequisites-system-requirements) are fulfilled, and that the [K8s EI operator](./../ei_kubernetes_operator/#install-the-k8s-ei-operator) is installed in your Kuberenetes environment.
 2.  Your integration solution should be prepared using **WSO2 Integration Studio** as follows:
 
     1. Create the integration solution.
@@ -284,7 +284,7 @@ Follow the steps given below:
 
 ## Update existing integration deployments
 
-The EI K8s operator allows you to update the Docker images used in Kubernetes pods(replicas) with the latest update of the tag. To pull the latest tag, we need to delete the associated pod with its pod ID as follows:
+The K8s EI operator allows you to update the Docker images used in Kubernetes pods(replicas) with the latest update of the tag. To pull the latest tag, we need to delete the associated pod with its pod ID as follows:
 
 ```bash 
 kubectl delete pod <POD-NAME>

@@ -1,4 +1,5 @@
 # Migrating from WSO2 ESB 5.0 to WSO2 EI 7.1
+
 This guide provides the recommended strategy for migrating from WSO2 ESB 5.0 to the Micro Integrator of WSO2 EI 7.1.
 
 {!setup/pull/PULL-CONTENT-migration-esb-mi.md!}
@@ -263,6 +264,7 @@ Copy custom OSGI components in the `<ESB_5.0.0_HOME>/repository/components/dropi
 Multitenancy within one JVM is not supported in the Micro Integrator of EI 7.1. Therefore, if you used multiple tenants in your ESB deployment, you can replicate the set up in EI 7.1 by using separate Micro Integrator nodes.
 
 ### Migrating keystores
+
 Copy the JKS files from the `<ESB_5.0.0_HOME>/repository/resources/security` folder to the `<MI_HOME>/repository/resources/security` folder.
 
 ### Migrating configurations
@@ -345,6 +347,7 @@ Given below are some of the most critical XML configuraton files in ESB 5.0. Exp
 		```
 
 		```toml tab='TOML configuration'
+
 	    [server]
 	    offset  = 0
 		```

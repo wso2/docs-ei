@@ -169,6 +169,7 @@ To enable the MSMQ transport listener and sender, set the following parameters t
 listener.enable = false
 sender.enable = false
 ```
+
 <b>Note</b> the following:
 <ul>
     <li>The MSMQ examples only work on Windows since they invoke the Microsoft C++ API for MSMQ via JNDI invocation.</li>

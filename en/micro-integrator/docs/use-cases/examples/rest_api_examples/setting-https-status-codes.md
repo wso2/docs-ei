@@ -70,7 +70,6 @@ The response message will contain the following response code (201) and the requ
 
 ```bash
 < HTTP/1.1 201 Created
-< server: ballerina
 < Access-Control-Allow-Methods: GET
 < content-type: text/plain
 < Access-Control-Allow-Headers: 

@@ -61,7 +61,7 @@ Instead of printing our "hello" message for each and every language inside the s
 
 ### Synapse configuration
 
-Following are the integration artifacts we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+Following are the integration artifacts we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-1) this example.
 
 ```xml tab="Sequence template"
 <template name="Hello_Logger" xmlns="http://ws.apache.org/ns/synapse">

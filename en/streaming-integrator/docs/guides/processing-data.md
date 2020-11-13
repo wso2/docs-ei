@@ -1200,7 +1200,6 @@ The difference between patterns and sequence is that sequences require all the m
 A pattern identifies a correlation between two events that may or may not arrive in a specific sequence.
 
 
-
 #### Count and match multiple events for a given pattern condition
 
 #### Combine several patterns logically and match events
