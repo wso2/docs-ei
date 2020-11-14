@@ -164,7 +164,7 @@ You can test this out with the following payload sent to the proxy via `http://l
 
 ## Example 2: Mandatory parameters and default values
 
-Following are the integration artifacts we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-2) this example.
+Following are the integration artifacts we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ### Synapse configuration
 

@@ -12,7 +12,7 @@ To see the available LDAP connector, navigate to the [connector store](https://s
 
 | Connector version | Supported WSO2 EI version |
 | ------------- |------------- |
-|  1.0.11        |  EI 7.0.x, EI 6.6.0, EI 6.5.0, EI 6.4.0 |
+|  1.0.11        |  EI 7.1.0, EI 7.0.x, EI 6.6.0, EI 6.5.0, EI 6.4.0 |
 
 For older versions, see the details in the connector store.
 

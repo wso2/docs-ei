@@ -29,14 +29,19 @@ There are two ways to build a Docker image of the integration solution and push 
 
 -	Using <b>Maven</b>:
 
-	Navigate to the Integration project from your terminal and run the following command to build the Docker image and then push it to the specified Docker registry.
+	!!! Note "Before you begin"
+			You need **Maven 3.5.2** or a later version when you build the Docker image manually (without using WSO2 Integration Studio).
 
-	!!! Note
-		<b>Be sure</b> to specify the user name and password of your Docker registry when you run the following command.
+	1.	Open a terminal and navigate to the integration project.
+	2.	Execute the following command. 
 
-    ```bash
-    mvn clean install -Dmaven.test.skip=true -Ddockerfile.username={username} -Ddockerfile.password={password} 
-	```
+		Be sure to specify the user name and password of the correct Docker registry.
+
+	    ```bash
+	    mvn clean install -Dmaven.test.skip=true -Ddockerfile.username={username} -Ddockerfile.password={password} 
+		```
+
+	This will build the Docker image and then push it to the specified Docker registry.
 
 -	Using <b>WSO2 Integration Studio</b>:
       

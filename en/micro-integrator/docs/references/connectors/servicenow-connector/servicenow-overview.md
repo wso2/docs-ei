@@ -12,7 +12,7 @@ To see the available ServiceNow connector, navigate to the [connector store](htt
 
 | Connector version | Supported WSO2 EI version |
 | ------------- |------------- |
-|  1.0.2        |  EI 7.0.x, EI 6.6.0, EI 6.5.0 |
+|  1.0.2        |  EI 7.1.0, EI 7.0.x, EI 6.6.0, EI 6.5.0 |
 
 For older versions, see the details in the connector store.
 

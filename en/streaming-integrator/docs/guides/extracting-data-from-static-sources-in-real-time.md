@@ -2,7 +2,7 @@
 
 WSO2 Streaming Integrator can extract data from static sources such as databases, files and cloud storages in real-tme. 
 
-## Consuming data from databases
+## Consuming data from RDBMS databases
 
 A database table is a stored collection of records of a specific schema. Each record can be equivalent to an event. WSO2 Streaming Integrator can integrate databases into the streaming flow by extracting records in database tables as streaming events. This can be done via change data capture or by polling a database.
 
@@ -168,6 +168,11 @@ The following is a list of Siddhi extensions that support change data capturing 
 | Oracle            | `cdc-oracle`       | Captures change data from Oracle databases.     |
 | PostgreSQL        | `cdc-postgresql`   | Captures change data from PostgreSQL databases. |
 
+### Supported mappers
+
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+
+The mapper available for extracting data from databases is [Keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sourcemapper).
 
 ## File Processing
 
@@ -180,7 +185,6 @@ File Processing involves two types of operations related to files:
 e.g., In a sweet factory where the production bots publishes the production statistics in a file after each production run. Extracting the production statistics from the files for further processing can be considered reading files and extracting data. Checking whether a file is generated to indicate a completed production run, and checking whether a file is moved to a different location after its content is processed can be considered as managed file transfer.
 
 To understand how you can perform these file processing activities via the WSO2 Streaming Integrator, see the subtopics below.
-
 
 ### Extracting data from files
 
@@ -267,6 +271,17 @@ Note that this extract also includes `tailing = "false"`. When tailing is enable
 #### Supporting Siddhi extension
 
 Reading content in files are supported via the [file Siddhi extension](https://siddhi-io.github.io/siddhi-io-file/api/latest/#source).
+
+#### Supporting mappers
+
+The following mappers are supported for the File extension.
+
+| **Transport** | **Supporting Siddhi Extension**                                                        |
+|---------------|----------------------------------------------------------------------------------------|
+| `csv`         | [csv](https://siddhi-io.github.io/siddhi-map-csv/api/2.1.0/#csv-source-mapper)         |
+| `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sourcemapper)             |
+| `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sourcemapper)           |
+
 
 ### Performing managed file transfers
 
@@ -497,3 +512,20 @@ The following is a list of cloud platforms from which you can extract stored dat
 | Google Cloud Storage          | [GCS](https://siddhi-io.github.io/siddhi-io-gcs/api/latest/)                                          |
 | CosmosDB                      | [CosmosDB](https://github.com/wso2-extensions/siddhi-store-cosmosdb/blob/master/docs/api/latest.md)   |
 | Azure Data Lake               | [azuredatalake](https://siddhi-io.github.io/siddhi-io-azuredatalake/api/latest/#source)               |
+
+### Supported mappers
+
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+
+WSO2 Streaming Integrator supports the following mappers for the cloud-based storages from which it extracts data.
+
+| **Mapper** | **Supporting Siddhi Extension**                                                                  |
+|---------------|-----------------------------------------------------------------------------------------------|
+| `json`        | [json](https://siddhi-io.github.io/siddhi-map-json/api/latest/#sinkmapper)                    |
+| `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)                      |
+| `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)                    |
+| `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)                    |
+| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper)        | 
+| `keyvalue`    | [keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sourcemapper)           |
+| `csv`         | [csv](https://siddhi-io.github.io/siddhi-map-csv/api/2.1.0/#sourcemapper)                     |
+| `protobuf`    | [protobuf](https://siddhi-io.github.io/siddhi-map-protobuf/api/1.1.0/#protobuf-source-mapper) |

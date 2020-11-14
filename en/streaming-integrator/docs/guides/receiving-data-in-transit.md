@@ -4,17 +4,17 @@ Data in transit, also known as data in flight refers to data that is in the proc
 
 The sources from which data in transit/flight are received can be classified into two categories as follows:
 
-- **Push data sources**: You can receive data from these sources without subscribing to receive it. (e.g., HTTP, HTTPS, TCP, email, etc.)
+- **Data publishers**: You can receive data from these sources without subscribing to receive it. (e.g., HTTP, HTTPS, TCP, email, etc.)
 
-- **Pull data sources**: You need to subscribe to receive data from the source. (e.g., messaging systems such as Kafka, JMS, MQTT, etc.)
+- **Messaging Systems**: You need to subscribe to receive data from the source. (e.g., messaging systems such as Kafka, JMS, MQTT, etc.)
 
-## Receiving data from push sources
+## Receiving data from data publishers
 
-Push data sources are transports from which WSO2 SI can receive messages without subscribing for them. In a typical scenario, you are required to open a port in the WSO2 Streaming Integrator that is dedicated to listen to messages from the relevant push data source.
+Data publishers are transports from which WSO2 SI can receive messages without subscribing for them. In a typical scenario, you are required to open a port in the WSO2 Streaming Integrator that is dedicated to listen to messages from the data publisher.
 
-![receiving data from a push source](../images/receiving-data-in-transit/push-data-sources.png)
+![receiving data from a data publisher](../images/receiving-data-in-transit/push-data-sources.png)
 
-To receive data from a push data source, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) and connect a [source] annotation of a type that receives data from a push data source as shown in the example below.
+To receive data from a data publisher, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) and connect a [source] annotation of a type that receives data from a data publisher as shown in the example below.
 
 ```siddhi
 @source(type='http', 
@@ -95,21 +95,37 @@ To try out the example given above, let's include the source configuration in a 
     
 ### Supported transports
 
-The following are the supported transports to capture data in transit from push sources.
+The following are the supported transports to capture data in transit from data publishers.
 
 | **Transport** | **Siddhi Extension**                                                          |
 |---------------|-------------------------------------------------------------------------------|
 | HTTP          | [http](https://siddhi-io.github.io/siddhi-io-http/api/latest/#source)         |
 | TCP           | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#source)           |
 | Email         | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source) |
+| `grpc`        | [grpc](https://siddhi-io.github.io/siddhi-io-grpc/api/latest/#source)         |
+| `Thrift`      |                                                                               |
 
-## Receiving data from pull sources
+### Supported mappers
 
-Pull data sources are messaging systems where WSO2 Streaming Integrator needs to subscribe to specific queues/topics in order to receive messages from them.
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
 
-![receiving data from a pull source](../images/receiving-data-in-transit/pull-data-sources.png)
+The following are the supported mappers when you receive data from data publishers.
 
-To receive data from a push data source, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) and connect a [source] annotation of a type that receives data from a pull data source.
+| **Mapper** | **Supporting Siddhi Extension**                                                        |
+|---------------|----------------------------------------------------------------------------------------|
+| `json`        | [json](https://siddhi-io.github.io/siddhi-map-json/api/latest/#sinkmapper)             |
+| `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)               |
+| `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)             |
+| `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)             |
+| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) |  
+
+## Receiving data from messaging systems
+
+This section explains how to receive input data from messaging systems where WSO2 Streaming Integrator needs to subscribe to specific queues/topics in order to receive the required data.
+
+![receiving data from a messaging system](../images/receiving-data-in-transit/pull-data-sources.png)
+
+To receive data from a messaging system, define an input [stream](https://siddhi.io/en/v5.1/docs/query-guide/#stream) and connect a [source] annotation of a type that receives data from a messaging system.
 
 For example, consider a weather broadcasting application that publishes the temperature and humidity for each region is monitors in a separate Kafka topic. The local weather broadcasting firm of Houston wants to subscribe to receive weather broadcasts for Houston.
 
@@ -146,17 +162,15 @@ To try the above example, follow the steps below.
     
         `bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic houston`
         
-3. Prepare WSO2 Streamning to consume Kafka messages as follows:
+3. Prepare WSO2 Streaming Integrator Tooling to consume Kafka messages as follows:
 
     1. Start and access [WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md). 
     
-    2. Download and install the Kafka extention to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).
-    
+    2. Download and install the Kafka extension to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).    
     3. Open a new file and add the following Siddhi application to it.
 
         ```
         @App:name('TemperatureReportingApp')
-        @App:description('Description of the plan')
        
         @source(type = 'kafka', topic.list = "houston", threading.option = "single.thread", group.id = "group1", bootstrap.servers = "localhost:9092",
         @map(type = 'json'))
@@ -199,7 +213,7 @@ To try the above example, follow the steps below.
 
 ### Supported transports
 
-The following are the supported transports to capture data in transit from pull sources.
+The following are the supported transports to capture data in transit from messaging systems.
 
 | **Transport** | **Siddhi Extension**                                                                               |
 |---------------|----------------------------------------------------------------------------------------------------|
@@ -209,3 +223,18 @@ The following are the supported transports to capture data in transit from pull 
 | RabbitMQ      | [rabbitmq](https://siddhi-io.github.io/siddhi-io-rabbitmq/api/latest/#rabbitmq-source)             |
 | JMS           | [JMS](https://siddhi-io.github.io/siddhi-io-jms/api/latest/#jms-source)                            |
 | MQTT          | [MQTT](https://siddhi-io.github.io/siddhi-io-mqtt/api/3.0.0/#mqtt-source)                          |
+| SQS           | [sqs](https://siddhi-io.github.io/siddhi-io-sqs/api/latest/#source)                                |
+
+### Supported mappers
+
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+
+The following are the supported mappers when you receive data from messaging systems.
+
+| **Mapper** | **Supporting Siddhi Extension**                                                        |
+|---------------|----------------------------------------------------------------------------------------|
+| `json`        | [json](https://siddhi-io.github.io/siddhi-map-json/api/latest/#sinkmapper)             |
+| `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)               |
+| `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)             |
+| `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)             |
+| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) |

@@ -23,7 +23,7 @@ site_url: https://ei.docs.wso2.com/en/7.2.0/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/master/en/micro-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.2.0/en/micro-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -209,6 +209,7 @@ nav:
           - HL7 Examples:
             - 'Mediating HL7 Messages': 'use-cases/examples/hl7-examples/HL7_proxy_service.md'
             - 'Acknowledging HL7 Messages': 'use-cases/examples/hl7-examples/acknowledge_hl7_messages.md'
+            - 'Using HL7 Messages with File Systems': 'use-cases/examples/hl7-examples/file_transfer_using_hl7.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
     - Develop:
@@ -304,6 +305,14 @@ nav:
                 - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
                 - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
                 - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+          - K8s Pipeline:
+            - 'Overview': 'setup/deployment/k8s-pipeline/overview.md'
+            - 'Pipeline Quick Start Guide': 'setup/deployment/k8s-pipeline/pipeline-quick-start-guide.md'
+            - 'Testing the Pipeline Environment': 'setup/deployment/k8s-pipeline/testing-the-pipeline-environment.md'
+            - 'Deploy Your Own Artifact': 'setup/deployment/k8s-pipeline/deploy-your-own-artifact.md'
+            - 'Adding Testcases': 'setup/deployment/k8s-pipeline/adding-test-cases.md'
+            - 'Modifying Product Configurations': 'setup/deployment/k8s-pipeline/modifying-product-configurations.md'
+            - 'Modifying Pipeline Configurations': 'setup/deployment/k8s-pipeline/modifying-pipeline-configurations.md'
         - Deploy on a Virtual Machine:
           - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
           - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
@@ -375,37 +384,36 @@ nav:
         - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Message Relay' : 'setup/message_builders_formatters/message-relay.md'
         - Observability:
-          - 'Observability Overview': 'setup/observability/observability-overview.md'
-          - 'Setting up Cloud Native Observability Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
+          - 'Observability Deployment Strategy': 'setup/observability/observability-deployment-strategy.md'
+          - 'Setting up Cloud-Native Observability for a VM Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
+          - 'Setting up Cloud-Native Observability for a K8s Deployment': 'setup/observability/setting-up-cloud-native-observability-in-kubernetes.md'
           - 'Setting up Classic Observability Deployment': 'setup/observability/setting-up-classic-observability-deployment.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observe and Manage:
-      - 'Observe and Manage Overview': 'setup/observability/observability-and-manage-overview.md'
-      - 'Observability':
-        - 'Observability Solutions': 'administer-and-observe/observability-with-grafana-overview.md'
-        - 'Cloud Native Observability Deployment':
+        - 'Overview': 'administer-and-observe/observability-overview.md'
+        - 'Observability':
+          - 'Cloud Native Observability Solution':
             - 'Viewing Cloud Native Observability Dashboards': 'administer-and-observe/cloud-native-observability-dashboards.md'
-        - 'Classic Observability Deployment':
-          - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
-          - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
-          - Logging:
-            - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-            - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
-            - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
-            - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
-      - Management:
-        - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
-        - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
-        - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
-      - Integration with External Tools:
-        - Metrics:
+          - 'Classic Observability Solution':
+            - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
+            - 'Using the EI Analytics Dashboard': 'administer-and-observe/using-the-analytics-dashboard.md'
+            - Logging:
+              - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
+              - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+              - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
+              - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
+        - 'Management':
+          - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
+          - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
+          - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
+        - 'Integration with External Tools':
+          - Metrics:
             - 'JMX Monitoring': 'administer-and-observe/jmx_monitoring.md'
             - 'SNMP Monitoring': 'administer-and-observe/snmp_monitoring.md'
-            - 'Prometheus for Monitoring': 'administer-and-observe/monitoring_with_prometheus.md'
-        - TCP Messages:
-          - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
-          - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
-          - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
+          - TCP Messages:
+            - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
+            - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
+            - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
       - 'Product Configurations': 'references/config-catalog.md'
       - Connectors:
@@ -424,10 +432,16 @@ nav:
           - 'Amazon Lambda Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
           - 'Amazon Lambda Reference': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
         - Amazon S3 Connector:
-          - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/amazons3-connector-overview.md'
-          - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
-          - 'AmazonS3 Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
-          - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
+          - '1.x':
+            - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/1.x/amazons3-connector-overview.md'
+            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/1.x/amazons3-connector-config.md'
+            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/1.x/amazons3-connector-example.md'
+            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/1.x/amazons3-connector-reference.md'
+          - '2.x':
+            - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/2.x/amazons3-connector-overview.md'
+            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/2.x/amazons3-connector-config.md'
+            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/2.x/amazons3-connector-example.md'
+            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/2.x/amazons3-connector-reference.md'
         - Amazon SQS Connector:
           - 'Amazon SQS Overview': 'references/connectors/amazonsqs-connector/amazonsqs-connector-overview.md'
           - 'Amazon SQS Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
@@ -509,6 +523,10 @@ nav:
           - 'Database Event Listener Overview': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-overview.md'
           - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
           - 'Database Event Listener Reference': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - Documentum Connector:
+          - 'Documentum Overview': 'references/connectors/documentum/documentum-overview.md'
+          - 'Documentum Example': 'references/connectors/documentum/documentum-example.md'
+          - 'Documentum Reference': 'references/connectors/documentum/documentum-reference.md'
         - Email Connector:
           - 'Email Connector Overview': 'references/connectors/email-connector/email-connector-overview.md'
           - 'Email Connector Example': 'references/connectors/email-connector/email-connector-example.md'
@@ -628,7 +646,6 @@ nav:
           - 'Property Mediator' : 'references/mediators/property-Mediator.md'
           - 'Property Group Mediator' : 'references/mediators/property-Group-Mediator.md'
           - 'Respond Mediator' : 'references/mediators/respond-Mediator.md'
-          - 'Rule Mediator' : 'references/mediators/rule-Mediator.md'
           - 'Script Mediator' : 'references/mediators/script-Mediator.md'
           - 'Send Mediator' : 'references/mediators/send-Mediator.md'
           - 'Sequence Mediator' : 'references/mediators/sequence-Mediator.md'
@@ -688,6 +705,7 @@ nav:
           - 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
           - 'Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
           - 'SQL/Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
+          - 'Sample Queries': 'references/synapse-properties/data-services/sample-queries.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
@@ -752,4 +770,4 @@ extra:
       link: https://twitter.com/wso2
     - type: linkedin
       link: https://www.linkedin.com/company/wso2
-  site_version: 7.0.0
+  site_version: 7.1.0

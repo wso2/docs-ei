@@ -18,7 +18,7 @@ In the above scenario, the following takes place:
 
 Both Grand Oak Hospital and Pine Valley Hospital have services exposed over the HTTP protocol.
 
-The Pine Valley Hospital service accepts a GET request in the following service endpoint URL.
+The Pine Valley Hospital service accepts a POST request in the following service endpoint URL.
 
 ```bash
 http://<HOST_NAME>:<PORT>/pineValley/doctors

@@ -9560,8 +9560,8 @@ flow.statistics.enable=false
 flow.statistics.capture_all=false
 statistics.enable_clean=true
 statistics.clean_interval = "1000ms"
-flow.statistics.tracer.collect_payloads=false
-flow.statistics.tracer.collect_properties=false
+stat.tracer.collect_payloads=false
+stat.tracer.collect_mediation_properties=false
 inbound.core_threads = 20
 inbound.max_threads = 100
 </code></pre>
@@ -9671,7 +9671,7 @@ inbound.max_threads = 100
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>If this parameter is set to true , the Micro Integrator can switch to xpath 2.0. This parameter is 'false' by default since xpath 2.0 evaluations can cause performance degradation. The Micro Integrator uses the <b>Saxon Home Edition</b> when implementing XPATH 2.0 functionalities, and thus supports all the functions that are shipped with it. For more information on the supported functions, see the Saxon Documentation.</p>
+                                        <p>If this parameter is set to true, the Micro Integrator can switch to XPATH 2.0. This parameter can be set to false if XPATH 2.0 evaluations cause performance degradation. The Micro Integrator uses the <b>Saxon Home Edition</b> when implementing XPATH 2.0 functionalities, and thus supports all the functions that are shipped with it. For more information on the supported functions, see the Saxon Documentation.</p>
                                     </div>
                                 </div>
                             </div><div class="param">

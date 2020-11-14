@@ -181,7 +181,6 @@ Once you have entered the required details, click **Add**. It will list the reso
 If you encounter errors with the unit testing framework, you can debug the framework for troubleshooting as follows:
 
 1. Select the WSO2 Integration Studio and go to **Run -> Run Configurations..** to open the <b>Run Configurations</b> dialog box.
-
 2. Expand <b>Maven Build</b> and click <b>Run Unit Test Internal Configuration</b>.
 3. In the <b>Goals</b> field, add `-X` to the end of the command as shown below. 
 

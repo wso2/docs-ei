@@ -1,4 +1,3 @@
-
 # Introduction
 
 WSO2 Streaming Integrator(SI) is a streaming data processing server that integrates streaming data and takes action based on streaming data. The streaming integration capabilities of EI are delivered via this runtime
@@ -36,10 +35,8 @@ Synapse integration flows deployed in [WSO2 Micro Integration(MI)](https://githu
 
 ## Tooling
 
-WSO2 SI is coupled with the [Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md); a comprehensive streaming integration flow designer for [**developing**](../develop/creating-a-Siddhi-Application.md)) Siddhi applications
+WSO2 SI is coupled with the [Streaming Integrator Tooling](../develop//streaming-integrator-studio-overview.md); a comprehensive streaming integration flow designer for [**developing**](../develop/creating-a-Siddhi-Application.md)) Siddhi applications
  by writing queries or via the drag-and-drop functionality, [**testing**](../develop/testing-a-Siddhi-Application.md) them thoroughly before using them in production, and then [**deploying**](../develop/deploying-Streaming-Applications.md) them in the SI server or [exporting them to be deployed as a K8 or a Docker image](../develop/exporting-Siddhi-Applications.md).
-
-
 
 ## Centralized and Decentralized Deployment
 

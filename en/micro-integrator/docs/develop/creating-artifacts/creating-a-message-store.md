@@ -60,16 +60,6 @@ Open the new message store artifact from the project explorer. You can use the *
 
 <img src="../../../assets/img/create_artifacts/new_message_store/message-store-form-view.png" width="700">
 
-See the links given below for descriptions of properties for each message store type:
-
--	[JMS properties](../../../references/synapse-properties/message-stores/jms-msg-store-properties)
--	[JDBC properties](../../../references/synapse-properties/message-stores/jdbc-msg-store-properties)
--	[RabbitMQ properties](../../../references/synapse-properties/message-stores/rabbitmq-msg-store-properties)
--	[Resequence properties](../../../references/synapse-properties/message-stores/resequence-msg-store-properties)
--	[WSO2 MB properties](../../../references/synapse-properties/message-stores/wso2mb-msg-store-properties)
--	[In-Memory properties](../../../references/synapse-properties/message-stores/in-memory-msg-store-properties)
--	[Custom properties](../../../references/synapse-properties/message-stores/custom-msg-store-properties)
-
 ## Examples
 
 -   [Introduction to Message Stores and Processors](../../../use-cases/examples/message_store_processor_examples/intro-message-stores-processors)
@@ -79,4 +69,4 @@ See the links given below for descriptions of properties for each message store 
 
 ## Tutorials
 
--	See the tutorial on [using message stores and processors](../../../../use-cases/tutorials/storing-and-forwarding-messages)
+-	See the tutorial on [using message stores and processors](../../../use-cases/tutorials/storing-and-forwarding-messages)

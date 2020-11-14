@@ -34,7 +34,7 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
   </tr>
 </table>
 
-### Opther Parameters (Optional)
+### Other Parameters (Optional)
 
 <table>
    <tr>
@@ -78,11 +78,16 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
       </tr>
       <tr>
          <td>rabbitmq.queue.autodeclare</td>
-         <td>Whether to create queues if they are not present. However, you should set this parameter only if queues are not declared prior on the broker. Setting this parameter in the publish URL to <code>false</code> improves RabbitMQ transport performance.</td>
+         <td>
+           Whether or not to declare the queue. If set to <code>true</code>, the Micro Integrator creates queues if they are not already
+present. If set to <code>false</code>, the Micro Integrator will assume that a queue is already available. However, you should set this parameter to true only if queues are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
+         </td>
       </tr>
       <tr>
          <td>rabbitmq.exchange.autodeclare</td>
-         <td>Whether to create exchanges if they are not present. However, you should set this parameter only if exchanges are not declared prior on the broker. Setting this parameter in the publish URL to <code>false</code> improves RabbitMQ transport performance.</td>
+         <td>
+            Whether or not to declare the exchange. If set to <code>true</code>, the Micro Integrator creates exchanges. If set to <code>false</code>, the Micro Integrator will assume that an exchange is already available. However, you should set this parameter to true only if exchanges are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
+          </td>
       </tr>
       <tr>
          <td>rabbitmq.exchange.type</td>
@@ -353,3 +358,7 @@ In your integration solution, the following RabbitMQ send parameters can be spec
       </tr>
    </tbody>
 </table>
+
+### Mediator Properties
+
+In addition to the parameters described above, you can define RabbitMQ properties using the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).

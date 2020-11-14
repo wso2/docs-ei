@@ -2,9 +2,9 @@
 
 To use the Kafka connector, download and install [Apache Kafka](http://kafka.apache.org/downloads.html). Before you start configuring the Kafka you also need WSO2 EI and we refer to that location as <PRODUCT_HOME>.
 
-> **Note**: The recommended version is [kafka](https://www.apache.org/dyn/closer.cgi?path=/kafka/1.0.0/kafka_2.12-1.0.0.tgz). For all available versions of Kafka that you can download, see https://kafka.apache.org/downloads. The recommended Java version is 1.8.
+> **Note**: The recommended version is [Kafka 2.12-1.0.0](https://www.apache.org/dyn/closer.cgi?path=/kafka/1.0.0/kafka_2.12-1.0.0.tgz). For all available versions of Kafka that you can download, see https://kafka.apache.org/downloads. The recommended Java version is 1.8.
 
-To configure the Kafka connector, copy the following client libraries from the `<KAFKA_HOME>/lib` directory to the `<PRODUCT_HOME>/repository/components/lib` directory.
+To configure the Kafka connector, copy the following client libraries from the `<KAFKA_HOME>/lib` directory to the `<MI_HOME>/lib` directory.
 
 * [kafka_2.12-1.0.0.jar](https://mvnrepository.com/artifact/org.apache.kafka/kafka_2.12/1.0.0)  
 * [kafka-clients-1.0.0.jar](https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients/1.0.0)
@@ -13,15 +13,15 @@ To configure the Kafka connector, copy the following client libraries from the `
 * [zkclient-0.10.jar](https://mvnrepository.com/artifact/com.101tec/zkclient/0.10)
 * [zookeeper-3.4.10.jar](https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper/3.4.10)
 
-Run the following command to start the ZooKeeper server:
+Navigate to <KAFKA_HOME> and run the following command to start the ZooKeeper server:
 
-```
+```bash
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 
-Run the following command to start the Kafka server:
+From the <KAFKA_HOME> directory, run the following command to start the Kafka server:
 
-```
+```bash
 bin/kafka-server-start.sh config/server.properties
 ```
 

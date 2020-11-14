@@ -50,7 +50,7 @@ When the client sends an HTTP request to the Micro Integrator, a correlation ID 
 the request can be passed using the correlation header that is
 configured in the Micro Integrator. By default, the correlation header is
 'activity_id'. If you want to change the default correlation header,
-wee the topic on [configuring correlation logs](#configuring-correlation-logs). If the
+see the topic on [configuring correlation logs](#configuring-correlation-logs-optional). If the
 client does not pass a correlation ID in the request, the Micro Integrator will
 generate an internal value and assign it to the request. The correlation
 ID assigned to the incoming request is assigned to all the log entries
@@ -250,44 +250,43 @@ The detail recorded in a log entry is described below.
 </tbody>
 </table>
 
-## Configuring correlation logs ( Optional )
+## Configuring correlation logs (Optional)
 
 Following are the default configurations for correlation logs in the Micro Integrator server.
 You might customize them in `log4j2.properties` file (stored in the `MI_HOME/conf/` directory) if required.
 
-        ```xml
-        # Appender config to put correlation Log.
-        appender.CORRELATION.type = RollingFile
-        appender.CORRELATION.name = CORRELATION
-        appender.CORRELATION.fileName =${sys:carbon.home}/repository/logs/correlation.log
-        appender.CORRELATION.filePattern =${sys:carbon.home}/repository/logs/correlation-%d{MM-dd-yyyy}.log
-        appender.CORRELATION.layout.type = PatternLayout
-        appender.CORRELATION.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
-        appender.CORRELATION.policies.type = Policies
-        appender.CORRELATION.policies.time.type = TimeBasedTriggeringPolicy
-        appender.CORRELATION.policies.time.interval = 1
-        appender.CORRELATION.policies.time.modulate = true
-        appender.CORRELATION.policies.size.type = SizeBasedTriggeringPolicy
-        appender.CORRELATION.policies.size.size=10MB
-        appender.CORRELATION.strategy.type = DefaultRolloverStrategy
-        appender.CORRELATION.strategy.max = 20
-        appender.CORRELATION.filter.threshold.type = ThresholdFilter
-        appender.CORRELATION.filter.threshold.level = INFO 
-        ```
+```xml
+# Appender config to put correlation Log.
+appender.CORRELATION.type = RollingFile
+appender.CORRELATION.name = CORRELATION
+appender.CORRELATION.fileName =${sys:carbon.home}/repository/logs/correlation.log
+appender.CORRELATION.filePattern =${sys:carbon.home}/repository/logs/correlation-%d{MM-dd-yyyy}.log
+appender.CORRELATION.layout.type = PatternLayout
+appender.CORRELATION.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
+appender.CORRELATION.policies.type = Policies
+appender.CORRELATION.policies.time.type = TimeBasedTriggeringPolicy
+appender.CORRELATION.policies.time.interval = 1
+appender.CORRELATION.policies.time.modulate = true
+appender.CORRELATION.policies.size.type = SizeBasedTriggeringPolicy
+appender.CORRELATION.policies.size.size=10MB
+appender.CORRELATION.strategy.type = DefaultRolloverStrategy
+appender.CORRELATION.strategy.max = 20
+appender.CORRELATION.filter.threshold.type = ThresholdFilter
+appender.CORRELATION.filter.threshold.level = INFO 
+```
 
 Note that the maximum file size of the correlation log is set to
     10MB in the above configuration. That is, when the size of the file
     exceeds 10MB, a new log file is created. If required, you can change
     this file size.
 
-**If required** , you can change the default HTTP header (which is
+**If required**, you can change the default HTTP header (which is
     'activity_id') that is used to carry the correlation ID by adding
     the following property to the
     `deployment.toml` file (stored in the `MI_HOME/conf/` directory). Replace
     `<correlation_id>` with a value of your choice.
 
-    ```toml
-    [passthru_properties]
-    correlation_header_name="<correlation_id>"
-    ```
-   
+```toml
+[passthru_properties]
+correlation_header_name="<correlation_id>"
+```

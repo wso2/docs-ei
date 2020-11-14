@@ -12,7 +12,7 @@ To see the available File connector, navigate to the [connector store](https://s
 
 | Connector version | Supported WSO2 EI version |
 | ------------- |------------- |
-|  [2.0.22](https://github.com/wso2-extensions/esb-connector-file/tree/org.wso2.carbon.connector.fileconnector-2.0.21)        |  EI 7.0.x, EI 6.6.0, EI 6.5.0, EI 6.4.0 |
+|  [2.0.22](https://github.com/wso2-extensions/esb-connector-file/tree/org.wso2.carbon.connector.fileconnector-2.0.21)        |  EI 7.1.0, EI 7.0.x, EI 6.6.0, EI 6.5.0, EI 6.4.0 |
 
 For older versions, see the details in the connector store.
 

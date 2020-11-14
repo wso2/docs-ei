@@ -4,6 +4,10 @@ The Gateway pattern is used for securely exposing APIs (representing business fu
 
 You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a “DMZ” (demilitarized zone) and thereby exposing the services to external service consumers. The DMZ pre-processes service requests coming from the public and routes only valid and authorized messages to the actual service platforms. Pre-processing typically consist of message validation, filtering, and transformation, orchestration, etc.
 
+Proxy services in the Micro Integrator act as Messaging Gateways, abstracting the details of the actual back-end services from implementing clients.
+
+<img src="../../../assets/img/use-cases-overview/message-gateway.png" title="Message Gateway" width="600" alt="Message Gateway"/>
+
 <!--
 <table>
 	<tr>
