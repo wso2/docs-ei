@@ -1,8 +1,8 @@
-# Using the EI Analytics Dashboard
+# Using the EI Analytics Portal
 
 Let's use **EI Analytics** to view and monitor **statistics** and **message tracing**.
 
-You can monitor the following statistics and more through the EI Analytics dashboard:
+You can monitor the following statistics and more through the EI Analytics portal:
 
 - Request Count
 - Overall TPS
@@ -12,8 +12,6 @@ You can monitor the following statistics and more through the EI Analytics dashb
 - Top Endpoints by Request Count
 - Top Inbound Endpoints by Request Count
 - Top Sequences by Request Count
-- See [this documentation](https://docs.wso2.com/display/EI660/Analyzing+the+ESB+Profile+Statistics+Overview) 
-for more information on what you can monitor using EI Analytics.
 
 !!! Tip
     Monitoring the usage of the integration runtime using statistical information is very important for understanding the overall health of a system that runs in production. Statistical data helps to do proper capacity planning, to keep the runtimes in a healthy state, and for debugging and troubleshooting problems. When it comes to troubleshooting, the ability to trace messages that pass through the mediation flows of the Micro Integrator is very useful.
@@ -26,10 +24,10 @@ for more information on what you can monitor using EI Analytics.
     <table>
         <tr>
             <th>
-                EI_6.6.0_HOME
+                EI_ANALYTICS_HOME
             </th>
             <td>
-                This is the root folder of your EI 6.6.0 installation.
+                This is the root folder of your EI Analytics installation.
             </td>
         </tr>
         <tr>
@@ -46,13 +44,13 @@ for more information on what you can monitor using EI Analytics.
 
 Let's start the servers in the given order.
 
-### Starting the Analytics Worker
+### Starting the Analytics Server
 
 !!! Note
     Be sure to start the **Analytics** server before [starting the Micro Integrator](#starting-the-micro-integrator).
 
-1.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
-2.  Start the Analytics Worker runtime by executing the following command:
+1.  Open a terminal and navigate to the `<EI_ANALYTICS_HOME>/bin` directory.
+2.  Start the Analytics server by executing the following command:
 
     ```bash tab='On MacOS/Linux/Centos'
     sh server.sh
@@ -67,12 +65,12 @@ Let's start the servers in the given order.
 !!! Warning
     Be sure to [configure the SSL certificates](../../setup/observability/setting-up-classic-observability-deployment/#configure-ssl-certificates) before starting the Micro Integrator.
 
-Once you have [started the Analytics Worker](#starting-the-analytics-worker), you can [start the Micro Integrator](../../../setup/installation/install_in_vm_installer/).
+Once you have [started the Analytics Server](#starting-the-analytics-server), you can [start the Micro Integrator](../../../setup/installation/install_in_vm_installer/).
 
-### Starting the Analytics Dashboard
+### Starting the Analytics Portal
 
-1.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
-2.  Start the Analytics Dashboard runtime by executing the following command:
+1.  Open a terminal and navigate to the `<EI_ANALYTICS_HOME>/bin` directory.
+2.  Start the Analytics Portal's runtime by executing the following command:
 
     ```bash tab='On MacOS/Linux/Centos'
     sh portal.sh
@@ -82,13 +80,13 @@ Once you have [started the Analytics Worker](#starting-the-analytics-worker), yo
     portal.bat
     ```
 
-In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal>. Use `admin` for both the username and password.
+In a new browser window or tab, open the Analytics portal using the following URL: <https://localhost:9643/portal>. Use `admin` for both the username and password.
 
 <img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
 
-## Publishing statistics to the dashboard
+## Publishing statistics to the portal
 
-Let's **test this solution** by running the [service chaining](../../use-cases/tutorials/exposing-several-services-as-a-single-service) tutorial. When the artifacts deployed in the Micro Integrator are invoked, the statistics will be available in the dashboard. 
+Let's **test this solution** by running the [service chaining](../../use-cases/tutorials/exposing-several-services-as-a-single-service) tutorial. When the artifacts deployed in the Micro Integrator are invoked, the statistics will be available in the portal. 
 
 Follow the steps given below.
 
@@ -115,7 +113,7 @@ Follow the steps given below.
     Let's send 8 requests to the Micro Integrator to invoke the integration artifacts:
 
     !!! Tip
-        For the purpose of demonstrating how successful messages and message failures are illustrated in the dashboard, let's send 2 of the requests while the back-end service is not running. This should generate a success rate of 75%.
+        For the purpose of demonstrating how successful messages and message failures are illustrated in the portal, let's send 2 of the requests while the back-end service is not running. This should generate a success rate of 75%.
 
     1.  Create a JSON file called `request.json` with the following request payload.
         ```json
@@ -154,9 +152,9 @@ Follow the steps given below.
 
     3.  Now, shut down the back-end service and send two more requests.
 
-## Viewing the Analytics dashboard
+## Viewing the Analytics portal
 
-Once you have signed in to the analytics dashboard server, click the **Enterprise Integrator Analytics** icon shown below to open the dashboard.  
+Once you have signed in to the analytics portal, click the **Enterprise Integrator Analytics** icon shown below to open the portal.  
 
 ![Opening the Analytics dashboard for WSO2 EI](../assets/img/ei-analytics/119132315/119132335.png "Opening the Analytics dashboard for WSO2 EI")  
       
@@ -184,6 +182,7 @@ The `            HealthcareAPI           ` REST API is displayed under **TOP API
 ![Top APIs by request count](../assets/img/ei-analytics/119132315/119132324.png "Top APIs by request count")
 
 ### Endpoints by request
+
 The three endpoints used for the message mediation are displayed under **Top Endpoints by Request Count** as shown below.  
 
 ![Top endpoints by request count](../assets/img/ei-analytics/119132315/119132318.png "Top endpoints by request count")
@@ -230,7 +229,7 @@ You can also navigate to any of the artifacts by using the top-left menu as show
 
 ### Message tracing
 
-When you go to the [Analytics Dashboard](#starting-the-analytics-dashboard) the message details will be logged as follows:
+When you go to the [Analytics Portal](#starting-the-analytics-dashboard) the message details will be logged as follows:
 
 ![Message tracing per API](../assets/img/ei-analytics/119132315/message-tracing.png "Message tracing per API") 
 

@@ -1,17 +1,18 @@
-# Setting up the EI Analytics Profile for Observability
-Follow the instructions given below to enable observability for your Micro Integrator deployment using the [Analytics profile of WSO2 EI 6.6.0](https://docs.wso2.com/display/EI660/Using+the+WSO2+EI+Analytics+Profile). 
+# Setting up the EI Analytics for Observability
+
+Follow the instructions given below to enable observability for your Micro Integrator deployment using <b>EI Analytics</b>. 
 
 ![EI-Analytics Observability](../../assets/img/monitoring-dashboard/classic-observability-architecture.png)
 
-The Analytics profile consists of two components: **Worker** and **Dashboard**. The worker is the server that processes the data streams that are sent from the Micro Integrator and publishes the statistics to a database. The dashboard reads the statistics published by the worker and displays the statistics. The worker and dashboard are connected through the database.
+EI Analytics consists of two components: **Server** and **Portal**. The server processes the data streams that are sent from the Micro Integrator and publishes the statistics to a database. The portal reads the statistics published by the worker and displays the statistics. The server and portal are connected through the database.
 
 This solution is more suitable if you already have an observability stack such as ELK,  or if you want more business analytics and less operational observability. To select the most appropriate observability solution for your deployment, see [Observability Deployment Strategy](../../../setup/observability/observability-deployment-strategy).
 
 ## System requirements
 
-You will be running three servers (analytics worker, analytics dashboard, and the Micro Integrator) for this solution. Be sure that you have the required system specifications to run each server.
+You will be running three servers (EI Analytics server, EI Analytics portal, and the Micro Integrator) for this solution. Be sure that you have the required system specifications to run each server.
 
--   For the Analytics **Worker**:
+-   For the Analytics **Server**:
 
     <table>
     <tbody>
@@ -26,7 +27,7 @@ You will be running three servers (analytics worker, analytics dashboard, and th
     </tbody>
     </table>
 
--   For the Analytics **Dashboard**:
+-   For the Analytics **Portal**:
 
     <table>
     <tbody>
@@ -45,15 +46,12 @@ You will be running three servers (analytics worker, analytics dashboard, and th
 
 ## Download the servers
 
--   Download and [install WSO2 EI 6.6.0](https://docs.wso2.com/display/EI660/Installing+the+Product). 
+-   Download and install EI Analytics. 
 
-    !!! Tip
-        You will use the Analytics servers from this distribution.
-
-    The location of your WSO2 EI 6.x.x installation will be referred to as `<EI_6.x.x_HOME>`.
+    The location of your Analytics installation will be referred to as `<EI_ANALYTICS_HOME>`.
 
 -   Download and [install the Micro Integrator](../../../setup/installation/install_in_vm_installer) of EI 7.1. 
-    
+
 
 ## Configuring the Micro Integrator
 
@@ -64,8 +62,6 @@ You will be running three servers (analytics worker, analytics dashboard, and th
 
 To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certificates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../../setup/security/importing_ssl_certificate).
     
-For testing, you can simply copy the keystore files from the `<EI_6.x.x_HOME>/wso2/analytics/resources/security` directory to the `MI_HOME/resources/security` directory.
-
 ### Enabling statistics monitoring
 
 To enable statistics monitoring for the Micro Integrator, add the following parameters in the `deployment.toml` file of your Micro Integrator. This file is stored in the `MI_HOME/conf`.
@@ -114,4 +110,4 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 
 ## What's Next?
 
-If you have successfully set up your anlaytics deployment, see the instructions on [using the Analytics dashboard](../../../administer-and-observe/using-the-analytics-dashboard).
+If you have successfully set up your anlaytics deployment, see the instructions on [using the analytics portal](../../../administer-and-observe/using-the-analytics-dashboard).
