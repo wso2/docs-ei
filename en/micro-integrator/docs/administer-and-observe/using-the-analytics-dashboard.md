@@ -51,7 +51,7 @@ Let's start the servers in the given order.
 !!! Note
     Be sure to start the **Analytics** server before [starting the Micro Integrator](#starting-the-micro-integrator).
 
-1.  Open a terminal and navigate to the `<EI_ANALYTICS_HOME>/wso2/analytics/bin` directory.
+1.  Open a terminal and navigate to the `<EI_ANALYTICS_HOME>/bin` directory.
 2.  Start the Analytics server by executing the following command:
 
     ```bash tab='On MacOS/Linux/Centos'
@@ -67,11 +67,11 @@ Let's start the servers in the given order.
 !!! Warning
     Be sure to [configure the SSL certificates](../../setup/observability/setting-up-classic-observability-deployment/#configure-ssl-certificates) before starting the Micro Integrator.
 
-Once you have [started the Analytics Server](#starting-the-analytics-worker), you can [start the Micro Integrator](../../../setup/installation/install_in_vm_installer/).
+Once you have [started the Analytics Server](#starting-the-analytics-server), you can [start the Micro Integrator](../../../setup/installation/install_in_vm_installer/).
 
 ### Starting the Analytics Portal
 
-1.  Open a terminal and navigate to the `<EI_ANALYTICS_HOME>/wso2/analytics/bin` directory.
+1.  Open a terminal and navigate to the `<EI_ANALYTICS_HOME>/bin` directory.
 2.  Start the Analytics Portal's runtime by executing the following command:
 
     ```bash tab='On MacOS/Linux/Centos'
