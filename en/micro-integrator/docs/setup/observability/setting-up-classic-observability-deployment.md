@@ -62,8 +62,6 @@ You will be running three servers (EI Analytics server, EI Analytics portal, and
 
 To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certificates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../../setup/security/importing_ssl_certificate).
     
-For testing, you can simply copy the keystore files from the `<EI_ANALYTICS_HOME>/wso2/analytics/resources/security` directory to the `MI_HOME/resources/security` directory.
-
 ### Enabling statistics monitoring
 
 To enable statistics monitoring for the Micro Integrator, add the following parameters in the `deployment.toml` file of your Micro Integrator. This file is stored in the `MI_HOME/conf`.

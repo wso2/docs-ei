@@ -12,8 +12,6 @@ You can monitor the following statistics and more through the EI Analytics porta
 - Top Endpoints by Request Count
 - Top Inbound Endpoints by Request Count
 - Top Sequences by Request Count
-- See [this documentation](https://docs.wso2.com/display/EI660/Analyzing+the+ESB+Profile+Statistics+Overview) 
-for more information on what you can monitor using EI Analytics.
 
 !!! Tip
     Monitoring the usage of the integration runtime using statistical information is very important for understanding the overall health of a system that runs in production. Statistical data helps to do proper capacity planning, to keep the runtimes in a healthy state, and for debugging and troubleshooting problems. When it comes to troubleshooting, the ability to trace messages that pass through the mediation flows of the Micro Integrator is very useful.
