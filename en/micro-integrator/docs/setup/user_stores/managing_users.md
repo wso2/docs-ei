@@ -35,7 +35,7 @@ An existing admin user can log in to the Micro Integrator server from the CLI to
 
 ### Non-admin users
 
-Users that do not have admin privileges can access the management API, the CLI, and the Dashboard to view and monitoring integration artifacts and logs.
+Users that do not have admin privileges can access the management API, the CLI, and the dashboard to view and monitor integration artifacts and logs.
 
 ## Managing users from the CLI
 
