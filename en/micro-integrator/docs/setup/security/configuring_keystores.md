@@ -21,12 +21,23 @@ The **default trust store** contains the certificates of reputed CAs that can va
 
 If you want to change the [default primary keystore](#the-default-keystore-configuration) that is shipped with the product, follow the steps given below.
 
-1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the MI_HOME/repository/security/ directory.
-  
+1. [Create a new keystore](../../setup/security/creating_keystores). 
+
     !!! Note
         CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
 
-2. Open the deployment.toml file, add the following config section, and update the parameter values for the newly-created keystore.
+2.  You can copy the new file to the `<MI_HOME>/repository/security/` folder. 
+
+    !!! Note
+        You can use a custom location <b>only</b> if you are using an updated version of the Micro Integrator. Read the below instructions for details.
+
+3. Open the deployment.toml file, add the following config section, and update the parameter values for the newly-created keystore.
+
+    !!! Warning
+        WSO2 released a product update on <b>17/09/2020</b>, which requires that you provide the full path to your keystore file. If you don't already have this  update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+
+        If you are not using the product update, you should only specify the keystore name in the configuration (`file_name="wso2carbon.jks"`). Also, be sure to have the keystore file in the default `<MI_HOME>/repository/security/` folder. Custom keystore locations cannot be used without the product update.
+
     ```toml
     [keystore.primary]
     file_name="repository/resources/security/wso2carbon.jks"
@@ -37,16 +48,6 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
     ```
     Find more details about [keystore parameters](../../../references/config-catalog/#primary-keystore).
     
-    !!! Note
-        If you are using the pack (without any WUM update released after 09/17/2020), you need to use the following configuration,
-            ```[keystore.tls]
-               file_name="wso2carbon.jks"
-               type="JKS"
-               password="wso2carbon"
-               alias="wso2carbon"
-               key_password="wso2carbon" 
-           ```
-           
 3. [Import the required CA-signed certificates](../../setup/security/importing_ssl_certificate.md) to the key store.
 
 ## Separating the internal keystore
@@ -59,12 +60,23 @@ By default, the [primary keystore](#the-default-keystore-configuration) is used 
 
 Follow the steps given below to separate the keystore that is used for encrypting data in internal data stores.
 
-1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the MI_HOME/repository/security/ directory.
-  
-    !!! Note
-        You do not require CA-signed certificates for this keystore because it will **not** be used for communicating with external parties.
+1. [Create a new keystore](../../setup/security/creating_keystores). 
 
-2. Open the deployment.toml file, and update the parameter values for the newly-created internal keystore.
+    !!! Note
+        CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
+
+2.  You can copy the new file to the `<MI_HOME>/repository/security/` folder. 
+
+    !!! Note
+        You can use a custom location <b>only</b> if you are using an updated version of the Micro Integrator. Read the below instructions for details.
+
+3. Open the deployment.toml file, and update the parameter values for the newly-created internal keystore.
+
+    !!! Warning
+        WSO2 released a product update on <b>17/09/2020</b>, which requires that you provide the full path to your keystore file. If you don't already have this  update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+
+        If you are not using the product update, you should only specify the keystore name in the configuration (`file_name="wso2carbon.jks"`). Also, be sure to have the keystore file in the default `<MI_HOME>/repository/security/` folder. Custom keystore locations cannot be used without the product update.
+        
     ```toml
     [keystore.internal]
     file_name="repository/resources/security/wso2carbon.jks"
@@ -74,9 +86,6 @@ Follow the steps given below to separate the keystore that is used for encryptin
     key_password="wso2carbon"
     ```
     Find more details about [internal keystore parameters](../../../references/config-catalog/#internal-keystore).
-    
-    !!! Note
-        If you are using the pack (without any WUM update released after 09/17/2020), you need to configure the file_name parameter without file location as <b>file_name="wso2carbon.jks"</b>.
             
 ## Optional: Changing the default truststore
 If you want to change the [default trust store](#the-default-keystore-configuration) that is shipped with the product, follow the steps given below.
