@@ -26,7 +26,7 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
     !!! Note
         CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
 
-2.  You can copy the new file to the `<MI_HOME>/repository/security/` folder. 
+2.  You can copy the new file to the `<MI_HOME>/repository/resources/security/` folder. 
 
     !!! Note
         You can use a custom location <b>only</b> if you are using an updated version of the Micro Integrator. Read the below instructions for details.
@@ -50,7 +50,7 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
     -   If you are using a Micro Integrator <b>without</b> updates, use the following configuration and change the values. 
 
         !!! Info
-            Be sure to replace `[keystore.primary]` with `[keystore.tls]` and specify the keystore name instead of the file path. Also, be sure to store the keystore file in the default `<MI_HOME>/repository/security/` folder. Custom keystore locations cannot be used without the product update.
+            Be sure to replace `[keystore.primary]` with `[keystore.tls]` and specify the keystore name instead of the file path. Also, be sure to store the keystore file in the default `<MI_HOME>/repository/resources/security/` folder. Custom keystore locations cannot be used without the product update.
 
         ```toml
         [keystore.tls]
@@ -80,7 +80,7 @@ Follow the steps given below to separate the keystore that is used for encryptin
     !!! Note
         CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
 
-2.  You can copy the new file to the `<MI_HOME>/repository/security/` folder. 
+2.  You can copy the new file to the `<MI_HOME>/repository/resources/security/` folder. 
 
     !!! Note
         You can use a custom location <b>only</b> if you are using an updated version of the Micro Integrator. Read the below instructions for details.
@@ -104,7 +104,7 @@ Follow the steps given below to separate the keystore that is used for encryptin
     -   If you are using a Micro Integrator <b>without</b> updates, use the following configuration and change the values. 
 
         !!! Info
-            Be sure to specify the keystore name instead of the file path. Also, be sure to store the keystore file in the default `<MI_HOME>/repository/security/` folder. Custom keystore locations cannot be used without the product update.
+            Be sure to specify the keystore name instead of the file path. Also, be sure to store the keystore file in the default `<MI_HOME>/repository/resources/security/` folder. Custom keystore locations cannot be used without the product update.
 
         ```toml
         [keystore.internal]
@@ -117,24 +117,46 @@ Follow the steps given below to separate the keystore that is used for encryptin
     Find more details about [internal keystore parameters](../../../references/config-catalog/#internal-keystore).
             
 ## Optional: Changing the default truststore
-If you want to change the [default trust store](#the-default-keystore-configuration) that is shipped with the product, follow the steps given below.
+If you want to change the [default truststore](#the-default-keystore-configuration) that is shipped with the product, follow the steps given below.
 
-1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the MI_HOME/repository/security/ directory.
+1. [Create a new keystore](../../setup/security/creating_keystores). 
 
-    !!! Note 
-        You do not require CA-signed certificates for this keystore.
+    !!! Note
+        CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
+
+2.  You can copy the new file to the `<MI_HOME>/repository/resources/security/` folder. 
+
+    !!! Note
+        You can use a custom location <b>only</b> if you are using an updated version of the Micro Integrator. Read the below instructions for details.
 
 2. Open the deployment.toml file, add the following config section and update the values for the newly-created trust store.
-    ```toml
-    [truststore]
-    file_name="repository/resources/security/client-truststore.jks"
-    type="JKS"
-    password="wso2carbon"
-    alias="symmetric.key.value"
-    algorithm="AES"
-    ```
-    
-    !!! Note
-        If you are using the pack (without any WUM update released after 09/17/2020), you need to configure the file_name parameter without file location as <b>file_name="client-truststore.jks"</b>.
+
+    -   If you are using an [updated](https://updates.docs.wso2.com/en/latest/updates/overview/) Micro Integrator, use the following configuration and change the values. 
+
+        !!! Info
+            WSO2 released a product update on <b>17/09/2020</b>, which requires that you provide the full path to your truststore file in your configuration as shown below. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+
+        ```toml
+        [truststore]
+        file_name="repository/resources/security/client-truststore.jks"
+        type="JKS"
+        password="wso2carbon"
+        alias="symmetric.key.value"
+        algorithm="AES"
+        ```
+
+    -   If you are using a Micro Integrator <b>without</b> updates, use the following configuration and change the values. 
+
+        !!! Info
+            Be sure to specify the truststore name instead of the file path. Also, be sure to store the truststore file in the default `<MI_HOME>/repository/resources/security/` folder. Custom locations cannot be used without the product update.
+
+        ```toml
+        [truststore]
+        file_name="client-truststore.jks"
+        type="JKS"
+        password="wso2carbon"
+        alias="symmetric.key.value"
+        algorithm="AES"
+        ```
             
-3. [Import the required certificates](../../setup/security/importing_ssl_certificate.md#importing-ssl-certificates-to-a-truststore) to the trust store.
+3. [Import the required certificates](../../setup/security/importing_ssl_certificate.md#importing-ssl-certificates-to-a-truststore) to the truststore.
