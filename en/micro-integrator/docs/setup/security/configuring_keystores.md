@@ -29,14 +29,17 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
 2. Open the deployment.toml file, add the following config section, and update the parameter values for the newly-created keystore.
     ```toml
     [keystore.primary]
-    file_name="wso2carbon.jks"
+    file_name="repository/resources/security/wso2carbon.jks"
     type="JKS"
     password="wso2carbon"
     alias="wso2carbon"
     key_password="wso2carbon"
     ```
     Find more details about [keystore parameters](../../../references/config-catalog/#primary-keystore).
-
+    
+    !!! Note
+        If you are using the vanilla pack (without any WUM updates), you need to configure the file_name parameter without file location as <b>file_name="wso2carbon.jks"</b>.
+            
 3. [Import the required CA-signed certificates](../../setup/security/importing_ssl_certificate.md) to the key store.
 
 ## Separating the internal keystore
@@ -57,14 +60,17 @@ Follow the steps given below to separate the keystore that is used for encryptin
 2. Open the deployment.toml file, and update the parameter values for the newly-created internal keystore.
     ```toml
     [keystore.internal]
-    file_name="wso2carbon.jks"
+    file_name="repository/resources/security/wso2carbon.jks"
     type="JKS"
     password="wso2carbon"
     alias="wso2carbon"
     key_password="wso2carbon"
     ```
     Find more details about [internal keystore parameters](../../../references/config-catalog/#internal-keystore).
-
+    
+    !!! Note
+        If you are using the vanilla pack (without any WUM updates), you need to configure the file_name parameter without file location as <b>file_name="wso2carbon.jks"</b>.
+            
 ## Optional: Changing the default truststore
 If you want to change the [default trust store](#the-default-keystore-configuration) that is shipped with the product, follow the steps given below.
 
@@ -76,10 +82,14 @@ If you want to change the [default trust store](#the-default-keystore-configurat
 2. Open the deployment.toml file, add the following config section and update the values for the newly-created trust store.
     ```toml
     [truststore]
-    file_name="wso2carbon.jks"
+    file_name="repository/resources/security/client-truststore.jks"
     type="JKS"
     password="wso2carbon"
     alias="symmetric.key.value"
-    algorithm=""
+    algorithm="AES"
     ```
+    
+    !!! Note
+        If you are using the vanilla pack (without any WUM updates), you need to configure the file_name parameter without file location as <b>file_name="client-truststore.jks"</b>.
+            
 3. [Import the required certificates](../../setup/security/importing_ssl_certificate.md#importing-ssl-certificates-to-a-truststore) to the trust store.
