@@ -21,7 +21,7 @@ The **default trust store** contains the certificates of reputed CAs that can va
 
 If you want to change the [default primary keystore](#the-default-keystore-configuration) that is shipped with the product, follow the steps given below.
 
-1. [Create a new keystore](../../setup/security/creating_keystores). 
+1. [Create a new keystore](../../../setup/security/creating_keystores). 
 
     !!! Note
         CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
@@ -31,7 +31,7 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
     !!! Note
         You can use a custom location <b>only</b> if you are using an updated version of the Micro Integrator. Read the below instructions for details.
 
-3. Open the `deployment.toml` file add the relevant configurations (as described below).
+3. Open the `deployment.toml` file and add the relevant configurations as described below.
 
     -   If you are using an [updated](https://updates.docs.wso2.com/en/latest/updates/overview/) Micro Integrator, use the following configuration and change the values. 
 
@@ -75,7 +75,7 @@ By default, the [primary keystore](#the-default-keystore-configuration) is used 
 
 Follow the steps given below to separate the keystore that is used for encrypting data in internal data stores.
 
-1. [Create a new keystore](../../setup/security/creating_keystores). 
+1. [Create a new keystore](../../../setup/security/creating_keystores). 
 
     !!! Note
         CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
@@ -85,7 +85,7 @@ Follow the steps given below to separate the keystore that is used for encryptin
     !!! Note
         You can use a custom location <b>only</b> if you are using an updated version of the Micro Integrator. Read the below instructions for details.
 
-3.  Open the `deployment.toml` file add the relevant configurations (as described below).
+3.  Open the `deployment.toml` file and add the relevant configurations as described below.
 
     -   If you are using an [updated](https://updates.docs.wso2.com/en/latest/updates/overview/) Micro Integrator, use the following configuration and change the values. 
 
@@ -119,7 +119,7 @@ Follow the steps given below to separate the keystore that is used for encryptin
 ## Optional: Changing the default truststore
 If you want to change the [default truststore](#the-default-keystore-configuration) that is shipped with the product, follow the steps given below.
 
-1. [Create a new keystore](../../setup/security/creating_keystores). 
+1. [Create a new keystore](../../../setup/security/creating_keystores). 
 
     !!! Note
         CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
@@ -129,7 +129,7 @@ If you want to change the [default truststore](#the-default-keystore-configurati
     !!! Note
         You can use a custom location <b>only</b> if you are using an updated version of the Micro Integrator. Read the below instructions for details.
 
-2. Open the deployment.toml file, add the following config section and update the values for the newly-created trust store.
+3.  Open the `deployment.toml` file and add the relevant configurations as described below.
 
     -   If you are using an [updated](https://updates.docs.wso2.com/en/latest/updates/overview/) Micro Integrator, use the following configuration and change the values. 
 
