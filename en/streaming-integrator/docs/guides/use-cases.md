@@ -15,9 +15,9 @@ For more information, see the following guides:
 - [Extracting Data from Static Sources in Real Time](../guides/extracting-data-from-static-sources-in-real-time.md)
 - [Receiving Data in Transit](../guides/receiving-data-in-transit.md)
 
-### Processing data
+### Stream Processing
 
-The different types of processing activities that can be performed by WSO2 Streaming Integrator are as follows:
+The different types of stream processing activities that can be performed by WSO2 Streaming Integrator are as follows:
 
  - Cleansing data
  

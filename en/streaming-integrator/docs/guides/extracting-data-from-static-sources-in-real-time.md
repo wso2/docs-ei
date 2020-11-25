@@ -174,6 +174,16 @@ Mappers determine the format in which the event is received. For information abo
 
 The mapper available for extracting data from databases is [Keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sourcemapper).
 
+## Consuming data from NoSQL databases
+
+In addition to RDBMS databases, you can also extract data from NoSQL databases via WSO2 Streaming Integrator.
+
+Consider an example where a business saves information about its customer transactions in a MongoDB database. It needs to query for the top five customers in this database. To do this, you can create a Siddhi application as follows.
+
+```
+
+```
+
 ## File Processing
 
 File Processing involves two types of operations related to files:
