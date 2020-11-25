@@ -68,8 +68,7 @@ nav:
       - 'Receiving Data in Transit': 'guides/receiving-data-in-transit.md'
       - 'Loading and Writing Data': 'guides/loading-and-writing-date.md'
       - 'Publishing Data': 'guides/publishing-data-to-event-stream-consumers.md'
-      - 'Processing Data': 'guides/processing-data.md'
-      - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
+      - 'Stream Processing': 'guides/processing-data.md'
       - 'Handling Errors': 'guides/handling-errors.md'
       - 'Performing ETL Operations': 'guides/performing-etl-tasks.md'
     - 'Tutorials':
