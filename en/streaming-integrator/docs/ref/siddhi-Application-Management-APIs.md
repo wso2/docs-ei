@@ -1419,3 +1419,75 @@ curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: applicat
 </tr>
 </tbody>
 </table>
+
+## Get Node state of a HA deployment
+
+### Overview
+
+<table>
+<tbody>
+<tr class="odd">
+<th>Description</th>
+<td>Give a particular node's states is in active state in a high available deployment</td>
+</tr>
+<tr class="even">
+<th>API Context</th>
+<td><code>/siddhi-apps/ha/is-active-node </code></td>
+</tr>
+<tr class="odd">
+<th>HTTP Method</th>
+<td>GET</td>
+</tr>
+<tr class="even">
+<th>Response format</th>
+<td>text/plain</td>
+</tr>
+<tr class="odd">
+<th>Authentication</th>
+<td>Basic</td>
+</tr>
+<tr class="even">
+<th>Username</th>
+<td>admin</td>
+</tr>
+<tr class="odd">
+<th>Password</th>
+<td>admin</td>
+</tr>
+<tr class="even">
+<th><p>Runtime</p></th>
+<td>server</td>
+</tr>
+</tbody>
+</table>
+                                                           
+
+### curl command syntax
+
+``` java
+curl -X GET http://<HOST_NAME>:<PORT>/siddhi-apps/ha/is-active-node -u admin:admin -k
+```
+
+### Sample curl command
+
+``` java
+curl -X GET http://localhost:9091/siddhi-apps/ha/is-active-node -u admin:admin -k
+```
+
+### Sample output
+
+```
+true or false
+```
+
+### Response
+
+<table>
+<tbody>
+<tr class="odd">
+<th>HTTP Status Code</th>
+<td><p>200 or 500</p>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
+</tr>
+</tbody>
+</table>
