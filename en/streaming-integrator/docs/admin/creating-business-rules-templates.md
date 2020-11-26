@@ -24,7 +24,7 @@ To create a business rule from a template, follow the procedure below:
 2. Access the Business Rule Manager via the URL that appears in the terminal for Business Rules in the `https://<SI_TOOLING_HOST>:<HTTPS_PORT>/business-rules` format.
     
     !!! tip
-        The default URL is `https://0.0.0.0:9743/business-rules`. If required, you can change the host name (i.e., `0.0.0.0`) or the web UI application name (i.e., `business-rules`). For instructions, see [Changing the Host Name and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
+        The default URL is `https://0.0.0.0:9743/business-rules`. If required, you can change the host name (i.e., `0.0.0.0`) or the web UI application name (i.e., `business-rules`). For instructions, see [Changing the Host Name and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md). 
         
     This opens the following:
 
