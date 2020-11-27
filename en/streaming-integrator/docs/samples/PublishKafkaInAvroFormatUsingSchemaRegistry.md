@@ -57,7 +57,7 @@ To execute the sample, follow the steps below:
 
 5. Navigate to the `<SI_TOOLING_HOME>/samples/sample-clients/kafka-avro-consumer` directory and run the `ant` command without arguments.
 
-6. Start the `PublishKafkaInAvroFormatUsingSchemaRegistry` Siddhi application you saved by opening it in Streaming Integrator Tooling and clicking the **Start** button.
+6. Start the `PublishKafkaInAvroFormatUsingSchemaRegistry` Siddhi application you saved by opening it in Streaming Integrator Tooling and clicking the **Start** button in the toolbar.
     
     If the Siddhi application starts successfully, the following messages are logged in the terminal:
     

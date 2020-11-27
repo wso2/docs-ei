@@ -1,37 +1,59 @@
+# Receiving Prometheus Metrics
 
 ## Purpose:
-This application demonstrates how to use prometheus-source to retrieve Prometheus metrics that are exported at an HTTP endpoint.
+This application demonstrates how  to retrieve Prometheus metrics that are exported at an HTTP endpoint via the `prometheus` source.
 
-Pre-requisites:
-1. The following steps must be executed to enable WSO2 SP to publish and retrieve events via Prometheus.
-    1. Download and copy the prometheus client jars to the {WSO2SIHome}/lib directory as follows.
-        1. Download the following jars from https://mvnrepository.com/artifact/io.prometheus and copy them to {WSO2SIHome}/lib directory.
-            * simpleclient_common-0.5.0.jar
-            * simpleclient-0.5.0.jar
-		    * simpleclient_httpserver-0.5.0.jar
-		    * simpleclient_pushgateway-0.5.0.jar
-2. Start the editor WSO2 SP by giving this command in the terminal : sh editor.sh
-3. Save this sample
-"Siddhi App EnergyAlertApp successfully deployed" message would be shown in the console
-4. Navigate to {WSO2SIHome}/samples/sample-clients/prometheus-client and run "ant" command as follows:
-ant
+## Prerequisites:
+
+The following steps must be executed to enable WSO2 Streaming Integrator to publish and retrieve events via Prometheus.
+
+1. To complete the installation of the Prometheus extension in WSO2 Streaming Integrator Tooling, follow the steps below:
+
+    1. Download the following JARs.
+    
+        - [simpleclient_common-0.5.0.jar](https://mvnrepository.com/artifact/io.prometheus/simpleclient_common/0.5.0)
+
+        - [simpleclient-0.5.0.jar](https://mvnrepository.com/artifact/io.prometheus/simpleclient/0.5.0)
+        
+        - [simpleclient_httpserver-0.5.0.jar](https://mvnrepository.com/artifact/io.prometheus/simpleclient_httpserver/0.5.0)
+        
+        - [simpleclient_pushgateway-0.5.0.jar](https://mvnrepository.com/artifact/io.prometheus/simpleclient_pushgateway/0.5.0)
+        
+    2. Place the JARs you downloaded in the `<SI_TOOLING_HOME>/lib` directory.
+		    
+2. Start WSO2 Streaming Integrator Tooling, navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the appropriate command based on your operating system.
+
+    - **For Windows**: `server.bat --run`
+    - **For Linux/MacOS**: `./server.sh`
+
+3. Save the sample `EnergyAlertApp` Siddhi application.
+
+    When the Siddhi application is successfully deployed in Streaming Integrator Tooling, the following message is logged in the console.
+
+    `"Siddhi App EnergyAlertApp successfully deployed"`
+    
+4. Navigate to `<SI_TOOLING_HOME>/samples/sample-clients/prometheus-client` and issue the `ant` command as follows.
+
+    `ant`
 
 ## Executing the Sample:
-1. Start the Siddhi application by clicking on 'Run'.
-2. If the Siddhi application starts successfully, the following message is shown on the console
-    * ReceivePrometheusMetrics.siddhi - Started Successfully!
-    * PowerConsumptionStream has successfully connected at http://localhost:9080
 
-## Note:
-If you want to edit this application while it's running, stop the application, make your edits and save the application, and then start it again.
+1. Start the `EnergyAlertApp` Siddhi application you saved by opening it and then clicking the **Start** button in the toolbar.
+
+    When the Siddhi application is successfully started, the following messages are logged in the terminal.
+    
+    * `ReceivePrometheusMetrics.siddhi - Started Successfully!`
+    * `PowerConsumptionStream has successfully connected at http://localhost:9080`
 
 ## Viewing the Results:
-Messages similar to the following would be shown on the console.
+
+Messages similar to the following are logged in the terminal.
 ```
 - INFO {io.siddhi.core.stream.output.sink.LogSink} - HIGH POWER CONSUMPTION : Event{timestamp=1*********, data=[server001, F3Room2, **, **], isExpired=false}
 - INFO {io.siddhi.core.stream.output.sink.LogSink} - HIGH POWER CONSUMPTION : Event{timestamp=1*********, data=[server002, F2Room2, **, **], isExpired=false}
 ```
 
+The complete sample Siddhi Application is as follows.
 
 ```sql
 @App:name("EnergyAlertApp")
