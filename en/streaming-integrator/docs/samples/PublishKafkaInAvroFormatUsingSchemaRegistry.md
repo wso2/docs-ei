@@ -42,6 +42,8 @@ To execute the sample, follow the steps below:
 3. Start the schema registry node by navigating to the `<CONFLUENT_HOME>` directory and issuing the following command:
 
     `sh bin/schema-registry-start ./etc/schema-registry/schema-registry.properties`
+    
+    This starts the Confluent client in `localhost:8081` port.
 
 4. Post the avro schema to the schema registry by issuing the following CURL command.
 
@@ -49,7 +51,7 @@ To execute the sample, follow the steps below:
     curl -X POST -H "Content-Type: application/json" --data '{ "schema": "{ \"type\": \"record\", \"name\": \"sweetProduction\",\"namespace\": \"sweetProduction\", \"fields\":[{ \"name\": \"name\", \"type\": \"string\" },{ \"name\": \"amount\", \"type\": \"double\" }]}"}' http://localhost:8081/subjects/sweet-production/versions
     ```
    
-   The sample Siddhi application specifies `http://localhost:8081/subjects/sweet-production/versions` as the URI of the schema registry. The above CURL command defines the Avro schema and posts it to this schema registry so that the output messages generated in the `LowProductionAlertStream` are formatted based on this schema when they are published to the `kafka_result_topic` kafka topic.
+   The sample Siddhi application specifies `http://localhost:8081/subjects/sweet-production/versions` as the URI of the schema registry. The above CURL command defines the Avro schema and posts it to this schema registry so that the schema is applied to the output events generated in the `LowProductionAlertStream` when they are published to the `kafka_result_topic` kafka topic.
    
    For more information about how to configure an Avro mapper, see [Siddhi Documentation - Avro Sink Mapper](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#avro-sink-mapper)
 
