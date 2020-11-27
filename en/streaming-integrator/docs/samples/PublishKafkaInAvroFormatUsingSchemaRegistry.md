@@ -48,6 +48,10 @@ To execute the sample, follow the steps below:
     ```
     curl -X POST -H "Content-Type: application/json" --data '{ "schema": "{ \"type\": \"record\", \"name\": \"sweetProduction\",\"namespace\": \"sweetProduction\", \"fields\":[{ \"name\": \"name\", \"type\": \"string\" },{ \"name\": \"amount\", \"type\": \"double\" }]}"}' http://localhost:8081/subjects/sweet-production/versions
     ```
+   
+   The sample Siddhi application specifies `http://localhost:8081/subjects/sweet-production/versions` as the URI of the schema registry. The above CURL command defines the Avro schema and posts it to this schema registry so that the output messages generated in the `LowProductionAlertStream` are formatted based on this schema when they are published to the `kafka_result_topic` kafka topic.
+   
+   For more information about how to configure an Avro mapper, see [Siddhi Documentation - Avro Sink Mapper](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#avro-sink-mapper)
 
 5. Navigate to the `<SI_TOOLING_HOME>/samples/sample-clients/kafka-avro-consumer` directory and run the `ant` command without arguments.
 
