@@ -1,1371 +1,2226 @@
 # File Connector Reference
 
+## Connection configurations
+
+File Connector can be used to deal with two types of file systems.
+
+-   Local file system - file system of the server where WSO2 EI is deployed.
+-   Remote file system  - file system outside the server where WSO2 EI is deployed. There are a few industry standard protocols established to expose a file system over TCP. Following protocols are supported by the File Connector. 
+
+    -   Using FTP
+    -   Using FTPS
+    -   Using SFTP
+    
+There are different connection configurations for above protocols users can select. They contain a common set of configurations and some additional configurations specific to the protocol.
+
+<img src="../../../../assets/img/connectors/filecon-reference-22.png" title="types of file connections" width="800" alt="types of file connections"/>
+
+!!! Info
+    The file connector internally uses Apache VFS library. According to the selected connection type, following VFS connection urls will be generated.
+
+    ```
+    FILE : Provides access to the files on the local physical file system.
+    [file://] absolute-path
+    file:///home/someuser/somedir
+    file:///C:/Documents and Settings
+
+    FTP: Provides access to the files on an FTP server.
+    ftp://[ username[: password]@] hostname[: port][ relative-path]
+    ftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+
+    FTPS: Provides access to the files on an FTP server over SSL.
+    ftps://[ username[: password]@] hostname[: port][ absolute-path]
+    ftps://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+
+    SFTP: Provides access to the files on an SFTP server (that is, an SSH or SCP server).
+    sftp://[ username[: password]@] hostname[: port][ relative-path]
+    sftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+    ```
+
+### Common configs to all connection types
+
+<table>
+    <tr>
+        <th>Parameter Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default Value</th>
+        <th>Required</th>
+    </tr>
+    <tr>
+        <td>
+            Connection Name
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            A unique name to identify the connection.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            Yes
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Connection Type
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            The protocol used for communicating with the file system.</br> 
+            <b>Possible values</b>: 'LOCAL', 'FTP', 'FTPS', 'SFTP'.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            Yes
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Working Directory
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            The working directory. File paths in operations, which are associated with the connection should be provided using this folder as the root. </br>
+            <b>Note</b>: As per <a href="https://commons.apache.org/proper/commons-vfs/filesystems.html#Local_Files">VFS documentation</a>, for windows, the working directory of local connections should be as follows: '/C:/Documents'.
+        <td>
+            Defaults to file system root.
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            File Locking Behaviour
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            Specify whether to acquire node-specific lock (Local) or cluster-wide lock (Cluster) when locks are acquired in read and write operations.</br></br>
+            <b>Note</b>:</br>
+            File locking is available for read and write operations. When enabled, a file specific lock is acquired before the operation and released after the operation. Parallel read/write operations are restricted when locking is enabled by a file operation. 
+            <ol>
+                <li>
+                    <b>Local</b></br>
+                    When a lock is acquired, it is acquired within the context of file operations performed by that EI node only. Local lock acquired by some file operation on a particular Ei node is not visible to the other EI nodes that may access the same file system.
+                </li>
+                <li>
+                   <b>Global</b></br> 
+                   When multiple EI nodes access the same file system performing read and write operations, you may use this behaviour. Here, when a file lock is acquired, it is visible to all file connector operations across the nodes. This is acquired by creating a .lock file in the same file system for the file that is being accessed. The behaviour depends on the OS and the file system, so this feature may not work as intended in high concurrent scenarios.
+                </li>
+            </ol>
+        <td>
+            Local
+        </td>
+        <td>
+            Yes
+        </td>
+    </tr>
+</table>
+
+### Common remote connection configs
+
+<table>
+    <tr>
+        <th>Parameter Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default Value</th>
+        <th>Required</th>
+    </tr>
+    <tr>
+        <td>
+            Host
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            Host name of the file server.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            Yes
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Port
+        </td>
+        <td>
+            Number
+        </td>
+        <td>
+            The port number of the file server
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            Yes
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Username
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            User name used to connect with the file server.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Password
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            Password to connect with the file server.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            User Directory Is Root
+        </td>
+        <td>
+            Boolean
+        </td>
+        <td>
+            If set to false (default), VFS will choose the file system's root as the VFS's root. If you want to have the User's home as the VFS root, then set this to true.
+        </td>
+        <td>
+            false
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+</table>
+
+### FTP/FTPS-specific configs
+
+<table>
+    <tr>
+        <th>Parameter Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default Value</th>
+        <th>Required</th>
+    </tr>
+    <tr>
+        <td>
+            Is Passive
+        </td>
+        <td>
+            Boolean
+        </td>
+        <td>
+            If passive mode is enabled, set this to 'true'.</br></br>
+            <b>Note</b> the following about 'Active/Passive' mode:
+            <ol>
+                <li>
+                    <b>Active Mode</b>: The client starts listening on a random port for incoming data connections from the server (the client sends the FTP command PORT to inform the server on which port it is listening). Nowadays, it is typical that the client is behind a firewall (e.g. built-in Windows firewall) or NAT router (e.g. ADSL modem), unable to accept incoming TCP connections.
+                    For this reason the passive mode was introduced and is mostly used nowadays. 
+                </li>
+                <li>
+                    <b>Passive Mode</b>: In the passive mode, the client uses the control connection to send a PASV command to the server and then receives a server IP address and server port number from the server, which the client then uses to open a data connection to the server IP address and server port number received.
+                </li>
+            </ol>
+        </td>
+        <td>
+            true
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            FTP Connection Timeout
+        </td>
+        <td>
+            Number
+        </td>
+        <td>
+            Specify the timeout in milliseconds for the initial control connection.
+        </td>
+        <td>
+            100000
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            FTP Socket Timeout
+        </td>
+        <td>
+            Number
+        </td>
+        <td>
+            Specify the socket timeout in milliseconds for the FTP client.
+        </td>
+        <td>
+            150000
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+</table>
+
+### FTPS-specific configs
+
+<table>
+    <tr>
+        <th>Parameter Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default Value</th>
+        <th>Required</th>
+    </tr>
+    <tr>
+        <td>
+            KeyStore Path
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            The keystore path.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            KeyStore Password
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            The password to the keystore.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TrustStore Path
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            The truststore path.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            Yes
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TrustStore Password
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            The password to the truststore.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            Yes
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Implicit Mode Enabled
+        </td>
+        <td>
+            Boolean
+        </td>
+        <td>
+            Set this to 'true' if <a href="https://en.wikipedia.org/wiki/FTPS#Implicit">implicit mode </a>is enabled.
+            <ul>
+                <li>
+                    <b>Implicit</b>: The TLS ClientHello message should be initiated by client.
+                </li>
+                <li>
+                    <b>Explicit</b>: The client must "explicitly request" security from an FTPS server.
+                </li>
+            </ul>
+        </td>
+        <td>
+            false
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Channel Protection Level
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            The FTP Data Channel protection level. Possible values: C,S,E,P.</br> 
+            <b>Example</b>: Sends a “PROT P” command when implicit SSL is enabled.
+        </td>
+    </tr>
+</table>
+
+### SFTP connection configs
+
+<table>
+    <tr>
+        <th>Parameter Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default Value</th>
+        <th>Required</th>
+    </tr>
+    <tr>
+        <td>
+            SFTP Connection Timeout
+        </td>
+        <td>
+            Number
+        </td>
+        <td>
+            The <b>Jsch</b> connection timeout in milli seconds.
+        </td>
+        <td>
+            -
+        </td>
+        <td>
+            No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            SFTP Session Timeout
+        </td>
+        <td>
+            Number
+        </td>
+        <td>
+            The <b>Jsch</b> session timeout in milli seconds.
+        </td>
+        <td>
+            100000
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Strict Host Key Check
+        </td>
+        <td>
+            Boolean
+        </td>
+        <td>
+            Specifies whether the Host key should be checked. If set to 'true', the connector (JSch) will always verify the public key (fingerprint) of the SSH/SFTP server.
+        </td>
+        <td>
+            false
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Private Key File
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            Path to the private key file.</br></br>
+            <b>Note</b>: You can only use a key generated in a classic manner (<i>ssh-keygen -m PEM</i>).
+        </td>
+        <td>
+            false
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Private Key Passphrase
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            The passphrase of the private key. The security of a key (even if encrypted) is retained because it is not available to anyone else. You can specify the passphrase when generating keys.
+        </td>
+        <td>
+            false
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+</table>
+
+## Operations
+
 The following operations allow you to work with the File Connector version 2. Click an operation name to see parameter details and samples on how to use it.
 
-??? note "append"
-    The append operation appends content to an existing file in a specified location.
+??? note "createDirectory"
+    Creates a new folder in a provided directory path.
     <table>
         <tr>
             <th>Parameter Name</th>
+            <th>Type</th>
             <th>Description</th>
+            <th>Default Value</th>
             <th>Required</th>
         </tr>
         <tr>
-            <td>destination</td>
-            <td>The location of the file for which content needs to be appended.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>inputContent</td>
-            <td>The content to be appended.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>position</td>
-            <td>Position to append the content. If you provide a valid position, content will be appended to that position. Otherwise, content will be appended at the end of the file.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>encoding</td>
-            <td>The encoding that is supported. Possible values are US-ASCII, UTF-8, and UTF-16.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-
-    ```xml
-    <fileconnector.append>
-        <destination>{$ctx:destination}</destination>
-        <inputContent>{$ctx:inputContent}</inputContent>
-        <position>{$ctx:position}</position>
-        <encoding>{$ctx:encoding}</encoding>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-    </fileconnector.append>
-    ```
-    
-    **Sample request**
-    
-    Following is a sample REST/JSON request that can be handled by the append operation.
-    ```json
-        {
-            "destination":"/home/vive/Desktop/file/append.txt",
-            "inputContent":"Add Append Text."
-        }
-    ```
-
-
-??? note "archive"
-    The archive operation archives files or folders. This operation supports the ZIP archive type.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
+            <td>
+                File Connection
             </td>
-            <td>Yes</td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>destination</td>
-            <td>The location of the archived file with the file name. (e.g., file:///home/user/test/test.zip)</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>inputContent</td>
-            <td>The input content that needs to be archived.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>fileName</td>
-            <td>The name of the file where input content needs to be archived.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>includeSubDirectories</td>
-            <td>Set to true if you want to include the sub directories.</td>
-            <td>Optional</td>
+            <td>
+                Directory Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The new directory path.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
     </table>
 
-    > NOTE: To make an archive operation, you can provide either the source or inputContent. If inputContent is provided as the parameter, we need to specify fileName. Otherwise, it will use the default fileName (output.txt).
-
-    **Sample configuration**
+    **Response**
 
     ```xml
-    <fileconnector.archives>
-        <source>{$ctx:source}</source>
-        <destination>{$ctx:destination}</destination>
-        <inputContent>{$ctx:inputContent}</inputContent>
-        <fileName>{$ctx:fileName}</fileName>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
-    </fileconnector.archives>
+    <createDirectoryResult>
+       <success>true</success>
+    </createDirectoryResult>
     ```
 
-    **Sample request**
+??? note "checkExist"
+    Check if a given file or folder exists.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default Value</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Directory Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The new directory path.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+    </table>
 
-    Following is a sample REST/JSON request that can be handled by the archive operation.
-    ```json
-    {
-        "source":"/home/vive/Desktop/file",
-        "destination":"/home/user/test/file.zip",
-        "includeSubDirectories":"true"
-    }
+    **Response**
+
+    ```xml
+    <checkExistResult>
+       <success>true</success>
+       <fileExists>true</fileExists>
+    </checkExistResult>
     ```
 
+??? note "compress"
+    Archives a file or a directory.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default Value</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Folder/File To Compress
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 Path to the folder or ZIP file.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Targer File Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the ZIP file that should be created. If it already exists, the exising file is overwritten.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Include SubDirectories
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies Whether to include sub directories when compressing.
+            </td>
+            <td>
+                true
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+    </table>
+
+    **Response**
+
+    ```xml
+    <compressResult>
+       <success>true</success>
+       <NumberOfFilesAdded>16</NumberOfFilesAdded>
+    </compressResult>
+    ```
+
+    **Error**
+
+    ```xml
+    <compressResult>
+       <success>false</success>
+       <code>700102</code>
+       <detail>File or directory to compress does not exist</detail>
+    </compressResult>
+    ```
 
 ??? note "copy"
-    The copy operation copies files from one location to another. This operation can be used when you want to copy any kind of files and large files as well. You can also copy particular files with specified file patterns.
+    Copies the file or folder specified by a source path to a target path.
+
+    -   Source can be a file or a directory. If directory, it recursively does the copying. 
+    -   When the target path does not exist along with its parent folders, then it will create the directories and do the copying. 
+    -   When copying folders, only the content inside the folder will get copied. If you need to copy including the folder, set includePatent=true.
+    -   When the target file already exists, if Overwrite=true, the target file will be overwritten. Otherwise operation will throw error code.     For folders it will check if there is an immediate matching file or a folder.  
+
     <table>
         <tr>
             <th>Parameter Name</th>
+            <th>Type</th>
             <th>Description</th>
+            <th>Default Value</th>
             <th>Required</th>
         </tr>
         <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server.
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li>
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
+            <td>
+                File Connection
             </td>
-            <td>Yes</td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>destination</td>
-            <td>The location of the archived file with the file name. (e.g., file:///home/user/test/test.zip)</td>
-            <td>Yes</td>
+            <td>
+               Source Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the file that should be copied.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>filePattern</td>
-            <td>The pattern of the files to be copied. (e.g., [a-zA-Z][a-zA-Z]*.(txt|xml|jar))</td>
-            <td>Optional</td>
+            <td>
+                Targer Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The location to which the file should be copied.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
+            <td>
+                Source File Pattern
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The file name pattern of the source file. Example: <i>[a-zA-Z][a-zA-Z]*.(txt|xml|jar)</i>
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
+            <td>
+                Include Parent
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specify whether the parent folder should be copied from the file source along with the content.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
+            <td>
+                Overwrite Existing Files
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether or not to overwrite the file if the same file already exists in the target destination.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>includeParentDirectory</td>
-            <td>Set to true if you want to include the parent directory.</td>
-            <td>Optional</td>
-        </tr>
-	<tr>
-            <td>sftpIdentities</td>
-            <td>Location of the private key.</td>
-            <td>Optional</td>
-        </tr>
-	<tr>
-            <td>sftpIdentityPassphrase</td>
-            <td>Passphrase of the private key.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>includeSubDirectories</td>
-            <td>Set to true if you want to include the sub directories.</td>
-            <td>Optional</td>
+            <td>
+                Rename To
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The new name of the copied files.
+            </td>
+            <td>
+                Original file name.
+            </td>
+            <td>
+                No
+            </td>
         </tr>
     </table>
 
-    **Sample configuration**
+    **Response**
 
     ```xml
-    <fileconnector.copy>
-        <source>{$ctx:source}</source>
-        <destination>{$ctx:destination}</destination>
-	    <filePattern>{$ctx:filePattern}</filePattern>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
-	    <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
-	    <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
-        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
-    </fileconnector.copy>
+    <copyFilesResult>
+       <success>true</success>
+    </copyFilesResult>
     ```
 
-    **Sample request**
-
-    ```json
-    {
-        "source":"/home/vive/Desktop/file",
-        "destination":"/home/user/test/fileCopy",
-        "filePattern":".*\.xml",
-        "includeParentDirectory":"false",
-        "includeSubDirectories":"false"
-    }
-    ```
-
-
-??? note "create"
-    The create operation creates a file or folder in a specified location. When creating a file, you can either create the file with content or without content.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>filePath</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server.
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li>
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
-            </td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>inputContent</td>
-            <td>The content of the file.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>encoding</td>
-            <td>The encoding that is supported. Possible values are US-ASCII, UTF-8, and UTF-16.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>isBinaryContent</td>
-            <td>Set to true if input content should be handled as binary data. Input content is expected to be base64 encoded binary content.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
+    **Error**
 
     ```xml
-    <fileconnector.create>
-        <filePath>{$ctx:filePath}</filePath>
-        <inputContent>{$ctx:inputContent}</inputContent>
-	    <encoding>{$ctx:encoding}</encoding>
-	    <isBinaryContent>{$ctx:isBinaryContent}</isBinaryContent>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-    </fileconnector.create>
+    <copyFilesResult>
+       <success>false</success>
+       <code>700103</code>
+       <detail>Destination file already exists and overwrite not allowed</detail>
+    </copyFilesResult>
     ```
-
-    **Sample request**
-
-    ```json
-    {
-        "filePath":"sftp://UserName:Password@Host/home/connectors/create.txt",
-        "inputContent":"InputContent Text",
-        "encoding":"UTF8"
-    }
-    ```
-
-
-??? note "delete"
-    The delete operation deletes a file or folder from the file system.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server.
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li>
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
-            </td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>filePattern</td>
-            <td>The pattern of the files to be deleted.(e.g., [a-zA-Z][a-zA-Z]*.(txt|xml|jar)).</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>includeSubDirectories</td>
-            <td>Set to true if you want to include the sub directories.</td>
-            <td>Optional</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-
-    ```xml
-    <fileconnector.delete>
-        <source>{$ctx:source}</source>
-        <filePattern>{$ctx:filePattern}</filePattern>
-	    <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
-    </fileconnector.delete>
-    ```
-
-    **Sample request**
-
-    ```json
-    {
-        "source":"/home/vive/Desktop/file",
-        "filePattern":".*\.txt",
-        "includeSubDirectories":"true"
-    }
-    ```
-
-
-??? note "isFileExist"
-    The isFileExist operation checks the existence of a file in a spacified location. This operation returns true if the file exists and returns false if the file does not exist in the specified location.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server.
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li>
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
-            </td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-
-    ```xml
-    <fileconnector.isFileExist>
-        <source>{$ctx:source}</source>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-    </fileconnector.isFileExist>
-    ```
-
-    **Sample request**
-
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/test.txt"
-    }
-    ```
-
-
-??? note "listFileZip"
-    The listFileZip operation lists all the file paths inside a compressed file. This operation supports the ZIP archive type.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server.
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li>
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
-            </td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-
-    ```xml
-    <fileconnector.listFileZip>
-        <source>{$ctx:source}</source>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-    </fileconnector.listFileZip>
-    ```
-
-    **Sample request**
-
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/test.zip"
-    }
-    ```
-
 
 ??? note "move"
-    The  move operation moves a file or folder from one location to another.
+    Moves the file or folder specified by the source path to the target directory.
 
-    **Info**: The move operation can only move a file/folder within the same server. For example, you can move a file/folder from one local location to another local location, or from one remote location to another remote location on the same server. You cannot use the move operation to move a file/folder between different servers. If you want to move a file/folder from a local location to a remote location or vice versa, use the copy operation followed by delete operation instead of using the move operation.
+    -   Source can be a file or a directory. If directory, it recursively does the moving.
+    -   When the target path does not exist along with its parent folders when CreateParentDirectories=true, it will create the directories and do the moving. Otherwise operation will throw error FILE:ILLEGAL_PATH
+    -   When the target file already exists, if Overwrite=true, the target file will be overwritten. Otherwise operation will throw error FILE:FILE_ALREADY_EXISTS
+    -   The move operation can only move a file/folder within the same server. For example, you can move a file/folder from one local location to another local location, or from one remote location to another remote location on the same server. You cannot use the move operation to move a file/folder between different servers. If you want to move a file/folder from a local location to a remote location or vice versa, use the copy operation followed by delete operation instead of using the move operation.
+
     <table>
         <tr>
             <th>Parameter Name</th>
+            <th>Type</th>
             <th>Description</th>
+            <th>Default Value</th>
             <th>Required</th>
         </tr>
         <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server.
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li>
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
+            <td>
+                File Connection
             </td>
-            <td>Yes</td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>destination</td>
-            <td>The location where the file has to be moved to.</td>
-            <td>Yes</td>
+            <td>
+               Source Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the file that should be copied.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
+            <td>
+                Targer Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The location to which the file should be copied.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
+            <td>
+                Create Parent Directories
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether the parent directory should be created if it doesn't already exist in the target folder.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
+            <td>
+                Include Parent
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specify whether the parent folder should be copied from the file source along with the content.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
+            <td>
+                Overwrite Existing Files
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether or not to overwrite the file if the same file already exists in the target destination.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>includeParentDirectory</td>
-            <td>Set to true if you want to include the parent directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>includeSubDirectories</td>
-            <td>Set to true if you want to include the sub directories.</td>
-            <td>Optional</td>
+            <td>
+                Rename To
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The new name of the moved files.
+            </td>
+            <td>
+                Original file name.
+            </td>
+            <td>
+                No
+            </td>
         </tr>
     </table>
 
-    **Sample configuration**
+    **Response**
 
     ```xml
-    <fileconnector.move>
-        <source>{$ctx:source}</source>
-        <destination>{$ctx:destination}</destination>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-        <filePattern>{$ctx:filePattern}</filePattern>
-	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
-        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
-    </fileconnector.move>
+    <moveFilesResult>
+       <success>true</success>
+    </moveFilesResult>
     ```
 
-    **Sample request**
+    **Error**
 
-    ```json
-    {
-        "source":"/home/vive/Desktop/file",
-        "destination":"/home/vive/Desktop/move",
-        "filePattern":".*\.txt",
-        "includeParentDirectory":"true",
-        "includeSubDirectories":"true"
-    }
+    ```xml
+    <moveFilesResult>
+       <success>false</success>
+       <code>700103</code>
+       <detail>Destination file already exists and overwrite not allowed</detail>
+    </moveFilesResult>
     ```
-
 
 ??? note "read"
-    The read operation reads content from an existing file in a specified location.
+    Reads the content and metadata of a file at a given path. Metadata of the file is added as properties while content is set to the message body (or optionally to a message context property). 
+
+    Known message properties representing file properties:
+
     <table>
         <tr>
             <th>Parameter Name</th>
+            <th>Type</th>
             <th>Description</th>
+            <th>Default Value</th>
             <th>Required</th>
         </tr>
         <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
+            <td>
+                FILE_LAST_MODIFIED_TIME
             </td>
-            <td>Yes</td>
+            <td>
+                DateTime
+            </td>
+            <td>
+                The time at which the file was last modified.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>filePattern</td>
-            <td>The pattern of the file to be read.</td>
-            <td>Yes</td>
+            <td>
+               FILE_SIZE
+            </td>
+            <td>
+                Number
+            </td>
+            <td>
+                 The file size (in bytes).
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>contentType</td>
-            <td>Content type of the files processsed by the connector.</td>
-            <td>Yes</td>
+            <td>
+                FILE_IS_DIR
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                 Specifies whether a folder directory is represented as the file.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>streaming</td>
-            <td>The streaming mode. This can be either true or false.</td>
-            <td>Optional</td>
+            <td>
+                FILE_PATH
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The file path.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
+            <td>
+                FILE_URL
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The VFS URL of the file.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
+            <td>
+                FILE_NAME
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The file name or folder name.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>includeParentDirectory</td>
-            <td>Set to true if you want to include the parent directory.</td>
-            <td>Optional</td>
+            <td>
+                FILE_NAME_WITHOUT_EXTENSION
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The file name without the extension.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
     </table>
 
-    **Info**: To enable streaming for large files, you have to add the following message builder and formatter in the <ESB_HOME>/repository/conf/axis2/axis2.xml file:
-    * Add <messageFormatter contentType="application/file" class="org.wso2.carbon.relay.ExpandingMessageFormatter"/> under message formatters.
-    * Add <messageBuilder contentType="application/file" class="org.apache.axis2.format.BinaryBuilder"/> under message builders.
+    Important:
 
-    **Sample configuration**
-    
-    ```xml
-    <fileconnector.read>
-        <source>{$ctx:source}</source>
-        <filePattern>{$ctx:filePattern}</filePattern>
-        <contentType>{$ctx:contentType}</contentType>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-    </fileconnector.read>
-    ```
-    
-    **Sample request**
+    -   When reading a folder, the first file that matches the pattern will be read first. Note that sub directories are not scanned. If you need to move or delete the file before reading the folder again, use the `FILE_NAME` context variable.
+    -   The MIME type (content-type) of the message is determined by the file extension (i.e an XML file will be read as a message with the `application/xml` MIME type). However, users can force the MIME type by the `ContentType` parameter. Similarly, the `Encoding` parameter can be used to force the encoding.  
+    -   You can set `EnableLock` to `true` to enable file system lock until the reading is completed and the stream is closed. 
+    -   When large files are read, use `streaming=true`. Note that you need to first make necessary changes in the `deployment.toml`. The `ContentType` parameter also needs to be `application/binary`. Note that file reading modes are not applicable when streaming is set to `true`. The complete file is always streamed.
 
-    ```json
-    {
-        "source":"/home/vive/Desktop/file",
-        "contentType":"application/xml",
-        "filePattern":".*\.xml",
-        "streaming":"false"
-    }
-    ```
-
-
-??? note "search"
-    The search operation finds a file or folder based on a given file pattern or directory pattern in a specified location.
     <table>
         <tr>
             <th>Parameter Name</th>
+            <th>Type</th>
             <th>Description</th>
+            <th>Default Value</th>
             <th>Required</th>
         </tr>
         <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
+            <td>
+                File Connection
             </td>
-            <td>Yes</td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>filePattern</td>
-            <td>The pattern of the file to be read.</td>
-            <td>Yes</td>
+            <td>
+               File Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the file that should be read.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>recursiveSearch</td>
-            <td>Whether you are searching recursively (the possible values are True or False).</td>
-            <td>Yes</td>
+            <td>
+                File Pattern
+            </td>
+            <td>
+                String Regex
+            </td>
+            <td>
+                 The file name pattern that should be matched when reading the file.
+            </td>
+            <td>
+                All text files (<code>.*\.txt</code>)
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
+            <td>
+                Content Property
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The context property name to set content read from the file. If provided, the payload in the body is intact. 
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
+            <td>
+                Read Mode
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Available file reading modes: Read complete file, between lines, from line, upto line, single line, metadata only.
+            </td>
+            <td>
+                Reads complete file.
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
+            <td>
+                Start Line Num
+            </td>
+            <td>
+                Number
+            </td>
+            <td>
+                Starts reading the file from the specified line.
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
+            <td>
+                End Line Num
+            </td>
+            <td>
+                Number
+            </td>
+            <td>
+                Reads the file upto the specified line.
+            </td>
+            <td>
+                Last line of file.
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
+            <td>
+                Specific Line number
+            </td>
+            <td>
+                Number
+            </td>
+            <td>
+                Specific line to read.
+            </td>
+            <td>
+                When the reading mode is <code>SINGLE_LINE</code>.
+            </td>
+            <td>
+                No
+            </td>
         </tr>
         <tr>
-            <td>includeParentDirectory</td>
-            <td>Set to true if you want to include the parent directory.</td>
-            <td>Optional</td>
+            <td>
+                MIMEType
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Content type of the message set to the payload by this operation
+            </td>
+            <td>
+                Determined by the file extension.
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Encoding
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Encoding of the message set to the payload by this operation.
+            </td>
+            <td>
+                UTF-8
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enable Streaming
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether or not streaming is used to read the file without any interpretation of the content.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enable Locking
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether or not to lock the file.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
         </tr>
     </table>
 
-    **Sample configuration**
-    
+    **Response**
+
     ```xml
-    <fileconnector.search>
-        <source>{$ctx:source}</source>
-        <filePattern>{$ctx:filePattern}</filePattern>
-	    <recursiveSearch>{$ctx:recursiveSearch}</recursiveSearch>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-    </fileconnector.search>
-    ```
-    
-    **Sample request**
-    ```json
-    {
-        "source":"/home/vive/Desktop/file",
-        "filePattern":".*\.xml",
-        "recursiveSearch":"true"
-    }
+    This is line one.
+    This is line two.
+    This is line three.
+    This is line four.
+    This is line five.
+    This is line six.
+    This is line seven.
+    This is line eight.
+    This lis line nine.
+    This is line ten.
     ```
 
+    **Full Log**
 
+    ```bash
+    [2020-10-06 06:01:44,083]  INFO {LogMediator} - {api:TestAPI} To: /filetest, MessageID: urn:uuid:7ab557c0-f9cb-4cf6-9c7b-f06a4640522a, Direction: request, message = After Read, FILE_LAST_MODIFIED_TIME = 10/06/2020 05:46:39, FILE_SIZE = 30, FILE_IS_DIR = false, FILE_NAME = test1.txt, FILE_PATH = /wso2/test, FILE_URL = file:///Users/hasitha/temp/file-connector-test/wso2/test/test1.txt, FILE_NAME_WITHOUT_EXTENSION = test1, Envelope: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><text xmlns="http://ws.apache.org/commons/ns/payload">This is test1.txt file content</text></soapenv:Body></soapenv:Envelope>
+    ```
+
+    **Error**
+
+    ```xml
+    <readResult>
+       <success>false</success>
+       <code>700102</code>
+       <detail>File or folder not found: file:///Users/hasitha/temp/file-connector-test/wso2/test/abcd.txt</detail>
+    </readResult>
+    ```
+
+??? note "rename"
+    Rename the file pointed by the path parameter. New name cannot contain path separators. 
+
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default Value</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the file that should be renamed.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Rename To
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The file's new name.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Overwrite Existing Files
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether or not to overwrite the file in the target directory (if the same file exists).
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+    </table>
+
+    **Response**
+
+    ```xml
+    <renameFileResult>
+       <success>true</success>
+    </renameFileResult>
+    ```
+
+    **Error**
+
+    ```xml
+    <renameFileResult>
+       <success>false</success>
+       <code>700103</code>
+       <detail>Destination file already exists and overwrite not allowed</detail>
+    </renameFileResult>
+    ```
+
+??? note "delete"
+    Deletes the first file specified by the path.
+
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default Value</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               File/Directory Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the file/folder that should be deleted.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pattern to Match Files
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The pattern that should be matched when listing files. This does not operate recursively on sub-folders.
+            </td>
+            <td>
+                All files.
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+    </table>
+
+    **Response** 
+
+    For a single file:
+
+    ```xml
+    <deleteFileResult>
+       <success>true</success>
+    </deleteFileResult>
+    ```
+
+    For a folder:
+
+    ```xml
+    <deleteFileResult>
+       <success>true</success>
+       <numOfDeletedFiles>5</numOfDeletedFiles>
+    </deleteFileResult>
+    ```
 
 ??? note "unzip"
-    The unzip operation decompresses zip file. This operation supports ZIP archive type.
+    Unzip a specified file to a given location. If a folder with the same name exists, it is overwritten. 
+
     <table>
         <tr>
             <th>Parameter Name</th>
+            <th>Type</th>
             <th>Description</th>
+            <th>Default Value</th>
             <th>Required</th>
         </tr>
         <tr>
-            <td>source</td>
-            <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-                <ul>
-                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
-                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
-                </ul>
+            <td>
+                File Connection
             </td>
-            <td>Yes</td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>destination</td>
-            <td>The location of the decompressed file.</td>
-            <td>Yes</td>
+            <td>
+               Zip File Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the ZIP file that should be unzipped.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>setTimeout</td>
-            <td>The timeout value on the JSC (Java Secure Channel) session in milliseconds. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setPassiveMode</td>
-            <td>Set to true if you want to enable passive mode.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setSoTimeout</td>
-            <td>The socket timeout value for the FTP client. E.g., 100000.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setUserDirIsRoot</td>
-            <td>Set to true if you want to use root as the user directory.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>setStrictHostKeyChecking</td>
-            <td>Sets the requirement to use host key checking. E.g., no.</td>
-            <td>Optional</td>
+            <td>
+                Target Directory
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The location (folder) to which the ZIP file should be unzipped.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
     </table>
 
-    **Sample configuration**
-    
-    ```xml
-    <fileconnector.unzip>
-        <source>{$ctx:source}</source>
-        <destination>{$ctx:destination}</destination>
-        <setTimeout>{$ctx:setTimeout}</setTimeout>
-        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-    </fileconnector.unzip>
-    ```
-    
-    **Sample request**
-    
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/test.zip",
-        "destination":"/home/vive/Desktop/file/test"
-    }
-    ```
-
-
-??? note "ftpOverProxy"
-    The ftpOverProxy operation connects to a FTP server through a proxy.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>proxyHost</td>
-            <td>The host name of the proxy.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>proxyPort</td>
-            <td>The port number of the proxy.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>proxyUsername</td>
-            <td>The user name of the proxy.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>proxyPassword</td>
-            <td>The password of the proxy.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ftpUsername</td>
-            <td>The username of the FTP server.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ftpPassword</td>
-            <td>The password of the FTP server.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ftpServer</td>
-            <td>The FTP server name.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>ftpPort</td>
-            <td>The port number of the FTP server.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>targetPath</td>
-            <td>The target path. For example, if the file path is ftp://myusername:mypassword@somehost/pub/downloads/testProxy.txt, the targetPath will be pub/downloads/.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>targetFile</td>
-            <td>The name of the file (e.g., if the path is like "ftp://myusername:mypassword@somehost/pub/downloads/testProxy.txt", then targetPath will be "testProxy.txt").</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>keepAliveTimeout</td>
-            <td>The time to wait between sending control connection keep alive messages when processing file upload or download.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>controlKeepAliveReplyTimeout</td>
-            <td>The time to wait for control keep-alive message replies.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>binaryTransfer</td>
-            <td>Set the file type to be transferred.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>localActive</td>
-            <td>Set the current data connection mode to either ACTIVE_LOCAL_DATA_CONNECTION_MODE or PASSIVE_LOCAL_DATA_CONNECTION_MODE.</td>
-            <td>Optional</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
+    **Response** 
 
     ```xml
-    <fileconnector.ftpOverProxy>
-        <proxyHost>{$ctx:proxyHost}</proxyHost>
-        <proxyPort>{$ctx:proxyPort}</proxyPort>
-        <proxyUsername>{$ctx:proxyUsername}</proxyUsername>
-        <proxyPassword>{$ctx:proxyPassword}</proxyPassword>
-        <ftpUsername>{$ctx:ftpUsername}</ftpUsername>
-        <ftpPassword>{$ctx:ftpPassword}</ftpPassword>
-        <ftpServer>{$ctx:ftpServer}</ftpServer>
-        <ftpPort>{$ctx:ftpPort}</ftpPort>
-        <targetPath>{$ctx:targetPath}</targetPath>
-        <targetFile>{$ctx:targetFile}</targetFile>
-        <keepAliveTimeout>{$ctx:keepAliveTimeout}</keepAliveTimeout>
-        <controlKeepAliveReplyTimeout>{$ctx:controlKeepAliveReplyTimeout}</controlKeepAliveReplyTimeout>
-        <binaryTransfer>{$ctx:binaryTransfer}</binaryTransfer>
-        <localActive>{$ctx:localActive}</localActive>
-    </fileconnector.ftpOverProxy>
+    <unzipFileResult>
+       <success>true</success>
+       <zipFileContent>
+           <test1.txt>extracted</test1.txt>
+           <test2.txt>extracted</test2.txt>
+           <hasitha--a1.txt>extracted</hasitha--a1.txt>
+           <hasitha--a2.txt>extracted</hasitha--a2.txt>
+           <hasitha--b--b2.txt>extracted</hasitha--b--b2.txt>
+           <hasitha--b--b1.txt>extracted</hasitha--b--b1.txt>
+           <hasitha--b--c--test1.txt>extracted</hasitha--b--c--test1.txt>
+           <hasitha--b--c--c1.txt>extracted</hasitha--b--c--c1.txt>
+       </zipFileContent>
+    </unzipFileResult>
     ```
 
-    **Sample request**
-    
-    ```json
-    {
-        "proxyHost":"SampleProxy",
-        "proxyPort":"3128",
-        "proxyUsername":"wso2",
-        "proxyPassword":"Password",
-        "ftpUsername":"primary",
-        "ftpPassword":"Password",
-        "ftpServer":"192.168.56.6",
-        "ftpPort":"21",
-        "targetFile":"/home/primary/res"
-    }
-    ```
+    **On Error** 
 
-
-??? note "send"
-    The send operation sends a file to a specified location.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>address</td>
-            <td>The address where the file has to be sent.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>append</td>
-            <td>Set this to true if you want to append the response to the response file.</td>
-            <td>Optional</td>
-        </tr>
-    </table>
-
-    > **Note**: To send a VFS file, you have to specify the following properties in your configuration:
-    ```
-             <property name="OUT_ONLY" value="true"/>
-             <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
-    ```
-
-    **Sample configuration**
-    
     ```xml
-    <fileconnector.send>
-        <address>{$ctx:address}</address>
-	    <append>{$ctx:append}</append>
-    </fileconnector.send>
+    <unzipFileResult>
+       <success>false</success>
+       <code>700102</code>
+       <detail>File not found: file:///Users/hasitha/temp/file-connector-test/wso2/archievenew.zip</detail>
+    </unzipFileResult>
     ```
 
-    **Sample request**
-    
+    JSON equivalent:
+
     ```json
     {
-        "address":"/home/vive/Desktop/file/outTest",
-        "append":"true"
+       "unzipFileResult": {
+           "success": false,
+           "code": 700102,
+           "detail": "File not found: file:///Users/hasitha/temp/file-connector-test/wso2/archievenew.zip"
+       }
     }
     ```
-
-
-??? note "getSize"
-    The getSize operation returns the size of a file.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>source</td>
-            <td>The location of the file.</td>
-            <td>Yes</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-    
-    ```xml
-    <fileconnector.getSize>
-        <source>{$ctx:source}</source>
-    </fileconnector.getSize>
-    ```
-
-    **Sample request**
-    
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/outTest/sample.txt"
-    }
-    ```
-
-
-??? note "getLastModifiedTime"
-    The getLastModifiedTime operation returns last modified time of a file/folder.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>source</td>
-            <td>The location of the file.</td>
-            <td>Yes</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-    
-    ```xml
-    <fileconnector.getLastModifiedTime>
-        <source>{$ctx:source}</source>
-    </fileconnector.getLastModifiedTime>
-    ```
-
-    **Sample request**
-    
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/outTest/sample.txt"
-    }
-    ```
-
 
 ??? note "splitFile"
-    The splitFile operation splits a file into multiple chunks.
+    Splits a file into multiple smaller files.
+
+    -   If the folder does not exist, it will be created.
+    -   If the folder has files, they will be overwritten. 
+
     <table>
         <tr>
             <th>Parameter Name</th>
+            <th>Type</th>
             <th>Description</th>
+            <th>Default Value</th>
             <th>Required</th>
         </tr>
         <tr>
-            <td>source</td>
-            <td>The location of the file.</td>
-            <td>Yes</td>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>destination</td>
-            <td>The location to write the file.</td>
-            <td>Yes</td>
+            <td>
+               Source File Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the file that should be split.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>chunkSize</td>
-            <td>The chunk size in bytes to split the file. This is to split the file based on chunk size. You should provide either chunkSize or numberOfLines to split the file.</td>
-            <td>Yes</td>
+            <td>
+                Target Directory
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the target folder where the new files should be created.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>numberOfLines</td>
-            <td>The number of lines per file. This is to split the file based on the number of lines. You should provide either chunkSize or numberOfLines to split the file.</td>
-            <td>Yes</td>
+            <td>
+                Split Mode
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The split mode to use. The available options are as follows:</br>
+                 <ul>
+                    <li>ChunkSize</li>
+                    <li>Linecount</li>
+                    <li>XPATH Expression</li>
+                 </ul>
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>xpathExpression</td>
-            <td>Defines a pattern in order to select a set of nodes in XML document.</td>
-            <td>Yes</td>
+            <td>
+                Chunk Size
+            </td>
+            <td>
+                Number
+            </td>
+            <td>
+                 If the <b>Split Mode</b> is 'ChunkSize', specify the chunk size (in bytes) into which the file should be split.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                -
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Line Count
+            </td>
+            <td>
+                Number
+            </td>
+            <td>
+                 If the <b>Split Mode</b> is 'Linecount', specify the number of lines by which the original file should be split.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                -
+            </td>
+        </tr>
+        <tr>
+            <td>
+                XPATH Expression
+            </td>
+            <td>
+                Number
+            </td>
+            <td>
+                 If the <b>Split Mode</b> is 'XPATH Expression', specify the expression by which the file should be split. Only applies when splitting XML files.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                -
+            </td>
         </tr>
     </table>
 
-    **Sample configuration**
-    
+    **Response** 
+
     ```xml
-    <fileconnector.splitFile>
-        <source>{$ctx:source}</source>
-        <destination>{$ctx:destination}</destination>
-        <chunkSize>{$ctx:chunkSize}</chunkSize>
-	    <numberOfLines>{$ctx:numberOfLines}</numberOfLines>
-	    <xpathExpression>{$ctx:xpathExpression}</xpathExpression>
-    </fileconnector.splitFile>
-    ```
-    
-    **Sample request**
-    
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/outTest/sample.txt",
-        "destination":"/home/vive/Desktop/file/outTest/",
-        "chunkSize":"4096",
-        "xpathExpression":"//products/product"
-    }
+    <splitFileResult>
+       <success>true</success>
+       <numberOfSplits>6</numberOfSplits>
+    </splitFileResult>
     ```
 
+    **On Error** 
+
+    ```xml
+    <splitFileResult>
+       <success>false</success>
+       <code>700107</code>
+       <detail>Parameter 'xpathExpression' is not provided</detail>
+    </splitFileResult>
+    ```
+
+??? note "listFiles"
+    Lists all the files in the directory path that match the specified pattern.
+
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default Value</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Directory Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the directory from which files should be listed.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Matching Pattern
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The file pattern that should be used to select files for listing.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                List Files in Subdirectories
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                 List files from subdirectories recursively.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                File Sort Attribute
+            </td>
+            <td>
+               String
+            </td>
+            <td>
+                 Files will get sorted and listed by this attribute.</br>
+                 <b>Possible Values</b>: Name, Size, LastModifiedTime.
+            </td>
+            <td>
+                Name
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Sort Order
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The sorting order applicable tothe <b>File Sort</b> attribute.</br>
+                 <b>Possible Values</b>: Ascending, Descending.
+            </td>
+            <td>
+                Ascending
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+    </table>
+
+    **Response** 
+
+    ```xml
+    <listFilesResult>
+       <success>true</success>
+       <directory name="test">
+           <file>.DS_Store</file>
+           <directory name="aa"/>
+           <file>abc.txt</file>
+           <directory name="hasitha">
+               <file>a1.txt</file>
+               <file>a2.txt</file>
+           </directory>
+           <file>input.xml</file>
+           <file>output.csv</file>
+       </directory>
+    </listFilesResult>
+    ```
+
+??? note "exploreZipFile"
+
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default Value</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Zip File Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                 The path to the ZIP file that should be explored.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+    </table>
+
+    **Response** 
+
+    ```xml
+    <exploreZipFileResult>
+       <success>true</success>
+       <zipFileContent>
+           <file>test1.txt</file>
+           <file>test2.txt</file>
+           <file>hasitha/a1.txt</file>
+           <file>hasitha/a2.txt</file>
+           <file>hasitha/b/b2.txt</file>
+           <file>hasitha/b/b1.txt</file>
+           <file>hasitha/b/c/test1.txt</file>
+           <file>hasitha/b/c/c1.txt</file>
+       </zipFileContent>
+    </exploreZipFileResult>
+    ```
+
+    **On Error** 
+
+    ```xml
+    <exploreZipFileResult>
+       <success>false</success>
+       <code>700102</code>
+       <detail>Zip file not found at path file:///Users/hasitha/temp/file-connector-test/wso2/test/archieve.zip</detail>
+    </exploreZipFileResult>
+    ```
 
 ??? note "mergeFiles"
-    The mergeFiles operation merges multiple chunks into a single file.
+    Merge the contents of multiple files in a folder to a single file.
+
     <table>
         <tr>
             <th>Parameter Name</th>
+            <th>Type</th>
             <th>Description</th>
+            <th>Default Value</th>
             <th>Required</th>
         </tr>
         <tr>
-            <td>source</td>
-            <td>The location of the file.</td>
-            <td>Yes</td>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>destination</td>
-            <td>The location to write the file.</td>
-            <td>Yes</td>
+            <td>
+               Source Directory Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The path to the source folder containing the files that should be merged.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
         <tr>
-            <td>filePattern</td>
-            <td>The pattern of the file to be read.</td>
-            <td>Yes</td>
+            <td>
+               Target File Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Path to the folder that holds the merged file.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               File Pattern
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The pattern that should be used for selecting the source files that should be merged.</br>
+                <b>Example</b>: <code>[a-zA-Z][a-zA-Z]*.(txt|xml|jar)</code>.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Write Mode
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                One of “Overwrite” or “Append”. 
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
         </tr>
     </table>
 
-    **Sample configuration**
+    **Response** 
 
     ```xml
-    <fileconnector.mergeFiles>
-        <source>{$ctx:source}</source>
-        <destination>{$ctx:destination}</destination>
-        <filePattern>{$ctx:filePattern}</filePattern>
-    </fileconnector.mergeFiles>
-    ```
-    
-    **Sample request**
-    
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/outTest/",
-        "destination":"/home/vive/Desktop/file/outTest/sample.txt",
-        "filePattern":"*.txt*"
-    }
+    <mergeFilesResult>
+       <success>true</success>
+       <detail>
+           <numberOfMergedFiles>5</numberOfMergedFiles>
+           <totalWrittenBytes>992</totalWrittenBytes>
+       </detail>
+    </mergeFilesResult>
     ```
 
-
-??? note "readSpecifiedLines"
-    The readSpecifiedLines operation reads specific lines between given line numbers from a file.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>source</td>
-            <td>The location of the file.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>contentType</td>
-            <td>Content type of the files processed by the connector.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>start</td>
-            <td>Read from this line number.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>end</td>
-            <td>Read up to this line number.</td>
-            <td>Yes</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
+    **On Error** 
 
     ```xml
-    <fileconnector.readSpecifiedLines>
-        <source>{$ctx:source}</source>
-        <contentType>{$ctx:contentType}</contentType>
-        <start>{$ctx:start}</start>
-        <end>{$ctx:end}</end>
-    </fileconnector.readSpecifiedLines>
+    <mergeFilesResult>
+       <success>false</success>
+       <code>700102</code>
+       <detail>Directory not found: file:///Users/hasitha/temp/file-connector-test/wso2/toMergesnsdfb</detail>
+    </mergeFilesResult>
     ```
 
-    **Sample request**
-
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/outTest/sampleText.txt",
-        "start":"5",
-        "end":"25"
-    }
-    ```
-
-
-??? note "readALine"
-    The readALine operation reads a specific line from a file.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-        <tr>
-            <td>source</td>
-            <td>The location of the file.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>lineNumber</td>
-            <td>Line number to read.</td>
-            <td>Yes</td>
-        </tr>
-    </table>
-
-    **Sample configuration**
-
-    ```xml
-    <fileconnector.readALine>
-        <source>{$ctx:source}</source>
-        <lineNumber>{$ctx:lineNumber}</lineNumber>
-    </fileconnector.readALine>
-    ```
+??? note "write"
     
-    **Sample request**
+    1.  Add a static content and write to a text file. 
+    2.  Change write mode to “create new” and invoke again, should fail as the file is already there. 
+    3.  Delete the file and invoke again. File should be created. 
+    4.  Set a property with a text and create the file with it. 
+    5.  Create the same text file with compress enabled. It should create a zip file with the same file name. 
+    6.  Select file append mode, and append a text to an empty file.
 
-    ```json
-    {
-        "source":"/home/vive/Desktop/file/outTest/sampleText.txt",
-        "lineNumber":"5"
-    }
-    ```
+        1.  To the first line
+        2.  To the 3 rd line 
+        3.  With no line specified
+        4.  To 100th line (non existing)  → should print a WARN and append to EOF
 
+    7.  Send a xml message to the API and write the message as a xml file. 
+    8.  Send a json message to the API, do a csv transformation and write to a csv file. 
 
-
-### Sample configuration in a scenario
+## Sample configuration in a scenario
 
 The following is a sample proxy service that illustrates how to connect to the File connector and use the create operation to create a file. You can use this sample as a template for using other operations in this category.
 
 **Sample Proxy**
+
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse"
        name="FileConnector_create"
