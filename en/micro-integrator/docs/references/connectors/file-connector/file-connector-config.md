@@ -1,41 +1,45 @@
 # File Connector Reference
 
+!!! Warning
+    Please note that this page is currently Work in Progress!
+
 ## Connection configurations
 
-File Connector can be used to deal with two types of file systems.
+The File connector can be used to deal with two types of file systems:
 
--   Local file system - file system of the server where WSO2 EI is deployed.
--   Remote file system  - file system outside the server where WSO2 EI is deployed. There are a few industry standard protocols established to expose a file system over TCP. Following protocols are supported by the File Connector. 
+-   <b>Local File System</b>: A file system of the server where WSO2 EI is deployed.
+-   <b>Remote File System</b>: A file system outside the server where WSO2 EI is deployed. There are few industry standard protocols established to expose a file system over TCP. Following protocols are supported by the File connector. 
 
-    -   Using FTP
-    -   Using FTPS
-    -   Using SFTP
+    -   FTP
+    -   FTPS
+    -   SFTP
     
-There are different connection configurations for above protocols users can select. They contain a common set of configurations and some additional configurations specific to the protocol.
+There are different connection configurations that can be used for the above protocols. They contain a common set of configurations and some additional configurations specific to the protocol.
 
 <img src="../../../../assets/img/connectors/filecon-reference-22.png" title="types of file connections" width="800" alt="types of file connections"/>
 
-!!! Info
-    The file connector internally uses Apache VFS library. According to the selected connection type, following VFS connection urls will be generated.
+The File connector internally uses the [Apache VFS Library](https://commons.apache.org/proper/commons-vfs/). According to the selected connection type, the following VFS connection urls will be generated.
 
-    ```
-    FILE : Provides access to the files on the local physical file system.
-    [file://] absolute-path
-    file:///home/someuser/somedir
-    file:///C:/Documents and Settings
+```bash tab='Local File'
+[file://] absolute-path
+file:///home/someuser/somedir
+file:///C:/Documents and Settings
+```
 
-    FTP: Provides access to the files on an FTP server.
-    ftp://[ username[: password]@] hostname[: port][ relative-path]
-    ftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+```bash tab='FTP'
+ftp://[ username[: password]@] hostname[: port][ relative-path]
+ftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+```
 
-    FTPS: Provides access to the files on an FTP server over SSL.
-    ftps://[ username[: password]@] hostname[: port][ absolute-path]
-    ftps://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+```bash tab='FTPS'
+ftps://[ username[: password]@] hostname[: port][ absolute-path]
+ftps://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+``` 
 
-    SFTP: Provides access to the files on an SFTP server (that is, an SSH or SCP server).
-    sftp://[ username[: password]@] hostname[: port][ relative-path]
-    sftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
-    ```
+```bash tab='SFTP'
+sftp://[ username[: password]@] hostname[: port][ relative-path]
+sftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+```
 
 ### Common configs to all connection types
 
@@ -73,7 +77,21 @@ There are different connection configurations for above protocols users can sele
         </td>
         <td>
             The protocol used for communicating with the file system.</br> 
-            <b>Possible values</b>: 'LOCAL', 'FTP', 'FTPS', 'SFTP'.
+            <b>Possible values</b>: 
+            <ul>
+                <li>
+                    <b>Local</b>: Provides access to the files on the local physical file system.
+                </li>
+                <li>
+                    <b>FTP</b>: Provides access to the files on an FTP server.
+                </li>
+                <li>
+                    <b>FTPS</b>: Provides access to the files on an FTP server over SSL.
+                </li>
+                <li>
+                    <b>SFTP</b>: Provides access to the files on an SFTP server (that is, an SSH or SCP server).
+                </li>
+            </ul>
         </td>
         <td>
             -
@@ -90,8 +108,8 @@ There are different connection configurations for above protocols users can sele
             String
         </td>
         <td>
-            The working directory. File paths in operations, which are associated with the connection should be provided using this folder as the root. </br>
-            <b>Note</b>: As per <a href="https://commons.apache.org/proper/commons-vfs/filesystems.html#Local_Files">VFS documentation</a>, for windows, the working directory of local connections should be as follows: '/C:/Documents'.
+            This is the working directory. The file paths in operations, which are associated with the connection, should be provided relative to this folder. </br>
+            <b>Note</b>: As per <a href="https://commons.apache.org/proper/commons-vfs/filesystems.html#Local_Files">VFS documentation</a>, for windows, the working directory of local connections should be as follows: <code>/C:/Documents</code>.
         <td>
             Defaults to file system root.
         </td>
@@ -107,19 +125,19 @@ There are different connection configurations for above protocols users can sele
             String
         </td>
         <td>
-            Specify whether to acquire node-specific lock (Local) or cluster-wide lock (Cluster) when locks are acquired in read and write operations.</br></br>
-            <b>Note</b>:</br>
-            File locking is available for read and write operations. When enabled, a file specific lock is acquired before the operation and released after the operation. Parallel read/write operations are restricted when locking is enabled by a file operation. 
-            <ol>
+            Specify whether to acquire node-specific lock (Local) or cluster-wide lock (Cluster) when locks are acquired in read and write operations.</br>
+            <ul>
                 <li>
                     <b>Local</b></br>
-                    When a lock is acquired, it is acquired within the context of file operations performed by that EI node only. Local lock acquired by some file operation on a particular Ei node is not visible to the other EI nodes that may access the same file system.
+                    When a lock is acquired, it is acquired within the context of file operations performed by that EI node only. Local lock acquired by some file operation on a particular EI node is not visible to the other EI nodes that may access the same file system.
                 </li>
                 <li>
-                   <b>Global</b></br> 
-                   When multiple EI nodes access the same file system performing read and write operations, you may use this behaviour. Here, when a file lock is acquired, it is visible to all file connector operations across the nodes. This is acquired by creating a .lock file in the same file system for the file that is being accessed. The behaviour depends on the OS and the file system, so this feature may not work as intended in high concurrent scenarios.
+                   <b>Cluster</b></br> 
+                   When multiple EI nodes access the same file system performing read and write operations, you may use this behaviour. Here, when a file lock is acquired, it is visible to all file connector operations across the nodes. This is acquired by creating a <code>.lock</code> file in the same file system (for the file that is being accessed). The behaviour depends on the OS and the file system. Therefore, this feature may not work as intended in high-concurrent scenarios.
                 </li>
-            </ol>
+            </ul>
+            <b>Note</b>:</br>
+            File locking is available for read and write operations. When enabled, a file specific lock is acquired before the operation and released after the operation. Parallel read/write operations are restricted when locking is enabled by a file operation.
         <td>
             Local
         </td>
@@ -215,7 +233,7 @@ There are different connection configurations for above protocols users can sele
             Boolean
         </td>
         <td>
-            If set to false (default), VFS will choose the file system's root as the VFS's root. If you want to have the User's home as the VFS root, then set this to true.
+            If set to false (default), VFS will choose the file system's root as the VFS's root. If you want to have the user's home as the VFS root, then set this to 'true'.
         </td>
         <td>
             false
@@ -248,8 +266,7 @@ There are different connection configurations for above protocols users can sele
             <b>Note</b> the following about 'Active/Passive' mode:
             <ol>
                 <li>
-                    <b>Active Mode</b>: The client starts listening on a random port for incoming data connections from the server (the client sends the FTP command PORT to inform the server on which port it is listening). Nowadays, it is typical that the client is behind a firewall (e.g. built-in Windows firewall) or NAT router (e.g. ADSL modem), unable to accept incoming TCP connections.
-                    For this reason the passive mode was introduced and is mostly used nowadays. 
+                    <b>Active Mode</b>: The client starts listening on a random port for incoming data connections from the server (the client sends the FTP command PORT to inform the server on which port it is listening). Nowadays, the client is typically behind a firewall (e.g. built-in Windows firewall) or NAT router (e.g. ADSL modem), unable to accept incoming TCP connections. The passive mode was introduced and is heavily used for this reason. 
                 </li>
                 <li>
                     <b>Passive Mode</b>: In the passive mode, the client uses the control connection to send a PASV command to the server and then receives a server IP address and server port number from the server, which the client then uses to open a data connection to the server IP address and server port number received.
@@ -1238,13 +1255,38 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
         <tr>
             <td>
-                Content Property
+                Add Result To
             </td>
             <td>
                 String
             </td>
             <td>
-                The context property name to set content read from the file. If provided, the payload in the body is intact. 
+                Specify where to add the result of the file that is read.</br>
+                <ul>
+                    <li>
+                        <b>Message Body</b>
+                    </li>
+                    <li>
+                        <b>Message Property</b>: The payload that was in the message body before applying the <b>file read</b> operation will remain intact.
+                    </li>
+                </ul>
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Property Name
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                If <code>Add Result To==Message Property</code>, you need to specify this value. Result of the <b>file read</b> operation will be added as a <code>default</code> scope property by the specified name. This can now be accessed later in the flow.
             </td>
             <td>
                 -
