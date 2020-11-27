@@ -1,6 +1,5 @@
 # Publishing Avro Events via Kafka
 
-
 ## Purpose:
 
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling to send sweet production events via the Kafka transport in Avro format using Confluent Schema Registry.
@@ -17,7 +16,10 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 
 2. Download confluent-5.2.1 from the [Confluent website](https://www.confluent.io/download/). Then unzip the file you downloaded.
 
-3. Save this sample.
+    !!! tip
+        Download the product Confluent PLatform. For this sample, the deployment type selected was **Manual**.
+
+3. Save the sample `PublishKafkaInAvroFormatUsingSchemaRegistry` Siddhi application.
 
     If there is no syntax error, the following message is logged in the terminal.
     
@@ -47,7 +49,7 @@ To execute the sample, follow the steps below:
     curl -X POST -H "Content-Type: application/json" --data '{ "schema": "{ \"type\": \"record\", \"name\": \"sweetProduction\",\"namespace\": \"sweetProduction\", \"fields\":[{ \"name\": \"name\", \"type\": \"string\" },{ \"name\": \"amount\", \"type\": \"double\" }]}"}' http://localhost:8081/subjects/sweet-production/versions
     ```
 
-5. Navigate to the `<SI_HOME>/samples/sample-clients/kafka-avro-consumer` directory and run the `ant` command without arguments.
+5. Navigate to the `<SI_TOOLING_HOME>/samples/sample-clients/kafka-avro-consumer` directory and run the `ant` command without arguments.
 
 6. Start the `PublishKafkaInAvroFormatUsingSchemaRegistry` Siddhi application you saved by opening it in Streaming Integrator Tooling and clicking the **Start** button.
     
@@ -78,7 +80,7 @@ To test this sample, send events following one or more of the methods given belo
 
 3. Once you select the stream, the **name** and **amount** fields appear. Enter `chocolate cake` as the name and `50.50` as the value. Then click **Send** to send the event.
 
-4. Simulate a few more events for the `SweetProductionStream` stream by repeatin g the above steps.
+4. Simulate a few more events for the `SweetProductionStream` stream by repeating the above steps.
 
 **Option 2 - Publish events with Curl to the simulator HTTP endpoint:**
 
@@ -111,7 +113,7 @@ To test this sample, send events following one or more of the methods given belo
 
 ## Viewing the Results:
 
-You can view the following output in the terminal of `<SI_HOME>/samples/sample-clients/kafka-avro-consumer`.
+You can view the following output in the terminal in which you ran the ant build for `<SI_HOME>/samples/sample-clients/kafka-avro-consumer`.
 ```
 [java] [org.wso2.extension.siddhi.io.kafka.source.KafkaConsumerThread] : Event received in Kafka Event Adaptor with offSet: 2, key: null, topic: kafka_result_topic, partition: 0
 [java] [io.siddhi.core.stream.output.sink.LogSink] : KafkaSample : logStream : Event{timestamp=1546973831995, data=[chocolate cake, 50.5], isExpired=false}
