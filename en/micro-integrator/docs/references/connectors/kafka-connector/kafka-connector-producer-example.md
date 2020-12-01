@@ -14,6 +14,10 @@ The following diagram illustrates all the required functionality of the Kafka se
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
+## Set up Kafka
+
+Before you begin, set up Kafka by following the instructions in [Setting up Kafka](setting-up-kafka.md).
+
 ## Configure the connector in WSO2 Integration Studio
 
 Follow these steps to set up the Integration Project and the Connector Exporter Project.
@@ -24,16 +28,17 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 2. Specify the API name as `KafkaTransport` and API context as `/publishMessages`. You can go to the source view of the XML configuration file of the API and copy the following configuration (source view).
 
-    ```
+    ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <api context="/publishMessages" name="KafkaTransport" xmlns="http://ws.apache.org/ns/synapse">
         <resource methods="POST">
-           <inSequence>
+            <inSequence>
                 <kafkaTransport.init>
-                   <bootstrapServers>localhost:9092</bootstrapServers>
-                   <keySerializerClass>org.apache.kafka.common.serialization.StringSerializer</keySerializerClass>
-                   <valueSerializerClass>org.apache.kafka.common.serialization.StringSerializer</valueSerializerClass>
-                   <maxPoolSize>100</maxPoolSize>
+                    <name>Sample_Kafka</name>
+                    <bootstrapServers>localhost:9092</bootstrapServers>
+                    <keySerializerClass>org.apache.kafka.common.serialization.StringSerializer</keySerializerClass>
+                    <valueSerializerClass>org.apache.kafka.common.serialization.StringSerializer</valueSerializerClass>
+                    <maxPoolSize>100</maxPoolSize>
                 </kafkaTransport.init>
                 <kafkaTransport.publishMessages>
                     <topic>test</topic>
@@ -41,18 +46,18 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
             </inSequence>
             <outSequence/>
             <faultSequence/>
-           </resource>
+        </resource>
     </api>
     ```
 Now we can export the imported connector and the API into a single CAR application. The CAR application needs to be deployed during server runtime. 
 
-{!/references/connectors/exporting-artifacts.md!}
+{!references/connectors/exporting-artifacts.md!}
 
 ## Get the project
 
 You can download the ZIP file and extract the contents to get the project code.
 
-<a href="../../../../assets/attach/connectors/FileConnector.zip">
+<a href="../../../../assets/attach/connectors/Kafka-connector.zip">
     <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
 
@@ -69,26 +74,32 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 Let’s create a topic named “test” with a single partition and only one replica.
 Navigate to the <KAFKA_HOME> and run following command.
    
-```
+```bash
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test     
 ```
+
 **Sample Request**:
    
 Send a message to the Kafka broker using a CURL command or sample client.
 
+```bash
+curl -X POST -d '{"name":"sample"}' "http://localhost:8290/publishMessages" -H "Content-Type:application/json" -v
 ```
-curl -v POST -d '{"name":"sample"}' "http://localhost:8290/services/KafkaTransport" -H "Content-Type:application/json"
-```
+
 **Expected Response**: 
    
 Navigate to the <KAFKA_HOME> and run the following command to verify the messages:
-```
+
+```bash
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
+
 See the following message content:
-```
+
+```bash
 {"name":"sample"}
 ```   
+
 This demonstrates how the Kafka connector publishes messages to the Kafka brokers.
    
 ## What's next

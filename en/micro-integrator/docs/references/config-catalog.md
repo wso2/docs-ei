@@ -2580,7 +2580,7 @@ application_binary = "org.apache.axis2.format.BinaryBuilder"
                 <label class="tab-selector" for="_tab_16"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[message_builders.blocking]
+<pre><code class="toml">[blocking.message_builders]
 application_xml = "org.apache.axis2.builder.ApplicationXMLBuilder"
 form_urlencoded = "org.apache.synapse.commons.builders.XFormURLEncodedBuilder"
 multipart_form_data = "org.apache.axis2.builder.MultipartFormDataBuilder"
@@ -2596,7 +2596,7 @@ application_binary = "org.apache.axis2.format.BinaryBuilder"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[message_builders.blocking]</code>
+                            <code>[blocking.message_builders]</code>
                             <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is required for configuring the <a href='../../setup/message_builders_formatters/message-builders-and-formatters'>message builder</a> implementation that is used to build messages that are received by the Micro Integrator in <b>blocking</b> mode. You can use the <a href='#message-builders-non-blocking-mode'>same list of parameters</a> that are available for message builders in non-blocking mode.
@@ -2879,7 +2879,7 @@ application_binary =  "org.apache.axis2.format.BinaryFormatter"
                 <label class="tab-selector" for="_tab_18"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[message_formatters.blocking]
+<pre><code class="toml">[blocking.message_formatters]
 form_urlencoded =  "org.apache.synapse.commons.formatters.XFormURLEncodedFormatter"
 multipart_form_data =  "org.apache.axis2.transport.http.MultipartFormDataFormatter"
 application_xml = "org.apache.axis2.transport.http.ApplicationXMLFormatter"
@@ -2897,7 +2897,7 @@ application_binary =  "org.apache.axis2.format.BinaryFormatter"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[message_formatters.blocking]</code>
+                            <code>[blocking.message_formatters]</code>
                             <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is required for configuring the <a href='../../setup/message_builders_formatters/message-builders-and-formatters'>message formatter</a> implementations that are used to format messages that are sent out from the Micro Integrator in <b>blocking</b> mode. You can use the <a href='#message-formatters-non-blocking-mode'>same list of parameters</a> that are available for message formatters in non-blocking mode.
@@ -3000,7 +3000,7 @@ class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
                 <label class="tab-selector" for="_tab_20"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[custom_message_builders.blocking]]
+<pre><code class="toml">[[blocking.custom_message_builders]]
 content_type = "application/json/badgerfish"
 class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
 </code></pre>
@@ -3009,7 +3009,7 @@ class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[[custom_message_builders.blocking]]</code>
+                            <code>[[blocking.custom_message_builders]]</code>
                             <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is required for configuring the custom message builder implementation class and the selected content types to which the builder should apply <b>in blocking mode</b>. See the instructions on configuring <a href='../../setup/message_builders_formatters/message-builders-and-formatters'>custom message builders and formatters</a>. You can use the <a href='#custom-message-builder-non-blocking-mode'>same list of parameters</a> that are available for custom message builders in non-blocking mode.
@@ -3112,7 +3112,7 @@ class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
                 <label class="tab-selector" for="_tab_22"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[custom_message_formatters.blocking]]
+<pre><code class="toml">[[blocking.custom_message_formatters]]
 content_type = "application/json/badgerfish"
 class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
 </code></pre>
@@ -3121,7 +3121,7 @@ class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[[custom_message_formatters.blocking]]</code>
+                            <code>[[blocking.custom_message_formatters]]</code>
                             <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is required for configuring the custom message formatter implementation class and the selected content types to which the formatter should apply <b>in blocking mode</b>. See the instructions on configuring <a href='../../setup/message_builders_formatters/message-builders-and-formatters'>custom message builders and formatters</a>. You can use the <a href='#custom-message-formatter-non-blocking-mode'>same list of parameters</a> that are available for custom message formatters in non-blocking mode.
@@ -9560,8 +9560,8 @@ flow.statistics.enable=false
 flow.statistics.capture_all=false
 statistics.enable_clean=true
 statistics.clean_interval = "1000ms"
-flow.statistics.tracer.collect_payloads=false
-flow.statistics.tracer.collect_properties=false
+stat.tracer.collect_payloads=false
+stat.tracer.collect_mediation_properties=false
 inbound.core_threads = 20
 inbound.max_threads = 100
 </code></pre>
@@ -9671,7 +9671,7 @@ inbound.max_threads = 100
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>If this parameter is set to true , the Micro Integrator can switch to xpath 2.0. This parameter is 'false' by default since xpath 2.0 evaluations can cause performance degradation. The Micro Integrator uses the <b>Saxon Home Edition</b> when implementing XPATH 2.0 functionalities, and thus supports all the functions that are shipped with it. For more information on the supported functions, see the Saxon Documentation.</p>
+                                        <p>If this parameter is set to true, the Micro Integrator can switch to XPATH 2.0. This parameter can be set to false if XPATH 2.0 evaluations cause performance degradation. The Micro Integrator uses the <b>Saxon Home Edition</b> when implementing XPATH 2.0 functionalities, and thus supports all the functions that are shipped with it. For more information on the supported functions, see the Saxon Documentation.</p>
                                     </div>
                                 </div>
                             </div><div class="param">

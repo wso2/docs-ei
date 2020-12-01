@@ -114,6 +114,39 @@ The VFS transport is enabled in the Micro Integrator server by default. Also, th
 
 For more information, see [service-level VFS parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters).
 
+## Configuring the HL7 transport
+
+The HL7 transport allows you to handle Health Level 7 International (HL7) messages. 
+
+### Adding the transport
+
+HL7 is not shipped by default in the pack. To make the transport available, download the [HL7_ZIP](https://github
+.com/wso2-docs/WSO2_EI/raw/master/micro-integrator-resources/hl7/1.2.0/wso2mi-hl7-1.2.0.zip), extract it and add both
+ the jars inside it to the `<MI_HOME>/dropins` folder.
+
+### Enabling the transport
+
+Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder: 
+
+```toml tab='HL7 Listener'
+[[custom_transport.listener]]
+class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
+protocol = "hl7"
+parameter.'transport.hl7.TimeOut' = 10000
+```
+
+```toml tab='HL7 Sender'
+[[custom_transport.sender]]
+class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender"
+protocol = "hl7"
+```
+
+You can configure how long request threads wait for the application's response by specifying the `parameter.'transport.hl7.TimeOut'` parameter as shown above. This configures the timeout in milliseconds at the transport level.
+
+### Change message encoding type
+
+To control the encoding type of incoming HL7 messages, set the following JAVA system property: `ca.uhn.hl7v2.llp.charset`.
+
 ## Configuring the TCP transport
 
 To enable the TCP transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).

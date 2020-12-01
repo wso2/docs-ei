@@ -111,4 +111,6 @@ data_source = "WSO2_TRANSACTION_DB"
 update_interval = 2
 ```
 
+{!setup/pull/PULL-CONTENT-user-store-db-id.md!}
+
 See the descriptions of [database connection parameters](../../../references/config-catalog/#database-connection).

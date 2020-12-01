@@ -1,6 +1,3 @@
-!!! note
-    This section is still a work in progress and not tested.
-
 # Viewing Cloud Native Observability Dashboards
 
 Let's use the **dashboards** from the cloud-native observability deployment to monitor **statistics** from your integration artifacts.
@@ -110,11 +107,11 @@ The purposes of this dashboard are as follows:
 
 - Click on the services deployed in the node to view statistics specific to those services. This allows you evaluate the throughput of each service to analyze further and make decisions on how to deploy the available services in the available nodes in a manner that optimizes the use of resources. It also allows you to identify the services that contribute to the total error count of the node and take appropriate action.
 
-## Proxy Service dashboard
+## WSO2 Proxy Service Metrics dashboard
 
 In the Proxy service dashboard, we can view information related to a specific Proxy service.
 
-![Proxy Service Dashboard](../assets/img/monitoring-dashboard/grafana-proxy-services-dashboard.png)
+![Proxy Service Metrics Dashboard](../assets/img/monitoring-dashboard/grafana-proxy-services-dashboard.png)
 
 ### Downloading the dashboard
 
@@ -126,17 +123,17 @@ For instructions to set up this dashboard, see [Setting Up the Cloud Native Obse
 
 The following is the list of widgets displayed in this dashboard.
 
-| **Widget**                    | **Description**                                                                                       |
-|-------------------------------|-------------------------------------------------------------------------------------------------------|
-| **Up Time**                   | The time duration that has elapsed since the proxy service started running during the current session.|
-| **All Request Count**         | The total number of requests received and handled by the proxy service.                               |
-| **Successful Request Count**  | The total number of requests that were successfully executed by the proxy service.                    |
-| **Error Count**               | The total number of requests handled by the proxy service that have resulted in errors.               |
-| **Error Percentage**          | The percentage of requests handled by the proxy service that have resulted in errors.                 |
-| **Deployed Node Count**       | The number of nodes in which the proxy service is deployed.                                           |
-| **Request Rate**              | A visualization of the total number of requests handled by the proxy service over time.               |
-| **Error Rate**                | A visualization of the total number of errors that have occurred for the proxy service over time.     |
-| **Response Time**             | A visualization of the time taken by the proxy service to respond to requests over time.              |
+| **Widget**                    | **Description**                                                                                                                                                                                   |
+|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Up Time**                   | The time duration that has elapsed since the proxy service started running during the current session.                                                                                            |
+| **All Request Count**         | The total number of requests received and handled by the proxy service during the selected time interval.                                                                                         |
+| **Successful Request Count**  | The total number of requests that were successfully executed by the proxy service during the selected time interval.                                                                              |
+| **Error Count**               | The total number of requests handled by the proxy service during the selected time interval that have resulted in errors.                                                                         |
+| **Error Percentage**          | The requests handled by the proxy service during the selected time interval that have resulted in errors, as a percentage of the total number of requests received by the proxy service during that same time interval.|
+| **Deployed Node Count**       | The number of nodes in which the proxy service is deployed.                                                                                                                                       |
+| **Request Rate**              | A visualization of the total number of requests handled by the proxy service during the selected time interval.                                                                         |
+| **Error Rate**                | A visualization of the total number of errors that have occurred for the proxy service during the selected time interval. |
+| **Response Time**             | A visualization of the time taken by the proxy service to respond to requests during the selected time interval. |
 
 ### Purpose
 
@@ -152,10 +149,11 @@ The purposes of this dashboard is as follows:
 
 - If there are errors, check the mediation flow of the proxy service and make changes to prevent the errors.                                                                                                               
 
-## API dashboard
+## WSO2 API Metrics dashboard
 
 This dashboard displays overall statistics related to a specific API. 
 
+![API Metrics Dashboard](../assets/img/monitoring-dashboard/grafana-api-services-dashboard.png)
 
 ### Downloading the dashboard
 
@@ -170,14 +168,14 @@ The following is the list of widgets displayed in this dashboard.
 | **Widget**                    | **Description**                                                                                      |
 |-------------------------------|------------------------------------------------------------------------------------------------------|
 | **Up Time**                   | The time duration that has elapsed since the API service started running during the current session. |                                                                                                            |
-| **All Time Request Count**    | The total number of requests received and handled by the API service.                                |
-| **Approx. Request Count**     |                                                                                                      |
-| **All Time Error Count**      | The total number of requests handled by the proxy service that have resulted in errors.              |
-| **Approx. Error Count**       |                                                                                                      |
+| **All Request Count**         | The total number of requests received and handled by the API during the selected time interval.                                                                                         |
+| **Successful Request Count**  | The total number of requests that were successfully executed by the API during the selected time interval.                                                                              |
+| **Error Count**               | The total number of requests handled by the API during the selected time interval that have resulted in errors.                                                                         |
+| **Error Percentage**          | The requests handled by the API during the selected time interval that have resulted in errors, as a percentage of the total number of requests received by the API during that same time interval.|
 | **Deployed Node Count**       | The number of nodes in which the API service is deployed.                                            |
-| **Request Rate**              | A visualization of the total number of requests handled by the API service over time.                |
-| **Error Rate**                | A visualization of the total number of errors that have occurred for the API service over time.      |
-| **Response Time**             | A visualization of the time taken by the API service to respond to requests over time.               |
+| **Request Rate**              | A visualization of the total number of requests handled by the API service during the selected time interval. |
+| **Error Rate**                | A visualization of the total number of errors that have occurred for the API service during the selected time interval. |
+| **Response Time**             | A visualization of the time taken by the API service to respond to requests during the selected time interval. |
 
 ### Purpose
 
@@ -191,9 +189,11 @@ The following is the list of widgets displayed in this dashboard.
 
 - If there are errors, check the mediation flow of the API service and make changes to prevent the errors.  
 
-## Inbound Endpoint dashboard
+## WSO2 Inbound Endpoint Metrics dashboard
 
 At a given time, the Inbound endpoint dashboard displays the overall statistics related to a selected endpoint. we can view information related to a specific Inbound endpoint. We can download this dashboard from here. In this dashboard, it will show us Up Time,, All Request Count, Successful Request Count, Error Count, Error Percentage, Deployed Node Count, Request Rate, Error Rate and Response Time.
+
+![Inbound Endpoint Metrics Dashboard](../assets/img/monitoring-dashboard/grafana-inbound-endpoint-metrics-dashboard.png)
 
 ### Downloading the dashboard
 
@@ -208,11 +208,11 @@ The following is the list of widgets displayed in this dashboard.
 | **Widget**                    | **Description**                                                                                                                         |
 |-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | **Up Time**                   | The time duration that has elapsed since the inbound endpoint became active during the current session.                                 |
-| **All Time Request Count**    | The total number of requests received by the inbound endpoint from the time it was configured.                                          |
-| **Successful Request Count**  | The total number of requests successfully received by the inbound endpoint from the time it was configured.                             |
-| **Error Count**               | The total number of requests received by the inbound endpoint that have resulted in errors.                                             |
-| **Error Percentage**          | The total number of erroneous requests received by the inbound endpoint as a percentage of the total number of requests received by it. |
+| **All Request Count**         | The total number of requests received and handled by the inbound endpoint during the selected time interval.                                                                                         |
+| **Successful Request Count**  | The total number of requests that were successfully executed by the inbound endpoint during the selected time interval.                                                                              |
+| **Error Count**               | The total number of requests handled by the inbound endpoint during the selected time interval that have resulted in errors.                                                                         |
+| **Error Percentage**          | The requests handled by the inbound endpoint during the selected time interval that have resulted in errors, as a percentage of the total number of requests received by the endpoint during that same time interval.|
 | **Deployed Node Count**       | The number of nodes in which the inbound endpoint is deployed.                                                                          |
-| **Request Rate**              | A visualization of the total number of requests handled by the inbound endpoint over time.                                              |
-| **Error Rate**                | A visualization of the total number of errors that have occurred for the inbound endpoint over time.                                    |
-| **Response Time**             | A visualization of the time taken by the inbound endpoint to respond to requests over time.                                             |
+| **Request Rate**              | A visualization of the total number of requests handled by the inbound endpoint during the selected time interval.                      |
+| **Error Rate**                | A visualization of the total number of errors that have occurred for the inbound endpoint during the selected time interval.            |
+| **Response Time**             | A visualization of the time taken by the inbound endpoint to respond to requests during the selected time interval.                     |

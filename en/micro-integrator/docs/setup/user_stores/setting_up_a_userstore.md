@@ -1,18 +1,10 @@
 # Configuring a User Store
 
-A user store is a repository that stores user credentials (user names and passwords). WSO2 Micro Integrator requires <b>user</b> credentials for the following scenarios:
+A user store is a repository that stores user credentials (user names and passwords).
 
--	[Authentication](../../../setup/security/securing_management_api/#authentication-jwt) for internal APIs
+## Users in the Micro Integrator
 
-	Users accessing the management API and related tools (Micro Integrator dashboard/Micro Integrator CLI) for administration tasks should be authenticated.
-
--	Authentication for integration use cases
-
-	Some integration use cases require authentication by <b>dynamic username token</b> and similar <b>[WS-Security](../../../references/security/security-implementation)</b> options. User authentication is also required for [securing REST API artifacts](../../../develop/advanced-development/applying-security-to-an-api).
-
--	[Authorization](../../../setup/security/securing_management_api/#authorization) for internal APIs
-
-	 Certain resources of the management API are protected by <b>authorization</b>. Therefore, users should be granted admin privileges to operate those resources.
+Find out about [user credentials in the Micro Integrator](../../../setup/user_stores/managing_users/#users-credentials-in-the-mi).
 
 ## File-based user store (Default)
 
@@ -41,15 +33,17 @@ enable = false
 
 ## Configuring an LDAP user store
 
-<b>Before you begin</b>:
-
--	See the documentation of your LDAP provider for instructions on setting up the LDAP.
--	[Disable the file-based user store](#disabling-the-file-based-user-store).
+!!! note "Before you begin"
+	-	See the documentation of your LDAP provider for instructions on setting up the LDAP.
+	-	[Disable the file-based user store](#disabling-the-file-based-user-store).
 
 Follow the steps given below to connect the Micro Integrator to your LDAP user store.
 
 1.	Open the `deployment.toml` file stored in the `<MI_HOME>/conf/` directory.
 2.	Add the following configurations and update the required values.
+	
+	!!! Tip
+		Note that the `[user_store]` section is enabled by default. Be sure to update the section without duplicating the `[user_store]` header.
 
 	```toml
 	[user_store]
@@ -115,14 +109,15 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 ## Configuring an RDBMS user store
 
-<b>Before you begin</b>, [disable the file-based user store](#disabling-the-file-based-user-store).
+!!! note "Before you begin"
+	[Disable the file-based user store](#disabling-the-file-based-user-store).
 
-Follow the steps given below to set up the RDBMS and connect it to the Micro Integrator.
+If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.6.0)), you can connect the same database to the Micro Integrator of EI 7.1. Alternatively, you can create a new RDBMS user store and connect it to the Micro Integrator.
 
-1.	Set up an RDBMS. You can use one of the following types.
+1.	To set up a new RDBMS, select the preferred RDBMS type and follow the instructions. 
 
-	!!! Note
-		Be sure to use the relevant database script stored in the `<MI_HOME>/dbscripts/` directory when you create the database.
+	!!! Tip
+		If you already have an RDBMS user store set up, you can skip this step.
 
 	- [Setting up a MySQL database](../../../setup/databases/setting-up-MySQL)
 	- [Setting up an MSSQL database](../../../setup/databases/setting-up-MSSQL)
@@ -130,147 +125,147 @@ Follow the steps given below to set up the RDBMS and connect it to the Micro Int
 	- [Setting up a Postgre database](../../../setup/databases/setting-up-PostgreSQL)
 	- [Setting up an IBM database](../../../setup/databases/setting-up-IBM-DB2)
 
-2.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
+2.	Be sure to add the JDBC driver to the `<MI_HOME>/lib` folder.
+3.	To connect the Micro Integrator to your RDBMS user store: 
 
-3.	Add the relevant datasource configuration and update the values for your database.
+	1.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
+	2.	Add the relevant configurations for your RDBMS type.
 
-	!!! Tip
-			If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.6.0)), you can connect the same database to the Micro Integrator of WSO2 Enterprise Integrator 7 as explained below.
+		```toml tab='MySQL'
+		[[datasource]]
+		id = "WSO2CarbonDB"
+		url= "jdbc:mysql://localhost:3306/userdb"
+		username="root"
+		password="root"
+		driver="com.mysql.jdbc.Driver"
+		pool_options.maxActive=50
+		pool_options.maxWait = 60000
+		pool_options.testOnBorrow = true
+		```
 
-	```toml tab='MySQL'
-	[[datasource]]
-	id = "WSO2CarbonDB"
-	url= "jdbc:mysql://localhost:3306/userdb"
-	username="root"
-	password="root"
-	driver="com.mysql.jdbc.Driver"
-	pool_options.maxActive=50
-	pool_options.maxWait = 60000
-	pool_options.testOnBorrow = true
-	```
+		```toml tab='MSSQL'
+		[[datasource]]
+		id = "WSO2CarbonDB"
+		url= "jdbc:sqlserver://<IP>:1433;databaseName=userdb;SendStringParametersAsUnicode=false"
+		username="root"
+		password="root"
+		driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		pool_options.maxActive=50
+		pool_options.maxWait = 60000
+		pool_options.testOnBorrow = true
+		```
 
-	```toml tab='MSSQL'
-	[[datasource]]
-	id = "WSO2CarbonDB"
-	url= "jdbc:sqlserver://<IP>:1433;databaseName=userdb;SendStringParametersAsUnicode=false"
-	username="root"
-	password="root"
-	driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-	pool_options.maxActive=50
-	pool_options.maxWait = 60000
-	pool_options.testOnBorrow = true
-	```
+		```toml tab='Oracle'
+		[[datasource]]
+		id = "WSO2CarbonDB"
+		url= "jdbc:oracle:thin:@SERVER_NAME:PORT/SID"
+		username="root"
+		password="root"
+		driver="oracle.jdbc.OracleDriver"
+		pool_options.maxActive=50
+		pool_options.maxWait = 60000
+		pool_options.testOnBorrow = true
+		```
 
-	```toml tab='Oracle'
-	[[datasource]]
-	id = "WSO2CarbonDB"
-	url= "jdbc:oracle:thin:@SERVER_NAME:PORT/SID"
-	username="root"
-	password="root"
-	driver="oracle.jdbc.OracleDriver"
-	pool_options.maxActive=50
-	pool_options.maxWait = 60000
-	pool_options.testOnBorrow = true
-	```
+		```toml tab='PostgreSQL'
+		[[datasource]]
+		id = "WSO2CarbonDB"
+		url= "jdbc:postgresql://localhost:5432/userdb"
+		username="root"
+		password="root"
+		driver="org.postgresql.Driver"
+		pool_options.maxActive=50
+		pool_options.maxWait = 60000
+		pool_options.testOnBorrow = true
+		```
 
-	```toml tab='PostgreSQL'
-	[[datasource]]
-	id = "WSO2CarbonDB"
-	url= "jdbc:postgresql://localhost:5432/userdb"
-	username="root"
-	password="root"
-	driver="org.postgresql.Driver"
-	pool_options.maxActive=50
-	pool_options.maxWait = 60000
-	pool_options.testOnBorrow = true
-	```
+		```toml tab='IBM DB'
+		[[datasource]]
+		id = "WSO2CarbonDB"
+		url="jdbc:db2://SERVER_NAME:PORT/userdb"
+		username="root"
+		password="root"
+		driver="com.ibm.db2.jcc.DB2Driver"
+		pool_options.maxActive=50
+		pool_options.maxWait = 60000
+		pool_options.testOnBorrow = true
+		```
 
-	```toml tab='IBM DB'
-	[[datasource]]
-	id = "WSO2CarbonDB"
-	url="jdbc:db2://SERVER_NAME:PORT/userdb"
-	username="root"
-	password="root"
-	driver="com.ibm.db2.jcc.DB2Driver"
-	pool_options.maxActive=50
-	pool_options.maxWait = 60000
-	pool_options.testOnBorrow = true
-	```
+		Parameters used above are explained below.
 
-	Parameters used above are explained below.
+		<table>
+			<tr>
+				<th>Parameter</th>
+				<th>Value</th>
+			</tr>
+			<tr>
+				<td>
+					<code>id</code>
+				</td>
+				<td>
+					The name given to the datasource. This is required to be <b>WSO2CarbonDB</b>.</br></br>
+					<b>Note</b>: If you replace 'WSO2CarbonDB' with a different id, you also need to list the id as a datasource under the <code>[realm_manager]</code> section in the <code>deployment.toml</code> file as shown below.
+					<div>
+						<code>
+						[realm_manager]</br>
+						data_source = "new_id"
+						</code>
+					</div>
+					Otherwise the user store database id defaults to 'WSO2CarbonDB' in the realm manager configurations.
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>url</code>
+				</td>
+				<td>
+					The URL for connecting to the database. The type of database is determined by the URL string.</a>.
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>username</code>
+				</td>
+				<td>
+					The username used to connect to the user store and perform various operations. This user needs to be an administrator in the user store. That is, the user requires write permission to manage add, modify users and to perform search operations on the user store.
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>password</code>
+				</td>
+				<td>
+					Password for the connection user name.
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code>driver</code>
+				</td>
+				<td>
+					The driver class specific to the JDBC user store.
+				</td>
+			</tr>
+		</table>
+		
+		See the complete list of [database connection parameters](../../../references/config-catalog/#database-connection) and their descriptions. Also, see the recommendations for [tuning the JDBC connection pool](../../../setup/performance_tuning/jdbc_tuning).
 
-	<table>
-		<tr>
-			<th>Parameter</th>
-			<th>Value</th>
-		</tr>
-		<tr>
-			<td>
-				<code>id</code>
-			</td>
-			<td>
-				The name given to the datasource. This is required to be <b>WSO2CarbonDB</b>.</br></br>
-				<b>Note</b>: If you replace 'WSO2CarbonDB' with a different id, you also need to list the id as a datasource under the <code>[realm_manager]</code> section in the <code>deployment.toml</code> file as shown below.
-				<div>
-					<code>
-					[realm_manager]</br>
-					data_source = "new_id"
-					</code>
-				</div>
-				Otherwise the user store database id defaults to 'WSO2CarbonDB' in the realm manager configurations.
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<code>url</code>
-			</td>
-			<td>
-				The URL for connecting to the database. The type of database is determined by the URL string.</a>.
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<code>username</code>
-			</td>
-			<td>
-				The username used to connect to the user store and perform various operations. This user needs to be an administrator in the user store. That is, the user requires write permission to manage add, modify users and to perform search operations on the user store.
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<code>password</code>
-			</td>
-			<td>
-				Password for the connection user name.
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<code>driver</code>
-			</td>
-			<td>
-				The driver class specific to the JDBC user store.
-			</td>
-		</tr>
-	</table>
+	3.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
 
-	See the complete list of [database connection parameters](../../../references/config-catalog/#database-connection) and their descriptions. Also, see the recommendations for [tuning the JDBC connection pool](../../../setup/performance_tuning/jdbc_tuning).
+		!!! Tip
+			-	If you want to be able to modify the data in your user store, be sure to enable write access to the user store.
+			-	Note that the `[user_store]` section is enabled by default. Be sure to update the section without duplicating the `[user_store]` header.
 
-4.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
+		```toml
+		[user_store]
+		class = "org.wso2.micro.integrator.security.user.core.jdbc.JDBCUserStoreManager"
+		type = "database"
 
-	!!! Tip
-			If you want to be able to modify the data in your user store, be sure to enable write access to the user store.
-
-	```toml
-	[user_store]
-	class = "org.wso2.micro.integrator.security.user.core.jdbc.JDBCUserStoreManager"
-	type = "database"
-
-	# Add the following parameter only if you want to disable write access to the user store.
-	read_only = true
-	```
-	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator. 
-   
+		# Add the following parameter only if you want to disable write access to the user store.
+		read_only = true
+		```
+		
+		The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator. 
 
 ## What's next?
 

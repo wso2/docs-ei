@@ -34,7 +34,7 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
   </tr>
 </table>
 
-### Opther Parameters (Optional)
+### Other Parameters (Optional)
 
 <table>
    <tr>
@@ -358,3 +358,7 @@ In your integration solution, the following RabbitMQ send parameters can be spec
       </tr>
    </tbody>
 </table>
+
+### Mediator Properties
+
+In addition to the parameters described above, you can define RabbitMQ properties using the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).

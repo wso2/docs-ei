@@ -238,4 +238,4 @@ Once you develop an ETL application, you may need to carry out following tasks:
 
 - **Error Handling**: To understand how to handle errors that may occur when carrying out ETL operations, try the [Managing Streaming Data with Errors tutorial](handling-requests-with-errors.md).
 
-- **Monitoring ETL Statistics**: For instructions to set up pre-configured dashboards provided with WSO2 Streaming Integrator and visualize statistics related to your ETL flows, see [Monitoring Statistics via Grafana Dashboards](../admin/setting-up-grafana-dashboards.md).
+- **Monitoring ETL Statistics**: For instructions to set up pre-configured dashboards provided with WSO2 Streaming Integrator and visualize statistics related to your ETL flows, see [Monitoring ETL Statistics with Grafana](../admin/viewing-dashboards.md).

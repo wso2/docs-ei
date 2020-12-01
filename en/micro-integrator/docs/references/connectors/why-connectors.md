@@ -38,9 +38,8 @@ WSO2 Integration Studio is the tooling or the IDE that developers use to code th
 
 Operations of the WSO2 connector that you import are listed on the right side panel. Developers can drag and drop connector operations to construct the integration logic. Input parameters to the operations can be provided as static values or expressions using the properties panel that appears when the connector operation is clicked. 
 
-## Further reading
+## What's Next?
 
-* How to write a connector from scratch 
+* [Learn how to write a connector from scratch](develop-connectors.md) 
 * Publication process for connectors 
-* Connector best practices 
-* Connectors and Integration Studio 
+* [Connector best practices and Integration Studio](connector-usage.md) 

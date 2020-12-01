@@ -98,6 +98,7 @@ To create and deploy Siddhi application that triggers an integration flow, and t
             </parameters>
         </inboundEndpoint>
         ```
+       
         !!! info
             Currently, WSO2 Integration Studio does not support GRPC Inbound Endpoint. This capability will be available in a future [release](https://github.com/wso2/devstudio-tooling-ei/issues/1238). 
             For now, you need to create the inbound endpoint manually as an XML file.

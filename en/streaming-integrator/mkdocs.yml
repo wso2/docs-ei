@@ -50,27 +50,25 @@ nav:
     - 'Introduction': 'overview/overview.md'
     - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
     - 'Creating Your First Siddhi Application':
-        - 'Streaming Integration Overview': 'quick-start-guide/getting-started/getting-started-guide-overview.md'
-        - 'Step 1: Download and Install Streaming Integrator': 'quick-start-guide/getting-started/download-install-and-start-si.md'
-        - 'Step 2: Create the Siddhi Application': 'quick-start-guide/getting-started/create-the-siddhi-application.md'
-        - 'Step 3: Test the Siddhi Application': 'quick-start-guide/getting-started/test-siddhi-application.md'
-        - 'Step 4: Deploy the Siddhi Application': 'quick-start-guide/getting-started/deploy-siddhi-application.md'
-        - 'Extend WSO2 SI': 'quick-start-guide/getting-started/extend-si.md'
+      - 'Streaming Integration Overview': 'quick-start-guide/getting-started/getting-started-guide-overview.md'
+      - 'Step 1: Download and Install Streaming Integrator': 'quick-start-guide/getting-started/download-install-and-start-si.md'
+      - 'Step 2: Create the Siddhi Application': 'quick-start-guide/getting-started/create-the-siddhi-application.md'
+      - 'Step 3: Deploy the Siddhi Application': 'quick-start-guide/getting-started/deploy-siddhi-application.md'
+      - 'Step 4: Run the Siddhi Application': 'quick-start-guide/getting-started/test-siddhi-application.md'
+      - 'Step 5: Update the Siddhi Application': 'quick-start-guide/getting-started/update-the-siddhi-application.md'
+      - 'Step 6: Handle Errors': 'quick-start-guide/getting-started/handle-errors.md'
+      - 'Step 7: Monitor Statistics': 'quick-start-guide/getting-started/monitor-statistics.md'
     - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
     - 'Architecture': 'overview/architecture.md'
     - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
     - 'Use Cases':
       - 'Use Cases': 'guides/use-cases.md'
-      - 'Consuming Data': 'guides/consuming-messages.md'
-      - 'Transforming Data': 'guides/transforming-data.md'
-      - 'Enriching Data': 'guides/enriching-data.md'
-      - 'Cleansing Data': 'guides/cleansing-data.md'
-      - 'Correlating Data': 'guides/correlating-events.md'
-      - 'Summarizing Data': 'guides/summarizing-data.md'
-      - 'Integrating Stores': 'guides/storage-Integration.md'
-      - 'Publishing Data': 'guides/publishing-data.md'
-      - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
+      - 'Extracting Data from Static Sources in Real Time': 'guides/extracting-data-from-static-sources-in-real-time.md'
+      - 'Receiving Data in Transit': 'guides/receiving-data-in-transit.md'
+      - 'Loading and Writing Data': 'guides/loading-and-writing-date.md'
+      - 'Publishing Data': 'guides/publishing-data-to-event-stream-consumers.md'
+      - 'Stream Processing': 'guides/processing-data.md'
       - 'Handling Errors': 'guides/handling-errors.md'
       - 'Performing ETL Operations': 'guides/performing-etl-tasks.md'
     - 'Tutorials':
@@ -202,13 +200,13 @@ nav:
         - 'Publishing Avro Events via Kafka': 'samples/PublishKafkaInAvroFormatUsingSchemaRegistry.md'
         - 'Publishing Aggregated Events to the Amazon AWS S3 Bucket': 'samples/AmazonS3SinkSample.md'
         - 'Publishing Events to a GCS Bucket': 'samples/GCSSinkSample.md'
-  - 'Setup and Install':
+  - Setup and Install:
     - 'Install':
-      - 'Installing the Streaming Integrator':
+      - Installing the Streaming Integrator:
         - 'Installing via the Installer': 'setup/installing-si-in-vm.md'
         - 'Installing via the Binary': 'setup/installing-si-binary.md'
-        - 'Installing as a Windows Service': 'setup/installing-as-windows-service.md'
-      - 'Running the Streaming Integrator in Containers':
+        - 'Installing as a Windows Service': 'setup/installing-as-a-windows-service.md'
+      - Running the Streaming Integrator in Containers:
         - 'Installing in Docker': 'setup/installing-si-using-docker.md'
         - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
     - 'Migrate':
@@ -248,7 +246,8 @@ nav:
     - 'Monitoring SI via Grafana Dashboards':
       - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
       - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
-      - 'Monitoring the WSO2 SI with Grafana': 'admin/viewing-dashboards.md'
+      - 'Monitoring the WSO2 SI with Grafana': 'admin/monitoring-si-performance-via-grafana.md'
+      - 'Monitoring ETL Flows with Grafana': 'admin/viewing-dashboards.md'
     - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'

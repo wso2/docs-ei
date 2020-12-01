@@ -1,7 +1,7 @@
 # JSON Transform Mediator
 
-The **JSON Transform mediator** is used for controlling XML to JSON transformations (possibly with a JSON Schema)  inside a mediation. 
-Normally XML to JSON transformations are controlled by the properties defined in `synapse.properties`. 
+The **JSON Transform mediator** is used for controlling XML to JSON transformations (possibly with a JSON Schema)  inside a mediation. Normally XML to JSON transformations are controlled by the properties defined in `synapse.properties`. 
+
 Those configurations are applied globally and you cannot have independent configurations for each mediation scenario. 
 With JSON Transform mediator you can define the properties inside the mediation and control the transformation independently. 
 Also you can have a JSON schema to correct the payload if there are inconsistencies in the transformation.
@@ -138,7 +138,9 @@ By default, the JSON output would look like below after the mediation.
 ```
 
 The field `id` has been converted to number, `name` to String and `isAdmin` to boolean. 
+
 The runtime has automatically detected and parsed the values to native data-types. But there might be a scenario where the client expects a String type for `id`. 
+
 We want the native conversion rules applied to `name` and `isAdmin` fields and not `id`.
 
 With JSON Transform mediator, we can use a JSON schema to tackle this issue.

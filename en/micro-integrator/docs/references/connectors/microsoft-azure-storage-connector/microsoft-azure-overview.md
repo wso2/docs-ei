@@ -10,7 +10,7 @@ To see the available Microsoft Azure Storage connector, navigate to the [connect
 
 | Connector version | Supported WSO2 EI version |
 | ------------- |------------- |
-|  1.0.0        |  EI 7.0.x, EI 6.6.0, EI 6.1.0 |
+|  1.0.0        |  EI 7.1.0, EI 7.0.x, EI 6.6.0, EI 6.1.0 |
 
 For older versions, see the details in the connector store.
 

@@ -84,7 +84,7 @@ Once you have [started the Analytics Worker](#starting-the-analytics-worker), yo
 
 In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal>. Use `admin` for both the username and password.
 
-<img src="../../../assets/img/ei-analytics/dashboard-login.png" width="500">
+<img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
 
 ## Publishing statistics to the dashboard
 

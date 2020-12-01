@@ -38,7 +38,7 @@ Replace the `[git-username]` tag with the name of your GitHub username.
         [ ![Host-Name](../../../assets/img/k8s_pipeline/modify-product/modify-pro1.png)](../../../assets/img/k8s_pipeline/modify-product/modify-pro1.png)
     
     2.  Change the chart data in the
-        sample [values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/samples/values-mi.yaml) file
+        sample [values](https://raw.githubusercontent.com/wso2/kubernetes-pipeline/master/kubernetes-pipeline/samples/values-mi.yaml) file
         used in the [Pipeline Quick Start
         Guide](../pipeline-quick-start-guide/) to
         use in the custom chart.
