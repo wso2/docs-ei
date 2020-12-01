@@ -1,4 +1,4 @@
-# Connectting to Multiple Brokers
+# Connecting to Multiple Brokers
 
 If your system uses more than one broker, you need to add multiple broker configurations to the deployment.toml file (stored in the `MI_HOME/conf` directory. In such situations, each transport receiver should have a separate name.
 
