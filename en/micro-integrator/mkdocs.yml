@@ -430,16 +430,15 @@ nav:
           - 'Amazon Lambda Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
           - 'Amazon Lambda Reference': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
         - Amazon S3 Connector:
-          - '1.x':
-            - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/1.x/amazons3-connector-overview.md'
-            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/1.x/amazons3-connector-config.md'
-            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/1.x/amazons3-connector-example.md'
-            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/1.x/amazons3-connector-reference.md'
+          - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/amazons3-connector-overview.md'
           - '2.x':
-            - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/2.x/amazons3-connector-overview.md'
-            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/2.x/amazons3-connector-config.md'
-            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/2.x/amazons3-connector-example.md'
-            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/2.x/amazons3-connector-reference.md'
+            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
+            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
+            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
+          - '1.x':
+            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-config.md'
+            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-example.md'
+            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-reference.md'
         - Amazon SQS Connector:
           - 'Amazon SQS Overview': 'references/connectors/amazonsqs-connector/amazonsqs-connector-overview.md'
           - 'Amazon SQS Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
