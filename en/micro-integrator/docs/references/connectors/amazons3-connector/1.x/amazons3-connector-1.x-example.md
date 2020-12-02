@@ -317,6 +317,7 @@ Now let us read the information on `wso2engineers` that we stored in the Amazon 
     ```
 **Expected Response**:
     You will receive a response like below containing the details of the engineer requested. 
+    
     ```
     Julian Garfield, Software Engineer, Integration Group
     ```
