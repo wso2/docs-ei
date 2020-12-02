@@ -32,8 +32,3 @@ You can specify one or more masking patterns in the `<MI-HOME>/conf/deployment.t
 ```
 
 With this configuration, each log line is checked for all the configured patterns. If any match is found, it is masked with ‘*****’.
-
-!!! Note
-    -   If the pattern file that is configured in the `log4j2.properties` file
-    is not found, a default property file will be used (`wso2-log-masking.properties` ).
-    -   If there are no patterns defined in the file, no masking happens.
