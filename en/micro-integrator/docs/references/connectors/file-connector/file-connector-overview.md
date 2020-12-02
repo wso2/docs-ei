@@ -10,17 +10,42 @@ To see the available File connector, navigate to the [connector store](https://s
 
 ## Compatibility
 
-| Connector version | Supported WSO2 EI version |
-| ------------- |------------- |
-|  [2.0.22](https://github.com/wso2-extensions/esb-connector-file/tree/org.wso2.carbon.connector.fileconnector-2.0.21)        |  EI 7.1.0, EI 7.0.x, EI 6.6.0, EI 6.5.0, EI 6.4.0 |
+<table>
+	<tr>
+		<th>
+			Connector Version
+		</th>
+		<th>
+			Supported WSO2 EI Version
+		</th>
+	</tr>
+	<tr>
+		<td>
+			4.x (latest)
+		</td>
+		<td>
+			EI 6.4.0, EI 6.5.0, EI 6.6.0, EI 7.0.x, EI 7.1.0
+		</td>
+	</tr>
+	<tr>
+		<td>
+			3.x
+		</td>
+		<td>
+			EI 6.4.0, EI 6.5.0, EI 6.6.0, EI 7.0.x, EI 7.1.0
+		</td>
+	</tr>
+</table>
 
 For older versions, see the details in the connector store.
 
-## File Connector documentation
+## File Connector documentation (latest - 4.x version)
 
 * **[File Connector Example](file-connector-example.md)**: This example explains how to use File Connector to create a file in the local file system and read the particular file. 
 
 * **[File Connector Reference](file-connector-config.md)**: This documentation provides a reference guide for the File Connector.
+
+For older versions, see the details in the relevant links.
 
 ## How to contribute
 
