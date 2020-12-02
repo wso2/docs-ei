@@ -26,13 +26,13 @@ If you do not want to configure this yourself, you can simply [get the project](
 
 ## Setting up the environment 
 
-Please follow the steps mentioned at [Setting up Amazon S3](amazons3-connector-config.md) document in order to create a Amazon S3 account and obtain credentials you need to access the Amazon APIs. Keep them saved to be used in the next steps.  
+Please follow the steps mentioned at [Setting up Amazon S3](../amazons3-connector-1.x-config) document in order to create a Amazon S3 account and obtain credentials you need to access the Amazon APIs. Keep them saved to be used in the next steps.  
 
 ## Configure the connector in WSO2 Integration Studio
 
 Follow these steps to set up the Integration Project and import AmazonS3 connector into it.
 
-{!references/connectors/importing-connector-to-integration-studio.md!} 
+{!references/connectors/importing-connector-to-integration-studio-copy.md!} 
 
 1. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API.
    <img src="../../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
@@ -225,11 +225,11 @@ Follow these steps to set up the Integration Project and import AmazonS3 connect
     * uploadPart - upload message part. There can be multiple parts to the same object. When you invoke the operation, feed `uploadId` and the correct `partNumber`. 
     * completeMultipartUpload - once all parts are done uploading, call this operation. It will add up all the parts and create the object in the requested bucket. 
 * Note that `region` at `host` and `bucketUrl` properties are hard coded. Please change them as per the requirement. 
-* For more information please refer the [reference guide](amazons3-connector-reference.md) for Amazon S3 connector. 
+* For more information please refer the [reference guide](../amazons3-connector-1.x-reference) for Amazon S3 connector. 
 
 Now we can export the imported connector and the API into a single CAR application. CAR application is the one we are going to deploy to server runtime. 
 
-{!references/connectors/exporting-artifacts.md!}
+{!references/connectors/exporting-artifacts-copy.md!}
 
 Now the exported CApp can be deployed in Enterprise Integrator Runtime so that we can run it and test.
 
@@ -248,7 +248,7 @@ You can download the ZIP file and extract the contents to get the project code.
 
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
 
-{!references/connectors/deploy-capp.md!}
+{!references/connectors/deploy-capp-copy.md!}
 
 ## Testing
 
@@ -263,7 +263,7 @@ We can use Curl or Postman to try the API. The testing steps are provided for cu
         <bucketRegion>us-east-2</bucketRegion>
     </createBucket>
     ```
-2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
+2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
     ```
     curl -H "Content-Type: application/xml" --request PUT --data @data.xml http://127.0.0.1:8290/s3connector/createbucket
     ```
@@ -282,7 +282,7 @@ We can use Curl or Postman to try the API. The testing steps are provided for cu
         <message>Julian Garfield, Software Engineer, Integration Group</message>
     </addMessage>
     ```
-2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
+2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
     ```
     curl -H "Content-Type: application/xml" --request POST --data @data.xml http://127.0.0.1:8290/s3connector/addobject
     ```
@@ -321,4 +321,4 @@ Now let us read the information on `wso2engineers` that we stored in the Amazon 
     Julian Garfield, Software Engineer, Integration Group
     ```
 
-In this example Amazon S3 connector is used to perform operations with Amazon S3 storage. You can receive details of the errors that occur when invoking S3 operations using the S3 responses itself. Please read the [Amazon S3 connector reference guide](amazons3-connector-reference.md) to learn more about the operations you can perform with the Amazon S3 connector.
+In this example Amazon S3 connector is used to perform operations with Amazon S3 storage. You can receive details of the errors that occur when invoking S3 operations using the S3 responses itself. Please read the [Amazon S3 connector reference guide](../amazons3-connector-1.x-reference) to learn more about the operations you can perform with the Amazon S3 connector.
