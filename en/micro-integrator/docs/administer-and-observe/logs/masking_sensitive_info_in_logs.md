@@ -18,9 +18,9 @@ Log masking in not enabled by default in the Micro Integrator. Therefore, you ne
     ```
     appender.CARBON_CONSOLE.layout.pattern = [%d] %5p {%c{1}} - %mm%ex%n
     ```
-3. Update the [masking patterns](#the-masking-pattern-file) from the `<MI-HOME>/conf/deployment.toml` file as explained below.
+3. Update the [masking patterns](#masking-patterns) from the `<MI-HOME>/conf/deployment.toml` file as explained below.
 
-## The masking patterns
+## Masking patterns
 
 You can specify one or more masking patterns in the `<MI-HOME>/conf/deployment.toml` file. The following is a sample configuration that showcases how to mask the credit card numbers from the logs.
 
