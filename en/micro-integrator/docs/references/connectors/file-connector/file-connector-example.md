@@ -38,16 +38,16 @@ Follow these steps to set up the Integration Project and the Connector Exporter.
 
 1.  Create a new integration project. Be sure to enable a Connector Exporter. 
     
-    <img src="../../../../assets/img/connectors/filecon1.png" title="create project" width="800" alt="create project"/>
+    <img src="../../../../assets/img/connectors/filecon1.png" title="create project" width="500" alt="create project"/>
 
 
 2.  Create an API named `TestAPI` with the `/fileTest` context. This API will accept employee information.
 
-    <img src="../../../../assets/img/connectors/filecon2.png" title="create API" width="800" alt="create API"/>
+    <img src="../../../../assets/img/connectors/filecon2.png" title="create API" width="500" alt="create API"/>
 
 3.  In the default resource of the API, enable POST requests. 
 
-    <img src="../../../../assets/img/connectors/filecon3.png" title="select post method" width="800" alt="select post method"/>
+    <img src="../../../../assets/img/connectors/filecon3.png" title="select post method" width="500" alt="select post method"/>
 
 4.  Add the Log mediator to the design canvas and configure a custom log that indicates when the API receives a message.  
 5.  Add the DataMapper mediator and configure it to transform the incoming XML message to a CSV message. 
