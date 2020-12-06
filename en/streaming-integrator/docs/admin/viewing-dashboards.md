@@ -15,10 +15,11 @@ For the purpose of monitoring ETL (Extract, Transform, Load) statistics WSO2 pro
     |`file-statistics`    |- [WSO2 Streaming Integrator - File Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/file-statistics/WSO2%20Streaming%20Integrator%20-%20File%20Statistics.json) <br/> - [WSO2 Streaming Integrator - File Source Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/file-statistics/WSO2%20Streaming%20Integrator%20-%20File%20Source%20Statistics.json) <br/> - [WSO2 Streaming Integrator - File Sink Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/file-statistics/WSO2%20Streaming%20Integrator%20-%20File%20Sink%20Statistics.json)|
     |`rdbms-statistics`   |- [WSO2 Streaming Integration - RDBMS Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/rdbms-statistics/WSO2%20Streaming%20Integration%20-%20RDBMS%20Statistics.json) <br/> - [WSO2 Streaming Integration - RDBMS Table Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/rdbms-statistics/WSO2%20Streaming%20Integration%20-%20RDBMS%20Table%20Statistics.json)|
     |`cdc-statistics`     |- [WSO2 Streaming Integrator - CDC Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/cdc-statistics/WSO2%20Streaming%20Integrator%20-%20CDC%20Statistics.json) <br/> - [WSO2 Streaming Integrator - CDC Streaming Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/cdc-statistics/WSO2%20Streaming%20Integrator%20-%20CDC%20Streaming%20Statistics.json) <br/> - [WSO2 Streaming Integrator - CDC Scheduled Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/cdc-statistics/WSO2%20Streaming%20Integrator%20-%20CDC%20Scheduled%20Statistics.json)|
+    |`kafka-statistics`     |- [WSO2 Streaming Integrator - Kafka Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/kafka-statistics/WSO2%20Streaming%20Integrator%20-%20Kafka%20Statistics.json) <br/> - [WSO2 Streaming Integrator - Kafka Source Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/kafka-statistics/WSO2%20Streaming%20Integrator%20-%20Kafka%20Source%20Statistics.json) <br/> - [WSO2 Streaming Integrator - Kafka Sink Statistics.json](https://github.com/wso2/streaming-integrator/blob/master/modules/distribution/carbon-home/resources/dashboards/kafka-statistics/WSO2%20Streaming%20Integrator%20-%20Kafka%20Sink%20Statistics.json)|
     
  2. Start and access Grafana. Then import the nine dashboards you downloaded in the previous step. For more information, see [Managing Grafana Dashboards - Importing Dashboards](managing-grafana-dashboards.md#importing-dashboards).
     
- 3. In the **Dashboards**/**Manage** tab, create four new folders named `overview-statistics`, `file-statistics`, `rdbms-statistics`, and `cdc-statistics` . Then organize the dashboards you imported in the new folders you created as shown in the image below. For instructions, see [Managing Grafana Dashboards - Organizing Dashboards in Folders](managing-grafana-dashboards.md#organizing-dashboards-in-folders).
+ 3. In the **Dashboards**/**Manage** tab, create four new folders named `overview-statistics`, `file-statistics`, `rdbms-statistics`, `cdc-statistics`, and `kafka-statistics` . Then organize the dashboards you imported in the new folders you created as shown in the image below. For instructions, see [Managing Grafana Dashboards - Organizing Dashboards in Folders](managing-grafana-dashboards.md#organizing-dashboards-in-folders).
  
     !!! info
         The following is a suggested method to organize your dashboards, and the following instructions are provided based on this structure.
@@ -133,3 +134,35 @@ To navigate through the Grafana dashboards you set up for monitoring WSO2 Stream
         The **RDBMS Table Statistics** dashboard opens with statistics specific to the selected table.
         
         ![RDBMS Table Statistics](../images/managing-wso2-dashboards/rdbms-table-statistics.png)
+        
+    - **Viewing Kafka statistics**
+    
+        Kafka related statistics are displayed in the **Sources** and **Destinations** sections of the **WSO2 Streaming Integrator App Statistics** dashboard. 
+        
+        ![Kafka Sources Table](../images/managing-wso2-dashboards/kafka-sources-table.png)
+        
+        ![Kafka Sinks Table](../images/managing-wso2-dashboards/kafka-destinations-table.png)
+        
+        To view the detailed overall Kafka Statistics for a specific app, click on any stream link on the table. As a result, you will be taken to **WSO2 Streaming Integrator Kafka Statistics** dashboard.
+        
+        ![Kafka Statistics Dashboard](../images/managing-wso2-dashboards/kafka-statistics-dashboard.png)
+        
+        This page has two sections: **Source** and **Sink**. 
+        
+        - The **Source** section shows the overall Kafka Source metrics such as total reads, input event rate etc. It also contains a table that lists all the streams that are associated to a Kafka source. If you click on a stream, it will take you to **WSO2 Streaming Integrator Kafka Source Statistics** dashboard.
+        
+        ![Kafka Source Statistics Dashboard](../images/managing-wso2-dashboards/kafka-source-statistics-dashboard.png)
+        
+        This dashboard shows the Kafka Source statistics related to the selected stream. A stream is associated to one or more topics. Furthermore, each topic is associated to a partition. This dashboard views statistics for each separate Topic-Partition combination to which the selected stream is subscribed.
+        
+        - The **Sink** section shows the overall Kafka Sink metrics such as total writes, output event rate etc. It also contains a table that lists all the streams that are associated to a Kafka source. If you click on a stream, it will take you to **WSO2 Streaming Integrator Kafka Sink Statistics** dashboard.
+        
+        ![Kafka Sink Statistics Dashboard](../images/managing-wso2-dashboards/kafka-sink-statistics-dashboard.png)
+        
+        This dashboard shows the Kafka Sink statistics related to the selected stream. Here, a stream publishes to a specific Kafka Topic and to one or more partitions. This dashboard views statistics for each separate Topic-Partition combination to which the selected stream publishes messages.
+
+        
+        
+
+        
+        
