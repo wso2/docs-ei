@@ -163,7 +163,11 @@ Listed below are the default log destinations (appenders) used by the root logge
 This logger generates logs for services deployed in the Micro Integrator. It refers the `SERVICE_LOGFILE` appender and prints logs to the `MI_HOME/repository/logs/wso2-mi-service.log` file.
 
 !!! Note
-    If you want to have separate log files for individual services, you need to add loggers for each service and then specify appenders for the loggers.
+    If you want to have separate log files for individual services, you need to add loggers for each service and then specify appenders for the loggers. Note that the service name has to be suffixed to `SERVICE_LOGGER` as follows:
+
+    ```xml
+    logger.SERVICE_LOGGER.name = SERVICE_LOGGER.TestProxy
+    ```
     
 ```xml tab='SERVICE_LOGGER'
 logger.SERVICE_LOGGER.name= SERVICE_LOGGER
@@ -192,7 +196,11 @@ appender.SERVICE_LOGFILE.strategy.max = 20
 This logger generates logs for APIs deployed in the Micro Integrator. It refers the `API_LOGFILE` appender and prints logs to the `MI_HOME/repository/logs/wso2-mi-api.log` file.
 
 !!! Note
-    If you want to have separate log files for individual APIs, you need to add loggers for each API and then specify appenders for the loggers.
+    If you want to have separate log files for individual APIs, you need to add loggers for each API and then specify appenders for the loggers. Note that the service name has to be suffixed to `SERVICE_LOGGER` as follows:
+    
+    ```xml
+    logger.API_LOG.name=API_LOGGER.TestAPI
+    ```
 
 ```xml tab='API_LOGGER'
 logger.API_LOGGER.name= API_LOGGER
