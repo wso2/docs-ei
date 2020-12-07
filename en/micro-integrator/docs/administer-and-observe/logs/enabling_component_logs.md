@@ -15,7 +15,7 @@ There are two ways to enable logs for a component: using the Micro Integrator [d
 2.  Click <b>Log Configs</b> on the left-hand navigator to open the <b>Logging Management</b> window.
 3.  Go to the <b>Add Loggers</b> tab and define the new logger.
 
-    <img src="../../../assets/img/monitoring-dashboard/add-logger.png">
+    <img alt="add new loggers using dashboard" src="../../../assets/img/monitoring-dashboard/add-logger.png">
 
     <table>
         <tr>
@@ -50,12 +50,6 @@ There are two ways to enable logs for a component: using the Micro Integrator [d
 2.  Use the [mi log-level](../../../administer-and-observe/using-the-command-line-interface/#mi-log-level) option in the CLI with the required commands as shown in the following examples:
 
     ```bash
-    # Show information about a logger
-    mi log-level show org-apache-coyote
-
-    # Update the log level of an existing logger
-    mi log-level update org-apache-coyote DEBUG
-
     # Add a new logger
     mi log-level update synapse-api org.apache.synapse.rest.API DEBUG
     ```

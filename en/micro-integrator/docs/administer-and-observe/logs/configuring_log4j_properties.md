@@ -168,6 +168,8 @@ This logger generates logs for services deployed in the Micro Integrator. It ref
     ```xml
     logger.SERVICE_LOGGER.name = SERVICE_LOGGER.TestProxy
     ```
+
+    See the instructions on [monitoring per-service logs](../../../develop/enabling-logs-for-services).
     
 ```xml tab='SERVICE_LOGGER'
 logger.SERVICE_LOGGER.name= SERVICE_LOGGER
@@ -201,6 +203,8 @@ This logger generates logs for APIs deployed in the Micro Integrator. It refers 
     ```xml
     logger.API_LOG.name=API_LOGGER.TestAPI
     ```
+
+    See the instructions on [monitoring per-API logs](../../../develop/enabling-logs-for-api).
 
 ```xml tab='API_LOGGER'
 logger.API_LOGGER.name= API_LOGGER
@@ -305,6 +309,8 @@ If required, you can change the default HTTP header (which is
 correlation_header_name="<correlation_id>"
 ```
 
+Once you have configured this logger, see the instructions on [monitoring correlation logs](../../../administer-and-observe/logs/observability).
+
 ### Message Tracing Logs
 
 This is a `RollingFile` appender that writes logs to the `MI_HOME/repository/logs/wso2carbon-trace-messages.log` file. By default, the `trace.messages` logger is configured to write logs using this appender.
@@ -335,32 +341,40 @@ appender.CARBON_TRACE_LOGFILE.strategy.max = 20
 
 ### Wire Logs and Header Logs
 
-The following loggers are disabled by default by setting the log level to `OFF`. 
+These logs are disabled by default by setting the log level to `OFF`. You can enable these logs by [changing the log level](#updating-the-log4j2-log-level) of the loggers to `DEBUG`. 
 
 !!! Info
     It is not recommended to use these logs in production environments. Developers can enable them for testing and troubleshooting purposes. Note that appenders are not specified for these loggers, and therefore, the logs will be printed as specified for the [root logger](#root-logs).
 
-```xml tab='Synapse HTTP Headers'
-# Following are to log HTTP headers and messages
-logger.synapse-transport-http-headers.name=org.apache.synapse.transport.http.headers
-logger.synapse-transport-http-headers.level=OFF
-```
+-   The following loggers configure wire logs for the Passthrough HTTP transport:
 
-```xml tab='Synapse Wire Logs'
-logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
-logger.synapse-transport-http-wire.level=OFF
-```
+    !!! Tip
+        The Passthrough HTTP transport is the main transport that handles HTTP/HTTPS messages in the Micro Integrator. 
 
-```xml tab='Client Headers'
-# Following entries are to see HTTP headers and messages of Callout mediator/MessageProcessor
-logger.httpclient-wire-header.name=httpclient.wire.header
-logger.httpclient-wire-header.level=OFF
-```
+    ```xml tab='Synapse HTTP Headers'
+    # Following are to log HTTP headers and messages
+    logger.synapse-transport-http-headers.name=org.apache.synapse.transport.http.headers
+    logger.synapse-transport-http-headers.level=OFF
+    ```
 
-```xml tab='Client Wire Content'
-logger.httpclient-wire-content.name=httpclient.wire.content
-logger.httpclient-wire-content.level=OFF
-```
+    ```xml tab='Synapse Wire Logs'
+    logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
+    logger.synapse-transport-http-wire.level=OFF
+    ```
+
+-   The following loggers configure wire logs for the Callout mediator/MessageProcessor.  
+
+    ```xml tab='Client Headers'
+    logger.httpclient-wire-header.name=httpclient.wire.header
+    logger.httpclient-wire-header.level=OFF
+    ```
+
+    ```xml tab='Client Wire Content'
+    logger.httpclient-wire-content.name=httpclient.wire.content
+    logger.httpclient-wire-content.level=OFF
+    ```
+
+See the instructions on [using wire logs to debug](../../../develop/using-wire-logs/) your integration solution during development.
 
 ## Configuring HTTP Access Logs
 
@@ -598,27 +612,49 @@ You can customize the format of this access log by changing the following proper
 
 ## Updating the Log4j2 Log Level
 
-The log level can be set specifically for each appender in the `log4j2.properties` file by setting the threshold value. For example, shown below is how the log level is set to DEBUG for the `CARBON_LOGFILE` appender:
+You can <b>dynamically</b> update the log level for a specific logger by using the Micro Integrator [dashboard](#using-the-dashboard) or [CLI](#using-the-cli). If you change the wire log configuration directly from the `log4j2.properties` file (without using the dashboard or CLI), the Micro Integrator needs to be restarted for the changes to become effective.
+
+??? Info "Log Levels"
+    The following table explains the log4j2 log levels you can use. Refer <b>Log4j2 documentation</b> for more information.
+
+    | Level | Description                                                                                                                                                                                                                                                                     |
+    |-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | OFF   | The highest possible log level. This is intended for disabling logging.                                                                                                                                                                                                         |
+    | FATAL | Indicates server errors that cause premature termination. These logs are expected to be immediately visible on the command line that you used for starting the server.                                                                                                          |
+    | ERROR | Indicates other runtime errors or unexpected conditions. These logs are expected to be immediately visible on the command line that you used for starting the server.                                                                                                           |
+    | WARN  | Indicates the use of deprecated APIs, poor use of API, possible errors, and other runtime situations that are undesirable or unexpected but not necessarily wrong. These logs are expected to be immediately visible on the command line that you used for starting the server. |
+    | INFO  | Indicates important runtime events, such as server startup/shutdown. These logs are expected to be immediately visible on the command line that you used for starting the server . It is recommended to keep these logs to a minimum.                                           |
+    | DEBUG | Provides detailed information on the flow through the system. This information is expected to be written to logs only. Generally, most lines logged by your application should be written as DEBUG logs.                                                                        |
+    | TRACE | Provides additional details on the behavior of events and services. This information is expected to be written to logs only.                                                                                                                                                    |
+
+### Using the dashboard
+
+1.  Sign in to the [Micro Integrator dashboard](../../../administer-and-observe/working-with-monitoring-dashboard).
+2.  Click <b>Log Configs</b> on the left-hand navigator to open the <b>Logging Management</b> window.
+
+    <img alt="change log level from dashboard" src="../../../assets/img/monitoring-dashboard/change-log-level-dashboard.png">
+
+3.  Use the <b>Search</b> option to find the required logger, and change the log level as shown above.
+
+### Using the CLI
+
+1.  Download and set up the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface/#installing-the-cli)
+2.  Use the [mi log-level](../../../administer-and-observe/using-the-command-line-interface/#mi-log-level) option in the CLI with the required commands as shown in the following examples:
+
+    ```bash
+    # Update the log level of an existing logger
+    mi log-level update org-apache-coyote DEBUG
+    ```
+
+## Updating the Threshold Level
+
+The threshold value filters log entries based on the [log level](#updating-the-log4j2-log-level). This value is set for the log appender in the `log4j2.properties` file. For example, a threshold set to 'WARN' allows the log entry to pass into the appender. If its level is 'WARN', 'ERROR' or 'FATAL', other entries will be discarded. This is the minimum log level at which you can log a message.
+
+Shown below is how the log level is set to DEBUG for the `CARBON_LOGFILE` appender:
 
 ```bash
 appender.CARBON_LOGFILE.filter.threshold.level = DEBUG
 ```
-
-The threshold value filters log entries based on their level. For example, a threshold set to 'WARN' allows the log entry to pass into the appender. If its level is 'WARN', 'ERROR' or 'FATAL', other entries will be discarded. This is the minimum log level at which you can log a message. 
-
-If a log level is not specifically given for an appender as explained below, the log level of the [logger](#log4j2-loggers) will apply by default. If the logger linked to the appender does not have a log level defined, the log level of the [root logger](#root-logs) will apply.
-
-See descriptions of the available log levels.
-
-| Level | Description                                                                                                                                                                                                                                                                     |
-|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| OFF   | The highest possible log level. This is intended for disabling logging.                                                                                                                                                                                                         |
-| FATAL | Indicates server errors that cause premature termination. These logs are expected to be immediately visible on the command line that you used for starting the server.                                                                                                          |
-| ERROR | Indicates other runtime errors or unexpected conditions. These logs are expected to be immediately visible on the command line that you used for starting the server.                                                                                                           |
-| WARN  | Indicates the use of deprecated APIs, poor use of API, possible errors, and other runtime situations that are undesirable or unexpected but not necessarily wrong. These logs are expected to be immediately visible on the command line that you used for starting the server. |
-| INFO  | Indicates important runtime events, such as server startup/shutdown. These logs are expected to be immediately visible on the command line that you used for starting the server . It is recommended to keep these logs to a minimum.                                           |
-| DEBUG | Provides detailed information on the flow through the system. This information is expected to be written to logs only. Generally, most lines logged by your application should be written as DEBUG logs.                                                                        |
-| TRACE | Provides additional details on the behavior of events and services. This information is expected to be written to logs only.                                                                                                                                                    |
 
 ## Updating the Log4j2 Log Pattern
 
@@ -649,3 +685,7 @@ You can hide the 'Current Params' in the printed logs by passing the following s
 ```xml
 -Ddss.disable.current.params=true \
 ```
+
+## What's Next?
+
+Once you have configured the logs, you can start [using the logs](../../../administer-and-observe/logs/monitoring_logs).

@@ -271,8 +271,8 @@ nav:
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
-        - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
-        - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
+        - 'Monitoring Service-Level Logs': 'develop/enabling-logs-for-services.md'
+        - 'Monitoring API-Level Logs': 'develop/enabling-logs-for-api.md'
         - 'Endpoint Tracing': 'develop/endpoint-trace-logs.md'
       - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
