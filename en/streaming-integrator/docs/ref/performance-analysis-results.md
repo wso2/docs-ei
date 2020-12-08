@@ -18,17 +18,17 @@ The recommended CPU and memory specifications for Docker containers are as follo
 
 The exact specifications used in the use cases listed in this section are summarised in the table below:
 
-| **Scenario**                                          | **CPU**   | **Memory** | **Input TPS** | **Input Message Size** | **Total Message Count** | **Output TPS** |
+| **Scenario**                                          | **CPU**   | **Memory** | **SI Memory Allocation** |**Input TPS** | **Input Message Size** | **Total Message Count** | **Output TPS** |
 |-------------------------------------------------------|-----------|------------|---------------|------------------------|-------------------------|----------------|
-| [Consuming events using Kafka source](#consuming-events-using-kafka-source)| | | 180K | | | 1.1M |
-| [Consuming messages from an HTTP Source](#consuming-messages-from-an-http-source)| | | 30K | | 30K | 30K |
-| [Sending HTTP requests and consuming the responses](#sending-http-requests-and-consuming-the-responses) | | | 29K | | 29K | - To HTTP Source: 29K<br/><br/> - To HTTP Request Sink: 29K |
-| [Performing ETL tasks](#performing-etl-tasks) | | | 29K | | 29K | - To HTTP Source: 29K<br/><br/> - To HTTP Request Sink: 29K |
-| [Consuming messages from a Kafka source and publish to an HTTP endpoint](#consuming-messages-from-a-kafka-source-and-publish-to-an-http-endpoint) | 2 cores| **Docker Memory**: 3GB<br/><br/> - **Xms**: 256m<br/><br/> - **Xmx**: 1g | 10K | | 10K | 10K |
-| [Consuming messages from a CSV file and publish to a MySQL table](#consuming-messages-from-a-csv-file-and-publish-to-a-mysql-table) | 4 cores| **Docker Memory**: 8GB<br/><br/> - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 9K | | 9K | 9K|
-| [Monitoring a database table in MySQL and publishing data to a Kafka topic](#monitoring-a-database-table-in-mysql-and-publishing-data-to-a-kafka-topic) | 4 cores | **Docker Memory**: 8GB<br/><br/> - **Xms**: 2g <br/><br/> - **Xmx**: 4g  | | 34,330,327 | | |
-| [Read XML file and mapping to a stream](#read-xml-file-and-mapping-to-a-stream) | 4 cores | **Docker Memory**: 8GB<br/><br/> - **Xms**: 2g <br/><br/> - **Xmx**: 4g  | 40K | 40K | 40K |
-| [Reading an XML file and publishing to a Kafka topic](#reading-an-xml-file-and-publishing-to-a-kafka-topic) | 4 cores | **Docker Memory**: 8GB<br/><br/> - **Xms**: 2g <br/><br/> - **Xmx**: 4g  | 38K | 38K | 38K |
+| [Consuming events using Kafka source](#consuming-events-using-kafka-source)| 4 cores | 8GB| | 180K | | | 1.1M |
+| [Consuming messages from an HTTP Source](#consuming-messages-from-an-http-source)| 4 cores | 8GB | | 30K | | 30K | 30K |
+| [Sending HTTP requests and consuming the responses](#sending-http-requests-and-consuming-the-responses) | 4 cores | 8GB | | 29K | | 29K | - To HTTP Source: 29K<br/><br/> - To HTTP Request Sink: 29K |
+| [Performing ETL tasks](#performing-etl-tasks) | 4 cores | 16GB | | 29K | | 29K | - To HTTP Source: 29K<br/><br/> - To HTTP Request Sink: 29K |
+| [Consuming messages from a Kafka source and publish to an HTTP endpoint](#consuming-messages-from-a-kafka-source-and-publish-to-an-http-endpoint) | 2 cores| **Docker Memory**: 3GB | - **Xms**: 256m<br/><br/> - **Xmx**: 1g | 10K | | 10K | 10K |
+| [Consuming messages from a CSV file and publish to a MySQL table](#consuming-messages-from-a-csv-file-and-publish-to-a-mysql-table) | 4 cores| **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 9K | | 9K | 9K|
+| [Monitoring a database table in MySQL and publishing data to a Kafka topic](#monitoring-a-database-table-in-mysql-and-publishing-data-to-a-kafka-topic) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | | 34,330,327 | | |
+| [Read XML file and mapping to a stream](#read-xml-file-and-mapping-to-a-stream) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 40K | 40K | 40K |
+| [Reading an XML file and publishing to a Kafka topic](#reading-an-xml-file-and-publishing-to-a-kafka-topic) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 38K | 38K | 38K |
 
 ## Consuming events using Kafka source
 
