@@ -48,23 +48,16 @@ You will be running three servers (EI Analytics server, EI Analytics portal, and
 
 -   To download EI Analytics:
     1.  Go to the WSO2 Enterprise Integrator <a href="https://wso2.com/integration/">product page</a>, click <b>Download</b>, and then go to the <b>Other Resources</b> section.
+    2.  Click <b>Integration Analytics</b> to download the distribution.
 
         <img src="../../../assets/img/observability/download-ei-analytics.png">
 
-    2.  Click <b>Integration Analytics</b> to download the distribution.
-
-    The location of your Analytics installation will be referred to as `<EI_ANALYTICS_HOME>`.
+    !!! Info
+        The location of your Analytics installation will be referred to as `<EI_ANALYTICS_HOME>`.
 
 -   Download and [install the Micro Integrator](../../../setup/installation/install_in_vm_installer) of EI 7.1.
 
 ## Configuring the Micro Integrator
-
-### Configure SSL certificates
-
-!!! Warning
-    Be sure to configure this step before starting the Micro Integrator.
-
-To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certificates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../../setup/security/importing_ssl_certificate).
     
 ### Enabling statistics monitoring
 
@@ -79,10 +72,9 @@ stat.tracer.collect_mediation_properties=true
 
 ### Enabling statistics for ALL artifacts
 
-If you want to collect statistics for **all** your integration artifacts, be sure to add the following parameter to the `deployment.toml` file in addition the [parameters explained above](#configuring-the-micro-integrator):
+If you want to collect statistics for **all** your integration artifacts, be sure to add the following parameter under the `[mediation]` header in the `deployment.toml` file in addition the [parameters explained above](#configuring-the-micro-integrator):
 
 ```toml
-[mediation]
 flow.statistics.capture_all=true
 ```
 
@@ -104,7 +96,8 @@ Follow the steps below to enable statistics and tracing for the **REST API** ar
 
 1.  Select `HealthcareAPI` in the canvas of WSO2 Integration Studio to open the **Properties** tab.
 2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
-     ![rest api properties](../../assets/img/ei-analytics/restapi-properties.png)
+
+    <img src="../../../assets/img/ei-analytics/restapi-properties.png" alt="rest api properties" width="500">
 
 Follow the steps below to enable statistics for the **endpoint** artifacts:
 
