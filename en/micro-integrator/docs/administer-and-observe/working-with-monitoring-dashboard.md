@@ -26,9 +26,6 @@ You can use the dashboard to perform the following administration tasks related 
 
 -	See the following topics in the installation guide for instructions on how to install and set up the Micro Integrator and the Dashboard:
 
-    !!! Note
-        Be sure to start the Micro Integrator server before sta
-
 	<table>
 	    <tr>
 	        <td>
