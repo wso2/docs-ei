@@ -638,7 +638,7 @@ You can <b>dynamically</b> update the log level for a specific logger by using t
 
 ### Using the CLI
 
-1.  Download and set up the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface/#installing-the-cli)
+1.  Download and set up the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface/#installing-the-cli).
 2.  Use the [mi log-level](../../../administer-and-observe/using-the-command-line-interface/#mi-log-level) option in the CLI with the required commands as shown in the following examples:
 
     ```bash
