@@ -19,7 +19,7 @@ The recommended CPU and memory specifications for Docker containers are as follo
 The exact specifications used in the use cases listed in this section are summarised in the table below:
 
 | **Scenario**                                          | **CPU**   | **Memory** | **SI Memory Allocation** |**Input TPS** | **Input Message Size** | **Total Message Count** | **Output TPS** |
-|-------------------------------------------------------|-----------|------------|---------------|------------------------|-------------------------|----------------|
+|-------------------------------------------------------|-----------|------------|--------------------------|---------------|------------------------|-------------------------|----------------|
 | [Consuming events using Kafka source](#consuming-events-using-kafka-source)| 4 cores | 8GB| | 180K | | | 1.1M |
 | [Consuming messages from an HTTP Source](#consuming-messages-from-an-http-source)| 4 cores | 8GB | | 30K | | 30K | 30K |
 | [Sending HTTP requests and consuming the responses](#sending-http-requests-and-consuming-the-responses) | 4 cores | 8GB | | 29K | | 29K | - To HTTP Source: 29K<br/><br/> - To HTTP Request Sink: 29K |
