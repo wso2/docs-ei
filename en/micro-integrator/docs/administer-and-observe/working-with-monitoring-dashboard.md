@@ -26,6 +26,9 @@ You can use the dashboard to perform the following administration tasks related 
 
 -	See the following topics in the installation guide for instructions on how to install and set up the Micro Integrator and the Dashboard:
 
+    !!! Note
+        Be sure to start the Micro Integrator server before sta
+
 	<table>
 	    <tr>
 	        <td>
@@ -56,7 +59,10 @@ You can use the dashboard to perform the following administration tasks related 
 
 ## Signing in to the Dashboard
 
-Once you [set up and start the dashboard](#setting-up-the-dashboard), you can access the dashboard URL.
+Once you have [set up and started the dashboard](#setting-up-the-dashboard), you can access the dashboard URL.
+
+!!! Tip
+    Be sure to start the Micro Integrator server before attempting to sign in to the dashboard.
   
 1.  Copy the following dashboard URL to your browser:
 
