@@ -12,6 +12,8 @@ The recommended CPU and memory specifications for Docker containers are as follo
 
 - **Memory**: 8GB
 
+The recommended memory specifications SI server as follows. These are configured in the `<SI_Home>/wso2/server/bin/carbon.sh` file.
+
 - **Xms**: 2GB
 
 - **Xmx**: 4GB
