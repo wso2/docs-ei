@@ -58,7 +58,7 @@ You can use the dashboard to perform the following administration tasks related 
 
 Once you have [set up and started the dashboard](#setting-up-the-dashboard), you can access the dashboard URL.
 
-!!! Tip
+!!! Note "Before you begin"
     Be sure to start the Micro Integrator server before attempting to sign in to the dashboard.
   
 1.  Copy the following dashboard URL to your browser:
