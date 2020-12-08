@@ -252,41 +252,4 @@ The detail recorded in a log entry is described below.
 
 ## Configuring correlation logs (Optional)
 
-Following are the default configurations for correlation logs in the Micro Integrator server.
-You might customize them in `log4j2.properties` file (stored in the `MI_HOME/conf/` directory) if required.
-
-```xml
-# Appender config to put correlation Log.
-appender.CORRELATION.type = RollingFile
-appender.CORRELATION.name = CORRELATION
-appender.CORRELATION.fileName =${sys:carbon.home}/repository/logs/correlation.log
-appender.CORRELATION.filePattern =${sys:carbon.home}/repository/logs/correlation-%d{MM-dd-yyyy}.log
-appender.CORRELATION.layout.type = PatternLayout
-appender.CORRELATION.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
-appender.CORRELATION.policies.type = Policies
-appender.CORRELATION.policies.time.type = TimeBasedTriggeringPolicy
-appender.CORRELATION.policies.time.interval = 1
-appender.CORRELATION.policies.time.modulate = true
-appender.CORRELATION.policies.size.type = SizeBasedTriggeringPolicy
-appender.CORRELATION.policies.size.size=10MB
-appender.CORRELATION.strategy.type = DefaultRolloverStrategy
-appender.CORRELATION.strategy.max = 20
-appender.CORRELATION.filter.threshold.type = ThresholdFilter
-appender.CORRELATION.filter.threshold.level = INFO 
-```
-
-Note that the maximum file size of the correlation log is set to
-    10MB in the above configuration. That is, when the size of the file
-    exceeds 10MB, a new log file is created. If required, you can change
-    this file size.
-
-**If required**, you can change the default HTTP header (which is
-    'activity_id') that is used to carry the correlation ID by adding
-    the following property to the
-    `deployment.toml` file (stored in the `MI_HOME/conf/` directory). Replace
-    `<correlation_id>` with a value of your choice.
-
-```toml
-[passthru_properties]
-correlation_header_name="<correlation_id>"
-```
+See the [configuring correlation logs](../../../administer-and-observe/logs/configuring_log4j_properties/#correlations-logs) section for details.
