@@ -20,15 +20,15 @@ The exact specifications used in the use cases listed in this section are summar
 
 | **Scenario**                                          | **CPU**   | **Memory** | **SI Memory Allocation** |**Input TPS** | **Input Message Size** | **Total Message Count** | **Output TPS** |
 |-------------------------------------------------------|-----------|------------|--------------------------|---------------|------------------------|-------------------------|----------------|
-| [Consuming events using Kafka source](#consuming-events-using-kafka-source)| 4 cores | 8GB| | 180K | | | 1.1M |
-| [Consuming messages from an HTTP Source](#consuming-messages-from-an-http-source)| 4 cores | 8GB | | 30K | | 30K | 30K |
-| [Sending HTTP requests and consuming the responses](#sending-http-requests-and-consuming-the-responses) | 4 cores | 8GB | | 29K | | 29K | - To HTTP Source: 29K<br/><br/> - To HTTP Request Sink: 29K |
-| [Performing ETL tasks](#performing-etl-tasks) | 4 cores | 16GB | | 29K | | 29K | - To HTTP Source: 29K<br/><br/> - To HTTP Request Sink: 29K |
-| [Consuming messages from a Kafka source and publish to an HTTP endpoint](#consuming-messages-from-a-kafka-source-and-publish-to-an-http-endpoint) | 2 cores| **Docker Memory**: 3GB | - **Xms**: 256m<br/><br/> - **Xmx**: 1g | 10K | | 10K | 10K |
-| [Consuming messages from a CSV file and publish to a MySQL table](#consuming-messages-from-a-csv-file-and-publish-to-a-mysql-table) | 4 cores| **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 9K | | 9K | 9K|
-| [Monitoring a database table in MySQL and publishing data to a Kafka topic](#monitoring-a-database-table-in-mysql-and-publishing-data-to-a-kafka-topic) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | | 34,330,327 | | |
-| [Read XML file and mapping to a stream](#read-xml-file-and-mapping-to-a-stream) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 40K | 40K | 40K |
-| [Reading an XML file and publishing to a Kafka topic](#reading-an-xml-file-and-publishing-to-a-kafka-topic) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 38K | 38K | 38K |
+| [Consuming events using Kafka source](#consuming-events-using-kafka-source)| 4 cores | 8GB| - **Xms**: 2g<br/><br/> - **Xmx**: 4g | 180K | 60 bytes | | Not Available |
+| [Consuming messages from an HTTP Source](#consuming-messages-from-an-http-source)| 4 cores | 8GB | - **Xms**: 2g<br/><br/> - **Xmx**: 4g | 30K | 60 bytes | 30K | Not Available |
+| [Sending HTTP requests and consuming the responses](#sending-http-requests-and-consuming-the-responses) | 4 cores | 8GB | - **Xms**: 2g<br/><br/> - **Xmx**: 4g | 29K | **Sent**: 60 bytes<br/><br/>**Received**: 60 bytes | 29K | - **To HTTP Source**: 29K<br/><br/> - **To HTTP Request Sink**: 29K |
+| [Performing ETL tasks](#performing-etl-tasks) | 4 cores | 16GB | - **Xms**: 2g<br/><br/> - **Xmx**: 4g | 29K | **Read**: 100 bytes<br/><br/>**Stored**: 200 bytes | 29K | **To Oracle Store**: 72K|
+| [Consuming messages from a Kafka source and publish to an HTTP endpoint](#consuming-messages-from-a-kafka-source-and-publish-to-an-http-endpoint) | 2 cores| **Docker Memory**: 3GB | - **Xms**: 256m<br/><br/> - **Xmx**: 1g | 10K | **Consumed**: 400 bytes<br/><br/>**Published**: 600 bytes | 10K | 10K |
+| [Consuming messages from a CSV file and publish to a MySQL table](#consuming-messages-from-a-csv-file-and-publish-to-a-mysql-table) | 4 cores| **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 9K | **Read**: 300 bytes<br/><br/>**Published**: 300 bytes | 9K | 9K|
+| [Monitoring a database table in MySQL and publishing data to a Kafka topic](#monitoring-a-database-table-in-mysql-and-publishing-data-to-a-kafka-topic) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 13K | **Read**: 300 bytes<br/><br/>**Published**: 300 bytes | |13K |
+| [Read XML file and mapping to a stream](#read-xml-file-and-mapping-to-a-stream) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 40K | **read**: 350 bytes | 40K | 40K |
+| [Reading an XML file and publishing to a Kafka topic](#reading-an-xml-file-and-publishing-to-a-kafka-topic) | 4 cores | **Docker Memory**: 8GB | - **Xms**: 2g <br/><br/> - **Xmx**: 4g | 38K | **read**: 350 bytes<br/><br/>**Published**: 350 bytes | 38K | 38K |
 
 ## Consuming events using Kafka source
 
@@ -64,8 +64,7 @@ insert into KafkaSourceThroughputStream;
 
 ### Results
 
-- Average Publishing TPS to Kafka : 1.1M
-- Average Consuming TPS from Kafka: 180K
+Average Consuming TPS from Kafka: 180K
 
 
 ## Consuming messages from an HTTP Source
@@ -96,8 +95,7 @@ insert into HttpSourceThroughputStream;
 
 ### Results
 
-- Average Publishing TPS to Http Source : 30K
-- Average Consuming TPS from Http Source: 30K
+Average Consuming TPS from Http Source: 30K
 
 
 ## Sending HTTP requests and consuming the responses
@@ -147,7 +145,7 @@ insert into FinalThroughputStream;
 
 ### Results
 
-- Average Publishing TPS to HTTP Source          : 29K
+- Average Consuming TPS to HTTP Source          : 29K
 - Average Publishing TPS from HTTP request sink  : 29K
 - Average Consuming TPS from HTTP response source: 29K
 
@@ -350,11 +348,6 @@ The performance statistics of this scenario are as follows:
 - Database  : AWS RDS instance with oracle-ee 12.1.0.2.v15
 - Duration  : 1.422 minutes (85373ms)
 
-
-- Average Publishing TPS to HTTP Source : 29K
-- Average Publishing TPS from HTTP request sink: 29K
-- Average Consuming TPS from HTTP response source: 29K
-
 ## Consuming messages from a Kafka source and publish to an HTTP endpoint
 
 ### Specifications of EC2 Instances
@@ -514,7 +507,7 @@ The following Siddhi applications were used in this scenario:
 
 - Memory consumed: 1g
 
-_ TPS: 10,000
+- TPS: 10,000
 
 
 ## Consuming messages from a CSV file and publish to a MySQL table
@@ -596,7 +589,7 @@ insert into TempStream;
 
 - Memory consumed: 2.56g
 
-_ TPS: 9,000
+- TPS: 9,000
 
 ## Monitoring a database table in MySQL and publishing data to a Kafka topic
 
