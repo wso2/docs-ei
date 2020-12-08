@@ -59,20 +59,20 @@ Once you set up the basic deployment, you can integrate message tracing capabili
 
 ## Classic Observability
 
-In the solution, **metrics monitoring** and **message tracing** is handled using the EI Analytics profile. For **log monitoring**, use log4j2 logs. This is the same solution that was available for previous EI versions.
+In the solution, **metrics monitoring** and **message tracing** is handled using the EI Analytics. For **log monitoring**, use log4j2 logs. This is the same solution that was available for previous EI versions.
 
 ### Technologies
 
 | **Feature**   | **Technology**              |
 |---------------|-----------------------------|
-| Metrics and Tracing       | EI Analytics Worker         |
-| Visualization | EI Analytics Dashboard      |
+| Metrics and Tracing       | EI Analytics server        |
+| Visualization | EI Analytics Portal      |
 | Logs  | Log4j2 |
 
 
 ### Metrics and message tracing
 
-The following diagram depicts how the EI Analytics profile is used for **metrics monitoring** and **message tracing**.
+The following diagram depicts how EI Analytics is used for **metrics monitoring** and **message tracing**.
 
 ![EI-Analytics Observability](../../assets/img/monitoring-dashboard/classic-observability-architecture.png)
 
