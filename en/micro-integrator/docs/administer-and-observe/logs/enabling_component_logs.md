@@ -46,7 +46,7 @@ There are two ways to enable logs for a component: using the Micro Integrator [d
  
 ### Using the CLI
 
-1.  Download and set up the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface/#installing-the-cli)
+1.  Download and set up the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface/#installing-the-cli).
 2.  Use the [mi log-level](../../../administer-and-observe/using-the-command-line-interface/#mi-log-level) option in the CLI with the required commands as shown in the following examples:
 
     ```bash
@@ -61,3 +61,10 @@ By default, when you enable logs for a component, the logs get printed to the se
 By default, all loggers print logs to the destinations configured for the [root logger](../configuring_log4j_properties/#root-logs). If you want to print logs to new destinations, you can define new [appenders](../configuring_log4j_properties/#log4j2-appenders). 
 
 For example, you will define new appenders when you want to have [per-service log files](../../../develop/enabling-logs-for-services/) or [per-api log files](../../../develop/enabling-logs-for-api/).
+
+## What's Next?
+
+Once you have defined the new logger:
+
+-   Start [using the logs](../../../administer-and-observe/logs/monitoring_logs).
+-   [Configure the log properties](../configuring_log4j_properties)
