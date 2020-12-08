@@ -1,7 +1,7 @@
 # Performance Analysis Results
 
 !!!note
-    - These performance statistics were taken when the load average was below 3.8 in the 4 core instance.<br/><br/>
+    These performance statistics were taken when the load average was below 3.8 in the 4 core instance.
 
     
 ## Performance analysis results summary
