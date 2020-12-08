@@ -84,7 +84,7 @@ In a new browser window or tab, open the Analytics portal using the following UR
 
 <img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
 
-## Publishing statistics to the portal
+## Publishing statistics to the Portal
 
 Let's **test this solution** by running the [service chaining](../../use-cases/tutorials/exposing-several-services-as-a-single-service) tutorial. When the artifacts deployed in the Micro Integrator are invoked, the statistics will be available in the portal. 
 
@@ -152,7 +152,7 @@ Follow the steps given below.
 
     3.  Now, shut down the back-end service and send two more requests.
 
-## Viewing the Analytics portal
+## Viewing the Analytics Portal
 
 Once you have signed in to the analytics portal server, click the **Enterprise Integrator Analytics** icon shown below to open the portal.  
 
