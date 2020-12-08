@@ -64,5 +64,7 @@ For example, you will define new appenders when you want to have [per-service lo
 
 ## What's Next?
 
+Once you have defined the new logger:
+
 -   Start [using the logs](../../../administer-and-observe/logs/monitoring_logs).
 -   [Configure the log properties](../configuring_log4j_properties)
