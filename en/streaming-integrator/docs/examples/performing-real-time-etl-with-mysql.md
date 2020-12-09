@@ -35,6 +35,14 @@ You can capture following type of changes done to a database table:
 !!!info "Before you begin:"
     - You need to have access to a MySQL instance.<br/>
     - Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/>
+
+        !!!note
+            If you are using MySQL 8.0, please use the following query to check the binlog status:
+            ```
+            SELECT variable_value as "BINARY LOGGING STATUS (log-bin) ::"
+            FROM performance_schema.global_variables WHERE variable_name='log_bin';
+            ```
+
     - Add the MySQL JDBC driver into the `<SI_HOME>/lib` directoryas follows:<br/>
         1. Download the MySQL JDBC driver from [the MySQL site](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).<br/>
         2. Unzip the archive.<br/>
