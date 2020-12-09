@@ -241,7 +241,18 @@ nav:
     - 'Monitoring SI via Grafana Dashboards':
       - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
       - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
-      - 'Monitoring the WSO2 SI with Grafana': 'admin/monitoring-si-performance-via-grafana.md'
+      - 'Monitoring the WSO2 SI with Grafana':
+        - 'Overview': 'admin/monitoring-si-performance-via-grafana.md'
+        - 'Viewing Overall Statistics': 'admin/viewing-overall-statistics.md'
+        - 'Viewing Server Statistics': 'admin/viewing-server-statistics.md'
+        - 'Viewing Stream Statistics': 'admin/viewing-stream-statistics.md'
+        - 'Viewing Source Statistics': 'admin/viewing-source-statistics.md'
+        - 'Viewing Query Statistics': 'admin/viewing-sink-statistics.md'
+        - 'Viewing Window Statistics': 'admin/viewing-window-statistics.md'
+        - 'Viewing Trigger Statistics': 'admin/viewing-trigger-statistics.md'
+        - 'Viewing Table Statistics': 'admin/viewing-table-statistics.md'
+        - 'Viewing Aggregation Statistics': 'admin/viewing-aggregation-statistics.md'
+        - 'Viewing On Demand Query Statistics': 'admin/viewing-on-demand-query-statistics.md'
       - 'Monitoring ETL Flows with Grafana': 'admin/viewing-dashboards.md'
     - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
