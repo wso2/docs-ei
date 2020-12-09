@@ -62,9 +62,6 @@ Let's start the servers in the given order.
 
 ### Starting the Micro Integrator
 
-!!! Warning
-    Be sure to [configure the SSL certificates](../../setup/observability/setting-up-classic-observability-deployment/#configure-ssl-certificates) before starting the Micro Integrator.
-
 Once you have [started the Analytics Server](#starting-the-analytics-server), you can [start the Micro Integrator](../../../setup/installation/install_in_vm_installer/).
 
 ### Starting the Analytics Portal
@@ -80,7 +77,8 @@ Once you have [started the Analytics Server](#starting-the-analytics-server), yo
     portal.bat
     ```
 
-In a new browser window or tab, open the Analytics portal using the following URL: <https://localhost:9643/portal>. Use `admin` for both the username and password.
+In a new browser window or tab, open the Analytics portal using the following URL: https://localhost:9645/analytics-dashboard. 
+Use `admin` for both the username and password.
 
 <img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
 
@@ -177,11 +175,12 @@ The success rate and the failure rate of the messages received by the Micro Inte
 
 ### Top APIs by request
 
-The `            HealthcareAPI           ` REST API is displayed under **TOP APIS BY REQUEST COUNT** as follows.  
+The `HealthcareAPI` REST API is displayed under **TOP APIS BY REQUEST COUNT** as follows.  
 
 ![Top APIs by request count](../assets/img/ei-analytics/119132315/119132324.png "Top APIs by request count")
 
 ### Endpoints by request
+
 The three endpoints used for the message mediation are displayed under **Top Endpoints by Request Count** as shown below.  
 
 ![Top endpoints by request count](../assets/img/ei-analytics/119132315/119132318.png "Top endpoints by request count")
@@ -191,7 +190,7 @@ The three endpoints used for the message mediation are displayed under **Top End
 In the Top APIS BY Request COUNT gadget, click `HealthcareAPI` to open the **OVERVIEW/API/HealthcareAPI** page. The following is displayed.
 
 -   The **API Request Count** gadget shows the total number of
-    requests handled by the `             StockQuoteAPI            `
+    requests handled by the `StockQuoteAPI`
     REST API during the last hour:  
     ![Total request per API](../assets/img/ei-analytics/119132315/119132323.png "Total request per API")
 -   The **API** **Message Count** gadget maps the number of
@@ -204,7 +203,7 @@ In the Top APIS BY Request COUNT gadget, click `HealthcareAPI` to open the **OVE
     shown below.  
     ![API message latency](../assets/img/ei-analytics/119132315/119132321.png "API message latency")  
 -   The **Messages** gadget lists all the the messages handled by
-    the `             StockQuoteAPI            ` REST API during the
+    the `StockQuoteAPI` REST API during the
     last hour with the following property details as follows.  
     ![Message per API](../assets/img/ei-analytics/119132315/119132320.png "Message per API")
 -   The **Message Flow** gadget illustrates the order in which the
