@@ -108,7 +108,7 @@ The following information is displayed in this dashboard.
  
  This also provides a link to the **Siddhi Server Statistics** dashboard to [view server statistics](viewing-server-statistics.md).
  
- ### Purpose
+### Purpose
  
  This allows you to identify the following:
  
@@ -189,15 +189,23 @@ To evaluate the performance of each server as follows:
 
 ![Thread Count](../images/viewing-overall-statistics/thread-count.png)
 
+This shows the number of JVM threads that are currently active.
+
 ## Threads Blocked
 
 ![Threads Blocked](../images/viewing-overall-statistics/blocked-threads.png)
+
+This shows the number of JVM threads that are currently blocked.
 
 ## Memory Heap Used
 
 ![Memory Heap Used](../images/viewing-overall-statistics/memory-heap-used.png)
 
+This shows the JVM memory heap that is currently consumed by your Streaming Integrator deployment.
+
 ## File Descriptors Open
+
+The number of JVM file descriptors that are currently open.
 
 ![File Descriptors Open](../images/viewing-overall-statistics/file-descriptors.png)
 
