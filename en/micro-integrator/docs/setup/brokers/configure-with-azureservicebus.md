@@ -1,17 +1,129 @@
 # Connecting to Azure Service Bus
 
-This section describes how to configure WSO2 Micro Integrator to connect with Azure Service Bus.
+This section describes how to configure WSO2 Micro Integrator to connect with [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/). Azure Service Bus is a messaging service that exists on Azure Cloud. It only needs to be configured in order to work.
 
-The integration between this message broker and WSO2 Micro Integrator is straightforward. The guaranteed delivery integration pattern must be used to implement the mediation flow.
+The Azure Service Bus [complies with both AMQP 1.0 and JMS 2.0](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview#compliance-with-standards-and-protocols). The Micro Integrator uses its inbuilt JMS transport to send and receive messages from the Azure Service Bus. The configurations are similar to connecting with other JMS brokers.
 
 ## Setting up the Micro Integrator with Azure Service Bus
 
-Follow the instructions below to set up and configure.
+Follow the instructions below to set up and configure Micro Integrator to work with Azure Service Bus.
 
-1.  Download [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/).
-2.  Download and install WSO2 Micro Integrator.
+* To get started, download and install WSO2 Micro Integrator.
+
 
 ### Setting up Azure Service Bus
+
+Create synapse artifacts to create a consumer and a producer. The messaging flow is as shown below.
+
+![](../../assets/img/broker-configs/azure-service-bus.png)
+
+**Azure Service Bus Producer**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="AzureServiceBusProducer" startOnLoad="true" statistics="disable" trace="disable" transports="http,https">
+   <target>
+      <inSequence>
+         <log>
+            <property name="in" value="==== IN =====" />
+         </log>
+         <property action="remove" name="TRANSPORT_HEADERS" scope="axis2" />
+         <property name="OUT_ONLY" scope="default" type="STRING" value="true" />
+         <call blocking="true">
+            <endpoint>
+               <address uri="jms://integration-queue?transport.jms.ConnectionFactory=azureQueueProducerConnectionFactory&amp;transport.jms.Destination=integration-queue" />
+            </endpoint>
+         </call>
+         <payloadFactory media-type="json">
+            <format>
+           	{"status":"successful"}
+            </format>
+            <args />
+         </payloadFactory>
+         <property name="HTTP_SC" scope="axis2" type="STRING" value="200" />
+         <respond />
+      </inSequence>
+      <outSequence />
+      <faultSequence>
+         <property name="SET_ROLLBACK_ONLY" value="true" scope="axis2" />
+         <payloadFactory media-type="json">
+            <format>
+           	{"status":"failed"}
+            </format>
+            <args />
+         </payloadFactory>
+         <property name="HTTP_SC" scope="axis2" type="STRING" value="500" />
+         <respond />
+      </faultSequence>
+   </target>
+   <description />
+</proxy>
+
+```
+
+**Azure Service Bus Consumer**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="AzureServiceBusConsumer" startOnLoad="true">
+   <description />
+   <target>
+      <inSequence>
+         <call blocking="true">
+            <endpoint>
+               <http uri-template="http://localhost:8280/data/glossary"/>
+             </endpoint>
+         </call>
+         <log level="custom">
+            <property name="Transaction Action" value="Committed"/>
+         </log>
+      </inSequence>
+      <outSequence />
+      <faultSequence>
+         <property name="SET_ROLLBACK_ONLY" value="true" scope="axis2"/>
+         <log level="custom">
+            <property name="Transaction Action" value="Rollbacked"/>
+         </log>
+      </faultSequence>
+   </target>
+   <parameter name="transport.jms.DestinationType">queue</parameter>
+   <parameter name="transport.jms.Destination">integration-queue</parameter>
+   <parameter name="transport.jms.ContentType">
+      <rules xmlns="">
+         <jmsProperty>contentType</jmsProperty>
+         <default>text/plain</default>
+      </rules>
+   </parameter>
+   <parameter name="transport.jms.ConnectionFactory">azureQueueConsumerConnectionFactory</parameter>
+</proxy>
+
+```
+
+**Sample API**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/data" name="SampleAPI" xmlns="http://ws.apache.org/ns/synapse">
+   <resource methods="POST" url-mapping="/glossary">
+      <inSequence>
+         <log level="custom">
+            <property name="REQUEST" expression="json-eval($.)" />
+         </log>
+         <payloadFactory media-type="json">
+            <format>
+           	{"status":"successful"}
+            </format>
+            <args />
+         </payloadFactory>
+         <property name="HTTP_SC" scope="axis2" type="STRING" value="200" />
+         <respond />       	 
+      </inSequence>
+      <outSequence/>
+      <faultSequence/>
+   </resource>
+</api>
+
+```
 
 ### Setting up the Micro Integrator to work with Azure Service Bus
 
@@ -44,14 +156,7 @@ Follow the instructions below to set up and configure.
         parameter.connection_factory_name = "SBCF"
         parameter.connection_factory_type = "queue"
         ```
-3.  Remove any existing Apache ActiveMQ client JAR files from the `MI_HOME/dropins/` and `MI_HOME/lib/` directories.  
-4.  Remove the below line from the `MI_HOME/conf/etc/launch.ini` file.  
-
-    ```text
-    javax.jms,\
-    ```
-5.  Start Azure Service Bus. For instructions, see the [Azure Service Bus Documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/).
-6.  Start the Micro Integrator.
+3.  Start the Micro Integrator.
 
 Now you have configured instances of Azure Service Bus and WSO2 Micro Integrator.
 
