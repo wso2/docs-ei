@@ -22,7 +22,7 @@ In this scenario, the Streaming Integrator reads input data from a MySQL databas
 
 1. Download MySQL 5.1.49 from [MySQL Community Downloads](https://dev.mysql.com/downloads/connector/j/5.1.html).
 
-2. Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).  
+2. Enable binary logging in the MySQL server. For detailed instructions, see [Debezium documentation - Enabling the binlog](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).  
 
     !!!note
         If you are using MySQL 8.0, use the following query to check the binlog status:

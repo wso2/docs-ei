@@ -16,7 +16,7 @@ In this tutorial, let's create the same Siddhi application created in [Performin
 
 !!!info "Before you begin:"
     - You need to have access to a MySQL instance.<br/>
-    - Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/>
+    - Enable binary logging in the MySQL server. For detailed instructions, see [Debezium documentation - Enabling the binlog](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/>
 
         !!!note
             If you are using MySQL 8.0, use the following query to check the binlog status:
