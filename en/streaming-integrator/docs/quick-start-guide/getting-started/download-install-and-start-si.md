@@ -25,7 +25,7 @@ In this scenario, the Streaming Integrator reads input data from a MySQL databas
 2. Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).  
 
     !!!note
-        If you are using MySQL 8.0, please use the following query to check the binlog status:
+        If you are using MySQL 8.0, use the following query to check the binlog status:
         ```
         SELECT variable_value as "BINARY LOGGING STATUS (log-bin) ::"
         FROM performance_schema.global_variables WHERE variable_name='log_bin';
