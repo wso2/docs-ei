@@ -166,6 +166,7 @@ When you create the API, an API resource is created by default. If you want to a
 
 <img src="../../../assets/img/create_artifacts/new_api/add-new-api-resource.png" width="500">
 
+
 !!! Info
     **About the default API Resource**
 
