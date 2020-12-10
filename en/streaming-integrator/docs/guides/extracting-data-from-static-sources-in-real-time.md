@@ -87,7 +87,14 @@ Let's try out the example where you want to view the online bookings saved in a 
 
 1. Download and install MySQL.
 
-2. Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).
+2. Enable binary logging in the MySQL server. For detailed instructions, see [Debezium documentation - Enabling the binlog](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).
+
+    !!!note
+        If you are using MySQL 8.0, use the following query to check the binlog status:
+        ```
+        SELECT variable_value as "BINARY LOGGING STATUS (log-bin) ::"
+        FROM performance_schema.global_variables WHERE variable_name='log_bin';
+        ```
 
 3. Start the MySQL server, create the database and the database table you require as follows:
 
@@ -174,13 +181,6 @@ Mappers determine the format in which the event is received. For information abo
 
 The mapper available for extracting data from databases is [Keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sourcemapper).
 
-## Consuming data from NoSQL databases
-
-In addition to RDBMS databases, you can also extract data from NoSQL databases via WSO2 Streaming Integrator.
-
-Consider an example where a business saves information about its customer transactions in a MongoDB database. It needs to query for the top five customers in this database. To do this, you can create a Siddhi application as follows.
-
-
 ## File Processing
 
 File Processing involves two types of operations related to files:
@@ -192,6 +192,7 @@ File Processing involves two types of operations related to files:
 e.g., In a sweet factory where the production bots publishes the production statistics in a file after each production run. Extracting the production statistics from the files for further processing can be considered reading files and extracting data. Checking whether a file is generated to indicate a completed production run, and checking whether a file is moved to a different location after its content is processed can be considered as managed file transfer.
 
 To understand how you can perform these file processing activities via the WSO2 Streaming Integrator, see the subtopics below.
+
 
 ### Extracting data from files
 
@@ -288,7 +289,6 @@ The following mappers are supported for the File extension.
 | `csv`         | [csv](https://siddhi-io.github.io/siddhi-map-csv/api/2.1.0/#csv-source-mapper)         |
 | `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sourcemapper)             |
 | `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sourcemapper)           |
-
 
 ### Performing managed file transfers
 
@@ -536,3 +536,5 @@ WSO2 Streaming Integrator supports the following mappers for the cloud-based sto
 | `keyvalue`    | [keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sourcemapper)           |
 | `csv`         | [csv](https://siddhi-io.github.io/siddhi-map-csv/api/2.1.0/#sourcemapper)                     |
 | `protobuf`    | [protobuf](https://siddhi-io.github.io/siddhi-map-protobuf/api/1.1.0/#protobuf-source-mapper) |
+
+
