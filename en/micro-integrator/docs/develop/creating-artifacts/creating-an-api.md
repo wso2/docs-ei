@@ -172,18 +172,21 @@ When you create the API, an API resource is created by default. If you want to a
     Each API can have at most one default resource. Any request received
         by the API but does not match any of the enclosed resource
         definitions will be dispatched to the default resource of the API.
-        In case of API\_3, a DELETE request on the URL “/payments” will be
-        dispatched to the default resource as none of the other resources in
-        API\_3 are configured to handle DELETE requests. If you go to the
-        Source view, the default resource will be as follows:
+        In the following example, if a DELETE request is received by `SampleAPI` on the `/payments` URL, the request will be
+        dispatched to the default resource as none of the resources in SampleAPI are configured to handle DELETE requests.
 
-    ```xml
-    <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
-        <resource methods="GET">
-            <inSequence/>
-            <outSequence/>
-            <faultSequence/>
-        </resource>
+    ```xml tab='SampleAPI'
+    <api name="SampleAPI" context="/payments">
+    <resource url-mapping="/list" methods="GET" inSequence="seq7" outSequence="seq8"/>
+    <resource uri-template="/edit/{userId}" methods="PUT POST" outSequence="seq9">
+        <inSequence>
+             <log/>
+             <send>
+                  <endpoint key="BackendService"/>
+             </send>
+        </inSequence>
+    </resource>
+    <resource inSequence="seq10" outSequence="seq11"/>
     </api>
     ```    
 
