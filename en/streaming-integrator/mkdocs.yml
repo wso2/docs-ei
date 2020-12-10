@@ -63,7 +63,7 @@ nav:
     - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
     - 'Use Cases':
-      - 'Use Cases': 'guides/use-cases.md'
+      - 'Use Cases Overview': 'guides/use-cases.md'
       - 'Extracting Data from Static Sources in Real Time': 'guides/extracting-data-from-static-sources-in-real-time.md'
       - 'Receiving Data in Transit': 'guides/receiving-data-in-transit.md'
       - 'Loading and Writing Data': 'guides/loading-and-writing-date.md'
@@ -254,6 +254,7 @@ nav:
         - 'Viewing Aggregation Statistics': 'admin/viewing-aggregation-statistics.md'
         - 'Viewing On Demand Query Statistics': 'admin/viewing-on-demand-query-statistics.md'
       - 'Monitoring ETL Flows with Grafana': 'admin/viewing-dashboards.md'
+      - 'Monitoring the Received Events Count via Logs': 'admin/monitoring-received-events-count-via-logs.md'
     - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'
