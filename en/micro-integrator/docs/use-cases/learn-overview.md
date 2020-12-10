@@ -131,6 +131,7 @@ The integration tutorials will walk you through the main capabilities and featur
                 <li>Exposing Other Datasources
                     <ul>
                         <li><a href="../../use-cases/examples/data_integration/csv-data-service">Exposing a CSV datasource</a></li>
+                        <li><a href="../../use-cases/examples/data_integration/mongo-data-service">Exposing a Mongo datasource</a></li>
                         <li><a href="../../use-cases/examples/data_integration/carbon-data-service">Exposing a Carbon datasource</a></li>
                     </ul>
                 </li>

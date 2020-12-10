@@ -1,6 +1,6 @@
 # Creating a Data Service
 
-Follow the instructions given below to create a new REST API artifact.
+Follow the instructions given below to create a new data service artifact.
 
 !!!	Tip	
 	You can also use a sample template to create your data service.
