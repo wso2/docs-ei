@@ -16,7 +16,15 @@ In this tutorial, let's create the same Siddhi application created in [Performin
 
 !!!info "Before you begin:"
     - You need to have access to a MySQL instance.<br/>
-    - Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/>
+    - Enable binary logging in the MySQL server. For detailed instructions, see [Debezium documentation - Enabling the binlog](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/>
+
+        !!!note
+            If you are using MySQL 8.0, use the following query to check the binlog status:
+            ```
+            SELECT variable_value as "BINARY LOGGING STATUS (log-bin) ::"
+            FROM performance_schema.global_variables WHERE variable_name='log_bin';
+            ```
+
     - Add the MySQL JDBC driver into the `<SI_HOME>/lib` directory as follows:<br/>
         1. Download the MySQL JDBC driver from [the MySQL site](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).<br/>
         2. Unzip the archive.<br/>
@@ -237,4 +245,5 @@ If you open the `/Users/foo/productions.csv` file, the `Chocalate, 100.0` record
 Once you develop an ETL application, you may need to carry out following tasks:
 
 - **Error Handling**: To understand how to handle errors that may occur when carrying out ETL operations, try the [Managing Streaming Data with Errors tutorial](handling-requests-with-errors.md).
+
 - **Monitoring ETL Statistics**: For instructions to set up pre-configured dashboards provided with WSO2 Streaming Integrator and visualize statistics related to your ETL flows, see [Monitoring ETL Statistics with Grafana](../admin/viewing-dashboards.md).
