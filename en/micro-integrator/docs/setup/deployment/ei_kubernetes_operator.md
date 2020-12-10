@@ -1,10 +1,10 @@
-# EI Kubernetes (K8s) Operator
+# Kubernetes (K8s) EI Operator
 
-The EI Kubernetes operator (**k8s-ei-operator**) provides first-class support for Micro Integrator deployments in the Kubernetes ecosystem. It uses the **Integration custom resource** (`integration_cr.yaml` file) that is available in the Kubernetes project (exported from WSO2 Integration Studio) and deploys the integration in your Kubernetes environment.
+The Kubernetes EI operator (**k8s-ei-operator**) provides first-class support for Micro Integrator deployments in the Kubernetes ecosystem. It uses the **Integration custom resource** (`integration_cr.yaml` file) that is available in the Kubernetes project (exported from WSO2 Integration Studio) and deploys the integration in your Kubernetes environment.
 
-The operator is configured with an NGINX Ingress controller by default, which exposes the deployed integration through HTTP. If required, you can use the operator's configuration mapper (`config_map.yaml` file) to disable the default Ingress controller and apply other configuration changes. Find out more about [changing the default configurations](#configure-the-ei-k8s-operator-optional) of the EI K8s operator.
+The operator is configured with an NGINX Ingress controller by default, which exposes the deployed integration through HTTP. If required, you can use the operator's configuration mapper (`config_map.yaml` file) to disable the default Ingress controller and apply other configuration changes. Find out more about [changing the default configurations](#configure-the-k8s-ei-operator-optional) of the K8s EI operator.
 
-##  Install the EI K8s Operator
+##  Install the K8s EI Operator
 Follow the steps given below to install the EI Kubernetes operator in your Kubernetes environment.
 
 1.  Clone the latest **k8s-ei-operator** GitHub repository:
@@ -37,7 +37,7 @@ Follow the steps given below to install the EI Kubernetes operator in your Kuber
     kubectl create -f deploy/role_binding.yaml
     ```
     
-6.  Deploy a **custom resource definition**, which enables a Kubernetes cluster to understand the custom resource type. The EI K8s operator introduces the **Integration** custom resource.
+6.  Deploy a **custom resource definition**, which enables a Kubernetes cluster to understand the custom resource type. The K8s EI operator introduces the **Integration** custom resource.
 
     ```bash
     kubectl create -f deploy/crds/integration_v1alpha1_integration_crd.yaml
@@ -64,10 +64,10 @@ Follow the steps given below to install the EI Kubernetes operator in your Kuber
     k8s-ei-operator     1/1     1            1          1m
     ```
 
-Your Kubernetes environment is now configured with the EI K8s operator. If required, you can [configure the optional settings](#configure-the-ei-k8s-operator-optional) before using the operator.
+Your Kubernetes environment is now configured with the K8s EI operator. If required, you can [configure the optional settings](#configure-the-k8s-ei-operator-optional) before using the operator.
 
-## Configure the EI K8s Operator (Optional)
-See the topics given below to update/change the default configurations of the EI K8s operator.
+## Configure the K8s EI Operator (Optional)
+See the topics given below to update/change the default configurations of the K8s EI operator.
 
 ### Disable Ingress controller
 

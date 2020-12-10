@@ -18,12 +18,12 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://ei.docs.wso2.com/en/latest/
+site_url: https://ei.docs.wso2.com/en/7.2.0/
 
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/7.1.0/en/streaming-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.2.0/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -64,13 +64,18 @@ nav:
   - 'Learn':
     - 'Use Cases':
       - 'Use Cases': 'guides/use-cases.md'
-      - 'Extracting Data from Static Sources in Real Time': 'guides/extracting-data-from-static-sources-in-real-time.md'
-      - 'Receiving Data in Transit': 'guides/receiving-data-in-transit.md'
-      - 'Loading and Writing Data': 'guides/loading-and-writing-date.md'
-      - 'Publishing Data': 'guides/publishing-data-to-event-stream-consumers.md'
-      - 'Stream Processing': 'guides/processing-data.md'
+      - 'Consuming Data': 'guides/consuming-messages.md'
+      - 'Transforming Data': 'guides/transforming-data.md'
+      - 'Enriching Data': 'guides/enriching-data.md'
+      - 'Cleansing Data': 'guides/cleansing-data.md'
+      - 'Correlating Data': 'guides/correlating-events.md'
+      - 'Summarizing Data': 'guides/summarizing-data.md'
+      - 'Integrating Stores': 'guides/storage-Integration.md'
+      - 'Publishing Data': 'guides/publishing-data.md'
+      - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
       - 'Handling Errors': 'guides/handling-errors.md'
       - 'Performing ETL Operations': 'guides/performing-etl-tasks.md'
+      - 'Monitoring ETL Statistics via Grafana': 'guides/viewing-dashboards.md'
     - 'Tutorials':
       - 'Tutorials Overview': 'examples/tutorials-overview.md'
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'

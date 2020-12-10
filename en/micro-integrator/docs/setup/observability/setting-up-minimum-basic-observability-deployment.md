@@ -155,6 +155,7 @@ To set up Fluent Bit:
     - **`parsers.conf`** file
 
         ```
+
         [PARSER]
                 Name        observability
                 Format      json

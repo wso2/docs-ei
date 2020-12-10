@@ -39,8 +39,3 @@ If you want to allow business users with limited coding knowledge to write busin
 ## Monitoring the Streaming Integrator
 
 To monitor the performance of your Streaming Integrator setup, configure WSO2 SI to publish its statistics in Dashboards as described in [Configuring Grafana Dashboards](../admin/setting-up-grafana-dashboards.md).
-
-
-
-
- 

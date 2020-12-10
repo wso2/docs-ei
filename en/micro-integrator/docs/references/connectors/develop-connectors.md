@@ -15,8 +15,7 @@ A connector is a collection or a set of operations that can be used in WSO2 Ente
 * A connector operation is made using [sequence templates](../synapse-properties/template-properties/) in WSO2 EI. 
 * The integration logic inside a connector operation is constructed using WSO2 EI mediators. 
 * The integration logic inside a connector operation needs some custom functionality not provided by the WSO2 EI mediators, a java implementation can be attached to the associated sequence template. This is using the Custom Class Mediator approach. 
-* If the third party service provider provides a Java SDK to interact with the service, connector operation can use them extending the java implementation. 
-
+* If the third party service provider provides a Java SDK to interact with the service, connector operation can use them extending the java implementation.
 
 <img src="../../../assets/img/connectors/dev-connectors.png" title="Developing Connectors" width="800" alt="Developing Connectors"/>
 
@@ -101,6 +100,7 @@ All the operations exposed by the connector should be registered in this file. T
 </table>    
 
 For example, according to the sample above, it contains two subdirectories named ‘config’ and ‘sample’ inside /resources.
+
 ```
      └── resources
            ├── config

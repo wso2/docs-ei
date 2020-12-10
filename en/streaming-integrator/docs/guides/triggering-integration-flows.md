@@ -4,7 +4,6 @@
 
 Once the Streaming Integrator processes streaming data and generates an output, you are often required to take some action based on that output. The action required could be executing some code, calling an external service or triggering a complex integration flow. When it is required to trigger an integration flow, the Streaming Integrator can send a request to the Micro integrator to initiate such action.
 
-
 ## Triggering integration via Streaming Integrator as fire and forget manner
 
 In order to allow the Streaming Integrator to trigger an integration flow in the Micro Integrator, you need to do the following:
@@ -149,7 +148,6 @@ Once the Siddhib application is created and deployed, deploy the following artif
        </parameters>
     </inboundEndpoint>
     ```
-
 
 - Add the following sample `inSeq` sequence to the `<MI_HOME>/repository/deployment/server/synapse-configs/default/sequences` directory.
 

@@ -272,7 +272,18 @@ If the cluster is correctly configured, the following CLI logs can be viewed wit
         [2018-09-09 23:58:44,178]  INFO {org.wso2.carbon.streaming.integrator.core.internal.ServiceComponent} - WSO2 Streaming Integrator Starting in Two Node Minimum HA Deployment
         [2018-09-09 23:58:44,199]  INFO {org.wso2.carbon.streaming.integrator.core.ha.HAManager} - HA Deployment: Starting up as Passive Node
     ```
-        
+
+## Getting HA Node status
+The following curl command can be used to get the HA Node status
+```
+curl -X GET http://<HOST_NAME>:<PORT>/siddhi-apps/ha/is-active-node -u admin:admin
+```
+
+sample curl command
+```
+curl -X GET http://localhost:9091/siddhi-apps/ha/is-active-node -u admin:admin
+``` 
+  
 !!! info
     When deploying Siddhi applications in a two node minimum HA cluster, it is recommended to use a content
     synchronization mechanism since Siddhi applications must be deployed to both server nodes. You can use a common

@@ -77,9 +77,29 @@ by using an XPath function. You can use any of the <a href="../../mediators/prop
 <li><strong>LONG</strong></li>
 <li><strong>SHORT</strong></li>
 <li><p><strong>OM</strong></p></li>
+<li><p><strong>JSON</strong></p></li>
 </ul>
 <p><strong>String</strong> is the default type.</p>
 <p>The <code>OM</code> type is used to set xml property values on the message context. This is useful when the expression associated with the property mediator evaluates to an XML node during mediation. When the <code>OM</code> type is used, the XML is converted to an AXIOM OMElement before it is assigned to a property.</p>
+<p>The <code>JSON</code> type is used to set JSON values on the message context. Its recommended to use the JSON
+ data type for JSON payloads rather than using the STRING data type.
+</p>
+<p>
+  Please note that when the JSON is just a string we should add quotes around them. ( Due to the restrictions in 
+  <a href="https://tools.ietf.org/html/rfc7159">RFC</a> ) 
+</p>
+<p>
+  
+  Example 1 : Creating a property with a JSON string by giving the value.
+  ```
+  <property name="Greeting" value="&quot;Hello World&quot;" type="JSON"/>
+  ```
+   
+  Example 2 : Creating a property with a JSON object via expression evaluation.
+  ```
+  <property name="studentObject" expression="json-eval($.student)" type="JSON"/>
+  ```
+</p>
 </div></td>
 </tr>
 <tr class="odd">

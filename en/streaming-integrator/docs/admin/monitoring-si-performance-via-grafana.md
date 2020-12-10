@@ -14,32 +14,33 @@ Each Siddhi application contains a combination ofSiddhi components.
 
 For the purpose of monitoring the performance of the Siddhi components used in your WSO2 Streaming Integrator instance, it provides ten pre-configured dashboards. To view them in Grafana, follow the steps below:
  
- 1. Download the following dashboards from the [Streaming Integrator Git Repository](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics). To download a specific dashboard, click on the dashboard name given below:
+ 1. Download the following dashboards (i.e., the JSON file with the dashboard configuration) by clicking on them.
  
-    - [Siddhi Overall Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Overall%20Statistics.json)
+    - [Siddhi Overall Statistics](../examples/resources/dashboards/Siddhi%20Overall%20Statistics-1580282204141.json)
     
-    - [Siddhi Server Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Server%20Statistics.json)
+    - [Siddhi Server Statistics](../examples/resources/dashboards/Siddhi%20Server%20Statistics-1580282223378.json)
     
-    - [Siddhi Stream Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Stream%20Statistics.json)
+    - [Siddhi Stream Statistics](../examples/resources/dashboards/Siddhi%20Stream%20Statistics-1580282240055.json)
     
-    - [Siddhi Source Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Source%20Statistics.json)
+    - [Siddhi Source Statistics](../examples/resources/dashboards/Siddhi%20Source%20Statistics-1580285208526.json)
     
-    - [Siddhi Sink Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Sink%20Statistics.json)
+    - [Siddhi Sink Statistics](../examples/resources/dashboards/Siddhi%20Sink%20Statistics-1580285225995.json)
     
-    - [Siddhi Query Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Query%20Statistics.json)
+    - [Siddhi Query Statistics](../examples/resources/dashboards/Siddhi%20Query%20Statistics-1580282256683.json)
     
-    - [Siddhi Window Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Window%20Statistics.json)
+    - [Siddhi Window Statistics](../examples/resources/dashboards/Siddhi%20Window%20Statistics-1580285269330.json)
     
-    - [Siddhi Trigger Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Trigger%20Statistics.json)
+    - [Siddhi Trigger Statistics](../examples/resources/dashboards/Siddhi%20Trigger%20Statistics-1580285383360.json)
     
-    - [Siddhi Table Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Table%20Statistics.json)
+    - [Siddhi Table Statistics](../examples/resources/dashboards/Siddhi%20Table%20Statistics-1580285249969.json)
     
-    - [Siddhi Aggregation Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20Aggregation%20Statistics.json)
+    - [Siddhi Aggregation Statistics](../examples/resources/dashboards/Siddhi%20Aggregation%20Statistics-1580285366634.json)
     
-    - [Siddhi On Demand Query Statistics](https://github.com/wso2/streaming-integrator/tree/master/modules/distribution/carbon-home/resources/dashboards/general-statistics/WSO2%20Streaming%20Integrator%20-%20Siddhi%20On-Demand%20Query%20Statistics.json)
+    - [Siddhi On Demand Query Statistics](../examples/resources/dashboards/Siddhi%20On-Demand%20Query%20Statistics-1580285396455.json)
     
  2. Start and access Grafana. Then import the eleven dashboards you downloaded in the previous step. For more information, see [Managing Grafana Dashboards - Importing Dashboards](managing-grafana-dashboards.md#importing-dashboards).
     
+
  
 ## Accessing Grafana Dashboards for Monitoring
 

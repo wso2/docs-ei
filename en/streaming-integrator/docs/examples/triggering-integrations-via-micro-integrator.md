@@ -89,9 +89,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
         select symbol, avgAmount
         insert into FooStream;
         ```
-
       Here, the `avgAmount > 100` filter is applied to filter only events that report an average production amount greater than 100. The filtered events are inserted into the `FooStream` stream.
-
 
     c. To select all the responses from the Micro Integrator to be logged, add a new query named `LogResponseEvents`
 
@@ -176,6 +174,10 @@ After doing the required configurations in the Streaming Integrator, let's confi
         Currently, WSO2 Integration Studio does not support GRPC Inbound Endpoint. This capability will be available in a future [release](https://github.com/wso2/devstudio-tooling-ei/issues/1238). 
         For now, you need to create the inbound endpoint manually as an XML file.
 
+
+    !!! info
+        Currently, WSO2 Integration Studio does not support GRPC Inbound Endpoint. This capability will be available in a future [release](https://github.com/wso2/devstudio-tooling-ei/issues/1238). 
+        For now, you need to create the inbound endpoint manually as an XML file.
 
 2. Deploy the following sequence by saving it as `inSeq.xml` file in the `<MI_Home>/repository/deployment/server/synapse-configs/default/sequences` directory.
 

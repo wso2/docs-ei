@@ -2,7 +2,7 @@
 
 This is the source documentation for the latest release of the WSO2 Enterprise Integrator 7 family (i.e., 7.1.0).
 
-To see the **latest released documentation** for the WSO2 Enterprise Integrator 7 family, go to: https://ei.docs.wso2.com/en/latest/
+To see the **latest released documentation** for the WSO2 Enterprise Integrator 7 family, go to: https://ei.docs.wso2.com/en/latest/. The source code for this can be found in a branch.
 
 ## Contributing to WSO2 EI documentation
 
