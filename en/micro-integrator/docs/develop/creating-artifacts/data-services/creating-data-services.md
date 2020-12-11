@@ -282,7 +282,7 @@ Use this section to configure a SOAP operation for invoking the data service.
 
 ### Adding a Resource
 
-Use this section to configure a REST operation for invoking the data service.
+Use this section to configure a REST resource for invoking the data service.
 
 1.  Click **Resources** to expand the section.
 	![](../../../assets/img/tutorials/data_services/resource_expanded.png)
