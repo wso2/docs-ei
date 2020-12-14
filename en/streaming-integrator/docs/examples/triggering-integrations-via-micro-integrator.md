@@ -100,8 +100,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
 
       Here, the `avgAmount > 100` filter is applied to filter only events that report an average production amount greater than 100. The filtered events are inserted into the `FooStream` stream.
 
-
-    c. To select all the responses from the Micro Integrator to be logged, add a new query named `LogResponseEvents`
+    c. To select all the responses from the Micro Integrator to be logged, add a new query named `LogResponseEvents`.
 
         ```
         @info(name = 'LogResponseEvents')
@@ -109,12 +108,12 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
         select *
         insert into LogStream;
         ```
-
+      
       The responses received from the Micro Integrator are directed to the `BarStream` input stream. This query gets them all these events from the `BarStream` stream and inserts them into the `LogStream` stream that is connected to a `log` stream so that they can be published as logs in the terminal.
 
       The Siddhi application is now complete.
 
-    ???info "Click here to view the complete Siddhi application."
+    ??? info "Click here to view the complete Siddhi application."
         ```
         @App:name("grpc-call-response")
         @App:description("This application triggers integration process in the micro integrator using gRPC calls")
