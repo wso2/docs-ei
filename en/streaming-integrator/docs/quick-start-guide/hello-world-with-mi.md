@@ -5,16 +5,19 @@ This quick start guide explains how to trigger an integration flow using a messa
 In this example, the same message you send to the Micro Integrator goes through the `inSeq` defined, and uses the `respond` mediator to send back the response to the Streaming integrator.
 
 !!!tip "Before you begin:"
-    - Download and install both the Streaming Integrator and the Streaming Integrator Tooling from [here](Link).<br/>
-    - Download and install both the the Micro Integrator from [here](Link).<br/>
-    - Start the Streaming Integrator via one of the following methods depending on your operating system.<br/>
-        - On MacOS/Linux/CentOS, open a terminal and issue the following command:<br/>
-            `sudo wso2si`<br/>
-        - On windows, go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This opens a terminal. Start Streaming Integrator profile.<br/>
-    - Start the Streaming Integrator Tooling via one of the following methods depending on your operating system..<br/>
-        - On MacOS/Linux/CentOS, open a terminal and issue the following command:<br/>
-            `sudo wso2si-tooling-<VERSION>`<br/>
-        - On windows, go to **Start Menu -> Programs -> WSO2 -> Streaming Integrator Tooling**. A terminal opens.
+    - Download and install both the Streaming Integrator and the Streaming Integrator Tooling from [here](https://wso2.com/integration/streaming-integrator/).<br/><br/>
+    - Download and install the Micro Integrator from [here](https://wso2.com/integration/micro-integrator/).<br/><br/>
+    - Start the Streaming Integrator by issuing the appropriate command based on your operating system.<br/><br/>
+        - **For Linux/MacOS**: `./server.sh`
+        - **For Windows**: `server.bat --run`
+    - Start the Streaming Integrator Tooling via one of the following methods depending on your operating system.<br/><br/>
+        - **For Linux/MacOS**: `./tooling.sh`
+        - **For Windows**: `tooling.bat --run`
+    - [Access Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md#starting-streaming-integrator-tooling). Then install the `grpc` Siddhi extension by clicking **Tools** -> **Extension Installer** to open the **Extension Installer** dialog box and then clicking **Install** for the **gRPC** extension. Restart Streaming Integrator Tooling for the installation to be effective. For detailed instructions, see [Installing Siddhi Extensions](develop/installing-siddhi-extensions.md).<br/><br/>
+    - To install the `grpc` Siddhi extension in WSO2 Streaming Integrator, navigate to the `<SI_HOME>/bin` directory and issue the appropriate command based on your operating system.<br/><br/>
+        - **For Windows**     : `extension-installer.bat install grpc`<br/>
+        - **For Linux/MacOS** : `./extension-installer.sh install grpc`<br/><br/>
+       Then restart WSO2 Streaming Integrator for the installation to be effective. For detailed instructions to install a Siddhi extension, see [Downloading and Installing Siddhi Extensions](../connectors/downloading-and-Installing-Siddhi-Extensions.md).
 
 To create and deploy Siddhi application that triggers an integration flow, and then try it out by sending events, follow the procedure below:
 
@@ -112,7 +115,11 @@ To create and deploy Siddhi application that triggers an integration flow, and t
            <respond/>
         </sequence>
         ```
+       
+6. Start the Micro Integrator via one of the following methods depending on your operating system.
 
+    - **For Linux/MacOS**: `./micro-integrator.sh`
+    - **For Windows**: `micro-integrator.bat --run`
 
 6. Issue the following CURL command to send an event to the Streaming Integrator. This is received via the `http` source configured in the `grpc-call-response` Siddhi application, and it triggers an integration flow with the Micro Integrator.
 
