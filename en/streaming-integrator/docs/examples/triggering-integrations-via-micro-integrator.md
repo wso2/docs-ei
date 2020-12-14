@@ -6,13 +6,21 @@ In this tutorial, lets look at how the Streaming Integrator generates an alert b
 
 To understand this, consider a scenario where the Streaming Integrator receives production data from a factory, and triggers an integration flow if it detects a per minute production average that exceeds 100.
 
+!!! tip "Before you begin:"
+    - [Start WSO2 Streaming Integrator server](../setup/installing-si-in-vm.md##starting-the-si-server).<br/><br/>
+    - [Start Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md#starting-streaming-integrator-tooling). 
+    - Install the `grpc` Siddhi extension in Streaming Integrator Tooling. To do this, access Streaming Integrator Tooling, click **Tools** -> **Extension Installer** to open the **Extension Installer** dialog box, and then click **Install** for the **gRPC** extension. Restart Streaming Integrator Tooling for the installation to be effective. For detailed instructions, see [Installing Siddhi Extensions](develop/installing-siddhi-extensions.md).
+    - To install the `grpc` Siddhi extension in WSO2 Streaming Integrator, navigate to the `<SI_HOME>/bin` directory and issue the appropriate command based on your operating system.<br/><br/>
+        - **For Windows**     : `extension-installer.bat install grpc`<br/>
+        - **For Linux/MacOS** : `./extension-installer.sh install grpc`<br/><br/>
+       Then restart WSO2 Streaming Integrator for the installation to be effective. For detailed instructions to install a Siddhi extension, see [Downloading and Installing Siddhi Extensions](../connectors/downloading-and-Installing-Siddhi-Extensions.md).
 
 ## Configuring the Streaming Integrator
 
 Let's design a Siddhi application that triggers an integration flow and deploy it by following the procedure below:
 
 
-1. Start and access the Streaming Integrator Tooling. Then click **New** to open a new application.
+1. In Streaming Integrator Tooling, click **New** to open a new application.
 
 
 2. Add a name and a description for your new Siddhi application as follows:
@@ -151,7 +159,34 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
 
 7. Save the Siddhi application. As a result, it is saved in the `<SI_TOOLING_HOME>/wso2/server/deployment/workspace` directory.
 
-8. To deploy your Siddhi application, copy it from the `<SI_TOOLING_HOME>/wso2/server/deployment/workspace` directory, and then paste it in the `<SI_HOME>/WSO2/server/deployment/siddhi-files` directory.
+8. Click the **Deploy** menu option and then click **Deploy to Server**. The **Deploy Siddhi Apps to Server** dialog box opens as shown in the example below.
+
+    ![Deploy to Server dialog box](../images/getting-si-run-with-mi/deploy-to-server-dialog-box.png)
+
+    1. In the **Add New Server** section, enter information as follows:
+
+           | Field           | Value                            |
+           |-----------------|----------------------------------|
+           | **Host**        | Your host                        |
+           | **Port**        | `9443`                           |
+           | **User Name**   | `admin`                          |
+           | **Password**    | `admin`                          |
+
+        ![Add New Server](../images/getting-si-run-with-mi/add-new-server.png)
+
+        Then click **Add**.
+
+    2. Select the check boxes for the **grpc-call-response.siddhi** Siddhi application and the server you added as shown below.
+
+        ![Deploy Siddhi Apps to Server](../images/getting-si-run-with-mi/select-siddhi-app-and-server.png)
+
+    3. Click **Deploy**.
+
+        When the Siddhi application is successfully deployed, the following message appears in the **Deploy Siddhi Apps to Server** dialog box.
+
+        ![Deployment Status](../images/getting-si-run-with-mi/siddhi-application-deployment-status.png)
+
+    As a result, the `grpc-call-response.siddhi` Siddhi application is saved in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
 
 
