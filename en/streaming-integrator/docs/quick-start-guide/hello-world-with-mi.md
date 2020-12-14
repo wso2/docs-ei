@@ -116,7 +116,7 @@ To create and deploy Siddhi application that triggers an integration flow, and t
         </sequence>
         ```
        
-6. Start the Micro Integrator via one of the following methods depending on your operating system.
+6. Start the Micro Integrator by issuing the appropriate command out of the following, depending on your operating system.
 
     - **For Linux/MacOS**: `./micro-integrator.sh`
     - **For Windows**: `micro-integrator.bat --run`
