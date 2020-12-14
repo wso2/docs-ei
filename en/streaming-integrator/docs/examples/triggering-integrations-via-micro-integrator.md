@@ -112,7 +112,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
         @App:description("This application triggers integration process in the micro integrator using gRPC calls")
 
         @source(type = 'http',
-                    receiver.url='http://localhost:8009/InputStream',
+                    receiver.url='http://localhost:8006/InputStream',
                     basic.auth.enabled='false',
                     @map(type='json'))
         define stream InputStream(symbol string, amount double);
@@ -197,9 +197,15 @@ After doing the required configurations in the Streaming Integrator, let's confi
    - Logs the response.
 
    - Sends the response back to the gRPC client.
+   
+3. Start the Micro Integrator by issuing the appropriate command out of the following, depending on your operating system.
+             
+    - **For Linux/MacOS**: `./micro-integrator.sh`
+    - **For Windows**: `micro-integrator.bat --run`
 
 
 ## Executing and getting results
+
 
 To send an event to the defines `http` source hosted in `http://localhost:8006/InputStream`, issue the following sample CURL command.
 
@@ -207,6 +213,4 @@ To send an event to the defines `http` source hosted in `http://localhost:8006/I
 
 In the SI console an output similar to following will be printed after 1 minute (if the average of the amount is larger than 100)
 
-`INFO {io.siddhi.core.stream.output.sink.LogSink} - response_from_mi:  : Event{timestamp=1573711436547, data=[soap, 110.23], isExpired=false}
-`
-
+`INFO {io.siddhi.core.stream.output.sink.LogSink} - response_from_mi:  : Event{timestamp=1573711436547, data=[soap, 110.23], isExpired=false}`
