@@ -85,11 +85,11 @@ To understand how this is done, let's create a very simple Siddhi stream process
           - 
             name: BASIC_AUTH_ENABLED
             value: "false"
-    ```
-    
-    To change the default configurations in WSO2 Streaming Integrator that are defined in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file, you need to add he required configurations with the required over-riding values in the `SiddhiProcess.yaml` file under a section named `runner` as shown in the example below.
-    
-    ```yaml
+```
+
+To change the default configurations in WSO2 Streaming Integrator that are defined in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file, you need to add he required configurations with the required over-riding values in the `SiddhiProcess.yaml` file under a section named `runner` as shown in the example below.
+
+```yaml
     apiVersion: siddhi.io/v1alpha2
     kind: SiddhiProcess
     metadata: 
