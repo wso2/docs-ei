@@ -378,6 +378,7 @@ nav:
             - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
             - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
           - 'Kafka' : 'setup/feature_configs/configuring-kafka.md'
+          - 'Azure Service Bus' : 'setup/brokers/configure-with-azureservicebus.md'
         - 'Transports': 'setup/transport_configurations/configuring-transports.md'
         - 'Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
         - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'

@@ -352,6 +352,9 @@ The following topics explain how to connect the Micro Integrator with an externa
 		<td>
 			<b>Kafka</b>
 		</td>
+		<td>
+			<b>Cloud</b>
+		</td>
 	</tr>
 	<tr>
 		<td>
@@ -408,6 +411,13 @@ The following topics explain how to connect the Micro Integrator with an externa
 			<ul>
 				<li>
 					<a href='../../setup/feature_configs/configuring-kafka'>Configuring Kafka</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<ul>
+				<li>
+					<a href='../../setup/brokers/configure-with-azureservicebus'>Configuring Azure Service Bus</a>
 				</li>
 			</ul>
 		</td>
