@@ -51,4 +51,3 @@ Deploying SI as a highly available [minimum HA cluster](../setup/deploying-si-as
 !!! tip "What's Next"
     - [Quick Start Guide](../quick-start-guide/quick-start-guide.md)<br/>
     - [Create Your First Siddhi Application](../quick-start-guide/getting-started/getting-started-guide-overview.md)
-
