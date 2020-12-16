@@ -3,6 +3,6 @@
     
 # Viewing Window Statistics
 
-![Window statistics dashboard](../images/streaming-integrator-grafana-dashboard/window_statistics_dashboard.png)
+The information displayed in this dashboard is as follows.
 
-This dashboard displays the following information for your current WSO2 Streaming Integrator deployment:
+![Window statistics dashboard](../images/streaming-integrator-grafana-dashboard/window_statistics_dashboard.png)
