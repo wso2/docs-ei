@@ -1,386 +1,166 @@
-# Using Log Files
+# Monitoring Logs
 
 Logging is one of the most important aspects of a production-grade
 server. A properly configured logging system is vital for identifying
 errors, security threats, and usage patterns.
 
-!!! Info
-    **Java logging and Log4j2 integration:** In addition to the logs from libraries that use Log4j2, all logs from libraries that use the Java logging framework are also visible in the same log files. That is, when Java logging is enabled
-        in Carbon, only the Log4j2 appenders will write to the log files. If
-        the Java Logging Handlers have logs, these logs will be delegated to
-        the log events of the corresponding Log4j2 appenders. A Pub/Sub
-        registry pattern implementation has been used in the latter
-        mentioned scenario to plug the handlers and appenders. The following
-        default log4j2 appenders in the
-        `           log4j2.properties          ` file are used for this
-        implementation:
+By default, the Micro Integrator is configured to generate the basic log files that are required for monitoring the server. These log files are stored in the `<MI_HOME>/repository/logs` directory by default. 
 
-    - org.wso2.carbon.logging.appenders.CarbonConsoleAppender
-    - org.wso2.carbon.logging.appenders.CarbonDailyRollingFileAppender
+## Before you begin
 
-Listed below are the various log types used in WSO2 Micro Integrator.
+The following topics explain how you can use the default logs that are configured in the Micro Integrator. If you have additional logs configured,
+you will be able to access those logs as well.
+
+See [Configuring Logs](../../../administer-and-observe/logs/configuring_log4j_properties) for details on how logs are configured in the Micro Integator.
+
+## Download Log Files
+
+You can easily download them from the [Micro Integrator Dashboard](../../../administer-and-observe/working-with-monitoring-dashboard). 
 
 !!! Info
-    Separate log files are created in the `MI_HOME/repository/logs` directory for each of the log types given below.
+    Alternatively, you can open the the log file from the `<MI_HOME>/repository/logs` directory.
 
-## Carbon logs
+1.  Sign in to the dashboard. 
+2.  Click <b>Log Files</b> as shown below to view the complete list.
 
-The Carbon log file (`wso2carbon.log`) covers all the management features of a product. Carbon logs are configured in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
+    <img alt="download log files" src="../../../assets/img/monitoring-dashboard/log-files-dashboard.png" width="700">
 
-The Carbon log file is enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j2 properties](../logs/configuring_log4j_properties.md).
+3.  User the <b>Search</b> option to find a specific log file.
+4.  Click the log file to download.
 
-```xml
-# CARBON_LOGFILE is set to be a DailyRollingFileAppender using a PatternLayout.
-appender.CARBON_LOGFILE.type = RollingFile
-appender.CARBON_LOGFILE.name = CARBON_LOGFILE
-appender.CARBON_LOGFILE.fileName = ${sys:carbon.home}/repository/logs/wso2carbon.log
-appender.CARBON_LOGFILE.filePattern = ${sys:carbon.home}/repository/logs/wso2carbon-%d{MM-dd-yyyy}.log
-appender.CARBON_LOGFILE.layout.type = PatternLayout
-appender.CARBON_LOGFILE.layout.pattern = [%d] %5p {%c} - %m%ex%n
-appender.CARBON_LOGFILE.policies.type = Policies
-appender.CARBON_LOGFILE.policies.time.type = TimeBasedTriggeringPolicy
-appender.CARBON_LOGFILE.policies.time.interval = 1
-appender.CARBON_LOGFILE.policies.time.modulate = true
-appender.CARBON_LOGFILE.policies.size.type = SizeBasedTriggeringPolicy
-appender.CARBON_LOGFILE.policies.size.size=10MB
-appender.CARBON_LOGFILE.strategy.type = DefaultRolloverStrategy
-appender.CARBON_LOGFILE.strategy.max = 20
-appender.CARBON_LOGFILE.filter.threshold.type = ThresholdFilter
-appender.CARBON_LOGFILE.filter.threshold.level = DEBUG
+The default log files available on the dashboard are explained below.
+
+## Monitoring Carbon logs
+
+The Carbon log file (`wso2carbon.log`) covers all the management features of a product. These logs are printed to the console as defined in the log4j2 configurations.
+
+Shown below is a sample log that is printed when you start the Micro Integrator with some integration artifacts deployed.
+
+```bash
+TID: [2020-09-24 23:00:04,634]  INFO {org.wso2.config.mapper.ConfigParser} - Initializing configurations with deployment configurations {org.wso2.config.mapper.ConfigParser}
+[2020-09-24 23:00:09,292]  INFO {org.ops4j.pax.logging.spi.support.EventAdminConfigurationNotifier} - Logging configuration changed. (Event Admin service unavailable - no notification sent).
+[2020-09-24 23:00:12,071]  INFO {org.apache.synapse.rest.API} - {api:HelloWorld} Initializing API: HelloWorld
+[2020-09-24 23:00:12,075]  INFO {org.apache.synapse.deployers.APIDeployer} - API named 'HelloWorld' has been deployed from file : /Applications/IntegrationStudio.app/Contents/Eclipse/runtime/microesb/tmp/carbonapps/-1234/1600968612042TestCompositeApplication_1.0.0.car/HelloWorld_1.0.0/HelloWorld-1.0.0.xml
+[2020-09-24 23:00:12,076]  INFO {org.wso2.micro.integrator.initializer.deployment.application.deployer.CappDeployer} - Successfully Deployed Carbon Application : helloworldCompositeExporter_1.0.0{super-tenant}
+[2020-09-24 23:00:12,110]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTP Listener started on 0.0.0.0:8290
+[2020-09-24 23:00:12,113]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through HTTPS Listener started on 0.0.0.0:8253
+[2020-09-24 23:00:12,114]  INFO {org.wso2.micro.integrator.initializer.StartupFinalizer} - WSO2 Micro Integrator started in 7.49 seconds
+[2020-09-24 23:00:12,229]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTP_INBOUND_ENDPOINT Listener started on 0.0.0.0:9201
+[2020-09-24 23:00:12,240]  INFO {org.apache.synapse.transport.passthru.core.PassThroughListeningIOReactorManager} - Pass-through EI_INTERNAL_HTTPS_INBOUND_ENDPOINT Listener started on 0.0.0.0:9164
+[2020-09-24 23:00:14,616]  INFO {org.wso2.micro.integrator.management.apis.security.handler.AuthenticationHandlerAdapter} - User admin logged in successfully
 ```
 
-## Audit logs
+## Monitoring API Logs
 
-Audit logs are used for tracking the sequence of actions that affect a particular task carried out on the server. These are also configured in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
+The API log file covers the logs related to APIs deployed in the Micro Integrator. By default, all APIs in the server will print logs to this common log file (`wso2-mi-api.log`). Shown below are some sample logs printed when the Healthcare API and the UserInfoRESTAPI is being used.
 
-Audit logs are enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j2 properties](../logs/configuring_log4j_properties.md).
+If you have [individual log files](../../../develop/enabling-logs-for-api/) configured for APIs, you can download the log file that is specific to the API.
 
-```xml
-# Appender config to AUDIT_LOGFILE
-appender.AUDIT_LOGFILE.type = RollingFile
-appender.AUDIT_LOGFILE.name = AUDIT_LOGFILE
-appender.AUDIT_LOGFILE.fileName = ${sys:carbon.home}/repository/logs/audit.log
-appender.AUDIT_LOGFILE.filePattern = ${sys:carbon.home}/repository/logs/audit-%d{MM-dd-yyyy}.log
-appender.AUDIT_LOGFILE.layout.type = PatternLayout
-appender.AUDIT_LOGFILE.layout.pattern = TID: [%d] %5p {%c} - %m%ex%n
-appender.AUDIT_LOGFILE.policies.type = Policies
-appender.AUDIT_LOGFILE.policies.time.type = TimeBasedTriggeringPolicy
-appender.AUDIT_LOGFILE.policies.time.interval = 1
-appender.AUDIT_LOGFILE.policies.time.modulate = true
-appender.AUDIT_LOGFILE.policies.size.type = SizeBasedTriggeringPolicy
-appender.AUDIT_LOGFILE.policies.size.size=10MB
-appender.AUDIT_LOGFILE.strategy.type = DefaultRolloverStrategy
-appender.AUDIT_LOGFILE.strategy.max = 20
-appender.AUDIT_LOGFILE.filter.threshold.type = ThresholdFilter
-appender.AUDIT_LOGFILE.filter.threshold.level = INFO
+```bash
+[2020-11-10 08:44:15,258]  INFO {API_LOGGER.UserInfoRestAPI} - Initializing API: UserInfoRestAPI
+[2020-11-10 08:45:59,419]  INFO {API_LOGGER.UserInfoRestAPI} - MESSAGE = Request received to /users resource.
+[2020-11-10 08:50:45,351]  INFO {API_LOGGER.UserInfoRestAPI} - Destroying API: UserInfoRestAPI
+[2020-11-10 08:50:45,373]  INFO {API_LOGGER.HealthcareAPI} - Initializing API: HealthcareAPI
+[2020-11-10 08:52:35,607]  INFO {API_LOGGER.HealthcareAPI} - Log Property message = "Welcome to HealthcareService"
+[2020-11-10 08:57:45,457]  INFO {API_LOGGER.HealthcareAPI} - Destroying API: HealthcareAPI
+[2020-11-10 08:57:45,477]  INFO {API_LOGGER.StockQuoteAPI} - Initializing API: StockQuoteAPI
+[2020-11-10 08:57:49,400]  INFO {API_LOGGER.StockQuoteAPI} - Destroying API: StockQuoteAPI
 ```
 
-## Patch logs 
+## Monitoring Service Logs
 
-These logs contain details related to patches applied to the product. Patch logs cannot be customized.
+The service log file covers the logs related to proxy services deployed in the Micro Integrator. By default, all services in the server will print logs to this common log file (`wso2-mi-service.log`). Shown below are some sample logs printed when the Healthcare API and the UserInfoRESTAPI is being used.
 
-## Wire logs 
+If you have [individual log files](../../../develop/enabling-logs-for-services/) configured services, you can download the log file that is specific to the service.
 
-You can enable wire logs to monitor HTTP messages that flow through the Micro Integrator. 
-
-!!! Warning
-    Please note that wire logs should be enabled for troubleshooting purposes only. It is not recommended to run production systems with wire logs enabled.
-
-In order to read the wire logs, you must first identify message direction.
-
-<table>
-    <tr>
-        <td><b>DEBUG - wire >></b></td>
-        <td>Represents the message coming into the Micro Integrator from the wire.</td>
-    </tr>
-    <tr>
-        <td><b>DEBUG - wire <<</b></td>
-        <td>Represents the message that goes to the wire from the Micro Integrator.</td>
-    </tr>
-</table>
-
-There are two incoming messages and two outgoing messages in the above log. The first part of the message log contains the HTTP headers and is followed by the message payload. As shown in this example, wire logs are very useful for troubleshooting unexpected issues that occur while integrating systems. You can verify whether a message payload is correctly going out from the Micro Integrator, whether HTTP headers such as Content-Type is properly set in the outgoing message, etc. by looking at the wire logs.
-
-Enable wire logs by uncommenting the following parameter and [updating the log level](../configuring_log4j_properties/#setting-the-log-level) (which is DEBUG by default).
-
-```xml
-logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
-logger.synapse-transport-http-wire.level=DEBUG
+```bash
+[2020-10-14 10:16:15,399]  INFO {SERVICE_LOGGER.hl7testproxy} - Building Axis service for Proxy service : hl7testproxy
+[2020-10-14 10:16:15,401]  INFO {SERVICE_LOGGER.hl7testproxy} - Adding service hl7testproxy to the Axis2 configuration
+[2020-10-14 10:16:15,401]  INFO {SERVICE_LOGGER.hl7testproxy} - Successfully created the Axis2 service for Proxy service : hl7testproxy
+[2020-10-14 10:26:16,335]  INFO {SERVICE_LOGGER.hl7testproxy} - Stopped the proxy service : hl7testproxy
+[2020-10-14 10:37:21,790]  INFO {SERVICE_LOGGER.HL7Proxy1} - Building Axis service for Proxy service : HL7Proxy1
+[2020-10-14 10:37:21,791]  INFO {SERVICE_LOGGER.HL7Proxy1} - Adding service HL7Proxy1 to the Axis2 configuration
+[2020-10-14 10:37:21,791]  INFO {SERVICE_LOGGER.HL7Proxy1} - Successfully created the Axis2 service for Proxy service : HL7Proxy1
 ```
 
-Then, add to the loggers as a comma-separated list:
-```xml
-loggers = synapse-transport-http-wire, AUDIT_LOG, SERVICE_LOGGER, trace-messages,
+## Monitoring Error Logs
+
+The Error log file (`wso2error.log`) contains the error logs that are generated when the server is running. Note that these logs are also printed to the console of the Micro Integrator.
+
+Shown below is an example server error that is printed in the error log file.
+
+```bash
+[2020-10-14 10:26:16,361] ERROR {org.apache.synapse.deployers.ProxyServiceDeployer} - ProxyService named : HL7Proxy already exists
+[2020-10-14 10:26:16,363] ERROR {org.apache.synapse.deployers.ProxyServiceDeployer} - ProxyService Deployment from the file : /Applications/IntegrationStudio.app/Contents/Eclipse/runtime/microesb/tmp/carbonapps/-1234/1602651376337TestCompositeApplication_1.0.0.car/HL7Proxy2_1.0.0/HL7Proxy2-1.0.0.xml : Failed. org.apache.synapse.deployers.SynapseArtifactDeploymentException: ProxyService named : HL7Proxy already exists
+    at org.apache.synapse.deployers.AbstractSynapseArtifactDeployer.handleSynapseArtifactDeploymentError(AbstractSynapseArtifactDeployer.java:482)
+    at org.apache.synapse.deployers.ProxyServiceDeployer.deploySynapseArtifact(ProxyServiceDeployer.java:66)
+    at org.apache.synapse.deployers.AbstractSynapseArtifactDeployer.deploy(AbstractSynapseArtifactDeployer.java:204)
+    at org.wso2.micro.integrator.initializer.deployment.synapse.deployer.SynapseAppDeployer.deployArtifactType(SynapseAppDeployer.java:1106)
+    at org.wso2.micro.integrator.initializer.deployment.synapse.deployer.SynapseAppDeployer.deployArtifacts(SynapseAppDeployer.java:134)
+    at org.wso2.micro.integrator.initializer.deployment.application.deployer.CappDeployer.deployCarbonApps(CappDeployer.java:141)
+    at org.wso2.micro.integrator.initializer.deployment.application.deployer.CappDeployer.deploy(CappDeployer.java:99)
+    at org.apache.axis2.deployment.repository.util.DeploymentFileData.deploy(DeploymentFileData.java:136)
+    at org.apache.axis2.deployment.DeploymentEngine.doDeploy(DeploymentEngine.java:807)
+    at org.apache.axis2.deployment.repository.util.WSInfoList.update(WSInfoList.java:153)
+    at org.apache.axis2.deployment.RepositoryListener.update(RepositoryListener.java:377)
+    at org.apache.axis2.deployment.RepositoryListener.checkServices(RepositoryListener.java:254)
+    at org.apache.axis2.deployment.RepositoryListener.startListener(RepositoryListener.java:371)
+    at org.apache.axis2.deployment.scheduler.SchedulerTask.checkRepository(SchedulerTask.java:59)
+    at org.apache.axis2.deployment.scheduler.SchedulerTask.run(SchedulerTask.java:67)
+    at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+    at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+    at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+    at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+    at java.lang.Thread.run(Thread.java:748)
 ```
 
-## Service/Event Tracing logs 
+## Monitoring Audit Logs
 
-These are logs that are enabled in WSO2 Micro Integrator for tracing services and events using a separate log file (`wso2carbon-trace-messages.log`). If server/event tracing logs are used in your product, you can configure them in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
+Audit logs are used for tracking the sequence of actions that affect a particular task carried out on the server.
 
-A separate log file for tracing services/events are enabled for certain WSO2 products in the `log4j2.properties` file using a specific appender. These logs are published to a file named `wso2carbon-trace-messages.log`.
+## Monitoring Service/Event Tracing Logs 
 
-```xml
-# Appender config to CARBON_TRACE_LOGFILE
-appender.CARBON_TRACE_LOGFILE.type = RollingFile
-appender.CARBON_TRACE_LOGFILE.name = CARBON_TRACE_LOGFILE
-appender.CARBON_TRACE_LOGFILE.fileName = ${sys:carbon.home}/repository/logs/wso2carbon-trace-messages.log
-appender.CARBON_TRACE_LOGFILE.filePattern = ${sys:carbon.home}/repository/logs/wso2carbon-trace-messages-%d{MM-dd-yyyy}.log
-appender.CARBON_TRACE_LOGFILE.layout.type = PatternLayout
-appender.CARBON_TRACE_LOGFILE.layout.pattern = [%d] %5p {%c} - %m%ex%n
-appender.CARBON_TRACE_LOGFILE.policies.type = Policies
-appender.CARBON_TRACE_LOGFILE.policies.time.type = TimeBasedTriggeringPolicy
-appender.CARBON_TRACE_LOGFILE.policies.time.interval = 1
-appender.CARBON_TRACE_LOGFILE.policies.time.modulate = true
-appender.CARBON_TRACE_LOGFILE.policies.size.type = SizeBasedTriggeringPolicy
-appender.CARBON_TRACE_LOGFILE.policies.size.size=10MB
-appender.CARBON_TRACE_LOGFILE.strategy.type = DefaultRolloverStrategy
-appender.CARBON_TRACE_LOGFILE.strategy.max = 20
-```
+These are logs that are enabled in the Micro Integrator for tracing services and events using a separate log file (`wso2carbon-trace-messages.log`).
 
-See instructions on [configuring the log4j2 properties](../logs/configuring_log4j_properties.md).
+## Monitoring HTTP Access Logs
 
-## HTTP Access logs
+HTTP access logs (requests and responses) help you monitor information such as the clients that access the product, how many hits are received, what the errors are, etc. This information is useful for troubleshooting errors.
 
-HTTP requests/responses are logged to monitor the activities related to an application's usage. HTTP access logs help you monitor information such as the persons who access the product, how many hits are received, what the errors are, etc. This information is useful for troubleshooting errors.
-
-In the Micro Integrator, access logs can be generated for the PassThrough transport. The PassThrough transport works on 8290/8253 ports and is used for API/Service invocations. By default, the access logs from the PassThrough transport are written to a common access log file located in the `MI_HOME/repository/logs/` directory.
-
-### Configuring access logs for the PassThrough transport (Service/API invocation)
+In the Micro Integrator, access logs are generated for the PassThrough transport. The PassThrough transport works on 8290/8253 ports and is used for API/Service invocations. By default, all access logs from the PassThrough transport are written to a common access log file - `http_access_.log`.
 
 !!! Note
-    Access logs for the PassThrough transport logs the request and the response on **two** separate log lines.
+    See [Configuring Access Logs](../../../administer-and-observe/logs/configuring_log4j_properties/#configuring-http-access-logs) for instructions on configuring access logs.
 
-By default, access logs related to service/API invocations are enabled. You can disable these access logs if required. Follow the steps given below to enable access logs for the PassThrough transport:
+```xml
+[10/Nov/2020:08:52:35.604 +0530] "GET /healthcare/querydoctor/surgery HTTP/1.1" - - "-" "curl/7.64.1"
+[10/Nov/2020:08:52:35.610 +0530] "GET /healthcare/surgery HTTP/1.1" - - "-" "Synapse-PT-HttpComponents-NIO"
+[10/Nov/2020:08:52:35.610 +0530] "- - " 200 - "-" "-"
+[10/Nov/2020:08:52:35.604 +0530] "- - " 200 - "-" "-"
+```
 
-1.  Change the log level to `WARN` for the following entry in the `MI_HOME/conf/log4j2.properties` configuration file.
+## Monitoring Patch Logs 
 
-    ``` xml
-    logger.PassThroughAccess.name = org.apache.synapse.transport.http.access
-    logger.PassThroughAccess.level = INFO
-    ```
-    
-    Then add the loggers as a comma-separated list:
-    ```xml
-    loggers = PassThroughAccess, AUDIT_LOG, SERVICE_LOGGER, trace-messages,
-    ```
+The Patch log file contain details related to patches applied to the product. Patch logs cannot be customized.
 
-2.  You can customize the format of this access log by changing the following property values in the `MI_HOME/conf/access-log.properties` configuration file. If this file does not exist in the product by default, you can create a new file with the following parameters.
+```bash
+[2020-09-24 23:00:05,319]  FINE {org.wso2.micro.integrator.server.util.PatchUtils processPatches} - Checking for patch changes ...  
+[2020-09-24 23:00:05,322]  FINE {org.wso2.micro.integrator.server.util.PatchUtils processPatches} - No new patch or service pack detected, server will start without applying patches   
+[2020-09-24 23:00:05,323]  FINE {org.wso2.micro.integrator.server.util.PatchUtils checkMD5Checksum} - Patch verification started  
+[2020-09-24 23:00:05,323]  FINE {org.wso2.micro.integrator.server.util.PatchUtils checkMD5Checksum} - Patch verification successfully completed  
+[2020-10-14 10:16:07,812]  FINE {org.wso2.micro.integrator.server.util.PatchUtils processPatches} - Checking for patch changes ...  
+[2020-10-14 10:16:07,815]  FINE {org.wso2.micro.integrator.server.util.PatchUtils processPatches} - No new patch or service pack detected, server will start 
+```
 
-    <table>
-    <tbody>
-      <tr class="odd">
-         <td>access_log_directory</td>
-         <td>Add this property ONLY if you want to change the default location of the log file. By default, the product is configured to store access logs in the <code>MI_HOME/repository/logs</code> directory.</td>
-      </tr>
-      <tr class="even">
-         <td>access_log_prefix</td>
-         <td>
-            <div class="content-wrapper">
-               <p>The prefix added to the log file's name. The default value is as follows:</p>
-               <div class="code panel pdl" style="border-width: 1px;">
-                  <div class="codeContent panelContent pdl">
-                     <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>access_log_prefix=http_access_</span></code></pre>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td>access_log_suffix</td>
-         <td>
-            <div class="content-wrapper">
-               <p>The suffix added to the log file's name. The default value is as follows:</p>
-               <div class="code panel pdl" style="border-width: 1px;">
-                  <div class="codeContent panelContent pdl">
-                     <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>access_log_suffix=.<span class="fu">log</span></span></code></pre>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>access_log_file_date_format</td>
-         <td>
-            <div class="content-wrapper">
-               <p>The date format used in access logs. The default value is as follows:</p>
-               <div class="code panel pdl" style="border-width: 1px;">
-                  <div class="codeContent panelContent pdl">
-                     <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>access_log_file_date_format=yyyy-MM-dd</span></code></pre>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td>access_log_pattern</td>
-         <td>
-            <div class="content-wrapper">
-               <p>The attribute defines the format for the log pattern, which consists of the information fields from the requests and responses that should be logged. The pattern format is created using the following attributes:</p>
-               <ul>
-                  <li>
-                     <p>A standard value to represent a particular string. For example, "%h" represents the remote host name in the request. Note that all the <a href="https://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/valves/AccessLogValve.html">string replacement values supported by Tomcat</a> are NOT supported for the PassThrough transport's access logs. The list of supported values are <a href="#supported-log-pattern-formats-for-the-passthrough-and-nio-transports">given below</a> .</p>
-                  </li>
-                  <li><strong>%{xxx}i</strong> is used to represent the header in the incoming request (xxx=header value).</li>
-                  <li><strong>%{xxx}o</strong> is used to represents the header in the outgoing request (xxx=header value).</li>
-               </ul>
-               <p>While you can use the above attributes to define a custom pattern, the standard patterns shown below can be used.</p>
-               <ul>
-                  <li>
-                     <p><strong>common</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#common">Apache common log pattern</a> ):</p>
-                     <div class="code panel pdl" style="border-width: 1px;">
-                        <div class="codeContent panelContent pdl">
-                           <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                              <pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>access_log_pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b</span></code></pre>
-                           </div>
-                        </div>
-                     </div>
-                  </li>
-                  <li>
-                     <p><strong>combined</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log pattern</a> ):</p>
-                     <div class="code panel pdl" style="border-width: 1px;">
-                        <div class="codeContent panelContent pdl">
-                           <div class="sourceCode" id="cb5" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                              <pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1"></a>access_log_pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b <span class="st">&quot;%{Referer}i&quot;</span> <span class="st">&quot;%{User-Agent}i&quot;</span></span></code></pre>
-                           </div>
-                        </div>
-                     </div>
-                  </li>
-               </ul>
-               <p>By default, a modified version of the <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log format</a> is enabled in the ESB as shown below. Note that the "X-Forwarded-For" header is appended to the beginning of the usually <strong>combined</strong> log format. This correctly identifies the original node that sent the request (in situations where requests go through a proxy such as a load balancer). The "X-Forwarded-For" header must be present in the incoming request for this to be logged.</p>
-               <div class="code panel pdl" style="border-width: 1px;">
-                  <div class="codeContent panelContent pdl">
-                     <div class="sourceCode" id="cb6" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a>access_log_pattern=%{X-Forwarded-For}i %h %l %u %t \<span class="st">&quot;%r</span><span class="sc">\&quot;</span><span class="st"> %s %b </span><span class="sc">\&quot;</span><span class="st">%{Referer}i</span><span class="sc">\&quot;</span><span class="st"> </span><span class="sc">\&quot;</span><span class="st">%{User-Agent}i</span><span class="sc">\&quot;</span></span></code></pre>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </td>
-      </tr>
-    </tbody>
-    </table>
+## Monitoring Correlation Logs
 
-3.  Restart the server.
-4.  Invoke a proxy service or REST API that is deployed in the Micro Integrator. The access log file for the service/API will be created in the `MI_HOME/repository/logs` directory. The default name of the log file is `http_access_.log` .
+Correlation logs are used for monitoring the round trip of a message that is sent to the Micro Integrator.
 
-    !!! Tip
-        Note that there will be a delay in printing the logs to the log file.
+See [Monitoring Message Round Trip](../../../administer-and-observe/observability/) for details.
 
-### Supported log pattern formats for the PassThrough transport
+## Monitoring Console Logs
 
-<table>
-<thead>
-<tr class="header">
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><pre><code>%a</code></pre></td>
-<td><p>Remote IP address</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%A</code></pre></td>
-<td><p>Local IP address</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%b</code></pre></td>
-<td><p>Bytes sent, excluding HTTP headers, or '-' if zero</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%B</code></pre></td>
-<td><p>Bytes sent, excluding HTTP headers</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%c</code></pre></td>
-<td><p>Cookie value</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%C</code></pre></td>
-<td><p>Accept header</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%e</code></pre></td>
-<td><p>Accept Encoding</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%E</code></pre></td>
-<td><p>Transfer Encoding</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%h</code></pre></td>
-<td><p>Remote host name (or IP address if enableLookups for the connector is false)</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%l</code></pre></td>
-<td><p>Remote logical username from identd (always returns '-')</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%L</code></pre></td>
-<td><p>Accept Language</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%k</code></pre></td>
-<td><p>Keep Alive</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%m</code></pre></td>
-<td><p>Request method (GET, POST, etc.)</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%n</code></pre></td>
-<td><p>Content Encoding</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%r</code></pre></td>
-<td><p>Request Element</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%s</code></pre></td>
-<td><p>HTTP status code of the response</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%S</code></pre></td>
-<td><p>Accept Chatset</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%t</code></pre></td>
-<td><p>Date and time, in Common Log Format</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%T</code></pre></td>
-<td><p>Time taken to process the request in seconds.</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%u</code></pre></td>
-<td><p>Remote user that was authenticated (if any), else '-'</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%U</code></pre></td>
-<td><p>Requested URL path</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%v</code></pre></td>
-<td><p>Local server name</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%V</code></pre></td>
-<td><p>Vary Header</p></td>
-</tr>
-<tr class="even">
-<td><pre><code>%x</code></pre></td>
-<td><p>Connection Header</p></td>
-</tr>
-<tr class="odd">
-<td><pre><code>%Z</code></pre></td>
-<td><p>Server Header</p></td>
-</tr>
-</tbody>
-</table>
+When you run the Micro Integrator, the console will print logs from the [Carbon log file](#monitoring-carbon-logs) as well as the [Error log file](#monitoring-error-logs).
+
+If you have enabled <b>wire logs</b>, these will also be printed on the console. See the instructions on how to [enable and use Wire Logs](../../../develop/using-wire-logs/).

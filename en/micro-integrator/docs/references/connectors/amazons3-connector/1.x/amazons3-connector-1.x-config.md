@@ -59,23 +59,4 @@ You can access the Amazon S3 service using the root user credentials but these c
      <img src="../../../../../assets/img/connectors/download-access-key.png" title="Download access key" width="800" alt="Download access key"/>
 
 
-The Access Key ID (e.g., AKIAJA3J6GE646JWVA9C) and Secret Access Key (e.g., H/P/G3Tey1fQOKPAU1GBbl/NhL/WpSaEvxbvUlp4) will be required to configure WSO2 EI Amazon S3 connector.  You can manage S3 buckets logging into [S3 console](s3.console.aws.amazon.com)
-
-## Deploying the client libraries
-
-Finally download and place the following client libraries in to the <PRODUCT-HOME>/lib directory.
-
-* [auth-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/auth/2.14.12)
-* [aws-core-2.13.71.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/aws-core/2.13.71)
-* [aws-query-protocol-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/aws-query-protocol/2.14.12)
-* [aws-xml-protocol-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/aws-xml-protocol/2.14.12)
-* [http-client-spi-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/http-client-spi/2.14.12)
-* [metrics-spi-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/metrics-spi/2.14.12)
-* [profiles-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/profiles/2.14.12)
-* [protocol-core-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/protocol-core/2.14.12)
-* [reactive-streams-1.0.0.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/reactive-streams/1.0.0)
-* [regions-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/regions/2.14.12)
-* [s3-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/s3/2.14.12)
-* [sdk-core-2.14.12.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/sdk-core/2.14.12)
-* [url-connection-client-2.1.2.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/url-connection-client/2.1.2)
-* [utils-2.14.27.jar](https://mvnrepository.com/artifact/software.amazon.awssdk/utils/2.14.27)
+The Access Key ID (e.g., AKIAJA3J6GE646JWVA9C) and Secret Access Key (e.g., H/P/G3Tey1fQOKPAU1GBbl/NhL/WpSaEvxbvUlp4) will be required to configure WSO2 EI Amazon S3 connector.  You can manage S3 buckets logging into S3 console.

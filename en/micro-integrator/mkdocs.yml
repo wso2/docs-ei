@@ -104,6 +104,7 @@ nav:
           - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
           - Exposing Other Datasources:
             - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
+            - 'Exposing a Mongo datasource': 'use-cases/examples/data_integration/mongo-data-service.md'
             - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
           - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
           - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
@@ -271,8 +272,8 @@ nav:
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
-        - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
-        - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
+        - 'Monitoring Service-Level Logs': 'develop/enabling-logs-for-services.md'
+        - 'Monitoring API-Level Logs': 'develop/enabling-logs-for-api.md'
         - 'Endpoint Tracing': 'develop/endpoint-trace-logs.md'
       - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
@@ -377,6 +378,7 @@ nav:
             - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
             - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
           - 'Kafka' : 'setup/feature_configs/configuring-kafka.md'
+          - 'Azure Service Bus' : 'setup/brokers/configure-with-azureservicebus.md'
         - 'Transports': 'setup/transport_configurations/configuring-transports.md'
         - 'Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
         - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
@@ -386,6 +388,11 @@ nav:
           - 'Setting up Cloud-Native Observability for a VM Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
           - 'Setting up Cloud-Native Observability for a K8s Deployment': 'setup/observability/setting-up-cloud-native-observability-in-kubernetes.md'
           - 'Setting up Classic Observability Deployment': 'setup/observability/setting-up-classic-observability-deployment.md'
+          - Configuring Logs:
+            - 'Enabling Logs for a Component': 'administer-and-observe/logs/enabling_component_logs.md'
+            - 'Configuring Logs': 'administer-and-observe/logs/configuring_log4j_properties.md'
+            - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
+            - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observe and Manage:
         - 'Overview': 'administer-and-observe/observability-overview.md'
@@ -393,13 +400,9 @@ nav:
           - 'Cloud Native Observability Solution':
             - 'Viewing Cloud Native Observability Dashboards': 'administer-and-observe/cloud-native-observability-dashboards.md'
           - 'Classic Observability Solution':
-            - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
             - 'Using the EI Analytics Dashboard': 'administer-and-observe/using-the-analytics-dashboard.md'
-            - Logging:
-              - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-              - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
-              - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
-              - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
+          - 'Monitoring Logs': 'administer-and-observe/logs/monitoring_logs.md'
+          - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
         - 'Management':
           - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
           - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
@@ -430,16 +433,15 @@ nav:
           - 'Amazon Lambda Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
           - 'Amazon Lambda Reference': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
         - Amazon S3 Connector:
-          - '1.x':
-            - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/1.x/amazons3-connector-overview.md'
-            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/1.x/amazons3-connector-config.md'
-            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/1.x/amazons3-connector-example.md'
-            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/1.x/amazons3-connector-reference.md'
+          - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/amazons3-connector-overview.md'
           - '2.x':
-            - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/2.x/amazons3-connector-overview.md'
-            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/2.x/amazons3-connector-config.md'
-            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/2.x/amazons3-connector-example.md'
-            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/2.x/amazons3-connector-reference.md'
+            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
+            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
+            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
+          - '1.x':
+            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-config.md'
+            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-example.md'
+            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-reference.md'
         - Amazon SQS Connector:
           - 'Amazon SQS Overview': 'references/connectors/amazonsqs-connector/amazonsqs-connector-overview.md'
           - 'Amazon SQS Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
@@ -535,8 +537,12 @@ nav:
           - 'FHIR Reference': 'references/connectors/fhir-connector/fhir-connector-config.md'
         - File Connector:
           - 'File Connector Overview': 'references/connectors/file-connector/file-connector-overview.md'
-          - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
-          - 'File Connector Reference': 'references/connectors/file-connector/file-connector-config.md'
+          - 4.x:
+            - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+            - 'File Connector Reference': 'references/connectors/file-connector/file-connector-config.md'
+          - 3.x:
+            - 'File Connector Example': 'references/connectors/file-connector/3.x/file-connector-3.x-example.md'
+            - 'File Connector Reference': 'references/connectors/file-connector/3.x/file-connector-3.x-config.md'
         - Gmail Connector:
           - 'Gmail Overview': 'references/connectors/gmail-connector/gmail-connector-overview.md'
           - 'Gmail Example': 'references/connectors/gmail-connector/gmail-connector-example.md'

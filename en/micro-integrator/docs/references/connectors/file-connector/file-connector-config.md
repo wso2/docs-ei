@@ -1,7 +1,6 @@
 # File Connector Reference
 
-!!! Warning
-    Please note that this page is currently Work in Progress!
+The following configurations allow you to work with the File Connector version 4.
 
 ## Connection configurations
 
@@ -18,28 +17,30 @@ There are different connection configurations that can be used for the above pro
 
 <img src="../../../../assets/img/connectors/filecon-reference-22.png" title="types of file connections" width="800" alt="types of file connections"/>
 
-The File connector internally uses the [Apache VFS Library](https://commons.apache.org/proper/commons-vfs/). According to the selected connection type, the following VFS connection urls will be generated.
 
-```bash tab='Local File'
-[file://] absolute-path
-file:///home/someuser/somedir
-file:///C:/Documents and Settings
-```
+!!! Note
+    The File connector internally uses the [Apache VFS Library](https://commons.apache.org/proper/commons-vfs/). According to the selected connection type, the following VFS connection urls will be generated.
 
-```bash tab='FTP'
-ftp://[ username[: password]@] hostname[: port][ relative-path]
-ftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
-```
+    ```bash tab='Local File'
+    [file://] absolute-path
+    file:///home/someuser/somedir
+    file:///C:/Documents and Settings
+    ```
 
-```bash tab='FTPS'
-ftps://[ username[: password]@] hostname[: port][ absolute-path]
-ftps://myusername:mypassword@somehost/pub/downloads/somefile.tgz
-``` 
+    ```bash tab='FTP'
+    ftp://[ username[: password]@] hostname[: port][ relative-path]
+    ftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+    ```
 
-```bash tab='SFTP'
-sftp://[ username[: password]@] hostname[: port][ relative-path]
-sftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
-```
+    ```bash tab='FTPS'
+    ftps://[ username[: password]@] hostname[: port][ absolute-path]
+    ftps://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+    ``` 
+
+    ```bash tab='SFTP'
+    sftp://[ username[: password]@] hostname[: port][ relative-path]
+    sftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
+    ```
 
 ### Common configs to all connection types
 
@@ -533,7 +534,7 @@ sftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
 
 ## Operations
 
-The following operations allow you to work with the File Connector version 2. Click an operation name to see parameter details and samples on how to use it.
+The following operations allow you to work with the File Connector version 4. Click an operation name to see parameter details and samples on how to use it.
 
 ??? note "createDirectory"
     Creates a new folder in a provided directory path.
@@ -618,13 +619,13 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
         <tr>
             <td>
-                Directory Path
+                File/Folder Path
             </td>
             <td>
                 String
             </td>
             <td>
-                The new directory path.
+                The new directory path that should be scanned.
             </td>
             <td>
                 -
@@ -679,7 +680,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                 String
             </td>
             <td>
-                 Path to the folder or ZIP file.
+                 The path to the folder that should be compressed.
             </td>
             <td>
                 -
@@ -696,7 +697,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                 String
             </td>
             <td>
-                 The path to the ZIP file that should be created. If it already exists, the exising file is overwritten.
+                 The path to the compressed file that will be created. If the file already exists, it is overwritten.
             </td>
             <td>
                 -
@@ -707,13 +708,13 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
         <tr>
             <td>
-                Include SubDirectories
+                Include Sub Directories
             </td>
             <td>
                 Boolean
             </td>
             <td>
-                Specifies Whether to include sub directories when compressing.
+                Specifies whether the sub folders in the original folder should be included in the compressed file.
             </td>
             <td>
                 true
@@ -744,12 +745,7 @@ The following operations allow you to work with the File Connector version 2. Cl
     ```
 
 ??? note "copy"
-    Copies the file or folder specified by a source path to a target path.
-
-    -   Source can be a file or a directory. If directory, it recursively does the copying. 
-    -   When the target path does not exist along with its parent folders, then it will create the directories and do the copying. 
-    -   When copying folders, only the content inside the folder will get copied. If you need to copy including the folder, set includePatent=true.
-    -   When the target file already exists, if Overwrite=true, the target file will be overwritten. Otherwise operation will throw error code.     For folders it will check if there is an immediate matching file or a folder.  
+    Copies the file or folder specified by a source path to a target path. The source can be a file or a folder. If it is a folder, the copying is recursive. 
 
     <table>
         <tr>
@@ -784,7 +780,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                 String
             </td>
             <td>
-                 The path to the file that should be copied.
+                 The path to the file that should be copied. 
             </td>
             <td>
                 -
@@ -801,7 +797,8 @@ The following operations allow you to work with the File Connector version 2. Cl
                 String
             </td>
             <td>
-                 The location to which the file should be copied.
+                 The location (folder) to which the file should be copied. </br>
+                 If the target folder does not exist at the time of copy, a new folder is created.
             </td>
             <td>
                 -
@@ -829,13 +826,13 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
         <tr>
             <td>
-                Include Parent
+                Copy Including Source Parent
             </td>
             <td>
                 Boolean
             </td>
             <td>
-                Specify whether the parent folder should be copied from the file source along with the content.
+                Specify whether the parent folder should be copied from the file source along with the content. By default, only the content inside the folder will get copied.
             </td>
             <td>
                 false
@@ -869,7 +866,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                 String
             </td>
             <td>
-                The new name of the copied files.
+                The new name of the copied file.
             </td>
             <td>
                 Original file name.
@@ -899,12 +896,9 @@ The following operations allow you to work with the File Connector version 2. Cl
     ```
 
 ??? note "move"
-    Moves the file or folder specified by the source path to the target directory.
-
-    -   Source can be a file or a directory. If directory, it recursively does the moving.
-    -   When the target path does not exist along with its parent folders when CreateParentDirectories=true, it will create the directories and do the moving. Otherwise operation will throw error FILE:ILLEGAL_PATH
-    -   When the target file already exists, if Overwrite=true, the target file will be overwritten. Otherwise operation will throw error FILE:FILE_ALREADY_EXISTS
-    -   The move operation can only move a file/folder within the same server. For example, you can move a file/folder from one local location to another local location, or from one remote location to another remote location on the same server. You cannot use the move operation to move a file/folder between different servers. If you want to move a file/folder from a local location to a remote location or vice versa, use the copy operation followed by delete operation instead of using the move operation.
+    Moves the file or folder specified by the source path to the target directory. The source can be a file or a folder. If it is a folder, the moving is recursive.
+    
+    The move operation can only move a file/folder within the same server. For example, you can move a file/folder from one local location to another local location, or from one remote location to another remote location on the same server. You cannot use the move operation to move a file/folder between different servers. If you want to move a file/folder from a local location to a remote location or vice versa, use the <b>copy</b> operation followed by <b>delete</b> operation.
 
     <table>
         <tr>
@@ -1465,7 +1459,7 @@ The following operations allow you to work with the File Connector version 2. Cl
     ```
 
 ??? note "rename"
-    Rename the file pointed by the path parameter. New name cannot contain path separators. 
+    Rename a file in a specified path. The new name cannot contain path separators. 
 
     <table>
         <tr>
@@ -1564,7 +1558,7 @@ The following operations allow you to work with the File Connector version 2. Cl
     ```
 
 ??? note "delete"
-    Deletes the first file specified by the path.
+    Deletes the files matching in a given directory.
 
     <table>
         <tr>
@@ -1616,7 +1610,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                 String
             </td>
             <td>
-                 The pattern that should be matched when listing files. This does not operate recursively on sub-folders.
+                 The pattern that should be matched when listing files. This does not operate recursively on sub folders.
             </td>
             <td>
                 All files.
@@ -1783,7 +1777,7 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
         <tr>
             <td>
-               Source File Path
+               Path to the file to split
             </td>
             <td>
                 String
@@ -1845,7 +1839,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                 Number
             </td>
             <td>
-                 If the <b>Split Mode</b> is 'ChunkSize', specify the chunk size (in bytes) into which the file should be split.
+                 If the <b>Split Mode</b> is 'Chunk Size', specify the chunk size (in bytes) into which the file should be split.
             </td>
             <td>
                 -
@@ -1862,7 +1856,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                 Number
             </td>
             <td>
-                 If the <b>Split Mode</b> is 'Linecount', specify the number of lines by which the original file should be split.
+                 If the <b>Split Mode</b> is 'Line Count', specify the number of lines by which the original file should be split.
             </td>
             <td>
                 -
@@ -1882,10 +1876,10 @@ The following operations allow you to work with the File Connector version 2. Cl
                  If the <b>Split Mode</b> is 'XPATH Expression', specify the expression by which the file should be split. Only applies when splitting XML files.
             </td>
             <td>
-                -
+                Chunk Size
             </td>
             <td>
-                -
+                Yes
             </td>
         </tr>
     </table>
@@ -1910,7 +1904,7 @@ The following operations allow you to work with the File Connector version 2. Cl
     ```
 
 ??? note "listFiles"
-    Lists all the files in the directory path that match the specified pattern.
+    Lists all the files (that match the specified pattern) in the directory path.
 
     <table>
         <tr>
@@ -1973,13 +1967,13 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
         <tr>
             <td>
-                List Files in Subdirectories
+                List Files in Sub Directories
             </td>
             <td>
                 Boolean
             </td>
             <td>
-                 List files from subdirectories recursively.
+                 List files from sub directories recursively.
             </td>
             <td>
                 false
@@ -1996,8 +1990,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                String
             </td>
             <td>
-                 Files will get sorted and listed by this attribute.</br>
-                 <b>Possible Values</b>: Name, Size, LastModifiedTime.
+                 Files will get sorted and listed according to one of the follow: Name, Size, LastModifiedTime.
             </td>
             <td>
                 Name
@@ -2014,7 +2007,7 @@ The following operations allow you to work with the File Connector version 2. Cl
                 String
             </td>
             <td>
-                 The sorting order applicable tothe <b>File Sort</b> attribute.</br>
+                 The sorting order applicable to the <b>File Sort</b> attribute.</br>
                  <b>Possible Values</b>: Ascending, Descending.
             </td>
             <td>
@@ -2046,6 +2039,7 @@ The following operations allow you to work with the File Connector version 2. Cl
     ```
 
 ??? note "exploreZipFile"
+    Explore the contents of a ZIP file in a specific location.
 
     <table>
         <tr>
@@ -2207,10 +2201,11 @@ The following operations allow you to work with the File Connector version 2. Cl
                 String
             </td>
             <td>
-                One of “Overwrite” or “Append”. 
+                If the file already exists, this parameter will determine whether the existing file should be overwritten or appended during the merge.</br>
+                Possible values are Ovewrite or Append.
             </td>
             <td>
-                -
+                Overwrite
             </td>
             <td>
                 Yes
@@ -2241,61 +2236,250 @@ The following operations allow you to work with the File Connector version 2. Cl
     ```
 
 ??? note "write"
-    
-    1.  Add a static content and write to a text file. 
-    2.  Change write mode to “create new” and invoke again, should fail as the file is already there. 
-    3.  Delete the file and invoke again. File should be created. 
-    4.  Set a property with a text and create the file with it. 
-    5.  Create the same text file with compress enabled. It should create a zip file with the same file name. 
-    6.  Select file append mode, and append a text to an empty file.
+    Writes content to a specified file.
 
-        1.  To the first line
-        2.  To the 3 rd line 
-        3.  With no line specified
-        4.  To 100th line (non existing)  → should print a WARN and append to EOF
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default Value</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>
+                File Connection
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               File Path
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The path to the file that should be written (include file name and extension).
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Content/Expression
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Static content or expression to evaluate content.
+            </td>
+            <td>
+                The content will be fetched from the body ("$Body") of the incoming message.
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               MIME Type
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The MIME type that will be applied in order to format the outgoing message.</br></br> Possible values: "Automatic","text/plain", "application/xml", "application/binary", "application/json", "text/xml".</br></br>
+                If you don't want to change the MIME type of the message that has been mediated before this operation, use the default "Automatic" value. If the value is set to "application/binary", a binary file will get created with base-64 decoded content.
+            </td>
+            <td>
+                Automatic
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Write Mode
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                If the file already exists, this parameter will determine whether the existing file should be overwritten or appended. You can also specify if a new file should be created.</br>
+                Possible values: Ovewrite, Append, Create New.
+            </td>
+            <td>
+                Overwrite
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Append New Line
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether a new line should be added to the end of the file after the content is written.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Encoding
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Applied only when some static content or evaluated content is written.</br>
+                <b>Possible Values</b>: US-ASCII, UTF-8, or UTF-16.
+            </td>
+            <td>
+                UTF-8
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Compress
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether the content should be compressed after the content is written. Only available when the <b>Write Mode</b> is ‘Create New ‘or ‘OverWrite’.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Enable Streaming
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Write file using the stream set to the message context.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+               Enable Locking
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Specifies whether or not to lock the file during file write.</br></br>
+                <b>Note</b>: If the connector is processing a file named 'xyz.xml', a file called 'xyz.xml.lock' is created to represent the lock (with the CREATE_NEW mode). Once the file connector operation is completed, the file is deleted. When you create the lock, you can set an expiry time as well. If the connector operation fails to create the file because it already exists, that means that another process is working on it. Then connector operation will fail and the application will have to retry. Information such as the servername and PID is written to the lock file, which may be important for debugging. 
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Add Result To
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Specify where to add the result after writing the file.</br>
+                <ul>
+                    <li>
+                        <b>Message Body</b>: The result will be added to the message property.
+                    </li>
+                    <li>
+                        <b>Message Property</b>: The payload that was in the message body before applying the <b>file write</b> operation will remain intact.
+                    </li>
+                </ul>
+            </td>
+            <td>
+                Message Body
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Property Name
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                If the <b>Add Result To</b> attribute is set to "Message Property", specify a property name. The result of the file write operation will be added as a default scope property
+                by the specified name. This property can be accessed later in the message flow. 
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes (If <b>Add Restul To</b> is "Message Property")
+            </td>
+        </tr>
+    </table>
 
-    7.  Send a xml message to the API and write the message as a xml file. 
-    8.  Send a json message to the API, do a csv transformation and write to a csv file. 
+    **Response** 
 
-## Sample configuration in a scenario
+    ```xml
+    <writeResult>
+       <success>true</success>
+       <writtenBytes>16</writtenBytes>
+    </writeResult>
+    ```
 
-The following is a sample proxy service that illustrates how to connect to the File connector and use the create operation to create a file. You can use this sample as a template for using other operations in this category.
+    **Error**
 
-**Sample Proxy**
-
-```xml
-<proxy xmlns="http://ws.apache.org/ns/synapse"
-       name="FileConnector_create"
-       transports="https,http"
-       statistics="disable"
-       trace="disable"
-       startOnLoad="true">
-   <target>
-      <inSequence>
-         <property name="source" expression="json-eval($.source)"/>
-         <property name="inputContent" expression="json-eval($.inputContent)"/>
-         <property name="encoding" expression="json-eval($.encoding)"/>
-         <property name="setTimeout" expression="json-eval($.setTimeout)"/>
-         <property name="setPassiveMode" expression="json-eval($.setPassiveMode)"/>
-         <property name="setSoTimeout" expression="json-eval($.setSoTimeout)"/>
-         <property name="setStrictHostKeyChecking"
-                   expression="json-eval($.setStrictHostKeyChecking)"/>
-         <property name="setUserDirIsRoot" expression="json-eval($.setUserDirIsRoot)"/>
-         <fileconnector.create>
-            <source>{$ctx:source}</source>
-            <inputContent>{$ctx:inputContent}</inputContent>
-            <encoding>{$ctx:encoding}</encoding>
-            <setTimeout>{$ctx:setTimeout}</setTimeout>
-            <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-            <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-            <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-            <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-         </fileconnector.create>
-         <respond/>
-      </inSequence>
-   </target>
-   <description/>
-</proxy>         
-```
-
-**Note**: For more information on how this works in an actual scenario, see [File Connector Example](file-connector-example.md).
+    ```xml
+    <writeResult>
+       <success>false</success>
+       <code>700108</code>
+       <detail>Target file already exists. Path = file:///Users/hasitha/temp/file-connector-test/copy/kandy/hasitha.txt</detail>
+    </writeResult>
+    ```

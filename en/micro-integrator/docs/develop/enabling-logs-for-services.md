@@ -68,13 +68,4 @@ The log4j2 configurations in the `log4j2.properties` file does not create logs f
 
 ## Dynamically changing log level
 
-You can update the log level of the proxy service in a running Micro Integrator instance by using the **CLI Tool**. For exmaple, to change the log level to DEBUG, execute the following command on the CLI tool: 
-
-```bash
-mi log-level update StockQuoteProxy DEBUG
-```
-
-Learn more about [using the command line interface](../administer-and-observe/using-the-command-line-interface.md).
-
-!!! Note
-    If you change the log4j2 configuration directly from the `log4j2.properties` file (without using the CLI), the Micro Integrator needs to be restarted for the changes to become effective.
+See the instructions on [updating the log level](../../administer-and-observe/logs/configuring_log4j_properties/#updating-the-log4j2-log-level).

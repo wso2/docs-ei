@@ -87,8 +87,13 @@ Let's try out the example where you want to view the online bookings saved in a 
 
 1. Download and install MySQL.
 
-2. Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).
-
+2. Enable binary logging in the MySQL server. For detailed instructions, see [Debezium documentation - Enabling the binlog](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/>
+    !!! info
+        If you are using MySQL 8.0, use the following query to check the binlog status.<br/>
+        ```
+        SELECT variable_value as "BINARY LOGGING STATUS (log-bin) ::"
+        FROM performance_schema.global_variables WHERE variable_name='log_bin';
+        ```<br/>
 3. Start the MySQL server, create the database and the database table you require as follows:
 
     1. To create a new database, issue the following MySQL command.
@@ -170,7 +175,7 @@ The following is a list of Siddhi extensions that support change data capturing 
 
 ### Supported mappers
 
-Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Transforming Data](transforming-data.md#transforming-message-formats)).
 
 The mapper available for extracting data from databases is [Keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sourcemapper).
 
@@ -458,7 +463,7 @@ define stream InStream (symbol string, message_id string);
 To transfer the content of the cloud storage to a file, add another stream with a sink of the `file` type as shown in the example below.
 
 !!! tip
-    To learn more about publishing data to files, see [Loading and Writing Data](Loading and Writing Data).
+    To learn more about publishing data to files, see [Loading and Writing Data](loading-and-writing-date.md).
 
 ```
 @sink(type = 'file', 
@@ -515,7 +520,7 @@ The following is a list of cloud platforms from which you can extract stored dat
 
 ### Supported mappers
 
-Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Transforming Data](transforming-data.md#transforming-message-formats).
 
 WSO2 Streaming Integrator supports the following mappers for the cloud-based storages from which it extracts data.
 

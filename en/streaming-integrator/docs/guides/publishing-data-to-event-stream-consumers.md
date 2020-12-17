@@ -69,7 +69,7 @@ To try out the above example, follow the steps below:
 
     ![Play](../images/extracting-data-from-static-sources/play.png)
     
-5. Simulate an event with the following values for the `InputStream` stream of the `PublishStockUpdatesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+5. Simulate an event with the following values for the `InputStream` stream of the `PublishStockUpdatesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications](../develop/testing-a-Siddhi-Application.md).
 
     | **Attribute** | **Value** |
     |---------------|-----------|
@@ -97,7 +97,7 @@ WSO2 Streaming Integrator supports the following transport types to send message
 
 ### Supported mappers
 
-Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Transforming Data](transforming-data.md#transforming-the-message-format-when-publishing-data).
 
 The following are the supported mappers when you publish data to destinations.
 
@@ -177,7 +177,7 @@ To try out the example in the previous subtopic, follow the steps below:
         
     5. Simulate an event for the `TemperatureStream` stream of the `TemperaturePublishingApp` Siddhi application. In this example, let's enter `30` as the value for the `temperature` attribute.
 
-        For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+        For instructions to simulate events, see [Testing Siddhi Applications](../develop/testing-a-Siddhi-Application.md).
         
     6. To retrieve the events published to the Kafka topic, issue the following command from `<KAFKA_HOME>`
     
@@ -205,7 +205,7 @@ WSO2 Streaming Integrator allows you to publish messages to the following messag
 
 ### Supported mappers
 
-Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Transforming Data](transforming-data.md#transforming-the-message-format-when-publishing-data).
 
 The following are the supported mappers when you publish data to destinations.
 

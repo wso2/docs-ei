@@ -63,12 +63,18 @@ nav:
     - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
     - 'Use Cases':
-      - 'Use Cases': 'guides/use-cases.md'
+      - 'Use Cases Overview': 'guides/use-cases.md'
       - 'Extracting Data from Static Sources in Real Time': 'guides/extracting-data-from-static-sources-in-real-time.md'
       - 'Receiving Data in Transit': 'guides/receiving-data-in-transit.md'
       - 'Loading and Writing Data': 'guides/loading-and-writing-date.md'
       - 'Publishing Data': 'guides/publishing-data-to-event-stream-consumers.md'
-      - 'Stream Processing': 'guides/processing-data.md'
+      - 'Stream Processing':
+        - 'Stream Processing Overview': 'guides/processing-data.md'
+        - 'Cleansing Data': 'guides/cleansing-data.md'
+        - 'Transforming Data': 'guides/transforming-data.md'
+        - 'Enriching Data': 'guides/enriching-data.md'
+        - 'Summarizing Data': 'guides/summarizing-data.md'
+        - 'Correlating Data': 'guides/correlating-data.md'
       - 'Handling Errors': 'guides/handling-errors.md'
       - 'Performing ETL Operations': 'guides/performing-etl-tasks.md'
     - 'Tutorials':
@@ -95,7 +101,6 @@ nav:
         - 'Receiving XML Events via HTTP': 'samples/ReceiveHTTPInXMLFormatWithDefaultMapping.md'
         - 'Working with an influxDB Store': 'samples/store-influxdb.md'
         - 'Capturing MySQL Inserts and Updates via CDC Polling Mode': 'samples/CDCWithPollingMode.md'
-        - 'Retrieving Historical Tweets for a Given Time Period': 'samples/TwitterPolling-sample.md'
         - 'Publishing HTTP Events to an OAuth-protected Endpoint while Using a Refresh Token Grant Type': 'samples/PublishHttpOAuthRequestWithRefreshToken.md'
         - 'Publishing HTTP Events via an OAuth-protected Endpoint': 'samples/PublishHttpOAuthRequestResponse.md'
         - 'Receiving Events via Simulator and Persisting in SOLR Store': 'samples/Store-solr.md'
@@ -148,7 +153,6 @@ nav:
         - 'Receiving Events via Simulator and Persisting in a Store': 'samples/store-hbase.md'
         - 'Publishing HTTP Requests, Receiving Responses, and Processing Them': 'samples/HttpRequestResponseSample.md'
         - 'Converting Units': 'samples/UnitConversionExtentionSample.md'
-        - 'Calculating the Sentiment Value for a Given String': 'samples/sentimentExtensionSample.md'
         - 'Processing Geo Data': 'samples/execution-geo-sample.md'
         - 'Performing Streaming Learning Using a Clustree Model': 'samples/ClusTreeTestApp.md'
         - 'Receiving XML Events via Websocket': 'samples/ReceiveWebSocketInXMLFormat.md'
@@ -157,8 +161,6 @@ nav:
         - 'Receiving Data via TCP and Preprocessing': 'samples/SweetProductionDataPreprocessing.md'
         - 'Publishing Text Events via Email': 'samples/PublishEmailInTextFormat.md'
         - 'Calculating Aggregations Over Time': 'samples/AggregateOverTime.md'
-        - 'Calculating the Number of Distinct Events without a Siddhi Window': 'samples/approximate-distinctCountEver-sample.md'
-        - 'Calculating the Number of Distinct Events within a Siddhi Window': 'samples/approximate-distinctCount-sample.md'
         - 'Receiving Events via HTTP Transport': 'samples/ReceiveAndCount.md'
         - 'Aggregating Data Incrementally': 'samples/AggregateDataIncrementally.md'
         - 'Receiving Events and Persisting Them in Redis Store': 'samples/Store-redis.md'
@@ -168,7 +170,6 @@ nav:
         - 'Making Predictions via a Regressor Model': 'samples/StreamingRegressor.md'
         - 'Extracting Values from a String': 'samples/GplNLPFindNameEntityType.md'
         - 'Performing Regression Tasks via an Imported Tensorflow Model': 'samples/TensorFlowTestApp.md'
-        - 'Calculating the Sentiment Value for a Given String': 'samples/sentimentExtensionSample.md'
         - 'Publishing XML Events via MQTT': 'samples/PublishMqttInXmlFormat.md'
         - 'Identifying Event Patterns Based On Order of Event Arrival': 'samples/PatternMatching.md'
         - 'Using StreamingML Kmeans for Clustering': 'samples/StreamingKMeansSample.md'
@@ -232,6 +233,7 @@ nav:
       - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
       - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
       - 'Changing the Host Name and Context Path of Web UI Applications': 'setup/change-hostname-and-context-path.md'
+      - 'Enabling Logs for Received Event Count': 'admin/monitoring-received-events-count-via-logs.md'
   - 'Develop':
     - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
     - 'Streaming Integrator Tooling':
@@ -243,12 +245,22 @@ nav:
     - 'Deploying Siddhi Applications': 'develop/deploying-Streaming-Applications.md'
     - 'Exporting Siddhi Applications': 'develop/exporting-Siddhi-Applications.md'
   - 'Observability':
-    - 'Monitoring SI via Grafana Dashboards':
-      - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
-      - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
-      - 'Monitoring the WSO2 SI with Grafana': 'admin/monitoring-si-performance-via-grafana.md'
-      - 'Monitoring ETL Flows with Grafana': 'admin/viewing-dashboards.md'
-    - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
+    - 'Monitoring SI via Dashboards':
+      - 'Configuring Dashboards': 'admin/setting-up-grafana-dashboards.md'
+      - 'Managing Dashboards': 'admin/managing-grafana-dashboards.md'
+      - 'Monitoring WSO2 SI':
+        - 'Overview': 'admin/monitoring-si-performance-via-grafana.md'
+        - 'Viewing Overall Statistics': 'admin/viewing-overall-statistics.md'
+        - 'Viewing Server Statistics': 'admin/viewing-server-statistics.md'
+        - 'Viewing Stream Statistics': 'admin/viewing-stream-statistics.md'
+        - 'Viewing Source Statistics': 'admin/viewing-source-statistics.md'
+        - 'Viewing Query Statistics': 'admin/viewing-sink-statistics.md'
+        - 'Viewing Window Statistics': 'admin/viewing-window-statistics.md'
+        - 'Viewing Trigger Statistics': 'admin/viewing-trigger-statistics.md'
+        - 'Viewing Table Statistics': 'admin/viewing-table-statistics.md'
+        - 'Viewing Aggregation Statistics': 'admin/viewing-aggregation-statistics.md'
+        - 'Viewing On Demand Query Statistics': 'admin/viewing-on-demand-query-statistics.md'
+      - 'Monitoring ETL Flows': 'admin/viewing-dashboards.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'
     - 'Downloading and Installing Siddhi Connectors': 'connectors/downloading-and-Installing-Siddhi-Extensions.md'

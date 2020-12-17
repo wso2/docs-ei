@@ -1,14 +1,14 @@
 # User Management via the IdP Client Interface
 
-In WSO2 Stream Processor, user management is carried out through the
+In WSO2 Streaming Integrator, user management is carried out through the
 Identity Provider Client (IdP Client) interface that can be switched as
 required for the user scenario. Furthermore, a custom IdP Client can be
 written to encompass the required user store connection and
 authentication.
 
 IdP clients can be switched by specifying te required IdP client in the
-`         auth.configs:        ` section in the
-`         <SP_HOME>/conf/<PROFILE>/deployment.yaml        ` file.
+`auth.configs:` section in the
+`<SI_HOME>/conf/server/deployment.yaml` file.
 
 ``` java
     auth.configs:
@@ -16,21 +16,18 @@ IdP clients can be switched by specifying te required IdP client in the
       type: local
 ```
 
-The active IdP client is `         local        ` by default.
+The active IdP client is `local` by default.
 
-Following are the IdP Clients available for WSO2 SP:
+Following are the IdP Clients available for WS)2 Streaming Integrator:
 
--   [Local IdP
-    Client](#UserManagementviatheIdPClientInterface-LocalIdPClient)
--   [External IdP
-    Client](#UserManagementviatheIdPClientInterface-ExternalIdPClient)
+- [Local IdP Client](#UserManagementviatheIdPClientInterface-LocalIdPClient)
+
+- [External IdP Client](#UserManagementviatheIdPClientInterface-ExternalIdPClient)
 
 ## Local IdP Client
 
 The local IdP Client interacts with the file-based user store that is
-defined in the
-`         <SP_HOME>/conf/<PROFILE>/deployment.yaml        ` file under
-`         auth.configs        ` namespace as follows:
+defined in the `<SI_HOME>/conf/server/deployment.yaml` file under the `auth.configs` namespace as follows:
 
 ``` text
     auth.configs:  

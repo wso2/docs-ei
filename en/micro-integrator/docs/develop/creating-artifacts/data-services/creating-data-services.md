@@ -1,6 +1,6 @@
 # Creating a Data Service
 
-Follow the instructions given below to create a new REST API artifact.
+Follow the instructions given below to create a new data service artifact.
 
 !!!	Tip	
 	You can also use a sample template to create your data service.
@@ -282,7 +282,7 @@ Use this section to configure a SOAP operation for invoking the data service.
 
 ### Adding a Resource
 
-Use this section to configure a SOAP operation for invoking the data service.
+Use this section to configure a REST resource for invoking the data service.
 
 1.  Click **Resources** to expand the section.
 	![](../../../assets/img/tutorials/data_services/resource_expanded.png)

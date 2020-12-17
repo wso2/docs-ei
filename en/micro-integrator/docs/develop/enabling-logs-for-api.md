@@ -1,4 +1,4 @@
-# Monitoring API-level Logs
+# Monitoring API-Level Logs
 
 The advantage of having per-API log files is that it is very easy to analyze/monitor what went wrong in a particular REST API defined in WSO2 Micro Integrator by looking at the log files. The API log is an additional log file, which will contain a copy of the logs to a particular REST API.
 
@@ -66,13 +66,4 @@ The log4j2 configurations in the `log4j2.properties` file does not create logs f
 
 ## Dynamically changing log level
 
-You can update the log level of the REST API in a running Micro Integrator instance by using the **CLI Tool**. For exmaple, to change the log level to DEBUG, execute the following command on the CLI tool: 
-
-```bash
-mi log-level API_LOG DEBUG
-```
-
-Learn more about [using the command line interface](../administer-and-observe/using-the-command-line-interface.md).
-
-!!! Note
-    If you change the log4j2 configuration directly from the `log4j2.properties` file (without using the CLI), the Micro Integrator needs to be restarted for the changes to become effective.
+See the instructions on [updating the log level](../../administer-and-observe/logs/configuring_log4j_properties/#updating-the-log4j2-log-level).

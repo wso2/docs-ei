@@ -17,7 +17,9 @@ When a message is received, it is converted to a CSV message and then stored to 
 A check is done to see if the CSV file (with the same information) exists in the file system. If it does not exist, the connector creates a CSV file with CSV headers included. Then, the connector appends the new CSV entries in the current message to the CSV file. 
 The connector then reads the same CSV file and converts the information back to XML and responds to the client.
 
+<!--
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
+-->
 
 ## Setting up the environment
 
@@ -36,16 +38,16 @@ Follow these steps to set up the Integration Project and the Connector Exporter.
 
 1.  Create a new integration project. Be sure to enable a Connector Exporter. 
     
-    <img src="../../../../assets/img/connectors/filecon1.png" title="create project" width="800" alt="create project"/>
+    <img src="../../../../assets/img/connectors/filecon1.png" title="create project" width="500" alt="create project"/>
 
 
 2.  Create an API named `TestAPI` with the `/fileTest` context. This API will accept employee information.
 
-    <img src="../../../../assets/img/connectors/filecon2.png" title="create API" width="800" alt="create API"/>
+    <img src="../../../../assets/img/connectors/filecon2.png" title="create API" width="500" alt="create API"/>
 
 3.  In the default resource of the API, enable POST requests. 
 
-    <img src="../../../../assets/img/connectors/filecon3.png" title="select post method" width="800" alt="select post method"/>
+    <img src="../../../../assets/img/connectors/filecon3.png" title="select post method" width="500" alt="select post method"/>
 
 4.  Add the Log mediator to the design canvas and configure a custom log that indicates when the API receives a message.  
 5.  Add the DataMapper mediator and configure it to transform the incoming XML message to a CSV message. 
@@ -172,7 +174,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter.
 
 {!references/connectors/exporting-artifacts.md!}
 
-
+<!--
 ## Get the project
 
 You can download the ZIP file and extract the contents to get the project code.
@@ -180,6 +182,7 @@ You can download the ZIP file and extract the contents to get the project code.
 <a href="../../../../assets/attach/connectors/FileConnector.zip">
     <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
+-->
 
 ## Deployment
 

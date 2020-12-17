@@ -1,4 +1,4 @@
-# Setting up Grafana to Display WSO2 SI Statistics
+# Setting up Dashboards to WSO2 SI Statistics
 
 This section explains how WSO2 Streaming Integrator can be configured to display statistics in Grafana dashboards.
 
