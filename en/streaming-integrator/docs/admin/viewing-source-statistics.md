@@ -3,6 +3,6 @@
     
 # Viewing Source Statistics
 
-The information displayed in this dashboard is as follows.
-
 ![Source statistics dashboard](../images/streaming-integrator-grafana-dashboard/source_statistics_dashboard.png)
+
+This dashboard displays the following information for your current WSO2 Streaming Integrator deployment:

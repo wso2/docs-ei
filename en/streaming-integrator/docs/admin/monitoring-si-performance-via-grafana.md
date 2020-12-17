@@ -1,4 +1,4 @@
-# Monitoring WSO2 SI with Grafana
+# Monitoring WSO2 Streaming Integrator
 
 !!! tip "Before you begin:"
     To enable WSO2 Streaming Integrator to publish statistics in Grafana, follow the instructions in [Setting up Grafana to Display WSO2 SI Statistics](../admin/setting-up-grafana-dashboards.md).<br/><br/>
