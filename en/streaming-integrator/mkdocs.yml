@@ -68,13 +68,7 @@ nav:
       - 'Receiving Data in Transit': 'guides/receiving-data-in-transit.md'
       - 'Loading and Writing Data': 'guides/loading-and-writing-date.md'
       - 'Publishing Data': 'guides/publishing-data-to-event-stream-consumers.md'
-      - 'Stream Processing':
-        - 'Stream Processing Overview': 'guides/processing-data.md'
-        - 'Cleansing Data': 'guides/cleansing-data.md'
-        - 'Transforming Data': 'guides/transforming-data.md'
-        - 'Enriching Data': 'guides/enriching-data.md'
-        - 'Summarizing Data': 'guides/summarizing-data.md'
-        - 'Correlating Data': 'guides/correlating-data.md'
+      - 'Stream Processing': 'guides/processing-data.md'
       - 'Handling Errors': 'guides/handling-errors.md'
       - 'Performing ETL Operations': 'guides/performing-etl-tasks.md'
     - 'Tutorials':
