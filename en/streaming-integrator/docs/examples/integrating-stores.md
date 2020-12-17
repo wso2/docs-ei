@@ -1,5 +1,7 @@
 # Integrating Data Stores in Streamming Integration
 
+## Introduction
+
 WSO2 Streaming Integrator allows you to incorporate data stores when performing various streaming integration activities. The methods in which this is done include:
 
 - Change data capture
@@ -7,6 +9,8 @@ WSO2 Streaming Integrator allows you to incorporate data stores when performing 
 - Performing CRUD operations in data stores
 
 [Performing Real-time Change Data Capture with MySQL] tutorial covers how to perform change data capture in details. Therefore, in this tutorial, let's learn how WSO2 Streaming Integrator can incorporate data stores in streaming operations by performing CRUD operations.
+
+## Scenario
 
 Let's consider the example of a Sweet Factory that stores the following information in three different databases:
 
@@ -22,8 +26,6 @@ In order to manage the material stock and to maintain the required records, the 
 
 Recording purchases and dispatches involve inserting new records into data stores. To maintain the current stock records, the Factory Manager needs to retrieve information about both purchases and dispatches, calculate the impact of both on the current stock and then perform an insert/update operation to the store with the stock records. 
 
-To understand how the WSO2 Streaming Integrator performs these operations, follow the topics below.
+To understand how the WSO2 Streaming Integrator performs these operations, follow the steps below.
 
-!!! tip "Before you begin:"
-    To try out this tutorial, you need to complete the following:
 
