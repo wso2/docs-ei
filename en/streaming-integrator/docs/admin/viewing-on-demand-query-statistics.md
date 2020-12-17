@@ -3,6 +3,6 @@
     
 # Viewing On Demand Query Statistics
 
-The information displayed in this dashboard is as follows.
-
 ![On-Demand Query statistics dashboard](../images/streaming-integrator-grafana-dashboard/on_demand_query_statistics_dashboard.png)
+
+This dashboard displays the following information for your current WSO2 Streaming Integrator deployment:

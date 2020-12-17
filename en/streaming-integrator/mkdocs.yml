@@ -68,7 +68,13 @@ nav:
       - 'Receiving Data in Transit': 'guides/receiving-data-in-transit.md'
       - 'Loading and Writing Data': 'guides/loading-and-writing-date.md'
       - 'Publishing Data': 'guides/publishing-data-to-event-stream-consumers.md'
-      - 'Stream Processing': 'guides/processing-data.md'
+      - 'Stream Processing':
+        - 'Stream Processing Overview': 'guides/processing-data.md'
+        - 'Cleansing Data': 'guides/cleansing-data.md'
+        - 'Transforming Data': 'guides/transforming-data.md'
+        - 'Enriching Data': 'guides/enriching-data.md'
+        - 'Summarizing Data': 'guides/summarizing-data.md'
+        - 'Correlating Data': 'guides/correlating-data.md'
       - 'Handling Errors': 'guides/handling-errors.md'
       - 'Performing ETL Operations': 'guides/performing-etl-tasks.md'
     - 'Tutorials':
@@ -227,6 +233,7 @@ nav:
       - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
       - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
       - 'Changing the Host Name and Context Path of Web UI Applications': 'setup/change-hostname-and-context-path.md'
+      - 'Enabling Logs for Received Event Count': 'admin/monitoring-received-events-count-via-logs.md'
   - 'Develop':
     - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
     - 'Streaming Integrator Tooling':
@@ -238,10 +245,10 @@ nav:
     - 'Deploying Siddhi Applications': 'develop/deploying-Streaming-Applications.md'
     - 'Exporting Siddhi Applications': 'develop/exporting-Siddhi-Applications.md'
   - 'Observability':
-    - 'Monitoring SI via Grafana Dashboards':
-      - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
-      - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
-      - 'Monitoring the WSO2 SI with Grafana':
+    - 'Monitoring SI via Dashboards':
+      - 'Configuring Dashboards': 'admin/setting-up-grafana-dashboards.md'
+      - 'Managing Dashboards': 'admin/managing-grafana-dashboards.md'
+      - 'Monitoring WSO2 SI':
         - 'Overview': 'admin/monitoring-si-performance-via-grafana.md'
         - 'Viewing Overall Statistics': 'admin/viewing-overall-statistics.md'
         - 'Viewing Server Statistics': 'admin/viewing-server-statistics.md'
@@ -253,9 +260,7 @@ nav:
         - 'Viewing Table Statistics': 'admin/viewing-table-statistics.md'
         - 'Viewing Aggregation Statistics': 'admin/viewing-aggregation-statistics.md'
         - 'Viewing On Demand Query Statistics': 'admin/viewing-on-demand-query-statistics.md'
-      - 'Monitoring ETL Flows with Grafana': 'admin/viewing-dashboards.md'
-      - 'Monitoring the Received Events Count via Logs': 'admin/monitoring-received-events-count-via-logs.md'
-    - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
+      - 'Monitoring ETL Flows': 'admin/viewing-dashboards.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'
     - 'Downloading and Installing Siddhi Connectors': 'connectors/downloading-and-Installing-Siddhi-Extensions.md'
