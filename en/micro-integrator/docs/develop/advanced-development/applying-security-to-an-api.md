@@ -164,6 +164,7 @@ Add the handler to the REST API:
 
 You can now send a request to the secured API.
 
+<!--
 ## Using Kerberos to secure the REST API
 
 ### Prerequisites
@@ -582,7 +583,7 @@ In the outSequence property, the security header must be removed before sending 
 <outSequence trace="enable">
 <header xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" name="wsse:Security" action="remove"/>
 ```
-
+-->
 <!--    
 To test this API configuration, you must run the SecureStockQuoteService, which is bundled in the samples folder, as the back-end server. This sample uses Apache Rampart as the back-end security implementation. Therefore, you need to download and install the unlimited strength policy files for your JDK before using Apache Rampart.
 
