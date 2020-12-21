@@ -114,39 +114,6 @@ The VFS transport is enabled in the Micro Integrator server by default. Also, th
 
 For more information, see [service-level VFS parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters).
 
-## Configuring the HL7 transport
-
-The HL7 transport allows you to handle Health Level 7 International (HL7) messages. 
-
-### Adding the transport
-
-HL7 is not shipped by default in the pack. To make the transport available, download the [HL7_ZIP](https://github
-.com/wso2-docs/WSO2_EI/raw/master/micro-integrator-resources/hl7/1.2.0/wso2mi-hl7-1.2.0.zip), extract it and add both
- the jars inside it to the `<MI_HOME>/dropins` folder.
-
-### Enabling the transport
-
-Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder: 
-
-```toml tab='HL7 Listener'
-[[custom_transport.listener]]
-class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
-protocol = "hl7"
-parameter.'transport.hl7.TimeOut' = 10000
-```
-
-```toml tab='HL7 Sender'
-[[custom_transport.sender]]
-class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender"
-protocol = "hl7"
-```
-
-You can configure how long request threads wait for the application's response by specifying the `parameter.'transport.hl7.TimeOut'` parameter as shown above. This configures the timeout in milliseconds at the transport level.
-
-### Change message encoding type
-
-To control the encoding type of incoming HL7 messages, set the following JAVA system property: `ca.uhn.hl7v2.llp.charset`.
-
 ## Configuring the TCP transport
 
 To enable the TCP transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
@@ -360,6 +327,57 @@ To enable the MSMQ transport listener and sender, set the following parameters t
 listener.enable = false
 sender.enable =false
 ```
+## Configuring custom transports
+Other than the transports defined above, you can use a custom transport that enables you to add a new transport to the Micro Integrator. Custom transport configurations contain senders and listeners that you can define. A custom transport configuration is as follows.
+
+```toml tab='Custom Listener'
+[[custom_transport.listener]]
+class="org.wso2.micro.integrator.TransportListener"
+protocol = "protocol"
+```
+
+```toml tab='Custom Sender'
+[[custom_transport.sender]]
+class="org.wso2.micro.integrator.TransportSender"
+protocol = "protocol"
+parameter.'transport.param' = true
+```
+
+You can define the listener and sender classes in the `class` parameter. Any additional parameter can be passed to the configuration using `parameter`. The following section involves using a custom transport to configure HL7 transport.
+
+## Configuring the HL7 transport
+
+The HL7 transport allows you to handle Health Level 7 International (HL7) messages. 
+
+### Adding the transport
+
+HL7 is not shipped by default in the pack. To make the transport available, download the [HL7_ZIP](https://github
+.com/wso2-docs/WSO2_EI/raw/master/micro-integrator-resources/hl7/1.2.0/wso2mi-hl7-1.2.0.zip), extract it, and copy both
+ the .jar files inside it to the `<MI_HOME>/dropins` folder.
+
+### Enabling the transport
+
+Add the following configurations to the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder): 
+
+```toml tab='HL7 Listener'
+[[custom_transport.listener]]
+class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
+protocol = "hl7"
+parameter.'transport.hl7.TimeOut' = 10000
+```
+
+```toml tab='HL7 Sender'
+[[custom_transport.sender]]
+class="org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender"
+protocol = "hl7"
+```
+
+You can configure how long request threads wait for the application's response by specifying the `parameter.'transport.hl7.TimeOut'` parameter as shown above. This configures the timeout in milliseconds at the transport level.
+
+### Change message encoding type
+
+To control the encoding type of incoming HL7 messages, set the following JAVA system property: `ca.uhn.hl7v2.llp.charset`.
+
 ## Configuring the MailTo transport
 
 When you use the Micro Integrator to mediate messages, the mediation sequence can be configured to send emails (over SMTP) or receive emails (Over POP3 or IMAP) by using the MailTo transport protocol.
