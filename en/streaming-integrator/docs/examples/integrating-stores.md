@@ -1,4 +1,4 @@
-# Integrating Data Stores in Streamming Integration
+# Integrating Data Stores in Streaming Integration
 
 ## Introduction
 
@@ -222,7 +222,7 @@ Now let's write Siddhi queries to perform different CRUD operations as follows:
         insert into PurchasesTable;
         ```
     
-        Then start it by clickinhg the play icon for it in the top panel.   
+        Then start it by clicking the play icon for it in the top panel.   
            
     2. Click the **Event Simulator** icon to open the event simulator.
     
@@ -234,47 +234,19 @@ Now let's write Siddhi queries to perform different CRUD operations as follows:
         
     3. To simulate purchase events, select `StockManagementApp` for the **Siddhi App Name** field, and `MaterialPurchasesStream` for the **Stream Name** field.
     
-        Then enter values for the attribute fields and click **Send** to send them. For this scenario, let's send three events with the following values.
+        Then enter values for the attribute fields as follows and click **Send**.        
         
-        - Event 1
-        
-            | **timestamp**   | **name** | **amount**|
-            |-----------------|----------|-----------|
-            | `1608025546000` | `flour`  | `150`     |
-        
-        - Event 2
-        
-            | **timestamp**   | **name** | **amount**|
-            |-----------------|----------|-----------|
-            | `1608027346000` | `sugar`  | `120`     |
-        
-        - Event 3
-        
-            | **timestamp**   | **name** | **amount** |
-            |-----------------|----------|------------|
-            | `1608028546000` | `honey`  | `100`      |
+        | **timestamp**   | **name** | **amount** |
+        |-----------------|----------|------------|
+        | `1608023646000` | `honey`  | `150`      |        
             
-    4. To simulate three events for material dispatches, select `StockManagementApp` for the **Siddhi App Name** field, and `MaterialDispatchesStream` for the **Stream Name** field. 
+    4. To simulate an event for material dispatches, select `StockManagementApp` for the **Siddhi App Name** field, and `MaterialDispatchesStream` for the **Stream Name** field. 
     
-        Then enter values for the attribute fields and click **Send** to send them. For this scenario, let's send three events with the following values.
-       
-        - Event 1
+        Then enter values for the attribute fields as follows and click **Send**.  
         
-            | **timestamp**   | **name** | **amount**|
-            |-----------------|----------|-----------|
-            | `1608041746000` | `flour`  | `100`     |
-        
-        - Event 2
-        
-            | **timestamp**   | **name** | **amount**|
-            |-----------------|----------|-----------|
-            | `1608043746000` | `sugar`  | `70`     |
-        
-        - Event 3
-        
-            | **timestamp**   | **name** | **amount**|
-            |-----------------|----------|-----------|
-            | `1608045646000` | `honey`  | `50`      | 
+        | **timestamp**   | **name** | **amount**|
+        |-----------------|----------|-----------|
+        | `1608023646000` | `honey`  | `100`     |        
             
     5. To check whether the above insertions were successful, issue the following MySQL commands in the terminal in which you are running the MySQL server.
     
@@ -404,49 +376,39 @@ Now let's write Siddhi queries to perform different CRUD operations as follows:
         
         ![Retirieved Event](../images/integrating-stores/retrieved-event.png)
         
- -  **Updates**
+ -  **Update Inserts**
  
-    To calculate the latest stock after a specific time duration, all the purchases during that time interval need to be added to the current stock, and all the dispatches during that same time interval need to be deducted from the current stock. Once this calculation is done, the result is loaded into the `PurchasesTable` table. This results in updating the existing record for each material or the result being inserted as a new record if the stock for the material is not already recorded in the database.
+    The `Stock Table` table at any given time contains a single record per product, showing the current closing stock for the relevant product. When you send a new event reporting a stock value to the table, the outcome is one of the following:
     
-    1. First, let's add a join query to add the purchases to the current stock.
+    - If a record with the same value for `name` already exists, the event updates the value for the `amount` attribute in that record.
+    - If a record with the same value for `name` does not exist, the new event is inserted into the table as a new record.
     
-        ```
-        @info(name = 'Add purchases to current stock ')
-        from MaterialPurchasesStream as p 
-        join StockTable as s 
-            on p.name == s.name 
-        select p.name as name, sum(p.amount) + s.amount as amount 
-            group by p.name 
-        insert into UpdateStockwithPurchasesStream;
-        ```
-        Note the following about the above join query.
-        
-        - The stream is assigned the short name `p` and the table is assigned the short name `s`.
-        
-        - Based on the above point, `p.name == s.name ` condition specifies that a matching event is identified when the `MaterialPurchasesStream`stream has an event where the value for the `name` attribute is the same as that of the `StockTable` table.
-        
-        - The `select` clause the query specifies that when such a matching event is identified, attribute values for the output event should be selected as follows:
-        
-            - The name from the `MaterialPurchasesStream`stream
-            
-            - The amount derived by calculating the total for the `amount` attribute from all the events in the `MaterialPurchasesStream`stream, and then adding that total to the amount in the table record.
-            
-        - The `insert into` clause specifies that the output events derived as stated above should be inserted into the `UpdateStockwithPurchasesStream` stream.
-        
-    2. Next, perform a join to subtract the total dispatches from the current  stock that is updated with the latest purchases.
+    To try this, follow the steps below:
+    
+    1. Add a new stream as follows:
     
         ```
-        @info(name='Update stock with dispatches') 
-        from UpdateStockwithPurchasesStream as u 
-        join MaterialDispatchesStream as s 
-            on u.name == s.name 
-        select u.name as name, sum(u.amount) - sum(s.amount) as amount 
-        insert into StockTable;
-        ```   
-    3. Save the Siddhi application. The complete Siddhiapplication with the latest queries you added looks as follows:
+        define stream LatestStockStream (name string, amount double);
+        ```
+       
+    2. Now add a query to update or insert values into the `StockTable` stream as follows:
+    
+        ```
+        @info(name = 'Update or Record Stock')
+        from LatestStockStream
+        select name, amount
+        update or insert into StockTable
+         set LatestStockStream.amount = amount
+         on StockTable.name == name 
+        ```
+        
+        Here, the Streaming Integrator checks whether an event in the `LatestStockStream` has a matching record in the `StockTable` table where the value for the `name` attribute is the same. If such a record exists, the value for the `amount` attribute in that record is set to the amount reported via the stream event. If no matching event exists, the stream event is inserted as a new event
+         
+    3. Save the Siddhi application. The complete Siddhi application is as follows:
     
         ```
         @App:name('StockManagementApp')
+        
         @App:description('Managing Raw Materials')
         
         define stream MaterialDispatchesStream (timestamp long, name string, amount double);
@@ -459,10 +421,12 @@ Now let's write Siddhi queries to perform different CRUD operations as follows:
         
         define stream PurchaseRecordRetrievalStream (name string);
         
+        define stream LatestStockStream (name string, amount double);
+        
         @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/dispatches?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
         define table DispatchesTable (timestamp long, name string, amount double);
         
-        @store(type = 'rdbms', ref = "purchases")
+        @store(type = 'rdbms', password = "root", jdbc.url = "jdbc:mysql://localhost:3306/purchases?useSSL=false", jdbc.driver.name = "com.mysql.jdbc.Driver", username = "root")
         define table PurchasesTable (timestamp long, name string, amount double);
         
         @store(type = 'rdbms', datasource = "Stock_DB")
@@ -479,6 +443,7 @@ Now let's write Siddhi queries to perform different CRUD operations as follows:
         select * 
         insert into PurchasesTable;
         
+        
         @info(name = 'Retrieve purchase records')
         from PurchaseRecordRetrievalStream as s 
         join PurchasesTable as p 
@@ -487,25 +452,317 @@ Now let's write Siddhi queries to perform different CRUD operations as follows:
         	group by p.name 
         insert into SearchResultsStream;
         
-        @info(name = 'Add purchases to current stock ')
-        from MaterialPurchasesStream as p 
-        join StockTable as s 
-            on p.name == s.name 
-        select p.name as name, sum(p.amount) + s.amount as amount 
-            group by p.name 
-        insert into UpdateStockwithPurchasesStream;
-        
-        @info(name='Update stock with dispatches') 
-        from UpdateStockwithPurchasesStream as u 
-        join MaterialDispatchesStream as s 
-            on u.name == s.name 
-        select u.name as name, sum(u.amount) - sum(s.amount) as amount 
-        insert into ClosingStockStream;
+        @info(name = ''Update or Record Stock'')
+        from LatestStockStream
+        select name, amount
+        update or insert into StockTable
+         set LatestStockStream.amount = amount
+         on StockTable.name == name 
         ```
-    4. Simulate two events as follows:
+       
+    4. Simulate events as follows:
     
+        1. In the event simulator, select **StockManagementApp** for the **Siddhi App Name** field, and select **LatestStockStream** for the **Stream Name** field.
         
+        2. Enter the following values for the attribute fields and send the event.
+        
+            | **name** | **amount**|
+            |----------|-----------|
+            | `flour`  | `150`     | 
+            
+        3. Execute the following MySQL queries:
+         
+            ```
+            use closing stock
+            ``` 
     
+            ```
+            select * from StockTable
+            ``` 
+           
+           The following is  displayed.
+           
+           ![Saved Stock Records](../images/integrating-stores/saved-stock-records.png)
+           
+           Here, the single record displayed is the event you sent. This event is inserted as a new record because the `StockTable` table did not have any records.
+           
+        4. Now simulate another event for the same stream with the following attribute values:
+        
+            | **name** | **amount**|
+            |----------|-----------|
+            | `flour`  | `200`     | 
+           
+        5. Execute the following MySQL queries:
+                    
+            ```
+            use closing stock
+            ``` 
+            
+            ```
+            select * from StockTable
+            ``` 
+            
+            The following is  displayed.
+            
+            ![Updated Stock Records](../images/integrating-stores/updated-stock-records.png)
+            
+            Again, a single record  is displayed. Although value for the `name` attribute is the same, the value for the `amount` attribute has been updated from `150` to `200`. This is because `name` is the primary key of the `StockTable` table and at any given time, there can be only one record with a specific name for the `name` attribute. Therefore, because you simulated two events with the same value for the `name` attribute, the second event updated the first one.
+    
+ - **Updates**
+ 
+    To update the `StockTable` table via streams, follow the steps below:
+    
+    1. Add a new stream as follows:
+    
+        ```
+        define stream UpdateStockStream (name string, amount double);
+        ```
+       
+    2. Now add a query to update the values in the `StockTable` stream as follows:
+    
+        ```
+        @info(name = 'Update Stock')
+        from UpdateStockStream
+        select name, amount
+        update StockTable
+         set UpdateStockStream.amount = amount
+         on StockTable.name == name;
+        ```
+        Here, the Streaming Integrator checks whether an event in the `UpdateStockStream` has a matching record in the `StockTable` table where the value for the `name` attribute is the same. If such a record exists, the value for the `amount` attribute in that record is set to the amount reported via the stream event.
+        
+    3. Save the Siddhi application. The complete Siddhi application is as follows:
+    
+        ```
+        @App:name('StockManagementApp')
+        
+        @App:description('Managing Raw Materials')
+        
+        define stream MaterialDispatchesStream (timestamp long, name string, amount double);
+        
+        @sink(type = 'log', prefix = "Search Results",
+        	@map(type = 'passThrough'))
+        define stream SearchResultsStream (timestamp long, name string, amount double);
+        
+        define stream MaterialPurchasesStream (timestamp long, name string, amount double);
+        
+        define stream PurchaseRecordRetrievalStream (name string);
+        
+        define stream LatestStockStream (name string, amount double);
+        
+        @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/dispatches?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
+        define table DispatchesTable (timestamp long, name string, amount double);
+        
+        @store(type = 'rdbms', password = "root", jdbc.url = "jdbc:mysql://localhost:3306/purchases?useSSL=false", jdbc.driver.name = "com.mysql.jdbc.Driver", username = "root")
+        define table PurchasesTable (timestamp long, name string, amount double);
+        
+        @store(type = 'rdbms', datasource = "Stock_DB")
+        @primaryKey("name")
+        define table StockTable (name string, amount double);
+        
+        @info(name = 'Save material dispatch records')
+        from MaterialDispatchesStream 
+        select * 
+        insert into DispatchesTable;
+        
+        @info(name = 'Save purchase records')
+        from MaterialPurchasesStream 
+        select * 
+        insert into PurchasesTable;
+        
+        
+        @info(name = 'Retrieve purchase records')
+        from PurchaseRecordRetrievalStream as s 
+        join PurchasesTable as p 
+        	on s.name == p.name 
+        select p.timestamp as timestamp, s.name as name, p.amount as amount 
+        	group by p.name 
+        insert into SearchResultsStream;
+        
+        @info(name = ''Update or Record Stock'')
+        from LatestStockStream
+        select name, amount
+        update or insert into StockTable
+         set LatestStockStream.amount = amount
+         on StockTable.name == name 
+       
+        @info(name = 'Update Stock')
+        from UpdateStockStream
+        select name, amount
+        update StockTable
+         set UpdateStockStream.amount = amount
+         on StockTable.name == name;
+        ```
+       
+    4. Simulate events as follows:
+    
+        1. In the event simulator, select **StockManagementApp** for the **Siddhi App Name** field, and select **UpdateStockStream** for the **Stream Name** field.
+        
+        2. Enter the following values for the attribute fields and send the event.
+        
+            | **name** | **amount**|
+            |----------|-----------|
+            | `flour`  | `129`     | 
+            
+        3. Execute the following MySQL queries:
+         
+            ```
+            use closing stock
+            ``` 
+    
+            ```
+            select * from StockTable
+            ``` 
+           
+           The following is  displayed.
+           
+           ![Saved Stock Records](../images/integrating-stores/edited-stock-records.png)
+           
+           Here, the single record displayed is the event you sent. This event is inserted as a new record because the `StockTable` table did not have any records. 
+ 
+ - **Deletes**      
+    
+    To delete records in the `StockTable` table via streams, follow the steps below:
+    
+    1. Add a new stream as follows:
+    
+        ```
+        define stream DeleteStream (name string, amount double);
+        ```
+       
+    2. Now add a query to update the values in the `StockTable` stream as follows:
+    
+        ```
+        @info(name = 'Delete Stock')
+        from DeleteStream
+        select name, amount
+        delete StockTable 
+          on StockTable.name == name;
+        ```
+        Here, the Streaming Integrator checks whether an event in the `DeleteStream` has a matching record in the `StockTable` table where the value for the `name` attribute is the same. If such a record exists, it is deleted.
+        
+    3. Save the Siddhi application. The complete Siddhi application is as follows:
+    
+        ```
+        @App:name('StockManagementApp')
+        
+        @App:description('Managing Raw Materials')
+        
+        define stream MaterialDispatchesStream (timestamp long, name string, amount double);
+        
+        @sink(type = 'log', prefix = "Search Results",
+        	@map(type = 'passThrough'))
+        define stream SearchResultsStream (timestamp long, name string, amount double);
+        
+        define stream MaterialPurchasesStream (timestamp long, name string, amount double);
+        
+        define stream PurchaseRecordRetrievalStream (name string);
+        
+        define stream LatestStockStream (name string, amount double);
+        
+        @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/dispatches?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
+        define table DispatchesTable (timestamp long, name string, amount double);
+        
+        @store(type = 'rdbms', password = "root", jdbc.url = "jdbc:mysql://localhost:3306/purchases?useSSL=false", jdbc.driver.name = "com.mysql.jdbc.Driver", username = "root")
+        define table PurchasesTable (timestamp long, name string, amount double);
+        
+        @store(type = 'rdbms', datasource = "Stock_DB")
+        @primaryKey("name")
+        define table StockTable (name string, amount double);
+        
+        @info(name = 'Save material dispatch records')
+        from MaterialDispatchesStream 
+        select * 
+        insert into DispatchesTable;
+        
+        @info(name = 'Save purchase records')
+        from MaterialPurchasesStream 
+        select * 
+        insert into PurchasesTable;
+        
+        
+        @info(name = 'Retrieve purchase records')
+        from PurchaseRecordRetrievalStream as s 
+        join PurchasesTable as p 
+        	on s.name == p.name 
+        select p.timestamp as timestamp, s.name as name, p.amount as amount 
+        	group by p.name 
+        insert into SearchResultsStream;
+        
+        @info(name = ''Update or Record Stock'')
+        from LatestStockStream
+        select name, amount
+        update or insert into StockTable
+         set LatestStockStream.amount = amount
+         on StockTable.name == name 
+       
+        @info(name = 'Update Stock')
+        from UpdateStockStream
+        select name, amount
+        update StockTable
+         set UpdateStockStream.amount = amount
+         on StockTable.name == name;
+       
+        @info(name = 'Delete Stock')
+        from DeleteStream
+        select name, amount
+        delete StockTable 
+          on StockTable.name == name;
+        ```
+       
+    4. Simulate events as follows:
+    
+        1. In the event simulator, select **StockManagementApp** for the **Siddhi App Name** field, and select **DeleteStream** for the **Stream Name** field.
+        
+        2. Enter the following values for the attribute fields and send the event.
+        
+            | **name** | **amount**|
+            |----------|-----------|
+            | `flour`  | `129`     | 
+            
+        3. Execute the following MySQL queries:
+         
+            ```
+            use closing stock
+            ``` 
+    
+            ```
+            select * from StockTable
+            ``` 
+           
+           The `StockTable` is displayed as an empty set. This is because the event you sent to the `DeleteStream` stream matched the record in the table, and as a result, the record was deleted by the `Delete Stock` query.
+           
+### Performing CRUD operations via REST API
+
+In this section, let's perform CRUD operations via the [Store API](../ref/store-APIs.md)
+
+- **Inserts**
+
+To insert a record into the `StockTable` table, issue the following CURL command:
+
+```
+curl -X POST http://localhost:7370/stores/query -H "content-type: application/json" -u "admin:admin"
+-d '{"appName" : "StockManagementApp", "query" : "select \"sugar\" as name, 200 as amount insert into StockTable;" }' -k
+```
+
+- **Retrievals**
+
+To retrieve a record from the `StockTable` table, issue the following CURL command:
+
+- **Update Inserts**
+
+First, let's send an event that has the same value for the `name` attribute as the existing record in the `StockTable` table. To do this, issue the following command:
+
+Now let's send an event where the value for the `name` attribute is different to that of the existing value in the `StockTable` table.
+
+- **Updates**
+
+To update an existing record in the `StockTable` table, issue the following CURL command:
+
+- **Deletes**
+
+To delete an existing record in the `StockTable` table, issue the following CURL command:          
+   
+           
         
  
     
