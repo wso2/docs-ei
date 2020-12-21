@@ -230,3 +230,42 @@ You can also navigate to any of the artifacts by using the top-left menu as show
 When you go to the [Analytics portal](#starting-the-analytics-portal) the message details will be logged as follows:
 
 ![Message tracing per API](../assets/img/ei-analytics/119132315/message-tracing.png "Message tracing per API")
+
+## Default Ports
+
+Listed below are the default ports that are used by EI Analytics.
+
+<table>
+	<tr>
+		<th>
+			Port
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			<code>9444</code>
+		</td>
+		<td>
+			Management console port.
+		</td>
+	</tr>
+	<tr>
+    	<td>
+    		<code>7712</code>
+    	</td>
+    	<td>
+    		Thrift SSL port for secure transport, where the client is authenticated to SP.
+    	</td>
+    </tr>
+	<tr>
+    	<td>
+    		<code>7612</code>
+    	</td>
+    	<td>
+    		Thrift TCP port to receive events from clients to SP.
+    	</td>
+    </tr>    
+</table>
