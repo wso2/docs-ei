@@ -383,6 +383,102 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
+### Attachment
+
+??? note "getBlobBodyForAttachmentRecord"
+    To retrieve the blob data for an Attachment record, use salesforcerest.getBlobBodyForAttachmentRecord. The Attachment can be associated with a Case, Campaign, or other object that allows attachments. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_sobject_blob_retrieve.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>attachmentId</td>
+            <td>The identifier of the Attachment.</td>
+            <td>Yes</td>
+            <td>001D000000INjVe</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.getBlobBodyForAttachmentRecord>
+        <attachmentId>{$ctx:attachmentId}</attachmentId>
+    </salesforcerest.getBlobBodyForAttachmentRecord>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the getBlobBodyForAttachmentRecord operation.
+
+    ```json
+    {
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
+        "apiUrl":"https://(your_instance).salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7",
+        "refreshToken": "5Aep861TSESvWeug_ztpnAk6BGQxRdovMLhHso81iyYKO6hTm45JVxz3FLewCKgI4BbUp19OzGfqG2TdCfqa2ZU",
+        "clientSecret": "1187341468789253319",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v35.0",
+        "attachmentId": "001D000000INjVe"
+    }
+    ```
+
+    **Sample response**
+
+     This retrieves the blob data for an Attachment record. The Attachment body content will be returned in binary form. Note that the response content type will not be JSON or XML since it is binary.
+
+??? note "getBlobBodyForDocumentRecord"
+    To retrieve blob body for a Document, use salesforcerest.getBlobBodyForDocumentRecord and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_sobject_blob_retrieve.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>documentId</td>
+            <td>The identifier of the Document.</td>
+            <td>Yes</td>
+            <td>015D0000000NdJOIA0</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.getBlobBodyForDocumentRecord>
+        <documentId>{$ctx:documentId}</documentId>
+    </salesforcerest.getBlobBodyForDocumentRecord>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the getBlobBodyForDocumentRecord operation.
+
+    ```json
+    {
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
+        "apiUrl":"https://(your_instance).salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7",
+        "refreshToken": "5Aep861TSESvWeug_ztpnAk6BGQxRdovMLhHso81iyYKO6hTm45JVxz3FLewCKgI4BbUp19OzGfqG2TdCfqa2ZU",
+        "clientSecret": "1187341468789253319",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v35.0",
+        "documentId": "015D0000000NdJOIA0",
+    }
+    ```
+
+    **Sample response**
+
+    This retrieves the blob data for a Document record. The Document body content will be returned in binary form. Note that the response content type will not be JSON or XML since it is binary.
+
+---
+
 ### Event Monitoring
 
 ??? note "describeEventMonitoring"
