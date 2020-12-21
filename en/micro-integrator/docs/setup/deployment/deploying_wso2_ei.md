@@ -136,13 +136,16 @@ When you have scheduled tasks in your integration deployment, each task should o
 -   Default resolver
 
     By default, tasks are resolved by selecting a random node from the available list of nodes in the cluster. All the tasks are resolved to the selected node. The tasks will be resolved to some other node only if the first node leaves the cluster. 
-
-    Optionally, you can apply the following [advanced configurations](#advanced-parameters).
+    
+    This resolver will be useful when you want to have all the tasks run in a single node in a given point of time.
 
 -   Round robin resolver
 
     This class distributes the tasks among the nodes in a round robin manner. In addition to that, it accepts a parameter named `task_server_count`, which specifies the number of nodes that should be present in the cluster before starting the task resolving process.
-
+    
+    This resolver can be used in scenarios, where you want the tasks to be distributed equally among all the nodes 
+    available in the cluster.
+    
     ```toml
     [task_handling]
     resolver_class = "org.wso2.micro.integrator.ntask.coordination.task.resolver.RoundRobinResolver"
@@ -157,7 +160,9 @@ When you have scheduled tasks in your integration deployment, each task should o
 -   Task node resolver
 
     This class will resolve tasks to a predefined set of nodes (task nodes) in a round robin manner. The `task_nodes` need to be defined as the `resolver_class` property.
-
+    
+    This resolver can be used in cases where you have a scenario to run tasks only in particular nodes of the cluster.
+        
     ```toml
     [task_handling]
     resolver_class= "org.wso2.micro.integrator.ntask.coordination.task.resolver.TaskNodeResolver"
