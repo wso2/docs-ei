@@ -1,6 +1,6 @@
 # Routing Messages to a Static List of Recipients
 !!! Note
-    Please note that this is a Work-in-progress documentation. You might encounter some issues when trying out this sample in Integration Studio. Please refer to this [issue](https://github.com/wso2/integration-studio/issues/37) for more details.
+    This documentation is currently under review. You might encounter some errors when trying out this sample in WSO2 Integration Studio. Please refer [this issue](https://github.com/wso2/integration-studio/issues/37) for details.
 
 This example demonstrates how messages can be routed to a list of static endpoints. This configuration routes a cloned copy of a message to each recipient defined within the static recipient list. The Micro Integrator will create cloned copies of the message and route to the three endpoints mentioned in the configuration. The back-end service prints the details of the placed order. 
 
