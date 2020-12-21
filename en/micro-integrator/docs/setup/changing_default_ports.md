@@ -64,6 +64,84 @@ By default, the Micro Integrator is **internally** configured with a port offset
 	</tr>
 </table>
 
+## Analytics ports
+
+By default, EI Analytics is **internally** configured with a port offset of 1. Listed below are the ports that are effective in EI Analytics by default (due to the internal port offset of 1).
+
+<table>
+	<tr>
+		<th>
+			Default Port
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+    	<td>
+    		<code>9645</code>
+    	</td>
+    	<td>
+    		The port of the Analytics Portal.
+    	</td>
+    </tr>
+	<tr>
+		<td>
+			<code>9091</code>
+		</td>
+		<td>
+			The HTTP port of the Management API of WSO2 Stream Processor.</br></br>
+			<b>Configuring the default HTTP port</b></br>
+			If required, you can manually change the HTTP port in the <code>deployment.yaml</code> file (stored in <code>EI_ANALYTICS_HOME/conf/server</code> folder) as shown below.
+			```yaml
+			wso2.transport.http:
+              listenerConfigurations:
+                -
+                  id: "default"
+                  host: "0.0.0.0"
+                  port: http_port
+			```
+			<b>Note</b>: With the default internal port offset, the effective port will be <code>http_port + 1</code>.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>9444</code>
+		</td>
+		<td>
+			The HTTPS port of the Management API of WSO2 Stream Processor.</br></br>
+			<b>Configuring the default HTTPS port</b></br>
+			If required, you can manually change the HTTPS port in the <code>deployment.yaml</code> file (stored in <code>EI_ANALYTICS_HOME/conf/server</code> folder) as shown below.
+			```yaml
+			wso2.transport.http:            
+              listenerConfigurations:
+                -
+                  id: "msf4j-https"
+                  host: "0.0.0.0"
+                  port: https_port
+                  scheme: https
+			```
+			<b>Note</b>: With the default internal port offset, the effective port will be <code>https_port + 1</code>.
+		</td>
+	</tr>    
+	<tr>
+    	<td>
+    		<code>7712</code>
+    	</td>
+    	<td>
+    		Thrift SSL port for secure transport, where the client is authenticated to WSO2 Stream Processor.
+    	</td>
+    </tr>
+	<tr>
+    	<td>
+    		<code>7612</code>
+    	</td>
+    	<td>
+    		Thrift TCP port to receive events from clients to WSO2 Stream Processor.
+    	</td>
+    </tr>
+</table>
+
 ## Random ports
 
 Certain ports are randomly opened during server startup. This is due to
