@@ -80,7 +80,7 @@ mysql> source <MI_HOME>/dbscripts/mysql/mysql_transaction_count.sql;
 1. Download the [MySQL JDBC driver](http://dev.mysql.com/downloads/connector/j/).
 2. Unzip the downloaded MySQL driver and copy the JAR (mysql-connector-java-x.x.xx-bin.jar) to the `<MI_HOME>/lib/` directory of your Micro Integrator.
 
-## Connecting to the database
+## Connecting the database to the server
 
 Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need separate configurations corresponding to the separate databases (`clusterdb`, `userdb`, and `transactiondb`).
 
@@ -124,5 +124,7 @@ enable = true
 data_source = "WSO2_TRANSACTION_DB"
 update_interval = 2
 ```
+
+{!setup/pull/PULL-CONTENT-user-store-db-id.md!}
 
 See the descriptions of [database connection parameters](../../../references/config-catalog/#database-connection).

@@ -81,7 +81,7 @@ Copy the DB2 JDBC drivers (`db2jcc.jar` and `db2jcc_license_c0u.jar`) from the `
 
 `<DB2_HOME>` refers to the installation directory of DB2 Express-C, and `<MI_HOME>` refers to the directory where you run the WSO2 product instance.
 
-## Connecting to the database
+## Connecting the database to the server
 
 Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need separate configurations corresponding to the separate databases (`clusterdb`, `userdb`, and `transactiondb`).
 
@@ -125,5 +125,7 @@ enable = true
 data_source = "WSO2_TRANSACTION_DB"
 update_interval = 2
 ```
+
+{!setup/pull/PULL-CONTENT-user-store-db-id.md!}
 
 See the descriptions of [database connection parameters](../../../references/config-catalog/#database-connection).

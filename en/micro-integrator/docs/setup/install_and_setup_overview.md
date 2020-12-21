@@ -43,7 +43,8 @@ The installation guide of the Micro Integrator explains how to set up the Micro 
 
 Follow the topics in this section to migrate to the latest version of WSO2 EI 7 from a previous version.
 
--	[Migrating from WSO2 EI 6.x Family](../../setup/deployment/migrating-from-ei-6.x.x)
+-	[Migrating from WSO2 ESB 5.x](../../setup/deployment/migrating-from-esb-5.x.x)
+-	[Migrating from WSO2 EI 6.x](../../setup/deployment/migrating-from-ei-6.x.x)
 -	[Migrating from WSO2 EI 7.0](../../setup/deployment/migrating-from-ei-7.0.x)
 
 ## Deploy
@@ -321,7 +322,9 @@ Follow the topics in this section to configure security for your Micro Integrato
 	</tr>
 </table>
 
-### Performance
+### Performance and Capacity Planning
+
+You can have a look at the result of **performance tests** conducted for the Micro Integrator in the [Micro Integrator repo](https://github.com/wso2/micro-integrator/blob/e068750213ff699f6b8b457f1352afbccdfc9947/performance/benchmarks/summary.md).
 
 Follow the topics in this section to optimize the performance of your Micro Integrator instance.
 

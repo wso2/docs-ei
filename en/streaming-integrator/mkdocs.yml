@@ -18,12 +18,12 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://ei.docs.wso2.com/en/7.1.0/
+site_url: https://ei.docs.wso2.com/en/7.2.0/
 
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/7.1.0/en/streaming-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.2.0/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -50,12 +50,14 @@ nav:
     - 'Introduction': 'overview/overview.md'
     - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
     - 'Creating Your First Siddhi Application':
-        - 'Streaming Integration Overview': 'quick-start-guide/getting-started/getting-started-guide-overview.md'
-        - 'Step 1: Download and Install Streaming Integrator': 'quick-start-guide/getting-started/download-install-and-start-si.md'
-        - 'Step 2: Create the Siddhi Application': 'quick-start-guide/getting-started/create-the-siddhi-application.md'
-        - 'Step 3: Test the Siddhi Application': 'quick-start-guide/getting-started/test-siddhi-application.md'
-        - 'Step 4: Deploy the Siddhi Application': 'quick-start-guide/getting-started/deploy-siddhi-application.md'
-        - 'Extend WSO2 SI': 'quick-start-guide/getting-started/extend-si.md'
+      - 'Streaming Integration Overview': 'quick-start-guide/getting-started/getting-started-guide-overview.md'
+      - 'Step 1: Download and Install Streaming Integrator': 'quick-start-guide/getting-started/download-install-and-start-si.md'
+      - 'Step 2: Create the Siddhi Application': 'quick-start-guide/getting-started/create-the-siddhi-application.md'
+      - 'Step 3: Deploy the Siddhi Application': 'quick-start-guide/getting-started/deploy-siddhi-application.md'
+      - 'Step 4: Run the Siddhi Application': 'quick-start-guide/getting-started/test-siddhi-application.md'
+      - 'Step 5: Update the Siddhi Application': 'quick-start-guide/getting-started/update-the-siddhi-application.md'
+      - 'Step 6: Handle Errors': 'quick-start-guide/getting-started/handle-errors.md'
+      - 'Step 7: Monitor Statistics': 'quick-start-guide/getting-started/monitor-statistics.md'
     - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
     - 'Architecture': 'overview/architecture.md'
     - 'Key Concepts': 'concepts/concepts.md'
@@ -73,6 +75,7 @@ nav:
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
       - 'Handling Errors': 'guides/handling-errors.md'
       - 'Performing ETL Operations': 'guides/performing-etl-tasks.md'
+      - 'Monitoring ETL Statistics via Grafana': 'guides/viewing-dashboards.md'
     - 'Tutorials':
       - 'Tutorials Overview': 'examples/tutorials-overview.md'
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
@@ -204,9 +207,13 @@ nav:
         - 'Publishing Events to a GCS Bucket': 'samples/GCSSinkSample.md'
   - 'Setup and Install':
     - 'Install':
-      - 'Installing in a VM': 'setup/installing-si-in-vm.md'
-      - 'Installing in Docker': 'setup/installing-si-using-docker.md'
-      - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
+      - 'Installing the Streaming Integrator':
+        - 'Installing via the Installer': 'setup/installing-si-in-vm.md'
+        - 'Installing via the Binary': 'setup/installing-si-binary.md'
+        - 'Installing as a Windows Service': 'setup/installing-as-windows-service.md'
+      - 'Running the Streaming Integrator in Containers':
+        - 'Installing in Docker': 'setup/installing-si-using-docker.md'
+        - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
     - 'Migrate':
       - 'Migrating from WSO2 SP': 'setup/migrating-from-stream-processor.md'
       - 'Upgrading from Streaming Integrator 1.0.0': 'setup/upgrading-from-previous-version.md'
@@ -244,7 +251,8 @@ nav:
     - 'Monitoring SI via Grafana Dashboards':
       - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
       - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
-      - 'Monitoring the WSO2 SI with Grafana': 'admin/viewing-dashboards.md'
+      - 'Monitoring the WSO2 SI with Grafana': 'admin/monitoring-si-performance-via-grafana.md'
+      - 'Monitoring ETL Flows with Grafana': 'admin/viewing-dashboards.md'
     - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'

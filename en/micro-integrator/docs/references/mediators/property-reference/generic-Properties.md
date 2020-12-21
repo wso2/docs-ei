@@ -761,13 +761,139 @@ Generic properties allow you to configure messages as they're processed by the 
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
-<td><div class="content-wrapper">
+<td>
+	<div class="content-wrapper">
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
-<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;property name=<span class="st">&quot;QUOTE_STRING_IN_PAYLOAD_FACTORY_JSON&quot;</span> value=<span class="st">&quot;true&quot;</span>/&gt; </span></code></pre></div>
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;property name=<span class="st">&quot;QUOTE_STRING_IN_PAYLOAD_FACTORY_JSON&quot;</span> value=<span class="st">&quot;true&quot;</span>/&gt; </span></code></pre>
 </div>
 </div>
-</div></td>
+</div>
+</div>
+</td>
 </tr>
 </tbody>
+</table>
+
+## RabbitMQ Properties
+
+The following generic properties can be used in the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md) for RabbitMQ use cases.
+
+### SET_ROLLBACK_ONLY
+
+<table>
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			SET_ROLLBACK_ONLY
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Possible Values
+		</td>
+		<td>
+			true/false
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Scope
+		</td>
+		<td>
+			default
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Description
+		</td>
+		<td>
+			When a message is read from a RabbitMQ message queue, it will be sent to a service running in the backend. If a failure occurs, the Micro Integrator will do a <b>basicReject</b> with the <b>requeue</b> flag set to 'false'. In that case, the user must <a href="../../../../use-cases/examples/rabbitmq_examples/move-msgs-to-dlq-rabbitmq">configure a Dead Letter Exchange</a> to avoid losing messages. The same concept could be used to <a href="../../../../use-cases/examples/rabbitmq_examples/retry-delay-failed-msgs-rabbitmq">control the number of retries and to delay messages</a>.</br></br>
+			Note that you need to set the SET_ROLLBACK_ONLY property in the fault handler (e.g., the fault sequence). 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Example
+		</td>
+		<td>
+			<div class="content-wrapper">
+			<div class="code panel pdl" style="border-width: 1px;">
+			<div class="codeContent panelContent pdl">
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;property name=<span class="st">&quot;SET_ROLLBACK_ONLY&quot;</span> value=<span class="st">&quot;true&quot;</span> scope=<span class="st">&quot;default&quot;</span> type=<span class="st">&quot;STRING&quot;</span>&gt;&lt;/property&gt;</span></code></pre></div>
+			</div>
+			</div>
+			</div>
+		</td>
+	</tr>
+</table>
+
+### SET_REQUEUE_ON_ROLLBACK
+
+<table>
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Name
+		</td>
+		<td>
+			SET_REQUEUE_ON_ROLLBACK
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Possible Values
+		</td>
+		<td>
+			true/false
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Scope
+		</td>
+		<td>
+			default
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Description
+		</td>
+		<td>
+			If this property is set to true in the fault sequence, when a message is read from a RabbitMQ message queue, the Micro Integrator will do a <b>basicReject</b> with the <b>requeue</b> flag set to 'true'. This allows RabbitMQ to immediately redeliver the rejected messages to the consumer.</br></br>
+			Note that you need to set the SET_REQUEUE_ON_ROLLBACK property in the fault handler (e.g., the fault sequence). 
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Example
+		</td>
+		<td><div class="content-wrapper">
+			<div class="code panel pdl" style="border-width: 1px;">
+			<div class="codeContent panelContent pdl">
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;property name=<span class="st">&quot;SET_REQUEUE_ON_ROLLBACK&quot;</span> value=<span class="st">&quot;true&quot;</span> scope=<span class="st">&quot;default&quot;</span> type=<span class="st">&quot;STRING&quot;</span>&gt;&lt;/property&gt;</span></code></pre></div>
+			</div>
+			</div>
+			</div>
+		</td>
+	</tr>
 </table>

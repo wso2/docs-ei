@@ -67,7 +67,7 @@ Using connectors provide the following advantages:
 
 ## How to use connectors
 
-When configuring the integration logic, you need to use Integration Studio. When ready, you can export the project along with dependency connectors to the WSO2 EI runtime. See [documentation on adding connectors](../../develop/creating-artifacts/adding-connectors/) for more information.
+When configuring the integration logic, you need to use Integration Studio. When ready, you can export the project along with dependency connectors to the WSO2 EI runtime. See [documentation on adding connectors](../../../develop/creating-artifacts/adding-connectors/) for more information.
 
 See the following video for a quick look at how to use connectors.
 

@@ -34,7 +34,7 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
   </tr>
 </table>
 
-### Optional Parameters
+### Other Parameters (Optional)
 
 <table>
    <tr>
@@ -78,11 +78,16 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
       </tr>
       <tr>
          <td>rabbitmq.queue.autodeclare</td>
-         <td>Whether to create queues if they are not present. However, you should set this parameter only if queues are not declared prior on the broker. Setting this parameter in the publish URL to <code>false</code> improves RabbitMQ transport performance.</td>
+         <td>
+           Whether or not to declare the queue. If set to <code>true</code>, the Micro Integrator creates queues if they are not already
+present. If set to <code>false</code>, the Micro Integrator will assume that a queue is already available. However, you should set this parameter to true only if queues are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
+         </td>
       </tr>
       <tr>
          <td>rabbitmq.exchange.autodeclare</td>
-         <td>Whether to create exchanges if they are not present. However, you should set this parameter only if exchanges are not declared prior on the broker. Setting this parameter in the publish URL to <code>false</code> improves RabbitMQ transport performance.</td>
+         <td>
+            Whether or not to declare the exchange. If set to <code>true</code>, the Micro Integrator creates exchanges. If set to <code>false</code>, the Micro Integrator will assume that an exchange is already available. However, you should set this parameter to true only if exchanges are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
+          </td>
       </tr>
       <tr>
          <td>rabbitmq.exchange.type</td>
@@ -161,8 +166,29 @@ To enable SSL support in RabbitMQ, you need to configure the following paramet
   <tr>
     <td>rabbitmq.connection.ssl.version</td>
     <td>
-       The SSL protocols that are supported.
+       When SSL is enabled, you can specify the SSL protocols that are supported.
     </td>
+  </tr>
+</table>
+
+!!! Tip
+    Note that keystore information is not required for an SSL connection if the <code>fail_if_no_peer_cert</code> parameter is set to 'false' in the RabbitMQ broker. You only need to enable SSL in the Micro Integrator (using the `rabbitmq.connection.ssl.enabled` parameter).
+
+    However, if the <code>fail_if_no_peer_cert</code> parameter is set to 'true' in RabbitMQ, the keystore configurations (given below) are also required for the Micro Integrator.
+
+    Shown below is an example of the config file where `fail_if_no_peer_cert` is set to `false`:
+    ```
+    ssl_options.cacertfile = /path/to/ca_certificate.pem
+    ssl_options.certfile   = /path/to/server_certificate.pem
+    ssl_options.keyfile    = /path/to/server_key.pem
+    ssl_options.verify     = verify_peer
+    ssl_options.fail_if_no_peer_cert = false
+    ```
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Description</th>
   </tr>
   <tr>
     <td>rabbitmq.connection.ssl.keystore.location</td>
@@ -332,3 +358,7 @@ In your integration solution, the following RabbitMQ send parameters can be spec
       </tr>
    </tbody>
 </table>
+
+### Mediator Properties
+
+In addition to the parameters described above, you can define RabbitMQ properties using the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).

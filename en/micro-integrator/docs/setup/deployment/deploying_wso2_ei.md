@@ -37,7 +37,7 @@ Most of the integration artifacts in your deployment are stateless and don't act
 
 When the nodes in the cluster need to communicate with each other, the Micro Integrator uses RDBMS-based coordination among the server nodes. That is, all the nodes communicate via a database. Hence, you need to have a database to enable coordination among the artifacts.
 
-1.  Create a database named `clusterdb`. Select a database type from the following list:
+1.  Create a database named `clusterdb`.
 
     - [Setting up a MySQL database](../../../setup/databases/setting-up-MySQL)
     - [Setting up an MSSQL database](../../../setup/databases/setting-up-MSSQL)
@@ -136,11 +136,15 @@ When you have scheduled tasks in your integration deployment, each task should o
 -   Default resolver
 
     By default, tasks are resolved by selecting a random node from the available list of nodes in the cluster. All the tasks are resolved to the selected node. The tasks will be resolved to some other node only if the first node leaves the cluster. 
-
+    
+    This resolver is useful when you want all the tasks to run on a single node at a given point of time.
+    
 -   Round robin resolver
 
     This class distributes the tasks among the nodes in a round robin manner. In addition to that, it accepts a parameter named `task_server_count`, which specifies the number of nodes that should be present in the cluster before starting the task resolving process.
-
+    
+    This resolver can be used in scenarios where you want to distribute the tasks equally among all the nodes available in the cluster.
+    
     ```toml
     [task_handling]
     resolver_class = "org.wso2.micro.integrator.ntask.coordination.task.resolver.RoundRobinResolver"
@@ -148,10 +152,15 @@ When you have scheduled tasks in your integration deployment, each task should o
     [[task_resolver]]
     task_server_count = "3"
     ```
+    
+    !!! Note
+        The `task_server_count` applies each time a task is resolved. That is, when a node leaves the cluster, the task will be resolved (assigned) to another node only if the `task_server_count` is satisfied.
 
 -   Task node resolver
 
     This class will resolve tasks to a predefined set of nodes (task nodes) in a round robin manner. The `task_nodes` need to be defined as the `resolver_class` property.
+    
+    This resolver can be used in scenarios where you want to run tasks only on particular nodes of the cluster.
 
     ```toml
     [task_handling]

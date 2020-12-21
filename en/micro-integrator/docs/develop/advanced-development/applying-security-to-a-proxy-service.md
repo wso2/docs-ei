@@ -46,6 +46,7 @@ Follow the instructions given below to create a **WS-Policy** resource in your r
     !!! Info 
         Change the tokenStoreClass in the policy file to 'org.wso2.micro.integrator.security.extensions.SecurityTokenStore'
 
+<!--
 #### Specifying role-based access?
 
 For certain scenarios, you can specify user roles. After you select the
@@ -67,6 +68,7 @@ Either define the user roles inline or retrieve the user roles from the server.
      [authorization_manager]
      properties.CaseSensitiveAuthorizationRules = "true"
      ```
+-->
 
 ## Step 2: Add the security policy to the proxy service
 

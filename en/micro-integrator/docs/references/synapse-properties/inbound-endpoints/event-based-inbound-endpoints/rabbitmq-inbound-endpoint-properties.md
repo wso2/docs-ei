@@ -99,6 +99,20 @@ The following optional properties can be configured when [creating an RabbitMQ i
 Note that the optional properties related to defining a **queue** should contain the `rabbitmq.queue.optional.` prefix,
 and the optional properties related to defining an **exchange** should contain the `rabbitmq.exchange.optional.` prefix.
 
+!!! Tip
+    Note that keystore information is not required for an SSL connection if the <code>fail_if_no_peer_cert</code> parameter is set to 'false' in the RabbitMQ broker. You only need to enable SSL in the Micro Integrator (using the `rabbitmq.connection.ssl.enabled` parameter).
+
+    However, if the <code>fail_if_no_peer_cert</code> parameter is set to 'true' in RabbitMQ, the keystore configurations (given below) are also required for the Micro Integrator.
+
+    Shown below is an example of the config file where `fail_if_no_peer_cert` is set to `false`:
+    ```
+    ssl_options.cacertfile = /path/to/ca_certificate.pem
+    ssl_options.certfile   = /path/to/server_certificate.pem
+    ssl_options.keyfile    = /path/to/server_key.pem
+    ssl_options.verify     = verify_peer
+    ssl_options.fail_if_no_peer_cert = false
+    ```
+
 <table>
    <thead>
       <tr>
@@ -232,8 +246,9 @@ and the optional properties related to defining an **exchange** should contain t
          <td>
            rabbitmq.queue.autodeclare
          </td>
-         <td>Whether or not to declare the queue. If set to 'false', 
-         the Micro Integrator assumes that a queue is already available
+         <td>
+           Whether or not to declare the queue. If set to <code>true</code>, the Micro Integrator creates queues if they are not already
+present. If set to <code>false</code>, the Micro Integrator will assume that a queue is already available. However, you should set this parameter to true only if queues are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
          </td>
       </tr>
       <tr>
@@ -259,9 +274,8 @@ and the optional properties related to defining an **exchange** should contain t
             rabbitmq.exchange.autodeclare
          </td>
          <td>
-         Whether or not to declare the exchange. If set to 'false', 
-         the Micro Integrator will assume that an exchange is already available.
-         </td>
+            Whether or not to declare the exchange. If set to <code>true</code>, the Micro Integrator creates exchanges. If set to <code>false</code>, the Micro Integrator will assume that an exchange is already available. However, you should set this parameter to true only if exchanges are not already declared in the RabbitMQ server. Setting this parameter to false in the publish URL improves RabbitMQ transport performance.
+          </td>
       </tr>
       <tr>
          <td>
@@ -315,7 +329,7 @@ recreate the connection.
 If you want to enable connection recovery, you should configure the
 following parameters in the inbound endpoint:
 
-```
+```xml
 <parameter name="rabbitmq.connection.retry.interval" locked="false">10000</parameter>
 <parameter name="rabbitmq.connection.retry.count" locked="false">5</parameter>   
 ```
@@ -324,3 +338,7 @@ If the parameters are configured with sample values as given above, the
 server makes 5 retry attempts with a time interval of 10000 miliseconds between each
 retry attempt to reconnect when the connection is lost. If reconnecting
 fails after 5 retry attempts, the Micro Integrator terminates the connection.
+
+### Mediator Properties
+
+In addition to the parameters described above, you can define RabbitMQ properties using the [Property mediator](../../../../../references/mediators/property-Mediator) and the [Property Group mediator](../../../../../references/mediators/property-Group-Mediator).

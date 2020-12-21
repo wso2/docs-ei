@@ -20,34 +20,43 @@ You can use the dashboard to perform the following administration tasks related 
 
 -   <b>Manage users</b>
 
-    You can view details of users stored in the external user store. If you are logged in to the dashsboard with administrator credentials, you can also add new users, and remove users from the user store.
+    You can view details of users stored in the [external user store](../../setup/user_stores/managing_users). If you are logged in to the dashboard with administrator credentials, you can also add new users, and remove users from the user store.
 
 ## Setting up the Dashboard
 
-See the following topics in the installation guide for instructions on how to install and set up the Micro Integrator and the Dashboard:
+-	See the following topics in the installation guide for instructions on how to install and set up the Micro Integrator and the Dashboard:
 
-<table>
-    <tr>
-        <td>
-            <a href="../../setup/installation/install_in_vm_installer">Using the Installer</a>
-        </td>
-        <td>
-            Download and run the <b>product installer</b> and then follow the instructions to start the Micro Integrator and the dashboard.
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="../../setup/installation/install_in_vm_binary">Using the Binary</a>
-        </td>
-        <td>
-            Download the binary distribution of the product, and then follow the instructions to start the Micro Integrator and the dashabord.
-        </td>
-    </tr>
-</table>
+	<table>
+	    <tr>
+	        <td>
+	            <a href="../../setup/installation/install_in_vm_installer">Using the Installer</a>
+	        </td>
+	        <td>
+	            Download and run the <b>product installer</b> and then follow the instructions to start the Micro Integrator and the dashboard.
+	        </td>
+	    </tr>
+	    <tr>
+	        <td>
+	            <a href="../../setup/installation/install_in_vm_binary">Using the Binary</a>
+	        </td>
+	        <td>
+	            Download the binary distribution of the product, and then follow the instructions to start the Micro Integrator and the dashabord.
+	        </td>
+	    </tr>
+	</table>
+
+-	Set up the [Micro Integrator user store](../../setup/user_stores/setting_up_a_userstore).
+
+	!!! Tip
+		Note the following about your user store configurations.
+
+		-	The user credentials for signing in to the dashboard should be stored in your user store. This can be the default **file-based user store** or an **external LDAP/RDBMS** user store.
+		-	[User management](../../setup/user_stores/managing_users) is possible only if you have an RDBMS or LDAP user store for your Micro Integrator.
+		-	If you have an [external RDBMS user store](../../setup/user_stores/setting_up_a_userstore/#configuring-an-rdbms-user-store), be sure that the RDBMS driver is correctly added to the `<MI_HOME>/lib` folder. Without the driver, you will not be able to sign in.
 
 ## Signing in to the Dashboard
 
-Once you [set up and start the dashboard](#setting-up-the-dashboard), you can access the dashboard URL from the following URL: `https://localhost:9743/dashboard/login`
+Once you [set up and start the dashboard](#setting-up-the-dashboard), you can access the dashboard URL.
   
 1.  Copy the following dashboard URL to your browser:
 

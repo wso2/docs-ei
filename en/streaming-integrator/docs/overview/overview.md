@@ -1,4 +1,3 @@
-
 # Introduction
 
 WSO2 Streaming Integrator(SI) is a streaming data processing server that integrates streaming data and takes action based on streaming data. The streaming integration capabilities of EI are delivered via this runtime
@@ -16,15 +15,14 @@ WSO2 SI can be effectively used for:
 
 ## Key Features
 
-WSO2 SI is powered by [Siddhi.io](https://siddhi.io/), a well known cloud native open source stream processing engine. Siddhi allows you to write complex stream processing logic using an intuitive SQL-like language known as [SiddhiQL](https://siddhi.io/en/v5.0/docs/). You can perform the following actions on the fly using Siddhi queries and constructs.
+WSO2 SI is powered by [Siddhi.io](https://siddhi.io/), a well known cloud native open source stream processing engine. Siddhi allows you to write complex stream processing logic using an intuitive SQL-like language known as [SiddhiQL](https://siddhi.io/en/v5.1/docs/). You can perform the following actions on the fly using Siddhi queries and constructs.
 
-
-- [**Transforming**](../guides/transforming-data.md) your data from one format to another (e.g., to/from XML, JSON, AVRO, etc.).
-- [**Enriching**](../guides/enriching-data.md) data received from a specific source by combining it with databases, services, etc., via inline calculations and custom functions.
-- [**Correlating**](../guides/correlating-events.md#correlate-a-stream-and-a-static-datasource-to-enrich.md) data streams by joining multiple streams to create an aggregate stream.
-- [**Cleaning**](../guides/cleansing-data.md) data by filtering it and by modifying the content (e.g., obfuscating) in messages.
-- [Deriving **insights**](../guides/correlating-events.md#correlating-events-to-find-a-pattern.md) by identifying interesting patterns and sequences of events in data streams.
-- [**Summarizing**](../guides/summarizing-data.md) data as and when it is generated using temporal windows and incremental time series aggregations.
+- [**Extracting data from static sources in real time**](../guides/extracting-data-from-static-sources-in-real-time.md).
+- [**Loading and writing data**](../guides/loading-and-writing-date.md) to databases, files and cloud based storages.
+- [**Receiving data in transit**](../guides/receiving-data-in-transit.md) from message brokers and data publishers.
+- [**Publishing Data**](../guides/publishing-data.md) to destinations.
+- [**Stream processing**](../guides/processing-data.md) activities including cleansing, transforming, enriching correlating, and summarizing data.
+- [**Performing real time ETL**](../guides/performing-etl-tasks.md).
  
  ![Streaming Integrator/ Workflow](../images/overview/streaming-integrator.png)
 
@@ -36,10 +34,8 @@ Synapse integration flows deployed in [WSO2 Micro Integration(MI)](https://githu
 
 ## Tooling
 
-WSO2 SI is coupled with the [Streaming Integrator Tooling](../develop//streaming-integrator-studio-overview.md); a comprehensive streaming integration flow designer for [**developing**]((../develop/creating-a-Siddhi-Application.md)) Siddhi applications
+WSO2 SI is coupled with the [Streaming Integrator Tooling](../develop//streaming-integrator-studio-overview.md); a comprehensive streaming integration flow designer for [**developing**](../develop/creating-a-Siddhi-Application.md)) Siddhi applications
  by writing queries or via the drag-and-drop functionality, [**testing**](../develop/testing-a-Siddhi-Application.md) them thoroughly before using them in production, and then [**deploying**](../develop/deploying-Streaming-Applications.md) them in the SI server or [exporting them to be deployed as a K8 or a Docker image](../develop/exporting-Siddhi-Applications.md).
-
-
 
 ## Centralized and Decentralized Deployment
 

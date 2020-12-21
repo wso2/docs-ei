@@ -15,6 +15,11 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
             <th>Required</th>
         </tr>
         <tr>
+            <td>name</td>
+            <td>Unique name to identify the connection.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
             <td>bootstrapServers</td>
             <td>The Kafka brokers listed as host1:port1 and host2:port2.</td>
             <td>Yes</td>
@@ -260,8 +265,38 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
             <td>Optional</td>
         </tr>
         <tr>
-            <td>maxPoolSize</td>
-            <td>The maximum number of message requests that can share the Kafka connection.</td>
+            <td>poolingEnabled</td>
+            <td>Indicates whether or not connection pooling is enabled. Set to 'true' if pooling is enabled and 'false' otherwise.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>maxActiveConnections</td>
+            <td>Maximum number of active connections in the pool.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>maxIdleConnections</td>
+            <td>Maximum number of idle connections in the pool.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>maxWaitTime</td>
+            <td>Maximum number of idle connections in the pool.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>minEvictionTime</td>
+            <td>The minimum amount of time an object may remain idle in the pool before it is eligible for eviction.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>evictionCheckInterval</td>
+            <td>The number of milliseconds between runs of the object evictor.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>exhaustedAction</td>
+            <td>The behavior of the pool when the pool is exhausted (WHEN_EXHAUSTED_FAIL/WHEN_EXHAUSTED_BLOCK/WHEN_EXHAUSTED_GROW).</td>
             <td>Optional</td>
         </tr>
     </table>
@@ -280,6 +315,7 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
 
     ```xml
     <kafkaTransport.init>
+        <name>Sample_Kafka</name>
         <bootstrapServers>localhost:9092</bootstrapServers>
         <keySerializerClass>org.apache.kafka.common.serialization.StringSerializer</keySerializerClass>
         <valueSerializerClass>org.apache.kafka.common.serialization.StringSerializer</valueSerializerClass>
@@ -290,6 +326,7 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
 
     ```xml
     <kafkaTransport.init>
+        <name>Sample_Kafka</name>
         <bootstrapServers>localhost:9092</bootstrapServers>
         <keySerializerClass>org.apache.kafka.common.serialization.StringSerializer</keySerializerClass>
         <valueSerializerClass>org.apache.kafka.common.serialization.StringSerializer</valueSerializerClass>

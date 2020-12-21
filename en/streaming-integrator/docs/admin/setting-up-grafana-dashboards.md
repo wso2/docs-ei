@@ -1,6 +1,6 @@
-# Monitoring Statistics via Grafana Dashboards
+# Setting up Grafana to Display WSO2 SI Statistics
 
-This section explains how WSO2 Streaming Integrator can be configured to display statistics relating to change data in files and databases in Grafana dashboards.
+This section explains how WSO2 Streaming Integrator can be configured to display statistics in Grafana dashboards.
 
 !!! tip "Before you begin:"
     - Download and install Prometheus. For instructions, see [the Prometheus Getting Started Guide](https://prometheus.io/docs/prometheus/latest/getting_started/). <br/>
@@ -85,14 +85,14 @@ In order to configure a Grafana dashboard, follow the steps below:
     
     5. In the **Add data source** page -> **Settings** tab, update the configurations for Prometheus as follows.
     
-       ![prometheus configuration](../images/cdc-monitoring/prometheus-configurations.png)
+        ![prometheus configuration](../images/cdc-monitoring/prometheus-configurations.png)
     
-        1. Click **Default** to make Prometheus the default data source.
-        
-        2. Under **HTTP**, enter `http://localhost:9090` as the URL.
-        
-        3. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
-       ![Save and Test](../images/cdc-monitoring/save-and-test.png)
+            1. Click **Default** to make Prometheus the default data source.
+            
+            2. Under **HTTP**, enter `http://localhost:9090` as the URL.
+            
+            3. Click **Save & Test**. If the data source is successfully configured, it is indicated via a message.
+                ![Save and Test](../images/cdc-monitoring/save-and-test.png)
 
 5. **Load dashboards into Grafana**
 
@@ -109,49 +109,4 @@ In order to configure a Grafana dashboard, follow the steps below:
     5. If required, change the unique identifier displayed in the **Unique Identifier (uid)**.
     
     6. Click **Import**.
-    
-    The pre-configured dashboards in Streaming Integrator are as follows:
-    
-    - **cdc-statistics**
-    
-        This category includes the following dashboards:
-        
-        - CDC Scheduled Statistics
-        
-        - CDC Statistics
-        
-        - CDC Streaming Statistics
-        
-    - **file-statistics**
-    
-        This category includes the following dashboards:
-        
-        - File Sink Statistics
-        
-        - File Source Statistics
-        
-        - File Statistics
-        
-    - **overview-statistics**
-    
-        This category includes the following dashboards:
-        
-        - Overall Statistics
-        
-        - Application Statistics
-        
-    - **rdbms-statistics**
-    
-        This category includes the following dashboards:
-        
-        - RDBMS Statistics
-        
-        - RDBMS Table Statistics
-    
-    
-
-    
-
-
-
   

@@ -4,13 +4,15 @@
 
 This sample demonstrates how to pick a file from a folder and process it within the Micro Integrator. In this sample scenario you pick a file from the local directory, insert the records in the file to a database, send an email with the file content, trace and write the log and finally move the file to another directory.
 
+<!--
 The result of the query should be as follows when you query to view the records in the `test.info` table. You will see that there is no data in the table.
+-->
   
 ## Let's get started!
 
 ### Step 1: Set up the workspace
 
-Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.
 
 Let's setup a MySQL database:
 
@@ -169,8 +171,7 @@ connect to the database to insert data.
     </sequence>
     ```
 
-2.  Specify your database username, password, and URL in the
-    `          <pool>         ` section of the sequence.
+2.  Specify your database username, password, and URL in the `<pool>` section of the sequence.
 
 #### Create the `fileWriteSequence`
 
@@ -249,7 +250,9 @@ Package the artifacts in your composite application module to be able to deploy 
 
 ### Step 4: Configure the Micro Integrator server
 
-1.  Click the <b>Embedded Micro Integrator Configuration</b> icon on the upper menu to open the dialog box.
+1.  Click the <b>Embedded Micro Integrator Configuration</b> (<img src="../../../assets/img/tutorials/common/server-config-64x64.png" width="20">) icon on the upper menu to open the dialog box.
+
+    <img src="../../../assets/img/tutorials/file-processing/embedded-server-configs.png" width="500">
 
 2.  Add the following server configurations (to the `deployment.toml` file) using the upper section in the dialog box.
 
@@ -277,8 +280,8 @@ Package the artifacts in your composite application module to be able to deploy 
         ```
 
 3.  Click the (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="20">) icon in the lower section and add the following drivers and libraries. 
-    -   [MySQL database driver](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip).
-    -   [CSV smooks library](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip).
+    -   [MySQL database driver](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/EI7.1.0-file-processing-tutorial-JARS/mysql-connector-java-5.1.10-bin.jar).
+    -   [CSV smooks library](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/EI7.1.0-file-processing-tutorial-JARS/milyn-smooks-csv-1.2.4.jar).
 
     !!! Note
         These are copied to the `/lib` folder of the embedded Micro Integrator.
@@ -294,7 +297,7 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 The artifacts will be deployed in the embedded Micro Integrator and the server will start.
 
 - See the startup log in the **Console** tab.
-- See the URLs of the deployed services and APIs in the **Deployed Services** tab.
+- See the URLs of the deployed services and APIs in the **Runtime Services** tab.
 
 ### Step 6: Test the use case
 
