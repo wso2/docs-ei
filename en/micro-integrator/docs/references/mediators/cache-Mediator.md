@@ -31,7 +31,7 @@ within a specified period of time. This is done by evaluating the hash value of 
 
 !!! Note
     The message needs to be explicitly marked as *RESPONSE* using the following property when collecting the cached 
-    response in the same sequence after the use of call mediator. This will not be required if the back end is 
+    response in the same sequence after using the call mediator. This will not be required if the back end is 
     called via send mediator. See the [Example 1](#example-1) given below.
     ```xml
     <property name="RESPONSE" value="true" scope="default" type="STRING"/>
