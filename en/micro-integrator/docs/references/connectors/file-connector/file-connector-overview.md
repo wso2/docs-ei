@@ -4,6 +4,8 @@ The File Connector allows you to connect to different file systems and perform v
 
 WSO2 EI File Connector introduces the independent operations related to the file system and allows you to easily manipulate files based on your requirement. The file streaming functionality using Apache Commons I/O lets you copy large files and reduces the file transfer time between two file systems resulting in a significant improvement in performance that can be utilized in file operations.
 
+The supported file systems and types are listed in [the Apache Commons VFS supported file systems page](https://commons.apache.org/proper/commons-vfs/filesystems.html).
+
 To see the available File connector, navigate to the [connector store](https://store.wso2.com/store/assets/esbconnector/list) and search for "File".
 
 <img src="../../../../assets/img/connectors/file-connector-store.png" title="File Connector Store" width="200" alt="File Connector Store"/>

@@ -17,7 +17,6 @@ There are different connection configurations that can be used for the above pro
 
 <img src="../../../../assets/img/connectors/filecon-reference-22.png" title="types of file connections" width="800" alt="types of file connections"/>
 
-
 !!! Note
     The File connector internally uses the [Apache VFS Library](https://commons.apache.org/proper/commons-vfs/). According to the selected connection type, the following VFS connection urls will be generated.
 
@@ -41,6 +40,8 @@ There are different connection configurations that can be used for the above pro
     sftp://[ username[: password]@] hostname[: port][ relative-path]
     sftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
     ```
+
+The supported file systems and types are listed in [the Apache Commons VFS supported file systems page](https://commons.apache.org/proper/commons-vfs/filesystems.html).
 
 ### Common configs to all connection types
 
