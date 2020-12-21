@@ -3,7 +3,9 @@
 When you run multiple WSO2 Micro Integrator instances or a cluster of instances on a single server or virtual machine (VM),
 you must change the default ports to avoid port conflicts.
 
-## Default ports
+## Micro Integrator ports
+
+### Default ports
 
 By default, the Micro Integrator is **internally** configured with a port offset of 10. Listed below are the ports that are effective in the Micro Integrator by default (due to the internal port offset of 10).
 
@@ -64,99 +66,7 @@ By default, the Micro Integrator is **internally** configured with a port offset
 	</tr>
 </table>
 
-## Analytics ports
-
-By default, EI Analytics is **internally** configured with a port offset of 1. Listed below are the ports that are effective in EI Analytics by default (due to the internal port offset of 1).
-
-<table>
-	<tr>
-		<th>
-			Default Port
-		</th>
-		<th>
-			Description
-		</th>
-	</tr>
-	<tr>
-    	<td>
-    		<code>9645</code>
-    	</td>
-    	<td>
-    		The port of the Analytics Portal.
-    	</td>
-    </tr>
-	<tr>
-		<td>
-			<code>9091</code>
-		</td>
-		<td>
-			The HTTP port of the Management API of WSO2 Stream Processor.</br></br>
-			<b>Configuring the default HTTP port</b></br>
-			If required, you can manually change the HTTP port in the <code>deployment.yaml</code> file (stored in <code>EI_ANALYTICS_HOME/conf/server</code> folder) as shown below.
-			```yaml
-			wso2.transport.http:
-              listenerConfigurations:
-                -
-                  id: "default"
-                  host: "0.0.0.0"
-                  port: http_port
-			```
-			<b>Note</b>: With the default internal port offset, the effective port will be <code>http_port + 1</code>.
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<code>9444</code>
-		</td>
-		<td>
-			The HTTPS port of the Management API of WSO2 Stream Processor.</br></br>
-			<b>Configuring the default HTTPS port</b></br>
-			If required, you can manually change the HTTPS port in the <code>deployment.yaml</code> file (stored in <code>EI_ANALYTICS_HOME/conf/server</code> folder) as shown below.
-			```yaml
-			wso2.transport.http:            
-              listenerConfigurations:
-                -
-                  id: "msf4j-https"
-                  host: "0.0.0.0"
-                  port: https_port
-                  scheme: https
-			```
-			<b>Note</b>: With the default internal port offset, the effective port will be <code>https_port + 1</code>.
-		</td>
-	</tr>    
-	<tr>
-    	<td>
-    		<code>7712</code>
-    	</td>
-    	<td>
-    		Thrift SSL port for secure transport, where the client is authenticated to WSO2 Stream Processor.
-    	</td>
-    </tr>
-	<tr>
-    	<td>
-    		<code>7612</code>
-    	</td>
-    	<td>
-    		Thrift TCP port to receive events from clients to WSO2 Stream Processor.
-    	</td>
-    </tr>
-</table>
-
-## Random ports
-
-Certain ports are randomly opened during server startup. This is due to
-specific properties and configurations that become effective when the
-product is started. Note that the IDs of these random ports will change
-every time the server is started.
-
--   A random TCP port will open during server startup because of the
-    `-Dcom.sun.management.jmxremote` property set in
-    the server startup script. This property is used for the
-    JMX monitoring facility in JVM.
--   A random UDP port is opened at server startup due to the log4j
-    appender (`SyslogAppender`), which is configured in the `<MI_HOME>/conf/log4j2.properties` file.
-
-## Changing default ports
+### Changing default MI ports
 
 There are two ways to manually offset the [default ports](#default-ports).
 
@@ -183,3 +93,98 @@ There are two ways to manually offset the [default ports](#default-ports).
     [server]
     offset = 3
     ```
+
+## EI Analytics ports
+
+By default, EI Analytics is **internally** configured with a port offset of 1. Listed below are the ports that are effective in EI Analytics by default (due to the internal port offset of 1).
+
+<table>
+	<tr>
+		<th>
+			Default Port
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+    	<td>
+    		<code>9645</code>
+    	</td>
+    	<td>
+    		The port of the EI Analytics Portal.
+    	</td>
+    </tr>
+	<tr>
+		<td>
+			<code>9091</code>
+		</td>
+		<td>
+			The HTTP port of the management API of EI Analytics.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>9444</code>
+		</td>
+		<td>
+			The HTTPS port of the management API of EI Analytics.
+		</td>
+	</tr>    
+	<tr>
+    	<td>
+    		<code>7712</code>
+    	</td>
+    	<td>
+    		Thrift SSL port for secure transport, where the client is authenticated to WSO2 Stream Processor.
+    	</td>
+    </tr>
+	<tr>
+    	<td>
+    		<code>7612</code>
+    	</td>
+    	<td>
+    		Thrift TCP port to receive events from clients to WSO2 Stream Processor.
+    	</td>
+    </tr>
+</table>
+
+### Changing default EI Analytics ports
+
+If required, you can manually change the HTTP/HTTPS ports in the <code>deployment.yaml</code> file (stored in <code>EI_ANALYTICS_HOME/conf/server</code> folder) as shown below.
+
+!!! Note
+    	With the default internal port offset, the effective port will be <code>https_port + 1
+
+```yaml tab='HTTPS Port'
+wso2.transport.http:            
+listenerConfigurations:
+-
+	id: "msf4j-https"
+	host: "0.0.0.0"
+	port: https_port
+	scheme: https
+```
+
+```yaml tab='HTTP Port'
+wso2.transport.http:
+listenerConfigurations:
+-
+  id: "default"
+  host: "0.0.0.0"
+  port: http_port
+```
+
+## Random ports
+
+Certain ports are randomly opened during server startup. This is due to
+specific properties and configurations that become effective when the
+product is started. Note that the IDs of these random ports will change
+every time the server is started.
+
+-   A random TCP port will open during server startup because of the
+    `-Dcom.sun.management.jmxremote` property set in
+    the server startup script. This property is used for the
+    JMX monitoring facility in JVM.
+-   A random UDP port is opened at server startup due to the log4j
+    appender (`SyslogAppender`), which is configured in the `<MI_HOME>/conf/log4j2.properties` file.
