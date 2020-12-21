@@ -443,6 +443,66 @@ Now let's write Siddhi queries to perform different CRUD operations as follows:
         select u.name as name, sum(u.amount) - sum(s.amount) as amount 
         insert into StockTable;
         ```   
+    3. Save the Siddhi application. The complete Siddhiapplication with the latest queries you added looks as follows:
+    
+        ```
+        @App:name('StockManagementApp')
+        @App:description('Managing Raw Materials')
+        
+        define stream MaterialDispatchesStream (timestamp long, name string, amount double);
+        
+        @sink(type = 'log', prefix = "Search Results",
+        	@map(type = 'passThrough'))
+        define stream SearchResultsStream (timestamp long, name string, amount double);
+        
+        define stream MaterialPurchasesStream (timestamp long, name string, amount double);
+        
+        define stream PurchaseRecordRetrievalStream (name string);
+        
+        @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/dispatches?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
+        define table DispatchesTable (timestamp long, name string, amount double);
+        
+        @store(type = 'rdbms', ref = "purchases")
+        define table PurchasesTable (timestamp long, name string, amount double);
+        
+        @store(type = 'rdbms', datasource = "Stock_DB")
+        @primaryKey("name")
+        define table StockTable (name string, amount double);
+        
+        @info(name = 'Save material dispatch records')
+        from MaterialDispatchesStream 
+        select * 
+        insert into DispatchesTable;
+        
+        @info(name = 'Save purchase records')
+        from MaterialPurchasesStream 
+        select * 
+        insert into PurchasesTable;
+        
+        @info(name = 'Retrieve purchase records')
+        from PurchaseRecordRetrievalStream as s 
+        join PurchasesTable as p 
+        	on s.name == p.name 
+        select p.timestamp as timestamp, s.name as name, p.amount as amount 
+        	group by p.name 
+        insert into SearchResultsStream;
+        
+        @info(name = 'Add purchases to current stock ')
+        from MaterialPurchasesStream as p 
+        join StockTable as s 
+            on p.name == s.name 
+        select p.name as name, sum(p.amount) + s.amount as amount 
+            group by p.name 
+        insert into UpdateStockwithPurchasesStream;
+        
+        @info(name='Update stock with dispatches') 
+        from UpdateStockwithPurchasesStream as u 
+        join MaterialDispatchesStream as s 
+            on u.name == s.name 
+        select u.name as name, sum(u.amount) - sum(s.amount) as amount 
+        insert into ClosingStockStream;
+        ```
+    4. Simulate two events as follows:
     
         
     
