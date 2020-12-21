@@ -1,0 +1,32 @@
+{
+    "configs" : [
+        {
+            "title": "Connecting to the primary data store",
+            "options": [
+                {
+                    "name": "server",
+                    "required": true,
+                    "description": "You can count on it.This toml header groups the parameters that define the server node details.",
+                    "params": [
+                        {
+                            "name": "hostname",
+                            "type": "string",
+                            "required": true,
+                            "default": "\"localhost\"",
+                            "possible": "\"127.0.0.1\",\"localhost\",\"<any-ip-address>\"",
+                            "description": "The hostname of the WSO2 EI server instance."
+                        },
+                        {
+                            "name": "node_ip",
+                            "type": "string",
+                            "required": true,
+                            "default": "\"127.0.0.1\"",
+                            "description": "The IP address of the server node."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_primary-data-store.toml"
+        }
+    ]
+}
