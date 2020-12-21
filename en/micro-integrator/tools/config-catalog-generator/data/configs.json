@@ -1492,6 +1492,2278 @@
                 }
             ],
             "exampleFile": "_http-transport.toml"
+        },
+        {
+            "title": "HTTP/S Transport (blocking mode)",
+            "options": [
+                {
+                    "name": "transport.blocking.http",
+                    "required": true,
+                    "description": "This configuration header is required for configuring the parameters that are used for configuring the default HTTP/S passthrough transport in blocking mode.",
+                    "params": [
+                        {
+                            "name": "listener.enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "true",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "This parameter is used for enabling the HTTP passthrough transport listener in blocking mode."
+                        },
+                        {
+                            "name": "listener.port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "8200",
+                            "possible": "-",
+                            "description": "The port on which this transport receiver should listen for incoming messages."
+                        },
+                        {
+                            "name": "listener.hostname",
+                            "type": "string",
+                            "required": false,
+                            "default": "-"
+                        },
+                        {
+                            "name": "listener.origin_server",
+                            "type": "string",
+                            "required": false,
+                            "default": "-"
+                        },
+                        {
+                            "name": "listener.request_timeout",
+                            "type": "string",
+                            "required": false,
+                            "default": "-"
+                        },
+                        {
+                            "name": "listener.request_tcp_no_delay",
+                            "type": "string",
+                            "required": false,
+                            "default": "-"
+                        },
+                        {
+                            "name": "listener.request_core_thread_pool_size",
+                            "type": "string",
+                            "required": false,
+                            "default": "-"
+                        },
+                        {
+                            "name": "listener.request_max_thread_pool_size",
+                            "type": "string",
+                            "required": false,
+                            "default": "-"
+                        },
+                        {
+                            "name": "listener.thread_keepalive_time",
+                            "type": "string",
+                            "required": false,
+                            "default": "-"
+                        },
+                        {
+                            "name": "listener.thread_keepalive_time_unit",
+                            "type": "string",
+                            "required": false,
+                            "default": "-"
+                        },
+                        {
+                            "name": "sender.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "true",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "This parameter is used for enabling the HTTP passthrough transport sender in blocking mode."
+                        },
+                        {
+                            "name": "sender.enable_client_caching",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "-",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "This parameter is used to specify whether the HTTP client should save cache entries and the cached responses in the JVM memory or not."
+                        },
+                        {
+                            "name": "sender.transfer_encoding",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "\"chunked\" or \"true\"",
+                            "description": "This parameter enables you to specify whether the data sent should be chunked. It can be used instead of the Content-Length header if you want to upload data without having to know the amount of data to be uploaded in advance."
+                        },
+                        {
+                            "name": "sender.default_connections_per_host",
+                            "type": "integer",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The maximum number of connections that will be created per host server by the client. If the backend server is slow, the connections in use at a given time will take a long time to be released and added back to the connection pool. As a result, connections may not be available for some requests. In such situations, it is recommended to increase the value for this parameter."
+                        },
+                        {
+                            "name": "sender.omit_soap12_action",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "-",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "If following is set to 'true', optional action part of the Content-Type will not be added to the SOAP 1.2 messages."
+                        },
+                        {
+                            "name": "sender.so_timeout",
+                            "type": "integer",
+                            "required": true,
+                            "default": "-",
+                            "possible": "60000",
+                            "description": "If following is set to 'true', optional action part of the Content-Type will not be added to the SOAP 1.2 messages."
+                        },
+                        {
+                            "name": "sender.proxy_host",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "If the outgoing messages should be sent through an HTTP proxy server (in blocking mode), use this parameter to specify the target proxy."
+                        },
+                        {
+                            "name": "sender.proxy_port",
+                            "type": "integer",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The port through which the target proxy (specified by the 'sender.proxy_host' parameter) accepts HTTP traffic (in blocking mode)."
+                        },
+                        {
+                            "name": "sender.secured_proxy_host",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "If the outgoing messages should be sent through an HTTPS proxy server (in blocking mode), use this parameter to specify the target proxy."
+                        },
+                        {
+                            "name": "sender.secured_proxy_port",
+                            "type": "integer",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The port through which the target proxy (specified by the 'sender.secured_proxy_host' parameter) accepts HTTPS traffic (in blocking mode)."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_http-transport-blocking.toml"
+        },
+        {
+            "title": "HTTP proxy profile",
+            "options": [
+                {
+                    "name": "[transport.http.proxy_profile]",
+                    "required": true,
+                    "description": "This configuration header is required for configuring HTTP proxy profiles when you use multiple proxy servers to route messages to different endpoints.",
+                    "params": [
+                        {
+                            "name": "target_hosts",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "\"*\", \"example.com\", \"<any-ip-address>\"",
+                            "description": "A host name or a comma-separated list of host names for a target endpoint. Host names can be specified as regular expressions that match a pattern. When asterisks (*) is specified as the target hostname, it will match all the hosts in the profile."
+                        },
+                        {
+                            "name": "proxy_host",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The host name of the proxy server."
+                        },
+                        {
+                            "name": "proxy_port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The port number of the proxy server."
+                        },
+                        {
+                            "name": "proxy_username",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The password for authenticating the proxy server."
+                        },
+                        {
+                            "name": "bypass_hosts",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "A host name or a comma-separated list of host names that should not be sent via the proxy server. For example, if you want all requests sent to *.sample.com to be sent via a proxy server, while you need to directly send requests to hello.sample.com (without going through the proxy server), you can add hello.sample.com as a bypass host name."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_http-proxy-profile.toml"
+        },
+        {
+            "title": "HTTP secured proxy profile",
+            "options": [
+                {
+                    "name": "[transport.http.secured_proxy_profile]",
+                    "required": true,
+                    "description": "This configuration header is required for configuring secured HTTP proxy profiles when you use multiple (secured) proxy servers to route messages to different endpoints.",
+                    "params": [
+                        {
+                            "name": "target_hosts",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "\"*\", \"example.com\", \"<any-ip-address>\"",
+                            "description": "A host name or a comma-separated list of host names for a target endpoint. Host names can be specified as regular expressions that match a pattern. When asterisks (*) is specified as the target hostname, it will match all the hosts in the profile."
+                        },
+                        {
+                            "name": "proxy_host",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The host name of the proxy server."
+                        },
+                        {
+                            "name": "proxy_port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The port number of the proxy server."
+                        },
+                        {
+                            "name": "proxy_username",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The password for authenticating the proxy server."
+                        },
+                        {
+                            "name": "proxy_password",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The password for authenticating the proxy server."
+                        },
+                        {
+                            "name": "bypass_hosts",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "A host name or a comma-separated list of host names that should not be sent via the proxy server. For example, if you want all requests sent to *.sample.com to be sent via a proxy server, while you need to directly send requests to hello.sample.com (without going through the proxy server), you can add hello.sample.com as a bypass host name."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_http-secured-proxy-profile.toml"
+        },
+        {
+            "title": "VFS Transport",
+            "options": [
+                {
+                    "name": "transport.vfs",
+                    "required": true,
+                    "description": "This configuration header is required for configuring how the Micro Integrator communicates through the VFS transport.",
+                    "params": [
+                        {
+                            "name": "listener.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "true",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the VFS transport listener."
+                        },
+                        {
+                            "name": "listener.keystore.file_name",
+                            "type": "string",
+                            "required": false,
+                            "default": "MI_HOME/repository/resources/security/wso2carbon.jks",
+                            "possible": "-",
+                            "description": "The path to the keystore file that is used for securing a VFS connection. By default, the keystore file of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "listener.keystore.type",
+                            "type": "string",
+                            "required": false,
+                            "default": "JKS",
+                            "possible": "\"JKS\" or \"PKCS12\"",
+                            "description": "The type of the keystore file. By default, the keystore type of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "listener.keystore.password",
+                            "type": "string",
+                            "required": false,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The password of the keystore file that is used for securing a VFS connection. This keystore password is used when accessing the keys in the keystore. By default, the keystore password of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "listener.keystore.alias",
+                            "type": "string",
+                            "required": false,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the Micro Integrator server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file. By default, the alias of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "listener.keystore.key_password",
+                            "type": "string",
+                            "required": false,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The password of the private key that is included in the keystore. The private key is used to decrypt the data that has been encrypted using the keystore's public key. By default, the public key password of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "sender.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "wso2carbon",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the VFS transport sender."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_vfs-transport.toml"
+        },
+        {
+            "title": "MAIL Transport Listener (non-blocking mode)",
+            "options": [
+                {
+                    "name": "[transport.http.secured_proxy_profile]",
+                    "required": true,
+                    "description": "This configuration header is required for configuring how the Micro Integrator communicates through the VFS transport.",
+                    "params": [
+                        {
+                            "name": "listener.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "true",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the VFS transport listener."
+                        },
+                        {
+                            "name": "listener.keystore.file_name",
+                            "type": "string",
+                            "required": false,
+                            "default": "MI_HOME/repository/resources/security/wso2carbon.jks",
+                            "possible": "-",
+                            "description": "The path to the keystore file that is used for securing a VFS connection. By default, the keystore file of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "listener.keystore.type",
+                            "type": "string",
+                            "required": false,
+                            "default": "JKS",
+                            "possible": "\"JKS\" or \"PKCS12\"",
+                            "description": "The type of the keystore file. By default, the keystore type of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "listener.keystore.password",
+                            "type": "string",
+                            "required": false,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The password of the keystore file that is used for securing a VFS connection. This keystore password is used when accessing the keys in the keystore. By default, the keystore password of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "listener.keystore.alias",
+                            "type": "string",
+                            "required": false,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the Micro Integrator server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file. By default, the alias of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "listener.keystore.key_password",
+                            "type": "string",
+                            "required": false,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The password of the private key that is included in the keystore. The private key is used to decrypt the data that has been encrypted using the keystore's public key. By default, the public key password of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "sender.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "wso2carbon",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the VFS transport sender."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_vfs-transport.toml"
+        },
+        {
+            "title": "MAIL Transport Listener (non-blocking mode)",
+            "options": [
+                {
+                    "name": "transport.mail.listener",
+                    "required": true,
+                    "description": "This configuration header is required for configuring the MailTo transport listener implementation of the Micro Integrator in non-blocking mode. Note that the list of parameters given below can be used for the non-blocking transport listener as well as the blocking transport listener.",
+                    "params": [
+                        {
+                            "name": "enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the MAIL transport listener in the Micro Integrator."
+                        },
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The name of the transport receiver."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_mailto-transport-listener.toml"
+        },
+        {
+            "title": "MAIL Transport Listener (non-blocking mode)",
+            "options": [
+                {
+                    "name": "transport.blocking.mail.listener",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the MailTo transport listener in blocking mode. You can use the same list of parameters that are available for the non-blocking mail sender."
+                }
+            ],
+            "exampleFile": "_mailto-transport-listener-blocking.toml"
+        },
+        {
+            "title": "MAIL Transport Sender (non-blocking mode)",
+            "options": [
+                {
+                    "name": "[transport.mail.sender]",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the MailTo transport sender implementation of the Micro Integrator in non-blocking mode. Note that the list of parameters given below can be used for the non-blocking transport sender as well as the blocking transport sender.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "mailto",
+                            "possible": "-",
+                            "description": "The parameter for enabling the MAIL transport sender in the Micro Integrator."
+                        },
+                        {
+                            "name": "parameter.hostname",
+                            "type": "string",
+                            "required": true,
+                            "default": "smtp.gmail.com",
+                            "possible": "-",
+                            "description": "The mail server that serves outgoing mails from the Micro Integrator."
+                        },
+                        {
+                            "name": "parameter.port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "587",
+                            "possible": "-",
+                            "description": "The port of the mail server."
+                        },
+                        {
+                            "name": "parameter.enable_tls",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "This parameter specifies whether TLS is enabled for the MailTo transport."
+                        },
+                        {
+                            "name": "parameter.username",
+                            "type": "string",
+                            "required": true,
+                            "default": "demo_user",
+                            "possible": "-",
+                            "description": "The user name of the email account (mail sender). Note that in some email service providers, the user name is the same as the email address specified for 'parameter.from'."
+                        },
+                        {
+                            "name": "parameter.password",
+                            "type": "string",
+                            "required": true,
+                            "default": "mailpassword",
+                            "possible": "-",
+                            "description": "The password of the email account (mail sender)."
+                        },
+                        {
+                            "name": "parameter.from",
+                            "type": "string",
+                            "required": true,
+                            "default": "demo_user@wso2.com",
+                            "possible": "-",
+                            "description": "The email address from which mails will be sent."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_mailto-transport-sender.toml"
+        },
+        {
+            "title": "MAIL Transport Sender (blocking mode)",
+            "options": [
+                {
+                    "name": "[transport.blocking.mail.sender]",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the MailTo transport sender in blocking mode. You can use the same list of parameters that are available for the non-blocking mail sender."
+                }
+            ],
+            "exampleFile": "_mailto-transport-listener-blocking.toml"
+        },
+        {
+            "title": "JMS Transport Listener (non-blocking mode)",
+            "options": [
+                {
+                    "name": "[transport.jms.listener]",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the JMS transport listener implementation of the Micro Integrator in non-blocking mode. Note that the list of parameters given below can be used for the non-blocking transport listener as well as the blocking transport listener.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The user-defined name of the JMS listener."
+                        },
+                        {
+                            "name": "parameter.initial_naming_factory",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "JNDI initial context factory class. The class must implement the java.naming.spi.InitialContextFactory interface."
+                        },
+                        {
+                            "name": "parameter.provider_url",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "URL of the JNDI provider."
+                        },
+                        {
+                            "name": "parameter.connection_factory_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI name of the connection factory."
+                        },
+                        {
+                            "name": "parameter.cache_level",
+                            "type": "string",
+                            "required": false,
+                            "default": "consumer",
+                            "possible": "consumer",
+                            "description": "The cache level that should apply when JMS objects startup. When the Micro Integrator produces JMS messages, you need to specify this cache level in the deployment.toml file. If the Micro Integrator works as JMS listener, you need to specify the JMS cache level in the proxy service. See the list of service-level JMS parameters."
+                        },
+                        {
+                            "name": "parameter.naming_security_principal",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI Username."
+                        },
+                        {
+                            "name": "parameter.naming_security_credential",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI password."
+                        },
+                        {
+                            "name": "parameter.transactionality",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Preferred mode of transactionality. Note that JMS transactions only works with either the Callout mediator or the Call mediator in blocking mode."
+                        },
+                        {
+                            "name": "parameter.transaction_jndi_name",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "JNDI name to be used to require user transaction."
+                        },
+                        {
+                            "name": "parameter.cache_user_transaction",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not caching should be enabled for user transactions."
+                        },
+                        {
+                            "name": "parameter.session_transaction",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not the JMS session should be transacted."
+                        },
+                        {
+                            "name": "parameter.session_acknowledgement",
+                            "type": "string",
+                            "required": false,
+                            "default": "AUTO_ACKNOWLEDGE",
+                            "possible": "-",
+                            "description": "JMS session acknowledgment mode."
+                        },
+                        {
+                            "name": "parameter.jms_spec_version",
+                            "type": "string",
+                            "required": false,
+                            "default": "1.1",
+                            "possible": "-",
+                            "description": "JMS API version."
+                        },
+                        {
+                            "name": "parameter.username",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JMS connection username."
+                        },
+                        {
+                            "name": "parameter.password",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JMS connection password."
+                        },
+                        {
+                            "name": "parameter.destination",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI name of the destination."
+                        },
+                        {
+                            "name": "parameter.destination_type",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "\"queue\" or \"topic\"",
+                            "description": "The type of the destination."
+                        },
+                        {
+                            "name": "parameter.message_selector",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The message selector implementation."
+                        },
+                        {
+                            "name": "parameter.subscription_durable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "-",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not the connection factory is subscription durable."
+                        },
+                        {
+                            "name": "parameter.durable_subscriber_client_id",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The ClientId parameter when using durable subscriptions."
+                        },
+                        {
+                            "name": "parameter.durable_subscriber_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The name of the durable subscriber."
+                        },
+                        {
+                            "name": "parameter.pub_sub_local",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "-",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not the messages should should be published by the same connection in which the messages were received."
+                        },
+                        {
+                            "name": "parameter.receive_timeout",
+                            "type": "integer",
+                            "required": false,
+                            "default": "1000",
+                            "possible": "-",
+                            "description": "Time to wait for a JMS message during polling. Set this parameter value to a negative integer to wait indefinitely. Set to zero to prevent waiting."
+                        },
+                        {
+                            "name": "parameter.concurrent_consumer",
+                            "type": "integer",
+                            "required": false,
+                            "default": "1",
+                            "possible": "-",
+                            "description": "The number of concurrent threads to be started to consume messages when polling."
+                        },
+                        {
+                            "name": "parameter.max_concurrent_consumer",
+                            "type": "integer",
+                            "required": false,
+                            "default": "1",
+                            "possible": "-",
+                            "description": "The maximum number of concurrent threads to use during polling."
+                        },
+                        {
+                            "name": "parameter.idle_task_limit",
+                            "type": "integer",
+                            "required": false,
+                            "default": "10",
+                            "possible": "-",
+                            "description": "The number of idle runs per thread before it dies out."
+                        },
+                        {
+                            "name": "parameter.max_message_per_task",
+                            "type": "integer",
+                            "required": false,
+                            "default": "-1",
+                            "possible": "-",
+                            "description": "The maximum number of successful message receipts per thread."
+                        },
+                        {
+                            "name": "parameter.initial_reconnection_duration",
+                            "type": "integer",
+                            "required": false,
+                            "default": "10000",
+                            "possible": "-",
+                            "description": "The initial reconnection attempts duration in milliseconds."
+                        },
+                        {
+                            "name": "parameter.reconnect_progress_factor",
+                            "type": "integer",
+                            "required": false,
+                            "default": "2",
+                            "possible": "-",
+                            "description": "The factor by which the reconnection duration will be increased."
+                        },
+                        {
+                            "name": "parameter.max_reconnect_duration",
+                            "type": "integer",
+                            "required": false,
+                            "default": "3600000",
+                            "possible": "-",
+                            "description": "The maximum reconnection duration in milliseconds."
+                        },
+                        {
+                            "name": "parameter.reconnect_interval",
+                            "type": "integer",
+                            "required": false,
+                            "default": "3600000",
+                            "possible": "-",
+                            "description": "The reconnection interval in milliseconds."
+                        },
+                        {
+                            "name": "parameter.max_jsm_connection",
+                            "type": "integer",
+                            "required": false,
+                            "default": "10",
+                            "possible": "-",
+                            "description": "The maximum cached JMS connections in the producer level."
+                        },
+                        {
+                            "name": "parameter.max_consumer_error_retrieve_before_delay",
+                            "type": "integer",
+                            "required": false,
+                            "default": "20",
+                            "possible": "-",
+                            "description": "The number of retries on consume errors before sleep delay becomes effective."
+                        },
+                        {
+                            "name": "parameter.consume_error_delay",
+                            "type": "integer",
+                            "required": false,
+                            "default": "100",
+                            "possible": "-",
+                            "description": "The sleep delay when a consume error is encountered (in milliseconds)."
+                        },
+                        {
+                            "name": "parameter.consume_error_progression",
+                            "type": "integer",
+                            "required": false,
+                            "default": "2.0",
+                            "possible": "-",
+                            "description": "The factor by which the consume error retry sleep will be increased."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_jms-transport-listener.toml"
+        },
+        {
+            "title": "JMS Transport Listener (blocking mode)",
+            "options": [
+                {
+                    "name": "[transport.blocking.jms.listener]",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the JMS transport listener in blocking mode. You can use the same list of parameters that are available for the non-blocking JMS listener."
+                }
+            ],
+            "exampleFile": "_jms-transport-listener-blocking.toml"
+        },
+        {
+            "title": "JMS Transport Sender (non-blocking mode)",
+            "options": [
+                {
+                    "name": "[transport.jms.sender]",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the JMS transport sender implementation of the Micro Integrator in non-blocking mode.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The user-defined name of the JMS sender."
+                        },
+                        {
+                            "name": "parameter.initial_naming_factory",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "JNDI initial context factory class. The class must implement the java.naming.spi.InitialContextFactory interface."
+                        },
+                        {
+                            "name": "parameter.broker_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The name of the JMS broker."
+                        },
+                        {
+                            "name": "parameter.provider_url",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "URL of the JNDI provider."
+                        },
+                        {
+                            "name": "parameter.connection_factory_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI name of the connection factory."
+                        },
+                        {
+                            "name": "parameter.cache_level",
+                            "type": "string",
+                            "required": false,
+                            "default": "producer",
+                            "possible": "producer",
+                            "description": "The cache level that should apply when JMS objects startup. When the Micro Integrator produces JMS messages, you need to specify this cache level in the deployment.toml file. If the Micro Integrator works as JMS listener, you need to specify the JMS cache level in the proxy service. See the list of service-level JMS parameters."
+                        },
+                        {
+                            "name": "parameter.naming_security_principal",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI Username."
+                        },
+                        {
+                            "name": "parameter.naming_security_credential",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI password."
+                        },
+                        {
+                            "name": "parameter.transactionality",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Preferred mode of transactionality. Note that JMS transactions only works with either the Callout mediator or the Call mediator in blocking mode."
+                        },
+                        {
+                            "name": "parameter.transaction_jndi_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "JNDI name to be used to require user transaction."
+                        },
+                        {
+                            "name": "parameter.cache_user_transaction",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not caching should be enabled for user transactions."
+                        },
+                        {
+                            "name": "parameter.session_transaction",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not the JMS session should be transacted."
+                        },
+                        {
+                            "name": "parameter.session_acknowledgement",
+                            "type": "string",
+                            "required": false,
+                            "default": "AUTO_ACKNOWLEDGE",
+                            "possible": "-",
+                            "description": "JMS session acknowledgment mode."
+                        },
+                        {
+                            "name": "parameter.jms_spec_version",
+                            "type": "string",
+                            "required": false,
+                            "default": "1.1",
+                            "possible": "-",
+                            "description": "JMS API version."
+                        },
+                        {
+                            "name": "parameter.username",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JMS connection username."
+                        },
+                        {
+                            "name": "parameter.password",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JMS connection password."
+                        },
+                        {
+                            "name": "parameter.destination",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI name of the destination."
+                        },
+                        {
+                            "name": "parameter.destination_type",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "\"queue\" or \"topic\"",
+                            "description": "The type of the destination."
+                        },
+                        {
+                            "name": "parameter.default_reply_destination",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The JNDI name of the default reply destination."
+                        },
+                        {
+                            "name": "parameter.default_destination_type",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "\"queue\" or \"topic\"",
+                            "description": "The type of the reply destination."
+                        },
+                        {
+                            "name": "parameter.message_selector",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The message selector implementation."
+                        },
+                        {
+                            "name": "parameter.subscription_durable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "-",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not the connection factory is subscription durable."
+                        },
+                        {
+                            "name": "parameter.durable_subscriber_client_id",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The ClientId parameter when using durable subscriptions."
+                        },
+                        {
+                            "name": "parameter.durable_subscriber_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The name of the durable subscriber."
+                        },
+                        {
+                            "name": "parameter.pub_sub_local",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not the messages should should be published by the same connection in which the messages were received."
+                        },
+                        {
+                            "name": "parameter.receive_timeout",
+                            "type": "integer",
+                            "required": false,
+                            "default": "1000",
+                            "possible": "-",
+                            "description": "Time to wait for a JMS message during polling. Set this parameter value to a negative integer to wait indefinitely. Set to zero to prevent waiting."
+                        },
+                        {
+                            "name": "parameter.concurrent_consumer",
+                            "type": "integer",
+                            "required": false,
+                            "default": "1",
+                            "possible": "-",
+                            "description": "The number of concurrent threads to be started to consume messages when polling."
+                        },
+                        {
+                            "name": "parameter.max_concurrent_consumer",
+                            "type": "integer",
+                            "required": false,
+                            "default": "1",
+                            "possible": "-",
+                            "description": "The maximum number of concurrent threads to use during polling."
+                        },
+                        {
+                            "name": "parameter.idle_task_limit",
+                            "type": "integer",
+                            "required": false,
+                            "default": "10",
+                            "possible": "-",
+                            "description": "The number of idle runs per thread before it dies out."
+                        },
+                        {
+                            "name": "parameter.max_message_per_task",
+                            "type": "integer",
+                            "required": false,
+                            "default": "-1",
+                            "possible": "-",
+                            "description": "The maximum number of successful message receipts per thread."
+                        },
+                        {
+                            "name": "parameter.initial_reconnection_duration",
+                            "type": "integer",
+                            "required": false,
+                            "default": "10000",
+                            "possible": "-",
+                            "description": "The initial reconnection attempts duration in milliseconds."
+                        },
+                        {
+                            "name": "parameter.reconnect_progress_factor",
+                            "type": "integer",
+                            "required": false,
+                            "default": "2",
+                            "possible": "-",
+                            "description": "The factor by which the reconnection duration will be increased."
+                        },
+                        {
+                            "name": "parameter.max_reconnect_duration",
+                            "type": "integer",
+                            "required": false,
+                            "default": "3600000",
+                            "possible": "-",
+                            "description": "The maximum reconnection duration in milliseconds."
+                        },
+                        {
+                            "name": "parameter.reconnect_interval",
+                            "type": "integer",
+                            "required": false,
+                            "default": "3600000",
+                            "possible": "-",
+                            "description": "The reconnection interval in milliseconds."
+                        },
+                        {
+                            "name": "parameter.max_jsm_connection",
+                            "type": "integer",
+                            "required": false,
+                            "default": "10",
+                            "possible": "-",
+                            "description": "The maximum cached JMS connections in the producer level."
+                        },
+                        {
+                            "name": "parameter.max_consumer_error_retrieve_before_delay",
+                            "type": "integer",
+                            "required": false,
+                            "default": "20",
+                            "possible": "-",
+                            "description": "The number of retries on consume errors before sleep delay becomes effective."
+                        },
+                        {
+                            "name": "parameter.consume_error_delay",
+                            "type": "integer",
+                            "required": false,
+                            "default": "100",
+                            "possible": "-",
+                            "description": "The sleep delay when a consume error is encountered (in milliseconds)."
+                        },
+                        {
+                            "name": "parameter.consume_error_progression",
+                            "type": "integer",
+                            "required": false,
+                            "default": "2.0",
+                            "possible": "-",
+                            "description": "The factor by which the consume error retry sleep will be increased."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_jms-transport-sender.toml"
+        },
+        {
+            "title": "JMS Transport Sender (blocking mode)",
+            "options": [
+                {
+                    "name": "[transport.blocking.jms.sender]",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the JMS transport sender in blocking mode. You can use the same list of parameters that are available for the non-blocking JMS sender."
+                }
+            ],
+            "exampleFile": "_jms-transport-sender-blocking.toml"
+        },
+        {
+            "title": "JNDI Connection Factories",
+            "options": [
+                {
+                    "name": "transport.jndi.connection_factories",
+                    "required": true,
+                    "description": "This configuration header groups the parameters used for specifying the JNDI connection factory classes.",
+                    "params": [
+                        {
+                            "name": "TopicConnectionFactory",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'",
+                            "description": "The connection factory URL for connecting to a JMS queue."
+                        },
+                        {
+                            "name": "QueueConnectionFactory",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'",
+                            "description": "The connection factory URL for connecting to a JMS topic."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_jndi-connection-factories.toml"
+        },
+        {
+            "title": "JNDI Queues",
+            "options": [
+                {
+                    "name": "transport.jndi.queue",
+                    "required": true,
+                    "description": "This configuration header is used to specify the list of queues that are defined your JMS broker. The JNDI name of the queue, and the actual queue name should be specifed as a key-value pair as follows: jndi_name = queue_name.",
+                    "params": [
+                        {
+                            "name": "<jndi_queue_name>",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "<queue_name>",
+                            "description": "The jndi queue name and the actual queue name as a key-value pair."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_jndi-queues.toml"
+        },
+        {
+            "title": "JNDI Topics",
+            "options": [
+                {
+                    "name": "transport.jndi.topic",
+                    "required": true,
+                    "description": "This configuration header is used to specify the list of topics that are defined your JMS broker. The JNDI name of the topic, and the actual topic name should be specifed as a key-value pair as follows: jndi_name = topic_name.",
+                    "params": [
+                        {
+                            "name": "<jndi_topic_name>",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "<topic_name>",
+                            "description": "The jndi queue name and the actual topic name as a key-value pair."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_jndi-topics.toml"
+        },
+        {
+            "title": "RabbitMQ Listener",
+            "options": [
+                {
+                    "name": "[transport.rabbitmq.listener]",
+                    "required": true,
+                    "description": "This configuration header is required if you are configuring WSO2 Micro Integrator to receive messages from a RabbitMQ client. Read more about connecting the Micro Integator with RabbitMQ.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The name of the broker."
+                        },
+                        {
+                            "name": "parameter.hostname",
+                            "type": "string",
+                            "required": true,
+                            "default": "localhost",
+                            "possible": "-",
+                            "description": "The IP address of the server node."
+                        },
+                        {
+                            "name": "parameter.port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "5672",
+                            "possible": "-",
+                            "description": "The port on which the RabbitMQ broker can be accessed."
+                        },
+                        {
+                            "name": "parameter.username",
+                            "type": "string",
+                            "required": true,
+                            "default": "guest",
+                            "possible": "-",
+                            "description": "The user name for connecting to RabbitMQ broker."
+                        },
+                        {
+                            "name": "parameter.password",
+                            "type": "string",
+                            "required": true,
+                            "default": "guest",
+                            "possible": "-",
+                            "description": "The password for connecting to the RabbitMQ broker."
+                        },
+                        {
+                            "name": "parameter.connection_factory",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "org.apache.axis2.transport.rabbitmq.RabbitMQListener",
+                            "description": "The name of the connection factory."
+                        },
+                        {
+                            "name": "parameter.exchange_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "amq.direct",
+                            "possible": "-",
+                            "description": "Name of the RabbitMQ exchange to which the queue is bound. Use this parameter instead of rabbitmq.queue.routing.key, if you need to use the default exchange and publish to a queue."
+                        },
+                        {
+                            "name": "parameter.queue_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "MyQueue",
+                            "possible": "-",
+                            "description": "The queue name to send or consume messages. If you do not specify this parameter, you need to specify the rabbitmq.queue.routing.key parameter."
+                        },
+                        {
+                            "name": "parameter.queue_auto_ack",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The queue name to send or consume messages. If you do not specify this parameter, you need to specify the rabbitmq.queue.routing.key parameter."
+                        },
+                        {
+                            "name": "parameter.consumer_tag",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The client­ generated consumer tag to establish context."
+                        },
+                        {
+                            "name": "parameter.channel_consumer_qos",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The consumer qos value. You need to specify this parameter only if the rabbitmq.queue.auto.ack parameter is set to false."
+                        },
+                        {
+                            "name": "parameter.durable",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether the queue should remain declared even if the broker restarts."
+                        },
+                        {
+                            "name": "parameter.queue_exclusive",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether the queue should be exclusive or should be consumable by other connections."
+                        },
+                        {
+                            "name": "parameter.queue_auto_delete",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether to keep the queue even if it is not being consumed anymore."
+                        },
+                        {
+                            "name": "parameter.queue_routing_key",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The routing key of the queue."
+                        },
+                        {
+                            "name": "parameter.queue_auto_declare",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether to create queues if they are not present. However, you should set this parameter only if queues are not declared prior on the broker. Setting this parameter in the publish URL to false improves RabbitMQ transport performance."
+                        },
+                        {
+                            "name": "parameter.exchange_auto_declare",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether to create exchanges if they are not present. However, you should set this parameter only if exchanges are not declared prior on the broker. Setting this parameter in the publish URL to false improves RabbitMQ transport performance."
+                        },
+                        {
+                            "name": "parameter.exchange_type",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The type of the exchange."
+                        },
+                        {
+                            "name": "parameter.exchange_durable",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether the exchange should remain declared even if the broker restarts."
+                        },
+                        {
+                            "name": "parameter.exchange_auto_delete",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether to keep the exchange even if it is not bound to any queue anymore."
+                        },
+                        {
+                            "name": "parameter.default_destination_type",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "text/xml",
+                            "description": "The content type of the consumer. </br>Note that if the content type is specified in the message, this parameter does not override the specified content type."
+                        },
+                        {
+                            "name": "parameter.retry_interval",
+                            "type": "integer",
+                            "required": true,
+                            "default": "30000",
+                            "possible": "-",
+                            "description": "In the case of network failure or broker shut down, the Micro Integrator will attempt to reconnect a number of times (as sepcified by the parameter.retry_count parameter) with an interval (specified by this parameter) between the retry attempts."
+                        },
+                        {
+                            "name": "parameter.retry_interval",
+                            "type": "integer",
+                            "required": true,
+                            "default": "3",
+                            "possible": "-",
+                            "description": "In the case of network failure or broker shut down, the Micro Integrator will attempt to reconnect as many times as sepcified by this parameter with an interval (specified by the parameter.retry_interval parameter) between the retry attempts."
+                        },
+                        {
+                            "name": "parameter.ssl_enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "-",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether or not SSL is enabled for RabbitMQ connection. If you set this to 'true', be sure to update the keystore and trust store parameters given below."
+                        },
+                        {
+                            "name": "parameter.ssl_version",
+                            "type": "string",
+                            "required": true,
+                            "default": "SSL",
+                            "possible": "-",
+                            "description": "The SSL versions."
+                        },
+                        {
+                            "name": "parameter.keystore_location",
+                            "type": "string",
+                            "required": true,
+                            "default": "MI_HOME/repository/resources/security/wso2carbon.jks",
+                            "possible": "-",
+                            "description": "The path to the keystore file that is used for securing a RabbitMQ connection. By default, the keystore file of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "parameter.keystore_type",
+                            "type": "string",
+                            "required": true,
+                            "default": "JKS",
+                            "possible": "\"JKS\" or \"PKCS12\"",
+                            "description": "The type of the keystore file. By default, the keystore type of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "parameter.keystore_password",
+                            "type": "string",
+                            "required": true,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The password of the keystore file that is used for securing a RabbitMQ connection. This keystore password is used when accessing the keys in the keystore. By default, the keystore password of the primary keystore is enabled for this purpose."
+                        },
+                        {
+                            "name": "parameter.truststore_location",
+                            "type": "string",
+                            "required": true,
+                            "default": "MI_HOME/repository/resources/security/wso2truststore.jks",
+                            "possible": "-",
+                            "description": "The path to the keystore file that is used for storing the trusted digital certificates. By default, the product's trust store is configured for this purpose."
+                        },
+                        {
+                            "name": "parameter.truststore_type",
+                            "type": "string",
+                            "required": true,
+                            "default": "JKS",
+                            "possible": "\"JKS\" or \"PKCS12\"",
+                            "description": "The type of the keystore file that is used as the trust store. By default, the product's trust store is configured for this purpose."
+                        },
+                        {
+                            "name": "parameter.truststore_password",
+                            "type": "string",
+                            "required": true,
+                            "default": "wso2carbon",
+                            "description": "The password of the keystore file that is used as the trust store. By default, the product's trust store is configured for this purpose."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_rabbitmq-transport-listener.toml"
+        },
+        {
+            "title": "RabbitMQ Sender",            	
+            "options": [
+            	{
+                    "name": "transport.rabbitmq",
+                    "required": false,
+                    "description": "This configuration header is required for enabling the RabbitMQ listener in the Micro Integrator. Read more about connecting the Micro Integator with RabbitMQ.",
+                    "params": [
+                        {
+                            "name": "sender_enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Set this parameter to 'true' if you want to configure the Micro Integrator to send messages to a RabbitMQ client."
+                        }
+                    ]
+                },
+                {
+                    "name": "[transport.rabbitmq.sender]",
+                    "required": false,
+                    "description": "This configuration header is optional when you have the RabbitMQ sender enabled ([transport.rabbitmq]. Read more about connecting the Micro Integator with RabbitMQ.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The name of the broker."
+                        },
+                        {
+                            "name": "parameter.hostname",
+                            "type": "string",
+                            "required": true,
+                            "default": "localhost",
+                            "possible": "-",
+                            "description": "The IP address of the server node."
+                        },
+                        {
+                            "name": "parameter.port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "5672",
+                            "possible": "-",
+                            "description": "The port on which the RabbitMQ broker can be accessed."
+                        },
+                        {
+                            "name": "parameter.username",
+                            "type": "string",
+                            "required": true,
+                            "default": "guest",
+                            "possible": "-",
+                            "description": "The user name for connecting to RabbitMQ broker."
+                        },
+                        {
+                            "name": "parameter.password",
+                            "type": "string",
+                            "required": true,
+                            "default": "guest",
+                            "possible": "-",
+                            "description": "The password for connecting to the RabbitMQ broker."
+                        },
+                        {
+                            "name": "parameter.exchange_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "amq.direct",
+                            "possible": "-",
+                            "description": "Name of the RabbitMQ exchange to which the queue is bound. Use this parameter instead of rabbitmq.queue.routing.key, if you need to use the default exchange and publish to a queue."
+                        },
+                        {
+                            "name": "parameter.routing_key",
+                            "type": "string",
+                            "required": true,
+                            "default": "MyQueue",
+                            "possible": "-",
+                            "description": "The routing key of the queue."
+                        },
+                        {
+                            "name": "parameter.queue_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "MyQueue",
+                            "possible": "-",
+                            "description": "The queue name to send or consume messages. If you do not specify this parameter, you need to specify the rabbitmq.queue.routing.key parameter."
+                        },
+                        {
+                            "name": "parameter.reply_to_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The name of the call back­ queue. Specify this parameter if you expect a response."
+                        },
+                        {
+                            "name": "parameter.queue_delivery_mode",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "persistent",
+                            "description": "The delivery mode of the queue. Possible values are Non­-persistent and Persistent."
+                        },
+                        {
+                            "name": "parameter.exchange_type",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The type of the exchange."
+                        },
+                        {
+                            "name": "parameter.queue_name",
+                            "type": "string",
+                            "required": true,
+                            "default": "MyQueue",
+                            "possible": "-",
+                            "description": "The queue name to send or consume messages. If you do not specify this parameter, you need to specify the rabbitmq.queue.routing.key parameter."
+                        },
+                        {
+                            "name": "parameter.queue_durable",
+                            "type": "string",
+                            "required": true,
+                            "default": "MyQueue",
+                            "possible": "-",
+                            "description": "Whether the queue should remain declared even if the broker restarts. The default value is false."
+                        },
+                        {
+                            "name": "parameter.queue_exclusive",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Whether the queue should be exclusive or should be consumable by other connections. The default value is false."
+                        },
+                        {
+                            "name": "parameter.queue_auto_delete",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Specifies whether to keep the queue even if it is not being consumed anymore."
+                        },
+                        {
+                            "name": "parameter.exchange_auto_declare",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether to create exchanges if they are not present. However, you should set this parameter only if exchanges are not declared prior on the broker. Setting this parameter in the publish URL to false improves RabbitMQ transport performance."
+                        },
+                        {
+                            "name": "parameter.queue_auto_declare",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether to create queues if they are not present. However, you should set this parameter only if queues are not declared prior on the broker. Setting this parameter in the publish URL to false improves RabbitMQ transport performance."
+                        },
+                        {
+                            "name": "parameter.exchange_durable",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Specifies whether the exchange should remain declared even if the broker restarts."
+                        },
+                        {
+                            "name": "parameter.queue_auto_declare",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Whether to keep the queue even if it is not being consumed anymore. The default value is false."
+                        },
+                        {
+                            "name": "parameter.exchange_auto_declare",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Whether to create queues if they are not present. However, you should set this parameter only if queues are not declared prior on the broker. Setting this parameter in the publish URL to false improves RabbitMQ transport performance."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_rabbitmq-transport-sender.toml"
+        },
+        {
+            "title": "FIX Transport",            	
+            "options": [
+                {
+                    "name": "transport.fix",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to communicate through the FIX transport.",
+                    "params": [
+                        {
+                            "name": "listener.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the FIX transport listener."
+                        },
+                        {
+                            "name": "sender.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the FIX transport sender."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_fix-transport-sender.toml"
+        },
+        {
+            "title": "MQTT Transport",            	
+            "options": [
+                {
+                    "name": "transport.mqtt",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to communicate through the MQTT transport.",
+                    "params": [
+                        {
+                            "name": "listener.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the MQTT transport listener."
+                        },
+                        {
+                            "name": "listener.hostname",
+                            "type": "string",
+                            "required": true,
+                            "default": "$ref{server.hostname}",
+                            "possible": "-",
+                            "description": "The name of the host. By default, the hostname of the Micro Integrator server is used."
+                        },
+                        {
+                            "name": "listener.connection_factory",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The connection factory URL for connecting to a JMS topic."
+                        },
+                        {
+                            "name": "listener.server_port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "-",
+                            "possible": "\"1883\" or \"1885\"",
+                            "description": "The port ID."
+                        },
+                        {
+                            "name": "listener.client_id",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The client ID."
+                        },
+                        {
+                            "name": "listener.topic_name",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The name of the topic."
+                        },
+                        {
+                            "name": "listener.parameter.customParameter",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Replace 'customParameter' with a required parameter name."
+                        },
+                        {
+                            "name": "sender.enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the MQTT transport sender."
+                        },
+                        {
+                            "name": "sender.parameter.customParameter",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Replace 'customParameter' with a required parameter name."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_mqtt-transport-sender.toml"
+        },
+        {
+            "title": "SAP Transport",            	
+            "options": [
+                {
+                    "name": "transport.sap",
+                    "required": false,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to communicate with SAP.",
+                    "params": [
+                        {
+                            "name": "listener.idoc.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling SAP idoc transport listener."
+                        },
+                        {
+                            "name": "listener.bapi.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling SAP bapi transport listener."
+                        },
+                        {
+                            "name": "listener.idoc.class",
+                            "type": "string",
+                            "required": true,
+                            "default": "org.wso2.carbon.transports.sap.SAPTransportListener",
+                            "possible": "-",
+                            "description": "The class that implements the SAP transport listener for the Sap IDoc libary."
+                        },
+                        {
+                            "name": "listener.bapi.class",
+                            "type": "string",
+                            "required": true,
+                            "default": "org.wso2.carbon.transports.sap.SAPTransportListener",
+                            "possible": "-",
+                            "description": "The class that implements the SAP transport listener for the SAP BAPI library."
+                        },
+                        {
+                            "name": "sender.idoc.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the SAP idoc transport sender."
+                        },
+                        {
+                            "name": "sender.bapi.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the SAP bapi transport sender."
+                        },
+                        {
+                            "name": "sender.idoc.class",
+                            "type": "string",
+                            "required": false,
+                            "default": "org.wso2.carbon.transports.sap.SAPTransportSender",
+                            "possible": "-",
+                            "description": "The class that implements the SAP transport sender for the Sap IDoc library."
+                        },
+                        {
+                            "name": "sender.bapi.class",
+                            "type": "string",
+                            "required": false,
+                            "default": "org.wso2.carbon.transports.sap.SAPTransportSender",
+                            "possible": "-",
+                            "description": "The class that implements the SAP transport listener for the Sap BAPI library."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_sap-transport.toml"
+        },
+        {
+            "title": "MSMQ Transport",            	
+            "options": [
+                {
+                    "name": "transport.msmq",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to communicate through the MSMQ transport.",
+                    "params": [
+                        {
+                            "name": "listener.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling MSMQ transport listener."
+                        },
+                        {
+                            "name": "sender.enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling MSMQ transport sender."
+                        },
+                        {
+                            "name": "listener.hostname",
+                            "type": "string",
+                            "required": true,
+                            "default": "$ref{server.hostname}",
+                            "possible": "-",
+                            "description": "The hostname."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_msmq-transport.toml"
+        },
+        {
+            "title": "TCP Transport (non-blocking mode)",            	
+            "options": [
+                {
+                    "name": "transport.tcp",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to communicate through the TCP transport. Note that the list of parameters given below can be used for the non-blocking transport as well as the blocking transport.",
+                    "params": [
+                        {
+                            "name": "listener.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the TCP transport listener."
+                        },
+                        {
+                            "name": "listener.port",
+                            "type": "integer",
+                            "required": true,
+                            "default": "8000",
+                            "possible": "A positive integer less than 65535",
+                            "description": "The port on which the TCP server should listen for incoming messages."
+                        },
+                        {
+                            "name": "listener.hostname",
+                            "type": "string",
+                            "required": true,
+                            "default": "$ref{server.hostname}",
+                            "possible": "-",
+                            "description": "The host name of the server to be displayed in WSDLs, etc."
+                        },
+                        {
+                            "name": "listener.content_type",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "\"application/xml\", \"application/json\", or \"text/html\"",
+                            "description": "The content type of the input message."
+                        },
+                        {
+                            "name": "listener.response_client",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "true",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Whether or not the client needs to get the response."
+                        },
+                        {
+                            "name": "sender.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "true",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the TCP transport sender."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_tcp-transport.toml"
+        },
+        {
+            "title": "TCP Transport (blocking mode)",            	
+            "options": [
+                {
+                    "name": "transport.blocking.tcp",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the TCP transport in blocking mode. You can use the same list of parameters that are available for the non-blocking TCP transport."
+                }
+            ],
+            "exampleFile": "_tcp-transport-blocking.toml"
+        },
+        {
+            "title": "Websocket Transport",            	
+            "options": [
+                {
+                    "name": "transport.ws",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to communicate through the Websocket transport.",
+                    "params": [
+                        {
+                            "name": "sender.enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the websocket transport listener."
+                        },
+                        {
+                            "name": "sender.outflow_dispatch_sequence",
+                            "type": "string",
+                            "required": false,
+                            "default": "outflowDispatchSeq",
+                            "possible": "-",
+                            "description": "The sequence for the back-end to client mediation."
+                        },
+                        {
+                            "name": "sender.outflow_dispatch_fault_sequence",
+                            "type": "string",
+                            "required": false,
+                            "default": "outflowFaultSeq",
+                            "possible": "-",
+                            "description": "The fault sequence for the back-end to client mediation path."
+                        },
+                        {
+                            "name": "sender.parameter.customParameter",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Replace 'customParameter' with required parameter name."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_ws-transport.toml"
+        },
+        {
+            "title": "Secure Websocket Transport",            	
+            "options": [
+                {
+                    "name": "transport.wss",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to communicate through the secured Websocket transport.",
+                    "params": [
+                        {
+                            "name": "sender.enable",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the websocket secured transport sender."
+                        },
+                        {
+                            "name": "sender.outflow_dispatch_sequence",
+                            "type": "string",
+                            "required": false,
+                            "default": "outflowDispatchSeq",
+                            "possible": "-",
+                            "description": "The sequence for the back-end to client mediation."
+                        },
+                        {
+                            "name": "sender.outflow_dispatch_fault_sequence",
+                            "type": "string",
+                            "required": false,
+                            "default": "outflowFaultSeq",
+                            "possible": "-",
+                            "description": "The fault sequence for the back-end to client mediation path."
+                        },
+                        {
+                            "name": "sender.truststore_location",
+                            "type": "string",
+                            "required": true,
+                            "default": "MI_HOME/repository/resources/security/wso2truststore.jks",
+                            "possible": "-",
+                            "description": "The file path to the truststore that stores the trusted digital certificates for websocket use cases. By default, the product's trust store is configured for this purpose."
+                        },
+                        {
+                            "name": "sender.truststore_password",
+                            "type": "string",
+                            "required": true,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The password of the keystore file that is used as the trust store."
+                        },
+                        {
+                            "name": "sender.parameter.customParameter",
+                            "type": "string",
+                            "required": false,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Replace 'customParameter' with required parameter name."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_wss-transport.toml"
+        },
+        {
+            "title": "UDP Transport (non-blocking mode)",            	
+            "options": [
+                {
+                    "name": "transport.udp",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to communicate through the UDP transport. Note that the list of parameters given below can be used for the non-blocking transport as well as the blocking transport.",
+                    "params": [
+                        {
+                            "name": "listener.enabled",
+                            "type": "boolean",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the UDP transport listener."
+                        },
+                        {
+                            "name": "sender.enabled",
+                            "type": "string",
+                            "required": true,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "The parameter for enabling the UDP transport sender."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_udp-transport.toml"
+        },
+        {
+            "title": "UDP Transport (blocking mode)",            	
+            "options": [
+                {
+                    "name": "transport.blocking.tcp",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that are used to configure the UDP transport in blocking mode. You can use the same list of parameters that are available for the non-blocking UDP transport."
+                }
+            ],
+            "exampleFile": "_udp-transport-blocking.toml"
+        },
+        {
+            "title": "Message Mediation",            	
+            "options": [
+                {
+                    "name": "mediation",
+                    "required": true,
+                    "description": "This configuration header groups the parameters used for tuning the mediation process (Synapse engine) of the Micro Integrator. These parameters are mainly used when mediators such as Iterate and Clone (which uses the internal thread pools) are used.",
+                    "params": [
+                        {
+                            "name": "synapse.core_threads",
+                            "type": "integer",
+                            "required": false,
+                            "default": "20",
+                            "possible": "-",
+                            "description": "The initial number of synapse threads in the pool. This parameter is applicable only if the Iterate and Clone mediators are used to handle a higher load. These mediators use a thread pool to create new threads when processing messages and sending messages in parallal. You can configure the size of the thread pool by this parameter. The number of threads specified via this parameter should be increased as required to balance an increased load. Increasing the value specified for this parameter results in higher performance of the Iterate and Clone mediators."
+                        },
+                        {
+                            "name": "synapse.max_threads",
+                            "type": "integer",
+                            "required": false,
+                            "default": "100",
+                            "possible": "-",
+                            "description": "The maximum number of synapse threads in the pool. This parameter is applicable only if the Iterate and Clone mediators are used to handle a higher load. The number of threads specified for this parameter should be increased as required to balance an increased load."
+                        },
+                        {
+                            "name": "synapse.threads_queue_length",
+                            "type": "integer",
+                            "required": false,
+                            "default": "10",
+                            "possible": "-",
+                            "description": "The length of the queue that is used to hold the runnable tasks that are to be executed by the pool. This parameter is applicable only if the Iterate and Clone mediators are used to handle a higher load. You can specify a finite value as the queue length by giving any positive number. If this parameter is set to (-1) it means that the task queue length is infinite. If the queue length is finite, there can be situations where requests are rejected when the task queue is full and all the cores are occupied. If the queue length is infinite, and if some thread locking happens, the server can go out of memory. Therefore, you need to decide on an optimal value based on the actual load."
+                        },
+                        {
+                            "name": "synapse.global_timeout_interval",
+                            "type": "integer",
+                            "required": false,
+                            "default": "120000",
+                            "possible": "-",
+                            "description": "The maximum number of milliseconds within which a response for the request should be received. A response that arrives after the specified number of seconds cannot be correlated with the request. Hence, a warning will be logged and the request will be dropped. This parameter is also referred to as the time-out handler."
+                        },
+                        {
+                            "name": "synapse.enable_xpath_dom_failover",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "true",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "If this parameter is set to true, the Micro Integrator can switch to XPATH 2.0. This parameter can be set to false if XPATH 2.0 evaluations cause performance degradation. The Micro Integrator uses the Saxon Home Edition when implementing XPATH 2.0 functionalities, and thus supports all the functions that are shipped with it. For more information on the supported functions, see the Saxon Documentation."
+                        },
+                        {
+                            "name": "synapse.temp_data_chunk_size",
+                            "type": "integer",
+                            "required": false,
+                            "default": "3072",
+                            "possible": "-",
+                            "description": "The message size that can be processed by the Micro Integrator."
+                        },
+                        {
+                            "name": "synapse.script_mediator_pool_size",
+                            "type": "integer",
+                            "required": false,
+                            "default": "15",
+                            "possible": "-",
+                            "description": "When using externally referenced scripts, this parameter specifies the size of the script engine pool that should be used per script mediator. The script engines from this pool are used for externally referenced script execution where updates to external scripts on an engine currently in use may otherwise not be thread safe. It is recommended to keep this value at a reasonable size since there will be a pool per externally referenced script."
+                        },
+                        {
+                            "name": "synapse.preserve_namespace_on_xml_to_json",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Preserves the namespace declarations in the JSON output during XML to JSON message transformations."
+                        },
+                        {
+                            "name": "flow.statistics.enable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Set this property to true and enable statistics for the required integration artifact to record information such as the following: <ul><li>The time spent on each mediator.</li><li>The time spent on processing each message.</li><li>The fault count of a single message flow.</li></ul>"
+                        },
+                        {
+                            "name": "flow.statistics.enable",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Set this property to 'true' and set the flow.statistics.enable property also to 'true'. This will enable mediation statistics for all the integration artifacts by default. If you set this property to 'false', you need to set the flow.statistics.enable property to 'true' and manually enable statistics for the required integration artifact."
+                        },
+                        {
+                            "name": "statistics.enable_clean",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "true",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "If this parameter is set to true, all the existing statistics would be cleared before processing a request. This is recommended if you want to increase the processing speed."
+                        },
+                        {
+                            "name": "stat.tracer.collect_payloads",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Set this property to true and enable tracing for the required integration artifact to record the message payload before and after the message mediation performed by individual mediators."
+                        },
+                        {
+                            "name": "stat.tracer.collect_mediation_properties",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "Set this property to true and enable tracing for the required integration artifact to record the following information:<ul><li>Message context properties.</li><li>Message transport-scope properties.</li></ul>"
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_message-mediation.toml"
+        },
+        {
+            "title": "Synapse Handlers",            	
+            "options": [
+                {
+                    "name": "[synapse_handlers]",
+                    "required": true,
+                    "description": "This configuration header is required for configuring a synapse handler with the name and the implementation class.",
+                    "params": [
+                        {
+                            "name": "name",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "Name of the synapse handler."
+                        },
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The synapse handler implementation."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_synapse-handlers.toml"
         }
     ]
 }
