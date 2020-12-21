@@ -136,7 +136,7 @@ By default, EI Analytics is **internally** configured with a port offset of 1. L
     		<code>7712</code>
     	</td>
     	<td>
-    		Thrift SSL port for secure transport, where the client is authenticated to WSO2 Stream Processor.
+    		Thrift SSL port (for the secure transport) on which the client is authenticated when accessing EI Analytics.
     	</td>
     </tr>
 	<tr>
@@ -144,7 +144,7 @@ By default, EI Analytics is **internally** configured with a port offset of 1. L
     		<code>7612</code>
     	</td>
     	<td>
-    		Thrift TCP port to receive events from clients to WSO2 Stream Processor.
+    		Thrift TCP port on which EI Analytics receives events from clients
     	</td>
     </tr>
 </table>
