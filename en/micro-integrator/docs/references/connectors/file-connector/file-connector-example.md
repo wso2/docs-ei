@@ -154,7 +154,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     
 2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
     ```
-    curl -H "Content-Type: application/json" --request POST --data @body.json http://10.100.5.136:8290/fileconnector/create
+    curl -H "Content-Type: application/json" --request POST --data @data.json http://10.100.5.136:8290/fileconnector/create
     ```
 **Expected Response**: 
 You should get a 'Success' response, and the file should be created in the specified location in the above payload. 
@@ -169,7 +169,7 @@ You should get a 'Success' response, and the file should be created in the speci
     ```
 2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
     ```
-    curl -H "Content-Type: application/json" --request POST --data @body.json http://10.100.5.136:8290/fileconnector/read
+    curl -H "Content-Type: application/json" --request POST --data @data.json http://10.100.5.136:8290/fileconnector/read
     ```
 
 **Expected Response**: 
