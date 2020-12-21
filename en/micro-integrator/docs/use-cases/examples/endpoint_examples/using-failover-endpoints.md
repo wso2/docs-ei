@@ -21,19 +21,19 @@ Following is a sample REST API configuration that we can used to implement this 
                             <timeout>
                                 <duration>60000</duration>
                             </timeout>
-            
+
                             <markForSuspension>
                                 <errorCodes>101504, 101505, 101500</errorCodes>
                                 <retriesBeforeSuspension>3</retriesBeforeSuspension>
                                 <retryDelay>10</retryDelay>
                             </markForSuspension>
-            
+
                             <suspendOnFailure>
                                 <initialDuration>1000</initialDuration>
                                 <progressionFactor>2</progressionFactor>
                                 <maximumDuration>64000</maximumDuration>
                             </suspendOnFailure>
-            
+
                         </address>
                     </endpoint>
                 </failover>
@@ -66,6 +66,15 @@ and properties, see [Endpoint Error Handling](../endpoint-error-handling).
     The retry count is per endpoint, not per message. The retry happens in parallel. Since messages come to this endpoint via many threads, the same message may not be retried three times. Another message may fail and can reduce the retry count.
 
     In this configuration, we assume that these errors are rare and if they happen once in a while, it is okay to retry again. If they happen frequently and continuously, it means that it requires immediate attention to get it back to normal state.
+
+!!! Info
+    You can configure maximum retry attempts before suspending a failing endpoint and timeout for a suspended endpoint to become "Active" at the endpoint level as above. But if you need to enforce these values at the global level, you can use the following configurations in the <PRODUCT_HOME>/conf/synapse.properties file.
+
+    - **maximum.failover.retries** (Default: Unlimited):
+    Enforces the maximum number of retry attempts for a particular failing endpoint before marking it as "Suspended".
+
+    - **suspend.duration.on.maximum.failover** (Default: 30000ms):
+    Specifies the timeout in milliseconds for a particular suspended endpoint to become "Active".
 
 ### Build and run (example 1)
 
