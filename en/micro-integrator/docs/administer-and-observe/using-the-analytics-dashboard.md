@@ -320,10 +320,26 @@ Listed below are the default ports that are used by EI Analytics.
 	</tr>
 	<tr>
 		<td>
+			<code>9645</code>
+		</td>
+		<td>
+			Analytics Portal.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<code>9091</code>
+		</td>
+		<td>
+			HTTP Netty transport.
+		</td>
+	</tr>
+	<tr>
+		<td>
 			<code>9444</code>
 		</td>
 		<td>
-			Management console port.
+			HTTPS Netty transport.
 		</td>
 	</tr>
 	<tr>
