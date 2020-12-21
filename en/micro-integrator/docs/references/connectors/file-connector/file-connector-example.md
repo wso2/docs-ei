@@ -192,7 +192,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator runt
 
 ## Testing
 
-1. Create a file called data.json with the following payload. 
+1. Create a file called data.xml with the following payload.
 
     !!! Note
         When you configuring this `source` parameter in the Windows operating system, set this property as `<source>C:\\Users\Kasun\Desktop\Salesforcebulk-connector\create.txt</source>`.
@@ -237,7 +237,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator runt
         Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
 
     ```bash
-    curl -H "Content-Type: application/xml" --request POST --data @body.json http://10.100.5.136:8290/fileconnector/create
+    curl -H "Content-Type: application/xml" --request POST --data @data.xml http://10.100.5.136:8290/fileconnector/create
     ```
 
 3.  Check the file system to verify that the CSV file has been created. 
