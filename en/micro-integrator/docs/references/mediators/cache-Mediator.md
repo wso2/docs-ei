@@ -29,6 +29,14 @@ within a specified period of time. This is done by evaluating the hash value of 
 !!! Info
     In a message flow, you can use the cache mediator as a **finder** (in the incoming path to check the request) or as a **collector** (in the outgoing path to cache the response). It is not possible to have more than one cache mediator in the same message flow because mediation is terminated after the finder on a cache hit, and the response is not passed on to the next finder after a cache hit. See the [Example 3](#example-3) given below.
 
+!!! Note
+    Message need to be explicitly marked as *RESPONSE* using the following property when collecting the cached 
+    response in the same sequence after the use of call mediator. This will not be required if the back end is 
+    called via send mediator. See the [Example 1](#example-1) given below.
+    ```xml
+    <property name="RESPONSE" value="true" scope="default" type="STRING"/>
+    ```
+    
 ## Configuration
 
 ### Cache Mediator as a Finder
