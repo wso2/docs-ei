@@ -99,10 +99,11 @@ The following are the supported transports to capture data in transit from data 
 
 | **Transport** | **Siddhi Extension**                                                          |
 |---------------|-------------------------------------------------------------------------------|
-| HTTP          | [http](https://siddhi-io.github.io/siddhi-io-http/api/latest/#source)         |
-| TCP           | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#source)           |
-| Email         | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source) |
+| `HTTP`        | [http](https://siddhi-io.github.io/siddhi-io-http/api/latest/#source)         |
+| `TCP`         | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#source)           |
+| `Email`       | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source) |
 | `grpc`        | [grpc](https://siddhi-io.github.io/siddhi-io-grpc/api/latest/#source)         |
+| `wso2event`   | [wso2event](https://wso2-extensions.github.io/siddhi-map-wso2event/api/5.0.2/) |
 | `Thrift`      |                                                                               |
 
 ### Supported mappers
@@ -238,4 +239,5 @@ The following are the supported mappers when you receive data from messaging sys
 | `xml`         | [xml](https://siddhi-io.github.io/siddhi-map-xml/api/latest/#sinkmapper)               |
 | `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)             |
 | `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)             |
-| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) | 
+| `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) |
+| `protobuf`    | [protobuf](https://siddhi-io.github.io/siddhi-map-protobuf/api/latest/#protobuf-sink-mapper) |
