@@ -154,7 +154,7 @@ By default, EI Analytics is **internally** configured with a port offset of 1. L
 If required, you can manually change the HTTP/HTTPS ports in the <code>deployment.yaml</code> file (stored in <code>EI_ANALYTICS_HOME/conf/server</code> folder) as shown below.
 
 !!! Note
-    	With the default internal port offset, the effective port will be <code>https_port + 1
+    	With the default internal port offset, the effective port will be <code>https_port + 1</code>.
 
 ```yaml tab='HTTPS Port'
 wso2.transport.http:            
