@@ -144,13 +144,13 @@ The following scenarios are covered in this section.
 
 #### Load balancing across group of servers 
 
-For this functionality, include the server URL in the Data Agent as a general DAS/CEP receiver URL. The URL should be entered in a comma separated format as shown below.
+For this functionality, include the server URL in the Data Agent as a general Analytics receiver URL. The URL should be entered in a comma separated format as shown below.
 
 eg: `tcp://<Analytics-1>:<port>,tcp://<Analytics-2>:<port>,tcp://<Analytics-3>:<port>`
 
 sample: `tcp://10.100.2.32:7611, tcp://10.100.2.33:7611, tcp://10.100.2.34:7611`
     ![lb events to servers](../../assets/img/ei-analytics/ob-lb-events-to-servers.png)
-It also handles fail-over cases such as, if DAS/CEP Receiver-1 is marked as down, then the Data Agent will send the data only to DAS/CEP Receiver-2 and DAS/CEP Receiver-3 in a round robin manner. When DAS/CEP Receiver-1 becomes active after some time, the Data Agent automatically detects it, adds it to the operation, and again starts to load balance between all three receivers. This functionality significantly reduces the loss of data and provides more concurrency.
+It also handles fail-over cases such as, if Analytics Receiver-1 is marked as down, then the Data Agent will send the data only to Analytics Receiver-2 and Analytics Receiver-3 in a round robin manner. When Analytics Receiver-1 becomes active after some time, the Data Agent automatically detects it, adds it to the operation, and again starts to load balance between all three receivers. This functionality significantly reduces the loss of data and provides more concurrency.
 
 #### Load balancing across multiple groups of servers  
 
