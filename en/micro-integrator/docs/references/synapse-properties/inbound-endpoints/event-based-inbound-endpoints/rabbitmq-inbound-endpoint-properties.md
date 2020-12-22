@@ -80,12 +80,6 @@ The following properties are required when [creating a RabbitMQ inbound endpiont
          <td>The queue name to send or consume messages.</td>
       </tr>
       <tr>
-         <td>
-            rabbitmq.exchange.name
-         </td>
-         <td>The name of the RabbitMQ exchange to which the queue is bound.</td>
-      </tr>
-      <tr>
          <td>coordination</td>
          <td>This parameter is only applicable in a clustered environment.<br />
             In a cluster environment an inbound endpoint will only be executed in worker nodes. If this parameter is set to <code>true</code> in a clustered environment, the inbound will only be executed in a single worker node. Once the running worker node is down, the inbound will start on another available worker node in the cluster. By default, this setting is <code>true</code>.
@@ -238,6 +232,12 @@ and the optional properties related to defining an **exchange** should contain t
       </tr>
       <tr>
          <td>
+            rabbitmq.exchange.name
+         </td>
+         <td>The name of the RabbitMQ exchange to which the queue is bound.</td>
+      </tr>
+      <tr>
+         <td>
             rabbitmq.queue.routing.key
          </td>
          <td>The routing key of the queue.</td>
@@ -320,6 +320,9 @@ present. If set to <code>false</code>, the Micro Integrator will assume that a q
       </tr>
    </tbody>
 </table>
+
+!!! Note
+    The property rabbitmq.exchange.name becomes mandatory if you are trying to connect to a new queue, so that it can be bound to an exchange for messages to flow.
 
 ### Connection Recovery Properties
 
