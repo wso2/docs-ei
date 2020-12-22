@@ -65,8 +65,22 @@ and properties, see [Endpoint Error Handling](../endpoint-error-handling).
 !!! Info
     The retry count is per endpoint, not per message. The retry happens in parallel. Since messages come to this endpoint via many threads, the same message may not be retried three times. Another message may fail and can reduce the retry count.
 
-    In this configuration, we assume that these errors are rare and if they happen once in a while, it is okay to retry again. If they happen frequently and continuously, it means that it requires immediate attention to get it back to normal state.
+In this configuration, we assume that these errors are rare and if they happen once in a while, it is okay to retry again. If they happen frequently and continuously, it means that it requires immediate attention to get it back to normal state.
 
+!!! Info
+    You can configure the maximum number of retry attempts before suspending a failing endpoint and specify the time for a suspended endpoint to become "Active" at the endpoint level as indicated above. However, if you need to enforce these values at the global level, you can use the following configurations in the `<PRODUCT_HOME>/conf/deployment.toml` file.
+    ```toml
+    [mediation]
+    synapse.maximum_failover_retries = 100
+    synapse.suspend_duration_on_maximum_failover = 100
+    ```
+    **maximum_failover_retries** (Default: Unlimited):
+    
+    Enforces the maximum number of retry attempts for a particular failing endpoint before marking it as "Suspended".
+    
+    **suspend_duration_on_maximum_failover** (Default: 30000ms):
+    
+    Specifies the timeout in milliseconds for a particular suspended endpoint to become "Active".
 ### Build and run (example 1)
 
 Create the artifacts:
