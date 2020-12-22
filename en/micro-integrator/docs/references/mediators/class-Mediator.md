@@ -38,8 +38,8 @@ In this configuration, the Micro Integrator sends the requested message to the 
     -   Example for passing the variable as an expression: `          <property name="variable2" expression="get-property('variable1')"/>         `  
         For more information on using the get property method, see the [Property Mediator](property-Mediator.md).
 
-!!! Note
-        Using the class variables with expression will lead to the values evaluated being mixed up when there are are concurrency requests and will lead to erroneous behaviors. 
+!!! Warning
+        Using the class variables with expression will lead to the values evaluated being mixed up when there are concurrent requests and will lead to erroneous behaviors. 
 
 ``` java
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="errorHandler">
