@@ -66,7 +66,14 @@ Let's start the servers in the given order.
     Be sure to [configure the SSL certificates](../../setup/observability/setting-up-classic-observability-deployment/#configure-ssl-certificates) before starting the Micro Integrator.
 
 #### Configuring the Micro Integrator to Publish Data to Analytics Server
-Analytics publishing can be configured in `<EI_ANALYTICS_HOME>/conf/carbon.xml` in 'Analytics' section.
+Analytics publishing can be configured in `<MI_HOME>/conf/deployment.toml` in '[monitoring]' section.
+```
+[monitoring]
+ei_analytics.server_url = "tcp://localhost:7612"
+ei_analytics.auth_server_url = "ssl://localhost:7712"
+ei_analytics.username = "admin"
+ei_analytics.password = "admin"        
+```
 
 If the Analytics nodes runs in cluster mode, or in different VMs, the ServerURL and AuthServerURL can be configured in load balancing manner.
 Please refer, 'Enabling Load Balancing Data Agent for Publishing to Analytics' section of [setting up EI Analytics for Observability](../../setup/observability/setting-up-classic-observability-deployment)
