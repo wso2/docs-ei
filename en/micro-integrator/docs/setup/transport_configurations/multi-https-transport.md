@@ -129,6 +129,10 @@ Dynamic SSL profiles for the Multi-HTTPS **transport sender**:
     The SSL profile will be applied to each request that is sent to the
     destination server specified within the
     `<servers>` element as IP:Port combination.
+    
+    !!! Note
+                Use host names in the `<servers>` list instead of IP addresses to avoid latencies due to DNS lookup. If you 
+                are using IP address, make sure to add an entry to the host file with respective host name mapping.
 
 ## Loading SSL profiles at runtime
 
