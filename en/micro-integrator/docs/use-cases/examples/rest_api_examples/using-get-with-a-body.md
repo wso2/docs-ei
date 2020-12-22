@@ -1,24 +1,19 @@
-# Using GET with a Message Body
-Typically, a GET request does not contain a body, and the Micro Integrator does not support these types of requests. When it receives a GET request that contains a body, it drops the message body as it sends the message to the endpoint. 
+# GET request with a Message Body
+Typically, a GET request does not contain a body, and the Micro Integrator will not consume the payload even if there is one.
 
 ## Synapse configuration
 
-Following is a sample REST API configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+Following is a sample REST API configuration that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <api xmlns="http://ws.apache.org/ns/synapse" name="HealthcareService" context="/healthcare">
   <resource methods="GET POST" url-mapping="/appointment/reserve">
      <inSequence>
         <property name="REST_URL_POSTFIX" scope="axis2" action="remove"/>
-        <send>
-            <endpoint>
-                <address uri="http://localhost:9090/healthcare/surgery"/>
-            </endpoint>
-        </send>
+        <log level="full"/>
+        <respond/>
      </inSequence>
-     <outSequence>
-        <send/>
-     </outSequence>
+     <outSequence/>
   </resource>
 </api>
 ```
@@ -32,16 +27,7 @@ Create the artifacts:
 3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
-Set up the back-end service:
-
-1. Download the [Hospital-Service-2.0.0-JDK11.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
-2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
-
-    ```bash
-    java -jar Hospital-Service-2.0.0-JDK11.jar
-    ```
-
-Send an invalid request to the back end as follows:
+Send a GET request with a message body as follows:
     
 ```bash
 curl -v -H "Content-Type: application/json" -d @request.json http://localhost:8290/healthcare/appointment/reserve -X GET
@@ -75,4 +61,4 @@ The `request.json` file has the following content on the appointment:
 ]
 ```
 
-The additional parameter `-X` replaces the original POST method with the specified method, which in this case is GET. This will cause the client to send a GET request with a message similar to a POST request. If you view the output in tcpmon, you will see that there is no message body in the request.
+You will see that there is no message body printed in the logs and you will get an empty response back.
