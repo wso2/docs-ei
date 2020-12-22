@@ -69,6 +69,18 @@ flow.statistics.enable=true
 stat.tracer.collect_payloads=true
 stat.tracer.collect_mediation_properties=true
 ```
+### Configuring the Micro Integrator to Publish Data to Analytics Server
+Analytics publishing can be configured in `<MI_HOME>/conf/deployment.toml` in '[monitoring]' section.
+```
+[monitoring]
+ei_analytics.server_url = "tcp://localhost:7612"
+ei_analytics.auth_server_url = "ssl://localhost:7712"
+ei_analytics.username = "admin"
+ei_analytics.password = "admin"        
+```
+
+If the Analytics nodes runs in cluster mode, or in different VMs, the ServerURL and AuthServerURL can be configured in load balancing manner.
+Please refer, [Enabling Load Balancing Data Agent for Publishing to Analytics](#enabling-load-balancing-data-agent-for-publishing-to-analytics).
 
 ### Enabling statistics for ALL artifacts
 
@@ -105,19 +117,6 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
      ![endpoint properties](../../assets/img/ei-analytics/endpoint-properties.png)
      
-### Configuring the Micro Integrator to Publish Data to Analytics Server
-Analytics publishing can be configured in `<MI_HOME>/conf/deployment.toml` in '[monitoring]' section.
-```
-[monitoring]
-ei_analytics.server_url = "tcp://localhost:7612"
-ei_analytics.auth_server_url = "ssl://localhost:7712"
-ei_analytics.username = "admin"
-ei_analytics.password = "admin"        
-```
-
-If the Analytics nodes runs in cluster mode, or in different VMs, the ServerURL and AuthServerURL can be configured in load balancing manner.
-Please refer, 'Enabling Load Balancing Data Agent for Publishing to Analytics' section below.
-
 ### Enabling Load Balancing Data Agent for Publishing to Analytics
 
 You can send events to multiple Analytics servers, either by sending the same event to many Analytics servers or by load balancing events among a set of servers. This handles the fail-over problem. When events are load balanced within a set of servers and if one receiver cannot be reached, events are automatically sent to the other available and active Analytics servers.
