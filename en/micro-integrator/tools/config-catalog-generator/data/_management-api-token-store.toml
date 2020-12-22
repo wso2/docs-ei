@@ -1,0 +1,4 @@
+[management_api.handler.token_store_config]
+max_size = "200"
+clean_up_interval = "600"
+remove_oldest_token_on_overflow = true
