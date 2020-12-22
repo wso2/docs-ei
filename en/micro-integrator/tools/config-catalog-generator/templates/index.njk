@@ -1,26 +1,33 @@
-# Configuration Catalog
-This document describes all the configuration parameters that are used in WSO2 Identity Server. 
+# Product Configurations
+
+The Micro Integrator of WSO2 Enterprise Integrator 7.0 introduces TOML-based product configurations. All the server-level configurations of your Micro Integrator instance can be applied using a single configuration file, which is the `deployment.toml` file (stored in the `MI_HOME/conf` directory).
+
+The complete list of configuration parameters that you can use in the `deployment.toml` file are listed below along with descriptions. You can also see the documentation on product [installation and setup](../../setup/install_and_setup_overview) for details on applying product configurations to your Micro Integrator deployment.
 
 ## Instructions for use
 
-> Select the configuration sections, parameters, and values that are required for your use and add them to the .toml file. See the example .toml file given below.
+To update the product configurations:
+
+1. Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory).
+2. Select the required configuration headers and parameters from the list given below and apply them to the `deployment.toml` file.
+
+The **default** `deployment.toml` file of the Micro Integrator is as follows:
 
 ```toml
-# This is an example .toml file.
-
 [server]
-pattern="value"                         
-enable_port_forward=true
+hostname = "localhost"
 
-[key_mgr_node]
-endpoints="value"
+[keystore.tls]  # IMPORTANT! Be sure to change this heading to [keystore.primary] when you use the product.
+file_name = "wso2carbon.jks"
+password = "wso2carbon"
+alias = "wso2carbon"
+key_password = "wso2carbon"
 
-[gateway]
-gateway_environments=["dev","test"]
-
-[[database]]
-pool_options.maxActiv=5
-
+[truststore]
+file_name = "client-truststore.jks"
+password = "wso2carbon"
+alias = "symmetric.key.value"
+algorithm = "AES"
 ```
 
 {% include "../templates/_configs.njk" %}
