@@ -4,16 +4,16 @@ WSO2 Streaming Integrator allows you to handle any errors that may occur when ha
 
 The possible actions that you can take for events with errors are:
 
-- Storing
-- Logging and dropping
+- Storing and replaying
+- Logging
 - Streaming
 - Waiting
 
 This section explains the different types of errors that can occur and how they can be handled.
 
-## Storing events with errors
+## Storing and replaying events with errors
 
-This involves storing the events with errors in the error store. 
+This involves storing the events with errors in the error store and then freplaying them. 
 
 To do this, you need to enable the error store in the `<SI_HOME>/conf/server/deployment.yaml` file by adding the following configuration.
 
@@ -218,7 +218,7 @@ To try out storing errors in the store, follow the steps below:
             As a result, the **Error Entry** dialog box closes, and the **Error Store Explorer** dialog box does not display any errors.
     
 
-## Logging and dropping events with errors
+## Logging events with errors
 
 This involves logging the event with details of the error and then dropping it. This can be used with the following:
 
