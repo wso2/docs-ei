@@ -180,7 +180,7 @@ Mock services give the opportunity to simulate the actual endpoint.
         
         ![Mock Service with one sub context](../assets/img/create_project/synapse_unit_test/mockservice-context-sample.PNG) 
         
-        - If you you are going to mock the same endpoint with an additional sub context (Eg : `http://petstore.com/pets/id` ), you can add it to the same mock service like below. 
+        - If you are going to mock the same endpoint with an additional sub context (e.g., `http://petstore.com/pets/id` ), you can add it to the same mock service as shown below. 
         
         ![Mock Service with additional sub Contexts](../assets/img/create_project/synapse_unit_test/mockservice-subcontext-sample.PNG) 
 
