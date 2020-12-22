@@ -84,6 +84,7 @@ nav:
       - 'Creating an ETL Application via SI Tooling': 'examples/creating-etl-application-via-tooling.md'
       - 'Working with Kafka': 'examples/working-with-kafka.md'
       - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
+      - 'Integrating Data Stores in Streaming Integration': 'examples/integrating-stores.md'
       - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
       - 'Managing Streaming Data with Errors': 'examples/handling-requests-with-errors.md'
       - 'Triggering Integrations via MI': 'examples/triggering-integrations-via-micro-integrator.md'

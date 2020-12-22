@@ -175,6 +175,16 @@ To try out the example given above, follow the procedure below:
     The Streaming Integrator Tooling terminal displays the following logs.
     
     ![Aggregate Logs](../images/processing-data/aggregate-logs.png)
+    
+### Supported extensions
+
+The following table describes the complete list of extensions that provide aggregation functionality when you perform time-based aggregations:
+
+| **Extension** | **Description** |
+|----------------------------------|---------------------------------------------------------------------------|
+| [Siddhi-execution-math](https://siddhi-io.github.io/siddhi-execution-math/) | Transforms data by performing mathematical operations. |
+| [Siddhi-execution-streeamingml](https://siddhi-io.github.io/siddhi-execution-streamingml/) | Provides streaming machine learning (clustering, classification and regression) for event streams. |
+
 
 ## Performing short term summarizations
 
@@ -323,5 +333,19 @@ To try out the four sample queries given above, follow the steps below:
     
 ### Supported methods of summarization
 
-WSO2 Streaming Integrator supports the following methods of summarization via Siddhi extensions. For more information about a summarization method, click on the relevant Siddhi link.      
-    
+WSO2 Streaming Integrator supports the following methods of summarization via Siddhi extensions. For more information about a summarization method, click on the relevant Siddhi link.
+
+| **Method** (Window type) | **Description**  |
+|--------------------------|----------------------------------------------|
+| [Deduplicate](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#deduplicate-stream-processor) | Identifies duplicate events that arrive during a specified time interval and removes them. |
+| [ever](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#ever-window) | latest events based on a given unique keys. When a new event arrives with the same key it replaces the one that exist in the window. |
+| [externalTimeBatch](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#externaltimebatch-window) | This is a batch (tumbling) time window that is determined based on an external time, i.e., time stamps that are specified via an attribute in the events. It holds the latest unique events that arrived during the last window time period. The unique events are determined based on the value for a specified unique key parameter. When a new event arrives within the time window with a value for the unique key parameter that is the same as that of an existing event in the window, the existing event expires and it is replaced by the new event.|
+| [first](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#first-window) | This holds  only the first set of unique events according to the unique key parameter. When a new event arrives with a key that is already in the window, that event is not processed by the window. |
+| [firstLengthBatch](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#firstlengthbatch-window) | This holds a specific number of unique events (depending on which events arrive first). The unique events are selected based on a specific parameter that is considered as the unique key. When a new event arrives with a value for the unique key parameter that matches the same of an existing event in the window, that event is not processed by the window. |
+| [firstTimeBatch](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#firsttimebatch-window) | This holds the unique events according to the unique key parameters that have arrived within the time period of that window and gets updated for each such time window. When a new event arrives with a key which is already in the window, that event is not processed by the window. |
+| [length](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#length-window) | This holds the events of the latest window length with the unique key and gets updated for the expiry and arrival of each event. When a new event arrives with the key that is already there in the window, then the previous event expires and new event is kept within the window. |
+| [lengthBatch](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#lengthbatch-window) | This holds a specified number of latest unique events. The unique events are determined based on the value for a specified unique key parameter. The window is updated for every window length, i.e., for the last set of events of the specified number in a tumbling manner. When a new event arrives within the window length and with the same value for the unique key parameter as an existing event in the window, the previous event is replaced by the new event. |
+| [time](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#time-window) | This holds the latest unique events that arrived during the previous time window. The unique events are determined based on the value for a specified unique key parameter. The window is updated with the arrival and expiry of each event. When a new event that arrives within a window time period has the same value for the unique key parameter as an existing event in the window, the previous event is replaced by the new event. |
+| [timeBatch](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#timebatch-window) | This holds latest events based on a unique key parameter. If a new event that arrives within the time period of a window has a value for the key parameter which matches that of an existing event, the existing event expires and it is replaced by the latest event. |
+| [timeLengthBatch](https://siddhi-io.github.io/siddhi-execution-unique/api/5.0.5/#timelengthbatch-window) | This holds latest events based on a unique key parameter. The window tumbles upon the elapse of the time window, or when a number of unique events have arrived. If a new event that arrives within the period of the window has a value for the key parameter which matches the value of an existing event, the existing event expires and it is replaced by the new event. |
+

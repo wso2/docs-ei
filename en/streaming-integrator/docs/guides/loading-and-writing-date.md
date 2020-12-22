@@ -271,6 +271,7 @@ The following is a list of cloud platforms in which you can store data via WSO2 
 | Google Cloud Storage          | [GCS](https://siddhi-io.github.io/siddhi-io-gcs/)                                                   |
 | CosmosDB                      | [CosmosDB](https://github.com/wso2-extensions/siddhi-store-cosmosdb/blob/master/docs/api/latest.md) |
 | Azure Data Lake               | [azuredatalake](https://siddhi-io.github.io/siddhi-io-azuredatalake/api/latest/#sink)               |
+| GCS                           | [GCS](https://siddhi-io.github.io/siddhi-io-gcs/)                                                   |
 
 ### Supported mappers
 
