@@ -202,7 +202,7 @@ sample `tcp://10.100.2.32:7611| tcp://10.100.2.33:7611| tcp://10.100.2.34:7611`
 
 #### Configuring the Micro Integrator to Publish Data to Analytics Server
 
-Note: In order to use
+Note: Upgrade Micro Integrator to the latest WUM level to enable this feature. If not, the default values will be used for server_url and auth_server_url.
 Analytics publishing can be configured in `<MI_HOME>/conf/deployment.toml` in '[monitoring]' section.
 ```
 [monitoring]
