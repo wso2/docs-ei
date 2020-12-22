@@ -10307,8 +10307,8 @@ sender.parameter.customParameter = ""</code></pre>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.listener]]
-class = org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener
-protocol = hl7</code></pre>
+class = "org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
+protocol = "hl7"</code></pre>
                     </div>
                 </div>
                 <div class="doc-wrapper">
@@ -10339,7 +10339,7 @@ protocol = hl7</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The class implementing the custom transport. For example, if you are implementing an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener.</p>
+                                        <p>The class implementing the custom transport. For example, if you are using an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -10385,8 +10385,8 @@ protocol = hl7</code></pre>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.sender]]
-class = org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender
-protocol = hl7</code></pre>
+class = "org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender"
+protocol = "hl7"</code></pre>
                     </div>
                 </div>
                 <div class="doc-wrapper">
@@ -10417,7 +10417,7 @@ protocol = hl7</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The class implementing the custom transport. For example, if you are implementing an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender.</p>
+                                        <p>The class implementing the custom transport. For example, if you are using an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
