@@ -23,7 +23,10 @@ This generates the complete integration project with the 'Hello World' solution,
 
 <img src="../../../../assets/img/create_project/docker_k8s_project/hello-k8s-sample-project.png" width="300">
 
-## Step 2: Build and Push the Docker image  
+## Step 2: Build and Push the Docker image
+
+!!! Note
+	Be sure to start your Docker instance before building the image. If Docker is not started, the build process will fail. 
 
 There are two ways to build a Docker image of the integration solution and push it to your Docker registry:
 
