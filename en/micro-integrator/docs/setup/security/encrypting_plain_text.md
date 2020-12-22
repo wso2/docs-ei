@@ -60,6 +60,13 @@ Dynamic secrets are specified in configurations as environment variables, system
             # To bulk encrypt secrets defined in a properties file
             mi secret create -f=</file_path>
             ```
+            
+            !!! Note
+                A sample file `sample.properties` denoted by `</file_path>` above, can have the following content:
+                ```properties
+                keystore_password=wso2carbon
+                trustore_password=wso2carbon
+                ```
         
         -   To generate secrets in a .yaml file for a Kubernetes environment, use the following commands:
 
