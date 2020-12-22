@@ -12,7 +12,8 @@ To understand this, consider a scenario where the Streaming Integrator receives 
     - Install the `grpc` Siddhi extension in Streaming Integrator Tooling. To do this, access Streaming Integrator Tooling, click **Tools** -> **Extension Installer** to open the **Extension Installer** dialog box, and then click **Install** for the **gRPC** extension. Restart Streaming Integrator Tooling for the installation to be effective. For detailed instructions, see [Installing Siddhi Extensions](develop/installing-siddhi-extensions.md).
     - To install the `grpc` Siddhi extension in WSO2 Streaming Integrator, navigate to the `<SI_HOME>/bin` directory and issue the appropriate command based on your operating system.<br/><br/>
         - **For Windows**     : `extension-installer.bat install grpc`<br/>
-        - **For Linux/MacOS** : `./extension-installer.sh install grpc`<br/><br/>Then restart WSO2 Streaming Integrator for the installation to be effective. For detailed instructions to install a Siddhi extension, see [Downloading and Installing Siddhi Extensions](../connectors/downloading-and-Installing-Siddhi-Extensions.md).
+        - **For Linux/MacOS** : `./extension-installer.sh install grpc`<br/><br/>
+       Then restart WSO2 Streaming Integrator for the installation to be effective. For detailed instructions to install a Siddhi extension, see [Downloading and Installing Siddhi Extensions](../connectors/downloading-and-Installing-Siddhi-Extensions.md).
 
 ## Configuring the Streaming Integrator
 
@@ -21,12 +22,14 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
 
 1. In Streaming Integrator Tooling, click **New** to open a new application.
 
+
 2. Add a name and a description for your new Siddhi application as follows:
 
     ```
     @App:name("grpc-call-response")
     @App:description("This application triggers integration process in the micro integrator using gRPC calls")
     ```
+
 
 3. Let's add an input stream to define the schema of input production events, and connect a source of the `http` type to to receive those events.
 
@@ -39,6 +42,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
     ```
 
     Here, the Streaming Integrator receives events to the `http://localhost:8006/InputStream` in the JSON format. Each event reports the product name (via the `symbol` attribute) and the amount produced.
+
 
 4. Now, let's add the configurations to publish an alert in the Micro Integrator to trigger an integration flow, and then receive a response back into the Streaming Integrator.
 
@@ -62,6 +66,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
     - The `grpc-call` sink connected to the `FooStream` stream gets the two attributes from the stream and generates the output events as JSON messages before they are published to the Micro Integrator.  The value for the `publisher.url` parameter in the sink configuration contains `process` and `inSeq` which means that the Streaming Integrator calls the process method of the gRPC Listener server in the Micro Integrator, and injects the message to the `inSeq` which then sends a response back to the client.
 
     - The `grpc-call-response source` connected to the `BarStream` input stream retrieves a response from the Micro Integrator and publishes it as a JSON message in the Streaming Integrator. As specified via the schema of the `BarStream` input stream, this response comprises of a single JSON message.
+
 
 5. To publish the messages received from the Micro Integrator as logs in the terminal, let's define an output stream named `LogStream`, and connect a sink of the `log` type to it as shown below.
 

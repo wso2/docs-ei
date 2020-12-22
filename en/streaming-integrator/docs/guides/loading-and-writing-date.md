@@ -90,7 +90,7 @@ To try out the example given above, follow the steps below:
    
    Save the Siddhi application.   
     
-5. Simulate an event with the following values for the `SalesRecordsStream` stream of the `SalesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+5. Simulate an event with the following values for the `SalesRecordsStream` stream of the `SalesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications](../develop/testing-a-Siddhi-Application.md).
     
     | **Attribute** | **Value**        |
     |---------------|------------------|
@@ -108,7 +108,7 @@ To try out the example given above, follow the steps below:
     
 ### Publishing data on demand via store queries
 
-To understand how to publish data on demand, see [Processing Data - Aggregating Data](processing-data.md#aggregating-data)
+To understand how to publish data on demand, see [Correlating Data](correlating-data.md)
 
 ### Supported databases
 
@@ -123,7 +123,7 @@ WSO2 Streaming supports the following database types via Siddhi extensions:
 
 ### Supported Mappers
 
-Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Transforming Data](transforming-data.md#transforming-the-message-format-when-publishing-data).
 
 The mapper available for loading data to databases is [Keyvalue](https://siddhi-io.github.io/siddhi-map-keyvalue/api/2.1.0/#sinkmapper).
 
@@ -172,7 +172,7 @@ To try out the above example by including the given output stream and the sink c
     !!! tip
         If required, you can replace the value for the `file.uri` parameter to a preferred location in your machine.
    
-3. Simulate an event with the following values for the `LabTemperatureStream` stream of the `LabTemperatureApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).  
+3. Simulate an event with the following values for the `LabTemperatureStream` stream of the `LabTemperatureApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications](../develop/testing-a-Siddhi-Application.md).  
     
     | **Attribute**   | **Value**       |
     |-----------------|-----------------|
@@ -187,7 +187,7 @@ To try out the above example by including the given output stream and the sink c
     
 ### Supported Mappers
 
-Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Transforming Data](transforming-data.md#transforming-the-message-format-when-publishing-data).
 
 The following mappers are supported for the File extension.
 
@@ -251,7 +251,7 @@ To try out the above example, follow the steps below:
    
    The above Siddhi application gets all the events in the `LabTemperatureStream` stream and inserts them into the `TemperatureLogStream` stream so that they can be stored in the `temperaturelog` bucket in the Google Cloud Console via the sink connected to the `TemperatureLogStream` stream.
    
-4. Simulate an event to the `LabTemperatureStream` stream of the `LabTemperatureApp` Siddhi application with the following values via the Event Simulator tool. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md). 
+4. Simulate an event to the `LabTemperatureStream` stream of the `LabTemperatureApp` Siddhi application with the following values via the Event Simulator tool. For instructions to simulate events, see [Testing Siddhi Applications](../develop/testing-a-Siddhi-Application.md). 
     
     | **Attribute**   | **Value**       |
     |-----------------|-----------------|
@@ -271,10 +271,11 @@ The following is a list of cloud platforms in which you can store data via WSO2 
 | Google Cloud Storage          | [GCS](https://siddhi-io.github.io/siddhi-io-gcs/)                                                   |
 | CosmosDB                      | [CosmosDB](https://github.com/wso2-extensions/siddhi-store-cosmosdb/blob/master/docs/api/latest.md) |
 | Azure Data Lake               | [azuredatalake](https://siddhi-io.github.io/siddhi-io-azuredatalake/api/latest/#sink)               |
+| GCS                           | [GCS](https://siddhi-io.github.io/siddhi-io-gcs/)                                                   |
 
 ### Supported mappers
 
-Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Transforming Data](transforming-data.md#transforming-message-formats).
 
 WSO2 Streaming Integrator supports the following mappers for the cloud-based storages in which it stores data.
 

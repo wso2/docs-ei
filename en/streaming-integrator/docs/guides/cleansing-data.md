@@ -1,252 +1,214 @@
 # Cleansing Data
 
-## Introduction
-
-When you receive input data via the Streaming Integrator, it may consist of data that is not required to generate the 
-required output, null values for certain attributes, etc.  Cleansing data refers to refining the input data received by 
-applying null values, 
+When you receive input data via the Streaming Integrator, it may consist of data that is not required to generate the required output, null values for certain attributes, etc. Cleansing data refers to refining the input data received by assigning values where there are missing values (if there are applicable values), filtering out the data that is not required, etc.
 
 ## Filtering data based on conditions
 
-To understand the different ways you can filter the specific data you need to transform and enrich in order to generate 
-the required output, follow the procedures below:
-    
+You can filter data based on the exact match of attribute, based on a regex pattern or based on multiple criteria
+
+To understand this, consider a scenario where you receive the temperature of multiple rooms in a streaming manner. 
 
 - **Filtering based on exact match of attribute:**
- 
-     1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
-     2. Enter a name for the Siddhi application via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
-
-     3. Define an input stream to specify the schema based on which events are selected to the Streaming Integration flow.
-
-        ```
-        define stream TempStream (deviceID long, roomNo string, temp double);
-        ```
-
-        !!!info
-            For more information about defining input streams to receive events, see the [Consuming Data guide](consuming-messages.md).
-
-     4. Add a query to generate filtered temperature readings as follows. For this example, let's assume that you want to
-     filter only temperature readings for a specific room number (e.g., room no `2233`).
-
-        1. Add the `from` clause and enter `TempStream` as the input stream from which the input data. However, because you only need to extract readings for room no `2233`, include a filter in the `from` clause as shown below:
-
-            ```
-            from TempStream [roomNo=='2233']
-            ```
-
-        2. Add the `select` clause with `*` to indicate that all the attributes should be selected without any changes.
-            ```
-            from TempStream [roomNo=='2233']
-            select *
-            ```
-
-        3. Add the `insert to` clause and direct the output to a stream named `Room2233AnalysisStream`.
-
-            !!!info
-                Note that the `Room2233AnalysisStream` is not defined in the Siddhi application. It is inferred by specifying
-                 it as an output stream.
-
-            ```
-            from TempStream [roomNo=='2233']
-            select *
-            insert into Room2233AnalysisStream;
-            ```
-
-            !!!tip
-                As a best practice, name your queries using the `@info` annotation. In this example, you can name the query `Filtering` as follows.
-                ```
-                @info(name = 'Filtering2233')
-                from TempStream [roomNo=='2233']
-                select *
-                insert into Room2233AnalysisStream;
-                ```
-            The saved Siddhi application is as follows:
-
-            ```
-            @App:name("TemperatureApp")
-            @App:description("Description of the plan")
-
-            define stream TempStream (deviceID long, roomNo string, temp double);
-
-            @info(name = 'Filtering2233')
-            from TempStream [roomNo=='2233']
-            select *
-            insert into Room2233AnalysisStream
-            ```
-        
- - **Filtering based on regex pattern**
- 
-    You can filter events by providing a condition where only events that match a specific Regex pattern are taken for 
-    further processing.
- 
-    For this purpose, you can use the `TemperatureApp` Siddhi application that you created in the previous example. 
-    However, instead of filtering the readings for a specific room no, you can filter the readings for many rooms of 
-    which the room number matches a specific regex pattern.
-     
-    Assume that you want to filter the temperature readings for a specific rage of rooms located in the Southern wing 
-    and used for purpose B. Also assume that this can be derived from the room number because the first three characters
-     of the room no represent the wing, and the eighth character represents the purpose. e.g., in room no `SOU5438B765`,
-    the first three characters `SOU` represent the Southern wing, and the eighth character `B` represents purpose B.
+    If you want the temperature readings only for a specific room, you can add a query with a filter as follows.
     
-    To filter events as described, follow the procedure below.
+    ```
+    from TempStream [roomNo=='2233']
+    select *
+    insert into RoomAnalysisStream;
+    ```
+    With the `roomNo=='2233'` filter, you are filtering the temperature readings for the room number `2233`. These readings are then inserted into a separate stream named `RoomAnalysisStream`.
     
-    1. Open the `TemperatureApp` Siddi application.
-    2. Create a new query named `FilteredRoomRange` as follows:
-        1. Add a `from` clause as follows to get the required events from the `TempStream` stream.
+- **Filtering based on regex pattern**
 
-           `from TempStream`
-
-        2. Add `select` statement with the `regex` pattern as follows:
-
-            `select deviceID, regex.find(SOU*B*) as roomNo, temp`
-
-        3. Add the `insert to` clause as follows to insert the results into a stream named `FilteredResultsStream`.
-
-           `insert into FilteredResultsStream;`
-
-           The completed query is as follows.
-
-           ```
-           @info(name = 'FilteredRoomRange')
-           from TempStream
-           select deviceID, regex.find(SOU*B*) as roomNo, temp
-           insert into FilteredResultsStream;
-           ```
-
-    3. Save the Siddhi application. The completed Siddhi application looks as follows.
-
-        ```
-        @App:name("TemperatureApp")
-        @App:description("Description of the plan")
-
-        define stream TempStream (deviceID long, roomNo string, temp double);
-
-        @info(name = 'FilteredRoomRange')
-        from TempStream
-        select deviceID, regex.find(SOU*B*) as roomNo, temp
-        insert into FilteredResultsStream;
-        ```
-       
+    In the example of processing temperature readings, assume that you need to filter the temperature readings for a specific range of devices located in the Southern wing and used for purpose B. Also assume that this can be derived from the device ID because the first three characters of the device ID represent the wing, and the eighth character represents the purpose. e.g., in device ID `SOU5438B765`, the first three characters `SOU` represent the Southern wing, and the eighth character `B` represents purpose B.
     
- - **Filtering based on multiple criteria**
- 
-    For this purpose, you can use the `TemperatureApp` Siddhi application that you created in the example under 
-    **Filtering based on exact match of attribute** section. However, instead of filtering only readings for room No `2233`, assume
-     that you need to filter the readings for a range of rooms (e.g., rooms 100-210) where the temperature is greater 
-     than 40. For this, you can update the filter as follows.
+    You can achieve this by adding a filter with a regex pattern as follows:
     
-    `[(roomNo >= 100 and roomNo < 210) and temp > 40]`
+    ```
+    @info(name = 'FilteredRoomRange')
+    from TempStream
+    select regex.find(SOU*B*) as deviceID, roomNo, temp
+    insert into FilteredResultsStream;
+    ```
+   The `regex.find(SOU*B*)` function filters room IDs that start with the three characters `SOU` and has the character `B` with one or more characters before it as well as after it. 
+
+- **Filtering based on multiple criteria**
+
+    In the example of processing temperature readings, assume that you need to filter the readings for a range of rooms (e.g., rooms 100-210) where the temperature is greater than 40. For this, you can add a filter as follows.
     
-    Here, the `and` logical expression is used to indicate that both the filter conditions provided need to be considered.
-    
+     ```
+     from TempStream [(roomNo >= 100 and roomNo < 210) and temp > 40]
+     select *
+     insert into RoomAnalysisStream;
+     ```   
 
-## Modifying, removing and replacing attributes
+### Try it out
 
-The input data may include attributes that are not required in order to generate the required output, attributes with 
-values that need to be updated or replaced before further processing. 
- 
-Assume that in the previous example, you do not need the device ID for further processing, and you 
-need to remove some unnecessary white spaces from the `roomNo` before sending the input data for further processing. To do this, follow the procedure below:
+To try out the query used in the above example, let's include it in a Siddhi Application and run it.
 
-1. Open the `TemperatureApp` Siddhi application that you previously created in the [Filtering data based on conditions](##filtering-data-based-on-conditions) section and start adding a new query. You can name it as `CleaningData` as shown below.
+1. [Start and Access Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md#starting-streaming-integrator-tooling).
 
-   `@info(name = 'CleaningData')`
-   
-2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data is taken.
+2. Open a new file. Then add and save the following Siddhi application.
 
     ```
-    from FilteredResultsStream
+    @App:name('TemperatureApp')
+    
+    define stream TempStream (deviceID string, roomNo int, temp double);
+    
+    @sink(type = 'log', prefix = "FilteredResult",
+        @map(type = 'passThrough'))
+    define stream RoomAnalysisStream (deviceID string, roomNo int, temp double);
+    
+    @info(name = 'Filtering2233')
+    from TempStream[roomNo == '2233'] 
+    select * 
+    insert into RoomAnalysisStream;
+    ```
+3. Open the event simulator and simulate three events for the `TempStream` input stream of the `TemperatureApp` Siddhi application with the values for the attributes as given below. For instructions to simulate single events, see [Testing Siddhi Applications - Simulating a single event](testing-a-Siddhi-Application/#simulating-a-single-event).
+
+    | **Event** | **deviceID**  | **roomNo** | **temp** |
+    |-----------|---------------|------------|----------|
+    | 1         | `SOU5438B765` | `2233`     | `30`     |
+    | 2         | `WES1827A876` | `1121`     | `27`     |
+    | 3         | `NOR1633B231` | `0899`     | `28`     |
+    
+    Only the first event is logged in the terminal as follows. This is because only the first event has `2233` as the value for the `roomNo` attribute.
+    
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - FilteredResult : Event{timestamp=1604494352744, data=[SOU5438B765, 2233, 30.0], isExpired=false} 
+    ``` 
+4. Now remove the `Filtering2233` query and replace it with the following query that filters based on multiple criteria.
+
+    ```
+    from TempStream [(roomNo >= 100 and roomNo < 210) and temp > 40]
+    select *
+    insert into RoomAnalysisStream;
+    ``` 
+   The complete Siddhi application is as follows:
+   
+   ```
+    @App:name('TemperatureApp')
+    
+    define stream TempStream (deviceID string, roomNo int, temp double);
+    
+    @sink(type = 'log', prefix = "FilteredResult",
+        @map(type = 'passThrough'))
+    define stream RoomAnalysisStream (deviceID string, roomNo int, temp double);
+    
+    from TempStream [(roomNo >= 100 and roomNo < 210) and temp > 40]
+    select *
+    insert into RoomAnalysisStream;
+   ```
+   
+5. Open the event simulator and simulate three events for the `TempStream` input stream of the `TemperatureApp` Siddhi application with the values for the attributes as given below. For instructions to simulate single events, see [Testing Siddhi Applications - Simulating a single event](testing-a-Siddhi-Application/#simulating-a-single-event).
+
+    | **Event** | **deviceID**  | **roomNo** | **temp** |
+    |-----------|---------------|------------|----------|
+    | 1         | `SOU5438B765` | `183`      | `30`     |
+    | 2         | `WES1827A876` | `136`      | `42`     |
+    | 3         | `NOR1633B231` | `899`      | `41`     |
+    
+    Only the second event is logged because only that event matched both the criteria. The event is logged as follows:
+    
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - FilteredResult : Event{timestamp=1604557083556, data=[WES1827A876, 136, 42.0], isExpired=false}
     ```
 
-3. Let's create the `select` statement as follows.
-    1. To select only the `roomNo` and `temp` attributes for further processing and remove the `deviceID` attribute, add them as follows.
+## Modifying, removing, and replacing attributes
 
-        `select roomNo, temp`
+The input data may include attributes that are not required in order to generate the required output, attributes with values that need to be updated or replaced before further processing.
 
-    2. To remove the unnecessary white spaces from the room number, add the `trim()` function as shown below.
-
-        `trim(roomNo)`
-        
-    Now the completed `select` statement is as follows.
-
-    `select trim(roomNo), temp`
-   
-4. Insert the results into an output stream as follows.
-
-    `insert into CleansedDataStream;`
-   
-The completed query is as follows:
+Assume that in the previous example, you do not need the device ID for further processing, and you need to present the room numbers as string values instead of integer values. To do this, follow the procedure below:
 
 ```
 @info(name = 'CleaningData')
 from FilteredResultsStream
-select trim(roomNo), temp
+select cast(roomNo string) as roomNo, temp
 insert into CleansedDataStream;
 ```
+Here, the `cast()` function presents the value for the `roomNo` attribute as a string value although it is received as an integer value. The `select` clause excludes the `deviceID` attribute.
 
-Modifying and replacing is also demonstrated in the [Enriching Data](enriching-data.md) and [Transforming Data](transforming-data.md) guides.
+### Try it out
+
+To try out the above example, follow the steps below:
+
+1. [Start and Access Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md/#starting-streaming-integrator-tooling).
+
+2. Open a new file. Then add and save the following Siddhi application.
+
+    ```
+    @App:name('TemperatureApp')
+    
+    define stream TempStream (deviceID string, roomNo int, temp double);
+    
+    @sink(type = 'log', prefix = "CleanedData",
+        @map(type = 'passThrough'))
+    define stream CleansedDataStream (roomNo string, temp double);
+    
+    @info(name = 'CleaningData')
+    from TempStream
+    select cast(roomNo, "string") as roomNo, temp
+    insert into CleansedDataStream;
+    ```
+   In this Siddhi application, the `Temp Stream` has an attribute named `deviceID`, but it is not selected to be included in the output events. The `roomNo`attribute is cast as an string value via `cast(roomNo, "string")`. This means although the value for this attribute is received as an integer, it is presented as a string value in the output.
+   
+3. Open the event simulator and simulate an event for the `TempStream` input stream of the `TemperatureApp` Siddhi application with the values for the attributes as given below. For instructions to simulate single events, see [Testing Siddhi Applications - Simulating a single event](testing-a-Siddhi-Application/#simulating-a-single-event).
+
+    | **deviceID**  | **roomNo** | **temp** |
+    |---------------|------------|----------|
+    | `SOU5438B765` | `183`      | `30`     |
+    
+    The output is logged as follows:
+    
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - CleanedData : Event{timestamp=1604578130314, data=[183, 30.0], isExpired=false}
+    ```
+
 
 ## Handling attributes with null values
 
-To understand this section, you can reuse the `TemperatureApp` Siddhi application that you created in the [Filtering data based on conditions](##filtering-data-based-on-conditions).
-Assume that some events arrive with null values for the `deviceID` attribute, and you want to assign the value `unknown` in such scenarios.
-To do this, follow the procedure below:
+In the example of processing temperature readings, assume that some events arrive with null values for the `deviceID` attribute, and you want to assign the value `unknown` in such scenarios. This can be achieved by writing a query as follows:
 
-1. Start adding a new query to the `TemperatureApp` Siddhi application. You can name it `AddingMissingValues` as follows.
+```
+@info(name = 'AddingMissingValues')
+from FilteredResultsStream
+select ifThenElse(deviceID is null, "UNKNOWN", deviceID) as deviceID, roomNo, temp
+insert into CleansedDataStream
+```
+### Try it out.
 
-    `@info(name = 'AddingMissingValues')`
-    
-    
-2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data is taken.
+To try out the above example, follow the steps below:
 
-    ```
-    from FilteredResultsStream
-    ```
+1. [Start and Access Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md/#starting-streaming-integrator-tooling).
 
-    !!!info "Note"
-        Here, we are using the inferred output stream of the previous query as the input stream for this query. As a 
-        result, the changes made via this query are applied to the filtered data.
-    
-3. Add the `select` clause. To assign `unknown` as the value for the `deviceID` attribute when it has a null value, you 
-   need to use the `ifThenElse` function as shown below.
-
-    `ifThenElse(deviceID is null, "UNKNOWN", deviceID) as deviceID`
-    
-   Select the `roomNo` and `temp` attributes can be selected without any changes. The query updated with the `select` clause now looks as follows.
-
-   `select ifThenElse(deviceID is null, "UNKNOWN", deviceID) as deviceID, roomNo, temp`
-
-   
- 4. Insert the results into an output stream as follows.
-
-    `insert into CleansedDataStream`
-    
-    The completed query now looks as follows.
-    
-    ```
-    @info(name = 'AddingMissingValues')
-    from FilteredResultsStream
-    select ifThenElse(deviceID is null, "UNKNOWN", deviceID) as deviceID, roomNo, temp
-    insert into CleansedDataStream
-    ```
-    
- 5. Save the Siddhi application. The completed version looks as follows.
+2. Open a new file. Then add and save the following Siddhi application.
 
     ```
     @App:name("TemperatureApp")
     @App:description("Description of the plan")
     
-    define stream TempStream (deviceID long, roomNo string, temp double);
+    define stream TempStream (deviceID string, roomNo string, temp double);
     
-    @info(name = 'Filtering') 
-    from TempStream [roomNo=='2233']
-    select *
-    insert into FilteredResultsStream;
+    @sink(type = 'log', prefix = "Cleansed Data",
+    	@map(type = 'passThrough'))
+    define stream CleansedDataStream (deviceID string, roomNo string, temp double);
     
     @info(name = 'AddingMissingValues')
-    from FilteredResultsStream
+    from TempStream
     select ifThenElse(deviceID is null, "UNKNOWN", deviceID) as deviceID, roomNo, temp
     insert into CleansedDataStream;
+    ```
+   In this Siddhi application, the `Temp Stream` has an attribute named `deviceID`, but it is not selected to be included in the output events. The `roomNo`attribute is cast as an string value via `cast(roomNo, "string")`. This means although the value for this attribute is received as an integer, it is presented as a string value in the output.
+   
+3. Open the event simulator and simulate an event for the `TempStream` input stream of the `TemperatureApp` Siddhi application with the values for the attributes as given below. For instructions to simulate single events, see [Testing Siddhi Applications - Simulating a single event](testing-a-Siddhi-Application/#simulating-a-single-event).
+
+    | **deviceID**                                        | **roomNo** | **temp** |
+    |-----------------------------------------------------|------------|----------|
+    | Select the **Is Null** check box for this sttribute | `183`      | `30`     |
+    
+    The output is logged as follows:
+    
+    ```text
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - Cleansed Data : Event{timestamp=1604581209943, data=[UNKNOWN, 183, 30.0], isExpired=false}
     ```
