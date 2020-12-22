@@ -69,7 +69,7 @@ To try out the above example, follow the steps below:
 
     ![Play](../images/extracting-data-from-static-sources/play.png)
     
-5. Simulate an event with the following values for the `InputStream` stream of the `PublishStockUpdatesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+5. Simulate an event with the following values for the `InputStream` stream of the `PublishStockUpdatesApp` Siddhi application. For instructions to simulate events, see [Testing Siddhi Applications](../develop/testing-a-Siddhi-Application.md).
 
     | **Attribute** | **Value** |
     |---------------|-----------|
@@ -93,11 +93,13 @@ WSO2 Streaming Integrator supports the following transport types to send message
 | `tcp`         | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#sink)     |
 | `email`       | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#sink) |
 | `grpc`        | [grpc](https://siddhi-io.github.io/siddhi-io-grpc/api/latest/#sink)   |
+| `wso2event`   | [wso2event](https://wso2-extensions.github.io/siddhi-map-wso2event/api/5.0.2/) |
+| `websocket`   | [websocket](https://siddhi-io.github.io/siddhi-io-websocket/)         |
 | `Thrift`      |                                                                       |
 
 ### Supported mappers
 
-Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Transforming Data](transforming-data.md#transforming-the-message-format-when-publishing-data).
 
 The following are the supported mappers when you publish data to destinations.
 
@@ -177,7 +179,7 @@ To try out the example in the previous subtopic, follow the steps below:
         
     5. Simulate an event for the `TemperatureStream` stream of the `TemperaturePublishingApp` Siddhi application. In this example, let's enter `30` as the value for the `temperature` attribute.
 
-        For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+        For instructions to simulate events, see [Testing Siddhi Applications](../develop/testing-a-Siddhi-Application.md).
         
     6. To retrieve the events published to the Kafka topic, issue the following command from `<KAFKA_HOME>`
     
@@ -205,7 +207,7 @@ WSO2 Streaming Integrator allows you to publish messages to the following messag
 
 ### Supported mappers
 
-Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is published. For information about transforming events by changing the format in which the data is published, see [Transforming Data](transforming-data.md#transforming-the-message-format-when-publishing-data).
 
 The following are the supported mappers when you publish data to destinations.
 
@@ -216,3 +218,5 @@ The following are the supported mappers when you publish data to destinations.
 | `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)             |
 | `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)             |
 | `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) |   
+        
+        
