@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/dulanjalidilmi-patch-1" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eb3a87b2-c6d3-4ae3-94a1-c7101bd007ac" name="Default Changelist" comment="Remove obsolete documentation.">
+      <change afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/integrating-stores.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/correlating-data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/creating-etl-application-via-tooling.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/creating-etl-application-via-tooling.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/handling-requests-with-errors.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/handling-requests-with-errors.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/performing-real-time-etl-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/performing-real-time-etl-with-mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/reliable-data-integration.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Aggregation Statistics-1580285366634.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi On-Demand Query Statistics-1580285396455.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Overall Statistics-1580282204141.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Query Statistics-1580282256683.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Server Statistics-1580282223378.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Sink Statistics-1580285225995.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Source Statistics-1580285208526.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Stream Statistics-1580282240055.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Table Statistics-1580285249969.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Trigger Statistics-1580285383360.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/resources/dashboards/Siddhi Window Statistics-1580285269330.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/triggering-integrations-via-micro-integrator.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/examples/triggering-integrations-via-micro-integrator.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/capturing-change-data.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/cleansing-data.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/cleansing-data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/consuming-messages.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/correlating-events.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/enriching-data.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/enriching-data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/extracting-data-from-static-sources-in-real-time.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/extracting-data-from-static-sources-in-real-time.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/fault-Handling.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/handling-errors.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/handling-errors.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/loading-and-writing-date.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/loading-and-writing-date.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/processing-data.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/processing-data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/publishing-data-to-event-stream-consumers.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/publishing-data-to-event-stream-consumers.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/publishing-data.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/receiving-data-in-transit.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/receiving-data-in-transit.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/storage-Integration.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/summarizing-data.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/summarizing-data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/transforming-data.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/transforming-data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/triggering-integration-flows.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/triggering-integration-flows.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/use-cases.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/use-cases.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/guides/viewing-dashboards.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/quick-start-guide/getting-started/monitor-statistics.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/quick-start-guide/getting-started/monitor-statistics.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/quick-start-guide/hello-world-with-mi.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/docs/quick-start-guide/quick-start-guide.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/docs/quick-start-guide/quick-start-guide.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/streaming-integrator/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/en/streaming-integrator/mkdocs.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gwgKJ6EZlsxGxcjFB63xJ06PTt" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/en/streaming-integrator/theme/material/images/qsg" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb3a87b2-c6d3-4ae3-94a1-c7101bd007ac" name="Default Changelist" comment="" />
+      <created>1599031003432</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599031003432</updated>
+    </task>
+    <task id="LOCAL-00143" summary="Format sample document.">
+      <created>1606393705295</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1606393705296</updated>
+    </task>
+    <task id="LOCAL-00144" summary="Test sample document and add tip to make it clearer.">
+      <created>1606460054200</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1606460054200</updated>
+    </task>
+    <task id="LOCAL-00145" summary="Add a description of how the Avro schema is applied in the sample.">
+      <created>1606462030356</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1606462030356</updated>
+    </task>
+    <task id="LOCAL-00146" summary="Add descriptions to explain how the Avro schema is applied to streaming events in sample document.">
+      <created>1606462752912</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1606462752912</updated>
+    </task>
+    <task id="LOCAL-00147" summary="Format sample document.">
+      <created>1606474343297</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1606474343297</updated>
+    </task>
+    <task id="LOCAL-00148" summary="Correct formatting error.">
+      <created>1606474434698</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1606474434698</updated>
+    </task>
+    <task id="LOCAL-00149" summary="Correct formatting error.">
+      <created>1606475280201</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1606475280201</updated>
+    </task>
+    <task id="LOCAL-00150" summary="Correct formatting error.">
+      <created>1606475559189</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1606475559189</updated>
+    </task>
+    <task id="LOCAL-00151" summary="Correct formatting error.">
+      <created>1606481014200</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1606481014200</updated>
+    </task>
+    <task id="LOCAL-00152" summary="Correct formatting error.">
+      <created>1606481101133</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1606481101133</updated>
+    </task>
+    <task id="LOCAL-00153" summary="Remove incomplete section.">
+      <created>1606481250684</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1606481250684</updated>
+    </task>
+    <task id="LOCAL-00154" summary="Correct typo.">
+      <created>1606798401149</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1606798401150</updated>
+    </task>
+    <task id="LOCAL-00155" summary="Change &quot;Stream Processor&quot; to &quot;Streaming Integrator&quot; in User Management documentation.">
+      <created>1607315115819</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1607315115820</updated>
+    </task>
+    <task id="LOCAL-00156" summary="Add the Performance Analysis Results summary table.">
+      <created>1607319692417</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1607319692417</updated>
+    </task>
+    <task id="LOCAL-00157" summary="Add the Performance Analysis Results summary table.">
+      <created>1607323490862</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1607323490862</updated>
+    </task>
+    <task id="LOCAL-00158" summary="Update the Performance Analysis Results summary table.">
+      <created>1607335183129</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1607335183130</updated>
+    </task>
+    <task id="LOCAL-00159" summary="Update the Performance Analysis Results summary table and remove obsolete navigator links.">
+      <created>1607407441907</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1607407441908</updated>
+    </task>
+    <task id="LOCAL-00160" summary="Update the Performance Analysis Results summary table and remove obsolete navigator links.">
+      <created>1607407623784</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1607407623784</updated>
+    </task>
+    <task id="LOCAL-00161" summary="Correct formatting error in table.">
+      <created>1607409209732</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1607409209732</updated>
+    </task>
+    <task id="LOCAL-00162" summary="Correct formatting error in table.">
+      <created>1607409413705</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1607409413705</updated>
+    </task>
+    <task id="LOCAL-00163" summary="Complete Performance Analysis Summary">
+      <created>1607428532319</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1607428532319</updated>
+    </task>
+    <task id="LOCAL-00164" summary="Complete Performance Analysis Summary">
+      <created>1607429237598</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1607429237598</updated>
+    </task>
+    <task id="LOCAL-00165" summary="Complete Performance Analysis Summary">
+      <created>1607435171403</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1607435171403</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Complete Performance Analysis Summary">
+      <created>1607438799882</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1607438799882</updated>
+    </task>
+    <task id="LOCAL-00167" summary="Update SI documentation navigator with links to pages with dashboard descriptions.">
+      <created>1607493484207</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1607493484208</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Update Viewing Overall Statistics page.">
+      <created>1607498491553</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1607498491553</updated>
+    </task>
+    <task id="LOCAL-00169" summary="Update instructions to enable binlogs.">
+      <created>1607583717132</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1607583717132</updated>
+    </task>
+    <task id="LOCAL-00170" summary="Add documentation for the Received Event Count Logger.">
+      <created>1607597782490</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1607597782490</updated>
+    </task>
+    <task id="LOCAL-00171" summary="Add missing step in the QSG to run SI with MI.">
+      <created>1607940950626</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1607940950626</updated>
+    </task>
+    <task id="LOCAL-00172" summary="Add missing step in the tutorial to run SI with MI.">
+      <created>1607947416367</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1607947416367</updated>
+    </task>
+    <task id="LOCAL-00173" summary="Add missing step in the tutorial to run SI with MI.">
+      <created>1607948772240</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1607948772240</updated>
+    </task>
+    <task id="LOCAL-00174" summary="Remove unnecessary line break.">
+      <created>1607949685979</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1607949685979</updated>
+    </task>
+    <task id="LOCAL-00175" summary="Update instructions to run SI with MI.">
+      <created>1607951407105</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1607951407105</updated>
+    </task>
+    <task id="LOCAL-00176" summary="Update links in the Overview page">
+      <created>1608004560782</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1608004560783</updated>
+    </task>
+    <task id="LOCAL-00177" summary="Update links in the Overview page">
+      <created>1608004772099</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1608004772099</updated>
+    </task>
+    <task id="LOCAL-00178" summary="Correct formatting error.">
+      <created>1608012476410</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1608012476410</updated>
+    </task>
+    <task id="LOCAL-00179" summary="Divide the Stream Processing Guide into multiple pages.">
+      <created>1608101472345</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1608101472345</updated>
+    </task>
+    <task id="LOCAL-00180" summary="Correct allignment issue in Streaming Integrator documentation navigator.">
+      <created>1608124563831</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1608124563831</updated>
+    </task>
+    <task id="LOCAL-00181" summary="Add a description to viewing query statistics.">
+      <created>1608126331896</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1608126331896</updated>
+    </task>
+    <task id="LOCAL-00182" summary="Divide the Stream Processing Guide into multiple pages">
+      <created>1608185732700</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1608185732700</updated>
+    </task>
+    <task id="LOCAL-00183" summary="Divide the Stream Processing Guide into multiple pages">
+      <created>1608211151724</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1608211151724</updated>
+    </task>
+    <task id="LOCAL-00184" summary="Add new tutorial">
+      <created>1608212929920</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1608212929920</updated>
+    </task>
+    <task id="LOCAL-00185" summary="Add new tutorial.">
+      <created>1608304310003</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1608304310003</updated>
+    </task>
+    <task id="LOCAL-00186" summary="Complete the Siddhi Extension indexes in Streaming Integrator guides.">
+      <created>1608533393473</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1608533393475</updated>
+    </task>
+    <task id="LOCAL-00187" summary="Add tutorial for integrating  stores.">
+      <created>1608559059292</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1608559059292</updated>
+    </task>
+    <task id="LOCAL-00188" summary="Add tutorial for integrating  stores.">
+      <created>1608563454874</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1608563454875</updated>
+    </task>
+    <task id="LOCAL-00189" summary="Complete tutorial for integrating stores.">
+      <created>1608636512237</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1608636512238</updated>
+    </task>
+    <task id="LOCAL-00190" summary="Remove unnecessary heading.">
+      <created>1608636842480</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1608636842480</updated>
+    </task>
+    <task id="LOCAL-00191" summary="Remove obsolete documentation.">
+      <created>1608639166084</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1608639166084</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/dulanjalidilmi-patch-1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Update the Performance Analysis Results summary table." />
+    <MESSAGE value="Update the Performance Analysis Results summary table and remove obsolete navigator links." />
+    <MESSAGE value="Correct formatting error in table." />
+    <MESSAGE value="Complete Performance Analysis Summary" />
+    <MESSAGE value="Update SI documentation navigator with links to pages with dashboard descriptions." />
+    <MESSAGE value="Update Viewing Overall Statistics page." />
+    <MESSAGE value="Update instructions to enable binlogs." />
+    <MESSAGE value="Add documentation for the Received Event Count Logger." />
+    <MESSAGE value="Add missing step in the QSG to run SI with MI." />
+    <MESSAGE value="Add missing step in the tutorial to run SI with MI." />
+    <MESSAGE value="Remove unnecessary line break." />
+    <MESSAGE value="Update instructions to run SI with MI." />
+    <MESSAGE value="Update links in the Overview page" />
+    <MESSAGE value="Correct formatting error." />
+    <MESSAGE value="Divide the Stream Processing Guide into multiple pages." />
+    <MESSAGE value="Correct allignment issue in Streaming Integrator documentation navigator." />
+    <MESSAGE value="Add a description to viewing query statistics." />
+    <MESSAGE value="Divide the Stream Processing Guide into multiple pages" />
+    <MESSAGE value="Add new tutorial" />
+    <MESSAGE value="Add new tutorial." />
+    <MESSAGE value="Complete the Siddhi Extension indexes in Streaming Integrator guides." />
+    <MESSAGE value="Add tutorial for integrating  stores." />
+    <MESSAGE value="Complete tutorial for integrating stores." />
+    <MESSAGE value="Remove unnecessary heading." />
+    <MESSAGE value="Remove obsolete documentation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove obsolete documentation." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="293" y="141" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608093803517">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="293" y="141" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.947@0.23.1680.947" timestamp="1608093803517" />
+    <state x="567" y="233" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608638878811">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="567" y="233" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.947@0.23.1680.947" timestamp="1608638878811" />
+    <state x="482" y="249" key="MultipleFileMergeDialog" timestamp="1608179569496">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="482" y="249" key="MultipleFileMergeDialog/0.23.1680.947@0.23.1680.947" timestamp="1608179569496" />
+    <state x="645" y="189" key="RollbackChangesDialog" timestamp="1608126256675">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="645" y="189" key="RollbackChangesDialog/0.23.1680.947@0.23.1680.947" timestamp="1608126256675" />
+    <state x="429" y="219" key="Vcs.Push.Dialog.v2" timestamp="1608639822802">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="429" y="219" key="Vcs.Push.Dialog.v2/0.23.1680.947@0.23.1680.947" timestamp="1608639822802" />
+    <state x="429" y="219" key="Vcs.Push.Dialog.v2/0.23.1680.949@0.23.1680.949" timestamp="1604327877057" />
+    <state x="527" y="111" width="604" height="735" key="find.popup" timestamp="1603871264748">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="527" y="111" width="604" height="735" key="find.popup/0.23.1680.947@0.23.1680.947" timestamp="1603871264748" />
+    <state x="532" y="274" key="git4idea.merge.GitPullDialog" timestamp="1608639840481">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="532" y="274" key="git4idea.merge.GitPullDialog/0.23.1680.947@0.23.1680.947" timestamp="1608639840481" />
+    <state x="532" y="275" key="git4idea.merge.GitPullDialog/0.23.1680.949@0.23.1680.949" timestamp="1604327722214" />
+    <state x="326" y="347" key="git4idea.rebase.GitRebaseDialog" timestamp="1600853990030">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="326" y="347" key="git4idea.rebase.GitRebaseDialog/0.23.1680.947@0.23.1680.947" timestamp="1600853990030" />
+    <state x="636" y="375" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1602567118969">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="636" y="375" key="git4idea.remote.GitConfigureRemotesDialog/0.23.1680.947@0.23.1680.947" timestamp="1602567118969" />
+    <state x="621" y="391" key="git4idea.ui.GitStashDialog" timestamp="1608004634988">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="621" y="391" key="git4idea.ui.GitStashDialog/0.23.1680.947@0.23.1680.947" timestamp="1608004634988" />
+  </component>
+</project>
