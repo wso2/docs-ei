@@ -3674,7 +3674,7 @@
                             "required": true,
                             "default": "-",
                             "possible": "-",
-                            "description": "The class implementing the custom transport. For example, if you are implementing an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener."
+                            "description": "The class implementing the custom transport. For example, if you are using an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener."
                         },
                         {
                             "name": "protocol",
@@ -3703,7 +3703,7 @@
                             "required": true,
                             "default": "-",
                             "possible": "-",
-                            "description": "The class implementing the custom transport. For example, if you are implementing an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender."
+                            "description": "The class implementing the custom transport. For example, if you are using an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender."
                         },
                         {
                             "name": "protocol",
