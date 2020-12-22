@@ -3,7 +3,7 @@ Typically, a GET request does not contain a body, and the Micro Integrator will
 
 ## Synapse configuration
 
-Following is a sample REST API configuration that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+Following is a sample REST API configuration that we can use to validate this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <api xmlns="http://ws.apache.org/ns/synapse" name="HealthcareService" context="/healthcare">
