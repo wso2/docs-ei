@@ -876,8 +876,6 @@ You can execute SQL queries via WSO2 Streaming Integrator to manipulate data in 
         
 To perform CRUD operations in multiple tables via WSO2 Streaming Integrator, follow the steps below:
 
-#### Define tables in Siddhi application
-
 To start creating the Siddhi application with the required tables, follow the steps below:
 
 1. In WSO2 Streaming Integrator Tooling, open the `StockManagementApp` that you previously created.
