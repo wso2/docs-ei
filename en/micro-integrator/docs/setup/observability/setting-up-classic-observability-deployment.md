@@ -108,6 +108,62 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
      ![endpoint properties](../../assets/img/ei-analytics/endpoint-properties.png)
 
+### Enabling Load Balancing Data Agent for Publishing to Analytics
+
+You can send events to multiple Analytics servers, either by sending the same event to many Analytics servers or by load balancing events among a set of servers. This handles the fail-over problem. When events are load balanced within a set of servers and if one receiver cannot be reached, events are automatically sent to the other available and active Analytics servers.
+The following scenarios are covered in this section.
+
+#### Load balancing events to a set of servers 
+
+For this functionality, include the server URL in the Data Agent as a general DAS/CEP receiver URL. The URL should be entered in a comma separated format as shown below.
+
+eg: `tcp://<Analytics-1>:<port>,tcp://<Analytics-2>:<port>,tcp://<Analytics-3>:<port>`
+
+sample: `tcp://10.100.2.32:7611, tcp://10.100.2.33:7611, tcp://10.100.2.34:7611`
+    ![lb events to servers](../../assets/img/ei-analytics/ob-lb-events-to-servers.png)
+It also handles fail-over cases such as, if DAS/CEP Receiver-1 is marked as down, then the Data Agent will send the data only to DAS/CEP Receiver-2 and DAS/CEP Receiver-3 in a round robin manner. When DAS/CEP Receiver-1 becomes active after some time, the Data Agent automatically detects it, adds it to the operation, and again starts to load balance between all three receivers. This functionality significantly reduces the loss of data and provides more concurrency.
+
+#### Load balancing events to sets of servers  
+
+In this setup there are two sets of servers that are referred to as set-A and set-B. 
+You can send events to both the sets. You can also carry out load balancing for both sets as mentioned in load balancing between a set of servers. 
+This scenario is a combination of load balancing between a set of servers and sending an event to several receivers. 
+An event is sent to both set-A and set-B. Within set-A, it will be sent either to Analytics A1 or Analytics A2. 
+Similarly within set-B, it will be sent either to Analytics B1 or Analytics B2. 
+In the setup, you can have any number of sets and any number of servers as required by mentioning them accurately in the server URL.
+    ![lb events to set of servers](../../assets/img/ei-analytics/ob-lb-to-sets-of-servers.png)
+    
+Similar to the other scenarios, you can describe this as a receiver URL. The sets should be mentioned within curly braces separated by commas. Further more, each receiver that belongs to the set, should be within the curly braces and with the receiver URLs in a comma separated format. The receiver URL format is given below.
+
+eg: `{tcp://Analytics-A1:port, tcp://Analytics-A2:port},{tcp://Analytics-B1:port, tcp://Analytics-B2:port}`
+
+sample: `{tcp://10.100.2.32:7611, tcp://10.100.2.33:7611}, {tcp://10.100.2.34:7611, tcp://10.100.2.35:7611}`
+
+#### Sending all the events to several analytics servers
+
+This setup involves sending all the events to more than one Analytics server. 
+This approach is mainly followed when you use other servers to analyze events together with Analytics servers. 
+For example, you can use the same Data Agents to publish the events to WSO2 Ei Analytics. 
+You can use this functionality to publish the same event to both Analytics servers at the same time. 
+    ![all events to all servers](../../assets/img/ei-analytics/ob-all-events-to-all-servers.png)
+    
+eg: `{tcp://Analytics-1>:<port>}, {tcp://Analytics-2>:<port>}, {tcp://<Analytics-3>:<port>}`
+
+sample `{tcp://10.100.2.32:7611},{ tcp://10.100.2.33:7611}, {tcp://10.100.2.34:7611}`
+
+#### Failover configuration
+
+When using the failover configuration in publishing events to Analytics, events are sent to multiple Analytics servers in a sequential order based on priority. 
+You can specify multiple Analytics servers so that events can be sent to the next server in the sequence in a situation where they were not successfully sent to the first server. 
+In the scenario depicted in the above image, the events are first sent to Analytics-1. 
+If it is unavailable, then events will be sent to Analytics-2. 
+If Analytics-2  is also unavailable, then the events will be sent to Analytics-3.
+    ![fail over](../../assets/img/ei-analytics/ob-fail-over.png)
+
+eg: `tcp://<Analytics-1>:<port>|tcp://<Analytics-2>:<port>|tcp://<Analytics-3>:<port>`
+
+sample `tcp://10.100.2.32:7611| tcp://10.100.2.33:7611| tcp://10.100.2.34:7611`
+
 ## What's Next?
 
 If you have successfully set up your anlaytics deployment, see the instructions on [using the analytics portal](../../../administer-and-observe/using-the-analytics-dashboard).
