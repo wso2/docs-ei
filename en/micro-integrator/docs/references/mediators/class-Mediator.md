@@ -39,7 +39,7 @@ In this configuration, the Micro Integrator sends the requested message to the 
         For more information on using the get property method, see the [Property Mediator](property-Mediator.md).
 
 !!! Warning
-        Using the class variables with expression will lead to the values evaluated being mixed up when there are concurrent requests and will lead to erroneous behaviors. 
+        Using the class variables with expressions will lead to the values evaluated being mixed up when there are concurrent requests and will lead to erroneous behaviors. 
 
 ``` java
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="errorHandler">
