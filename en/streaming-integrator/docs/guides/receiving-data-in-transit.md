@@ -99,15 +99,16 @@ The following are the supported transports to capture data in transit from data 
 
 | **Transport** | **Siddhi Extension**                                                          |
 |---------------|-------------------------------------------------------------------------------|
-| HTTP          | [http](https://siddhi-io.github.io/siddhi-io-http/api/latest/#source)         |
-| TCP           | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#source)           |
-| Email         | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source) |
+| `HTTP`        | [http](https://siddhi-io.github.io/siddhi-io-http/api/latest/#source)         |
+| `TCP`         | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#source)           |
+| `Email`       | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#email-source) |
 | `grpc`        | [grpc](https://siddhi-io.github.io/siddhi-io-grpc/api/latest/#source)         |
+| `wso2event`   | [wso2event](https://wso2-extensions.github.io/siddhi-map-wso2event/api/5.0.2/) |
 | `Thrift`      |                                                                               |
 
 ### Supported mappers
 
-Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Transforming Data](transforming-data.md#transforming-message-formats).
 
 The following are the supported mappers when you receive data from data publishers.
 
@@ -166,7 +167,8 @@ To try the above example, follow the steps below.
 
     1. Start and access [WSO2 Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md). 
     
-    2. Download and install the Kafka extension to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).    
+    2. Download and install the Kafka extension to it. For instructions, see [Installing Siddhi Extensions](../develop/installing-siddhi-extensions.md).
+    
     3. Open a new file and add the following Siddhi application to it.
 
         ```
@@ -227,7 +229,7 @@ The following are the supported transports to capture data in transit from messa
 
 ### Supported mappers
 
-Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Processing Data - Transforming Data](processing-data.md#transforming-data).
+Mappers determine the format in which the event is received. For information about transforming events by changing the format in which the data is received/published, see [Transforming Data](transforming-data.md#transforming-message-formats).
 
 The following are the supported mappers when you receive data from messaging systems.
 
@@ -238,3 +240,4 @@ The following are the supported mappers when you receive data from messaging sys
 | `text`        | [text](https://siddhi-io.github.io/siddhi-map-text/api/latest/#sinkmapper)             |
 | `avro`        | [avro](https://siddhi-io.github.io/siddhi-map-avro/api/latest/#sinkmapper)             |
 | `binary`      | [binary](https://siddhi-io.github.io/siddhi-map-binary/api/latest/#binary-sink-mapper) |
+| `protobuf`    | [protobuf](https://siddhi-io.github.io/siddhi-map-protobuf/api/latest/#protobuf-sink-mapper) |
