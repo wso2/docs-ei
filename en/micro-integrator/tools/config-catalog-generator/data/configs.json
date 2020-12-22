@@ -3620,6 +3620,64 @@
             "exampleFile": "_udp-transport-blocking.toml"
         },
         {
+            "title": "Custom Transport Listener",               
+            "options": [
+                {
+                    "name": "[custom_transport.listener]",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to receive messages through a <a href='../../setup/transport_configurations/configuring-transports/#configuring-custom-transports'>custom transport</a>.",
+                    "params": [
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The class implementing the custom transport. For example, if you are implementing an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener."
+                        },
+                        {
+                            "name": "protocol",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The transport protocol for the custom implementation. For example: hl7."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_custom-transport-listener.toml"
+        },
+        {
+            "title": "Custom Transport Sender",               
+            "options": [
+                {
+                    "name": "transport.udp",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to send messages through a <a href='../../setup/transport_configurations/configuring-transports/#configuring-custom-transports'>custom transport</a>.",
+                    "params": [
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The class implementing the custom transport. For example, if you are implementing an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender."
+                        },
+                        {
+                            "name": "protocol",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The transport protocol for the custom implementation. For example: hl7."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_custom-transport-sender.toml"
+        },
+        {
             "title": "Message Mediation",            	
             "options": [
                 {
