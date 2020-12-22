@@ -426,7 +426,7 @@ To try this, follow the steps below:
     @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/dispatches?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
     define table DispatchesTable (timestamp long, name string, amount double);
     
-    @store(type = 'rdbms', password = "root", jdbc.url = "jdbc:mysql://localhost:3306/purchases?useSSL=false", jdbc.driver.name = "com.mysql.jdbc.Driver", username = "root")
+    @store(type = 'rdbms', ref = "purchases")
     define table PurchasesTable (timestamp long, name string, amount double);
     
     @store(type = 'rdbms', datasource = "Stock_DB")
@@ -552,7 +552,7 @@ To update the `StockTable` table via streams, follow the steps below:
     @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/dispatches?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
     define table DispatchesTable (timestamp long, name string, amount double);
     
-    @store(type = 'rdbms', password = "root", jdbc.url = "jdbc:mysql://localhost:3306/purchases?useSSL=false", jdbc.driver.name = "com.mysql.jdbc.Driver", username = "root")
+    @store(type = 'rdbms', ref = "purchases")
     define table PurchasesTable (timestamp long, name string, amount double);
     
     @store(type = 'rdbms', datasource = "Stock_DB")
@@ -662,7 +662,7 @@ To delete records in the `StockTable` table via streams, follow the steps below:
     @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/dispatches?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
     define table DispatchesTable (timestamp long, name string, amount double);
     
-    @store(type = 'rdbms', password = "root", jdbc.url = "jdbc:mysql://localhost:3306/purchases?useSSL=false", jdbc.driver.name = "com.mysql.jdbc.Driver", username = "root")
+    @store(type = 'rdbms', ref = "purchases")
     define table PurchasesTable (timestamp long, name string, amount double);
     
     @store(type = 'rdbms', datasource = "Stock_DB")
@@ -855,7 +855,133 @@ select * from StockTable;
 
 The following is displayed:
 
-![Results for Delete operation](../images/integrating-stores/delete-operation-results.png)           
+![Results for Delete operation](../images/integrating-stores/delete-operation-results.png)   
+
+### Manipulate data in stores via SQL queries
+
+You can execute SQL queries via WSO2 Streaming Integrator to manipulate data in data stores. This is supported via the [siddhi-store-rdbms extension](https://siddhi-io.github.io/siddhi-store-rdbms/).
+
+!!! tip "Before you begin:"
+    To allow Streaming Integrator Tooling to perform CRUD operations, open `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file, and add an extract as shown below with the `perform.CRUD.operations` parameter set to `true` as shown below:<br/><br/>
+        ```
+        siddhi:
+          extensions:
+            -
+              extension:
+                name: cud
+                namespace: rdbms
+                properties:
+                  perform.CUD.operations: true
+        ```<br/><br/>
         
- 
+To perform CRUD operations in multiple tables via WSO2 Streaming Integrator, follow the steps below:
+
+To start creating the Siddhi application with the required tables, follow the steps below:
+
+1. In WSO2 Streaming Integrator Tooling, open the `StockManagementApp` that you previously created.
+
+2. Define a new stream in it named `StockStream` as follows.
+
+    `define stream TriggerStream (name string, amount double);`
     
+3. Add a query as follows:
+
+    ```
+    from TriggerStream#rdbms:cud("Stock_DB", "UPDATE StockTable SET name='sugarsyrup' where name='sugar'")
+    select name, amount
+    insert into OutputStream
+    ```
+    This query updates the record in the `StockTable` table where the value for the `name` attribute is `sugar` by changing that same value to `sugarsyrup`.
+    
+4. Save the Siddhi application. The complete Siddhi application is now as follows:
+
+    ```
+    @App:name('StockManagementApp')
+    
+    define stream MaterialDispatchesStream (timestamp long, name string, amount double);
+    
+    @sink(type = 'log', prefix = "Search Results",
+    	@map(type = 'passThrough'))
+    define stream SearchResultsStream (timestamp long, name string, amount double);
+    
+    define stream MaterialPurchasesStream (timestamp long, name string, amount double);
+    
+    define stream PurchaseRecordRetrievalStream (name string);
+    
+    define stream LatestStockStream (name string, amount double);
+    
+    define stream UpdateStockStream (name string, amount double);
+    
+    define stream DeleteStream (name string, amount double);
+    
+    define stream TriggerStream (name string, amount double);
+    
+    @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/dispatches?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
+    define table DispatchesTable (timestamp long, name string, amount double);
+    
+    @store(type = 'rdbms', ref = "purchases")
+    define table PurchasesTable (timestamp long, name string, amount double);
+    
+    @store(type = 'rdbms', datasource = "Stock_DB")
+    @primaryKey("name")
+    define table StockTable (name string, amount double);
+    
+    @info(name = 'Save material dispatch records')
+    from MaterialDispatchesStream 
+    select * 
+    insert into DispatchesTable;
+    
+    @info(name = 'Save purchase records')
+    from MaterialPurchasesStream 
+    select * 
+    insert into PurchasesTable;
+    
+    
+    @info(name = 'Retrieve purchase records')
+    from PurchaseRecordRetrievalStream as s 
+    join PurchasesTable as p 
+    	on s.name == p.name 
+    select p.timestamp as timestamp, s.name as name, p.amount as amount 
+    	group by p.name 
+    insert into SearchResultsStream;
+    
+    @info(name = 'Update or Record Stock')
+    from LatestStockStream
+    select name, amount
+    update or insert into StockTable
+     set LatestStockStream.amount = amount
+     on StockTable.name == name;
+     
+    @info(name = 'Update Stock')
+    from UpdateStockStream
+    select name, amount
+    update StockTable
+     set UpdateStockStream.amount = amount
+     on StockTable.name == name;
+     
+    @info(name = 'Delete Stock')
+    from DeleteStream
+    select name, amount
+    delete StockTable 
+      on StockTable.name == name;
+      
+    from TriggerStream#rdbms:cud("Stock_DB", "UPDATE StockTable SET name='sugarsyrup' where name='sugar'")
+    select name, amount
+    insert into OutputStream
+    ```
+    
+5. Simulate an event for the `TriggerStream` stream of the `StockManagementApp` Siddhi application. You can enter any values of your choice as the attribute values.
+
+6. To check the database table, issue the following MySQL commands.
+
+    ```
+    use closingstock;
+    ```
+   
+    ```
+    select * from StockTable;
+    ```
+   
+   The following is displayed:
+   
+   ![Updated Stock](../images/integrating-stores/updated-table-after-sql-query.png)
