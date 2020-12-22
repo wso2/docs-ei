@@ -608,7 +608,7 @@ The `timeout` element contains the following parameters that are used to conside
             <p>Timeout Duration</p>
          </td>
          <td>
-            Connection timeout interval. If the remote endpoint does not respond in this time, it will be marked as "Timeout." This can be in defined as a static value or as a dynamic value.</br>
+            Connection timeout interval. If the remote endpoint does not respond in this time, it will be marked as "Timeout." This can be defined as a static value or as a dynamic value.</br>
             Miliseconds or an XPATH expression. Default value is 60000 milliseconds.
          </td>
       </tr>
@@ -752,7 +752,7 @@ to a maximum duration.
 
 ``` xml
 <endpoint name="Sample_First" statistics="enable" >
-    <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
+    <address uri="http://localhost:8280/myendpoint" statistics="enable" trace="disable">
         <timeout>
             <duration>60000</duration>
         </timeout>
