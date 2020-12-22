@@ -30,7 +30,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 
 #### Create a Sequence Template
 
-1.  Once you have exported the ESB project as described above, the project directory will appear with the artifacts as shown below.
+1.  Once you have imported the ESB project as described above, the project directory will appear with the artifacts as shown below.
 
     ![](../../assets/img/tutorials/using-templates/sequence-temp-project-explorer.png)
 
@@ -61,7 +61,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 6.  Open the **Properties** tab of the sequence template by clicking on
     the canvas (outside the sequence box).  
 
-7.  Click the ![](../../assets/img/tutorials/common/plus-icon.png) icon
+7.  Click the <img src="../../../assets/img/tutorials/plus-icon.png" width="20"> icon
     to start adding parameters .
 
     ![](../../assets/img/tutorials/using-templates/sequence-canvas-2.png) 
@@ -92,7 +92,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
         </tr>
     </table>
 
-11. Click the ![](../../assets/img/tutorials/common/plus-icon.png) icon
+11. Click the <img src="../../../assets/img/tutorials/plus-icon.png" width="20"> icon
     to start defining a property. Then add the following details for the
     property:
 
@@ -140,16 +140,16 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
             <td>uri.var.hospital  </td>
         </tr>
         <tr>
-            <td>URI Template</td>
+            <td>Property Data Type</td>
+            <td>Select STRING</td>
+        </tr>
+        <tr>
+            <td>Property Action</td>
             <td>Select set </td>
         </tr>
         <tr>
             <td>Value Type</td>
             <td>Select EXPRESSION</td>
-        </tr>
-        <tr>
-            <td>Property Data Type</td>
-            <td>Select STRING</td>
         </tr>
         <tr>
             <td>Value Expression</td>
@@ -178,7 +178,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 4.  Open the **Properties** tab of the **Call Template** mediator and
     select ' HospitalRoutingSeq' from the list of available templates.
 
-5.  Click the ![](../../assets/img/tutorials/common/plus-icon.png) icon
+5.  Click the <img src="../../../assets/img/tutorials/plus-icon.png" width="20"> icon
     to start adding parameters. Enter the following parameter details
     and click **Finish** .
 
@@ -208,6 +208,90 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
     respective parameter values.
 
 7.  Save the configuration.
+
+    After completion, your API will be similar to this.
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
+        <resource methods="GET" uri-template="/querydoctor/{category}">
+            <inSequence>
+                <log description="Request Log" level="custom">
+                    <property name="Log Property message" value="&quot;Welcome to HealthcareService&quot;"/>
+                </log>
+                <send>
+                    <endpoint key="QueryDoctorEP"/>
+                </send>
+            </inSequence>
+            <outSequence>
+                <send/>
+            </outSequence>
+            <faultSequence/>
+        </resource>
+        <resource methods="POST" uri-template="/categories/{category}/reserve">
+            <inSequence>
+                <property description="Get Hospital" expression="json-eval($.hospital)" name="Hospital" scope="default" type="STRING"/>
+                <property description="Get Card Number" expression="json-eval($.cardNo)" name="card_number" scope="default" type="STRING"/>
+                <datamapper config="gov:datamapper/RequestMapping.dmc" inputSchema="gov:datamapper/RequestMapping_inputSchema.json" inputType="JSON" outputSchema="gov:datamapper/RequestMapping_outputSchema.json" outputType="JSON" xsltStyleSheet="gov:datamapper/RequestMapping_xsltStyleSheet.xml"/>
+                <switch source="get-property('Hospital')">
+                    <case regex="grand oak community hospital">
+                        <call-template target="HospitalRoutingSeq">
+                            <with-param name="sethospital" value="grandoaks"/>
+                        </call-template>
+                        <call>
+                            <endpoint key="GrandOakEP"/>
+                        </call>
+                    </case>
+                    <case regex="clemency medical center">
+                        <call-template target="HospitalRoutingSeq">
+                            <with-param name="sethospital" value="Clemency"/>
+                        </call-template>
+                        <call>
+                            <endpoint key="ClemencyEP"/>
+                        </call>
+                    </case>
+                    <case regex="pine valley community hospital">
+                        <call-template target="HospitalRoutingSeq">
+                            <with-param name="sethospital" value="Pine Valley"/>
+                        </call-template>
+                        <call>
+                            <endpoint key="PineValleyEP"/>
+                        </call>
+                    </case>
+                    <default>
+                        <log description="Fault Log" level="custom">
+                            <property expression="fn:concat('Invalid hospital - ', get-property('Hospital'))" name="message"/>
+                        </log>
+                        <respond/>
+                    </default>
+                </switch>
+                <property description="Get Appointment Number" expression="json-eval($.appointmentNumber)" name="uri.var.appointment_id" scope="default" type="STRING"/>
+                <property description="Get Doctor Details" expression="json-eval($.doctor)" name="doctor_details" scope="default" type="STRING"/>
+                <property description="Get Patient Details" expression="json-eval($.patient)" name="patient_details" scope="default" type="STRING"/>
+                <call>
+                    <endpoint key="ChannelingFeeEP"/>
+                </call>
+                <property description="Get Actual Fee" expression="json-eval($.actualFee)" name="actual_fee" scope="default" type="STRING"/>
+                <payloadFactory media-type="json">
+                    <format>{"appointmentNumber":$1, "doctor":$2, "patient":$3, "fee":$4, "confirmed":"false", "card_number":"$5"}</format>
+                    <args>
+                        <arg evaluator="xml" expression="$ctx:uri.var.appointment_id"/>
+                        <arg evaluator="xml" expression="$ctx:doctor_details"/>
+                        <arg evaluator="xml" expression="$ctx:patient_details"/>
+                        <arg evaluator="xml" expression="$ctx:actual_fee"/>
+                        <arg evaluator="xml" expression="$ctx:card_number"/>
+                    </args>
+                </payloadFactory>
+                <call>
+                    <endpoint key="SettlePaymentEP"/>
+                </call>
+                <respond/>
+            </inSequence>
+            <outSequence/>
+            <faultSequence/>
+        </resource>
+    </api>
+    ```
 
 ### Step 3: Package the artifacts
 
