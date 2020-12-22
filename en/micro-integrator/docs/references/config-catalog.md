@@ -3453,7 +3453,12 @@ sender.truststore.file_name = "$ref{truststore.file_name}"
 sender.truststore.type = "$ref{truststore.type}"
 sender.truststore.password = "$ref{truststore.password}"
 sender.ssl_profile.file_path = "conf/sslprofiles/senderprofiles.xml"
-sender.ssl_profile.read_interval = "30s"</code></pre>
+sender.ssl_profile.read_interval = "30s"
+enable_message_size_validation = false
+max_message_size_bytes = 2147483647
+max_open_connections = -1
+force_xml_validation = false
+force_json_validation = false</code></pre>
                     </div>
                 </div>
                 <div class="doc-wrapper">
@@ -4157,6 +4162,111 @@ sender.ssl_profile.read_interval = "30s"</code></pre>
                                     </div>
                                     <div class="param-description">
                                         <p>The password of the keystore file that is used as the trust store. By default, the product&#39;s trust store is configured for this purpose.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>enable_message_size_validation</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>If this property is enabled and the payload exceeds the size specified by the &#39;max_message_size_bytes&#39; property, the Micro Integrator will discontinue reading the input stream. This will prevent out-of-memory issues.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>max_message_size_bytes</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>2147483647</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>If the size of the payload exceeds this value, the Micro Integrator will discontinue reading the input stream. Only applicable if the ‘enable_message_size_validation’ property is enabled.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>max_open_connections</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>-1</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>This property allows connection throttling to restrict the number of simultaneously opened connections. That is, simultaneously opened incoming connections will be restricted by the specified value. To disable throttling, delete the ‘max_open_connections’ setting or set it to -1.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>force_xml_validation</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>This property validates badly formed XML messages by building the whole XML document. This validation ensures that erroneous XML messages will trigger the fault sequence in the Micro Integrator.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>force_json_validation</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>This property validates JSON messages by parsing the input message. This validation ensures that erroneous JSON messages will trigger the fault sequence in the Micro Integrator.</p>
                                     </div>
                                 </div>
                             </div>
@@ -10333,7 +10443,7 @@ inbound.max_threads = 100</code></pre>
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
