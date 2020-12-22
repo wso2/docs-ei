@@ -40,6 +40,12 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 	connection_password = "admin"  
 	user_search_base = "ou=system"   
 	```
+	
+	!!! Note
+		If you have taken a WUM update after 28/11/2019, you need to add the following configuration under `[user_store]` in addition to the above.
+		```toml
+		type = "read_only_ldap"   
+		```
 
 	Parameters used above are explained below.
 	
@@ -161,6 +167,12 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 	class = "org.wso2.micro.integrator.security.user.core.jdbc.JDBCUserStoreManager"
 	```
 	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator.
+
+	!!! Note
+		If you have taken a WUM update after 28/11/2019, you need to add the following configuration under `[user_store]` in addition to the above.
+		```toml
+		type = "database"   
+		```
 
 ## Disabling lazy loading of user store configurations (Optional)
 
