@@ -113,7 +113,7 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 You can send events to multiple Analytics servers, either by sending the same event to many Analytics servers or by load balancing events among a set of servers. This handles the fail-over problem. When events are load balanced within a set of servers and if one receiver cannot be reached, events are automatically sent to the other available and active Analytics servers.
 The following scenarios are covered in this section.
 
-#### Load balancing events to a set of servers 
+#### Load balancing across group of servers 
 
 For this functionality, include the server URL in the Data Agent as a general DAS/CEP receiver URL. The URL should be entered in a comma separated format as shown below.
 
@@ -123,7 +123,7 @@ sample: `tcp://10.100.2.32:7611, tcp://10.100.2.33:7611, tcp://10.100.2.34:7611`
     ![lb events to servers](../../assets/img/ei-analytics/ob-lb-events-to-servers.png)
 It also handles fail-over cases such as, if DAS/CEP Receiver-1 is marked as down, then the Data Agent will send the data only to DAS/CEP Receiver-2 and DAS/CEP Receiver-3 in a round robin manner. When DAS/CEP Receiver-1 becomes active after some time, the Data Agent automatically detects it, adds it to the operation, and again starts to load balance between all three receivers. This functionality significantly reduces the loss of data and provides more concurrency.
 
-#### Load balancing events to sets of servers  
+#### Load balancing across multiple groups of servers  
 
 In this setup there are two sets of servers that are referred to as set-A and set-B. 
 You can send events to both the sets. You can also carry out load balancing for both sets as mentioned in load balancing between a set of servers. 
