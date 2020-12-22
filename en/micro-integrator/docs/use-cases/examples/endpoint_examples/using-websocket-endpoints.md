@@ -45,7 +45,7 @@ Create the sequence for client to backend mediation, sequence for the backend to
 <sequence name="dispatchSeq" xmlns="http://ws.apache.org/ns/synapse">
     <property name="OUT_ONLY" value="true"/>
     <property name="FORCE_SC_ACCEPTED" scope="axis2" type="STRING" value="true"/>
-    <property name="websocket.accept.contenType" scope="axis2" value="application/json"/>
+    <property name="websocket.accept.contentType" scope="axis2" value="text/xml"/>
      <send>
         <endpoint>
              <address uri="ws://localhost:8082/websocket"/>
@@ -60,7 +60,7 @@ Create the sequence for client to backend mediation, sequence for the backend to
 </sequence>
 ```
 
-```xml tab='Sequence (Proxy Service)'
+```xml tab='Proxy Service'
 <proxy xmlns="http://ws.apache.org/ns/synapse"
                    name="websocketProxy1"
                    transports="http,https"
@@ -90,19 +90,21 @@ Create the artifacts:
 3. Create the [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) and the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
-Starting the Websocket client:
+Starting the Websocket server:
 
 -  Download the netty artifacts zip file from [here](https://github.com/wso2-docs/ESB) and extract it. The extracted folder will be shown as `ESB`.
 -  Open a terminal, navigate to `ESB/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket server on port 8082:
    
-   If you are using Linux/MacOs, execute the following command: 
    ```bash
-    java -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.server.WebSocketServer
-    ```
-   If you are using Windows, execute the following command: 
-   ```bash
-   java -cp netty-example-4.0.30.Final.jar;lib/*;. io.netty.example.http.websocketx.server.WebSocketServer
+    java -cp 'netty-example-4.0.30.Final.jar:lib/*:.' io.netty.example.http.websocketx.server.WebSocketServer
    ```
+   
+Calling the Proxy service:
+
+-  Execute the following command to call the proxy service:
+```bash
+curl -v --request POST -d "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><test>Value</test></soapenv:Body></soapenv:Envelope>" -H Content-Type:"text/xml" http://localhost:8290/services/websocketProxy1
+```
 
 If you analyze the log, you will see that an HTTP request is sent to the
 Websocket server, and that the Websocket server injects the response to
