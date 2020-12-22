@@ -255,7 +255,7 @@ The following optional properties can be configured when [creating an RabbitMQ i
    </tbody>
 </table>
 !!! Note
-    The property rabbitmq.exchange.name is conditionally mandatory. If there is an existing queue with a binding, it will connect to it. And if there is no existent queue, the new rabbitmq.queue.name and rabbitmq.exchange.name are needed to create the binding.        
+    The property rabbitmq.exchange.name becomes mandatory if you are trying to connect to a new queue, so that it can be bound to an exchange for messages to flow.
 
 ### Connection Recovery Properties
 
