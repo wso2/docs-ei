@@ -248,7 +248,7 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 | **Possible Values**  | true/false                                                                                                                                 |
 | **Default Behavior** | false                                                                                                                                                                                        |
 | **Scope**            | axis2                                                                                                                                                                                      |
-| **Description**      | Specifies whether to decode multipart messages when the message get build in a content aware mediation, otherwise the outgoing message will be in encoded form |
+| **Description**      | Specifies whether to decode multipart messages when the message is built in a content aware mediation scenario. Otherwise, the outgoing message will be in encoded form |
 | **Example**          | `<property name="DECODE_MULTIPART_DATA" value="true" scope="axis2" action="set" type="BOOLEAN"/>`                                                                 |
 
 ## HL7 Properties
