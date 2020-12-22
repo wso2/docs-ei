@@ -61,4 +61,4 @@ The `request.json` file has the following content on the appointment:
 ]
 ```
 
-You will see that there is no message body printed in the logs and you will get an empty response back.
+You will see that there is no message body printed in the logs and you will get an empty response.
