@@ -16,6 +16,13 @@ During response processing, the
 Micro Integrator can identify the past information (by checking the local message property) about the current message context,
 and use this knowledge to transfer the response back to the client
 in the same format as the original request.  
+
+!!! Note
+    In a content aware mediation scenario (where message get build), you can use the following property to decode the 
+    multipart message which is being sent to the backend. Otherwise, the outgoing message will be in encoded form.
+    ```xml
+    <property name="DECODE_MULTIPART_DATA" value="true" scope="axis2" action="set" type="BOOLEAN"/>
+    ```
     
 ## Synapse configuration
 

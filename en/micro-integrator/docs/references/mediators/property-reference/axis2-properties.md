@@ -239,6 +239,18 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 | **Description**      | Specifies the encoding type used for the content of the files processed by the transport. Note that this property cannot be used if the 'setCharacterEncoding' property is set to 'false'. |
 | **Example**          | `             <property name="CHARACTER_SET_ENCODING" value="UTF-8" scope="axis2" type="STRING"/>            `                                                                             |
 
+
+## DECODE_MULTIPART_DATA
+
+|     Parameter       |           Value               |
+|---------------------|-------------------------------------------------------------------------------|
+| **Name**             | DECODE_MULTIPART_DATA                                                                                                                                                                   |
+| **Possible Values**  | true/false                                                                                                                                 |
+| **Default Behavior** | false                                                                                                                                                                                        |
+| **Scope**            | axis2                                                                                                                                                                                      |
+| **Description**      | Specifies whether to decode multipart messages when the message get build in a content aware mediation, otherwise the outgoing message will be in encoded form |
+| **Example**          | `<property name="DECODE_MULTIPART_DATA" value="true" scope="axis2" action="set" type="BOOLEAN"/>`                                                                 |
+
 ## HL7 Properties
 
 ### HL7_GENERATE_ACK
