@@ -1494,7 +1494,7 @@
                             "required": false,
                             "default": "false",
                             "possible": "\"true\" or \"false\"",
-                            "description": "If this property is enabled and the payload exceeds the size of the valid payload size, the Micro Integrator will discontinue reading the input stream. This will prevent out-of-memory issues."
+                            "description": "If this property is enabled and the payload exceeds the size specified by the 'max_message_size_bytes' property, the Micro Integrator will discontinue reading the input stream. This will prevent out-of-memory issues."
                         },
                         {
                             "name": "max_message_size_bytes",
@@ -1518,7 +1518,7 @@
                             "required": false,
                             "default": "false",
                             "possible": "\"true\" or \"false\"",
-                            "description": "This property validates badly formed XML messages by building the whole XML document. This validation ensures that erroneous XML messages are rejected by the Micro Integrator."
+                            "description": "This property validates badly formed XML messages by building the whole XML document. This validation ensures that erroneous XML messages will trigger the fault sequence in the Micro Integrator."
                         },
                         {
                             "name": "force_json_validation",
@@ -1526,7 +1526,7 @@
                             "required": false,
                             "default": "false",
                             "possible": "\"true\" or \"false\"",
-                            "description": "This property validates JSON messages by parsing the input message. This validation ensures that erroneous JSON messages are rejected by the Micro Integrator."
+                            "description": "This property validates JSON messages by parsing the input message. This validation ensures that erroneous JSON messages will trigger the fault sequence in the Micro Integrator."
                         }
 
                     ]

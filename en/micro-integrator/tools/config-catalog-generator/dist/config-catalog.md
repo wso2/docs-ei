@@ -4182,7 +4182,7 @@ force_json_validation = false</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>If this property is enabled and the payload exceeds the size of the valid payload size, the Micro Integrator will discontinue reading the input stream. This will prevent out-of-memory issues.</p>
+                                        <p>If this property is enabled and the payload exceeds the size specified by the &#39;max_message_size_bytes&#39; property, the Micro Integrator will discontinue reading the input stream. This will prevent out-of-memory issues.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4245,7 +4245,7 @@ force_json_validation = false</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This property validates badly formed XML messages by building the whole XML document. This validation ensures that erroneous XML messages are rejected by the Micro Integrator.</p>
+                                        <p>This property validates badly formed XML messages by building the whole XML document. This validation ensures that erroneous XML messages will trigger the fault sequence in the Micro Integrator.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4266,7 +4266,7 @@ force_json_validation = false</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This property validates JSON messages by parsing the input message. This validation ensures that erroneous JSON messages are rejected by the Micro Integrator.</p>
+                                        <p>This property validates JSON messages by parsing the input message. This validation ensures that erroneous JSON messages will trigger the fault sequence in the Micro Integrator.</p>
                                     </div>
                                 </div>
                             </div>
