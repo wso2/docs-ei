@@ -84,8 +84,7 @@ ei_analytics.username = "admin"
 ei_analytics.password = "admin"        
 ```
 
-If you have a cluster of Analytics nodes (running on the same VM or on different VMs), the `server_url` and `auth_server_url` can be configured to balance the load among the different server instances. See [Enabling Load Balancing Data Agent for Publishing to Analytics](#enabling-load-balancing-data-agent-for-publishing-to-analytics) given below for details.
-
+If the Analytics nodes run in cluster mode or in different VMs, you can configure the ei_analytics.server_url and the ei-analytics.auth_server_url parameters in a load balancing manner. For more information, see, [Enabling Load Balancing Data Agent for Publishing to Analytics](#enabling-load-balancing-data-agent-for-publishing-to-analytics)
 ### Enabling statistics for ALL artifacts
 
 If you want to collect statistics for **all** your integration artifacts, be sure to add the following parameter under the `[mediation]` header in the `deployment.toml` file in addition the [parameters explained above](#configuring-the-micro-integrator):
@@ -148,7 +147,7 @@ This handles failover as follows: If Analytics Receiver-1 is marked as down, the
 #### Load balancing across multiple groups of servers  
 
 In this setup, there are two sets of servers that are referred to as set-A and set-B. 
-You can send events to both the sets. You can also carry out load balancing for both sets as mentioned in Load balancing across group of servers. 
+You can send events to both the sets. You can also carry out load balancing for both sets as mentioned in [Load balancing across a group of servers](#load-balancing-across-a-group-of-servers). 
 This scenario is a combination of load balancing between a set of servers and sending an event to several receivers. 
 An event is sent to both set-A and set-B. Within set-A, it will be sent either to Analytics A1 or Analytics A2. 
 Similarly within set-B, it will be sent either to Analytics B1 or Analytics B2. 
