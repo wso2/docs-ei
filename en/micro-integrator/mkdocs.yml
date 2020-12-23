@@ -104,6 +104,7 @@ nav:
           - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
           - Exposing Other Datasources:
             - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
+            - 'Exposing a Mongo datasource': 'use-cases/examples/data_integration/mongo-data-service.md'
             - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
           - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
           - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
