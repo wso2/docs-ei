@@ -632,7 +632,7 @@ The `timeout` element contains the following parameters that are used to conside
 
 #### MarkForSuspension Properties
 
-The `markForSuspension` element contains the following parameters that are used to mark an endpoint as "suspended" after being timed-out for a specified duration.
+The `markForSuspension` element contains the following parameters that are used to mark an endpoint as "suspended" after the time out duration is reached.
 
 <table>
    <thead>
@@ -652,7 +652,7 @@ The `markForSuspension` element contains the following parameters that are used 
          </td>
          <td>
             A (comma-separated) list of error codes. If these error codes are received from the endpoint, the request will be subjected to a timeout.</br>
-            The defined error codes put the endpoint into the "Timeout" state marking it for suspension. After the number of defined <code>retriesBeforeSuspension</code> exceeds, the endpoint will be suspended.</br>
+            The defined error codes moves the endpoint into the "Timeout" state, thereby marking it for suspension. After the number of defined <code>retriesBeforeSuspension</code> exceeds, the endpoint will be suspended.</br>
             Default: 101504, 101505.</br>
             See the <a href="https://svn.apache.org/repos/asf/synapse/trunk/java/modules/core/src/main/java/org/apache/synapse/SynapseConstants.java">SynpaseConstant</a> class for a list of available error codes.
          </td>
@@ -662,8 +662,8 @@ The `markForSuspension` element contains the following parameters that are used 
             <p>Retry Count (retriesBeforeSuspension)</p>
          </td>
          <td>
-            The number of times the endpoint should be allowed to retry sending the response before it is marked for suspension. In the "Timeout" state this number of requests minus one can be tried and failed before the endpoint is marked as "Suspended". This setting is per endpoint, not per message, so several messages can be tried in parallel and failed and the remaining retries for that endpoint will be reduced. Default: 0.</br>
-            <b>Note</b>: If you do not specify these error codes, or if you do not specify any error codes under <code>suspendOnFailure</code>, by default, the "HTTP Connection Closed" (i.e., 101504) and "HTTP Connection Timeout" (i.e., 101505) errors act as "Timeout" errors, and all other errors will put the endpoint into the "Suspended" state after retrying.
+            The number of times the endpoint should be allowed to retry sending the response before it is marked for suspension. In the "Timeout" state, this number of requests minus one can be tried and failed before the endpoint is marked as "Suspended". This setting is per endpoint (not per message), so several messages can be tried in parallel and failed and the remaining retries for that endpoint will be reduced. Default: 0.</br>
+            <b>Note</b>: If you do not specify these error codes, or if you do not specify any error codes under <code>suspendOnFailure</code>, by default, the "HTTP Connection Closed" (i.e., 101504) and "HTTP Connection Timeout" (i.e., 101505) errors act as "Timeout" errors, and all other errors will move the endpoint into the "Suspended" state after retrying.
          </td>
       </tr>
       <tr>
@@ -713,8 +713,8 @@ to a maximum duration.
          </td>
          <td>
             Comma separated list of error codes.
-            This parameter allows you to select one or more error codes from the List of Values. If any of the selected errors is received from the endpoint, the endpoint will be suspended. All the errors except the errors specified in <code>markForSuspension</code>.</br>
-            Only these defined error codes will directly send the endpoint into the "Suspended" state. Any other error code, which is not specified under <code>MarkForSuspension</code> will keep the endpoint in the "Active" state without suspending.</br>
+            This parameter allows you to select one or more error codes from the list of values. If any of the selected errors are received from the endpoint, the endpoint will be suspended. All the errors except the errors specified in <code>markForSuspension</code>.</br>
+            Only these defined error codes will directly send the endpoint into the "Suspended" state. Any other error code, which is not specified under <code>MarkForSuspension</code>, will keep the endpoint in the "Active" state without suspending.</br>
             If you do not specify these error codes, by default, all the errors except the errors specified in <code>markForSuspension</code> will suspend the endpoint.
          </td>
       </tr>
@@ -740,7 +740,7 @@ to a maximum duration.
             <p>Suspend Progression Factor (progressionFactor)</p>
          </td>
          <td>
-            The progression factor for the geometric series. See the above formula for a more detailed description. The duration to suspend can vary from the first time suspension to the subsequent time. The factor value decides the suspense duration variance between subsequent suspensions.</br>
+            The progression factor for the geometric series. See the above formula for a more detailed description. The duration to suspend can vary from the first time suspension to the subsequent time. The factor value decides the suspend duration variance between subsequent suspensions.</br>
             The endpoint will try to send the messages after the <code>initialDuration</code>. If it still fails, the next duration is calculated as:<code>Min(current suspension duration * progressionFactor, maximumDuration)</code>.</br>
             Default: 1.
          </td>
@@ -774,7 +774,7 @@ to a maximum duration.
 </endpoint>
 ```
 
-In this example, the errors 101504 and 101505 move the endpoint into the "Timeout" state. At that point, three requests can fail for one of these errors before the endpoint is moved into the "Suspended" state. Additionally, errors 101500, 101501, 101506, 101507, and 101508 will put the endpoint directly into the "Suspended" state. If a 101503 error occurs, the endpoint will remain in the "Active" state as you have not specified it under `suspendOnFailure`. The default setting to suspend the endpoint for all error codes except the ones specified under `markForSuspension` will apply only if you do not specify error codes under `suspendOnFailure`.
+In this example, 101504 and 101505 errors move the endpoint into the "Timeout" state. At that point, three requests can fail for one of these errors before the endpoint is moved into the "Suspended" state. Additionally, 101500, 101501, 101506, 101507, and 101508 errors will move the endpoint directly into the "Suspended" state. If a 101503 error occurs, the endpoint will remain in the "Active" state as you have not specified it under `suspendOnFailure`. The default setting to suspend the endpoint for all error codes, except the ones specified under `markForSuspension`, will apply only if you do not specify error codes under `suspendOnFailure`.
 
 When the endpoint is first suspended, the retry happens after one second. Because the progression factor is 2, the next suspension duration before retry is two seconds, then four seconds, then eight, and so on until it gets to sixty seconds, which is the maximum duration we have configured. At this point, all subsequent suspension periods will be sixty seconds until the endpoint succeeds and is back in the Active state, at which point the initial duration will be used on subsequent suspensions.
 
