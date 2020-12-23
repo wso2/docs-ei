@@ -589,7 +589,7 @@ The following is the configuration for the address endpoint. Since we all are on
 
 #### Timeout Properties
 
-The `timeout` element contains the following parameters which are used to consider an endpoint as "timeout" by not being responsive for a specified time duration.
+The `timeout` element contains the following parameters that are used to consider an endpoint as "timeout" by not being responsive for a specified time duration.
 
 <table>
    <thead>
@@ -632,7 +632,7 @@ The `timeout` element contains the following parameters which are used to consid
 
 #### MarkForSuspension Properties
 
-The `markForSuspension` element contains the following parameters which is used to mark an endpoint as "suspended" by being timed-out for a specified time duration.
+The `markForSuspension` element contains the following parameters that are used to mark an endpoint as "suspended" after the time out duration is reached.
 
 <table>
    <thead>
