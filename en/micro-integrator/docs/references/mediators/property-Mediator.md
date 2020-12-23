@@ -119,6 +119,9 @@ If the <strong>Expression</strong> option is selected for the <strong>Set Action
 </tbody>
 </table>
 
+!!! Note
+    There are predefined XPath variables (such as `         $ctx        ` ) that you can directly use in the Synapse configuration, instead of using the synapse:get-property() function. These XPath variables get properties of various scopes and have better performance than the `get-property()` function, which can have much lower performance because it does a registry lookup. These XPath variables get properties of various scopes. For more information on these XPath variables, see [Accessing Properties with XPath](property-reference/accessing-properties-with-xpath.md).
+
 ## Examples
 
 ### Setting and logging and property
@@ -129,7 +132,7 @@ In this example, we are setting the property symbol and later we can log it usin
 <property name="symbol" expression="fn:concat('Normal Stock - ', //m0:getQuote/m0:request/m0:symbol)" xmlns:m0="http://services.samples/xsd"/>
 
 <log level="custom">
-    <property name="symbol" expression="get-property('symbol')"/>
+    <property name="symbol" expression="$ctx:symbol"/>
 </log>
 ```
 
@@ -137,9 +140,6 @@ In this example, we are setting the property symbol and later we can log it usin
 
 In this configuration, a response is sent to the client based on the `         Accept        ` header. The [PayloadFactory mediator](payloadFactory-Mediator.md) transforms the message contents. Then a [Property mediator](property-Mediator.md) sets the message type
 based on the `Accept` header using the `$ctx:accept` expression. The message is then sent back to the client via the [Respond mediator](respond-Mediator.md).
-
-!!! Note
-    There are predefined XPath variables (such as `         $ctx        ` ) that you can directly use in the Synapse configuration, instead of using the synapse:get-property() function. These XPath variables get properties of various scopes and have better performance than the `get-property()` function, which can have much lower performance because it does a registry lookup. These XPath variables get properties of various scopes. For more information on these XPath variables, see [Accessing Properties with XPath](property-reference/accessing-properties-with-xpath.md).
 
 ``` xml
 <payloadFactory media-type="xml">
@@ -256,7 +256,7 @@ SOAP headers provide information about the message, such as the To and From valu
 | **Header Name**     | ReplyTo                                    |
 | **Possible Values** | Any URI                                    |
 | **Description**     | The ReplyTo header of the message.         |
-| **Example**         | \<header name="ReplyTo" action="remove"/\> |
+| **Example**         | <header name="ReplyTo" action="remove"/\> |
 
 #### MessageID
 
