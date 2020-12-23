@@ -4,16 +4,16 @@ WSO2 Streaming Integrator allows you to handle any errors that may occur when ha
 
 The possible actions that you can take for events with errors are:
 
-- Storing
-- Logging and dropping
+- Storing and replaying
+- Logging
 - Streaming
 - Waiting
 
 This section explains the different types of errors that can occur and how they can be handled.
 
-## Storing events with errors
+## Storing and replaying events with errors
 
-This involves storing the events with errors in the error store. 
+This involves storing the events with errors in the error store and then freplaying them. 
 
 To do this, you need to enable the error store in the `<SI_HOME>/conf/server/deployment.yaml` file by adding the following configuration.
 
@@ -27,7 +27,6 @@ error.store:
     datasource: ERROR_STORE_DB
     table: ERROR_STORE_TABLE
 ```
-
 - `bufferSize` denotes the size of the ring buffer that is used in the disruptor when publishing events to the error store. This has to be a power of two. If not, it throws an exception during initialization. The default buffer size is `1024`.
 - If the `dropWhenBufferFull` is set to `true`, the event is dropped when the capacity of the ring buffer is insufficient.
 
@@ -219,7 +218,7 @@ To try out storing errors in the store, follow the steps below:
             As a result, the **Error Entry** dialog box closes, and the **Error Store Explorer** dialog box does not display any errors.
     
 
-## Logging and dropping events with errors
+## Logging events with errors
 
 This involves logging the event with details of the error and then dropping it. This can be used with the following:
 
@@ -396,7 +395,7 @@ To try out streaming events with errors, follow the procedure below.
     INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - CopyingProductionStatsApp: Error Occured, StreamEvent{ timestamp=1604408058031, beforeWindowData=null, onAfterWindowData=null, outputData=[Crossaints, abc, java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Double (java.lang.String and java.lang.Double are in module java.base of loader 'bootstrap')], type=CURRENT, next=null} 
     ```   
 
-## Waiting
+## Waiting 
 
 This on-error action is only applicable to errors that occur when publishing data, and therefore it can be only used with sinks. Here, the thread waits in the `back-off and re-trying` state, and reconnects once the connection is re-established.
 

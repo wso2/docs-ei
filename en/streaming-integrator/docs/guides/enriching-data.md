@@ -1,317 +1,74 @@
 # Enriching Data
 
-## Introduction
+Enriching data involves integrated the data received into a streaming integration flow with data from other medium such as a data store, another data stream, or an external service to derive an expected result.
 
-Enriching data involves integrated the data received into a streaming integration flow with data from other medium such 
-as a data store, another data stream, or an external service to derive an expected result. To understand the different ways in which this is done,
-follow the sections below.
+## Integrating data streams and static data
 
-## Enrich data by connecting with a data store 
+This involves enriching a data stream by joining it with a data store.
 
-This section explains how to enrich the data in a specific stream by joining it with a data store. For this purpose, consider 
-a scenario where you receive sales records generated from multiple locations as events via a system. 
+For example, consider a scenario where a sweet factory reports its production data in a streaming manner after each run. To update the stock with the latest amount produced, you need to add the latest production amounts to the stock amounts saved in a database.
 
-!!!tip "Before you begin:"
-    In this scenario, you need to enrich the sales information you receive based on the records in a database table. You 
-    can download and install MySQL, and create this table before you carry out the procedure in this subsection.<br/>
-    For detailed instructions to create a database table, expand the following section. <br/>
+To address this, you can write a query as follows.
 
-    ???tip "Create Table"
-        1. Download and install the [MySQL Server](https://dev.mysql.com/downloads/).
-        2. Download the [MySQL JDBC driver](https://dev.mysql.com/downloads/connector/j/).
-        3. Unzip the downloaded MySQL driver zipped archive, and copy the MySQL JDBC driver JAR (`mysql-connector-java-x.x.xx-bin.jar`) into the `<SI_HOME>/lib` directory.
-        4. Enter the following command in a terminal/command window, where username is the username you want to use to access the databases.<br/>
-           `mysql -u username -p `
-        5. When prompted, specify the password you are using to access the databases with the username you specified.
-        6. Add the following configurations for three database tables under the `Data Sources Configuration` section of the `<SI_HOME>/conf/server/deployment.yaml` file.<br/>
-          ```         
-            - name: UserDataDB
-              description: Datasource used for User Data
-              jndiConfig:
-                name: jdbc/test
-                useJndiReference: true
-              definition:
-                type: RDBMS
-                configuration:
-                  jdbcUrl: 'jdbc:mysql://localhost:3306/UserDataDB?useSSL=false'
-                  username: root
-                  password: root
-                  driverClassName: com.mysql.jdbc.Driver
-                  maxPoolSize: 50
-                  idleTimeout: 60000
-                  connectionTestQuery: SELECT 1
-                  validationTimeout: 30000
-                  isAutoCommit: false
-          ```
-
-        7. To create a database named `UserDataDB` with a table named `UserTable` issue the following commands from the terminal:
-           - To create the `UserDataDB` table:
-             ```
-             mysql> create database UserDataDB;
-             mysql> use UserDataDB;
-             mysql> source <SP_HOME>/wso2/editor/dbscripts/metrics/mysql.sql;
-             mysql> grant all on UserDataDB.* TO username@localhost identified by "password";
-             ```
-           - To create the `UserTable` table:
-             ```
-            create table UserTable (
-            userId LONG,
-            firstname VARCHAR,
-            lastname VARCHAR,
-            )
-             ```
-             
-1. Start creating a new Siddhi application. You can name it `EnrichingTransactionsApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
- 
-2. Define the input stream and the database table that need to be joined as follows.
-
-    1. Define the stream as follows. 
-        `define stream TrasanctionStream (userId long, transactionAmount double, location string);`
-        
-    2. Define the table as follows.
-        `define table UserTable (userId long, firstName string, lastName string);`
-        
-3. Then define the Siddhi query to join the stream and the table, and handle the result as required.
-    1. Add the `from` clause as follows with the `join` key word to join the table and the stream.
-
-        ```
-        from TransactionStream as t join UserTable as u on t.userId == u.userId
-        ```
-
-        !!!info
-            Note the following about the `from` clause:
-            - In this example, the input data is taken from both a stream and a table. You need to assign a unique reference
-            for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream`
-            stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
-            - The `join ` keyword joins the stream and the table together while specifying the unique references.
-            - The condition for the stream and the table to be joined is `t.userId == u.userId `, which means that for an
-            event to be taken from the `TransactionStream` for the join, one or more events that have the same value for
-            the `userId` must exist in the `UserTable` table and vice versa.
-                  
-    2. To specify how the value for each attribute in the output stream is derived, add a `select` clause as follows.
-
-        ```
-        select t.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
-        ```
-
-        !!!info
-            Note the following in the `select` statement:
-            - The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs gto be taken. Here, you can also specify `u.userId` instead of `t.userId`.
-            - You are specifying the output generated to include an attribute named `userName`. The value for that is derived
-            by concatenating the values of two attributes in the `UserTable` table (i.e., `firstName` and `lastName` attributes)
-             by applying the `str:concat()` function. Similarly, you can apply any of the range of Siddhi functions available to further enrich the joined output. For more information, see [Siddhi Extensions](https://siddhi.io/en/v4.x/docs/extensions/#extensions-released-under-apache-20-license).
-             
-    3. To infer an output stream into which the enriched data must be directed, add the `insert into` clause as follows.
-       `insert into EnrichedTrasanctionStream;`
-       
-The completed Siddhi application is as follows.
-
-```sql
-@App:name("EnrichingTransactionsApp")
-
-
-define stream TrasanctionStream (userId long, transactionAmount double, location string);
-
-define table UserTable (userId long, firstName string, lastName string);
-
-from TrasanctionStream as t join UserTable as u on t.userId == u.userId 
-select t.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
-insert into EnrichedTrasanctionStream;
+```
+from ProductionStream as p 
+join StocksTable as s 
+	on p.name == s.name 
+select p.name as name, sum(p.amount) + s.amount as amount 
+	group by p.name 
+insert into UpdateStockwithProductionStream;
 ```
 
-## Enrich data by connecting with another stream of data 
+Here, the `ProductionStream` stream that has the production amounts for sweets after each production run is assigned the short name `p`. The `StocksTable` that has the current stock for each product before the latest production runs is given the short name `s`. This allows you to uniquely identify the attributes in each. The matching condition is `p.name == s.name `, which means that a match is identified when an event in the `ProductionStream` stream has the same value for the `name` attribute as a record in the `StockTable` table. 
+`sum(p.amount)` calculates the total production per product. This total production amount for a product is then added to the stock amount of the product (i.e., `s.amount`). The resulting output is inserted into the `UpdateStockwithProductionStream` stream.
 
-This section explains how to enrich the data in a specific stream by joining it with another stream.
+## Integrating multiple data streams
 
-To understand how this is done, consider a scenario where you receive information about cash withdrawals and cash 
-deposits at different bank branches from two separate applications. Therefore, this two types of information are captured via two 
-separate streams. To compare the withdrawals with deposits and observe whether enough deposits are being made to manage the withdrawals, you need to join both these streams. To do this, follow the 
-procedure below.
+This involves enriching a data stream by joining it with another data stream.
 
-1. Start creating a new Siddhi application. You can name it `BankTransactionsApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+To understand this, consider the example you used in the previous [Integrating data streams and static data section](#integrating-data-streams-and-static-data) where you directed the stock amounts updated with the latest production amounts into a stream. Assume another stream reports the sale of stock in a streaming manner. To further update the stock by deducting the amounts sold, you need to join the data stream that has the latest stock amounts with the data stream that has the sales amounts.
 
-2. First, define the two input streams via which you are receiving informations about withdrawals and deposits.
-        
-    1. Define a stream named `CashWithdrawalStream` to capture information about withdrawals as follows.
-        `define stream CashWithdrawalStream(branchID int, amount long);`
-    2. Define a stream named `CashDepositsStream` to capture information about deposits as follows.
-        `define stream CashDepositsStream(branchID string, amount long);`
-        
-3. Now let's define an output stream to which the combined information from both the input streams need to be directed 
-   after the join.
+To address the above requirement, you can write a query as follows.
 
-    ```
-    @sink(type='log', prefix='Cash withdrawals that go beyond sustainability threshold:')
-    define stream CashFlowStream(branchID string, withdrawalAmount long, depositAmount long);
-    ```
-
-    !!!info
-        A sink annotation is connected to the output stream to log the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](publishing-data.md).
-        
-4. To specify how the join is performed, and how to use the combined information, write a Siddhi query as follows.
-
-    1. To perform the join, add the `from` clause as follows.
-
-        ```sql
-        from CashWithdrawalStream as w
-            join CashDepositStream as d
-            on w.branchID == d.branchID
-        ```
-
-        !!!info
-            Observe the following about the above `from` clause:
-            - Both the input streams have attributes of the same name. To identify each name, you must specify a reference
-             for each stream. In this example, the reference for the `CashWithdrawalStream` is `w`, and the reference for the `CashDepositsStream` stream is `d`.
-            - You need to use `join` as the keyword to join two streams. The join condition is ` w.branchID == d.branchID` 
-              where branch IDs are matched. An event in the `CashWithdrawalStream` stream is directed to the `CashFlowStream` if there are events with the same branch ID in the `CashDepositStream` and vice versa.
-              
-    2. To specify how the value for each attribute is derived, add a `select` statement as follows.
-
-        `select w.branchID as branchID, w.amount as withdrawals, d.amount as deposits`
-        
-        !!!info
-            The `branchID` attribute name is common to both input streams. Therefore, you can also specify `d.branchID as branchID` instead of `w.branchId as branchId`.
-            
-    3. To filter only events where total cash withdrawals are greater than 95% of the cash deposits, add a `having` clause as follows.
-
-        `having w.amount > d.amount * 0.95 `
-        
-    4. To insert the results into the `CashFlowStream` output stream, add the `insert into` clause as follows.
-
-        `insert into CashFlowStream;`
-        
-The completed Siddhi application is as follows:
-
-```sql
-@App:name("BankTransactionsApp");
-
-define stream CashWithdrawalStream(branchID int, amount long);
-
-define stream CashDepositsStream(branchID string, amount long);
-
-@sink(type='log', prefix='Cash withdrawals that go beyond sustainability threshold:')
-define stream CashFlowStream(branchID string, withdrawalAmount long, depositAmount long);
-
-from CashWithdrawalStream as w
-    join CashDepositStream as d
-    on w.branchID == d.branchID
-select w.branchID as branchID, w.amount as withdrawals, d.amount as deposits
-having w.amount > d.amount * 0.95
+```text
+from UpdateStockwithProductionStream as u 
+join SalesStream as s 
+	on u.name == s.name 
+select u.name as name, sum(u.amount) - sum(s.amount) as amount 
+insert into LatestStockStream;
 ```
 
-For the different types of joins you can perform via Siddhi logic, see [Siddhi Query Guide - Join](https://siddhi.io/en/v4.x/docs/query-guide/#join-stream)
+Here, `u` is the short name for the `UpdateStockwithProductionStream` stream that has the total stock amounts for each product updated with the latest production amounts. `s` is the short name for the `SalesStream` stream that reports the sales for all the products in a streaming manner. Matching events are the events with the same value for the `name` attribute.
+To calculate the latest stock amount for each product, the total sales amount is deducted from the total stock amount updated with production amounts. The resulting output is inserted into the `LatestStockStream`.
 
-## Enrich data by connecting with external services 
+## Integrating data streams with external services
 
-This section explains how to enrich the data in a specific stream by connecting with an external service and adding 
-information received from that service to the existing data.
+This involves enriching a data stream by incorporating information received from an external service to it.
 
-To understand how this is done, consider an example where you have some credit card numbers, but need to connect with an
- external service to identify the credit card companies that issued them, and then save that information in a database. 
- To do this, follow the procedure below.
+To understand this, consider that in order to value the stock, a Sweet Factory obtains the value of one unit of a product from an external application named `StockValuingApp`. When you submit the name of the product, it returns the unit value. To value the stock based on this information, you can create a Siddhi application as follows:
 
-!!!tip "Before you begin:"
-    - To save the enriched information in a database table, install and set up MySQL, and create a database. Then create a table in that database named `CCInfoTable`. For detailed instructions, see the [Enrich data by connecting with a data store section](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/enriching-data/#enrich-data-by-connecting-with-a-data-store).
-    - If you want to try out this guide, you can access the external service used in the example [here](https://secure.ftipgw.com/ArgoFire/validate.asmx?op=GetCardType). This service returns the credit card type when a credit card number is submitted.
-    
-        ???info "Click here for an example"
-        
-        - **Request Details**
-        ```
-        POST /ArgoFire/validate.asmx/GetCardType HTTP/1.1 
-        Host: secure.ftipgw.com 
-        Content-Type: application/x-www-form-urlencoded 
-        Content-Length: length 
-        CardNumber=4111111111111111
-       
-        
-        - **Response Details**
-    
-        HTTP/1.1 200 OK 
-        Content-Type: text/xml; charset=utf-8 
-        Content-Length: length 
-        
-        <?xml version="1.0" encoding="utf-8"?> 
-        <string xmlns="http://localhost/SmartPayments/">VISA>
-        ```
+```
+@App:name("StockValuingApp")
 
-1. Start creating a new Siddhi application. You can name it `CCTypeIdentificationApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+@sink(type='http-request',publisher.url='http://localhost:5005/CheckProductValueEP',method='POST', headers="'Content-Type:application/x-www-form-urlencoded'",
+sink.id="unitvalueSink",
+@map(type='keyvalue', @payload(Sweet='{{name}}')))
+define stream CheckUnitValueStream (name string);
 
-2. Define the input stream from which the input data (i.e., the credit card no in this example) must be taken.
+@source(type='http-response' ,sink.id='unitvalueSink',    
+@map(type='xml', namespaces = "xmlns=http://localhost:5005/CheckProductValueEP/",    
+@attributes(name = 'trp:name',unitValue = ".")))        
+define stream StoreUnitValueStream (name string,unitValue double);
 
-   `define stream CreditCardStream (creditCardNo string);`
-   
-3. To publish the input data to the external application, connect a sink to the stream you created as shown below. For more information about publishing information, see the [Publishing Data guide](publishing-data.md).
-
-    ```
-    @sink(type='http-request',publisher.url='https://secure.ftipgw.com/ArgoFire/validate.asmx/GetCardType',method='POST', headers="'Content-Type:application/x-www-form-urlencoded'",
-    
-    sink.id="cardTypeSink",
-    
-    @map(type='keyvalue', @payload(CardNumber='{{creditCardNo}}')))
-    
-    define stream CreditCardStream (creditCardNo string);
-    ```
-    !!!info
-        Note the following about the above sink definition:
-        - It is assumed that the external application receives requests in HTTP. Therefore, the sink type is `http-request`.
-        - The `publisher.url` parameter specifies the URL to which the outgoing events need to be published via HTTP.
-        - For more information about the HTTP transport, see [Siddhi Extensions - Siddhi IO HTTP](https://siddhi-io.github.io/siddhi-io-http/).
-        
-4. To capture the response of the external application once it returns the credit card type, define a stream as follows. For more information about consuming data, see the [Consuming Data guide](consuming-messages.md).
-
-    `define stream EnrichedCreditCardStream (creditCardNo string,creditCardType string);`
-    
-5. Assuming that the external application sends its output via the HTTP transport, connect a source of the `http`type to the `EnrichedCreditCardStream` stream as follows. For more information about consuming events published to SI, see the [Consuming Data guide](consuming-messages.md).
-
-    ```
-    @source(type='http-response' ,sink.id='cardTypeSink',    
-    @map(type='xml', namespaces = "xmlns=http://localhost/SmartPayments/",    
-    @attributes(creditCardNo = 'trp:creditCardNo',creditCardType = ".")))        
-    define stream EnrichedCreditCardInfoStream (creditCardNo string,creditCardType string);
-    ```
-
-    !!!info
-        It is assumed that the external application sends requests in HTTP. Therefore, the source type is `http-request`. For more information about the HTTP transport, see [Siddhi Extensions - Siddhi IO HTTP](https://siddhi-io.github.io/siddhi-io-http/).
-        
-6. To save the response of the external application, define a table named `CCInfoTable`.
-
-    `define table CCInfoTable (cardNo long, cardType string);`
-    
-7. To save the data enriched by integrating the information received from the external service, add a Siddhi query as follows.
-
-    ```
-    from EnrichedCreditCardInfoStream
-    select *
-    update or insert into CCInfoTable;
-    ```
-
-    The above query selects all the attributes in the `EnrichedCreditCardInfoStream` and inserts them into the `CCInfoTable` 
-    table. If a specific record already exists,the query updates it by replacing the attribute values with the latest values
-     taken from the `EnrichedCreditCardInfoStream`. 
-     
-The completed Siddhi application is as follows: 
-
-```sql
-@App:name("CCTypeIdentificationApp")
-
-@sink(type='http-request',publisher.url='https://secure.ftipgw.com/ArgoFire/validate.asmx/GetCardType',method='POST', headers="'Content-Type:application/x-www-form-urlencoded'",
-sink.id="cardTypeSink",
-@map(type='keyvalue', @payload(CardNumber='{{creditCardNo}}')))
-define stream CreditCardStream (creditCardNo string);
-
-@source(type='http-response' ,sink.id='cardTypeSink',    
-@map(type='xml', namespaces = "xmlns=http://localhost/SmartPayments/",    
-@attributes(creditCardNo = 'trp:creditCardNo',creditCardType = ".")))        
-define stream EnrichedCreditCardInfoStream (creditCardNo string,creditCardType string);
-
-from EnrichedCreditCardInfoStream
+from StoreUnitValueStream
 select *
-update or insert into CCInfoTable;
+update or insert into ProductValueTable;
 ```
-   
 
-## Enrich data using built-in extensions
+In the above application, events in the `CheckUnitValueStream` stream are published to the `http://localhost:5005/CheckProductValueEP` URL via the connected `http-request` sink to invoke a service that returns the unit value for the name of the product sent. WSO2 Streaming Integrator captures this response (i.e., unit value) in the `StoreUnitValueStream` stream via the `http-response` source connected to the stream. In orcder to allow WSO2 Streaming Integrator to identify the response as the result of the request it previously sent, the same value is specified for the `sink.id` parameter in both the source configuration and the sink configuration.
+To store the unit values obtained for further processing, all the events in the `StoreUnitValueStream` stream are inserted into a table named `ProductValueTable`.
+
+## Enriching data with built-in extensions
 
 The following is a list of Siddhi extensions with which you can enrich data.
 
@@ -321,3 +78,194 @@ The following is a list of Siddhi extensions with which you can enrich data.
  - [Siddhi-execution-string](https://siddhi-io.github.io/siddhi-execution-string/)
  - [Siddhi-execution-time](https://siddhi-io.github.io/siddhi-execution-time/)
  - [Siddhi-execution-json](https://siddhi-io.github.io/siddhi-execution-json/)
+
+## Try it out
+
+To try out the examples given above, follow the steps below.
+
+1. Set up your database as follows:
+
+    1. Download and install MySQL. Then start the MySQL server and create a new database in it by issuing the following command:
+    
+        `CREATE SCHEMA stock;`
+        
+    2. Create a table in the `stock` database you created by issuing the following two commands.
+    
+        `use stock;`
+        
+        `CREATE TABLE StockTable (name VARCHAR(20),amount double(10,2));`
+    
+    3. Insert two records into the `StockTable` you created by issuing the following commands.
+    
+        `insert into StockTable values('gingerbread',8.0);`
+        
+        `insert into StockTable values('coffee cake',6.0);`   
+    
+    4. Then open the `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file and add the following data source configuration under `datasources`.
+    
+        ```
+          - name: Stock_DB
+            description: The datasource used for Stock Valuation
+            jndiConfig:
+              name: jdbc/stock
+            definition:
+              type: RDBMS
+              configuration:
+                jdbcUrl: 'jdbc:mysql://localhost:3306/stock?useSSL=false'
+                username: root
+                password: root
+                driverClassName: com.mysql.jdbc.Driver
+                minIdle: 5
+                maxPoolSize: 50
+                idleTimeout: 60000
+                connectionTestQuery: SELECT 1
+                validationTimeout: 30000
+                isAutoCommit: false
+        ```
+    
+2. [Start and Access Streaming Integrator Tooling](../develop/streaming-integrator-studio-overview.md/#starting-streaming-integrator-tooling).
+
+3. Open a new file in Streaming Integrator Tooling. Then add and save the following Siddhi application.
+
+    ```
+    @App:name('StockValuingApp')
+    @App:description('Description of the plan')
+    
+    define stream ProductionStream (name string, amount double);
+    
+    @source(type = 'http-response', sink.id = "unitvalueSink",
+    	@map(type = 'xml', namespaces = "xmlns=http://localhost:5005/CheckProductValueEP/",
+    		@attributes(name = "trp:name", unitValue = ".")))
+    define stream GetUnitValueStream (name string, unitValue double);
+    
+    @sink(type = 'log', prefix = "Stock Update After Production",
+    	@map(type = 'text'))
+    
+    define stream UpdateStockwithProductionStream (name string, amount double);
+    
+    define stream SalesStream (name string, amount double);
+    
+    @sink(type = 'http-request', publisher.url = "http://localhost:5005/CheckProductValueEP", method = "POST", headers = "'Content-Type:application/x-www-form-urlencoded'", sink.id = "unitvalueSink",
+    	@map(type = 'keyvalue'))
+    define stream CheckUnitValueStream (name string);
+    
+    @sink(type = 'log', prefix = "Latest Stock",
+    	@map(type = 'text'))
+    define stream LatestStockStream (name string, amount double);
+    
+    @sink(type = 'log', prefix = "Stock Value",
+    	@map(type = 'text'))
+    define stream StockValueStream (name string, value double);
+    
+    @store(type = 'rdbms', jdbc.url = "jdbc:mysql://localhost:3306/stock?useSSL=false", username = "root", password = "root", jdbc.driver.name = "com.mysql.jdbc.Driver")
+    @primaryKey("name")
+    define table StockTable (name string, amount double);
+    
+    @info(name = 'UpdateStockwithProduction')
+    from ProductionStream as p 
+    join StockTable as s 
+    	on p.name == s.name 
+    select p.name as name, sum(p.amount) + s.amount as amount 
+    	group by p.name 
+    insert into UpdateStockwithProductionStream;
+    
+    @info(name='UpdateStockwithSales') 
+    from UpdateStockwithProductionStream#window.time(5 min) as u 
+    join SalesStream as s 
+    	on u.name == s.name 
+    select u.name as name, sum(u.amount) - sum(s.amount) as amount 
+    insert into LatestStockStream;
+    
+    
+    @info(name='CalculateStockValue') 
+    from LatestStockStream as l 
+    join GetUnitValueStream as g 
+    	on l.name == g.name 
+    select l.name as name, g.unitValue * l.amount as value 
+    insert into StockValueStream;  
+    ```
+   
+   The above Siddhi application does the following:
+   
+   1. Updates the stock amount for each product by adding the total production amount to the stock amount. This is done by joining the `StockTable` table with the `ProductionStream` stream. Then it logs the result with the `Stock Update After Production` prefix.
+   
+   2. Calculates the latest stock by deducting the total sales for a product from the updated stock derived by adding the total production amount with the current stock amount. This is done by joining the `UpdateStockwithProductionStream` stream with the `SalesStream` stream. The result is logged with the `Latest Stock` prefix.
+   
+   3. Sends requests with the product name to an external service with the `http://localhost:5005/CheckProductValueEP` endpoint and receives the unit value of the submitted product name as a response. This response is captured in the `GetUnitValueStream` stream.
+   
+   4. Calculates the stock value by multiplying the latest stock with the unit value obtained from the external service. This is done by joining the `GetUnitValueStream` stream with the `LatestStockStream` stream. The result is then logges with the `Stock Value` prefix.
+   
+4. In Streaming Integrator Tooling, create a new Siddhi application as follows, save it, and then start it.
+
+    ```
+    @App:name('ReturnUnitValueApp')
+    
+    @source(type='http-service' , source.id='unitValue', receiver.url='http://localhost:5005/CheckProductValueEP/',
+        @map(type = 'json')) 
+    define stream RequestStream (name string);
+    
+    @sink(type='http-service-response', source.id='unitValue',
+          message.id='{{name}}', @map(type = 'json'))
+    define stream ResultStream (name string, unitValue double);
+    
+    from RequestStream
+    select name, ifThenElse(name == 'gingerbread', 10.0, 20.0) as unitValue
+    insert into ResultStream;
+    ```
+    This application functions as the external service for testing purposes.
+    
+5. Simulate events for the `StockValuingApp` application as follows. For instructions to simulate events, see [Testing Siddhi Applications - Simulating Events](../develop/testing-a-Siddhi-Application.md).
+
+    1. First, simulate two events for the `ProductionStream` stream with the following values.
+    
+        | **Name**      | **Amount** |
+        |---------------|------------|
+        | `gingerbread` | `10`       |
+        | `coffee cake` | `10`       |
+        
+        As a result, the following logs appear in the terminal.
+        
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - Stock Update After Production : name:"gingerbread",
+        amount:18.0 (Encoded) 
+        ```
+       
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - Stock Update After Production : name:"coffee cake",
+        amount:16.0 (Encoded) 
+        ```
+       
+       Here, the `StockUpdateAfterProduction` value is calculated by adding the production value to the stock value saved in the database.
+       
+    2. Now simulate the following two events to the `SalesStream` stream.
+    
+        | **Name**      | **Amount** |
+        |---------------|------------|
+        | `gingerbread` | `12`       |
+        | `coffee cake` | `13`       |
+        
+        As a result, the following logs appear in the terminal.
+        
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - Latest Stock : name:"gingerbread",
+        amount:6.0 (Encoded) 
+        ```
+       
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - Latest Stock : name:"coffee cake",
+        amount:3.0 (Encoded) 
+        ```
+       
+    3. Now simulate two events to the `CheckUnitValueStream` stream. Enter `gingerbread` and `coffee cake` as the `name` for the first and the second event respectively.
+    
+        As a result, the following logs appear in the terminal.
+                
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - Stock Value : name:"gingerbread",
+        value:60.0 (Encoded) 
+        ```
+       
+        ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - Stock Value : name:"coffee cake",
+        value:60.0 (Encoded) 
+        ```
