@@ -455,6 +455,7 @@ nav:
           - 'File Connector Reference': 'references/connectors/file-connector/file-connector-config.md'
         - Gmail Connector:
           - 'Gmail Overview': 'references/connectors/gmail-connector/gmail-connector-overview.md'
+          - 'Setting up the Gmail API': 'references/connectors/gmail-connector/configuring-gmail-api.md'
           - 'Gmail Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
           - 'Gmail Reference': 'references/connectors/gmail-connector/gmail-connector-config.md'
         - Google Firebase Connector:
@@ -469,6 +470,7 @@ nav:
           - 'Google PubSub Reference': 'references/connectors/google-pubsub-connector/googlepubsub-connector-reference.md'
         - Google Spreadsheet Connector:
           - 'Google Spreadsheet Overview': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-overview.md'
+          - 'Setting up the Sheets API': 'references/connectors/google-spreadsheet-connector/get-credentials-for-google-spreadsheet.md'
           - 'Google Spreadsheet Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
           - 'Google Spreadsheet Reference': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-config.md'
         - ISO8583 Connector:
