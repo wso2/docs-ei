@@ -64,6 +64,12 @@ The following sample indicates how the expressions can be defined using `get-pro
 <property name="queryParam" expression="get-property('query.param.q1')"></property>
 ```
 
+Alternately, you can use the following.
+
+```xml
+<property name="queryParam" expression="$url:q1"></property>
+```
+
 **Readng a path parameter**
 
 The following sample indicates how the expressions can be defined using `get-property('uri.var.yyy')` to read a path parameter.
@@ -71,7 +77,6 @@ The following sample indicates how the expressions can be defined using `get-pro
 ```xml
 <property name="pathParam" expression="get-property('uri.var.val1')"></property>
 ```
-
 
 ## Build and run
 
