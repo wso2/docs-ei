@@ -120,7 +120,7 @@ If the <strong>Expression</strong> option is selected for the <strong>Set Action
 </table>
 
 !!! Note
-    There are predefined XPath variables (such as `         $ctx        ` ) that you can directly use in the Synapse configuration, instead of using the synapse:get-property() function. These XPath variables get properties of various scopes and have better performance than the `get-property()` function, which can have much lower performance because it does a registry lookup. These XPath variables get properties of various scopes. For more information on these XPath variables, see [Accessing Properties with XPath](property-reference/accessing-properties-with-xpath.md).
+    There are predefined XPath variables (such as `$ctx` ) that you can directly use in the Synapse configuration, instead of using the synapse:get-property() function. These XPath variables get properties of various scopes and have better performance than the `get-property()` function, which can have much lower performance because it does a registry lookup. These XPath variables get properties of various scopes. For more information on these XPath variables, see [Accessing Properties with XPath](property-reference/accessing-properties-with-xpath.md).
 
 ## Examples
 
