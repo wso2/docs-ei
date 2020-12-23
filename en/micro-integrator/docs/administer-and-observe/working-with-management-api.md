@@ -1035,7 +1035,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/external-vaults/hashicorp`
 
-	**Description**: Dynamically updates the secret token in the HashiCorp server that is connected to the Micro Integrator. Only applicable when the AppRole-pull authentication method is used. see [HashiCorp Secrets]() for more information.
+	**Description**: Dynamically updates the secret token in the HashiCorp server that is connected to the Micro Integrator. Only applicable when the AppRole-pull authentication method is used. see [HashiCorp Secrets](../../setup/security/using-hashicorp-secrets) for more information.
 
 	**Example**:
 

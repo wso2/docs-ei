@@ -1,9 +1,9 @@
 # Using HashiCorp Secrets 
 
 The Micro Integrator is by default configured to use secure vault for encrypting secrets. 
-However, secure vault does not allow secrets that are longer than 225 characters.
+However, you may encounter certain limitations if you use secrets with a large number of characters.
 
-You can use HashiCorp secrets with the Micro Integrator if you want ot handle secrets larger than 225 characters. 
+Therefore, you can use HashiCorp secrets with the Micro Integrator if you want to handle long secret values.
 
 !!! Note
     HashiCorp secrets are only applicable to synapse configurations. For server configurations, you can continue using secure vault.
@@ -53,8 +53,7 @@ To use the static root token method, you need to specify the ROOT_TOKEN that you
 [[external_vault]]
 name = "hashicorp"
 address = "http://127.0.0.1:8200"
-roleId = "ROLE_ID"
-secretId = "SECRET_ID"
+rootToken = "ROOT_TOKEN"
 cachableDuration = 15000
 engineVersion = 2
 trustStoreFile = "${carbon.home}/repository/resources/security/client-truststore.jks"
@@ -74,7 +73,8 @@ The secret ID an role ID will internally generate a token and authenticate the H
 [[external_vault]]
 name = "hashicorp"
 address = "http://127.0.0.1:8200"
-rootToken = "ROOT_TOKEN"
+roleId = "ROLE_ID"
+secretId = "SECRET_ID"
 cachableDuration = 15000
 engineVersion = 2
 trustStoreFile = "${carbon.home}/repository/resources/security/client-truststore.jks"
@@ -91,7 +91,7 @@ In this case, the secret ID will expire after it is used for the specified numbe
 In such situations, you need to regenerate a secret ID from HashiCorp and apply it to the `deployment.toml` file. However, you need to restart the Micro Integrator before
 using the new secret token. This means, there will be a server downtime. 
 
-If you want to update the secret token dynamically without restarting the server, you can use the hashiCorp management API of the Micro Integrator.
+If you want to update the secret token dynamically without restarting the server, you can use the management API of the Micro Integrator.
 As shown below, you can send a request to the given URL with the new secret ID (specified in the sample payload).
 
 -   Management API URL: `https://HOST:9164/management/external-vaults/hashicorp`
