@@ -1,11 +1,11 @@
 # Endpoints
 ## Introduction
 
-A message exit point or an endpoint defines an external destination for a message. Typically, this is the address of a proxy service, which acts as the front end to the actual service. You can configure the endpoint artifacts with any attributes or semantics needed for communicating with that service. An endpoint could represent a URL, a mailbox, a JMS queue, a TCP socket, etc. along with the settings needed for the connection. 
+A message exit point or an endpoint defines an external destination for a message. Typically, this is the address of a proxy service that acts as the front end to the actual service. You can configure the endpoint artifacts with any attributes or semantics needed for communicating with that service. An endpoint could represent a URL, a mailbox, a JMS queue, a TCP socket, etc. along with the settings needed for the connection.
 
 For example, the endpoint for the simple stock quote sample is `http://localhost:9000/services/SimpleStockQuoteService`.
 
-Endpoints are independant of transports, which allows you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you can specify which transport to use and the endpoint to which the message will be sent. 
+Endpoints are independant of transports, which allows you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you can specify which transport to use and the endpoint to which the message is sent.
 
 ## Classification of Endpoints
 
@@ -117,21 +117,21 @@ See the topics given below for the list of properties that can be configured for
 <address uri="endpoint address" [format="soap11|soap12|pox|rest|get"] [optimize="mtom|swa"]
         [encoding="charset encoding"]
         [statistics="enable|disable"] [trace="enable|disable"]>
-    
+
     <enableSec [policy="key"]/>?
     <enableAddressing [version="final|submission"] [separateListener="true|false"]/>?
-    
+
     <timeout>
         <duration>timeout duration in milliseconds</duration>
         <responseAction>discard|fault</responseAction>
     </timeout>?
-    
+
     <markForSuspension>
         [<errorCodes>xxx,yyy</errorCodes>]
         <retriesBeforeSuspension>m</retriesBeforeSuspension>
         <retryDelay>d</retryDelay>
     </markForSuspension>
-    
+
     <suspendOnFailure>
         [<errorCodes>xxx,yyy</errorCodes>]
         <initialDuration>n</initialDuration>
@@ -145,22 +145,22 @@ See the topics given below for the list of properties that can be configured for
 <default [format="soap11|soap12|pox|get"] [optimize="mtom|swa"]
          [encoding="charset encoding"]
          [statistics="enable|disable"] [trace="enable|disable"]>
-    
+
     <enableRM [policy="key"]/>?
     <enableSec [policy="key"]/>?
     <enableAddressing [version="final|submission"] [separateListener="true|false"]/>?
-    
+
     <timeout>
         <duration>timeout duration in milliseconds</duration>
         <action>discard|fault</action>
     </timeout>?
-    
+
     <markForSuspension>
         [<errorCodes>xxx,yyy</errorCodes>]
         <retriesBeforeSuspension>m</retriesBeforeSuspension>
         <retryDelay>d</retryDelay>
     </markForSuspension>
-    
+
     <suspendOnFailure>
         [<errorCodes>xxx,yyy</errorCodes>]
         <initialDuration>n</initialDuration>
@@ -186,18 +186,18 @@ See the topics given below for the list of properties that can be configured for
         <enableRM [policy="key"]/>?
         <enableSec [policy="key"]/>?
         <enableAddressing/>?
-    
+
     <timeout>
         <duration>timeout duration in milliseconds</duration>
         <action>discard|fault</action>
     </timeout>?
-    
+
     <markForSuspension>
         [<errorCodes>xxx,yyy</errorCodes>]
         <retriesBeforeSuspension>m</retriesBeforeSuspension>
         <retryDelay>d</retryDelay>
     </markForSuspension>
-    
+
     <suspendOnFailure>
         [<errorCodes>xxx,yyy</errorCodes>]
         <initialDuration>n</initialDuration>
@@ -245,7 +245,7 @@ Listed below are the basic properties that used to [define an endpoint aritfact]
     </tr>
     <tr>
         <td>Trace Enabled</td>
-        <td> 
+        <td>
             This enables tracing for the endpoint. You can <a href="../../../develop/endpoint-trace-logs">use trace logs to debug</a> mediation errors.
         </td>
     </tr>
@@ -472,7 +472,7 @@ Member properties can be used to associate configuration data with an endpoint.
       <tr>
          <td>Port</td>
          <td>
-            The port selected for the service specified in the <b>Service</b> parameter. In a WSDL, an endpoint is bound to each port inside each service. 
+            The port selected for the service specified in the <b>Service</b> parameter. In a WSDL, an endpoint is bound to each port inside each service.
          </td>
       </tr>
       <tr>
@@ -567,7 +567,44 @@ At any given time, the state of the endpoint can be one of the following. During
   </tr>
 </table>
 
+The following is the configuration for the address endpoint. Note that you can apply the same configuration for WSDL endpoints to create error configurations as well. The error handling configuration are as follows:
+<ul>
+   <li>timeout</li>
+   <li>markForSuspension</li>
+   <li>suspendOnFailure</li>
+</ul>
+
+```xml
+<address uri="endpoint address" [format="soap11|soap12|pox|get"]
+    [optimize="mtom|swa"] [encoding="charset encoding"]
+    [statistics="enable|disable"] [trace="enable|disable"]>
+    <enableRM [policy="key"]/>?
+        <enableSec [policy="key"]/>?
+        <enableAddressing [version="final|submission"] [separateListener="true|false"]/>?
+
+        <timeout>
+                <duration>timeout duration in seconds</duration>
+                <responseAction>discard|fault|never</responseAction>
+        </timeout>?
+
+        <markForSuspension>
+                [<errorCodes>xxx,yyy</errorCodes>]
+                <retriesBeforeSuspension>m</retriesBeforeSuspension>
+                <retryDelay>d</retryDelay>
+        </markForSuspension>
+
+        <suspendOnFailure>
+            [<errorCodes>xxx,yyy</errorCodes>]
+                <initialDuration>n</initialDuration>
+                <progressionFactor>r</progressionFactor>
+                <maximumDuration>l</maximumDuration>
+        </suspendOnFailure>
+</address>
+```
+
 #### Timeout Properties
+
+The `timeout` element contains the following parameters that are used to consider an endpoint as "timeout" by not being responsive for a specified time duration.
 
 <table>
    <thead>
@@ -581,6 +618,15 @@ At any given time, the state of the endpoint can be one of the following. During
       </tr>
    </thead>
    <tbody>
+      <tr>
+         <td>
+            <p>Timeout Duration</p>
+         </td>
+         <td>
+            Connection timeout interval. If the remote endpoint does not respond in this time, it will be marked as "Timeout." This can be defined as a static value or as a dynamic value.</br>
+            Specify the value in miliseconds or an XPATH expression. Default value is 60000 milliseconds.
+         </td>
+      </tr>
       <tr>
          <td>
             <p>Timeout Action (responseAction)</p>
@@ -596,21 +642,12 @@ At any given time, the state of the endpoint can be one of the following. During
             </ul>
          </td>
       </tr>
-      <tr>
-         <td>
-            <p>Timeout Duration</p>
-         </td>
-         <td>
-            Connection timeout interval. If the remote endpoint does not respond in this time, it will be marked as "Timeout." This can be in defined as a static value or as a <b>dynamic value</b>.</br>
-            miliseconds or an XPATH expression. Default value is 60000 milliseconds.
-         </td>
-      </tr>
     </tbody>
 </table>
 
-#### Suspend Endpoint
+#### MarkForSuspension Properties
 
-The `markForSuspension` element contains the following parameters which affect the suspension of an endpoint that would time out after a specified time duration.
+The `markForSuspension` element contains the following parameters that are used to mark an endpoint as "suspended" after the time out duration is reached.
 
 <table>
    <thead>
@@ -626,46 +663,36 @@ The `markForSuspension` element contains the following parameters which affect 
    <tbody>
       <tr>
          <td>
-            <p>Suspend Error Codes (errorCodes)</p>
+            <p>Retry Error codes (errorCodes)</p>
          </td>
          <td>
-            Comma separated list of error codes. 
-            This parameter allows you to select one or more error codes from the List of Values. If any of the selected errors is received from the endpoint, the endpoint will be suspended. All the errors except the errors specified in <code>markForSuspension</code>.</br>
-            Only these defined error codes will directly send the endpoint into the "Suspended" state. Any other error code, which is not specified under <code>MarkForSuspension</code> will keep the endpoint in the "Active" state without suspending.</br>
-            If you do not specify these error codes, by default, all the errors except the errors specified in <code>markForSuspension</code> will suspend the endpoint.
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <p>Suspend Initial Duration (initialDuration)</p>
-         </td>
-         <td>
-            The time duration (in miliseconds) for which the endpoint will be suspended, when one or more suspend error codes are received from it for the first time. After an endpoint gets "Suspended", it will wait for this amount of time before trying to send the messages coming to it. All the messages coming during this time period will result in fault sequence activation.</br>
-            Default: 30000.
+            A (comma-separated) list of error codes. If these error codes are received from the endpoint, the request will be subjected to a timeout.</br>
+            The defined error codes move the endpoint into the "Timeout" state, thereby marking it for suspension. After the number of defined <code>retriesBeforeSuspension</code> exceeds, the endpoint will be suspended.</br>
+            Default: 101504, 101505.</br>
+            See the <a href="https://svn.apache.org/repos/asf/synapse/trunk/java/modules/core/src/main/java/org/apache/synapse/SynapseConstants.java">SynpaseConstant</a> class for a list of available error codes.
          </td>
       </tr>
       <tr>
          <td>
-            <p>Suspend Maximum Duration</p>
+            <p>Retry Count (retriesBeforeSuspension)</p>
          </td>
          <td>
-            <p>The maximum time duration (in miliseconds) for which the endpoint is suspended when the suspend error codes are received.</p>
+            The number of times the endpoint should be allowed to retry sending the response before it is marked for suspension. In the "Timeout" state, this number of requests minus one can be tried and failed before the endpoint is marked as "Suspended". This setting is per endpoint (not per message), so several messages can be tried in parallel and failed and the remaining retries for that endpoint will be reduced. Default: 0.</br>
+            <b>Note</b>: If you do not specify these error codes, or if you do not specify any error codes under <code>suspendOnFailure</code>, by default, the "HTTP Connection Closed" (i.e., 101504) and "HTTP Connection Timeout" (i.e., 101505) errors act as "Timeout" errors, and all other errors will move the endpoint into the "Suspended" state after retrying.
          </td>
       </tr>
       <tr>
          <td>
-            <p>Suspend Progression Factor (progressionFactor)</p>
+            <p>Retry Delay (retryDelay)</p>
          </td>
          <td>
-            The progression factor for the geometric series. See the above formula for a more detailed description. The duration to suspend can vary from the first time suspension to the subsequent time. The factor value decides the suspense duration variance between subsequent suspensions.</br>
-            The endpoint will try to send the messages after the <code>initialDuration</code>. If it still fails, the next duration is calculated as:<code>Min(current suspension duration * progressionFactor, maximumDuration)</code>.</br>
-            Default: 1.
+            The time to wait between the last retry attempt and the next retry. Default: 0.
          </td>
       </tr>
     </tbody>
 </table>
 
-#### Suspend Endpoint on Failure
+#### SuspendOnFailure Properties
 
 Leaf endpoints (Address and WSDL) can be suspended if they are detected
 as failed endpoints. When an endpoint is in suspended state for a
@@ -697,34 +724,74 @@ to a maximum duration.
    <tbody>
       <tr>
          <td>
-            <p>Retry Error codes (errorCodes)</p>
+            <p>Suspend Error Codes (errorCodes)</p>
          </td>
          <td>
-            A (comma-separated) list of error codes. If these error codes are received from the endpoint, the request will be subjected to a timeout.</br>
-            The defined error codes put the endpoint into the "Timeout" state marking it for suspension. After the number of defined <code>retriesBeforeSuspension</code> exceeds, the endpoint will be suspended.</br>
-            Default: 101504, 101505.</br>
-            See the <a href="https://svn.apache.org/repos/asf/synapse/trunk/java/modules/core/src/main/java/org/apache/synapse/SynapseConstants.java">SynpaseConstant</a> class for a list of available error codes.
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <p>Retry Count (retriesBeforeSuspension)</p>
-         </td>
-         <td>
-            The number of times the endpoint should be allowed to retry sending the response before it is marked for suspension. In the "Timeout" state this number of requests minus one can be tried and failed before the endpoint is marked as "Suspended". This setting is per endpoint, not per message, so several messages can be tried in parallel and failed and the remaining retries for that endpoint will be reduced. Default: 0.</br>
-            <b>Note</b>: If you do not specify these error codes, or if you do not specify any error codes under <code>suspendOnFailure</code>, by default, the "HTTP Connection Closed" (i.e., 101504) and "HTTP Connection Timeout" (i.e., 101505) errors act as "Timeout" errors, and all other errors will put the endpoint into the "Suspended" state after retrying.
+            Comma-separated list of error codes.
+            This parameter allows you to select one or more error codes from the list of values. If any of the selected errors are received from the endpoint, the endpoint will be suspended.</br>
+            Only these defined error codes will directly send the endpoint into the "Suspended" state. Any other error code, which is not specified under <code>MarkForSuspension</code>, will keep the endpoint in the "Active" state without suspending.</br>
+            If you do not specify these error codes, by default, all the errors except the errors specified in <code>markForSuspension</code> will suspend the endpoint.
          </td>
       </tr>
       <tr>
          <td>
-            <p>Retry Delay (retryDelay)</p>
+            <p>Suspend Initial Duration (initialDuration)</p>
          </td>
          <td>
-            The time to wait between the last retry attempt and the next retry. Default: 0.
+            The time duration (in miliseconds) for which the endpoint will be suspended when one or more suspend error codes are received from it for the first time. After an endpoint gets "Suspended", it will wait for this amount of time before trying to send the messages coming to it. All the messages coming during this time period will result in fault sequence activation.</br>
+            Default: 30000.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <p>Suspend Maximum Duration</p>
+         </td>
+         <td>
+            <p>The maximum time duration (in miliseconds) for which the endpoint is suspended when the suspend error codes are received.</p>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <p>Suspend Progression Factor (progressionFactor)</p>
+         </td>
+         <td>
+            The progression factor for the geometric series. The duration to suspend can vary from the first time suspension to the subsequent time. The factor value decides the suspend duration variance between subsequent suspensions.</br>
+            The endpoint will try to send the messages after the <code>initialDuration</code>. If it still fails, the next duration is calculated as:<code>Min(current suspension duration * progressionFactor, maximumDuration)</code>.</br>
+            Default: 1.
          </td>
       </tr>
     </tbody>
 </table>
+
+##### Sample Configuration:
+
+``` xml
+<endpoint name="Sample_First" statistics="enable" >
+    <address uri="http://localhost:8280/myendpoint" statistics="enable" trace="disable">
+        <timeout>
+            <duration>60000</duration>
+        </timeout>
+
+        <markForSuspension>
+            <errorCodes>101504, 101505</errorCodes>
+            <retriesBeforeSuspension>3</retriesBeforeSuspension>
+            <retryDelay>1</retryDelay>
+        </markForSuspension>
+
+        <suspendOnFailure>
+            <errorCodes>101500, 101501, 101506, 101507, 101508</errorCodes>
+            <initialDuration>1000</initialDuration>
+            <progressionFactor>2</progressionFactor>
+            <maximumDuration>60000</maximumDuration>
+        </suspendOnFailure>
+
+    </address>
+</endpoint>
+```
+
+In this example, 101504 and 101505 errors move the endpoint into the "Timeout" state. At that point, three requests can fail for one of these errors before the endpoint is moved into the "Suspended" state. Additionally, 101500, 101501, 101506, 101507, and 101508 errors will move the endpoint directly into the "Suspended" state. If a 101503 error occurs, the endpoint will remain in the "Active" state as you have not specified it under `suspendOnFailure`. The default setting to suspend the endpoint for all error codes, except the ones specified under `markForSuspension`, will apply only if you do not specify error codes under `suspendOnFailure`.
+
+When the endpoint is first suspended, the retry happens after one second. Because the progression factor is 2, the next suspension duration before retry is two seconds, then four seconds, then eight, and so on until it gets to sixty seconds, which is the maximum duration we have configured. At this point, all subsequent suspension periods will be sixty seconds until the endpoint succeeds and is back in the Active state, at which point the initial duration will be used on subsequent suspensions.
 
 ### WS Addressing Properties
 
