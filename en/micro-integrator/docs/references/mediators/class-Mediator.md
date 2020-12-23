@@ -32,9 +32,14 @@ In this configuration, the Micro Integrator sends the requested message to the 
 
 !!! Info
     If you want, you can pass the same variables as a value or an expression:
+
     -   Example for passing the variable as a value: `          <property name="variable1" value="10"/>         `
+
     -   Example for passing the variable as an expression: `          <property name="variable2" expression="get-property('variable1')"/>         `  
         For more information on using the get property method, see the [Property Mediator](property-Mediator.md).
+
+!!! Warning
+        Using the class variables with expressions will lead to the values evaluated being mixed up when there are concurrent requests and will lead to erroneous behaviors. 
 
 ``` java
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="errorHandler">

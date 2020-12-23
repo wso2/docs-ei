@@ -1487,7 +1487,48 @@
                             "default": "wso2carbon",
                             "possible": "-",
                             "description": "The password of the keystore file that is used as the trust store. By default, the product's trust store is configured for this purpose."
+                        },
+                        {
+                            "name": "enable_message_size_validation",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "If this property is enabled and the payload exceeds the size specified by the 'max_message_size_bytes' property, the Micro Integrator will discontinue reading the input stream. This will prevent out-of-memory issues."
+                        },
+                        {
+                            "name": "max_message_size_bytes",
+                            "type": "integer",
+                            "required": false,
+                            "default": "2147483647",
+                            "possible": "-",
+                            "description": "If the size of the payload exceeds this value, the Micro Integrator will discontinue reading the input stream. Only applicable if the ‘enable_message_size_validation’ property is enabled."
+                        },
+                        {
+                            "name": "max_open_connections",
+                            "type": "integer",
+                            "required": false,
+                            "default": "-1",
+                            "possible": "-",
+                            "description": "This property allows connection throttling to restrict the number of simultaneously opened connections. That is, simultaneously opened incoming connections will be restricted by the specified value. To disable throttling, delete the ‘max_open_connections’ setting or set it to -1."
+                        },
+                        {
+                            "name": "force_xml_validation",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "This property validates badly formed XML messages by building the whole XML document. This validation ensures that erroneous XML messages will trigger the fault sequence in the Micro Integrator."
+                        },
+                        {
+                            "name": "force_json_validation",
+                            "type": "boolean",
+                            "required": false,
+                            "default": "false",
+                            "possible": "\"true\" or \"false\"",
+                            "description": "This property validates JSON messages by parsing the input message. This validation ensures that erroneous JSON messages will trigger the fault sequence in the Micro Integrator."
                         }
+
                     ]
                 }
             ],
@@ -3620,6 +3661,64 @@
             "exampleFile": "_udp-transport-blocking.toml"
         },
         {
+            "title": "Custom Transport Listener",               
+            "options": [
+                {
+                    "name": "[custom_transport.listener]",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to receive messages through a <a href='../../setup/transport_configurations/configuring-transports/#configuring-custom-transports'>custom transport</a>.",
+                    "params": [
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The class implementing the custom transport. For example, if you are using an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener."
+                        },
+                        {
+                            "name": "protocol",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The transport protocol for the custom implementation. For example: hl7."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_custom-transport-listener.toml"
+        },
+        {
+            "title": "Custom Transport Sender",               
+            "options": [
+                {
+                    "name": "transport.udp",
+                    "required": true,
+                    "description": "This configuration header groups the parameters that configure the Micro Integrator to send messages through a <a href='../../setup/transport_configurations/configuring-transports/#configuring-custom-transports'>custom transport</a>.",
+                    "params": [
+                        {
+                            "name": "class",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The class implementing the custom transport. For example, if you are using an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender."
+                        },
+                        {
+                            "name": "protocol",
+                            "type": "string",
+                            "required": true,
+                            "default": "-",
+                            "possible": "-",
+                            "description": "The transport protocol for the custom implementation. For example: hl7."
+                        }
+                    ]
+                }
+            ],
+            "exampleFile": "_custom-transport-sender.toml"
+        },
+        {
             "title": "Message Mediation",            	
             "options": [
                 {
@@ -3663,7 +3762,7 @@
                             "name": "synapse.enable_xpath_dom_failover",
                             "type": "boolean",
                             "required": false,
-                            "default": "true",
+                            "default": "false",
                             "possible": "\"true\" or \"false\"",
                             "description": "If this parameter is set to true, the Micro Integrator can switch to XPATH 2.0. This parameter can be set to false if XPATH 2.0 evaluations cause performance degradation. The Micro Integrator uses the Saxon Home Edition when implementing XPATH 2.0 functionalities, and thus supports all the functions that are shipped with it. For more information on the supported functions, see the Saxon Documentation."
                         },
