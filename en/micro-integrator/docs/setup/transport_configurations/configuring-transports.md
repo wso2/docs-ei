@@ -327,6 +327,25 @@ To enable the MSMQ transport listener and sender, set the following parameters t
 listener.enable = false
 sender.enable =false
 ```
+
+## Configuring custom transports
+Other than the transports defined above, you can use a custom transport that enables you to add a new transport to the Micro Integrator. Custom transport configurations contain senders and listeners that you can define. A custom transport configuration is as follows.
+
+```toml tab='Custom Listener'
+[[custom_transport.listener]]
+class="org.wso2.micro.integrator.TransportListener"
+protocol = "protocol"
+```
+
+```toml tab='Custom Sender'
+[[custom_transport.sender]]
+class="org.wso2.micro.integrator.TransportSender"
+protocol = "protocol"
+parameter.'transport.param' = true
+```
+
+You can define the listener and sender classes in the `class` parameter. Any additional parameter can be passed to the configuration using `parameter`.
+
 ## Configuring the MailTo transport
 
 -	Configuring the MailTo listener
