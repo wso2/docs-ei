@@ -48,19 +48,28 @@ There are two query parameters (customer name and ID) that must be set in the ou
 </api>                  
 ```
 
-## Reading a query parameter
+## Reading a query or path parameter
 
-Define a REST API and access the query params with `get-property('query.param.xxx')` or `get-property('uri.var.yyy')`. The following is a sample code that shows how the resource is defined.
+You can define a REST API and access the query parameters or path parameters by defining them in expressions. The following is a sample code that shows how the resource is defined.
 
 ```xml
-<resource methods="GET" uri-template="/testwso2/{symbol}?arg1={value1}">
+<resource methods="GET" uri-template="/{val1}/groups/{val2}/json?q1={v1}&q2={v2}">
 ```
 
-The following sample indicates how the expressions can be defined to read a query parameter.
+**Reading a query parameter**
+
+The following sample indicates how the expressions can be defined using `get-property('query.param.xxx')` to read a query parameter.
 
 ```xml
-get-property('query.param.arg1')
-get-property('uri.var.symbol')
+<property name="queryParam" expression="get-property('query.param.q1')"></property>
+```
+
+**Readng a path parameter**
+
+The following sample indicates how the expressions can be defined using `get-property('uri.var.yyy')` to read a path parameter.
+
+```xml
+<property name="pathParam" expression="get-property('uri.var.val1')"></property>
 ```
 
 
