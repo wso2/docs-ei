@@ -48,7 +48,7 @@ To configure the **Apache ActiveMQ** message broker, follow the steps below:
         This guide uses ActiveMQ versions 5.7.0 - 5.9.0. If you want to use a later version, for instructions on the necessary changes to the configuration steps, go to [Apache ActiveMQ Documentation](http://activemq.apache.org/activemq-580-release.html).
     
 
-2. Download the `activemq-client-5.x.x.jar` from [here](http://central.maven.org/maven2/org/apache/activemq/activemq-client/5.9.0/activemq-client-5.9.0.jar).
+2. Download the `activemq-client-5.x.x.jar` from [here](https://activemq.apache.org/components/classic/download/).
 
 3. Register the `InitialContextFactory` implementation according to the OSGi JNDI spec and copy the client jar to the `<SI_TOOLING_HOME>/lib` directory as follows.
 

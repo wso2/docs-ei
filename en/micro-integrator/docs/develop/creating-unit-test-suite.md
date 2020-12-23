@@ -6,6 +6,9 @@ Once you have developed an integration solution, WSO2 Integration Studio allows 
 - Test the artifacts with [registry resources](../../develop/creating-artifacts/creating-registry-resources).
 - Test the artifacts with [Connectors](../../develop/creating-artifacts/adding-connectors).
 
+    !!! Note
+        [Scheduled Tasks](../../develop/creating-artifacts/creating-scheduled-task) are not supported by the Unit Testing framework.
+
 ## Create Unit Test Suite
 
 1.  Open WSO2 Integration Studio.
@@ -146,6 +149,18 @@ Mock services give the opportunity to simulate the actual endpoint.
     -   **Header Value**: Response request header value.
     -   **Send Out Response Payload**: Expected response payload from the service.   
   
+    !!! Note 
+        
+        Please note that the mock service **should have a sub context** with '/' defined, and additional sub contexts should be defined after that.
+        
+        - If you are trying to mock an endpoint `http://petstore.com/pets`, the wizard should look like below now.
+        
+        ![Mock Service with one sub context](../assets/img/create_project/synapse_unit_test/mockservice-context-sample.PNG) 
+        
+        - If you are going to mock the same endpoint with an additional sub context (e.g., `http://petstore.com/pets/id` ), you can add it to the same mock service as shown below. 
+        
+        ![Mock Service with additional sub Contexts](../assets/img/create_project/synapse_unit_test/mockservice-subcontext-sample.PNG) 
+
 Once you have entered the required details, click **Add**. It will list the resource under the **Add Service Resource** table with **Sub Context** and **Method**. After that click **Finish** to create a Mock Service. It will locate under the **test → resources → mock-services** directory.
 
 ![Mock Service Form](../assets/img/create_project/synapse_unit_test/mock-service-form.png)     
