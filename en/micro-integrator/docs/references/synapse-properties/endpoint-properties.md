@@ -5,7 +5,7 @@ A message exit point or an endpoint defines an external destination for a messag
 
 For example, the endpoint for the simple stock quote sample is `http://localhost:9000/services/SimpleStockQuoteService`.
 
-Endpoints are independant of transports, which allows you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you can specify which transport to use and the endpoint to which the message will be sent.
+Endpoints are independant of transports, which allows you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you can specify which transport to use and the endpoint to which the message is sent.
 
 ## Classification of Endpoints
 
