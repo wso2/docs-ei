@@ -47,6 +47,36 @@ There are two query parameters (customer name and ID) that must be set in the ou
 </api>                  
 ```
 
+## Reading a query or path parameter
+
+You can define a REST API and access the query parameters or path parameters by defining them in expressions. The following is a sample code that shows how the resource is defined.
+
+```xml
+<resource methods="GET" uri-template="/{val1}/groups/{val2}/json?q1={v1}&q2={v2}">
+```
+
+**Reading a query parameter**
+
+The following sample indicates how the expressions can be defined using `get-property('query.param.xxx')` to read a query parameter.
+
+```xml
+<property name="queryParam" expression="get-property('query.param.q1')"></property>
+```
+
+Alternately, you can use the following.
+
+```xml
+<property name="queryParam" expression="$url:q1"></property>
+```
+
+**Readng a path parameter**
+
+The following sample indicates how the expressions can be defined using `get-property('uri.var.yyy')` to read a path parameter.
+
+```xml
+<property name="pathParam" expression="get-property('uri.var.val1')"></property>
+```
+
 ## Build and run
 
 Create the artifacts:
