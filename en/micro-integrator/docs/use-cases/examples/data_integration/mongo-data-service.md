@@ -71,38 +71,7 @@ Create the artifacts:
 3. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator. 
 
-Let's take a look at the curl commands that are used to send the HTTP
-requests for each of the resources:
-
-<!--
-
-#### Post new data
-
-1.  Create a file called `data-payload.json          `
-    file, and define the json payload for posting new data as shown
-    below.
-
-    ```bash
-    {  
-    "id": "5",
-    "name":"Tom",
-    }
-    ```
-
-2.  Send the following HTTP request from the location where the
-    `           data-payload.json          ` file is stored:
-
-    ```bash
-    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@data-payload.json" http://localhost:8290/services/MongoDB/insert
-    ```
-
-#### Get data
-
--->
-
-The service can be invoked in REST-style via curl (
-[http://curl.haxx.se](http://curl.haxx.se/) ). Shown below is the curl
-command to invoke the GET resource:
+Let's try out this sample by invoking the `find` resource in the data service to GET data. Shown below is the [curl](http://curl.haxx.se/) command to send the GET request:
 
 ```bash
 curl -X GET http://localhost:8290/services/MongoDB/find
