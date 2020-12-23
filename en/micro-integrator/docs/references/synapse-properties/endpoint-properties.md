@@ -5,7 +5,7 @@ A message exit point or an endpoint defines an external destination for a messag
 
 For example, the endpoint for the simple stock quote sample is `http://localhost:9000/services/SimpleStockQuoteService`.
 
-Endpoints are independant of transports, which allows you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you can specify which transport to use and the endpoint to which the message will be sent.
+Endpoints are independant of transports, which allows you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you can specify which transport to use and the endpoint to which the message is sent.
 
 ## Classification of Endpoints
 
@@ -589,7 +589,7 @@ The following is the configuration for the address endpoint. Since we all are on
 
 #### Timeout Properties
 
-The `timeout` element contains the following parameters which are used to consider an endpoint as "timeout" by not being responsive for a specified time duration.
+The `timeout` element contains the following parameters that are used to consider an endpoint as "timeout" by not being responsive for a specified time duration.
 
 <table>
    <thead>
@@ -632,7 +632,7 @@ The `timeout` element contains the following parameters which are used to consid
 
 #### MarkForSuspension Properties
 
-The `markForSuspension` element contains the following parameters which are used to mark an endpoint as "suspended" after being timed-out for a specified duration.
+The `markForSuspension` element contains the following parameters that are used to mark an endpoint as "suspended" after being timed-out for a specified duration.
 
 <table>
    <thead>
