@@ -1,4 +1,5 @@
 # Setting Query Parameters on Outgoing Messages
+
 REST clients use query parameters to provide inputs for the relevant operation. These query parameters may be required to carry out the back-end operations either in a REST service or a proxy service.
 
 Shown below is an example request that uses query parameters.
@@ -47,13 +48,43 @@ There are two query parameters (customer name and ID) that must be set in the ou
 </api>                  
 ```
 
+## Reading a query or path parameter
+
+You can define a REST API and access the query parameters or path parameters by defining them in expressions. The following is a sample code that shows how the resource is defined.
+
+```xml
+<resource methods="GET" uri-template="/{val1}/groups/{val2}/json?q1={v1}&q2={v2}">
+```
+
+**Reading a query parameter**
+
+The following sample indicates how the expressions can be defined using `get-property('query.param.xxx')` to read a query parameter.
+
+```xml
+<property name="queryParam" expression="get-property('query.param.q1')"></property>
+```
+
+Alternately, you can use the following.
+
+```xml
+<property name="queryParam" expression="$url:q1"></property>
+```
+
+**Readng a path parameter**
+
+The following sample indicates how the expressions can be defined using `get-property('uri.var.yyy')` to read a path parameter.
+
+```xml
+<property name="pathParam" expression="get-property('uri.var.val1')"></property>
+```
+
 ## Build and run
 
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
-3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
+3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
