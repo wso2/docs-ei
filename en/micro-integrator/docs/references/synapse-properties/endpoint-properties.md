@@ -1,7 +1,7 @@
 # Endpoints
 ## Introduction
 
-A message exit point or an endpoint defines an external destination for a message. Typically, this is the address of a proxy service, which acts as the front end to the actual service. You can configure the endpoint artifacts with any attributes or semantics needed for communicating with that service. An endpoint could represent a URL, a mailbox, a JMS queue, a TCP socket, etc. along with the settings needed for the connection.
+A message exit point or an endpoint defines an external destination for a message. Typically, this is the address of a proxy service that acts as the front end to the actual service. You can configure the endpoint artifacts with any attributes or semantics needed for communicating with that service. An endpoint could represent a URL, a mailbox, a JMS queue, a TCP socket, etc. along with the settings needed for the connection.
 
 For example, the endpoint for the simple stock quote sample is `http://localhost:9000/services/SimpleStockQuoteService`.
 
