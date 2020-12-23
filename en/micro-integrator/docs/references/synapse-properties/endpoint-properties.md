@@ -552,7 +552,7 @@ At any given time, the state of the endpoint can be one of the following. During
   </tr>
 </table>
 
-The following is the configuration for the address endpoint. Since we all are only interested in error configurations, the same applies for WSDL endpoints as well. The error handling configuration are as follows:
+The following is the configuration for the address endpoint. Note that you can apply the same configuration for WSDL endpoints to create error configurations as well. The error handling configuration are as follows:
 <ul>
    <li>timeout</li>
    <li>markForSuspension</li>
@@ -609,7 +609,7 @@ The `timeout` element contains the following parameters that are used to conside
          </td>
          <td>
             Connection timeout interval. If the remote endpoint does not respond in this time, it will be marked as "Timeout." This can be defined as a static value or as a dynamic value.</br>
-            Miliseconds or an XPATH expression. Default value is 60000 milliseconds.
+            Specify the value in miliseconds or an XPATH expression. Default value is 60000 milliseconds.
          </td>
       </tr>
       <tr>
@@ -652,7 +652,7 @@ The `markForSuspension` element contains the following parameters that are used 
          </td>
          <td>
             A (comma-separated) list of error codes. If these error codes are received from the endpoint, the request will be subjected to a timeout.</br>
-            The defined error codes moves the endpoint into the "Timeout" state, thereby marking it for suspension. After the number of defined <code>retriesBeforeSuspension</code> exceeds, the endpoint will be suspended.</br>
+            The defined error codes move the endpoint into the "Timeout" state, thereby marking it for suspension. After the number of defined <code>retriesBeforeSuspension</code> exceeds, the endpoint will be suspended.</br>
             Default: 101504, 101505.</br>
             See the <a href="https://svn.apache.org/repos/asf/synapse/trunk/java/modules/core/src/main/java/org/apache/synapse/SynapseConstants.java">SynpaseConstant</a> class for a list of available error codes.
          </td>
@@ -712,8 +712,8 @@ to a maximum duration.
             <p>Suspend Error Codes (errorCodes)</p>
          </td>
          <td>
-            Comma separated list of error codes.
-            This parameter allows you to select one or more error codes from the list of values. If any of the selected errors are received from the endpoint, the endpoint will be suspended. All the errors except the errors specified in <code>markForSuspension</code>.</br>
+            Comma-separated list of error codes.
+            This parameter allows you to select one or more error codes from the list of values. If any of the selected errors are received from the endpoint, the endpoint will be suspended.</br>
             Only these defined error codes will directly send the endpoint into the "Suspended" state. Any other error code, which is not specified under <code>MarkForSuspension</code>, will keep the endpoint in the "Active" state without suspending.</br>
             If you do not specify these error codes, by default, all the errors except the errors specified in <code>markForSuspension</code> will suspend the endpoint.
          </td>
@@ -723,7 +723,7 @@ to a maximum duration.
             <p>Suspend Initial Duration (initialDuration)</p>
          </td>
          <td>
-            The time duration (in miliseconds) for which the endpoint will be suspended, when one or more suspend error codes are received from it for the first time. After an endpoint gets "Suspended", it will wait for this amount of time before trying to send the messages coming to it. All the messages coming during this time period will result in fault sequence activation.</br>
+            The time duration (in miliseconds) for which the endpoint will be suspended when one or more suspend error codes are received from it for the first time. After an endpoint gets "Suspended", it will wait for this amount of time before trying to send the messages coming to it. All the messages coming during this time period will result in fault sequence activation.</br>
             Default: 30000.
          </td>
       </tr>
@@ -740,7 +740,7 @@ to a maximum duration.
             <p>Suspend Progression Factor (progressionFactor)</p>
          </td>
          <td>
-            The progression factor for the geometric series. See the above formula for a more detailed description. The duration to suspend can vary from the first time suspension to the subsequent time. The factor value decides the suspend duration variance between subsequent suspensions.</br>
+            The progression factor for the geometric series. The duration to suspend can vary from the first time suspension to the subsequent time. The factor value decides the suspend duration variance between subsequent suspensions.</br>
             The endpoint will try to send the messages after the <code>initialDuration</code>. If it still fails, the next duration is calculated as:<code>Min(current suspension duration * progressionFactor, maximumDuration)</code>.</br>
             Default: 1.
          </td>
