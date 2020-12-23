@@ -1,6 +1,6 @@
 # Setting up the Gmail API
 
-To use the Gmail API, you must have created a Gmail account. The Gmail API uses OAuth2 authentication with Tokens. You need to go through the following steps to obtain the necessary tokens unless you already have them.
+To use the Gmail API, you need to first create a Gmail account or have one already. The Gmail API uses OAuth2 authentication with Tokens. You need to go through the following steps to obtain the necessary tokens unless you already have them.
 
 ## Creating the Client ID and Client Secret
 
