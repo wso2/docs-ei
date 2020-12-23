@@ -270,6 +270,7 @@ nav:
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
+        - 'Debugging On Server': 'develop/debugging-on-server.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
         - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
         - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
