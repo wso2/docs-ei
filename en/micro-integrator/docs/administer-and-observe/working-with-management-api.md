@@ -1030,3 +1030,26 @@ The management API has multiple resources to provide information regarding the d
   	  "TransactionCountData": [[col1, col2, col3, col4],[val1, val2, val3, val4]]
   	 }
   	```
+
+### UPDATE HASHICORP SECRET
+
+-	**Resource**: `/external-vaults/hashicorp`
+
+	**Description**: Dynamically updates the secret token in the HashiCorp server that is connected to the Micro Integrator. Only applicable when the AppRole-pull authentication method is used. see [HashiCorp Secrets]() for more information.
+
+	**Example**:
+
+  	```bash tab='Request'
+  	https://HOST_NAME:9164/management/external-vaults/hashicorp -H 'authorization: Bearer TOKEN
+      -H 'content-type: application/json' \
+      -d '{
+        "secretId" : "new_secret_id" 
+    	}'
+  	```
+
+  	```bash tab='Response'
+  	{
+	"Message" : ""SecretId value is updated in HashiCorp vault runtime configurations. To persist the new SecretId in the next server startup, please update the deployment.toml file"
+	}
+  	```
+    
