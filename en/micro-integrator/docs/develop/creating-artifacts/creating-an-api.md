@@ -233,6 +233,4 @@ Click the **Swagger Editor** tab to view the Swagger definition of your API. You
 -   [Handling HTTP Status Codes](../../../use-cases/examples/rest_api_examples/setting-https-status-codes)
 -   [Manipulating Content Types](../../../use-cases/examples/rest_api_examples/transforming-content-type)
 -   [Securing a REST API](../../../use-cases/examples/rest_api_examples/securing-rest-apis)
--   [Using GET with a Message Body](../../../use-cases/examples/rest_api_examples/using-get-with-a-body)
--   [Using POST with Empty Message Body](../../../use-cases/examples/rest_api_examples/using-post-with-no-body)
--   [Using POST with Query Parameters](../../../use-cases/examples/rest_api_examples/using-post-with-query-param)
+-   [Special Cases](../../../use-cases/examples/rest_api_examples/special-cases)
