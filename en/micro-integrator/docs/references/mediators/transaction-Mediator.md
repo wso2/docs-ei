@@ -12,7 +12,7 @@ transaction functionality for its child mediators.
 ## Syntax
 
 ```xml
-<transaction action="commit|fault-if-no-tx|new|resume|suspend|rollback|use-existing-or-new"/>
+<transaction action="commit|fault-if-no-tx|new|rollback|use-existing-or-new"/>
 ```
 
 ## Configuration
@@ -25,8 +25,6 @@ performed. Available values are as follows.
 | **Commit Transaction** (commit)                                | This marks the transaction as completed and ends the transaction.                                                              |
 | **Fault if no Transaction** (fault-if-no-tx)                   | This goes to the error handler if there is no transaction.                                                                     |
 | **Initiate new Transaction** (new)                             | This provides the entry point for a new transaction.                                                                           |
-| **Resume Transaction** (resume)                                | This resumes a paused transaction.                                                                                             |
-| **Suspend Transaction** (suspend)                              | This pauses a transaction.                                                                                                     |
 | **Rollback Transaction** (rollback                             | This rolls back a transaction.                                                                                                 |
 | **Use existing or Initiate Transaction** (use-existing-or new) | If a transaction already exists, this value continues it. If no transaction already exists, a new transaction will be created. |
 
