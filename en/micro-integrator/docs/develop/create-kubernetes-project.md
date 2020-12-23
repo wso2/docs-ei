@@ -214,6 +214,8 @@ Before you begin:
 
     <img alt="Integration artifacts for Docker" src="../../assets/img/create_project/docker_k8s_project/integration-projects-for-k8s.png" width="300">
 
+-   Be sure to start your Docker instance before building the image. If Docker is not started, the build process will fail.
+
 -   If you are using a Micro Integrator Docker image from a private registry as your base image:
 
     1.  Open a terminal and use the following command to log in to Docker:

@@ -1,4 +1,4 @@
-# Managing Streaming Data with Errors
+# Error Handling with Data Streams
 
 ## Introduction
 

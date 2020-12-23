@@ -148,6 +148,6 @@ Once you try out this quick start guide, you can proceed to one of the following
 
 - Learn the basic functionality of the Streaming Integrator in less than 30 minutes by [Creating Your First Siddhi Application](getting-started/getting-started-guide-overview.md)
 
-- To understand how to trigger integration flows via the Micro Integrator based on the results you generate via the Streaming Integrator, see [Getting SI Running with MI in Five Minutes](hello-world-with-mi.md).
-
 - Try out [Streaming Integrator tutorials](../examples/tutorials-overview.md).
+
+- Learn how to run WSO2 Streaming Integrator in containerized environments, try [Running SI with Docker and Kubernetes](../examples/running-si-with-docker-and-kubernetes.md)
