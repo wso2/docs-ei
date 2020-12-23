@@ -16,7 +16,7 @@ For older versions, see the details in the connector store.
 
 ## Gmail Connector documentation
 
-* **[Creating the Client ID and Client Secret](configuring-gmail-api.md)**: You need to first create Gmail credentials for the connector to use in order to interact with Gmail.
+* **[Setting up the Gmail API](configuring-gmail-api.md)**: You need to first create Gmail credentials for the connector to use in order to interact with Gmail.
 
 * **[Gmail Connector Example](gmail-connector-example.md)**: This example demonstrates a scenario where a customer feedback Gmail account of a company can be easily managed using the WSO2 Gmail Connector. 
 
