@@ -1,4 +1,8 @@
-# Get Credentials for Google Spreadsheet
+# Setting up the Google Sheets API
+
+To use the Google Sheets API, you must have created a Gmail account. The Sheets API uses OAuth2 authentication with Tokens. You need to go through the following steps to obtain the necessary tokens unless you already have them.
+
+## Get Credentials for Google Sheets
 
 To obtain the Access Token, Client Id, Client Secret and Refresh Token, we need to follow the below steps. 
 
