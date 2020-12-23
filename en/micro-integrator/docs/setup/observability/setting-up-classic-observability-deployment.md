@@ -69,9 +69,11 @@ flow.statistics.enable=true
 stat.tracer.collect_payloads=true
 stat.tracer.collect_mediation_properties=true
 ```
-### Configuring the Micro Integrator to Publish Data to Analytics Server
-Analytics publishing can be configured in `<MI_HOME>/conf/deployment.toml` in '[monitoring]' section.
-```
+### Configuring the Micro Integrator to publish data to EI Analytics
+
+Analytics publishing can be configured in the `[monitoring]` section of the `<MI_HOME>/conf/deployment.toml` file as shown below.
+
+```toml
 [monitoring]
 ei_analytics.server_url = "tcp://localhost:7612"
 ei_analytics.auth_server_url = "ssl://localhost:7712"
@@ -79,8 +81,7 @@ ei_analytics.username = "admin"
 ei_analytics.password = "admin"        
 ```
 
-If the Analytics nodes runs in cluster mode, or in different VMs, the ServerURL and AuthServerURL can be configured in load balancing manner.
-Please refer, [Enabling Load Balancing Data Agent for Publishing to Analytics](#enabling-load-balancing-data-agent-for-publishing-to-analytics).
+If you have a cluster of Analytics nodes or if the nodes are running in different VMs, the `server_url` and `auth_server_url` can be configured to balance the load among the different server instances. See the topic [Enabling Load Balancing Data Agent for Publishing to Analytics](#enabling-load-balancing-data-agent-for-publishing-to-analytics) given below for details.
 
 ### Enabling statistics for ALL artifacts
 
@@ -117,32 +118,33 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
      ![endpoint properties](../../assets/img/ei-analytics/endpoint-properties.png)
      
-### Enabling Load Balancing Data Agent for Publishing to Analytics
+### Enabling load balancing Data Agent for Publishing to Analytics
 
-You can send events to multiple Analytics servers, either by sending the same event to many Analytics servers or by load balancing events among a set of servers. This handles the fail-over problem. When events are load balanced within a set of servers and if one receiver cannot be reached, events are automatically sent to the other available and active Analytics servers.
-The following scenarios are covered in this section.
+You can send events to multiple Analytics servers either by sending the same event to many Analytics servers or by load balancing events among a set of servers. This handles the fail-over problem. When events are load balanced within a set of servers and if one receiver cannot be reached, events are automatically sent to the other available and active Analytics servers. The following scenarios are covered in this section.
 
 #### Load balancing across group of servers 
 
-For this functionality, include the server URL in the Data Agent as a general Anslytics receiver URL. The URL should be entered in a comma separated format as shown below.
+For this functionality, include the server URL in the Data Agent as a general Analytics receiver URL. The URL should be entered in a comma separated format as shown below.
 
 eg: `tcp://<Analytics-1>:<port>,tcp://<Analytics-2>:<port>,tcp://<Analytics-3>:<port>`
 
 sample: `tcp://10.100.2.32:7611, tcp://10.100.2.33:7611, tcp://10.100.2.34:7611`
-    ![lb events to servers](../../assets/img/ei-analytics/ob-lb-events-to-servers.png)
-It also handles fail-over cases such as, if Anslytics Receiver-1 is marked as down, then the Data Agent will send the data only to Anslytics Receiver-2 and Anslytics Receiver-3 in a round robin manner. When Anslytics Receiver-1 becomes active after some time, the Data Agent automatically detects it, adds it to the operation, and again starts to load balance between all three receivers. This functionality significantly reduces the loss of data and provides more concurrency.
+
+![lb events to servers](../../assets/img/ei-analytics/ob-lb-events-to-servers.png)
+    
+This handles failover as follows: If Analytics Receiver-1 is marked as down, then the Data Agent will send the data only to the Analytics Receiver-2 and Analytics Receiver-3 in a round robin manner. When the Analytics Receiver-1 becomes active after some time, the Data Agent automatically detects it, adds it to the operation, and again starts to load balance between all three receivers. This functionality significantly reduces the loss of data and provides more concurrency.
 
 #### Load balancing across multiple groups of servers  
 
-In this setup there are two sets of servers that are referred to as set-A and set-B. 
+In this setup, there are two sets of servers that are referred to as set-A and set-B. 
 You can send events to both the sets. You can also carry out load balancing for both sets as mentioned in load balancing between a set of servers. 
 This scenario is a combination of load balancing between a set of servers and sending an event to several receivers. 
 An event is sent to both set-A and set-B. Within set-A, it will be sent either to Analytics A1 or Analytics A2. 
 Similarly within set-B, it will be sent either to Analytics B1 or Analytics B2. 
-In the setup, you can have any number of sets and any number of servers as required by mentioning them accurately in the server URL.
+In the setup, you can have any number of sets and any number of servers as required.
     ![lb events to set of servers](../../assets/img/ei-analytics/ob-lb-to-sets-of-servers.png)
     
-Similar to the other scenarios, you can describe this as a receiver URL. The sets should be mentioned within curly braces separated by commas. Further more, each receiver that belongs to the set, should be within the curly braces and with the receiver URLs in a comma separated format. The receiver URL format is given below.
+Similar to the other scenarios, you need to describe the server URLs as the receiver URL in the Micro Integrator configuration. The sets should be specified within curly braces separated by commas. Furthermore, each receiver that belongs to the set should be within the curly braces and with the receiver URLs in a comma separated format. The receiver URL format is given below.
 
 eg: `{tcp://Analytics-A1:port, tcp://Analytics-A2:port},{tcp://Analytics-B1:port, tcp://Analytics-B2:port}`
 
@@ -152,7 +154,7 @@ sample: `{tcp://10.100.2.32:7611, tcp://10.100.2.33:7611}, {tcp://10.100.2.34:76
 
 This setup involves sending all the events to more than one Analytics server. 
 This approach is mainly followed when you use other servers to analyze events together with Analytics servers. 
-For example, you can use the same Data Agents to publish the events to WSO2 Ei Analytics. 
+For example, you can use the same Data Agents to publish the events to WSO2 EI Analytics. 
 You can use this functionality to publish the same event to both Analytics servers at the same time. 
     ![all events to all servers](../../assets/img/ei-analytics/ob-all-events-to-all-servers.png)
     
@@ -167,7 +169,8 @@ You can specify multiple Analytics servers so that events can be sent to the nex
 In the scenario depicted in the above image, the events are first sent to Analytics-1. 
 If it is unavailable, then events will be sent to Analytics-2. 
 If Analytics-2  is also unavailable, then the events will be sent to Analytics-3.
-    ![fail over](../../assets/img/ei-analytics/ob-fail-over.png)
+    
+![fail over](../../assets/img/ei-analytics/ob-fail-over.png)
 
 eg: `tcp://<Analytics-1>:<port>|tcp://<Analytics-2>:<port>|tcp://<Analytics-3>:<port>`
 
