@@ -24,6 +24,10 @@ Following are the integration artifacts (proxy service) that we can used to impl
     </target>
 </proxy>
 ```
+
+!!! Note
+    - Incoming payload will be sent as mail body.
+
 ### Build and run
 
 Create the artifacts:

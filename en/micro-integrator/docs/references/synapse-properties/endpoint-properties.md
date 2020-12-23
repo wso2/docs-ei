@@ -412,19 +412,34 @@ Member properties can be used to associate configuration data with an endpoint.
             uri-template
          </td>
          <td>
-            The URI template that constructs the RESTful endpoint URL at runtime. Insert <code>uri.var.</code>  before each variable. <b>Note</b>: If the endpoint URL is an encoded URL, then you need to add <code>legacy-encoding:</code> when defining the uri-template. For example, <code>uri-template="legacy-encoding:{uri.var.APIurl}"</code>.</br>
-            <b>Note</b>: If you add a <code>/</code> between <code>{uri.var.context2}{uri.var.postfix}</code>, it is evaluated as an invalid invocation because <code>{uri.var.postfix}</code> contains a <code>/</code> at the start.</p>
+            The URI template that constructs the RESTful endpoint URL at runtime. Insert <code>uri.var.</code>  before each variable.</br>
+            <b>Notes</b>:
+            <ol>
+               <li>If the endpoint URL is an encoded URL, then you need to add <code>legacy-encoding:</code> when defining the uri-template.
                <p>Example:</p>
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
                         <pre class="sourceCode java">
-                            <code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;http uri-template=<span class="st">&quot;http://{uri.var.host}:{uri.var.port}/{uri.var.context1}/services/{uri.var.context2}{uri.var.postfix}&quot;</span> method=<span class="st">&quot;get&quot;</span>&gt;</span></code>
+                              <code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;http uri-template=<span class="st">&quot;legacy-encoding:{uri.var.APIurl}&quot;</span> method=<span class="st">&quot;get&quot;</span>&gt;</span></code>
                         </pre>
                      </div>
                   </div>
                </div>
-            </div>
+               </li>
+               <li>If you add a <code>/</code> between <code>{uri.var.context2}{uri.var.postfix}</code>, it is evaluated as an invalid invocation because <code>{uri.var.postfix}</code> contains a <code>/</code> at the start.
+               <p>Example:</p>
+               <div class="code panel pdl" style="border-width: 1px;">
+                  <div class="codeContent panelContent pdl">
+                     <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                        <pre class="sourceCode java">
+                              <code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;http uri-template=<span class="st">&quot;http://{uri.var.host}:{uri.var.port}/{uri.var.context1}/services/{uri.var.context2}{uri.var.postfix}&quot;</span> method=<span class="st">&quot;get&quot;</span>&gt;</span></code>
+                        </pre>
+                     </div>
+                  </div>
+               </div>
+               </li>
+            </ol>
          </td>
       </tr>
       <tr>
