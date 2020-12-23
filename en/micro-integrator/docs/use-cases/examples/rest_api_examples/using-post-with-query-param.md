@@ -1,6 +1,9 @@
 # Using POST with Query Parameters
 Sending a POST message with query parameters is an unusual scenario, but the Micro Integrator supports it with no additional configuration. The Micro Integrator forwards the message like any other POST message and includes the query parameters.
 
+!!! Tip
+    To read query parameters, refer to [the example on Setting Query Parameters](setting-query-params-outgoing-messages.md).
+
 ## Synapse configuration 
 
 Following is a sample REST Api configuration that we can used to implement this scenario. 
