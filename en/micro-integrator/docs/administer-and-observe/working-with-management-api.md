@@ -1033,6 +1033,9 @@ The management API has multiple resources to provide information regarding the d
 
 ### UPDATE HASHICORP SECRET
 
+!!! Info
+    This functionality is available as a product update from 27/10/2020 onwards. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+
 -	**Resource**: `/external-vaults/hashicorp`
 
 	**Description**: Dynamically updates the secret token in the HashiCorp server that is connected to the Micro Integrator. Only applicable when the AppRole-pull authentication method is used. see [HashiCorp Secrets](../../setup/security/using-hashicorp-secrets) for more information.

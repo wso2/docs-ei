@@ -1,5 +1,8 @@
 # Using HashiCorp Secrets 
 
+!!! Info
+    This feature is available as a product update from 27/10/2020 onwards. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+
 The Micro Integrator is by default configured to use secure vault for encrypting secrets. 
 However, you may encounter certain limitations if you use secrets with a large number of characters.
 
