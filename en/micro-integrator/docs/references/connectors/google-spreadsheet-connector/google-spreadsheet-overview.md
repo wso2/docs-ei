@@ -16,7 +16,7 @@ For older versions, see the details in the connector store.
 
 ## Google Spreadsheet Connector documentation
 
-* **[Get Credentials for Google Spreadsheet](get-credentials-for-google-spreadsheet.md)**: You need to obtain the Access Token, Client Id, Client Secret, and Refresh Token in order to integrate with Google Spreadsheet. 
+* **[Setting up the Google Sheets API](get-credentials-for-google-spreadsheet.md)**: You need to obtain the Access Token, Client Id, Client Secret, and Refresh Token in order to integrate with Google Spreadsheet. 
 
 * **[Google Spreadsheet Connector Example](google-spreadsheet-connector-example.md)**: This example explains how to use Google Spreadsheet Connector to create a Google spreadsheet, write data to it, and read it. 
 
