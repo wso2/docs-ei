@@ -46,6 +46,12 @@ When using the Call mediator in the **blocking mode** (blocking=true), enable th
 <call [blocking="true"] />
 ```
 
+!!! Note
+    The call mediator in the **blocking mode** (blocking=true), builds the message from the response payload. If no response message is expected by the client, you can set the OUT_ONLY property before the call mediator to avoid building the response payload.
+    ``` xml
+    <property name="OUT_ONLY" value="true"/>
+    ```
+
 If the message is to be sent to one or more endpoints, use the following syntax:
 
 ``` java
