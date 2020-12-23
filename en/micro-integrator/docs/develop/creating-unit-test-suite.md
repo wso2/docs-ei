@@ -6,6 +6,9 @@ Once you have developed an integration solution, WSO2 Integration Studio allows 
 - Test the artifacts with [registry resources](../../develop/creating-artifacts/creating-registry-resources).
 - Test the artifacts with [Connectors](../../develop/creating-artifacts/adding-connectors).
 
+    !!! Note
+        [Scheduled Tasks](../../develop/creating-artifacts/creating-scheduled-task) are not supported by the Unit Testing framework.
+
 ## Create Unit Test Suite
 
 1.  Open WSO2 Integration Studio.
