@@ -71,7 +71,7 @@ Create the artifacts:
 3. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator. 
 
-Let's try out this sample by invoking the `find` resource in the data service to GET data. Shown below is the [http://curl.haxx.se](http://curl.haxx.se/) command to send the GET request:
+Let's try out this sample by invoking the `find` resource in the data service to GET data. Shown below is the [curl](http://curl.haxx.se/) command to send the GET request:
 
 ```bash
 curl -X GET http://localhost:8290/services/MongoDB/find
