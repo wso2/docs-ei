@@ -1,3 +1,4 @@
+[[external_vault]]
 name = "hashicorp"
 address = "http://127.0.0.1:8200"
 # When static authentication is used, apply the rootToken:

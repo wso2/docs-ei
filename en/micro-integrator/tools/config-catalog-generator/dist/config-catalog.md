@@ -10877,7 +10877,8 @@ class = <handler_class>
                 <label class="tab-selector" for="_tab_57"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">name = "hashicorp"
+<pre><code class="toml">[[external_vault]]
+name = "hashicorp"
 address = "http://127.0.0.1:8200"
 # When static authentication is used, apply the rootToken:
 rootToken = "ROOT_TOKEN"
