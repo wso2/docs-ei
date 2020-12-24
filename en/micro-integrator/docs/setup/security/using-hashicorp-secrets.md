@@ -3,21 +3,20 @@
 !!! Info
     This feature is available as a product update from 27/10/2020 onwards. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
 
-The Micro Integrator is by default configured to use secure vault for encrypting secrets. 
-However, you may encounter certain limitations if you use secrets with a large number of characters.
+The Micro Integrator is, by default, configured to use [secure vault for encrypting secrets](encrypting_plain_text.md). However, you may encounter certain limitations if you use secrets with a large number of characters.
 
-Therefore, you can use HashiCorp secrets with the Micro Integrator if you want to handle long secret values.
+You can use HashiCorp secrets with the Micro Integrator if you want to handle long secret values.
 
 !!! Note
     HashiCorp secrets are only applicable to synapse configurations. For server configurations, you can continue using secure vault.
 
 ## Before you begin
 
-You need to first go to the HashiCorp server and generate the secrets.
+Go to your HashiCorp instance and generate the secrets. See the HashiCorp documentation for instructions.
 
 ## Connecting MI to the HashiCorp server
 
-Once you have set up the secrets in the HashiCorp server, you can configure the Micro Integrator to connect to the HashiCorp server.
+Once you have set up the secrets in the HashiCorp server, you can configure the Micro Integrator to connect with HashiCorp.
 
 Follow the steps given below.
 
@@ -77,16 +76,13 @@ Follow the steps given below.
             <td>
                 roleId
             </td>
-            <td>
+            <td colspan="2">
                 Only applies if AppRole-pull method is used for authenticating the HashiCorp server connection. Instead of specifying the rootToken, specify the role ID and secret ID generated from HashiCorp.
             </td>
         </tr>
         <tr>
             <td>
                 secretId
-            </td>
-            <td>
-                Only applies if AppRole-pull method is used for authenticating the HashiCorp server connection. Instead of specifying the rootToken, specify the role ID and secret ID generated from HashiCorp.
             </td>
         </tr>
         <tr>
@@ -121,7 +117,7 @@ Follow the steps given below.
 
 ## Accessing HashiCorp secrets in synapse configurations
 
-Once your Micro Integrator is connected to the HashiCorp, you can point to the secrets stored in the HashiCorp server from your synapse configurations.
+Once your Micro Integrator is connected to HashiCorp, you can point to the secrets stored in the HashiCorp vault from your synapse configurations.
 
 Given below is a sample synapse property that uses a HashiCorp secret:
 
@@ -139,33 +135,19 @@ To use the static root token method, you need to specify the ROOT_TOKEN that you
 
 ### Using AppRole-pull method
 
-To use the AppRole-pull method, you need to first generate a secret ID and role ID from HashiCorp server and then specify it in the `deployment.toml` file as shown below.
+To use the AppRole-pull method, you need to first generate a secret ID and role ID from the HashiCorp server and then specify it in the `deployment.toml` file as [explained above](#connecting-mi-to-the-hashicorp-server).
 The secret ID and role ID will internally generate a token and authenticate the HashiCorp server connection.
 
 !!! Note
-    The secret ID you generate in HashiCorp may expire. If that happens, you can [renew the security token](#renewing-securing-token-approle-pull-method).  
-
-```toml
-[[external_vault]]
-name = "hashicorp"
-address = "http://127.0.0.1:8200"
-roleId = "ROLE_ID"
-secretId = "SECRET_ID"
-cachableDuration = 15000
-engineVersion = 2
-trustStoreFile = "${carbon.home}/repository/resources/security/client-truststore.jks"
-keyStoreFile = "${carbon.home}/repository/resources/security/wso2carbon.jks"
-keyStorePassword = "KEY_STORE_PASSWORD"
-```
+    The secret ID you generate in HashiCorp may expire. If that happens, you can [renew the security token](#renewing-securing-token-approle-pull-method). 
 
 ### Renewing securing token (AppRole-pull method)
 
-When you use the AppRole-pull method for authenticating the HashiCorp connection, there can be situation where the secret ID expires. 
-When you generate the secret ID from HashiCorp, you have the option of limiting the number of time the secret ID can be used (with the `secret_id_num_uses` parameters). 
+When you generate the secret ID from HashiCorp (for enabling AppRoll-pull authentication), you have the option of limiting the number of times the secret ID token can be used. This is done using the `secret_id_num_uses` parameter. 
 In this case, the secret ID will expire after it is used for the specified number of times.   
 
-In such situations, you need to regenerate a secret ID from HashiCorp and apply it to the `deployment.toml` file. However, you need to restart the Micro Integrator before
-using the new secret token. This means, there will be a server downtime. 
+In such situations, you need to regenerate a secret ID from HashiCorp and apply it to the Micro Integrator's `deployment.toml` file. However, you need to restart the Micro Integrator before
+using the new secret token, which means, there will be a server downtime. 
 
 If you want to update the secret token dynamically without restarting the server, you can use the management API of the Micro Integrator.
 As shown below, you can send a request to the given URL with the new secret ID (specified in the sample payload).
@@ -180,10 +162,10 @@ As shown below, you can send a request to the given URL with the new secret ID (
 
 ## Using Namespaces for the HashiCorp connection
 
-Namespace support is only available only in the Enterprise edition of HashiCorp vault. 
+Namespace support is available only in the Enterprise edition of HashiCorp vault. 
 You can add a global namespace value in the `deployment.toml` file as [explained above](#connecting-mi-to-the-hashicorp-server).
 
-Can use namespace value per request in Synapse configurations as shown below.
+You can use namespace values per request in synapse configurations. Shown below is a sample property configuration that uses a namespaces.
 
 ```xml
  <property name="HashiCorpSecret" expression="hashicorp:vault-lookup('namespace', 'path-name', 'field-name') />
