@@ -2,7 +2,7 @@
 
 All WSO2 products are shipped with the log4j2 logging capabilities, which generates administrative activities and server side logs. The `log4j2.properties` file, which governs how logging is performed by the server can be found in the `MI_HOME/conf` directory.
 
-There are three main components when configuring log4j2: **Loggers**, **Appenders**, and **Layouts**. 
+There are three main components when configuring log4j2: **Loggers**, **Appenders**, and **Layouts**.
 
 ## Setting the log level
 
@@ -30,8 +30,8 @@ Listed below are the log levels that can be configured:
 
 The log pattern defines the output format of the log file. This is the layout pattern that describes the log message format.
 
-**Identifying forged messages**: 
-The conversion character 'u' can be used in the pattern layout to log a UUID. For example, the log pattern can be  [%u] [%d] %5p {%c} - %m%ex%n, where [%u] is the UUID. 
+**Identifying forged messages**:
+The conversion character 'u' can be used in the pattern layout to log a UUID. For example, the log pattern can be  [%u] [%d] %5p {%c} - %m%ex%n, where [%u] is the UUID.
 
 ## Setting the Sys Log Host
 
@@ -51,7 +51,7 @@ This section allows you to configure appenders individually. Log4j2 allows loggi
 
 -   **CARBON_CONSOLE**: Logs to the console when the server is running.
 -   **CARBON_LOGFILE**: Writes the logs to MI_HOME/repository/logs/wso2carbon.log .
--   **SERVICE_APPENDER**: Writes service invocations to `MI_HOME/repository/logswso2-MI-service.log`.             
+-   **SERVICE_APPENDER**: Writes service invocations to `MI_HOME/repository/logswso2-MI-service.log`.
 -   **ERROR_LOGFILE**: Writes warning/error messages to the `MI_HOME/repository/logs/wso2-MI-service.log`.
 -   **TRACE _ APPENDER**: Writes tracing/debug messages to the `MI_HOME/repository/logs/wso2-MI-trace.log` for tracing enabled services.
 -   **CARBON _ MEMORY**:
@@ -60,9 +60,9 @@ This section allows you to configure appenders individually. Log4j2 allows loggi
 
 ## Configuring Log4j2 Loggers
 
-A Logger is an object used to log messages for a specific system or application component. 
+A Logger is an object used to log messages for a specific system or application component.
 
-The logger element must have a name attribute specified. It may also have a **level** attribute and an **additivity** attribute specified. The level may be configured with one of the following values: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `ALL` or `OFF`. 
+The logger element must have a name attribute specified. It may also have a **level** attribute and an **additivity** attribute specified. The level may be configured with one of the following values: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `ALL` or `OFF`.
 
 -   **Name**: The name of a logger.
 -   **Level**: Allows to configure level (threshold). After you specify the level for a certain logger, a log request for that logger will only be enabled if its level is equal or higher to the logger’s level. If a given logger is not assigned a level, then it inherits one from its closest ancestor with an assigned level. Refer to the hierarchy of levels given above. See descriptions of the available log levels .
@@ -85,5 +85,72 @@ The logger element must have a name attribute specified. It may also have a **le
 2.  Then, add the logger to the list of loggers by referring the logger name:
 
     ```xml
-    loggers = AUDIT_LOG, SERVICE_LOGGER, VFSTransportSender, 
+    loggers = AUDIT_LOG, SERVICE_LOGGER, VFSTransportSender,
     ```
+
+## Using Custom Log Appenders
+
+Custom log appenders for Log4j2 can be used to store application logs in various environments/systems, such as cloud storages.
+
+But since WSO2 Micro Integrator works in an OSGi environment, such Log4j2 extensions cannot be used as they are. Therefore those extensions need to be modified to be compatible with WSO2 Micro Integrator. To modify an existing Log4j2 extension, follow the steps mentioned below.
+
+1. In the custom log appender, open the `pom.xml` file of the module which contains the `Log4j2Appender` class.
+
+2. Under the `build` section, add the `maven-compiler-plugin` and the `maven-bundle-plugin` as follows.
+
+    ```xml
+    <plugins>
+       ...
+       <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <executions>
+                <execution>
+                   <id>log4j-plugin-processor</id>
+                   <goals>
+                      <goal>compile</goal>
+                   </goals>
+                   <phase>process-classes</phase>
+                   <configuration>
+                      <proc>only</proc>
+                      <annotationProcessors>
+                            <annotationProcessor>
+                               org.apache.logging.log4j.core.config.plugins.processor.PluginProcessor
+                            </annotationProcessor>
+                      </annotationProcessors>
+                   </configuration>
+                </execution>
+          </executions>
+       </plugin>
+       <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+                <instructions>
+                   <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                   <Bundle-Name>${project.artifactId}</Bundle-Name>
+                   <Fragment-Host>org.ops4j.pax.logging.pax-logging-log4j2</Fragment-Host>
+                   <Export-Package>
+                      <PACKAGE_CONTAINS_THE_APPENDER_CLASS>
+                   </Export-Package>
+                  <DynamicImport-Package>*</DynamicImport-Package>
+                   <Import-Package></Import-Package>
+                   <Include-Resource>${project.build.directory}/classes/</Include-Resource>
+                </instructions>
+          </configuration>
+       </plugin>
+       ...
+    ```
+
+3. Rebuild the related module and copy the built JAR file from the `target` directory to `<MI_HOME>/dropins` directory.
+
+4. Configure the custom appender as follows.
+
+    ```properties
+    appender.log4j2Custom.type = Log4j2Appender
+    appender.log4j2Custom.name = log4j2Custom
+    appender.log4j2Custom.layout.type = PatternLayout
+    appender.log4j2Custom.layout.pattern = [%d] %5p {%c} - %m%ex%n
+    ```
+
+5. Restart the server.
