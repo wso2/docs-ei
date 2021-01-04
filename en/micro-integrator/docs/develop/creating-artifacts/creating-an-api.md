@@ -2,6 +2,10 @@
 
 Follow the instructions given below to create a new [REST API](../../../references/synapse-properties/rest-api-properties) artifact in WSO2 Integration Studio.
 
+You can refer to the following video to get a quick understanding of how this is done.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yp2fzOgVcIA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Instructions
 
 ### Creating the API artifact
