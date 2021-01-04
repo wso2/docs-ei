@@ -1,3 +1,7 @@
+# Setting up the Gmail API
+
+To use the Gmail API, you need to first create a Gmail account or have one already. The Gmail API uses OAuth2 authentication with Tokens. You need to go through the following steps to obtain the necessary tokens unless you already have them.
+
 ## Creating the Client ID and Client Secret
 
 1. Navigate to [API Credentials Page](https://console.developers.google.com/projectselector/apis/credentials) and sign in with your Google account.
@@ -39,7 +43,7 @@
 2. Select **Use your own OAuth credentials**, and provide the obtained Client ID and Client Secret values as above click on Close.
   <img src="../../../../assets/img/connectors/oath-configuration.png" title="Obtaining Oauth-configuration" width="800" alt="Obtaining Oauth-configuration" />
 
-3. Under Step 1, select `Gmail API v1` from the list of APIs, select all the scopes expect the [gmail.metadata scope](https://www.googleapis.com/auth/gmail.metadata scope).
+3. Under Step 1, select `Gmail API v1` from the list of APIs, select all the scopes except the [gmail.metadata scope](https://www.googleapis.com/auth/gmail.metadata scope).
 
   <img src="../../../../assets/img/connectors/select-scopes.png" title="Selecting Scopes" width="800" alt="Selecting Scopes" />
 

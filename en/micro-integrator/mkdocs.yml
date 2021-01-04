@@ -147,10 +147,7 @@ nav:
             - 'Transforming Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
             - 'Securing a REST API': 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
             - 'Publishing a Custom Swagger Document': 'use-cases/examples/rest_api_examples/publishing-a-swagger-api.md'
-            - Handling Special Cases:
-              - 'Using GET with a Message Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
-              - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
-              - 'Using POST with Query Parameters': 'use-cases/examples/rest_api_examples/using-post-with-query-param.md'
+            - 'Special Cases': 'use-cases/examples/rest_api_examples/special-cases.md'
           - Proxy Services:
             - 'Using a Simple Proxy Service': 'use-cases/examples/proxy_service_examples/Introduction-to-Proxy-Services.md'
             - 'Publishing a Custom WSDL': 'use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl.md'
@@ -545,6 +542,7 @@ nav:
             - 'File Connector Reference': 'references/connectors/file-connector/3.x/file-connector-3.x-config.md'
         - Gmail Connector:
           - 'Gmail Overview': 'references/connectors/gmail-connector/gmail-connector-overview.md'
+          - 'Setting up the Gmail API': 'references/connectors/gmail-connector/configuring-gmail-api.md'
           - 'Gmail Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
           - 'Gmail Reference': 'references/connectors/gmail-connector/gmail-connector-config.md'
         - Google Firebase Connector:
@@ -559,6 +557,7 @@ nav:
           - 'Google PubSub Reference': 'references/connectors/google-pubsub-connector/googlepubsub-connector-reference.md'
         - Google Spreadsheet Connector:
           - 'Google Spreadsheet Overview': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-overview.md'
+          - 'Setting up the Sheets API': 'references/connectors/google-spreadsheet-connector/get-credentials-for-google-spreadsheet.md'
           - 'Google Spreadsheet Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
           - 'Google Spreadsheet Reference': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-config.md'
         - ISO8583 Connector:

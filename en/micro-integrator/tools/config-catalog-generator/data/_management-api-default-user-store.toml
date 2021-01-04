@@ -1,0 +1,2 @@
+[management_api.handler.file_user_store]
+enable = true

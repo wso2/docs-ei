@@ -93,6 +93,8 @@ WSO2 Streaming Integrator supports the following transport types to send message
 | `tcp`         | [tcp](https://siddhi-io.github.io/siddhi-io-tcp/api/latest/#sink)     |
 | `email`       | [email](https://siddhi-io.github.io/siddhi-io-email/api/latest/#sink) |
 | `grpc`        | [grpc](https://siddhi-io.github.io/siddhi-io-grpc/api/latest/#sink)   |
+| `wso2event`   | [wso2event](https://wso2-extensions.github.io/siddhi-map-wso2event/api/5.0.2/) |
+| `websocket`   | [websocket](https://siddhi-io.github.io/siddhi-io-websocket/)         |
 | `Thrift`      |                                                                       |
 
 ### Supported mappers

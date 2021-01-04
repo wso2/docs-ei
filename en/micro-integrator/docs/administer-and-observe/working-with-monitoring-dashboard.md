@@ -22,6 +22,10 @@ You can use the dashboard to perform the following administration tasks related 
 
     You can view details of users stored in the [external user store](../../setup/user_stores/managing_users). If you are logged in to the dashboard with administrator credentials, you can also add new users, and remove users from the user store.
 
+You can refer to the following video to get a quick understanding of how this is done.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WxcHkJVOgOU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Setting up the Dashboard
 
 -	See the following topics in the installation guide for instructions on how to install and set up the Micro Integrator and the Dashboard:

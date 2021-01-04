@@ -105,6 +105,9 @@ Your integration project with the <b>content routing</b> sample is now ready to 
 
 ## Step 2: Build and Push the Docker image 
 
+!!! Note
+    Be sure to start your Docker instance before building the image. If Docker is not started, the build process will fail. 
+
 There are two ways to build a Docker image of the integration solution and push it to your Docker registry:
 
 -   Using <b>Maven</b>:

@@ -4,6 +4,10 @@ Follow the steps given below to install the WSO2 Micro Integrator runtime and it
 
 ## Download and install
 
+You can refer to the following video to get a quick understanding of how this is done.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6dkMwUBr4uk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then click the **Installer**.
 
 The **product installer** that is compatible with your operating system will be downloaded.
@@ -15,6 +19,10 @@ Double-click to open the installation wizard, which will guide you through the 
 If you installed the product using the installer, use the following instructions to start and stop the MI server.
 
 ### Starting the MI server
+
+You can refer to the following video to get a quick understanding of how this is done.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Kc6PKzk54f8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 On **MacOS/Linux/CentOS**, open a terminal and execute one of the commands given below.
 

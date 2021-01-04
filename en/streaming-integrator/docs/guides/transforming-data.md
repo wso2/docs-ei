@@ -170,6 +170,14 @@ The following table describes the complete list of extensions that provide data 
 | [Siddhi-execution-map](https://siddhi-io.github.io/siddhi-execution-map/)| Converts events into maps and performs transformations such as concatenating and removing attributes. |
 | [Siddhi-execution-reorder](https://siddhi-io.github.io/siddhi-execution-reorder/) | Rearranges the order of the incoming event flow. |
 | [Siddhi-execution-json](https://siddhi-io.github.io/siddhi-execution-json/) | Performs manipulations to JSON strings. |
+| [Siddhi-execution-list](https://siddhi-io.github.io/siddhi-execution-list/api/latest/) | Performs manipulations to lists. |
+| [Siddhi-gpl-pmml](https://siddhi-io.github.io/siddhi-gpl-execution-pmml/api/latest/) | Processes the input stream attributes according to the defined PMML standard model and outputs the processed results together with the input stream attributes. |
+| [Siddhi-execution-regex](https://siddhi-io.github.io/siddhi-execution-regex/) | Finds the subsequence that matches the given regex pattern. |
+| [Siddhi-execution-geo](https://wso2-extensions.github.io/siddhi-execution-geo/api/5.0.1/) | Provides geo data related functionality such as such as geocode, reverse geocode and finding places based on IP. |
+| [Siddhi-execution-env](https://wso2-extensions.github.io/siddhi-execution-env/) |Allows you to read environment properties inside Siddhi stream definitions and use it in queries. |
+| [Siddhi-execution-streeamingml](https://siddhi-io.github.io/siddhi-execution-streamingml/) | Provides streaming machine learning (clustering, classification and regression) for event streams. |
+| [Siddhi-execution-tensorflow](https://siddhi-io.github.io/siddhi-execution-tensorflow/) | 
+| [Siddhi-execution-r](https://wso2-extensions.github.io/siddhi-gpl-execution-r/) | Processes events with R scripts. |
 
 ## Writing a custom script to transform data
 

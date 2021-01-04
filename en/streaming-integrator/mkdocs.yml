@@ -58,7 +58,6 @@ nav:
       - 'Step 5: Update the Siddhi Application': 'quick-start-guide/getting-started/update-the-siddhi-application.md'
       - 'Step 6: Handle Errors': 'quick-start-guide/getting-started/handle-errors.md'
       - 'Step 7: Monitor Statistics': 'quick-start-guide/getting-started/monitor-statistics.md'
-    - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
     - 'Architecture': 'overview/architecture.md'
     - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
@@ -84,8 +83,9 @@ nav:
       - 'Creating an ETL Application via SI Tooling': 'examples/creating-etl-application-via-tooling.md'
       - 'Working with Kafka': 'examples/working-with-kafka.md'
       - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
+      - 'Integrating Data Stores in Streaming Integration': 'examples/integrating-stores.md'
       - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
-      - 'Managing Streaming Data with Errors': 'examples/handling-requests-with-errors.md'
+      - 'Error Handling with Data Streams': 'examples/handling-requests-with-errors.md'
       - 'Triggering Integrations via MI': 'examples/triggering-integrations-via-micro-integrator.md'
       - 'Running SI with Docker and Kubernetes': 'examples/running-si-with-docker-and-kubernetes.md'
     - 'Examples':
