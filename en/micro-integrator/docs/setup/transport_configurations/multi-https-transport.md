@@ -90,11 +90,11 @@ Dynamic SSL profiles for the Multi-HTTPS **transport listener**:
     The SSL profile will be applied to each request that is received at
     the IP specified within the `           <bindAddress>          `
     element.
-    
-    !!! Info
-        This documentation is currently under review. Please refer [Issue #2034](https://github.com/wso2/micro-integrator/issues/2034) for details.
 
 Dynamic SSL profiles for the Multi-HTTPS **transport sender**:
+
+!!! Warnig
+        The following instructions relevant to the **Multi-HTTPS Transport Sender** is currently under review. Please refer [Issue #2034](https://github.com/wso2/micro-integrator/issues/2034) for details.
 
 1.   Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory) and add the following parameters.
 
