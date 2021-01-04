@@ -1,7 +1,8 @@
 # Performance Analysis Results
 
-!!!note
-    These performance statistics were taken when the load average was below 3.8 in the 4 core instance.
+!!!notes
+    - These performance statistics were taken when the load average was below 3.8 in the 4 core instance.<br/><br/>
+    - Most of the examples given below use log sinks to log statistics for performance monitoring purposes. However, note that log sinks incur a high system overhead and can lower performance by even more than 50%.
 
     
 ## Performance analysis results summary
