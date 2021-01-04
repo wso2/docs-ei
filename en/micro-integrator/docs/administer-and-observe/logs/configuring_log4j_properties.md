@@ -47,7 +47,7 @@ The logger attributes are described below.
             additivity
         </th>
         <td>
-           Allows to inherit all the appenders of the parent Logger if set as 'True'. 
+           Allows to inherit all the appenders of the parent Logger if set as 'True'.
         </td>
     </tr>
     <tr>
@@ -170,7 +170,7 @@ This logger generates logs for services deployed in the Micro Integrator. It ref
     ```
 
     See the instructions on [monitoring per-service logs](../../../develop/enabling-logs-for-services).
-    
+
 ```xml tab='SERVICE_LOGGER'
 logger.SERVICE_LOGGER.name= SERVICE_LOGGER
 logger.SERVICE_LOGGER.level = INFO
@@ -199,7 +199,7 @@ This logger generates logs for APIs deployed in the Micro Integrator. It refers 
 
 !!! Note
     If you want to have separate log files for individual APIs, you need to add loggers for each API and then specify appenders for the loggers. Note that the service name has to be suffixed to `SERVICE_LOGGER` as follows:
-    
+
     ```xml
     logger.API_LOG.name=API_LOGGER.TestAPI
     ```
@@ -261,9 +261,9 @@ appender.AUDIT_LOGFILE.filter.threshold.level = INFO
 
 ### Correlations Logs
 
-This loggger generates correlation logs for monitoring individual HTTP requests from the point that a message is received by the Micro Integrator until the corresponding response message is sent back to the original message sender. It refers the `CORRELATION` appender and prints logs to the `MI_HOME/repository/logs/correlation.log` file. 
+This loggger generates correlation logs for monitoring individual HTTP requests from the point that a message is received by the Micro Integrator until the corresponding response message is sent back to the original message sender. It refers the `CORRELATION` appender and prints logs to the `MI_HOME/repository/logs/correlation.log` file.
 
-!!! Note 
+!!! Note
     The maximum file size of the correlation log is set to
     10MB in the following <b>appender</b>. That is, when the size of the file
     exceeds 10MB, a new log file is created. If required, you can change
@@ -341,7 +341,7 @@ appender.CARBON_TRACE_LOGFILE.strategy.max = 20
 
 ### Wire Logs and Header Logs
 
-These logs are disabled by default by setting the log level to `OFF`. You can enable these logs by [changing the log level](#updating-the-log4j2-log-level) of the loggers to `DEBUG`. 
+These logs are disabled by default by setting the log level to `OFF`. You can enable these logs by [changing the log level](#updating-the-log4j2-log-level) of the loggers to `DEBUG`.
 
 !!! Info
     It is not recommended to use these logs in production environments. Developers can enable them for testing and troubleshooting purposes. Note that appenders are not specified for these loggers, and therefore, the logs will be printed as specified for the [root logger](#root-logs).
@@ -349,7 +349,7 @@ These logs are disabled by default by setting the log level to `OFF`. You can en
 -   The following loggers configure wire logs for the Passthrough HTTP transport:
 
     !!! Tip
-        The Passthrough HTTP transport is the main transport that handles HTTP/HTTPS messages in the Micro Integrator. 
+        The Passthrough HTTP transport is the main transport that handles HTTP/HTTPS messages in the Micro Integrator.
 
     ```xml tab='Synapse HTTP Headers'
     # Following are to log HTTP headers and messages
@@ -362,7 +362,7 @@ These logs are disabled by default by setting the log level to `OFF`. You can en
     logger.synapse-transport-http-wire.level=OFF
     ```
 
--   The following loggers configure wire logs for the Callout mediator/MessageProcessor.  
+-   The following loggers configure wire logs for the Callout mediator/MessageProcessor.
 
     ```xml tab='Client Headers'
     logger.httpclient-wire-header.name=httpclient.wire.header
@@ -660,7 +660,7 @@ appender.CARBON_LOGFILE.filter.threshold.level = DEBUG
 
 The log pattern defines the output format of the log file. This is the layout pattern that describes the log message format.
 
-**Identifying forged messages**: 
+**Identifying forged messages**:
 The conversion character 'u' can be used in the pattern layout to log a UUID. For example, the log pattern can be  [%u] [%d] %5p {%c} - %m%ex%n, where [%u] is the UUID.
 
 ## Hide Current Parameters in the Printed Log
@@ -685,6 +685,73 @@ You can hide the 'Current Params' in the printed logs by passing the following s
 ```xml
 -Ddss.disable.current.params=true \
 ```
+
+## Using Custom Log Appenders
+
+Custom log appenders for Log4j2 can be used to store application logs in various environments/systems, such as cloud storages.
+
+But since WSO2 Micro Integrator works in an OSGi environment, such Log4j2 extensions cannot be used as they are. Therefore those extensions need to be modified to be compatible with WSO2 Micro Integrator. To modify an existing Log4j2 extension, follow the steps mentioned below.
+
+1. In the custom log appender, open the `pom.xml` file of the module which contains the `Log4j2Appender` class.
+
+2. Under the `build` section, add the `maven-compiler-plugin` and the `maven-bundle-plugin` as follows.
+
+    ```xml
+    <plugins>
+       ...
+       <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <executions>
+                <execution>
+                   <id>log4j-plugin-processor</id>
+                   <goals>
+                      <goal>compile</goal>
+                   </goals>
+                   <phase>process-classes</phase>
+                   <configuration>
+                      <proc>only</proc>
+                      <annotationProcessors>
+                            <annotationProcessor>
+                               org.apache.logging.log4j.core.config.plugins.processor.PluginProcessor
+                            </annotationProcessor>
+                      </annotationProcessors>
+                   </configuration>
+                </execution>
+          </executions>
+       </plugin>
+       <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+                <instructions>
+                   <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                   <Bundle-Name>${project.artifactId}</Bundle-Name>
+                   <Fragment-Host>org.ops4j.pax.logging.pax-logging-log4j2</Fragment-Host>
+                   <Export-Package>
+                      <PACKAGE_CONTAINS_THE_APPENDER_CLASS>
+                   </Export-Package>
+                  <DynamicImport-Package>*</DynamicImport-Package>
+                   <Import-Package></Import-Package>
+                   <Include-Resource>${project.build.directory}/classes/</Include-Resource>
+                </instructions>
+          </configuration>
+       </plugin>
+       ...
+    ```
+
+3. Rebuild the related module and copy the built JAR file from the `target` directory to `<MI_HOME>/dropins` directory.
+
+4. Configure the custom appender as follows.
+
+    ```properties
+    appender.log4j2Custom.type = Log4j2Appender
+    appender.log4j2Custom.name = log4j2Custom
+    appender.log4j2Custom.layout.type = PatternLayout
+    appender.log4j2Custom.layout.pattern = [%d] %5p {%c} - %m%ex%n
+    ```
+
+5. Restart the server.
 
 ## What's Next?
 
