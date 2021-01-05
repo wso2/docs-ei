@@ -91,8 +91,8 @@ Dynamic SSL profiles for the Multi-HTTPS **transport sender**:
     `<servers>` element as IP:Port combination.
     
     !!! Note
-                Use host names in the `<servers>` list instead of IP addresses to avoid latencies due to DNS lookup. If you 
-                are using IP address, make sure to add an entry to the host file with respective host name mapping.
+        Use host names in the `<servers>` list instead of IP addresses to avoid latencies due to DNS lookup. If you 
+        are using IP address, make sure to add an entry to the host file with respective host name mapping.
 
 
 Dynamic SSL profiles for the Multi-HTTPS **transport listener**:
