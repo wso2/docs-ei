@@ -9,9 +9,11 @@ There are two ways to debug a developed mediation flow.
 
 Above two approaches are discussed in detail below.
 
+!!! Note
+        To debug a custom class mediator follow the instructions on [Debugging On Server](../debugging-on-server) section.
 ## Instant debugging using Micro Integrator
 
-1.  When project artifacts are ready, select the project you want to debug and click **Run** -> **Debug**.
+1.  When project artifacts are ready, select the project you want to debug and click **Run** -> **Debug As** -> **Mediation Debug**.
 
     ![select debugging](../assets/img/mediation-debugging/debugging-1.png)
 

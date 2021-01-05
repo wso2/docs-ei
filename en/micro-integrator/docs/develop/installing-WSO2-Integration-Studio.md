@@ -45,6 +45,15 @@ If you have already installed and set up WSO2 Integration Studio, you can get th
 
 3.  Once the update check is completed, you can select all the available updates and install.
 
+#### Checking the version
+
+You can check the version of the Integration Studio as below.
+
+* For MacOS : Integration Studio > About Integration Studio
+* For Windows/Linux : Help > About Integration Studio
+
+    <img src="../../assets/img/about-integration-studio.png" alt="get studio information" width="400">
+
 ### Troubleshooting
 
 If you get an error message about the file being damaged or that you

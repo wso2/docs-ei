@@ -159,13 +159,7 @@ The integration tutorials will walk you through the main capabilities and featur
                         <li><a href="../../use-cases/examples/rest_api_examples/transforming-content-type">Transforming Content Types</a></li>
                         <li><a href="../../use-cases/examples/rest_api_examples/securing-rest-apis">Securing a REST API</a></li>
                         <li><a href="../../use-cases/examples/rest_api_examples/publishing-a-swagger-api">Publishing a Custom Swagger Document</a></li>
-                        <li>Handling Special Cases
-                            <ul>
-                                <li><a href="../../use-cases/examples/rest_api_examples/using-get-with-a-body">Using GET with a Message Body</a></li>
-                                <li><a href="../../use-cases/examples/rest_api_examples/using-post-with-no-body">Using POST with Empty Message Body</a></li>
-                                <li><a href="../../use-cases/examples/rest_api_examples/using-post-with-query-param">Using POST with Query Parameters</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="../../use-cases/examples/rest_api_examples/special-cases">Special Cases</a></li>
                     </ul>
                 </li>
                 <li>Proxy Services 
