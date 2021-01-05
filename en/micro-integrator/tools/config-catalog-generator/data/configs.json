@@ -3870,7 +3870,7 @@
                 {
                     "name": "[external_vault]",
                     "required": true,
-                    "description": "This configuration header is required for configuring an external vault for secrets. Read more about <a href='../../setup/security/using-hashicorp-secrets'></a>",
+                    "description": "This configuration header is required for configuring an external vault for secrets. Read more about <a href='../../setup/security/using-hashicorp-secrets'>using HashiCorp sercrets</a>.",
                     "params": [
                         {
                             "name": "name",
@@ -3886,7 +3886,7 @@
                             "required": true,
                             "default": "-",
                             "possible": "-",
-                            "description": "The URL for connecting to the HashiCorp server."
+                            "description": "The URL for connecting to the vault."
                         },
                         {
                             "name": "rootToken",
@@ -3894,7 +3894,7 @@
                             "required": false,
                             "default": "-",
                             "possible": "-",
-                            "description": "To use static authentication when connecting to the HashiCorp server, specify the token that you generated from HashiCorp."
+                            "description": "Specify the root token generated from the HashiCorp server. This is only applicable if static token authentication is used when connecting the Micro Integrator to the HashiCorp server."
                         },
                         {
                             "name": "roleId",
@@ -3902,7 +3902,7 @@
                             "required": false,
                             "default": "-",
                             "possible": "-",
-                            "description": "Only applies if AppRole-pull method is used for authenticating the HashiCorp server connection. Instead of specifying the rootToken, specify the role ID and secret ID generated from HashiCorp."
+                            "description": "Specify the role ID generated from HashiCorp. The secret ID and role ID you specify in the deployment.toml file will internally generate a token and authenticate the HashiCorp server connection. The role ID is only applicable if AppRole Pull authentication is used when connecting the Micro Integrator to the HashiCorp server."
                         },
                         {
                             "name": "secretId",
@@ -3910,7 +3910,7 @@
                             "required": false,
                             "default": "-",
                             "possible": "-",
-                            "description": "Only applies if AppRole-pull method is used for authenticating the HashiCorp server connection. Instead of specifying the rootToken, specify the role ID and secret ID generated from HashiCorp."
+                            "description": "Specify the secret ID generated from HashiCorp. The secret ID and role ID you sepecify in the deployment.toml file will internally generate a token and authenticate the HashiCorp server connection. The secret ID you generate in HashiCorp may expire. If that happens, you can renew the security token. The secret ID is only applicable if AppRole Pull authentication is used when connecting the Micro Integrator to the HashiCorp server."
                         },
                         {
                             "name": "cachableDuration",
@@ -3933,8 +3933,32 @@
                             "type": "string",
                             "required": false,
                             "default": "-",
-                            "possible": "2",
-                            "description": "Namespace support is available only in the Enterprise edition of HashiCorp vault. The namespace value specified here can be accessed from synapse configurations. "
+                            "possible": "-",
+                            "description": "Namespace support is available only in the Enterprise edition of HashiCorp. The namespace value specified here applies globally to HashiCorp secrets in all synapse configurations."
+                        },
+                        {
+                            "name": "trustStoreFile",
+                            "type": "string",
+                            "required": false,
+                            "default": "${carbon.home}/repository/resources/security/client-truststore.jks",
+                            "possible": "-",
+                            "description": "The keystore file (trust store) that is used to store the digital certificates that the Micro Integrator trusts for SSL communication."
+                        },
+                        {
+                            "name": "keyStoreFile",
+                            "type": "string",
+                            "required": false,
+                            "default": "${carbon.home}/repository/resources/security/wso2carbon.jks",
+                            "possible": "-",
+                            "description": "This keystore used for SSL handshaking when the Micro Integrator communicates with the HashiCorp server."
+                        },
+                        {
+                            "name": "keyStorePassword",
+                            "type": "string",
+                            "required": false,
+                            "default": "wso2carbon",
+                            "possible": "-",
+                            "description": "The password of the keystore file that is used for SSL communication. If you are using the default keystore file in the Micro Integrator, the default password is 'wso2carbon'."
                         }
                     ]
                 }

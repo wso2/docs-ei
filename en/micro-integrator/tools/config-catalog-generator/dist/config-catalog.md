@@ -10899,7 +10899,7 @@ keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
                             <code>[[external_vault]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for configuring an external vault for secrets. Read more about <a href='../../setup/security/using-hashicorp-secrets'></a>
+                                This configuration header is required for configuring an external vault for secrets. Read more about <a href='../../setup/security/using-hashicorp-secrets'>using HashiCorp sercrets</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -10942,7 +10942,7 @@ keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The URL for connecting to the HashiCorp server.</p>
+                                        <p>The URL for connecting to the vault.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -10963,7 +10963,7 @@ keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>To use static authentication when connecting to the HashiCorp server, specify the token that you generated from HashiCorp.</p>
+                                        <p>Specify the root token generated from the HashiCorp server. This is only applicable if static token authentication is used when connecting the Micro Integrator to the HashiCorp server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -10984,7 +10984,7 @@ keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Only applies if AppRole-pull method is used for authenticating the HashiCorp server connection. Instead of specifying the rootToken, specify the role ID and secret ID generated from HashiCorp.</p>
+                                        <p>Specify the role ID generated from HashiCorp. The secret ID and role ID you specify in the deployment.toml file will internally generate a token and authenticate the HashiCorp server connection. The role ID is only applicable if AppRole Pull authentication is used when connecting the Micro Integrator to the HashiCorp server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -11005,7 +11005,7 @@ keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Only applies if AppRole-pull method is used for authenticating the HashiCorp server connection. Instead of specifying the rootToken, specify the role ID and secret ID generated from HashiCorp.</p>
+                                        <p>Specify the secret ID generated from HashiCorp. The secret ID and role ID you sepecify in the deployment.toml file will internally generate a token and authenticate the HashiCorp server connection. The secret ID you generate in HashiCorp may expire. If that happens, you can renew the security token. The secret ID is only applicable if AppRole Pull authentication is used when connecting the Micro Integrator to the HashiCorp server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -11064,11 +11064,74 @@ keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
                                             <span class="param-default-value">Default: <code>-</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>2</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Namespace support is available only in the Enterprise edition of HashiCorp vault. The namespace value specified here can be accessed from synapse configurations. </p>
+                                        <p>Namespace support is available only in the Enterprise edition of HashiCorp. The namespace value specified here applies globally to HashiCorp secrets in all synapse configurations.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>trustStoreFile</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>${carbon.home}/repository/resources/security/client-truststore.jks</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The keystore file (trust store) that is used to store the digital certificates that the Micro Integrator trusts for SSL communication.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>keyStoreFile</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>${carbon.home}/repository/resources/security/wso2carbon.jks</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>This keystore used for SSL handshaking when the Micro Integrator communicates with the HashiCorp server.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>keyStorePassword</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The password of the keystore file that is used for SSL communication. If you are using the default keystore file in the Micro Integrator, the default password is &#39;wso2carbon&#39;.</p>
                                     </div>
                                 </div>
                             </div>
