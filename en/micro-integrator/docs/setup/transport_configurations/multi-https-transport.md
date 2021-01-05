@@ -138,9 +138,6 @@ Dynamic SSL profiles for the Multi-HTTPS **transport listener**:
     the IP specified within the `           <bindAddress>          `
     element.
 
-    !!! Info
-        This documentation is currently under review. Please refer [Issue #2034](https://github.com/wso2/micro-integrator/issues/2034) for details.
-
 ## Loading SSL profiles at runtime
 
 You can either use a periodic schedule or a JMX invocation to apply
