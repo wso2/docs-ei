@@ -344,7 +344,8 @@ nav:
             - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
             - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
           - Working with Secrets:
-            - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
+            - 'Encrypting Secrets using WSO2 Secure Vault' : 'setup/security/encrypting_plain_text.md'
+            - 'Using Hashicorp Secrets' : 'setup/security/using-hashicorp-secrets.md'
             - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Securing the Management API' : 'setup/security/securing_management_api.md'
           - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
