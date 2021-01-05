@@ -51,46 +51,6 @@ information for the sender and receiver.
 The following configuration changes should be done in the Multi-HTTPS
 transport receiver and sender.
 
-Dynamic SSL profiles for the Multi-HTTPS **transport listener**:
-
-1.   Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory) and add the following parameters.
-
-    ```toml
-    [transport.http]
-    listener.ssl_profile.file_path = "conf/sslprofiles/listenerprofiles.xml"
-    listener.ssl_profile.read_interval = 600000
-    ```
-
-2.   Create the `listenerprofiles.xml` file with the following configuration in the
-    `MI_HOME/conf/sslprofiles` directory:
-
-    !!! Info
-        You can configure the file path for the `listenerprofiles.xml` file as required.
-
-    ```xml
-    <parameter name="SSLProfiles">
-    <profile>
-            <bindAddress>192.168.0.123</bindAddress>
-            <KeyStore>
-                <Location>repository/resources/security/esb.jks</Location>
-                <Type>JKS</Type>
-                <Password>123456</Password>
-                <KeyPassword>123456</KeyPassword>
-                </KeyStore>
-            <TrustStore>              
-                <Location>repository/resources/security/esbtruststore.jks</Location>
-                <Type>JKS</Type>
-                <Password>123456</Password>
-            </TrustStore>
-            <SSLVerifyClient>require</SSLVerifyClient>
-        </profile>
-    </parameter>
-    ```
-
-    The SSL profile will be applied to each request that is received at
-    the IP specified within the `           <bindAddress>          `
-    element.
-
 Dynamic SSL profiles for the Multi-HTTPS **transport sender**:
 
 1.   Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory) and add the following parameters.
@@ -133,6 +93,53 @@ Dynamic SSL profiles for the Multi-HTTPS **transport sender**:
     !!! Note
         Use host names in the `<servers>` list instead of IP addresses to avoid latencies due to DNS lookup. If you 
         are using IP address, make sure to add an entry to the host file with respective host name mapping.
+
+
+Dynamic SSL profiles for the Multi-HTTPS **transport listener**:
+
+!!! Warning
+        The following instructions relevant to the **Multi-HTTPS Transport Listener** is currently under review. Please refer [Issue #2034](https://github.com/wso2/micro-integrator/issues/2034) for details.
+
+1.   Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory) and add the following parameters.
+
+    ```toml
+    [transport.http]
+    listener.ssl_profile.file_path = "conf/sslprofiles/listenerprofiles.xml"
+    listener.ssl_profile.read_interval = 600000
+    ```
+
+2.   Create the `listenerprofiles.xml` file with the following configuration in the
+    `MI_HOME/conf/sslprofiles` directory:
+
+    !!! Info
+        You can configure the file path for the `listenerprofiles.xml` file as required.
+
+    ```xml
+    <parameter name="SSLProfiles">
+    <profile>
+            <bindAddress>192.168.0.123</bindAddress>
+            <KeyStore>
+                <Location>repository/resources/security/esb.jks</Location>
+                <Type>JKS</Type>
+                <Password>123456</Password>
+                <KeyPassword>123456</KeyPassword>
+                </KeyStore>
+            <TrustStore>              
+                <Location>repository/resources/security/esbtruststore.jks</Location>
+                <Type>JKS</Type>
+                <Password>123456</Password>
+            </TrustStore>
+            <SSLVerifyClient>require</SSLVerifyClient>
+        </profile>
+    </parameter>
+    ```
+
+    The SSL profile will be applied to each request that is received at
+    the IP specified within the `           <bindAddress>          `
+    element.
+    
+    !!! Info
+        This documentation is currently under review. Please refer [Issue #2034](https://github.com/wso2/micro-integrator/issues/2034) for details.
 
 ## Loading SSL profiles at runtime
 
