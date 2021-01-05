@@ -1,4 +1,4 @@
-# Encrypting Secrets
+# Encrypting Secrets using WSO2 Secure Vault
 
 WSO2 Micro Integrator can use secrets with static origins as well as dynamic origins in configurations. This applies to secrets in server-level configurations as well as configurations within integration solutions (synapse configurations).
 
