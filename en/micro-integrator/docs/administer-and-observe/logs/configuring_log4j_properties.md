@@ -70,6 +70,9 @@ loggers = <LOGGER_NAME>, <LOGGER_NAME_1>, <LOGGER_NAME_2>,
 
 Log4j2 allows logging requests to print to multiple destinations. These output destinations are called 'Appenders'. All the defined appenders should be listed as shown below in the `log4j2.properties` file.
 
+!!! Note
+    If the output destination is in another environment (such as a cloud storage), you need need to [use custom log appenders](#using-custom-log-appenders).
+
 ```xml
 appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, ATOMIKOS_LOGFILE, CARBON_TRACE_LOGFILE, osgi, SERVICE_LOGFILE, API_LOGFILE, ERROR_LOGFILE, CORRELATION
 ```
@@ -688,13 +691,13 @@ You can hide the 'Current Params' in the printed logs by passing the following s
 
 ## Using Custom Log Appenders
 
-Custom log appenders for Log4j2 can be used to store application logs in various environments/systems, such as cloud storages.
+Custom log appenders for Log4j2 can be used to store application logs in various environments/systems such as cloud storages.
 
-But since WSO2 Micro Integrator works in an OSGi environment, such Log4j2 extensions cannot be used as they are. Therefore those extensions need to be modified to be compatible with WSO2 Micro Integrator. To modify an existing Log4j2 extension, follow the steps mentioned below.
+However, since WSO2 Micro Integrator works in an OSGi environment, such Log4j2 extensions cannot be used as they are. Therefore, you need to modify those extensions to be compatible with WSO2 Micro Integrator. Follow the steps given below to modify an existing Log4j2 extension:
 
-1. In the custom log appender, open the `pom.xml` file of the module which contains the `Log4j2Appender` class.
+1. In the custom log appender, open the `pom.xml` file of the module that contains the `Log4j2Appender` class.
 
-2. Under the `build` section, add the `maven-compiler-plugin` and the `maven-bundle-plugin` as follows.
+2. Under the `build` section, add `maven-compiler-plugin` and `maven-bundle-plugin` as follows.
 
     ```xml
     <plugins>
@@ -742,7 +745,7 @@ But since WSO2 Micro Integrator works in an OSGi environment, such Log4j2 extens
 
 3. Rebuild the related module and copy the built JAR file from the `target` directory to `<MI_HOME>/dropins` directory.
 
-4. Configure the custom appender as follows.
+4. Configure the custom appender in the `log4j2.properties` file as follows.
 
     ```properties
     appender.log4j2Custom.type = Log4j2Appender
@@ -750,8 +753,14 @@ But since WSO2 Micro Integrator works in an OSGi environment, such Log4j2 extens
     appender.log4j2Custom.layout.type = PatternLayout
     appender.log4j2Custom.layout.pattern = [%d] %5p {%c} - %m%ex%n
     ```
+    
+5. The custom appender should be registered under the list of appenders in the `log4j2.properties` file as follows.
 
-5. Restart the server.
+    ```properties
+    appenders = log4j2Custom, ....
+    ```
+
+6. Restart the server.
 
 ## What's Next?
 
