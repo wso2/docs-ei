@@ -754,7 +754,7 @@ However, since WSO2 Micro Integrator works in an OSGi environment, such Log4j2 e
     appender.log4j2Custom.layout.pattern = [%d] %5p {%c} - %m%ex%n
     ```
     
-5. The custom appender should be registered under the list of appenders in the `log4j2.properties` file as follows.
+5. The custom appender should be added to the list of registered appenders in the `log4j2.properties` file as shown below.
 
     ```properties
     appenders = log4j2Custom, ....
