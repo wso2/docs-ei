@@ -49,6 +49,9 @@ Filters log entries based on their level. For example, threshold set to 'WARN' w
 
 This section allows you to configure appenders individually. Log4j2 allows logging requests to print to multiple destinations. These output destinations are called 'Appenders'. You can attach several appenders to one logger.
 
+!!! Note
+    If the output destination is in another environment (such as a cloud storage), you need to [use custom log appenders](#using-custom-log-appenders).
+
 -   **CARBON_CONSOLE**: Logs to the console when the server is running.
 -   **CARBON_LOGFILE**: Writes the logs to `MI_HOME/repository/logs/wso2carbon.log`.
 -   **SERVICE_APPENDER**: Writes service invocations to `MI_HOME/repository/logswso2-MI-service.log`.             
@@ -110,3 +113,76 @@ You can hide the 'Current Params' in the printed logs by passing the following s
 ```xml
 -Ddss.disable.current.params=true \
 ```
+
+## Using Custom Log Appenders
+
+Custom log appenders for Log4j2 can be used to store application logs in various environments/systems such as cloud storages.
+
+However, since WSO2 Micro Integrator works in an OSGi environment, such Log4j2 extensions cannot be used as they are. Therefore, you need to modify those extensions to be compatible with WSO2 Micro Integrator. Follow the steps given below to modify an existing Log4j2 extension:
+
+1. In the custom log appender, open the `pom.xml` file of the module that contains the `Log4j2Appender` class.
+
+2. Under the `build` section, add `maven-compiler-plugin` and `maven-bundle-plugin` as follows.
+
+    ```xml
+    <plugins>
+       ...
+       <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <executions>
+                <execution>
+                   <id>log4j-plugin-processor</id>
+                   <goals>
+                      <goal>compile</goal>
+                   </goals>
+                   <phase>process-classes</phase>
+                   <configuration>
+                      <proc>only</proc>
+                      <annotationProcessors>
+                            <annotationProcessor>
+                               org.apache.logging.log4j.core.config.plugins.processor.PluginProcessor
+                            </annotationProcessor>
+                      </annotationProcessors>
+                   </configuration>
+                </execution>
+          </executions>
+       </plugin>
+       <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+                <instructions>
+                   <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                   <Bundle-Name>${project.artifactId}</Bundle-Name>
+                   <Fragment-Host>org.ops4j.pax.logging.pax-logging-log4j2</Fragment-Host>
+                   <Export-Package>
+                      <PACKAGE_CONTAINS_THE_APPENDER_CLASS>
+                   </Export-Package>
+                  <DynamicImport-Package>*</DynamicImport-Package>
+                   <Import-Package></Import-Package>
+                   <Include-Resource>${project.build.directory}/classes/</Include-Resource>
+                </instructions>
+          </configuration>
+       </plugin>
+       ...
+    ```
+
+3. Rebuild the related module and copy the built JAR file from the `target` directory to `<MI_HOME>/dropins` directory.
+
+4. Configure the custom appender in the `log4j2.properties` file as follows.
+
+    ```properties
+    appender.log4j2Custom.type = Log4j2Appender
+    appender.log4j2Custom.name = log4j2Custom
+    appender.log4j2Custom.layout.type = PatternLayout
+    appender.log4j2Custom.layout.pattern = [%d] %5p {%c} - %m%ex%n
+    ```
+
+5. The custom appender should be added to the list of registered appenders in the `log4j2.properties` file as shown below.
+
+    ```properties
+    appenders = log4j2Custom, ....
+    ```
+
+6. Restart the server.
