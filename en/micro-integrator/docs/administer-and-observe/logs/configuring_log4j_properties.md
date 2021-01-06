@@ -71,7 +71,7 @@ loggers = <LOGGER_NAME>, <LOGGER_NAME_1>, <LOGGER_NAME_2>,
 Log4j2 allows logging requests to print to multiple destinations. These output destinations are called 'Appenders'. All the defined appenders should be listed as shown below in the `log4j2.properties` file.
 
 !!! Note
-    If the output destination is in another environment (such as a cloud storage), you need need to [use custom log appenders](#using-custom-log-appenders).
+    If the output destination is in another environment (such as a cloud storage), you need to [use custom log appenders](#using-custom-log-appenders).
 
 ```xml
 appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, ATOMIKOS_LOGFILE, CARBON_TRACE_LOGFILE, osgi, SERVICE_LOGFILE, API_LOGFILE, ERROR_LOGFILE, CORRELATION
