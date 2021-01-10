@@ -26,7 +26,7 @@ The WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develo
 
 ## Administration
 
-The [Micro Integrator Dashboard](../../administer-and-observe/working-with-monitoring-dashboard) and [CLI](../../administer-and-observe/using-the-command-line-interface) are specifically designed for monitoring and administration of the Micro Integrator instances. Each of these tools are capable of binding to a single server instance by invoking the [management API](../../administer-and-observe/working-with-management-api) that is exposed by the server. This allow you to view and manage artifacts, logs/log configurations, and users of a server instance.
+The [Micro Integrator Dashboard](../../administer-and-observe/working-with-monitoring-dashboard) and [CLI](../../administer-and-observe/using-the-command-line-interface) are specifically designed for monitoring and administration of the Micro Integrator instances. Each of these tools are capable of binding to a single server instance by invoking the [management API](../../administer-and-observe/working-with-management-api) that is exposed by the server. This allows you to view and manage artifacts, logs/log configurations, and users of a server instance.
 
 <img src="../../assets/img/intro/cli-dashboard.png" alt="CLI and dashboard" name="CLI and dashboard" width="700">
 
