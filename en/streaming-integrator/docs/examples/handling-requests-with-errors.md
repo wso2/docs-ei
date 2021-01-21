@@ -93,7 +93,7 @@ To create and deploy a Siddhi application, follow the steps below:
     
     Then Access the Streaming Integrator Tooling via the URL that appears in the start up log with the text `Editor Started on:`.
     
-2. Copy paste the following three Siddhi applications to three separate new files and save.
+2. Copy paste the following three Siddhi applications to four separate new files and save.
     ```
         @App:name("MappingErrorTest")
         
@@ -153,7 +153,7 @@ To create and deploy a Siddhi application, follow the steps below:
         @App:description('Receive events via HTTP and persist the received data in the store.')
         
         @sink(type='log')
-        define stream logStream(batchID int, amount double, factoryID int);
+        define stream LogStream(batchID int, amount double, factoryID int);
         
         @Store(type="rdbms",
                on.error="STORE",
@@ -168,9 +168,9 @@ To create and deploy a Siddhi application, follow the steps below:
                 receiver.url='http://localhost:8006/insertStream',
                 basic.auth.enabled='false',
                 @map(type='json'))
-        define stream insertStream (batchID int, amount double, factoryID int);
+        define stream InsertStream (batchID int, amount double, factoryID int);
         
-        from insertStream
+        from InsertStream
         insert into SweetProductionTable;
     ```
 
@@ -355,57 +355,66 @@ To manage the error in the Error Store Explorer, follow the procedure below:
 
 ### Step 7: Test event failing at database level
 
-#### Step 7.1: Create a table
+#### Step 7.1: Create a MySQL database table
 
-Create database named `production` and select the production database for use. Use the following MySQL query to create 
-a table named `SweetProductionTable`
+Create a MySQL table as follows:
 
-```
-CREATE TABLE SweetProductionTable (
-    batchID int NOT NULL,
-    amount double,
-    factoryID int,
-    PRIMARY KEY (batchID)
-);
-```
+1. To create a database named `production`, issue the following MySQL command.
+
+    ```
+    CREATE SCHEMA production;
+    ```
+    
+2.To create a table in the `production` database, issue the following commands:
+
+    ```
+    use production;   
+    ```
+
+    ```
+    CREATE TABLE SweetProductionTable (
+        batchID int NOT NULL,
+        amount double,
+        factoryID int,
+        PRIMARY KEY (batchID)
+    );
+    ```
 
 #### Step 7.2: Deploy the StoreRdbmsError siddhi application
 
 In this step, let's start the service at `http://localhost:8006/insertStream` via the `StoreRdbmsError` Siddhi 
-application
+application as follows:
 
-In the **Siddhi Apps to Deploy** section, select the check box for the **StoreRdbmsError.siddhi** application. In the 
-**Servers** section, select the check box for the server you added. Then click **Deploy**.
+1. Click the **Deploy** menu and then click **Deploy to Server**. This opens the **Deploy Siddhi Apps to Server** dialog box.
 
-   ![Select StoreRdbmsError Siddhi Application and Server](../../images/handling-requests-with-errors/select-StoreRdbmsError-app-and-server.png)
+2. In the **Siddhi Apps to Deploy** section, select the check box for the **StoreRdbmsError.siddhi** application. In the **Servers** section, select the check box for the server you added. Then click **Deploy**.
 
-The following log is displayed in the Streaming Integrator console.
-```
-INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App StoreRdbmsError deployed successfully
-```
+    ![Select StoreRdbmsError Siddhi Application and Server](../../images/handling-requests-with-errors/select-StoreRdbmsError-app-and-server.png)
 
-#### Step 7.2: Publish an event into StoreRdbmsError Siddhi application
+    The following log is displayed in the Streaming Integrator console.
+    
+    ```
+    INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App StoreRdbmsError deployed successfully
+    ```
 
-Send an event to the insertStream stream of the StoreRdbmsError Siddhi application by issuing the following CURL 
+#### Step 7.2: Publish an event to the StoreRdbmsError Siddhi application
+
+Send an event to the `InsertStream` input stream of the `StoreRdbmsError` Siddhi application by issuing the following CURL 
 command.
 
 `curl --location --request POST 'http://localhost:8006/insertStream' --header 'Content-Type: application/json' --data-raw ' { "event": { "batchID": 1, "amount": 45.6, "factoryID": 102 } }'`
 
-Check the contents of `SweetProductionTable` to see the published event successfully stored in the table
+To check whether the published event is successfully saved in the `SweetProductionTable` table, issue the following command:
 
-```
-mysql> select * from SweetProductionTable;
-+---------+--------+-----------+
-| batchID | amount | factoryID |
-+---------+--------+-----------+
-|       1 |   45.6 |       102 |
-+---------+--------+-----------+
-1 row in set (0.00 sec)
-```
+`select * from SweetProductionTable;`
 
-Use the same curl command as above to publish another event. However, this time our event will fail since the batchID 
-column which is defined as the primary key has a duplicate value of 1 in the second message. You will see the following 
-log in the wso2si terminal. It shows that the erroneous event has been captured and stored in error store.
+The following is displayed:
+
+![Published Event](../../images/handling-requests-with-errors/published-event-stored-in-db.png)
+
+Use the same curl command as above to publish another event. However, this time the event fails because the `batchID`
+column that is defined as the primary key has a duplicate value of 1 in the second message. Due to this, the Siddhi application logs the following 
+in the wso2si terminal. It shows that the erroneous event has been captured and stored in the error store.
 
 ```
 [2020-11-03 11:48:28,951] ERROR {io.siddhi.core.table.Table} - Error on 'StoreRdbmsError' while performing add for events  at 'SweetProductionTable'. Events saved 'EventChunk{first=StreamEvent{ timestamp=1604384308930, beforeWindowData=null, onAfterWindowData=null, outputData=[1, 45.6, 102], type=CURRENT, next=null}}'
@@ -415,8 +424,7 @@ log in the wso2si terminal. It shows that the erroneous event has been captured 
 
 To manage the error in the Error Store Explorer, follow the procedure below:
 
-1. To open the Error Store Explorer, open Streaming Integrator Tooling, click **Tools** and then click 
-**Error Store Explorer**.
+1. To open the Error Store Explorer, open Streaming Integrator Tooling, click **Tools** and then click **Error Store Explorer**.
 
     ![Access Error Store](../../images/handling-requests-with-errors/access-error-store-explorer.png)
 
@@ -426,33 +434,29 @@ To manage the error in the Error Store Explorer, follow the procedure below:
 
     ![Error Store Explorer](../../images/handling-requests-with-errors/error-store-explorer-with-StoreRdbmsError.png)
 
-    This indicates that the event was dropped to database constrained violation.
+    This indicates that the event was dropped due to database constrained violation.
 
 2. To view details of the error, click **Detailed Info**. The following is displayed.
 
     ![Error Entry](../../images/handling-requests-with-errors/error-entry-for-StoreRdbmsError.png)
 
-    The erroneous event is displayed as a editable table as shown below. Change to value of batchID from 1 to 2 and 
-    click replay.
+    The erroneous event is displayed as a editable table as shown below. Change the value of batchID from `1` to `2` and 
+    click **Replay**.
 
     ![Replay Error](../../images/handling-requests-with-errors/replay-error-StoreRdbmsError.png)
 
     As a result, the **Error Entry** dialog box closes, and the **Error Store Explorer** dialog box is displayed with 
     no errors.
 
-    You can select all from `SweetProductionTable` to verify if the edited event has been added successfuly.
-    ```
-        mysql> select * from SweetProductionTable;
-        +---------+--------+-----------+
-        | batchID | amount | factoryID |
-        +---------+--------+-----------+
-        |       1 |   45.6 |       102 |
-        |       2 |   45.6 |       102 |
-        +---------+--------+-----------+
-        2 rows in set (0.00 sec)
-    ```
+    You can view the records in the `SweetProductionTable` to verify if the edited event has been added successfuly. To do this, issue the following MySQL command.
+    
+    `select * from SweetProductionTable;`
+    
+    The following is displayed
+    
+    ![Corrected Event](../../images/handling-requests-with-errors/corrected-event-stored-in-db.png)
 
-Similarly the following dsatabase errors will also be captured and stored in error store for replaying.
-
-1. Other databases errors such as violation of foreign key, not null errors etc.
-2. Database connection errors that can occur if the database goes down when an event is published
+!!! info
+    The following are other types of database errors that WSO2 Streaming Integrator can capture and store in the error store so that you can correct and replay them.<br/><br/>
+        - Database errors such as violation of foreign key, not null errors etc.<br/>
+        - Database connection errors that can occur if the database goes down when an event is published
