@@ -23,12 +23,12 @@ must be completed.
 
 The supported databases are H2, MySQL, Postgres, MSSQL and Oracle. The
 relevant jdbc driver jar should be downloaded and added to the
-`         <SI_HOME>/lib        ` directory to prior to using database
+`<SI_HOME>/lib` directory to prior to using database
 system persistence.
 
 To configure periodic data persistence, update the
-`         <SI_HOME>/conf/server/deployment.yaml        ` file under
-`         state.persistence        ` as follows:
+`<SI_HOME>/conf/server/deployment.yaml` file under
+`state.persistence` as follows:
 
 <table>
 <thead>
@@ -40,24 +40,24 @@ To configure periodic data persistence, update the
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>             enabled            </code></td>
+<td><code>enabled</code></td>
 <td>This enables data persistence.</td>
 <td><code>             true            </code></td>
 </tr>
 <tr class="even">
-<td><code>             intervalInMin                         </code></td>
+<td><code>intervalInMin</code></td>
 <td>The time interval in minutes that defines the interval in which state of Siddhi applications should be persisted</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td><code>             revisionsToKeep            </code></td>
+<td><code>revisionsToKeep</code></td>
 <td>The number of revisions to keep in the system. When a new persist takes place, the old revisions are removed.</td>
 <td>3</td>
 </tr>
 <tr class="even">
-<td><code>             persistenceStore                         </code></td>
+<td><code>persistenceStore</code></td>
 <td>The persistence store .</td>
-<td><code>             org.wso2.carbon.stream.processor.core.persistence.DBPersistenceStore            </code></td>
+<td><code>org.wso2.carbon.streaming.integrator.core.persistence.DBPersistenceStore</code></td>
 </tr>
 <tr class="odd">
 <td><code>             config &gt; datasource            </code></td>
@@ -83,7 +83,7 @@ configure file system persistence.
       enabled: true
       intervalInMin: 1
       revisionsToKeep: 3
-      persistenceStore: org.wso2.carbon.stream.processor.core.persistence.DBPersistenceStore
+      persistenceStore: org.wso2.carbon.streaming.integrator.core.persistence.DBPersistenceStore
       config:
         datasource: <DATASOURCE NAME>   # A datasource with this name should be defined in wso2.datasources namespace
         table: <TABLE NAME>
@@ -96,8 +96,8 @@ configure file system persistence.
 This section explains how to persist the states of Siddhi applications
 during a required time interval in the file system in order to maintain
 back-ups. To configure state persistence, update the
-`         <SI_HOME>/conf/server/deployment.yaml        ` file under
-`         state        ` .p `         ersistence        ` as follows:
+`<SI_HOME>/conf/server/deployment.yaml` file under
+`state.persistence` as follows:
 
 <table>
 <thead>
@@ -127,10 +127,10 @@ back-ups. To configure state persistence, update the
 <tr class="even">
 <td><code>             persistenceStore                         </code></td>
 <td>The persistence store.</td>
-<td><pre><code>org.wso2.carbon.stream.processor.core.persistence.FileSystemPersistenceStore</code></pre></td>
+<td><pre><code>org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore</code></pre></td>
 </tr>
 <tr class="odd">
-<td><code>             config &gt; location            </code></td>
+<td><code>config &gt; location</code></td>
 <td>A fully qualified folder location to where the revision files should be persisted.</td>
 <td><pre><code>siddhi-app-persistence</code></pre></td>
 </tr>
@@ -140,7 +140,7 @@ back-ups. To configure state persistence, update the
   
 
 The following is a sample segment of the required configurations in the
-`         <SI_HOME>/conf/server/deployment.yaml        ` file to
+`<SI_HOME>/conf/server/deployment.yaml` file to
 configure file system persistence.
 
 **Sample deployment.yaml segment**
@@ -150,7 +150,7 @@ configure file system persistence.
       enabled: true
       intervalInMin: 1
       revisionsToKeep: 2
-      persistenceStore: org.wso2.carbon.stream.processor.core.persistence.FileSystemPersistenceStore
+      persistenceStore: org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore
       config:
         location: siddhi-app-persistence
 ```
