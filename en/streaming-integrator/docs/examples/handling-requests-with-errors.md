@@ -59,7 +59,7 @@ error.store:
     table: SIDDHI_ERROR_STORE_TABLE
 ```
 
-This configuration refers to a data source named `Error_Store_DB`. Define this data source as follows under `Data sources` in the `<SI_HOME>/conf/server/deployment.yaml` file.
+This configuration refers to a data source named `SIDDHI_ERROR_STORE_DB`. Define this data source as follows under `Data sources` in the `<SI_HOME>/conf/server/deployment.yaml` file.
 
 ```
 - name: SIDDHI_ERROR_STORE_DB
