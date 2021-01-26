@@ -115,7 +115,7 @@ If you select **default** as the **template-type**, you can define the payload a
 
 ### Freemarker Template
 
-The payloadFactory mediator of WSO2 APIM 4.0.0 supports [Freemarker Templates](https://freemarker.apache.org/docs/). If you select **freemarker** as the **template-type**, you can use freemarker templates when defining the payload.
+The payloadFactory mediator of WSO2 EI 7.1.0 supports [Freemarker Templates](https://freemarker.apache.org/docs/). If you select **freemarker** as the **template-type**, you can use freemarker templates when defining the payload.
 
 !!! Note
     -   FreeMarker version 2.3.30 is tested with the current WSO2 APIM version.
