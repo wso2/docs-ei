@@ -13,7 +13,7 @@ and map it to the arguments provided.
 ## Syntax
 
 !!! Info
-    The template-type attribute support is released as a product update on <b>07/01/2021</b>. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+    The template-type attribute is released as a product update on <b>07/01/2021</b>. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
 
 ``` java
 <payloadFactory media-type="xml | json" template-type="default | freemarker">
@@ -54,11 +54,21 @@ follows:
 <td><strong>Payload Media-Type</strong></td>
 <td>This parameter is used to specify whether the message payload should be created in JSON, XML, or text.</td>
 </tr>
-<tr class="even">
-<td><strong>Template-Type</strong></td>
-<td><p>This parameter is used to specify the template-type. The template-type attribute can have either <strong>default</strong> or <strong>freemarker</strong> value.</p> 
-<p><strong>freemarker</strong> : If freemarker is set then the mediator will accept FreeMarker templates. </><p><strong>default</strong> : If default is set or no value is specified then the PayloadFactory mediator will accept the default template. Refer to the examples or more details.</p>
-</td>
+<tr>
+    <td>
+        template-type
+    </td>
+    <td>
+        The template type determines how you define a new payload. Select one of the following template types:
+        <ul>
+            <li>
+                <b>default</b>: If default is set, you can define the payload using the normal syntax of the specified media type.
+            </li>
+            <li>
+                <b>freemarker</b>: If freemarker is set, the mediator will accept freemarker templates to define the payload.
+            </li>
+        </ul>
+    </td>
 </tr>
 <tr class="odd">
 <td><strong>Payload Format</strong></td>
@@ -74,7 +84,100 @@ follows:
 </tbody>
 </table>
 
-## Examples
+You can specify the payload format and arguments depending on the template type you selected.
+
+### Default Template
+
+If you select **default** as the **template-type**, you can define the payload and arguments as shown below.
+
+```xml
+<payloadFactory description="Construct payload for addition operation" media-type="xml">
+    <format>
+        <tem:AddInteger xmlns:tem="http://tempuri.org">
+            <tem:Arg1>$1</tem:Arg1>
+            <tem:Arg2>$2</tem:Arg2>
+        </tem:AddInteger>
+    </format>
+    <args>
+        <arg evaluator="json" expression="$.Arg1"/>
+        <arg evaluator="json" expression="$.Arg2"/>
+    </args>
+</payloadFactory>
+```
+
+-	Payload Format
+
+	To add content to the payload, enter variables for each value you want to add using the format $ <em>n</em> (starting with 1 and incrementing with each additional variable, i.e., $1, $2, etc.). You will then create arguments in the same order as the variables to specify each variable's actual value.
+
+-	Arguments
+
+	The arguments must be entered in the same order as the variables in the format, so that the first argument defines the value for variable $1, the second argument defines the value for variable $2, etc. An argument can specify a literal string (e.g., "John") or an XPath or JSON expression that extracts the value from the content in the incoming payload as shown above.
+
+### Freemarker Template
+
+The payloadFactory mediator of WSO2 APIM 4.0.0 supports [Freemarker Templates](https://freemarker.apache.org/docs/). If you select **freemarker** as the **template-type**, you can use freemarker templates when defining the payload.
+
+!!! Note
+    -   FreeMarker version 2.3.30 is tested with the current WSO2 APIM version.
+    -   You are not required to specify the CDATA tag manually when defining the payload. WSO2 Integration Studio will apply the tag automatically.
+
+When you use the freemarker template type, note that the script is wrapped inside a CDATA tag. This is applicable for all media types when the payload is defined **inline**. If you get the payload from the registry, the CDATA tag does not apply.
+
+For example, consider the following freemarker script:
+
+```xml
+<name>${payload.name}</name>
+```
+
+Then, the freemarker mediator code would be something like the following:
+
+```xml
+<payloadFactory media-type="xml" template-type="freemarker">
+   <format><![CDATA[<name>${payload.name}</name> ]]></format>
+   <args/>
+</payloadFactory>
+```
+
+The following root variables are available when you define a freemarker payload:
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>payload</td>
+<td><p>This variable represents the current payload in the message context. It could be JSON, XML, or TEXT. Regardless of the payload type, the payload variable is a <a href="https://freemarker.apache.org/docs/pgui_datamodel_parent.html#autoid_32">FreeMarker Hash type container</a>.
+</p></td>
+</tr>
+<tr class="even">
+<td>args</td>
+<td><p>This variable represents the arguments created at the PayloadFactory mediator. You can use 'args.arg#' to get any argument. Replace '#' with the argument index. For example, if you want to access the 1st argument in the freemarker template, you can use 'args.arg1'.
+</P></td>
+</tr>
+<tr class="odd">
+<td>ctx</td>
+<td><p>
+You can use the ctx variable to access default scoped properties. For example, if you have a property named 'customer_id' in the default scope, you can get the property in the Freemarker template by using 'ctx.customer_id.
+</p></td>
+</tr>
+<tr class="even">
+<td>axis2</td>
+<td><p>
+This represents all the axis2 properties. Accessing a property can be done as same as above.
+</p></td>
+</tr>
+<tr class="even">
+<td>trp</td>
+<td><p>
+This variable represents transport headers. You can access transport header values as similar to the above property access methods.
+</p></td>
+</tr>
+</tbody>
+</table>
+
+## Examples: Using the default template
 
 This section provides examples of using PayloadFactory mediator to
 generate XML and JSON messages.
@@ -479,74 +582,12 @@ xmlns:ser="http://services.samples">
 <drop/>
 </sequence>
 ```
-### Freemarker template
-If you are using the FreeMarker template type as inline you have to wrap the script inside a CDATA tag. As an example, if your freemarker script is,
 
-```xml
-<name>${payload.name}</name>
-```
+## Examples: Using the Freemarker template
 
-Then the synapse configuration will be as follows,
-```xml
-<payloadFactory media-type="xml" template-type="freemarker">
-   <format><![CDATA[<name>${payload.name}</name> ]]></format>
-   <args/>
-</payloadFactory>
-```
+### Accessing properties and headers
 
-Using WSO2 Integration Studio properties view you can write your script without worrying about wrapping inside CDATA, Integration Studio would add them for you.
-
-When retrieving the FreeMarker template from registry resource you do not need to wrap the script inside CDATA tag.
-
-#### Root Variables
-
- When you are writing a FreeMarker template in PayloadFactory mediator, the following root variables are provided to use in the template.
-
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>payload</td>
-<td><p>This variable represents the current payload in the message context. It could be JSON, XML, or TEXT. Regardless of the payload type, the payload variable is a FreeMarker Hash type container (https://freemarker.apache.org/docs/pgui_datamodel_parent.html#autoid_32). 
-</p></td>
-</tr>
-<tr class="even">
-<td>args</td>
-<td><p>This represents the arguments created at the PayloadFactory mediator. You can use args.arg# to get any argument. (Replace the # with the argument index).
-    E.g., -
-    If you want to access the 1st argument in the FreeMarker template, you can do it like follows,
-    args.arg1
-</P></td>
-</tr>
-<tr class="odd">
-<td>ctx</td>
-<td><p>
-You can use the ctx variable to access default scoped properties. 
-E.g. -
-If you have a property named customer_id in the default scope. Then to get that property in the FreeMarker template, you can use,
-ctx.customer_id
-</p></td>
-</tr>
-<tr class="even">
-<td>axis2</td>
-<td><p>
-This represents all the axis2 properties. Accessing a property can be done as same as above.
-</p></td>
-</tr>
-<tr class="even">
-<td>trp</td>
-<td><p>
-The variable trp represents transport headers. You can access transport header values as similar to the above property access methods.
-</p></td>
-</tr>
-</tbody>
-</table>
-
-#### Examples
-In the following example, we reference the default scope property named user_name, the axis2 scope property REST_URL_POSTFIX and the transport header Host and output them as a JSON object. 
+In the following example, we are referencing the default scope property named `user_name`, the axis2 scope property `REST_URL_POSTFIX`, and the transport header Host. These values are returned in the output as a JSON objects. 
 
 ```xml
 <payloadFactory media-type="json" template-type="freemarker">
@@ -559,7 +600,9 @@ In the following example, we reference the default scope property named user_nam
       <args/>
 </payloadFactory>
 ```
-In this example, we assign the value of the first argument for the value of the key “argument one” For the value of the key “argument two” we assign the second argument’s value.
+
+In this example, we assign the first argument's value as the value of the “argument one” key. For the value of the “argument two” key, we assign the second argument’s value.
+
 ```xml
 <payloadFactory media-type="json" template-type="freemarker">
     <format><![CDATA[{
@@ -572,10 +615,9 @@ In this example, we assign the value of the first argument for the value of the 
         <arg value="500"/>
     </args>
 </payloadFactory>
-
 ```
 
-#### JSON to XML Transformation
+### JSON to XML Transformation
 
 ```json tab='Input'
 {
@@ -614,10 +656,8 @@ In this example, we assign the value of the first argument for the value of the 
 
 <!--
 #### Samples
-
 The following samples demonstrate the use of the PayloadFactory
 mediator.
-
 -   [Sample 17: Transforming / Replacing Message Content with
     PayloadFactory
     Mediator](https://docs.wso2.com/pages/viewpage.action?pageId=85369102)
