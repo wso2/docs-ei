@@ -113,7 +113,7 @@ To enable observability for the Micro Integrator servers, add the following Syna
 name="CustomObservabilityHandler"
 class="org.wso2.micro.integrator.observability.metric.handler.MetricHandler"
 ```
-After doing above change please start the Micro Integrator with below JVM property. 
+After applying the above change, you can start the Micro Integrator with the following JVM property: 
 ```
 -DenablePrometheusApi=true
 ```
