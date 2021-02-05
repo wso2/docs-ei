@@ -6,7 +6,7 @@ handle increasing system loads (scalability) and provide near-zero downtime and 
 (high availability). Furthermore, some of the key characteristics of WSO2 SI deployment architecture are ease of 
 installation and deployment, high maintainability and DevOps friendliness.
 
-Mainly following three deployment options can be followed, 
+Mainly following deployment options can be followed, 
 
  - [Single Node Deployment](deploying-si-as-a-single-deployment.md)
  - [Minimum High Available(HA) Deployment](deploying-si-as-minimum-ha-cluster.md)

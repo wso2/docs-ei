@@ -290,10 +290,18 @@ Follow the topics in this section to configure security for your Micro Integrato
 	</tr>
 	<tr>
 		<td>
-			 <a href="../../setup/security/encrypting_plain_text">Encrypting Secrets</a>
+			 <a href="../../setup/security/encrypting_plain_text">Encrypting Secrets using WSO2 Secure Vault</a>
 		</td>
 		<td>
-			 Encrypt sensitive data in your configuration files and synapse configurations.
+			 Encrypt sensitive data in your configuration files and synapse configurations using WSO2 Secure Vault.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			 <a href="../../setup/security/using-hashicorp-secrets">Using HashiCorp Secrets</a>
+		</td>
+		<td>
+			 Store your secrets in the HashiCorp vault and access them from synapse configurations in the Micro Integrator.
 		</td>
 	</tr>
 	<tr>
