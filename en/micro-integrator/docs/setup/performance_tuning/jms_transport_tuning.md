@@ -53,7 +53,7 @@ To adjust the values of these properties, you can modify the server startup scri
         - If you do not specify a value for `lst_t_core` and `snd_t_core`, the default values are applied.
 
         !!! warning
-            If the above values that you derived exceed the recommended values, make sure that your server has the necessary resources to handle the defined thread pool size efficiently.
+            If the values derived via the above calculation exceed the recommended values, make sure that your server has the necessary resources to handle the defined thread pool size efficiently.
 
 2.  Create a directory called `conf` under your `MI_HOME` directory and save the file in this directory.
 
