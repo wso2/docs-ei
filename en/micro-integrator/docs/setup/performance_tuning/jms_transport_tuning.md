@@ -41,7 +41,7 @@ To adjust the values of these properties, you can modify the server startup scri
     -   `snd_t_max=250`
 
     !!! note "Determine a suitable value for lst_t_core and snd_t_core"
-        Make sure that the above mentioned recommended values per server satisfy the following calculation.
+        Make sure that the above mentioned recommended values per server satisfy the following criterion.
 
         ```
         lst_t_core > Total number of consumers + 20
@@ -51,7 +51,6 @@ To adjust the values of these properties, you can modify the server startup scri
         snd_t_core > Total number of consumers + 20
 
         snd_t_core < snd_t_max
-
         ```
 
         - `Total number of consumers = transport.jms.MaxConcurrentConsumers x Number of JMS proxies`
