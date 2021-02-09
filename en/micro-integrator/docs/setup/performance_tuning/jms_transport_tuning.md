@@ -45,7 +45,11 @@ To adjust the values of these properties, you can modify the server startup scri
 
         **`lst_t_core > Total number of consumers + 20`**
 
+        **`lst_t_core < lst_t_max`**
+
         **`snd_t_core > Total number of consumers + 20`**
+
+        **`snd_t_core < snd_t_max`**
 
         - `Total number of consumers = transport.jms.MaxConcurrentConsumers x Number of JMS proxies`
         - 20 threads have been added as a buffer.
