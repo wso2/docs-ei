@@ -1,6 +1,6 @@
 # MongoDB Connector Example
 
-The MongoDB Connector can be used to perform CRUD operations in the local database as well as in MongoDB Atlas.
+The MongoDB Connector can be used to perform CRUD operations in the local database as well as in MongoDB Atlas (cloud version of MongoDB).
 
 ## What you&#39;ll build
 
