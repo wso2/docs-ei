@@ -4,15 +4,15 @@ The MongoDB Connector can be used to perform CRUD operations in the local databa
 
 ## What you&#39;ll build
 
-This example explains how to use MongoDB Connector to insert and find documents from MongoDB database.
+This example explains how to use MongoDB Connector to insert and find documents from a MongoDB database.
 
-The sample API given below demonstrates how the MongoDB connector can be used to connect to the MongoDB Server and perform **insert many and find** operations on it.
+The sample API given below demonstrates how the MongoDB connector can be used to connect to the MongoDB Server and perform **insert many** and **find** operations on it.
 
-- `/insertmany`: The user sends the request payload which includes the connection information, collection name and the documents to be inserted. This request is sent to WSO2 EI by invoking the MongodbConnector API. It will insert the documents into the MongoDB database.
+- `/insertmany`: The user sends a request payload that includes the connection information, collection name, and the documents to be inserted. This request is sent to WSO2 EI by invoking the MongodbConnector API. This will insert the documents into the MongoDB database.
 
     <p><img src="../../../../assets/img/connectors/mongodb-conn-1.png" title="Insert many function" width="800" alt="Insert many function" /></p>
 
-- `/find`: The user sends the request payload, containing the connection information, collection name and the find query. This request is sent to WSO2 EI by invoking the MongodbConnector API. Once the API is invoked, it returns the documents matching the find query.
+- `/find`: The user sends the request payload containing the connection information, collection name, and the find query. This request is sent to WSO2 EI by invoking the MongodbConnector API. Once the API is invoked, it returns the documents matching the find query.
 
     <img src="../../../../assets/img/connectors/mongodb-conn-2.png" title="Find function" width="800" alt="Find function"/>
 
@@ -20,7 +20,7 @@ If you do not want to configure this yourself, you can simply [get the project](
 
 ## Connect to MongoDB Atlas
 
-1. In the Clusters view, click Connect for the cluster to which you want to connect.
+1. In the Clusters view, click **Connect** for the cluster to which you want to connect.
 
 2. Click Choose a connection method.
 
@@ -44,24 +44,24 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
     <img src="../../../../assets/img/connectors/mongodb-conn-3.png" title="Create project" width="500" alt="Create project"/>
 
-2.  Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API.
+2.  Right-click the created Integration Project and select, -> **New** -> **Rest API** to create the REST API.
 
     <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 3.  Provide the API name as `MongoConnector` and the API context as `/mongodbconnector`.
 
-4.  First we will create the `/insertmany` resource. This API resource will insert documents into the MongoDB database.<br/>
-    Right click on the API Resource and go to **Properties** view. We use a URL template called `/insertmany` as we have two API resources inside single API. The method will be `Post`.
+4.  First, create the `/insertmany` resource. This API resource inserts documents into the MongoDB database.<br/>
+    Right-click on the API Resource and go to the **Properties** view. Let's use a URL template called `/insertmany` as there are two API resources inside a single API. The method is `Post`.
 
     <img src="../../../../assets/img/connectors/mongodb-conn-4.png" title="Adding the API resource." width="800" alt="Adding the API resource."/>
 
-5.  Drag and drop the 'insertMany' operation of the MongoDB Connector to the Design View as shown below.
+5.  Drag the 'insertMany' operation of the MongoDB Connector to the Design view as shown below.
 
     <img src="../../../../assets/img/connectors/mongodb-conn-5.png" title="Adding the insert many operation." width="800" alt="Adding the insert many operation."/>
 
-6.  Create a connection from the properties window by clicking on the '+' icon as shown below.
+6.  Create a connection from the Properties view by clicking the '+' icon as shown below.
 
-    Following values can be provided to connect to MongoDB database. <br/>
+    Following values can be provided when connecting to the MongoDB database. <br/>
 
     - Connection Name - connectionURI
     - Connection Type - URI
@@ -74,27 +74,27 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
     <img src="../../../../assets/img/connectors/mongodb-conn-7.png" title="Selecting the connection." width="800" alt="Selecting the connection."/>
 
-8.  Next, provide the expressions as below to the following properties in the properties window to obtain respective values from the JSON request payload.
+8.  Next, provide JSON expressions for the following two properties. These expressions will retrieve the respective values from the JSON request payload.
 
     - Collection - json-eval($.collection)
     - Documents - json-eval($.documents)
 
-9.  Drag and drop the [Respond Mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/respond-Mediator/) to respond the response from inserting documents as shown below.
+9.  Drag the [Respond Mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/respond-Mediator/) to the canvas. This returns the response message to the client (after inserting documents) as shown below.
 
     <img src="../../../../assets/img/connectors/mongodb-conn-8.png" title="Adding the respond mediator." width="800" alt="Adding the respond mediator."/>
 
-10. Create the next API resource, which is `/find` by dragging and dropping another API resource to the design view. This API resource will find all the documents matching the find query given by the user. This will also be a `POST` request.
+10. Create the next API resource (which is `/find`) by dragging another API resource to the Design view. This API resource will find all the documents matching the find query given by the user. This will also be a `POST` request.
 
-11. Drag and drop the 'find' operation of the Email Connector to the Design View as shown below.
+11. Drag the find operation of the Email Connector to the Design view as shown below.
 
 12. Select the 'connectionURI' as the 'Connection' from the drop down in the properties window.
 
-13. Next, provide the expressions as below to the following properties in the properties window to obtain respective values from the JSON request payload.
+13. Next, provide JSON expressions for the following two properties. These expressions will retrieve the respective values from the JSON request payload.
 
     - Collection - json-eval($.collection)
     - Query - json-eval($.query)
 
-14. Finally, drag and drop the [Respond Mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/respond-Mediator/) to respond the response from retrieving documents as shown below.
+14. Drag the [Respond Mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/respond-Mediator/) to the canvas. This returns the response message to the client (after retrieving documents) as shown below.
 
 15. You can find the complete API XML configuration below. You can go to the source view and copy paste the following config.
 
@@ -146,15 +146,17 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 ??? note "Click here for instructions on removing the iterative mongodb server logs"
     Add the configuration below to **remove** the iterative `org.mongodb.driver.cluster` server logs;
 
-    1.  Add the logger to the `log4j2.properties` file in the `<PRODUCT_HOME>/conf` folder.
+    1.  Add the following logger to the `log4j2.properties` file in the `<PRODUCT_HOME>/conf` folder.
 
+        ```xml
     	logger.org-mongodb-driver-cluster.name = org.mongodb.driver.cluster
     	logger.org-mongodb-driver-cluster.level = WARN
+        ```
 
-    2.  Then add `org-mongodb-driver-cluster` to the list of `loggers`.
+    2.  Then, add `org-mongodb-driver-cluster` to the list of `loggers`.
 
 !!! Prerequisite
-    1. Download mongo java driver from [here](https://repo1.maven.org/maven2/org/mongodb/mongo-java-driver/3.11.2/mongo-java-driver-3.11.2-javadoc.jar).
+    1. Download the Mongo java driver from [here](https://repo1.maven.org/maven2/org/mongodb/mongo-java-driver/3.11.2/mongo-java-driver-3.11.2-javadoc.jar).
 
     2. Add the driver to the `<PRODUCT_HOME>/dropins` folder.
 
@@ -164,8 +166,8 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 ### Insert Many Operation
 
-1.  Create a file called insertmany.json with the following payload.
-    ```
+1.  Create a file named `insertmany.json` with the following payload:
+    ```json
     {
         "collection": "TestCollection",
         "documents": [
@@ -188,14 +190,14 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 2. Invoke the API as shown below using the curl command. 
 
     !!! Info
-        Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
+        The Curl application can be downloaded from [here](https://curl.haxx.se/download.html).
 
     ```bash
     curl -H "Content-Type: application/xml" --request POST --data @insertmany.json http://localhost:8290/mongodbconnector/insertmany
     ```  
 
     **Expected Response** : You should get a response as given below and the data will be added to the database.
-    ```
+    ```json
     {
         "InsertManyResult": "Successful"
     }
@@ -204,9 +206,9 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 ### Find Operation
 
 !!! Note
-    In order to find documents by ObjectId the find query payload should be in the following format.
+    In order to find documents by ObjectId, the find query payload should be in the following format:
     
-    ```
+    ```json
     { 
         "query": { 
             "_id": { 
@@ -216,9 +218,9 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     }
     ```
 
-1.  Create a file called find.json with the following payload.
+1.  Create a file called `find.json` with the following payload.
 
-    ```
+    ```json
     {
          "collection": "TestCollection",
          "query": {
@@ -227,7 +229,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     }
     ```
 
-2. Invoke the API as shown below using the curl command. 
+2. Invoke the API using the curl command shown below.
 
     !!! Info
         Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
@@ -238,7 +240,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
     **Expected Response** : You should get a response similar to the one given below.
 
-    ```
+    ```json
     [
         {
             "_id": "123",
