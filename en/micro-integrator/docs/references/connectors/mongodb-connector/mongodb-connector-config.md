@@ -122,6 +122,20 @@ The supported connection URI types and connection options are listed in the [Mon
     </tr>
 </table>
 
+**Sample Configuration of URI configs**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="uriConnection" xmlns="http://ws.apache.org/ns/synapse">
+    <mongodb.init>
+        <name>uriConnection</name>
+        <connectionType>URI</connectionType>
+        <connectionURI>mongodb+srv://server.example.com/?connectTimeoutMS=300000&authSource=aDifferentAuthDB</connectionURI>
+        <database>users</database>
+    </mongodb.init>
+</localEntry>
+```
+
 ### Common configs for STANDARD and DSL types
 
 <table>
@@ -758,6 +772,46 @@ The supported connection URI types and connection options are listed in the [Mon
     </tr>
 </table>
 
+**Sample Configuration of STANDARD configs**
+
+Sample Configuration of STANDARD - standalone configs
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="standaloneStandardConnection" xmlns="http://ws.apache.org/ns/synapse">
+    <mongodb.init>
+        <name>standaloneStandardConnection</name>
+        <connectionType>STANDARD</connectionType>
+        <host>localhost</host>
+        <port>27017</port>
+        <database>users</database>
+        <username>administrator</username>
+        <password>1234</password>
+    </mongodb.init>
+</localEntry>
+```
+
+Sample Configuration of STANDARD - replica set configs
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="replicaSetStandardConnection" xmlns="http://ws.apache.org/ns/synapse">
+    <mongodb.init>
+        <name>replicaSetStandardConnection</name>
+        <connectionType>STANDARD</connectionType>
+        <seedList>mongodb1.example.com:27317,mongodb2.example.com:27017</seedList>
+        <database>users</database>
+        <username>administrator</username>
+        <password>1234</password>
+        <authSource>aDifferentAuthDB</authSource>
+        <ssl>true</ssl>
+        <w>majority</w>
+        <replicaSet>mySet</replicaSet>
+        <retryWrites>true</retryWrites>
+    </mongodb.init>
+</localEntry>
+```
+
 ### DSL connection configs
 
 <table>
@@ -820,6 +874,25 @@ The supported connection URI types and connection options are listed in the [Mon
         </td>
     </tr>
 </table>
+
+**Sample Configuration of DSL configs**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="dslConnection" xmlns="http://ws.apache.org/ns/synapse">
+    <mongodb.init>
+        <name>dslConnection</name>
+        <connectionType>DSL</connectionType>
+        <host>server.example.com</host>
+        <database>users</database>
+        <username>administrator</username>
+        <password>1234</password>
+        <authSource>aDifferentAuthDB</authSource>
+        <retryWrites>true</retryWrites>
+        <w>majority</w>
+    </mongodb.init>
+</localEntry>
+```
 
 ## Operations
 

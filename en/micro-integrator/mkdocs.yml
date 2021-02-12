@@ -18,12 +18,12 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://ei.docs.wso2.com/en/7.2.0/
+site_url: https://ei.docs.wso2.com/en/latest/
 
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/master/en/micro-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.1.0/en/micro-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -268,10 +268,9 @@ nav:
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
-        - 'Debugging On Server': 'develop/debugging-on-server.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
-        - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
-        - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
+        - 'Monitoring Service-Level Logs': 'develop/enabling-logs-for-services.md'
+        - 'Monitoring API-Level Logs': 'develop/enabling-logs-for-api.md'
         - 'Endpoint Tracing': 'develop/endpoint-trace-logs.md'
       - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
@@ -296,14 +295,12 @@ nav:
       - Deploy:
         - Deploy on Kubernetes:
           - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
-          - 'Deploy using Helm resources': 'setup/deployment/deploying_in_kubernetes_with_helm.md'
-          - Deploy using K8s EI-Operator:
-              - 'Kubernetes EI Operator': 'setup/deployment/ei_kubernetes_operator.md'
-              - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
-              - K8s EI-Operator Deployment Samples:
-                - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
-                - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
-                - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+          - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'
+          - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
+          - K8s Deployment Samples:
+            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
+            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
+            - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
           - K8s Pipeline:
             - 'Overview': 'setup/deployment/k8s-pipeline/overview.md'
             - 'Pipeline Quick Start Guide': 'setup/deployment/k8s-pipeline/pipeline-quick-start-guide.md'
@@ -348,7 +345,7 @@ nav:
             - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
           - Working with Secrets:
             - 'Encrypting Secrets using WSO2 Secure Vault' : 'setup/security/encrypting_plain_text.md'
-            - 'Using HashiCorp Secrets' : 'setup/security/using-hashicorp-secrets.md'
+            - 'Using Hashicorp Secrets' : 'setup/security/using-hashicorp-secrets.md'
             - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Securing the Management API' : 'setup/security/securing_management_api.md'
           - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
@@ -379,6 +376,7 @@ nav:
             - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
             - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
           - 'Kafka' : 'setup/feature_configs/configuring-kafka.md'
+          - 'Azure Service Bus' : 'setup/brokers/configure-with-azureservicebus.md'
         - 'Transports': 'setup/transport_configurations/configuring-transports.md'
         - 'Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
         - 'Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
@@ -388,6 +386,11 @@ nav:
           - 'Setting up Cloud-Native Observability for a VM Deployment': 'setup/observability/setting-up-minimum-basic-observability-deployment.md'
           - 'Setting up Cloud-Native Observability for a K8s Deployment': 'setup/observability/setting-up-cloud-native-observability-in-kubernetes.md'
           - 'Setting up Classic Observability Deployment': 'setup/observability/setting-up-classic-observability-deployment.md'
+          - Configuring Logs:
+            - 'Enabling Logs for a Component': 'administer-and-observe/logs/enabling_component_logs.md'
+            - 'Configuring Logs': 'administer-and-observe/logs/configuring_log4j_properties.md'
+            - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
+            - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
         - 'Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
     - Observe and Manage:
         - 'Overview': 'administer-and-observe/observability-overview.md'
@@ -395,13 +398,9 @@ nav:
           - 'Cloud Native Observability Solution':
             - 'Viewing Cloud Native Observability Dashboards': 'administer-and-observe/cloud-native-observability-dashboards.md'
           - 'Classic Observability Solution':
-            - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
             - 'Using the EI Analytics Dashboard': 'administer-and-observe/using-the-analytics-dashboard.md'
-            - Logging:
-              - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-              - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
-              - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
-              - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
+          - 'Monitoring Logs': 'administer-and-observe/logs/monitoring_logs.md'
+          - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
         - 'Management':
           - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
           - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
@@ -432,16 +431,15 @@ nav:
           - 'Amazon Lambda Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
           - 'Amazon Lambda Reference': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
         - Amazon S3 Connector:
-          - '1.x':
-            - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/1.x/amazons3-connector-overview.md'
-            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/1.x/amazons3-connector-config.md'
-            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/1.x/amazons3-connector-example.md'
-            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/1.x/amazons3-connector-reference.md'
+          - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/amazons3-connector-overview.md'
           - '2.x':
-            - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/2.x/amazons3-connector-overview.md'
-            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/2.x/amazons3-connector-config.md'
-            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/2.x/amazons3-connector-example.md'
-            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/2.x/amazons3-connector-reference.md'
+            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
+            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
+            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
+          - '1.x':
+            - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-config.md'
+            - 'AmazonS3 Example': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-example.md'
+            - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/1.x/amazons3-connector-1.x-reference.md'
         - Amazon SQS Connector:
           - 'Amazon SQS Overview': 'references/connectors/amazonsqs-connector/amazonsqs-connector-overview.md'
           - 'Amazon SQS Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
@@ -537,8 +535,12 @@ nav:
           - 'FHIR Reference': 'references/connectors/fhir-connector/fhir-connector-config.md'
         - File Connector:
           - 'File Connector Overview': 'references/connectors/file-connector/file-connector-overview.md'
-          - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
-          - 'File Connector Reference': 'references/connectors/file-connector/file-connector-config.md'
+          - 4.x:
+            - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+            - 'File Connector Reference': 'references/connectors/file-connector/file-connector-config.md'
+          - 3.x:
+            - 'File Connector Example': 'references/connectors/file-connector/3.x/file-connector-3.x-example.md'
+            - 'File Connector Reference': 'references/connectors/file-connector/3.x/file-connector-3.x-config.md'
         - Gmail Connector:
           - 'Gmail Overview': 'references/connectors/gmail-connector/gmail-connector-overview.md'
           - 'Setting up the Gmail API': 'references/connectors/gmail-connector/configuring-gmail-api.md'
@@ -621,7 +623,7 @@ nav:
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
-          - 'Aggregate Mediator' : 'references/mediators/aggregate-Mediator.md'
+          - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
           - 'Builder Mediator' : 'references/mediators/builder-Mediator.md'
           - 'Cache Mediator' : 'references/mediators/cache-Mediator.md'
           - 'Call Mediator' : 'references/mediators/call-Mediator.md'
