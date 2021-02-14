@@ -18,19 +18,21 @@ The sample API given below demonstrates how the MongoDB connector can be used to
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
-## Connect to MongoDB Atlas
+## Before you begin
+
+If you want to connect to MongoDB Atlas, follow the steps mentioned below to get the connection string.
 
 1. In the Clusters view, click **Connect** for the cluster to which you want to connect.
 
-2. Click Choose a connection method.
+2. Click **Choose a connection method**.
 
-3. Click Connect your application.
+3. Click **Connect your application**.
 
-4. Select Java from the Driver dropdown.
+4. Select Java from the **Driver** menu.
 
-5. Select your version of the driver from the dropdown.
+5. Select the correct driver version from the **Version** menu.
 
-6. Uncheck "Include full driver code example" checkbox to get the connection string.
+6. Clear the **Include full driver code example** check box to get the connection string.
 
 ## Configure the connector in WSO2 Integration Studio
 
@@ -70,7 +72,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
     <img src="../../../../assets/img/connectors/mongodb-conn-6.png" title="Adding the connection." width="800" alt="Adding the connection."/>
 
-7.  After the connection is successfully created, select the created connection as 'Connection' from the drop down in the properties window.
+7.  After the connection is successfully created, you can select the new connection from the 'Connection' menu in the properties view.
 
     <img src="../../../../assets/img/connectors/mongodb-conn-7.png" title="Selecting the connection." width="800" alt="Selecting the connection."/>
 
@@ -87,7 +89,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 11. Drag the find operation of the Email Connector to the Design view as shown below.
 
-12. Select the 'connectionURI' as the 'Connection' from the drop down in the properties window.
+12. Select 'connectionURI' as the connection from the 'Connection' menu in the properties view.
 
 13. Next, provide JSON expressions for the following two properties. These expressions will retrieve the respective values from the JSON request payload.
 
