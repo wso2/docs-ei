@@ -583,6 +583,10 @@ nav:
           - 'Setting up Microsoft Azure Storage': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
           - 'Microsoft Azure Storage Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
           - 'Microsoft Azure Storage Reference': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
+        - MongoDB Connector:
+          - 'MongoDB Connector Overview': 'references/connectors/mongodb-connector/mongodb-connector-overview.md'
+          - 'MongoDB Connector Example': 'references/connectors/mongodb-connector/mongodb-connector-example.md'
+          - 'MongoDB Connector Reference': 'references/connectors/mongodb-connector/mongodb-connector-config.md'
         - Redis Connector:
           - 'Redis Overview': 'references/connectors/redis-connector/redis-connector-overview.md'
           - 'Setting up the Environment': 'references/connectors/redis-connector/redis-connector-configuration.md'
