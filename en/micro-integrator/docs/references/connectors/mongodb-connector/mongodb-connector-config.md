@@ -8,7 +8,7 @@ The MongoDB connector can be used to deal with two types of connections:
 
 -   <b>Connection URI (URI)</b>: The connection URI used to connect to the MongoDB database. 
 
--   <b>Connection Parameters</b>: The connection URI is built by the connector using the parameters. Following protocols are supported by the MongoDB connector.
+-   <b>Connection Parameters</b>: The parameters used for creating the connection URI. Following protocols are supported by the MongoDB connector.
 
     -   Standard Connection Parameters (STANDARD)
     -   DNS Seed List Connection Parameters (DSL)
@@ -111,7 +111,7 @@ The supported connection URI types and connection options are listed in the [Mon
             String
         </td>
         <td>
-            The complete connection URI containing the server details, credentials and the connection options.
+            The complete connection URI containing the server details, credentials, and the connection options.
         </td>
         <td>
             -
@@ -154,7 +154,7 @@ The supported connection URI types and connection options are listed in the [Mon
             String
         </td>
         <td>
-            Specifies the name of the replica set, if the mongod is a member of a replica set.
+If the mongod is a member of a replica set, this parameter specifies the name of the replica set.
         </td>
         <td>
             -
@@ -171,7 +171,7 @@ The supported connection URI types and connection options are listed in the [Mon
             String
         </td>
         <td>
-            Specify the database name associated with the user’s credentials. 
+            The database name associated with the user’s credentials. 
         </td>
         <td>
             -
@@ -188,7 +188,7 @@ The supported connection URI types and connection options are listed in the [Mon
             String
         </td>
         <td>
-            Specify the authentication mechanism that MongoDB will use to authenticate the connection.
+            The authentication mechanism that MongoDB will use for authenticating the connection.
         </td>
         <td>
             -
@@ -205,7 +205,7 @@ The supported connection URI types and connection options are listed in the [Mon
             String
         </td>
         <td>
-            Specify properties for the specified authMechanism as a comma-separated list of colon-separated key-value pairs.
+            Properties for the specified authorisation mechanism as a comma-separated list of colon-separated key-value pairs.
         </td>
         <td>
             -
@@ -222,7 +222,7 @@ The supported connection URI types and connection options are listed in the [Mon
             String
         </td>
         <td>
-            Set the Kerberos service name when connecting to Kerberized MongoDB instances. This value must match the service name set on MongoDB instances to which you are connecting.
+            The Kerberos service name when connecting to Kerberized MongoDB instances. This value must match the service name set on MongoDB instances to which you are connecting.
         </td>
         <td>
             -
@@ -239,7 +239,7 @@ The supported connection URI types and connection options are listed in the [Mon
             String
         </td>
         <td>
-            Corresponds to the write concern w Option. The w option requests acknowledgement that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags.
+Corresponds to the write concern w Option.
         </td>
         <td>
             -
@@ -256,7 +256,7 @@ The supported connection URI types and connection options are listed in the [Mon
             Number
         </td>
         <td>
-            Corresponds to the write concern wtimeout. wtimeoutMS specifies a time limit, in milliseconds, for the write concern.
+The time limit (in milliseconds) of the write concern.
         </td>
         <td>
             -
