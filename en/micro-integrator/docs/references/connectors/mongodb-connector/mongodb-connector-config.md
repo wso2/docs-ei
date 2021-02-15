@@ -154,7 +154,7 @@ The supported connection URI types and connection options are listed in the [Mon
             String
         </td>
         <td>
-If the mongod is a member of a replica set, this parameter specifies the name of the replica set.
+            If the mongod is a member of a replica set, this parameter specifies the name of the replica set.
         </td>
         <td>
             -
@@ -239,7 +239,7 @@ If the mongod is a member of a replica set, this parameter specifies the name of
             String
         </td>
         <td>
-Corresponds to the write concern w Option.
+            Corresponds to the write concern w Option.
         </td>
         <td>
             -
@@ -256,7 +256,7 @@ Corresponds to the write concern w Option.
             Number
         </td>
         <td>
-The time limit (in milliseconds) of the write concern.
+             The time limit (in milliseconds) of the write concern.
         </td>
         <td>
             -
@@ -273,7 +273,7 @@ The time limit (in milliseconds) of the write concern.
             String
         </td>
         <td>
-            Corresponds to the write concern j Option option. The journal option requests acknowledgement from MongoDB that the write operation has been written to the journal. 
+            When this option used, the Micro Integrator requests an acknowledgement from MongoDB that the write operation has been written to the journal. This applies when the write concern is set to 'j'.
         </td>
         <td>
             -
@@ -341,7 +341,7 @@ The time limit (in milliseconds) of the write concern.
             Number
         </td>
         <td>
-            A number that the driver multiples the maxPoolSize value to, to provide the maximum number of threads allowed to wait for a connection to become available from the pool. 
+            The maximum pool size is multiplied by this value to calculate the maximum number of threads that are allowed to wait for a connection to become available in the pool. 
         </td>
         <td>
             -
@@ -409,7 +409,7 @@ The time limit (in milliseconds) of the write concern.
             Number
         </td>
         <td>
-            The time in milliseconds to attempt a connection before timing out. The default is never to timeout, though different drivers might vary.
+            The time in milliseconds for attempting a connection before timing out. For most drivers, the default is to never timeout.
         </td>
         <td>
             -
@@ -426,7 +426,7 @@ The time limit (in milliseconds) of the write concern.
             Number
         </td>
         <td>
-            The time in milliseconds to attempt a send or receive on a socket before the attempt times out. The default is never to timeout, though different drivers might vary.
+            The time in milliseconds for attempting a send or receive on a socket before the attempt times out. For most drivers, the default is to never timeout.
         </td>
         <td>
             -
@@ -460,7 +460,7 @@ The time limit (in milliseconds) of the write concern.
             Number
         </td>
         <td>
-            An integer that specifies the compression level if using zlib for network compression.
+            An integer that specifies the compression level when zlib is used for network compression.
         </td>
         <td>
             -
@@ -511,7 +511,7 @@ The time limit (in milliseconds) of the write concern.
             Number
         </td>
         <td>
-            Specifies, in seconds, how stale a secondary can be before the client stops using it for read operations.
+            The maximum time (in seconds) a connection can remain stale before the client stops using it for read operations.
         </td>
         <td>
             -
@@ -528,7 +528,7 @@ The time limit (in milliseconds) of the write concern.
             String
         </td>
         <td>
-            Specifies the tags document as a comma-separated list of colon-separated key-value pairs. 
+            Document tags as a comma-separated list or colon-separated key-value pairs. 
         </td>
         <td>
             -
@@ -545,7 +545,7 @@ The time limit (in milliseconds) of the write concern.
             Number
         </td>
         <td>
-            The size (in milliseconds) of the latency window for selecting among multiple suitable MongoDB instances. 
+            The latency (in milliseconds) that is allowed when selecting a suitable MongoDB instance from the list of available instances.
         </td>
         <td>
             15
@@ -562,7 +562,7 @@ The time limit (in milliseconds) of the write concern.
             Number
         </td>
         <td>
-            Specifies how long (in milliseconds) to block for server selection before throwing an exception. 
+            The time (in milliseconds) that is allowed for server selection before an exception is thrown. 
         </td>
         <td>
             30,000
@@ -579,7 +579,7 @@ The time limit (in milliseconds) of the write concern.
             Boolean
         </td>
         <td>
-            Single-threaded drivers only. When true, instructs the driver to scan the MongoDB deployment exactly once after server selection fails and then either select a server or raise an error. When false, the driver blocks and searches for a server up to the serverSelectionTimeoutMS value. 
+            When true, the driver scans the MongoDB deployment exactly once after server selection fails and then either selects a server or raises an error. When false, the driver searches for a server until the serverSelectionTimeoutMS value is reached. Only applies for single-threaded drivers.
         </td>
         <td>
             true
@@ -596,7 +596,7 @@ The time limit (in milliseconds) of the write concern.
             Number
         </td>
         <td>
-            heartbeatFrequencyMS controls when the driver checks the state of the MongoDB deployment. Specify the interval (in milliseconds) between checks, counted from the end of the previous check until the beginning of the next one.
+            Controls the intervals between which the driver checks the state of the MongoDB deployment. The interval (in milliseconds) between checks, counted from the end of the previous check until the beginning of the next one.
         </td>
         <td>
             -
@@ -727,7 +727,7 @@ The time limit (in milliseconds) of the write concern.
             String
         </td>
         <td>
-            A seed list is used by drivers and clients (like the mongo shell) for initial discovery of the replica set configuration. Seed lists can be provided as a list of host:port pairs. This is used in Replica Sets and Sharded Clusters.
+            A seed list is used by drivers and clients (like the mongo shell) for initial discovery of the replica set configuration. Seed lists can be provided as host:port pairs. This is used in replica sets and shared clusters.
         </td>
         <td>
             -
@@ -744,7 +744,7 @@ The time limit (in milliseconds) of the write concern.
             String
         </td>
         <td>
-            The username to authenticate the database associated with the user.
+            The user name to authenticate the database associated with the user.
         </td>
         <td>
             -
@@ -772,9 +772,9 @@ The time limit (in milliseconds) of the write concern.
     </tr>
 </table>
 
-**Sample Configuration of STANDARD configs**
+**Sample configuration of STANDARD configs**
 
-Sample Configuration of STANDARD - standalone configs
+Sample configuration of STANDARD (standalone) configs.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -791,7 +791,7 @@ Sample Configuration of STANDARD - standalone configs
 </localEntry>
 ```
 
-Sample Configuration of STANDARD - replica set configs
+Sample configuration of STANDARD (replica set) configs
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -847,7 +847,7 @@ Sample Configuration of STANDARD - replica set configs
             String
         </td>
         <td>
-            The username to authenticate the database associated with the user.
+            The user name to authenticate the database associated with the user.
         </td>
         <td>
             -
@@ -896,7 +896,7 @@ Sample Configuration of STANDARD - replica set configs
 
 ## Operations
 
-The following operations allow you to work with the MongoDB Connector. Click an operation name to see parameter details and samples on how to use it.
+The following operations allow you to work with the MongoDB connector. Click an operation name to see parameter details and samples on how to use it.
 
 ??? note "insertOne"
     Inserts a document into a collection. See the related [insertOne documentation](https://docs.mongodb.com/manual/reference/method/db.collection.insertOne/) for more information.
@@ -1162,7 +1162,7 @@ The following operations allow you to work with the MongoDB Connector. Click an 
     ```
 
 ??? note "find"
-    Selects documents in a collection or [view](https://docs.mongodb.com/manual/core/views/) and returns a [cursor](https://docs.mongodb.com/manual/reference/glossary/#term-cursor) to the selected documents.See the related [find documentation](https://docs.mongodb.com/manual/reference/method/db.collection.find/) for more information.
+    Selects documents in a collection or [view](https://docs.mongodb.com/manual/core/views/) and returns a [cursor](https://docs.mongodb.com/manual/reference/glossary/#term-cursor) to the selected documents. See the related [find documentation](https://docs.mongodb.com/manual/reference/method/db.collection.find/) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1196,7 +1196,7 @@ The following operations allow you to work with the MongoDB Connector. Click an 
                 JSON String
             </td>
             <td>
-                Specifies selection filter using [query operators](https://docs.mongodb.com/manual/reference/operator/). To return all documents in a collection, omit this parameter or pass an empty document ({}).
+                Selection filter using [query operators](https://docs.mongodb.com/manual/reference/operator/). To return all documents in a collection, omit this parameter or pass an empty document ({}).
             </td>
             <td>
                 {}
@@ -1393,7 +1393,7 @@ The following operations allow you to work with the MongoDB Connector. Click an 
     </table>
 
     !!! Info
-        Array Filters parameter should be in a JSON object format. Please refer to the example below.
+        Array Filters parameter should be in a JSON object format. See the example given below.
 
         ```
         {
@@ -1557,7 +1557,7 @@ The following operations allow you to work with the MongoDB Connector. Click an 
     </table>
 
     !!! Info
-        Array Filters parameter should be in a JSON object format. Please refer to the example below.
+        Array filters parameter should be in a JSON object format. See the example given below.
 
         ```
         {
