@@ -1,4 +1,3 @@
-, 
 # MongoDB Connector Overview
 
 The MongoDB Connector allows you to connect to the MongoDB database via different connection URI and perform CRUD operations on the database.
