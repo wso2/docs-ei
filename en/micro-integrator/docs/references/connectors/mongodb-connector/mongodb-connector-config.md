@@ -1414,6 +1414,7 @@ The following operations allow you to work with the MongoDB connector. Click an 
                 }
             }
         }
+        ```
 
     **Sample Configuration**
 
