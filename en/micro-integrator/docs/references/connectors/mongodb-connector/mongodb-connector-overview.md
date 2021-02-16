@@ -1,4 +1,3 @@
-
 # MongoDB Connector Overview
 
 The MongoDB Connector allows you to connect to the MongoDB database via different connection URI and perform CRUD operations on the database.
@@ -15,7 +14,7 @@ It is always recommended to download the latest version of the connector.
 
 | Connector version | Supported WSO2 ESB/EI version |
 | ------------- |------------- |
-|  [1.0.0](https://github.com/wso2-extensions/esb-connector-mongodb/tree/v1.0.0)        | EI 6.6.0 |
+|  1.0.0        | EI 6.6.0, EI 7.1.0 |
 
 This connector was tested with MongoDB version 4.4.3.
 
