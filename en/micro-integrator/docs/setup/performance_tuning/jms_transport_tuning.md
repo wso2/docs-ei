@@ -34,7 +34,8 @@ To adjust the values of these properties, you can modify the server startup scri
 
 ### Using the jms.properties file
 
-1.  Create a file named `jms.properties` with the following properties:
+1.  Create a file named `jms.properties` in the `<MI_HOME>/conf` directory with the following properties:
+
     -   `lst_t_core=200`
     -   `lst_t_max=250`
     -   `snd_t_core=200`
@@ -60,8 +61,6 @@ To adjust the values of these properties, you can modify the server startup scri
 
         !!! warning
             If the values derived via the above calculation exceed the recommended values, make sure that your server has the necessary resources to handle the defined thread pool size efficiently.
-
-2.  Create a directory called `conf` under your `MI_HOME` directory and save the file in this directory.
 
 ## Tuning the JMS Listener
 
