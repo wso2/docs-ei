@@ -34,9 +34,7 @@ To adjust the values of these properties, you can modify the server startup scri
 
 ### Using the jms.properties file
 
-1.  Create a directory named `conf` in your `<MI_HOME>` directory.
-
-2.  Create a file named `jms.properties` in the `<MI_HOME>/conf` directory with the following properties:
+1.  Create a file named `jms.properties` in the `<MI_HOME>/conf` directory with the following properties:
 
     -   `lst_t_core=200`
     -   `lst_t_max=250`
