@@ -397,7 +397,7 @@ application as follows:
     INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App StoreRdbmsError deployed successfully
     ```
 
-#### Step 7.2: Publish an event to the StoreRdbmsError Siddhi application
+#### Step 7.3: Publish an event to the StoreRdbmsError Siddhi application
 
 Send an event to the `InsertStream` input stream of the `StoreRdbmsError` Siddhi application by issuing the following CURL 
 command.
@@ -420,7 +420,7 @@ in the wso2si terminal. It shows that the erroneous event has been captured and 
 [2020-11-03 11:48:28,951] ERROR {io.siddhi.core.table.Table} - Error on 'StoreRdbmsError' while performing add for events  at 'SweetProductionTable'. Events saved 'EventChunk{first=StreamEvent{ timestamp=1604384308930, beforeWindowData=null, onAfterWindowData=null, outputData=[1, 45.6, 102], type=CURRENT, next=null}}'
 ```
 
-#### Step 7.3: Manage the error in the Error Store Explorer
+#### Step 7.4: Manage the error in the Error Store Explorer
 
 To manage the error in the Error Store Explorer, follow the procedure below:
 
