@@ -45,6 +45,19 @@ The following operations allow you to work with the Jira Connector. Click an ope
         <blocking>{$ctx:blocking}</blocking>
     </jira.init>
     ```
+
+    **Sample request**
+
+    Following is a sample REST request that can be handled by the init operation.
+
+    ```json
+    {
+        "username":"admin",
+        "password":"jira@jaffna",
+        "uri":"http://localhost:8080",
+        "blocking":"false"
+    }
+    ```
     
     
 ??? note "getDashboards"
@@ -115,141 +128,141 @@ The following operations allow you to work with the Jira Connector. Click an ope
     }
     ```
     
-    ??? note "getDashboardById"
-    
-        This operation returns a JSON representation of the dashboard details, including its name, ID, and more.
-        <table>
-            <tr>
-                <th>Parameter Name</th>
-                <th>Description</th>
-                <th>Required</th>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td>Identifies the dashboard whose details you want to get.</td>
-                <td>Yes</td>
-            </tr>
-        </table>
-    
-        **Sample configuration**
-        
-        ```xml
-        <jira.getDashboardById>
-            <id>{$ctx:id}</id>
-        </jira.getDashboardById>
-        ```
+??? note "getDashboardById"
 
-        **Sample request**
-    
-        Following is a sample REST/JSON request that can be handled by the getDashboardById operation.
-        ```json
-        {
-            "username":"admin",
-            "password":"jira@jaffna",
-            "uri":"http://localhost:8080",
-            "id":"10100"
-        }
-        ```
-        
-        **Sample response**
-        
-        Given below is a sample response for the getDashboardById operation.
-        
-        ```json
-        {
-            "id": "10100",
-            "name": "test",
-            "self": "http://localhost:8080/rest/api/2/dashboard/10100",
-            "view": "http://localhost:8080/secure/Dashboard.jspa?selectPageId=10100"
-        }
-        ```
+    This operation returns a JSON representation of the dashboard details, including its name, ID, and more.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>Identifies the dashboard whose details you want to get.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
 
-    ??? note "getFilterById"
+    **Sample configuration**
     
-        To get information about a specific filter, use getFilterById and specify the filter ID. This operation returns a JSON representation of the filter information, including the name, ID, search URL, and more.
-        <table>
-            <tr>
-                <th>Parameter Name</th>
-                <th>Description</th>
-                <th>Required</th>
-            </tr>
-            <tr>
-                <td>filterId</td>
-                <td>Identifies the filter whose information you want to get.</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>expand</td>
-                <td>The parameters to expand.</td>
-                <td>Yes</td>
-            </tr>
-        </table>
-    
-        **Sample configuration**
-        
-        ```xml
-        <jira.getFilterById>
-            <filterId>{$ctx:filterId}</filterId>
-            <expand>{$ctx:expand}</expand>
-        </jira.getFilterById>
-        ```
+    ```xml
+    <jira.getDashboardById>
+        <id>{$ctx:id}</id>
+    </jira.getDashboardById>
+    ```
 
-        **Sample request**
-        Following is a sample REST/JSON request that can be handled by the getFilterById operation.
-        
-        ```json
-        {
-            "username":"admin",
-            "password":"jira@jaffna",
-            "uri":"http://localhost:8080",
-            "filterId":"10100"
-        }
-        ``` 
-        
-        **Sample response**
-        Given below is a sample response for the getFilterById operation.
-        
-        ```json
-        {
-            "self": "http://localhost:8080/rest/api/2/filter/10100",
-            "id": "10100",
-            "name": "All Open Bugs",
-            "description": "Lists all open bugs",
-            "owner": {
-                "self": "http://localhost:8080/rest/api/2/user?username=admin",
-                "key": "admin",
-                "name": "admin",
-                "avatarUrls": {
-                    "48x48": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=48",
-                    "24x24": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=24",
-                    "16x16": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=16",
-                    "32x32": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=32"
-                },
-                "displayName": "admin@gmail.com",
-                "active": true
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the getDashboardById operation.
+    ```json
+    {
+        "username":"admin",
+        "password":"jira@jaffna",
+        "uri":"http://localhost:8080",
+        "id":"10100"
+    }
+    ```
+    
+    **Sample response**
+    
+    Given below is a sample response for the getDashboardById operation.
+    
+    ```json
+    {
+        "id": "10100",
+        "name": "test",
+        "self": "http://localhost:8080/rest/api/2/dashboard/10100",
+        "view": "http://localhost:8080/secure/Dashboard.jspa?selectPageId=10100"
+    }
+    ```
+
+??? note "getFilterById"
+
+    To get information about a specific filter, use getFilterById and specify the filter ID. This operation returns a JSON representation of the filter information, including the name, ID, search URL, and more.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>filterId</td>
+            <td>Identifies the filter whose information you want to get.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>expand</td>
+            <td>The parameters to expand.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+    
+    ```xml
+    <jira.getFilterById>
+        <filterId>{$ctx:filterId}</filterId>
+        <expand>{$ctx:expand}</expand>
+    </jira.getFilterById>
+    ```
+
+    **Sample request**
+    Following is a sample REST/JSON request that can be handled by the getFilterById operation.
+    
+    ```json
+    {
+        "username":"admin",
+        "password":"jira@jaffna",
+        "uri":"http://localhost:8080",
+        "filterId":"10100"
+    }
+    ``` 
+    
+    **Sample response**
+    Given below is a sample response for the getFilterById operation.
+    
+    ```json
+    {
+        "self": "http://localhost:8080/rest/api/2/filter/10100",
+        "id": "10100",
+        "name": "All Open Bugs",
+        "description": "Lists all open bugs",
+        "owner": {
+            "self": "http://localhost:8080/rest/api/2/user?username=admin",
+            "key": "admin",
+            "name": "admin",
+            "avatarUrls": {
+                "48x48": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=48",
+                "24x24": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=24",
+                "16x16": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=16",
+                "32x32": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=32"
             },
-            "jql": "type = Bug AND resolution is EMPTY",
-            "viewUrl": "http://localhost:8080/issues/?filter=10100",
-            "searchUrl": "http://localhost:8080/rest/api/2/search?jql=type+%3D+Bug+AND+resolution+is+EMPTY",
-            "favourite": true,
-            "sharePermissions": [],
-            "editable": true,
-            "sharedUsers": {
-                "size": 0,
-                "items": [],
-                "max-results": 1000,
-                "start-index": 0,
-                "end-index": 0
-            },
-            "subscriptions": {
-                "size": 0,
-                "items": [],
-                "max-results": 1000,
-                "start-index": 0,
-                "end-index": 0
-            }
+            "displayName": "admin@gmail.com",
+            "active": true
+        },
+        "jql": "type = Bug AND resolution is EMPTY",
+        "viewUrl": "http://localhost:8080/issues/?filter=10100",
+        "searchUrl": "http://localhost:8080/rest/api/2/search?jql=type+%3D+Bug+AND+resolution+is+EMPTY",
+        "favourite": true,
+        "sharePermissions": [],
+        "editable": true,
+        "sharedUsers": {
+            "size": 0,
+            "items": [],
+            "max-results": 1000,
+            "start-index": 0,
+            "end-index": 0
+        },
+        "subscriptions": {
+            "size": 0,
+            "items": [],
+            "max-results": 1000,
+            "start-index": 0,
+            "end-index": 0
         }
-        ```
+    }
+    ```
 
 ??? note "getFavouriteFilters"
     To get the favorite filters of the current user, use getFavouriteFilter. This operation returns a JSON representation of the filters, including their names, IDs, search URLs, and more.
@@ -433,118 +446,118 @@ The following operations allow you to work with the Jira Connector. Click an ope
     }
     ```
 
-    ??? note "updateFilterById"
-        To update an existing filter, use updateFilterById, specify the filter ID.
-        <table>
-            <tr>
-                <th>Parameter Name</th>
-                <th>Description</th>
-                <th>Required</th>
-            </tr>
-            <tr>
-                <td>filterId</td>
-                <td>The id of the filter./td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>filterName</td>
-                <td>The name of the filter.</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>description</td>
-                <td>The description of the filter.</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>jqlType</td>
-                <td>The jqlType of the filter.</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>favourite</td>
-                <td>Specify whether favourite.</td>
-                <td>Yes</td>
-            </tr>
-            <tr>
-                <td>expand</td>
-                <td>The parameters to expand.</td>
-                <td>Yes</td>
-            </tr>
-        </table>
+??? note "updateFilterById"
+    To update an existing filter, use updateFilterById, specify the filter ID.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>filterId</td>
+            <td>The id of the filter./td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>filterName</td>
+            <td>The name of the filter.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>The description of the filter.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>jqlType</td>
+            <td>The jqlType of the filter.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>favourite</td>
+            <td>Specify whether favourite.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>expand</td>
+            <td>The parameters to expand.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
 
-        **Sample configuration**
-        
-        ```xml
-        <jira.updateFilterById>
-            <filterId>{$ctx:filterId}</filterId>
-            <filterName>{$ctx:filterName}</filterName>
-            <description>{$ctx:description}</description>
-            <jqlType>{$ctx:jqlType}</jqlType>
-            <favourite>{$ctx:favourite}</favourite>
-        </jira.updateFilterById>
-        ```
-        
-        **Sample request**
-        Following is a sample REST/JSON request that can be handled by the updateFilterById operation.
-        
-        ```json
-        {
-        "username":"admin",
-        "password":"jira@jaffna",
-        "uri":"http://localhost:8080",
-        "filterName":"All  Bugs",
-        "description":"Lists all bugs",
-        "jqlType":"Bug and resolution is empty",
-        "favourite":"true",
-        "filterId":"10101"
-        }
-        ```
+    **Sample configuration**
+    
+    ```xml
+    <jira.updateFilterById>
+        <filterId>{$ctx:filterId}</filterId>
+        <filterName>{$ctx:filterName}</filterName>
+        <description>{$ctx:description}</description>
+        <jqlType>{$ctx:jqlType}</jqlType>
+        <favourite>{$ctx:favourite}</favourite>
+    </jira.updateFilterById>
+    ```
+    
+    **Sample request**
+    Following is a sample REST/JSON request that can be handled by the updateFilterById operation.
+    
+    ```json
+    {
+    "username":"admin",
+    "password":"jira@jaffna",
+    "uri":"http://localhost:8080",
+    "filterName":"All  Bugs",
+    "description":"Lists all bugs",
+    "jqlType":"Bug and resolution is empty",
+    "favourite":"true",
+    "filterId":"10101"
+    }
+    ```
 
-        **Sample response**
-        Given below is a sample response for the updateFilterById operation.
-        
-        ```json
-        {
-            "self": "http://localhost:8080/rest/api/2/filter/10101",
-            "id": "10101",
-            "name": "All  Bugs",
-            "description": "Lists all bugs",
-            "owner": {
-                "self": "http://localhost:8080/rest/api/2/user?username=admin",
-                "key": "admin",
-                "name": "admin",
-                "avatarUrls": {
-                    "48x48": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=48",
-                    "24x24": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=24",
-                    "16x16": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=16",
-                    "32x32": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=32"
-                },
-                "displayName": "admin@gmail.com",
-                "active": true
+    **Sample response**
+    Given below is a sample response for the updateFilterById operation.
+    
+    ```json
+    {
+        "self": "http://localhost:8080/rest/api/2/filter/10101",
+        "id": "10101",
+        "name": "All  Bugs",
+        "description": "Lists all bugs",
+        "owner": {
+            "self": "http://localhost:8080/rest/api/2/user?username=admin",
+            "key": "admin",
+            "name": "admin",
+            "avatarUrls": {
+                "48x48": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=48",
+                "24x24": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=24",
+                "16x16": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=16",
+                "32x32": "https://www.gravatar.com/avatar/9f2ee74106e4d9afc58bb796a0895908?d=mm&s=32"
             },
-            "jql": "type = Bug AND resolution is EMPTY",
-            "viewUrl": "http://localhost:8080/issues/?filter=10101",
-            "searchUrl": "http://localhost:8080/rest/api/2/search?jql=type+%3D+Bug+AND+resolution+is+EMPTY",
-            "favourite": true,
-            "sharePermissions": [],
-            "editable": true,
-            "sharedUsers": {
-                "size": 0,
-                "items": [],
-                "max-results": 1000,
-                "start-index": 0,
-                "end-index": 0
-            },
-            "subscriptions": {
-                "size": 0,
-                "items": [],
-                "max-results": 1000,
-                "start-index": 0,
-                "end-index": 0
-            }
+            "displayName": "admin@gmail.com",
+            "active": true
+        },
+        "jql": "type = Bug AND resolution is EMPTY",
+        "viewUrl": "http://localhost:8080/issues/?filter=10101",
+        "searchUrl": "http://localhost:8080/rest/api/2/search?jql=type+%3D+Bug+AND+resolution+is+EMPTY",
+        "favourite": true,
+        "sharePermissions": [],
+        "editable": true,
+        "sharedUsers": {
+            "size": 0,
+            "items": [],
+            "max-results": 1000,
+            "start-index": 0,
+            "end-index": 0
+        },
+        "subscriptions": {
+            "size": 0,
+            "items": [],
+            "max-results": 1000,
+            "start-index": 0,
+            "end-index": 0
         }
-        ```
+    }
+    ```
 
 ??? note "deleteFilter"
     To delete a filter, use deleteFilter and specify the filter ID.
@@ -1569,7 +1582,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
     </table>
 
-    !!! Note
+    !!! Info
         Multipart/form-data cannot be processed inside the server. Therefore, the Micro Integrator/ESB should be in a content-unaware status. To achieve this, configure a pass-through proxy, and then build the message from the client end and send it to the proxy.
 
     **Sample configuration**
@@ -4260,29 +4273,37 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ### Sample configuration in a scenario
 
-The following is a sample proxy service that illustrates how to connect to the Email connector and use the send operation to send an email. You can use this sample as a template for using other operations in this category.
+The following is a sample proxy service that illustrates how to connect to the Jira connector and use the getDashboardById operation to get dashboard details. You can use this sample as a template for using other operations in this category.
 
 **Sample Proxy**
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse"
-       name="SendEmail"
-       transports="https,http"
-       statistics="disable"
-       trace="disable"
-       startOnLoad="true">
+       name="getDashboardById"
+       transports="https http"
+       startOnLoad="true"
+       trace="disable">
+   <description/>
    <target>
       <inSequence>
-         <email.send configKey="smtpsconnection">
-             <from>{json-eval($.from)}</from>
-             <to>{json-eval($.to)}</to>
-             <subject>{json-eval($.subject)}</subject>
-             <content>{json-eval($.content)}</content>
-         </email.send>
+         <property name="username" expression="json-eval($.username)"/>
+         <property name="password" expression="json-eval($.password)"/>
+         <property name="uri" expression="json-eval($.uri)"/>
+         <property name="id" expression="json-eval($.id)"/>
+         <jira.init>
+            <username>{$ctx:username}</username>
+            <password>{$ctx:password}</password>
+            <uri>{$ctx:uri}</uri>
+         </jira.init>
+         <jira.getDashboardById>
+            <id>{$ctx:id}</id>
+         </jira.getDashboardById>
+         <log level="full"/>
          <respond/>
       </inSequence>
+      <outSequence/>
+      <faultSequence/>
    </target>
-   <description/>
-</proxy>         
+</proxy>        
 ```
 
 **Note**: For more information on how this works in an actual scenario, see [Jira Connector Example](jira-connector-example.md).
