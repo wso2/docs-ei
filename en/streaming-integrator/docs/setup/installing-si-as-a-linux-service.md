@@ -8,7 +8,7 @@ Install JDK version 1.8.0_144 and set the `JAVA_HOME` variable.
 
 ## Download and install the Streaming Integrator
 
-Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/#), click **Download**, and then click **Zip Archive** to download the product distribution as a ZIP file.
+Go to the WSO2 Streaming Integrator [product page](https://wso2.com/integration/streaming-integrator/), click **Download**, and then click **Zip Archive** to download the product distribution as a ZIP file.
 
 Extract the download ZIP file to a location on your computer. The <b>streaming-integrator</b> folder inside the extracted ZIP file will be your <b>SI_HOME</b> directory.
 
