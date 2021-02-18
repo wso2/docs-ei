@@ -1,5 +1,8 @@
 # Applying Security to a Proxy Service
 
+!!! Note
+    **Please note that the contents on this page is currently under review!!!**
+
 The steps below demonstrate how you can apply security to a proxy service via WSO2 Integration Studio.
 
 ## Prerequisites

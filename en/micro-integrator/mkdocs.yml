@@ -344,7 +344,8 @@ nav:
             - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
             - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
           - Working with Secrets:
-            - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
+            - 'Encrypting Secrets using WSO2 Secure Vault' : 'setup/security/encrypting_plain_text.md'
+            - 'Using Hashicorp Secrets' : 'setup/security/using-hashicorp-secrets.md'
             - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Securing the Management API' : 'setup/security/securing_management_api.md'
           - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
@@ -584,6 +585,10 @@ nav:
           - 'Setting up Microsoft Azure Storage': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
           - 'Microsoft Azure Storage Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
           - 'Microsoft Azure Storage Reference': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
+        - MongoDB Connector:
+          - 'MongoDB Connector Overview': 'references/connectors/mongodb-connector/mongodb-connector-overview.md'
+          - 'MongoDB Connector Example': 'references/connectors/mongodb-connector/mongodb-connector-example.md'
+          - 'MongoDB Connector Reference': 'references/connectors/mongodb-connector/mongodb-connector-config.md'
         - Redis Connector:
           - 'Redis Overview': 'references/connectors/redis-connector/redis-connector-overview.md'
           - 'Setting up the Environment': 'references/connectors/redis-connector/redis-connector-configuration.md'

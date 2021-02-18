@@ -21,6 +21,10 @@ WSO2 Integration Studio provides a comprehensive development experience for buil
 
 ### Install and run WSO2 Integration Studio
 
+You can refer to the following video to get a quick understanding of how this is done.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jS47WsycaII" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Follow the steps given below.
 
 1.  Download the [distribution](https://wso2.com/integration/integration-studio/) for your operating system.

@@ -640,12 +640,14 @@ We can use POST Org Units operation with required parameters to create a new org
 <ceridiandayforce.postOrgUnits>
     <isValidateOnly>{$ctx:isValidateOnly}</isValidateOnly>
     <fieldAndValue>{$ctx:fieldAndValue}</fieldAndValue>
+    <calibrateOrg>{$ctx:calibrateOrg}</calibrateOrg>
 </ceridiandayforce.postOrgUnits>
 ```
 
 **Properties**
 
 * isValidateOnly (Mandatory): When a TRUE value is used in this parameter, POST and PATCH operations validate the request without applying updates to the database.
+* calibrateOrg : TRUE or FALSE values to determine whether the Org Recalculation process is to be triggered. The default value is TRUE if parameter is not specified.
 
 **Sample request**
 
@@ -693,17 +695,21 @@ We can use PATCH Org Units operation with required parameters to update an exist
 
 **PATCH Org Units**
 ```xml
-<ceridiandayforce.getEmployeeAddresses>
+<ceridiandayforce.patchOrgUnits>
     <xRefCode>{$ctx:xRefCode}</xRefCode>
     <isValidateOnly>{$ctx:isValidateOnly}</isValidateOnly>
     <fieldAndValue>{$ctx:fieldAndValue}</fieldAndValue>
-</ceridiandayforce.getEmployeeAddresses>
+    <replaceExisting>{$ctx:replaceExisting}</replaceExisting>
+    <calibrateOrg>{$ctx:calibrateOrg}</calibrateOrg>
+</ceridiandayforce.patchOrgUnits>
 ```
 
 **Properties**
 
 * xRefCode (Mandatory): The unique identifier (external reference code) of the org unit. The value provided must be the exact match for an org unit; otherwise, a bad request (400) error will be returned.
 * isValidateOnly (Mandatory): When a TRUE value is used in this parameter, POST and PATCH operations validate the request without applying updates to the database.
+* replaceExisting : Comma-separated list of OrgUnit sub-entities where the respective data provided will replace all existing records. This currently applies to OrgUnitLocationTypes sub-entities, which are considered as a list and are not effective dated.
+* calibrateOrg : TRUE or FALSE values to determine whether the Org Recalculation process is to be triggered. The default value is TRUE if parameter is not specified.
 
 **Sample request**
 

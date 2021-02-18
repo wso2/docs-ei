@@ -25,29 +25,67 @@ We can use GET Employees operation with required parameters to search and find t
 ```xml
 <ceridiandayforce.getEmployees>
     <employeeNumber>{$ctx:employeeNumber}</employeeNumber>
+    <displayName>{$ctx:displayName}</displayName>
+    <socialSecurityNumber>{$ctx:socialSecurityNumber}</socialSecurityNumber>
     <employmentStatusXRefCode>{$ctx:employmentStatusXRefCode}</employmentStatusXRefCode>
     <orgUnitXRefCode>{$ctx:orgUnitXRefCode}</orgUnitXRefCode>
+    <departmentXRefCode>{$ctx:departmentXRefCode}</departmentXRefCode>
+    <jobXRefCode>{$ctx:jobXRefCode}</jobXRefCode>
+    <positionXRefCode>{$ctx:positionXRefCode}</positionXRefCode>
+    <payPolicyXRefCode>{$ctx:payPolicyXRefCode}</payPolicyXRefCode>
+    <payClassXRefCode>{$ctx:payClassXRefCode}</payClassXRefCode>
+    <payGroupXRefCode>{$ctx:payGroupXRefCode}</payGroupXRefCode>
+    <payTypeXRefCode>{$ctx:payTypeXRefCode}</payTypeXRefCode>
+    <payrollPolicyXRefCode>{$ctx:payrollPolicyXRefCode}</payrollPolicyXRefCode>
     <filterHireStartDate>{$ctx:filterHireStartDate}</filterHireStartDate>
     <filterHireEndDate>{$ctx:filterHireEndDate}</filterHireEndDate>
     <filterTerminationStartDate>{$ctx:filterTerminationStartDate}</filterTerminationStartDate>
     <filterTerminationEndDate>{$ctx:filterTerminationEndDate}</filterTerminationEndDate>
     <filterUpdatedStartDate>{$ctx:filterUpdatedStartDate}</filterUpdatedStartDate>
     <filterUpdatedEndDate>{$ctx:filterUpdatedEndDate}</filterUpdatedEndDate>
+    <filterUpdatedEntities>{$ctx:filterUpdatedEntities}</filterUpdatedEntities>
+    <filterOriginalHireStartDate>{$ctx:filterOriginalHireStartDate}</filterOriginalHireStartDate>
+    <filterOriginalHireEndDate>{$ctx:filterOriginalHireEndDate}</filterOriginalHireEndDate>
+    <filterSeniorityStartDate>{$ctx:filterSeniorityStartDate}</filterSeniorityStartDate>
+    <filterSeniorityEndDate>{$ctx:filterSeniorityEndDate}</filterSeniorityEndDate>
+    <filterBaseSalaryFrom>{$ctx:filterBaseSalaryFrom}</filterBaseSalaryFrom>
+    <filterBaseSalaryTo>{$ctx:filterBaseSalaryTo}</filterBaseSalaryTo>
+    <filterBaseRateFrom>{$ctx:filterBaseRateFrom}</filterBaseRateFrom>
+    <filterBaseRateTo>{$ctx:filterBaseRateTo}</filterBaseRateTo>
     <contextDate>{$ctx:contextDate}</contextDate>
 </ceridiandayforce.getEmployees>
 ```
 
 **Properties**
 
-* employeeNumber: Employment identification number assigned to an employee. A partial value can be provided for a wider search.\
+* employeeNumber: Employment identification number assigned to an employee. A partial value can be provided for a wider search.
+* displayName: Employee Name. A partial value can be provided for a wider search.
+* socialSecurityNumber: Social Security Number of the employee. A partial value can be provided for a wider search.
 * employmentStatusXRefCode: A case-sensitive field containing employment status values, which can be client-specific. Use a ContextDate value to search for employees with a given status as of a point in time. Otherwise, the search will use the current date and time.<br/>
 * orgUnitXRefCode: A case-sensitive field that identifies a client's organizational units. Use this to search all levels of the employees’ organization including department, location, region, corporate, etc. Use a ContextDate value to search for employees with a specific value as of a point in time. Otherwise, the search will use the current date and time.<br/>
+* departmentXRefCode: Department xrefcode value, which can be client-specific. Use this to search employees' work assignments having the given department. Use a ContextDate value to search for employees with a given department as of a point in time. Otherwise, the search will use the current date and time.
+* jobXRefCode: Job xrefcode value, which can be client-specific. Use this to search employees' work assignments having the given job. Use a ContextDate value to search for employees with a given job as of a point in time. Otherwise, the search will use the current date and time.
+* positionXRefCode: Position xrefcode value, which can be client-specific. Use this to search employees' work assignments having the given position. Use a ContextDate value to search for employees with a given position as of a point in time. Otherwise, the search will use the current date and time.
+* payClassXRefCode: Pay class xrefcode value, which can be client-specific. Use this to search employees having the given pay class. Use a ContextDate value to search for employees with a given pay class as of a point in time. Otherwise, the search will use the current date and time.
+* payGroupXRefCode: Pay group xrefcode value, which can be client-specific. Use this to search employees having the given pay group. Use a ContextDate value to search for employees with a given pay group as of a point in time. Otherwise, the search will use the current date and time.
+* payPolicyXRefCode: Pay policy xrefcode value, which can be client-specific. Use this to search employees having the given pay policy. Use a ContextDate value to search for employees with a given pay policy as of a point in time. Otherwise, the search will use the current date and time.
+* payTypeXRefCode: Pay type xrefcode value, which can be client-specific. Use this to search employees having the given pay type. Use a ContextDate value to search for employees with a given pay type as of a point in time. Otherwise, the search will use the current date and time.
+* payrollPolicyXRefCode: Payroll policy xrefcode value, which can be client-specific. Use this to search employees having the given payroll policy. Use a ContextDate value to search for employees with a given payroll policy as of a point in time. Otherwise, the search will use the current date and time.
 * filterHireStartDate: Use to search for employees whose most recent hire date is greater than or equal to the specified value (e.g. 2017-01-01T13:24:56). Use with filterHireEndDate to search for employees hired or rehired in a given timeframe.
 * filterHireEndDate: This date is used to search for employees whose most recent hire date is less than or equal to the specified value. Typically this parameter is used in conjunction with FilterHireStartDate to search for employees hired or rehired in a given timeframe. Example: 2017-01-01T13:24:56
 * filterTerminationStartDate: This date is used to search for employees with termination date values greater than or equal to the specified value. Typically this parameter is used in conjunction with FilterTerminationStartDate to search for employees terminated in a given timeframe. Example: 2017-01-01T13:24:56
 * filterTerminationEndDate: This date is used to search for employees with termination date values less than or equal to the specified value. Typically this parameter is used in conjunction with filterTerminationStartDate to search for employees terminated in a given timeframe. Example: 2017-01-01T13:24:56
 * filterUpdatedStartDate: The beginning date used when searching for employees with updates (and newly effective records) in a specified timeframe. When a value is provided for this parameter, a filterUpdatedEndDate value must also be provided. Because this search is conducted across all entities in the HR data model regardless of whether the requesting user has access to them, it is possible that the query will return XRefCode of employees with changes in which the consuming application is not interested. Example: 2017-01-01T13:24:56
 * filterUpdatedEndDate: The end date used when searching for employees with updates (and newly effective records) in a specified timeframe. When a value is provided for this parameter, a filterUpdatedStartDate value must also be provided. Example: 2017-01-01T13:24:56
+* filterUpdatedEntities: Use to search employees with changes to specific employee sub-entities. These sub-entity names, based on the employee model, can be provided in a comma-separated value, e.g. filterUpdatedEntities=EmploymentStatuses,WorkAssignments,Addresses. The base Employee is always searched by default. This parameter requires that filterUpdatedStartDate/filterUpdatedEndDate range is provided, otherwise it is ignored and all relevant employee entities are searched.
+* filterOriginalHireStartDate: Use to search for employees with original hire date values greater than or equal to the specified value. Typically this parameter is used in conjunction with filterOriginialHireEndDate to search for employees who were originally hired in a given timeframe. Example: 2017-01-01T13:24:56
+* filterOriginalHireEndDate: Use to search for employees with original hire date values less than or equal to the specified value. Typically this parameter is used in conjunction with filterOriginialHireStartDate to search for employees who were originally hired in a given timeframe. Example: 2017-01-01T13:24:56
+* filterSeniorityStartDate: Use to search for employees with seniority date values greater than or equal to the specified value. Typically this parameter is used in conjunction with filterSeniorityEndDate to search for employees seniority date in a given timeframe. Example: 2017-01-01T13:24:56
+* filterSeniorityEndDate: Use to search for employees with original hire date values less than or equal to the specified value. Typically this parameter is used in conjunction with filterSeniorityStartDate to search for employees seniority date in a given timeframe. Example: 2017-01-01T13:24:56
+* filterBaseSalaryFrom: Use to search for employees base salary greater than or equal to the specified value. Typically this parameter is used in conjunction with filterBaseSalaryTo to search for employees base salary in a given range. Example: 20000
+* filterBaseSalaryTo: Use to search for employees base salary less than or equal to the specified value. Typically this parameter is used in conjunction with filterBaseSalaryFrom to search for employees base salary in a given range. Example: 40000
+* filterBaseRateFrom: Use to search for employees base rate greater than or equal to the specified value. Typically this parameter is used in conjunction with filterBaseRateTo to search for employees base rate in a given range. Example: 10
+* filterBaseRateTo: Use to search for employees base rate less than or equal to the specified value. Typically this parameter is used in conjunction with filterBaseRateFrom to search for employees base rate in a given range. Example: 40
 * contextDate: The Context Date value is an “as-of” date used to determine which employee data to search when records have specific start and end dates. The service defaults to the current datetime if the requester does not specify a value. Example: 2017-01-01T13:24:56
 
 **Sample request**
@@ -358,6 +396,7 @@ We can use PATCH employee operation to update an existing employee details.
     <fieldAndValue>{$ctx:fieldAndValue}</fieldAndValue>
     <xRefCode>{$ctx:xRefCode}</xRefCode>
     <isValidateOnly>{$ctx:isValidateOnly}</isValidateOnly>
+    <replaceExisting>{$ctx:replaceExisting}</replaceExisting>
 </ceridiandayforce.patchEmployee>
 ```
 
@@ -365,6 +404,7 @@ We can use PATCH employee operation to update an existing employee details.
 
 * xRefCode: The unique identifier (external reference code) of the employee to be retrieved. The value provided must be the exact match for an employee; otherwise, a bad request (400) error will be returned.
 * isValidateOnly: When a TRUE value is used in this parameter, POST (hire and rehire ) and PATCH (employee update) operations validate the request without applying updates to the database.
+* replaceExisting: Comma-separated list of employee sub-entities where the respective data provided will replace all existing records. This currently applies to EmployeePayAdjustCodeGroups, UserPayAdjustCodeGroups and ClockDeviceGroups sub-entities, which are considered as a list and are not effective dated.
 
 **Sample request**
 

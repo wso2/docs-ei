@@ -4,6 +4,10 @@ The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed i
 
 ## Installing the CLI
 
+You can refer to the following video to get a quick understanding of how this is done.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/crh2eyalG9s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 To download the CLI:
 
 1.  Go to [**WSO2 Enterprise Integrator** website](https://wso2.com/integration/) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
@@ -128,6 +132,12 @@ To download the CLI:
     ```
 
 Once you are logged in to a Micro Integrator server's management API, you can use the available options and commands to manage artifact deployments and to perform other adminstration tasks.
+
+## Monitoring artifacts using the CLI
+
+You can refer to the following video to get a quick understanding of how this is done.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Q-Vi2eOXsSw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## CLI Reference
 
