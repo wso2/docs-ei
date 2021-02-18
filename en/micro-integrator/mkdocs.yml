@@ -285,7 +285,6 @@ nav:
         - 'Creating a Reusable Sequence': 'develop/creating-artifacts/creating-reusable-sequences.md'
         - 'Creating a Registry Resource': 'develop/creating-artifacts/creating-registry-resources.md'
         - 'Creating Local Registry Entries': 'develop/creating-artifacts/registry/creating-local-registry-entries.md'
-        - 'Creating a Smooks Configuration': 'develop/creating-artifacts/creating-smooks-artifacts.md'
         - 'Creating a Data Service': 'develop/creating-artifacts/data-services/creating-data-services.md'
         - 'Creating a Datasource': 'develop/creating-artifacts/data-services/creating-datasources.md'
         - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
