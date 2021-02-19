@@ -2033,7 +2033,8 @@ pool_options.testOnBorrow = true</code></pre>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[management_api_token_handler]
-enable = true</code></pre>
+enable = true
+</code></pre>
                     </div>
                 </div>
                 <div class="doc-wrapper">
@@ -2065,6 +2066,61 @@ enable = true</code></pre>
                                     </div>
                                     <div class="param-description">
                                         <p>Set this paramter to &#39;false&#39; if you want to disable user authentication for the management API.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+## Management API Basic Auth Handler
+
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="superfences-tabs">
+            
+            <input name="9" type="checkbox" id="_tab_10">
+                <label class="tab-selector" for="_tab_10"><i class="icon fa fa-code"></i></label>
+                <div class="superfences-content">
+                    <div class="mb-config-example">
+<pre><code class="toml">
+[management_api_basic_security_handler]
+enable = true</code></pre>
+                    </div>
+                </div>
+                <div class="doc-wrapper">
+                    <div class="mb-config">
+                        <div class="config-wrap">
+                            <code>[management_api_basic_security_handler]</code>
+                            <p>
+                                This configuration header is required if you want to enable <b>basic auth</b> authentication in place of JWT-based user authentication for the Micro Integrator's Management API. Note that <a href="#management-api-token-handler">[management_api_token_handler]</a> should first be disabled. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                            </p>
+                        </div>
+                        <div class="params-wrap">
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>enable</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Set this paramter to &#39;false&#39; if you want to enable user authentication for the management API. Be sure to set the <a href="#management-api-token-handler">[management_api_token_handler]</a> configuration to false.</p>
                                     </div>
                                 </div>
                             </div>
