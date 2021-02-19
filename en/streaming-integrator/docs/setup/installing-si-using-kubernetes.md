@@ -2,8 +2,8 @@
 
 WSO2 Streaming Integrator can be deployed natively on Kubernetes via the Siddhi Kubernetes Operator.
 
-The Streaming Integrator can be configured in the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file and passed to the CRD(Custom Resource Definition)for deployment.
-Siddhi logic can be directly written in the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file or passed as `.siddhi` files via config maps.
+The Streaming Integrator can be configured in the `<SI-TOOLING_HOME>/wso2/server/resources/docker-export/siddhi-process.yaml` file and passed to the CRD(Custom Resource Definition)for deployment.
+Siddhi logic can be directly written in the `<SI-TOOLING_HOME>/wso2/server/resources/docker-export/siddhi-process.yaml` file or passed as `.siddhi` files via config maps.
 
 To install WSO2 Streaming Integrator via Kubernetes, follow the steps below:
 
@@ -47,7 +47,7 @@ siddhi-parser          1         1         1            1           1m
 
 The Siddhi application that contains the streaming integration logic can be deployed in Kubernetes via the Siddhi operator.
 
-To understand how this is done, let's create a very simple Siddhi stream processing application that consumes events via HTTP, filters the input events where the value for `deviceType` is `dryer` and the value for `power` is greater than `600`, and then logs the output in the console. This can be created by configuring the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file as given below.
+To understand how this is done, let's create a very simple Siddhi stream processing application that consumes events via HTTP, filters the input events where the value for `deviceType` is `dryer` and the value for `power` is greater than `600`, and then logs the output in the console. This can be created by configuring the `<SI-TOOLING_HOME>/wso2/server/resources/docker-export/siddhi-process.yaml` file as given below.
 
 ```yaml
     apiVersion: siddhi.io/v1alpha2
