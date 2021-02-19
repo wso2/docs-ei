@@ -163,6 +163,32 @@ When you use the [Micro Integrator Dashboard](../../../administer-and-observe/wo
 
 If your product instance has the latest updates, open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory) and configure the management API instead of using the `internal-apis.xml` file.
 
+- Enabling the default file-based user store:
+
+    ```toml
+    [internal_apis]
+    file_user_store.enable=true
+    ```
+
+- Adding new users to the default file-based user store:
+
+    !!! Tip
+        These users are in addition to the default `admin` user.
+
+    ```toml
+    [[management_api.handler.user_store.users]]
+    user.name = "user-1"
+    user.password = "pwd-1"
+
+    [[management_api.handler.user_store.users]]
+    user.name = "user-2"
+    user.password = "pwd-2"
+
+    [[management_api.handler.user_store.users]]
+    user.name = "user-3"
+    user.password = "pwd-3"
+    ```
+
 - Updating token store configurations for JWT authentication:
 
     ```toml
@@ -215,22 +241,6 @@ If your product instance has the latest updates, open the `deployment.toml` file
              <td>Specifies the key size of the token.</td>
         </tr>
     </table>
-
-- Adding users to the default file-based user store:
-
-    ```toml
-    [[management_api.handler.user_store.users]]
-    user.name = "user-1"
-    user.password = "pwd-1"
-
-    [[management_api.handler.user_store.users]]
-    user.name = "user-2"
-    user.password = "pwd-2"
-
-    [[management_api.handler.user_store.users]]
-    user.name = "user-3"
-    user.password = "pwd-3"
-    ```
 
 - Configuring CORS for the management API:
 
