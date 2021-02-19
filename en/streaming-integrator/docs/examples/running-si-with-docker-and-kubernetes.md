@@ -236,7 +236,8 @@ You can deploy multiple Siddhi applications in one or more selected containers v
           - /stores/*
     ```
 
-    ???info "To view the complete file, click here."
+    ??? info "To view the complete file, click here."
+        ```
         apiVersion: siddhi.io/v1alpha2
         kind: SiddhiProcess
         metadata:
@@ -294,6 +295,7 @@ You can deploy multiple Siddhi applications in one or more selected containers v
                 exclude:
                   - /simulation/*
                   - /stores/*
+        ``` 
 
 5. Save the file as `siddhi-process.yaml` in a preferred location
 
