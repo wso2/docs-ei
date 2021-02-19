@@ -87,7 +87,7 @@ To understand how this is done, let's create a very simple Siddhi stream process
             value: "false"
 ```
 
-To change the default configurations in WSO2 Streaming Integrator that are defined in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file, you need to add he required configurations with the required over-riding values in the `SiddhiProcess.yaml` file under a section named `runner` as shown in the example below.
+To change the default configurations in WSO2 Streaming Integrator that are defined in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file, you need to add the required configurations with the required overriding values in the `SiddhiProcess.yaml` file under a section named `runner` as shown in the example below.
 
 ```yaml
     apiVersion: siddhi.io/v1alpha2
@@ -149,7 +149,13 @@ To change the default configurations in WSO2 Streaming Integrator that are defin
               - /stores/* 
 ```
 
-Here, you have included a configuration for `auth.configs` to over-ride the default values that are applicable to the Streaming Integrator (i.e., vlues configured under `auth.configs` in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file.
+Here, you have included a configuration for `auth.configs` to override the default values that are applicable to the Streaming Integrator (i.e., values configured under `auth.configs` in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file.
+
+To apply the configurations in the `siddhi-process.yaml` to your Kubernetes cluster, save the file in a preferred location and then issue the following command.
+
+```
+kubectl apply -f <PATH_to_siddhi-process.yaml>
+```
 
 
 ### Invoke Siddhi Applications
