@@ -163,6 +163,24 @@ When you use the [Micro Integrator Dashboard](../../../administer-and-observe/wo
 
 If your product instance has the latest updates, open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory) and configure the management API instead of using the `internal-apis.xml` file.
 
+**Changing the default authentication handler**
+
+By default JWT authentication is enabled. If you want to switch to basic authentication, use the following TOML configuration:
+
+```toml
+# The following disables the default JWT authentication handler.
+[management_api_token_handler]
+enable=false
+
+# The following enables the basic authentication handler.
+[management_api_basic_security_handler]
+enable=true
+```
+
+**Configuring the file-based user store**
+
+Use the following TOML configurations to enable and configure a user store for your authentication handler.
+
 - Enabling the default file-based user store:
 
     ```toml
@@ -170,7 +188,7 @@ If your product instance has the latest updates, open the `deployment.toml` file
     file_user_store.enable=true
     ```
 
-- Adding new users to the default file-based user store:
+- Adding new users:
 
     !!! Tip
         These users are in addition to the default `admin` user.
@@ -189,7 +207,11 @@ If your product instance has the latest updates, open the `deployment.toml` file
     user.password = "pwd-3"
     ```
 
-- Updating token store configurations for JWT authentication:
+**Configuring JWT authentication**
+
+Use the following TOML configurations to change the default JWT authentication parameters.
+
+- Updating the token store:
 
     ```toml
     [management_api.handler.token_store_config]
@@ -219,7 +241,7 @@ If your product instance has the latest updates, open the `deployment.toml` file
         </tr>
     </table>
 
-- Updating token configurations for JWT authentication:
+- Updating token configurations:
 
     ```toml
     [management_api.handler.token_config]
@@ -242,11 +264,13 @@ If your product instance has the latest updates, open the `deployment.toml` file
         </tr>
     </table>
 
-- Configuring CORS for the management API:
+**Configuring CORS for the management API**
 
-    ```toml
-    [management_api.cors]
-    enabled = true
-    allowed_origins = "https://127.0.0.1:9743,https://wso2.com:9743"
-    allowed_headers = "Authorization"
-    ```
+Use the following TOML configurations to enable and set up CORS for your authentication handler.
+
+```toml
+[management_api.cors]
+enabled = true
+allowed_origins = "https://127.0.0.1:9743,https://wso2.com:9743"
+allowed_headers = "Authorization"
+```
