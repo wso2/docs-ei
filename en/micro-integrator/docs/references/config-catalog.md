@@ -2120,7 +2120,7 @@ enable = true</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Set this paramter to &#39;false&#39; if you want to enable user authentication for the management API. Be sure to set the <a href="#management-api-token-handler">[management_api_token_handler]</a> configuration to false.</p>
+                                        <p>Set this paramter to &#39;true&#39; if you want to enable user authentication for the management API. Be sure to set the <a href="#management-api-token-handler">[management_api_token_handler]</a> configuration to false.</p>
                                     </div>
                                 </div>
                             </div>
