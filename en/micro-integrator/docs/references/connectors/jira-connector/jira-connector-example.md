@@ -9,7 +9,7 @@ The Jira REST API enables you to interact with Jira programmatically. The WSO2 J
 
 This example explains how to use the JIRA Connector to create an issue and read it.
 
-It will have two HTTP API resources, which are `createIssue` and `getIssue`.
+You will use two HTTP API resources, which are `createIssue` and `getIssue`.
 
 <img src="../../../../assets/img/connectors/jira.png" title="Calling insert operation" width="800" alt="Calling insert operation"/>
 
