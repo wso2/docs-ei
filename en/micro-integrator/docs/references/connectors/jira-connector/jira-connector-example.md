@@ -13,7 +13,7 @@ You will use two HTTP API resources, which are `createIssue` and `getIssue`.
 
 <img src="../../../../assets/img/connectors/jira.png" title="Calling insert operation" width="800" alt="Calling insert operation"/>
 
-* `/createIssue `: The user sends the request payload, which includes the issueFields (the project info, summary, description and the issue type).  This request is sent to WSO2 EI by invoking the jira API. It creates the issue in the corresponding Jira account.
+* `/createIssue `: The user sends the request payload with the issue details (the project info, summary, description and the issue type).  This request is sent to WSO2 EI by invoking the Jira API. It creates the issue in the corresponding Jira account.
 
 * `/getIssue `: The user sends the request payload, which includes the issue id or key that should be obtained from the `createIssue` API resource, and other parameters (fields and expand).
 
