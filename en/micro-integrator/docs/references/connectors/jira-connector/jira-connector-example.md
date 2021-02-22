@@ -32,7 +32,6 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 2. Provide the API name as `jiraAPI` and the API context as `/jira`. You can go to the source view of the XML configuration file of the API and copy the following configuration.
 
-You can find the complete API XML configuration below.
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
