@@ -128,7 +128,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 ### Read Issue Operation
 
-1.  Create a file called `getIssue.json` with the following payload.
+1.  Create a file named `getIssue.json` with the following payload:
 
     ```json
     {
