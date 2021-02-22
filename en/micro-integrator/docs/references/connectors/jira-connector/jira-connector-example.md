@@ -108,7 +108,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     }
     ```
 
-2. Invoke the API as shown below using the curl command.
+2. Invoke the API using the following curl command.
 
     !!! Info
         The Curl application can be downloaded from [here](https://curl.haxx.se/download.html).
