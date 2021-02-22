@@ -139,7 +139,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 2. Invoke the API using the curl command shown below.
 
     !!! Info
-        Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
+        Curl application can be downloaded from [here](https://curl.haxx.se/download.html).
 
     ```bash
     curl -H "Content-Type: application/json" --request POST --data @getIssue.json http://localhost:8290/jira/getIssue
