@@ -184,8 +184,8 @@ Use the following TOML configurations to enable and configure a user store for y
 - Enabling the default file-based user store:
 
     ```toml
-    [internal_apis]
-    file_user_store.enable=true
+    [internal_apis.file_user_store]
+    enable=true
     ```
 
 - Adding new users:
