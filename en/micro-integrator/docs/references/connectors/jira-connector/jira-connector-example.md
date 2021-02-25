@@ -7,15 +7,15 @@ The Jira REST API enables you to interact with Jira programmatically. The WSO2 J
 
 ## What you'll build
 
-This example explains how to use JIRA Connector to create an issue, and read it.
+This example explains how to use the JIRA Connector to create an issue and read it.
 
-It will have two HTTP API resources, which are `createIssue` and `getIssue`.
+You will use two HTTP API resources, which are `createIssue` and `getIssue`.
 
 <img src="../../../../assets/img/connectors/jira.png" title="Calling insert operation" width="800" alt="Calling insert operation"/>
 
-* `/createIssue `: The user sends the request payload, which includes the issueFields (the project info, summary, description and the issue type).  This request is sent to WSO2 EI by invoking the jira API. It creates the issue in the corresponding Jira account.
+* `/createIssue `: The user sends the request payload with the issue details (the project info, summary, description and the issue type).  This request is sent to WSO2 EI by invoking the Jira API. It creates the issue in the corresponding Jira account.
 
-* `/getIssue `: The user sends the request payload, which includes the issue id or key that should be obtained from the `createIssue` API resource, and other parameters (fields and expand).
+* `/getIssue `: The user sends the request payload, which includes the issue id or key (that should be obtained from the `createIssue` API resource) and other parameters (**fields** and **expand**).
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
@@ -30,9 +30,8 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 1. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API. 
    <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
-2. Provide the API name as jiraAPI and the API context as /jira. You can go to the source view of the XML configuration file of the API and copy the following configuration.
+2. Provide the API name as `jiraAPI` and the API context as `/jira`. You can go to the source view of the XML configuration file of the API and copy the following configuration.
 
-You can find the complete API XML configuration below.
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -109,7 +108,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     }
     ```
 
-2. Invoke the API as shown below using the curl command.
+2. Invoke the API using the following curl command.
 
     !!! Info
         The Curl application can be downloaded from [here](https://curl.haxx.se/download.html).
@@ -129,7 +128,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 ### Read Issue Operation
 
-1.  Create a file called `getIssue.json` with the following payload.
+1.  Create a file named `getIssue.json` with the following payload:
 
     ```json
     {
@@ -140,7 +139,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 2. Invoke the API using the curl command shown below.
 
     !!! Info
-        Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
+        Curl application can be downloaded from [here](https://curl.haxx.se/download.html).
 
     ```bash
     curl -H "Content-Type: application/json" --request POST --data @getIssue.json http://localhost:8290/jira/getIssue
