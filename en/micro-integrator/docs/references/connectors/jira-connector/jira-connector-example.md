@@ -1,8 +1,5 @@
 # Jira Connector Example
 
-!!! Warning
-	**This content is currently Work in progress!**
-
 The Jira REST API enables you to interact with Jira programmatically. The WSO2 JIRA Connector allows you to access the REST resources available in Jira Cloud [API Version v2](https://developer.atlassian.com/cloud/jira/platform/rest/v2/intro/) through WSO2 EI.
 
 ## What you'll build
