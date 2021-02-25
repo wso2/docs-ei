@@ -48,7 +48,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample request**
 
-    Following is a sample REST request that can be handled by the init operation.
+    The following sample REST request can be handled by the init operation.
 
     ```json
     {
@@ -61,7 +61,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     
 ??? note "getDashboards"
-    This operation returns a JSON representation of the list of dashboards, including their names, IDs, and more. getDashboards
+    This operation returns a JSON representation of the list of dashboards, including their names, IDs, and more.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -70,12 +70,12 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>maxResults</td>
-            <td>The maximum number of users to return, up to 1000 (default is 50).</td>
+            <td>The maximum number of dashboards to return, up to 1000 (default is 50).</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>startAt</td>
-            <td>The index of the first dashboard to return (0-based). must be 0 or a multiple of maxResults.</td>
+            <td>The index of the first dashboard to return (0-based). Must be 0 or a multiple of maxResults.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -97,7 +97,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
     
-    Following is a sample REST/JSON request that can be handled by the getDashboards operation.
+    The following is a sample REST/JSON request that can be handled by the getDashboards operation.
+
     ```json
     {
         "username":"admin",
@@ -139,7 +140,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>id</td>
-            <td>Identifies the dashboard whose details you want to get.</td>
+            <td>Identifies the dashboard that you want to get.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -154,7 +155,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getDashboardById operation.
+    The following is a sample REST/JSON request that can be handled by the `getDashboardById` operation.
     ```json
     {
         "username":"admin",
@@ -166,7 +167,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample response**
     
-    Given below is a sample response for the getDashboardById operation.
+    Given below is a sample response for the `getDashboardById` operation.
     
     ```json
     {
@@ -179,7 +180,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getFilterById"
 
-    To get information about a specific filter, use getFilterById and specify the filter ID. This operation returns a JSON representation of the filter information, including the name, ID, search URL, and more.
+    To get information about a specific filter, use `getFilterById` and specify the filter ID. This operation returns a JSON representation of the filter information, including the name, ID, search URL, and more.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -188,7 +189,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>filterId</td>
-            <td>Identifies the filter whose information you want to get.</td>
+            <td>Identifies the filter that you want to get.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -208,7 +209,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample request**
-    Following is a sample REST/JSON request that can be handled by the getFilterById operation.
+
+    The following is a sample REST/JSON request that can be handled by the `getFilterById` operation.
     
     ```json
     {
@@ -220,7 +222,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ``` 
     
     **Sample response**
-    Given below is a sample response for the getFilterById operation.
+
+    Given below is a sample response for the `getFilterById` operation.
     
     ```json
     {
@@ -265,7 +268,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "getFavouriteFilters"
-    To get the favorite filters of the current user, use getFavouriteFilter. This operation returns a JSON representation of the filters, including their names, IDs, search URLs, and more.
+    To get the favorite filters of the current user, use `getFavouriteFilter`. This operation returns a JSON representation of the filters, including their names, IDs, search URLs, and more.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -288,7 +291,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
     
     **Sample request**
-    Following is a sample REST/JSON request that can be handled by the getFavouriteFilters operation.
+
+    The following is a sample REST/JSON request that can be handled by the `getFavouriteFilters` operation.
 
     ```json
     {
@@ -299,7 +303,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample response**
-    Given below is a sample response for the getFavouriteFilters operation.
+    Given below is a sample response for the `getFavouriteFilters` operation.
 
     ```json
     [
@@ -346,7 +350,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "createFilter"
-    To create a new filter, use createFilter and attach the JSON representation of the filter as the payload of the request.
+    To create a new filter, use `createFilter` and attach the JSON representation of the filter as the payload of the request.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -365,12 +369,12 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>jqlType</td>
-            <td>The jqlType of the filter.</td>
+            <td>The jql type of the filter.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>favourite</td>
-            <td>Specify whether favourite.</td>
+            <td>Specify whether the filter is a favourite.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -387,7 +391,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
     
     **Sample request**
-    Following is a sample REST/JSON request that can be handled by the createFilter operation.
+
+    The following is a sample REST/JSON request that can be handled by the `createFilter` operation.
     
     ```json
     {
@@ -402,7 +407,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample response**
-    Given below is a sample response for the createFilter operation.
+
+    Given below is a sample response for the `createFilter` operation.
     
     ```json
     {
@@ -447,7 +453,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "updateFilterById"
-    To update an existing filter, use updateFilterById, specify the filter ID.
+    To update an existing filter, use `updateFilterById` with the filter ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -456,7 +462,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>filterId</td>
-            <td>The id of the filter./td>
+            <td>The id of the filter.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -471,12 +477,12 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>jqlType</td>
-            <td>The jqlType of the filter.</td>
+            <td>The jql type of the filter.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>favourite</td>
-            <td>Specify whether favourite.</td>
+            <td>Specify whether the filter is a favourite.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -499,7 +505,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
     
     **Sample request**
-    Following is a sample REST/JSON request that can be handled by the updateFilterById operation.
+    The following is a sample REST/JSON request that can be handled by the `updateFilterById` operation.
     
     ```json
     {
@@ -515,7 +521,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample response**
-    Given below is a sample response for the updateFilterById operation.
+
+    Given below is a sample response for the `updateFilterById` operation.
     
     ```json
     {
@@ -560,7 +567,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "deleteFilter"
-    To delete a filter, use deleteFilter and specify the filter ID.
+    To delete a filter, use `deleteFilter` and specify the filter ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -569,7 +576,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>filterId</td>
-            <td>Identifies the filter whose information you want to get.</td>
+            <td>Identifies the filter that you want to delete.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -583,7 +590,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample request**
-    Following is a sample REST/JSON request that can be handled by the deleteFilter operation.
+
+    The following is a sample REST/JSON request that can be handled by the `deleteFilter` operation.
     
     ```json
     {
@@ -595,6 +603,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample response**
+
     For the successful response, you will get 204 No Content status code without any body.
 
 
@@ -608,7 +617,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>groupName</td>
-            <td>The name of the group.</td>
+            <td>The name of the group that you want to get.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -628,7 +637,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
     
     **Sample request**
-    Following is a sample REST/JSON request that can be handled by the getGroup operation.
+
+    The following is a sample REST/JSON request that can be handled by the `getGroup` operation.
     
     ```json
     {
@@ -641,7 +651,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample response**
-    Given below is a sample response for the getGroup operation.
+    Given below is a sample response for the `getGroup` operation.
     
     ```json
     {
@@ -673,7 +683,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>exclude</td>
-            <td>The exclude from the result.</td>
+            <td>Exclude from the result.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -695,7 +705,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the listGroupPicker operation.
+    The following is a sample REST/JSON request that can be handled by the `listGroupPicker` operation.
     
     ```json
     {
@@ -709,7 +719,8 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample response**
-    Given below is a sample response for the listGroupPicker operation.
+    
+    Given below is a sample response for the `listGroupPicker` operation.
     
     ```json
     {
@@ -737,7 +748,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "listGroupUserPicker"
-    This operation retrieves a list of users and groups matching query with highlighting.
+    This operation retrieves a list of users and groups matching a query.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -746,7 +757,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>query</td>
-            <td>A string used to search username, Name or e-mail address.</td>
+            <td>A string used to search. This can be username, name, or email address.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -773,7 +784,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the listGroupUserPicker operation.
+    The following is a sample REST/JSON request that can be handled by the `listGroupUserPicker` operation.
     
     ```json
     {
@@ -788,7 +799,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the listGroupUserPicker operation.
+    Given below is a sample response for the `listGroupUserPicker` operation.
     
     ```json
     {
@@ -807,12 +818,12 @@ The following operations allow you to work with the Jira Connector. Click an ope
                     "labels": [
                         {
                             "text": "Admin",
-                            "title": "Users added to this group will be given administrative access",
+                            "title": "Users added to this group will be given administrative access.",
                             "type": "ADMIN"
                         },
                         {
                             "text": "Jira Software",
-                            "title": "Users added to this group will be given access to <strong>Jira Software</strong>",
+                            "title": "Users added to this group will be given access to <strong>Jira Software</strong>.",
                             "type": "SINGLE"
                         }
                     ]
@@ -823,7 +834,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "getIssue"
-    To get an existing issue, use getIssue and specify the issue ID.
+    To get an existing issue, use `getIssue` and specify the issue ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -859,7 +870,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getIssue operation.
+    The following is a sample REST/JSON request that can be handled by the `getIssue` operation.
     
     ```json
     {
@@ -872,7 +883,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getIssue operation.
+    Given below is a sample response for the `getIssue` operation.
     
     ```json
     {
@@ -939,7 +950,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "createIssue"
-    To create a new issue (or task), use createIssue and set the following properties.
+    To create a new issue (or task), use `createIssue` and set the following properties.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -969,7 +980,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the createIssue operation.
+    The following is a sample REST/JSON request that can be handled by the `createIssue` operation.
     
     ```json
     {
@@ -993,7 +1004,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the createIssue operation.
+    Given below is a sample response for the `createIssue` operation.
     
     ```json
     {
@@ -1004,7 +1015,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "updateIssue"
-    To update an issue, use updateIssue, specify the issue ID.
+    To update an issue, use `updateIssue` and specify the issue ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1034,7 +1045,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the updateIssue operation.
+    The following is a sample REST/JSON request that can be handled by the `updateIssue` operation.
     
     ```json
     {
@@ -1067,7 +1078,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     200 will be returned if it updated the issue succesfully.
     
 ??? note "updateIssueAssignee"
-    To assign an issue to another user, use updateIssueAssignee, specify the issue ID.
+    To assign an issue to another user, use `updateIssueAssignee` and specify the issue ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1076,7 +1087,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>Identifies the issue to update. This can be an issue ID, or an issue key.</td>
+            <td>Identifies the issue to update. This can be an issue ID or an issue key.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1097,7 +1108,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the updateIssueAssignee operation.
+    The following is a sample request that can be handled by the `updateIssueAssignee` operation.
     
     ```json
     {
@@ -1114,7 +1125,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     Returned 204 if the issue is successfully assigned.
 
 ??? note "getTransitions"
-    To get a list of the possible transitions the current user can perform for an issue, use getTransitions and specify the issue ID.
+    To get a list of the possible transitions the current user can perform for an issue, use `getTransitions` and specify the issue ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1123,7 +1134,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>Identifies the issue to update. This can be an issue ID, or an issue key.</td>
+            <td>Identifies the issue to update. This can be an issue ID or an issue key.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1144,7 +1155,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getTransitions operation.
+    The following is a sample REST/JSON request that can be handled by the `getTransitions` operation.
     
     ```json
     {
@@ -1157,7 +1168,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getTransitions operation.
+    Given below is a sample response for the `getTransitions` operation.
 
     ```json
     {
@@ -1204,7 +1215,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "doTransition"
-    To perform a transition on an issue, use doTransition, specify the issue ID, and include the transition ID along with any other updates you want to make using the following properties.
+    To perform a transition on an issue, use `doTransition`. Specify the issue ID and include the transition ID along with any other updates you want to make. Use the following properties:
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1234,7 +1245,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the doTransitions operation.
+    The following is a sample request that can be handled by the `doTransitions` operation.
     
     ```json
     {
@@ -1264,7 +1275,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     Returned 204 if the transition was successful.
 
 ??? note "getComments"
-    To get the comments for an issue, use getComments and specify the issue ID.
+    To get the comments for an issue, use `getComments` with the issue ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1273,7 +1284,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>Identifies the issue whose comments you want to get. This can be an issue ID, or an issue key.</td>
+            <td>Identifies the issue that has the comments. This can be an issue ID, or an issue key.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1294,7 +1305,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getComments operation.
+    The following is a sample request that can be handled by the `getComments` operation.
     
     ```json
     {
@@ -1343,7 +1354,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "postComment"
-    To post a comment to an issue, use postComment and specify the following properties.
+    To post a comment to an issue, use `postComment` with the following properties.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1352,7 +1363,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>Identifies the issue to which you are adding this comment. This can be an issue ID, or an issue key.</td>
+            <td>Identifies the issue to which you are adding this comment. This can be an issue ID or an issue key.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1385,7 +1396,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the postComment operation.
+    The following is a sample request that can be handled by the `postComment` operation.
     
     ```json
     {
@@ -1400,7 +1411,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the postComment operation.
+    Given below is a sample response for the `postComment` operation.
 
     ```json
     {
@@ -1429,7 +1440,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "updateComment"
-    To update an existing comment, use updateComment operation.
+    To update an existing comment, use the `updateComment` operation.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1438,7 +1449,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>Identifies the issue whose comment you are updating. This can be an issue ID, or an issue key. If the issue cannot be found via an exact match, JIRA will also look for the issue in a case-insensitive way, or by looking to see if the issue was moved.</td>
+            <td>Identifies the issue with the comments you want to update. This can be an issue ID, or an issue key. If the issue cannot be found via an exact match, Jira will also look for the issue in a case-insensitive way, or by looking to see if the issue was moved.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1458,7 +1469,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>expand</td>
-            <td>The optional flags: renderedBody (provides body rendered in HTML).</td>
+            <td>The parameters to expand. The 'renderedBody' optional parameter provides the body rendered in HTML.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1476,7 +1487,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the updateComment operation.
+    The following is a sample request that can be handled by the `updateComment` operation.
     
     ```json
     {
@@ -1521,7 +1532,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "deleteComment"
-    To delete an existing comment, use deleteComment.
+    To delete an existing comment, use `deleteComment`.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1530,7 +1541,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>Identifies the issue whose comment you are deleting. This can be an issue ID, or an issue key.</td>
+            <td>Identifies the issue with the comments that you want to delete. This can be an issue ID or an issue key.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1551,7 +1562,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the deleteComment operation.
+    The following is a sample request that can be handled by the `deleteComment` operation.
     
     ```json
     {
@@ -1568,7 +1579,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     Returned 204 if delete is successful.
 
 ??? note "addAttachmentToIssueId"
-    To add one or more attachments to an issue, use addAttachmentToIssueId, specify the issue ID.
+    To add one or more attachments to an issue, use `addAttachmentToIssueId` with the issue ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1577,13 +1588,13 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>Identifies the issue to which you are adding attachments. This can be an issue ID, or an issue key.</td>
+            <td>Identifies the issue to which you are adding attachments. This can be an issue ID or an issue key.</td>
             <td>Yes</td>
         </tr>
     </table>
 
     !!! Info
-        Multipart/form-data cannot be processed inside the server. Therefore, the Micro Integrator/ESB should be in a content-unaware status. To achieve this, configure a pass-through proxy, and then build the message from the client end and send it to the proxy.
+        Multipart/form-data cannot be processed inside the server. Therefore, the Micro Integrator/ESB should be in a content-unaware status. To achieve this, configure a pass-through proxy, build the message from the client end, and then send it to the proxy.
 
     **Sample configuration**
     
@@ -1595,7 +1606,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample response**
 
-    Given below is a sample response for the addAttachmentToIssueId operation.
+    Given below is a sample response to the `addAttachmentToIssueId` operation.
     
     ```json
     [
@@ -1624,7 +1635,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "getIssuePriorities"
-    To get the priorities available for issues, use getIssuePriorities. This operation returns detailed information about each priority, including its name, ID, and more.
+    To get the priorities available for issues, use `getIssuePriorities`. This operation returns detailed information about each priority, including its name, ID, and more.
 
     **Sample configuration**
     
@@ -1634,7 +1645,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getIssuePriorities operation.
+    The following is a sample request that can be handled by the `getIssuePriorities` operation.
     
     ```json
     {
@@ -1661,7 +1672,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "getIssuePriorityById"
-    To get information on a specific priority, use getIssuePriorityById and specify the priority ID.
+    To get information on a specific priority, use `getIssuePriorityById` and specify the priority ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1670,7 +1681,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issuePriorityId</td>
-            <td>Identifies the priority whose information you want to retrieve.</td>
+            <td>Identifies the priority for retrieving information.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1685,7 +1696,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getIssuePriorityById operation.
+    The following is a sample request that can be handled by the `getIssuePriorityById` operation.
     
     ```json
     {
@@ -1698,7 +1709,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getIssuePriorityById operation.
+    Given below is a sample response for the `getIssuePriorityById` operation.
     
     ```json
     {
@@ -1711,7 +1722,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "getIssueTypes"
-    To get the types of issues available in this JIRA instance, use getIssueTypes. This operation returns detailed information about each issue type, including its name, ID, and more.
+    To get the types of issues available in this Jira instance, use `getIssueTypes`. This operation returns detailed information about each issue type, including its name, ID, and more.
 
     **Sample configuration**
     
@@ -1721,7 +1732,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getIssueTypes operation.
+    The following is a sample request that can be handled by the `getIssueTypes` operation.
     
     ```json
     {
@@ -1733,7 +1744,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getIssueTypes operation.
+    Given below is a sample response for the `getIssueTypes` operation.
     
     ```json
     [
@@ -1749,7 +1760,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "getIssueTypeById"
-    To get information on a specific issue type, use jira.getIssueTypeById and specify the type ID.
+    To get information on a specific issue type, use `getIssueTypeById` with the type ID.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1758,7 +1769,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueTypeId</td>
-            <td>Identifies the issue type whose information you want to retrieve.</td>
+            <td>Identifies the issue type to filter the issues that you want to get.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1773,7 +1784,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getIssueTypeById operation.
+    The following is a sample request that can be handled by the `getIssueTypeById` operation.
     
     ```json
     {
@@ -1786,7 +1797,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getIssueTypeById operation.
+    Given below is a sample response for the `getIssueTypeById` operation.
     
     ```json
     {
@@ -1800,7 +1811,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
 ??? note "getVotesForIssue"
-    To get the votes for a specific issue, use getVotesForIssue and specify the issue ID. This operation returns a JSON representation of the vote information, including the number of votes and more.
+    To get the votes for a specific issue, use `getVotesForIssue` with the issue ID. This operation returns a JSON representation of the vote information including the number of votes and more.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1809,7 +1820,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>Identifies the issue whose votes you want to get. This can be an issue ID, or an issue key.</td>
+            <td>Identifies the issue with the votes that you want to get. This can be an issue ID or an issue key.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -1824,7 +1835,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getVotesForIssue operation.
+    The following is a sample request that can be handled by the `getVotesForIssue` operation.
     
     ```json
     {
@@ -1837,7 +1848,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getVotesForIssue operation.
+    Given below is a sample response for the `getVotesForIssue` operation.
     
     ```json
     {
@@ -1886,7 +1897,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the createBulkIssue operation.
+    The following is a sample request that can be handled by the `createBulkIssue` operation.
     
     ```json
     {
@@ -1938,7 +1949,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>A String containing an issue key.</td>
+            <td>A string containing an issue key.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1959,7 +1970,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the assignIssueToUser operation.
+    The following is a sample request that can be handled by the `assignIssueToUser` operation.
     
     ```json
     {
@@ -1990,12 +2001,12 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>expand</td>
-            <td>The optional flags: renderedBody (provides body rendered in HTML).</td>
+            <td>The parameters to expand. The optional 'renderedBody' flag provides the body rendered in HTML.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>A string containing the issue ID or key the comment belongs to.</td>
+            <td>A string containing the issue ID or key to which the comment belongs.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2012,7 +2023,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getCommentById operation.
+    The following is a sample request that can be handled by the `getCommentById` operation.
     
     ```json
     {
@@ -2026,7 +2037,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getCommentById operation.
+    Given below is a sample response for the `getCommentById` operation.
 
     ```json
     {
@@ -2063,7 +2074,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "sendNotification"
 
-    This operation sends a notification (e-mail) to the list or recipients defined in the request.
+    This operation sends a notification (email) to the list or recipients defined in the request.
 
     <table>
         <tr>
@@ -2078,7 +2089,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueIdOrKey</td>
-            <td>A string containing the issue ID or key the comment will be added to.</td>
+            <td>A string containing the issue ID or key to which the comment will be added.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2154,7 +2165,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the sendNotification operation.
+    The following is a sample request that can be handled by the `sendNotification` operation.
     
     ```json
     {
@@ -2211,7 +2222,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueId</td>
-            <td>The ID of the issues that the vote is made for.</td>
+            <td>The ID of the issues to which you are casting the votes.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2226,7 +2237,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the addVotesForIssue operation.
+    The following is a sample request that can be handled by the `addVotesForIssue` operation.
     
     ```json
     {
@@ -2269,7 +2280,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getWatchersForIssue operation.
+    Following is a sample request that can be handled by the `getWatchersForIssue` operation.
     
     ```json
     {
@@ -2282,7 +2293,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getWatchersForIssue operation.
+    Given below is a sample response for the `getWatchersForIssue` operation.
 
     ```json
     {
@@ -2339,7 +2350,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the removeUserFromWatcherList operation.
+    The following is a sample request that can be handled by the `removeUserFromWatcherList` operation.
     
     ```json
     {
@@ -2357,7 +2368,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getProject"
 
-    To get information about a specific project, use getProject and specify the project key. This operation returns a JSON representation of the entire project, including name, ID, components, and more.
+    To get information about a specific project, use `getProject` with the project key. This operation returns a JSON representation of the entire project, including name, ID, components, and more.
 
     <table>
         <tr>
@@ -2367,7 +2378,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td>The Identifier the project whose information you want to get.</td>
+            <td>The Identifier of the project that you want to get.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2388,7 +2399,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getProject operation.
+    The following is a sample request that can be handled by the `getProject` operation.
     
     ```json
     {
@@ -2401,7 +2412,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getProject operation.
+    Given below is a sample response for the `getProject` operation.
 
     ```json
     {
@@ -2474,7 +2485,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getAvatarsForProject"
 
-    To get the avatars available for a specific project, use getAvatarsForProject and specify the project key. This operation returns a JSON representation of the avatars, including their name, ID, and whether the avatar is currently selected for the project.
+    To get the avatars available for a specific project, use `getAvatarsForProject` with the project key. This operation returns a JSON representation of the avatars, including their name, ID, and whether the avatar is currently selected for the project.
 
     <table>
         <tr>
@@ -2484,7 +2495,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td>The Identifier the project whose information you want to get.</td>
+            <td>The identifier of the project that you want to get.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2499,7 +2510,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getAvatarsForProject operation.
+    The following is a sample request that can be handled by the `getAvatarsForProject` operation.
     
     ```json
     {
@@ -2512,7 +2523,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getAvatarsForProject operation.
+    Given below is a sample response for the `getAvatarsForProject` operation.
 
     ```json
     {
@@ -2539,7 +2550,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "deleteAvatarForProject"
 
-    To delete an avatar from a project, use deleteAvatarForProject and specify the project key and avatar ID.
+    To delete an avatar from a project, use `deleteAvatarForProject` with the project key and avatar ID.
 
     <table>
         <tr>
@@ -2549,7 +2560,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td>The Identifier the project whose information you want to get.</td>
+            <td>The identifier of the project that you want to get.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2570,7 +2581,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the deleteAvatarForProject operation.
+    The following is a sample request that can be handled by the `deleteAvatarForProject` operation.
     
     ```json
     {
@@ -2588,7 +2599,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getComponentsOfProject"
 
-    To get the components of a specific project, use getComponentsOfProject and specify the project key. This operation returns a JSON representation of the components, including their name, ID, and avatars.
+    To get the components of a specific project, use `getComponentsOfProject` with the project key. This operation returns a JSON representation of the components, including their name, ID, and avatars.
 
     <table>
         <tr>
@@ -2598,7 +2609,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td>The Identifier the project whose information you want to get.</td>
+            <td>The identifier of the project that you want to get.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2613,7 +2624,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getComponentsOfProject operation.
+    The following is a sample request that can be handled by the `getComponentsOfProject` operation.
     
     ```json
     {
@@ -2626,7 +2637,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getComponentsOfProject operation.
+    Given below is a sample response for the `getComponentsOfProject` operation.
 
     ```json
     [
@@ -2681,7 +2692,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getStatusesOfProject"
 
-    To get the statuses of a specific project, usegetStatusesOfProject and specify the project key. This operation returns a JSON representation of each issue type in the project and their statuses.
+    To get the statuses of a specific project, use `getStatusesOfProject` with the project key. This operation returns a JSON representation of each issue type in the project along with the status values.
 
     <table>
         <tr>
@@ -2691,7 +2702,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td> The Identifier the project whose information you want to get.</td>
+            <td>The identifier of the project that you want to get.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2706,7 +2717,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getStatusesOfProject operation.
+    The following is a sample request that can be handled by the `getStatusesOfProject` operation.
     
     ```json
     {
@@ -2719,7 +2730,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getStatusesOfProject operation.
+    Given below is a sample response for the `getStatusesOfProject` operation.
 
     ```json
     [
@@ -2750,7 +2761,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getVersionsOfProject"
 
-    To get the versions of a specific project, use getVersionsOfProject and specify the project key. This operation returns a JSON representation of the list of versions in the project.
+    To get the versions of a specific project, use `getVersionsOfProject` with the project key. This operation returns a JSON representation of the list of versions in the project.
 
     <table>
         <tr>
@@ -2760,7 +2771,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td> The Identifier the project whose information you want to get.</td>
+            <td>The identifier of the project that you want to get.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2775,7 +2786,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getVersionsOfProject operation.
+    The following is a sample request that can be handled by the `getVersionsOfProject` operation.
     
     ```json
     {
@@ -2788,7 +2799,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getVersionsOfProject operation.
+    Given below is a sample response for the `getVersionsOfProject` operation.
 
     ```json
     [
@@ -2819,7 +2830,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getRolesOfProject"
 
-    To get the roles of a specific project, use getRolesOfProject and specify the project key. This operation returns a JSON representation of the list of roles in the project, including each role's name and a link to more details.
+    To get the roles of a specific project, use `getRolesOfProject` with the project key. This operation returns a JSON representation of the list of roles in the project, including each role's name and a link to more details.
 
     <table>
         <tr>
@@ -2829,7 +2840,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td>The Identifier the project whose information you want to get.</td>
+            <td>The Identifier of the project that you want to get.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2844,7 +2855,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getRolesOfProject operation.
+    Following is a sample request that can be handled by the `getRolesOfProject` operation.
     
     ```json
     {
@@ -2857,7 +2868,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getRolesOfProject operation.
+    Given below is a sample response for the `getRolesOfProject` operation.
 
     ```json
     {
@@ -2869,7 +2880,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getRolesByIdOfProject"
 
-    To get information about a specific role, use getRolesByIdOfProject and specify the project key and role ID. This operation returns a JSON representation of the role, including its name, ID, actors, and more.
+    To get information about a specific role, use `getRolesByIdOfProject` with the project key and role ID. This operation returns a JSON representation of the role, including its name, ID, actors, and more.
 
     <table>
         <tr>
@@ -2879,12 +2890,12 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td>The Identifier the project whose information you want to get.</td>
+            <td>The identifier of the project that you want to get.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>roleId</td>
-            <td>Identifies the role whose information you want to get.</td>
+            <td>Identifies the role for which you want to get information.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2900,7 +2911,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getRolesByIdOfProject operation.
+    The following is a sample request that can be handled by the `getRolesByIdOfProject` operation.
     
     ```json
     {
@@ -2914,7 +2925,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getRolesByIdOfProject operation.
+    Given below is a sample response for the `getRolesByIdOfProject` operation.
 
     ```json
     {
@@ -2935,7 +2946,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getUserAssignableProjects"
 
-    To get list of users that match the search string and can be assigned issues for all the given projects, use getUserAssignableProjects.
+    To get a list of users (that match the search string) that can be assigned to all projects, use `getUserAssignableProjects`.
 
     <table>
         <tr>
@@ -2945,7 +2956,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectKeys</td>
-            <td>The keys of the projects we are finding assignable users for, comma-separated.</td>
+            <td>The comma-separated list of projects for which you are searching for assinees.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2978,7 +2989,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the getUserAssignableProjects operation.
+    The following is a sample request that can be handled by the `getUserAssignableProjects` operation.
     
     ```json
     {
@@ -2992,7 +3003,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getUserAssignableProjects operation.
+    Given below is a sample response for the `getUserAssignableProjects` operation.
 
     ```json
     [
@@ -3014,7 +3025,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "setActorsToRoleOfProject"
 
-    To assign one or more users to a specific role in a project, use setActorsToRoleOfProject, specify the project key and role ID, and specify the users in the payload. You can specify individual users or groups.
+    To assign one or more users to a specific role in a project, use `setActorsToRoleOfProject` with the project key and role ID. You need to specify the users in the payload. You can specify individual users or groups.
 
     <table>
         <tr>
@@ -3024,12 +3035,12 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>projectIdOrKey</td>
-            <td>The Identifier the project whose information you want to get.</td>
+            <td>The identifier of the project to which users should be asssigned.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>roleId</td>
-            <td>Identifies the role whose information you want to get.</td>
+            <td>Identifies the user role to which users should be assigned.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3051,7 +3062,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample request that can be handled by the setActorsToRoleOfProject operation.
+    The following is a sample request that can be handled by the `setActorsToRoleOfProject` operation.
     
     ```json
     {
@@ -3067,7 +3078,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the setActorsToRoleOfProject operation.
+    Given below is a sample response for the `setActorsToRoleOfProject` operation.
 
     ```json
     {
@@ -3083,7 +3094,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "searchJira"
 
-    To get an existing issue, use searchJira and specify theJQL query.
+    To get an existing issue, use `searchJira` with the JQL query.
 
     <table>
         <tr>
@@ -3093,7 +3104,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>query</td>
-            <td>The JQL expression to use for finding issues. The query must include an ORDER BY clause. For more information, see Advanced Searching in the JIRA documentation.</td>
+            <td>The JQL expression to use for finding issues. The query must include an ORDER BY clause. For more information, see the Jira documentation.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3118,7 +3129,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>expand</td>
-            <td>A comma-separated list of the parameters to expand.</td>
+            <td>A comma-separated list of parameters to expand.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -3138,7 +3149,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the searchJira operation.
+    The following is a sample REST/JSON request that can be handled by the `searchJira` operation.
     
     ```json
     {
@@ -3151,7 +3162,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the searchJira operation.
+    Given below is a sample response for the `searchJira` operation.
 
     ```json
     {
@@ -3172,7 +3183,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getUser"
 
-    To get information about a specified user, use getUser and specify the username.
+    To get information about a specified user, use `getUser` and specify the username.
 
     <table>
         <tr>
@@ -3203,7 +3214,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getUser operation.
+    The following is a sample REST/JSON request that can be handled by the `getUser` operation.
     
     ```json
     {
@@ -3216,7 +3227,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getUser operation.
+    Given below is a sample response for the `getUser` operation.
 
     ```json
     {
@@ -3241,7 +3252,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getUserPermissions"
 
-    To get information on the current user's permissions, use getUserPermissions. You can optionally provide a specific context for which you want to get permissions (projectKey OR projectId OR issueKey OR issueId).
+    To get information on the current user's permissions, use `getUserPermissions`. You can optionally provide a specific context for which you want to get permissions (projectKey, projectId, issueKey, or issueId).
 
     <table>
         <tr>
@@ -3274,7 +3285,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getUserPermissions operation.
+    The following is a sample REST/JSON request that can be handled by the `getUserPermissions` operation.
     
     ```json
     {
@@ -3287,7 +3298,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getUserPermissions operation.
+    Given below is a sample response for the `getUserPermissions` operation.
 
     ```json
     {
@@ -3305,7 +3316,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "searchUser"
 
-    To search for users whose username, name, or email address match a search string, use jira.searchUser and specify the search string.
+    To search for users whose username, name, or email address match a search string, use `searchUser` with a search string.
 
     <table>
         <tr>
@@ -3354,7 +3365,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the searchUser operation.
+    The following is a sample REST/JSON request that can be handled by the `searchUser` operation.
     
     ```json
     {
@@ -3367,7 +3378,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the searchUser operation.
+    Given below is a sample response for the `searchUser` operation.
 
     ```json
     [
@@ -3388,7 +3399,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "searchIssueViewableUsers"
 
-    To search for users whose username, name, or email address match a search string and have permission to view the specified issue or project, use searchIssueViewableUsers and specify the search string and issue key or project key.
+    To search for users whose username, name, or email address match a search string and have permission to view the specified issue or project, use `searchIssueViewableUsers`. You need to specify the search string and issue key or project key.
 
     <table>
         <tr>
@@ -3403,7 +3414,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueKey</td>
-            <td>Identifies the issue that users must have permission to view to be included in the results.</td>
+            <td>Identifies the issue that users must have permission to view. This issue will be included in the results.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3437,7 +3448,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the searchIssueViewableUsers operation.
+    The following is a sample REST/JSON request that can be handled by the searchIssueViewableUsers operation.
     
     ```json
     {
@@ -3451,7 +3462,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the searchIssueViewableUsers operation.
+    Given below is a sample response for the `searchIssueViewableUsers` operation.
 
     ```json
     [
@@ -3472,7 +3483,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "searchAssignableUser"
 
-    To search for users whose username, name, or email address match a search string and can be assigned to a specific issue, use searchAssignableUser. You specify the search string and either the project key (if getting users for a new issue you are creating) or the issue key (if getting users for an existing issue you are editing).
+    To search for users whose username, name, or email address match a search string and can be assigned to a specific issue, use `searchAssignableUser`. You specify the search string and either the project key (if you are getting users for a new issue you are creating) or the issue key (if you are getting users for an existing issue you are editing).
 
     <table>
         <tr>
@@ -3487,7 +3498,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueKey</td>
-            <td>Identifies the issue that users must have permission to view to be included in the results.</td>
+            <td>Identifies the issue that users must have permission to view. This issue will be included in the results.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3497,7 +3508,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>issueKey</td>
-            <td>Identifies the issue you are editing so you can get a list of users who can be assigned to it.</td>
+            <td>Identifies the issue you are editing so that you can get a list of users who can be assigned to it.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3532,7 +3543,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the searchAssignableUser operation.
+    The following is a sample REST/JSON request that can be handled by the `searchAssignableUser` operation.
     
     ```json
     {
@@ -3545,7 +3556,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the searchAssignableUser operation.
+    Given below is a sample response for the `searchAssignableUser` operation.
 
     ```json
     {
@@ -3570,7 +3581,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getAttachmentById"
 
-    This operation retrieves the meta-data for an attachment, including the URL of the actual attached file.
+    This operation retrieves the metadata for an attachment, including the URL of the actual attached file.
 
     <table>
         <tr>
@@ -3595,7 +3606,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getAttachmentById operation.
+    Following is a sample REST/JSON request that can be handled by the `getAttachmentById` operation.
     
     ```json
     {
@@ -3608,7 +3619,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getAttachmentById operation.
+    Given below is a sample response for the `getAttachmentById` operation.
 
     ```json
     {
@@ -3669,7 +3680,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getAttachmentContent operation.
+    The following is a sample REST/JSON request that can be handled by the getAttachmentContent operation.
     
     ```json
     {
@@ -3688,7 +3699,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "createComponent"
 
-    The createComponent operation creates a component.
+    The `createComponent` operation creates a component.
 
     <table>
         <tr>
@@ -3703,7 +3714,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>project</td>
-            <td>The key of the project, the component should be belong to.</td>
+            <td>The key of the project to which the component should be belong.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3723,7 +3734,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>isAssigneeTypeValid</td>
-            <td>A Boolean which specifies whether the assignee type is valid or not.</td>
+            <td>A boolean, which specifies whether or not the assignee type is valid.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -3743,7 +3754,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the createComponent operation.
+    The following is a sample REST/JSON request that can be handled by the `createComponent` operation.
     
     ```json
     {
@@ -3761,7 +3772,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the createComponent operation.
+    Given below is a sample response for the `createComponent` operation.
 
     ```json
     {
@@ -3807,7 +3818,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "getComponent"
 
-    The getComponent operation retrieves a project component.
+    The `getComponent` operation retrieves a project component.
 
     <table>
         <tr>
@@ -3832,7 +3843,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getComponent operation.
+    The following is a sample REST/JSON request that can be handled by the `getComponent` operation.
     
     ```json
     {
@@ -3845,7 +3856,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getComponent operation.
+    Given below is a sample response for the `getComponent` operation.
 
     ```json
     {
@@ -3891,7 +3902,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "updateComponent"
 
-    The updateComponent operation modifies a component.
+    The `updateComponent` operation modifies a component.
 
     <table>
         <tr>
@@ -3926,7 +3937,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
         </tr>
         <tr>
             <td>isAssigneeTypeValid</td>
-            <td>A boolean which specifies whether the assignee type is valid or not.</td>
+            <td>A boolean, which specifies whether or not the assignee type is valid.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -3946,7 +3957,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the updateComponent operation.
+    The following is a sample REST/JSON request that can be handled by the `updateComponent` operation.
     
     ```json
     {
@@ -3964,7 +3975,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the updateComponent operation.
+    Given below is a sample response for the `updateComponent` operation.
 
     ```json
     {
@@ -4021,7 +4032,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "countComponentRelatedIssues"
 
-    The countComponentRelatedIssues operation retrieves counts of issues related to this component.
+    The `countComponentRelatedIssues` operation retrieves counts of issues related to this component.
 
     <table>
         <tr>
@@ -4046,7 +4057,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the countComponentRelatedIssues operation.
+    The following is a sample REST/JSON request that can be handled by the `countComponentRelatedIssues` operation.
     
     ```json
     {
@@ -4059,7 +4070,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the searchIssueViewableUsers operation.
+    Given below is a sample response for the `searchIssueViewableUsers` operation.
 
     ```json
     {
@@ -4070,7 +4081,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
 ??? note "createIssueLink"
 
-    The createIssueLink operation creates an issue link between two issues.
+    The `createIssueLink` operation creates an issue link between two issues.
 
     <table>
         <tr>
@@ -4119,7 +4130,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the createIssueLink operation.
+    The following is a sample REST/JSON request that can be handled by the `createIssueLink` operation.
     
     ```json
     {
@@ -4139,11 +4150,11 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    As a successful response you will get 201 status code without any response body.
+    As a successful response, you will get 201 status code without any response body.
 
 ??? note "getIssueLinkById"
 
-    The getIssueLinkById operation retrieves an issue link with the specified ID.
+    The `getIssueLinkById` operation retrieves an issue link with the specified ID.
 
     <table>
         <tr>
@@ -4168,7 +4179,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     
     **Sample request**
 
-    Following is a sample REST/JSON request that can be handled by the getIssueLinkById operation.
+    The following is a sample REST/JSON request that can be handled by the `getIssueLinkById` operation.
     
     ```json
     {
@@ -4181,7 +4192,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
 
     **Sample response**
 
-    Given below is a sample response for the getIssueLinkById operation.
+    Given below is a sample response for the `getIssueLinkById` operation.
 
     ```json
     {
