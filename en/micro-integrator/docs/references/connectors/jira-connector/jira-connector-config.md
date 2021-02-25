@@ -1,8 +1,5 @@
 # Jira Connector Reference
 
-!!! Warning
-	**This content is currently Work in progress!**
-
 The following operations allow you to work with the Jira Connector. Click an operation name to see parameter details and samples on how to use it.
 
 ??? note "init"
@@ -719,7 +716,7 @@ The following operations allow you to work with the Jira Connector. Click an ope
     ```
 
     **Sample response**
-    
+
     Given below is a sample response for the `listGroupPicker` operation.
     
     ```json
