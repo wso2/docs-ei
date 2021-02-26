@@ -224,7 +224,7 @@ connect to the database to insert the data.
 
 #### Create the Smooks configuration
 
-Create a smooks configuration file (for example, let's name it `smooks-config.xml`) as shown below and save it to a location on your computer.
+Create a smooks configuration file (for example `smooks-config.xml`) as shown below and save it to a location on your computer.
 
 ```xml
 <smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.0.xsd">
