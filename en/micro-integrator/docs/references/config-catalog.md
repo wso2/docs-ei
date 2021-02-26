@@ -706,7 +706,7 @@ user.password = "pwd-2"
                             <code>[internal_apis.file_user_store]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for disabling the default file-based user store of the Micro Integrator's Management API. Read more about <a href='../../setup/user_stores/setting_up_a_userstore'>configuring user stores</a>.
+                                This TOML configuration is released as a product update on the <b>16th July, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for disabling the default file-based user store of the Micro Integrator's Management API. Read more about <a href='../../setup/user_stores/setting_up_a_userstore'>configuring user stores</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -736,7 +736,7 @@ user.password = "pwd-2"
                             <code>[[management_api.handler.user_store.users]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for defining the user name and password for the Management API. Reuse this header when you want to add more users. The user credentials are stored in the default file-based user store of the Management API. Read more about <a href='../../setup/user_stores/setting_up_a_userstore'>configuring user stores</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for defining the user name and password for the Management API. Reuse this header when you want to add more users. The user credentials are stored in the default file-based user store of the Management API. Read more about <a href='../../setup/user_stores/setting_up_a_userstore'>configuring user stores</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2179,7 +2179,7 @@ enable = true</code></pre>
                             <code>[management_api_token_handler]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for disabling JWT-based user authentication for the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for disabling JWT-based user authentication for the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2225,9 +2225,10 @@ enable = true</code></pre>
                 <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[custom_transport.sender]]
-class = "org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender"
-protocol = "hl7"</code></pre>
+<pre><code class="toml">[management_api.handler.token_store_config]
+max_size = "200"
+clean_up_interval = "600"
+remove_oldest_token_on_overflow = true</code></pre>
                     </div>
                 </div>
                 <div class="doc-wrapper">
@@ -2236,7 +2237,7 @@ protocol = "hl7"</code></pre>
                             <code>[management_api.handler.token_store_config]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for changing the default JWT token store configurations of the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for changing the default JWT token store configurations of the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2335,7 +2336,7 @@ size = "2048"</code></pre>
                             <code>[management_api.handler.token_config]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for changing configurations of the JWT token that is used by the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for changing configurations of the JWT token that is used by the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2419,7 +2420,7 @@ path = "/apis"
                             <code>[management_api.authorization_handler]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for disabling authorization for the Micro Integrator's Management API. Authorization only applies when an external user store is used. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for disabling authorization for the Micro Integrator's Management API. Authorization only applies when an external user store is used. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2449,7 +2450,7 @@ path = "/apis"
                             <code>[[management_api.authorization_handler.resources]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for enabling authorization for additional resources (other than 'users') of the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for enabling authorization for additional resources (other than 'users') of the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2507,7 +2508,7 @@ allowed_headers = "Authorization"</code></pre>
                             <code>[[management_api.cors]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for configuring CORs for the Management API of the Micro Integrator. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for configuring CORs for the Management API of the Micro Integrator. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">

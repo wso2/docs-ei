@@ -159,13 +159,16 @@ When you use the [Micro Integrator Dashboard](../../../administer-and-observe/wo
 ## TOML configurations for the Management API
 
 !!! Note
-    This capability of configuring the management API using the `deployment.toml` file is released as a product update on the **26th March, 2020**.  You can get the latest updates using [WSO2 Update Manager](https://docs.wso2.com/display/updates/Getting+Started)
+    This capability of configuring the management API using the `deployment.toml` file is released as a product update on the **26th March, 2020**.  You can get the latest updates using [WSO2 Update Manager](https://docs.wso2.com/display/updates/Getting+Started).
 
 If your product instance has the latest updates, open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory) and configure the management API instead of using the `internal-apis.xml` file.
 
 **Changing the default authentication handler**
 
 By default JWT authentication is enabled. If you want to switch to basic authentication, use the following TOML configuration:
+
+!!! Note
+    The `[management_api_token_handler]` TOML configuration is released as a product update on the **16th July, 2020**. 
 
 ```toml
 # The following disables the default JWT authentication handler.
