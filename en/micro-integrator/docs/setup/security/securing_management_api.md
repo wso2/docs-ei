@@ -167,9 +167,6 @@ If your product instance has the latest updates, open the `deployment.toml` file
 
 By default JWT authentication is enabled. If you want to switch to basic authentication, use the following TOML configuration:
 
-!!! Note
-    The `[management_api_token_handler]` TOML configuration is released as a product update on the **16th July, 2020**. 
-
 ```toml
 # The following disables the default JWT authentication handler.
 [management_api_token_handler]
@@ -184,17 +181,20 @@ enable=true
 
 Use the following TOML configurations to enable and configure a user store for your authentication handler.
 
-- Enabling the default file-based user store:
+- Disabling the default file-based user store:
+
+    !!! Note
+        The following TOML configuration for disabling the file-based user store is released as a product update on **16th July, 2020**. 
 
     ```toml
     [internal_apis.file_user_store]
-    enable=true
+    enable=false
     ```
 
 - Adding new users:
 
     !!! Tip
-        These users are in addition to the default `admin` user.
+        These users will replace the default `admin` user.
 
     ```toml
     [[management_api.handler.user_store.users]]
