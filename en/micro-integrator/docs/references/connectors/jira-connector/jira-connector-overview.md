@@ -12,7 +12,7 @@ For older versions, see the details in the connector store.
 
 ## Email Connector documentation
 
-* **[Jira Connector Example](jira-connector-example.md)**: This example explains how to use the Jira Connector to send an email and retrieve the same. 
+* **[Jira Connector Example](jira-connector-example.md)**: This example explains how to use the Jira Connector to create new issues and to get existing issues from Jira.
 
 * **[Jira Connector Reference](jira-connector-config.md)**: This documentation provides a reference guide for the Jira Connector.
 
