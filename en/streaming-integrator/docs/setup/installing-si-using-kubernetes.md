@@ -157,7 +157,6 @@ To apply the configurations in the `siddhi-process.yaml` to your Kubernetes clus
 kubectl apply -f <PATH_to_siddhi-process.yaml>
 ```
 
-
 ### Invoke Siddhi Applications
 
 To invoke Siddhi Applications, follow the steps below:
