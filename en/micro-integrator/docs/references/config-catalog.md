@@ -676,7 +676,7 @@ alias="symmetric.key.value"</code></pre>
 </div>
 
 
-## LDAP user store
+## Default File-based User Store
 
 <div class="mb-config-catalog">
     <section>
@@ -685,6 +685,122 @@ alias="symmetric.key.value"</code></pre>
             
             <input name="7" type="checkbox" id="_tab_7">
                 <label class="tab-selector" for="_tab_7"><i class="icon fa fa-code"></i></label>
+                <div class="superfences-content">
+                    <div class="mb-config-example">
+<pre><code class="toml">[internal_apis.file_user_store]
+enable = true
+
+[[management_api.handler.user_store.users]]
+user.name = "user-1"
+user.password = "pwd-1"
+
+[[management_api.handler.user_store.users]]
+user.name = "user-2"
+user.password = "pwd-2"
+</code></pre>
+                    </div>
+                </div>
+                <div class="doc-wrapper">
+                    <div class="mb-config">
+                        <div class="config-wrap">
+                            <code>[internal_apis.file_user_store]</code>
+                            <span class="badge-required">Required</span>
+                            <p>
+                                This TOML configuration is released as a product update on the <b>16th July, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for disabling the default file-based user store of the Micro Integrator's Management API. Read more about <a href='../../setup/user_stores/setting_up_a_userstore'>configuring user stores</a>.
+                            </p>
+                        </div>
+                        <div class="params-wrap">
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>enable</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Set this paramter to &#39;false&#39; if you want to disable the default file-based user store. This allows you to use an external user store for user authentication in the Management API.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><div class="config-wrap">
+                            <code>[[management_api.handler.user_store.users]]</code>
+                            <span class="badge-required">Required</span>
+                            <p>
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for defining the user name and password for the Management API. Reuse this header when you want to add more users. The user credentials are stored in the default file-based user store of the Management API. Read more about <a href='../../setup/user_stores/setting_up_a_userstore'>configuring user stores</a>.
+                            </p>
+                        </div>
+                        <div class="params-wrap">
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>user.name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>admin</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Enter a user name. Note that this will overwrite the default &#39;admin&#39; user that is stored in the user store.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>user.password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>admin</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Enter a password for the user specified by &#39;user.name&#39;. Note that this will overwrite the default &#39;admin&#39; password that is stored in the user store.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+## External User Store
+
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="superfences-tabs">
+            
+            <input name="8" type="checkbox" id="_tab_8">
+                <label class="tab-selector" for="_tab_8"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[user_store]
@@ -728,7 +844,7 @@ connection_retry_delay = "120000"
                             <code>[user_store]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for conencting the Micro Integrator to an <a href='../../setup/user_stores/setting_up_ro_ldap'>LDAP user store</a>.
+                                This configuration header is required for conencting the Micro Integrator to an <a href="../../setup/user_stores/setting_up_a_userstore">external user store</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -743,14 +859,14 @@ connection_retry_delay = "120000"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;read_only_ldap&quot;, &quot;read_write_ldap&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>&quot;read_only_ldap&quot;</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&quot;read_only_ldap&quot;, &quot;read_write_ldap&quot;, &quot;database&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This parameter specifies the type of user store. When you set this parameter, all of the remaining parameters (listed below) are inferred with default values. You can override the defaults by giving specific values to these parameters.</p>
+                                        <p>This parameter specifies the type of user store. If you specify &#39;database&#39;, the Micro Integrator connects to a RDBMS user store with read-write permissions. If required, you can switch to read-only mode by setting the &#39;read_only&#39; parameter to &#39;true&#39;. The RDBMS connection parameters are inferred from the &#39;[[datasource]]&#39; configuration. If you specified &#39;read_only_ldap&#39; or &#39;read_write_ldap&#39; as the user store type, the parameters in this section are used to infer the connection parameters.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -771,7 +887,28 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The implementation class that enables the read-only LDAP user store. If the type parameter is not used, you need to specify a value for this parameter.</p>
+                                        <p>The implementation class that enables the read-only LDAP user store by default. The class applicable to the user store type is inferred when you specify the user store type.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>read_only</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>(Only applies to an RDBMS user store)  Specifies whether or not the user store is read only.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -792,7 +929,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The URL for connecting to the LDAP. Override the default URL for your setup. If you are connecting over ldaps (secured LDAP), you need to import the certificate of the user store to the truststore (wso2truststore.jks by default). See the instructions on how to &lt;a href=&#39;../../setup/security/importing_ssl_certificate&#39;&gt;add certificates to the truststore&lt;/a&gt;.</p>
+                                        <p>The URL for connecting to the LDAP. Override the default URL for your setup. If you are connecting over ldaps (secured LDAP), you need to import the certificate of the user store to the truststore (wso2truststore.jks by default).</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -813,7 +950,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The username used to connect to the user store and perform various operations. This user does not need to be an administrator in the user store. However, the user requires permission to read the user list and user attributes, and to perform search operations on the user store. The value you specify is used as the DN (Distinguish Name) attribute of the user who has sufficient permissions to perform operations on users and roles in LDAP.</p>
+                                        <p>The username used to connect to the LDAP user store and perform various operations. This user does not need to be an administrator in the user store. However, the user requires permission to read the user list and user attributes, and to perform search operations on the user store. The value you specify is used as the DN (Distinguish Name) attribute of the user who has sufficient permissions to perform operations on users and roles in LDAP.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -832,7 +969,7 @@ connection_retry_delay = "120000"
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>Password for the connection user name.</p>
+                                        <p>Password for the LDAP connection user name.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -853,7 +990,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The DN of the context or object under which the user entries are stored in the user store. When the user store searches for users, it will start from this location of the directory.</p>
+                                        <p>The DN of the context or object under which the user entries are stored in the LDAP user store. When the user store searches for users, it will start from this location of the directory.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -874,7 +1011,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The attribute used for uniquely identifying a user entry. Users can be authenticated using their email address, UID, etc. The name of the attribute is considered as the username. Note that the email address is considered as a special case in WSO2 products. Read more about using the email address as user name.</p>
+                                        <p>(Only applies to an LDAP user store) The attribute used for uniquely identifying a user entry. Users can be authenticated using their email address, UID, etc. The name of the attribute is considered as the username. Note that the email address is considered as a special case in WSO2 products. Read more about using the email address as user name.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -895,7 +1032,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Filtering criteria used to search for a particular user entry.</p>
+                                        <p>(Only applies to an LDAP user store) Filtering criteria used to search for a particular user entry.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -916,7 +1053,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Filtering criteria for searching user entries in the user store. This query or filter is used when doing search operations on users with different search attributes. According to the default configuration, the search operation only provides the objects created from the person object class.</p>
+                                        <p>Filtering criteria for searching user entries in the LDAP user store. This query or filter is used when doing search operations on users with different search attributes. According to the default configuration, the search operation only provides the objects created from the person object class.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -937,7 +1074,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This indicates whether groups should be read from the user store. If this is set to &#39;false&#39;, none of the groups in the user store can be read, and the following group configurations are NOT mandatory: &#39;group_search_base&#39;, &#39;group_name_list_filter&#39;, or &#39;group_name_attribute&#39;.</p>
+                                        <p>This indicates whether groups should be read from the LDAP user store. If this is set to &#39;false&#39;, none of the groups in the user store can be read, and the following group configurations are NOT mandatory: &#39;group_search_base&#39;, &#39;group_name_list_filter&#39;, or &#39;group_name_attribute&#39;.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -958,7 +1095,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The DN of the context or object under which the group entries are stored in the user store. When the user store searches for groups, it will start from this location of the directory.</p>
+                                        <p>The DN of the context or object under which the group entries are stored in the LDAP user store. When the user store searches for groups, it will start from this location of the directory.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -979,7 +1116,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The attribute used for uniquely identifying a group entry. This attribute is to be treated as the group name.</p>
+                                        <p>(Only applies to a LDAP user store) The attribute used for uniquely identifying a group entry. This attribute is to be treated as the group name.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1000,7 +1137,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The filtering criteria used to search for a particular group entry.</p>
+                                        <p>(Only applies to an LDAP user store) The filtering criteria used to search for a particular group entry.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1021,7 +1158,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The filtering criteria for searching group entries in the user store. This query or filter is used when doing search operations on groups with different search attributes.</p>
+                                        <p>The filtering criteria for searching group entries in the LDAP user store. This query or filter is used when doing search operations on groups with different search attributes.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1042,7 +1179,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Defines the attribute that contains the distinguished names (DN) of user objects that are in a group.</p>
+                                        <p>(Only applies to an LDAP user store) Defines the attribute that contains the distinguished names (DN) of user objects that are in a group.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1063,7 +1200,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Defines whether the backlink support is enabled.</p>
+                                        <p>(Only applies to an LDAP user store) Defines whether the backlink support is enabled.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1084,7 +1221,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The regular expression used by the back-end components for username validation. By default, a length of 3 to 30 allowed for strings with non-empty characters. You can provide ranges of alphabets, numbers, and also ranges of ASCII values in the RegEx properties.</p>
+                                        <p>(Only applies to an LDAP user store) The regular expression used by the back-end components for username validation. By default, a length of 3 to 30 allowed for strings with non-empty characters. You can provide ranges of alphabets, numbers, and also ranges of ASCII values in the RegEx properties.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1105,7 +1242,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The regular expression used by the back-end components for role name validation. By default, a length of 3 to 30 allowed for strings with non-empty characters. You can provide ranges of alphabets, numbers, and also ranges of ASCII values in the RegEx properties.</p>
+                                        <p>(Only applies to an LDAP user store) The regular expression used by the back-end components for role name validation. By default, a length of 3 to 30 allowed for strings with non-empty characters. You can provide ranges of alphabets, numbers, and also ranges of ASCII values in the RegEx properties.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1126,7 +1263,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The regular expression used by the back-end components for password validation. By default, a length of 3 to 30 allowed for strings with non-empty characters. You can provide ranges of alphabets, numbers, and also ranges of ASCII values in the RegEx properties.</p>
+                                        <p>(Only applies to an LDAP user store) The regular expression used by the back-end components for password validation. By default, a length of 3 to 30 allowed for strings with non-empty characters. You can provide ranges of alphabets, numbers, and also ranges of ASCII values in the RegEx properties.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1147,7 +1284,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The regular expression used by the back-end components for password validation. By default, a length of 3 to 30 allowed for strings with non-empty characters. You can provide ranges of alphabets, numbers, and also ranges of ASCII values in the RegEx properties.</p>
+                                        <p>(Only applies to an LDAP user store) The regular expression used by the back-end components for password validation. By default, a length of 3 to 30 allowed for strings with non-empty characters. You can provide ranges of alphabets, numbers, and also ranges of ASCII values in the RegEx properties.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1168,7 +1305,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Specifies the password hashing algorithm used for hashing the password before storing in the user store. You can use the SHA digest method (SHA-1, SHA-256), the MD 5 digest method, or plain text passwords.</p>
+                                        <p>Specifies the password hashing algorithm used for hashing the password before storing in the LDAP user store. You can use the SHA digest method (SHA-1, SHA-256), the MD 5 digest method, or plain text passwords.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1189,7 +1326,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This parameter is used to define a character to separate multiple attributes. This ensures that it will not appear as part of a claim value. Normally &#39;,&#39; is used to separate multiple attributes, but you can define &#39;,,,&#39;, &#39;...&#39;, or a similar character sequence.</p>
+                                        <p>(Only applies to an LDAP user store) This parameter is used to define a character to separate multiple attributes. This ensures that it will not appear as part of a claim value. Normally &#39;,&#39; is used to separate multiple attributes, but you can define &#39;,,,&#39;, &#39;...&#39;, or a similar character sequence.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1210,7 +1347,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Controls the number of users listed in the user store. This is useful when you have a large number of users and you don&#39;t want to list them all. Setting this property to 0 displays all users. In some user stores, there are policies to limit the number of records that can be returned from the query. Setting the value to 0 will list the maximum results returned by the user store. To increase that value, you need to set it at the user store level. Active directory has the &#39;MaxPageSize&#39; property with the default value set to 1000.</p>
+                                        <p>Controls the number of users listed in the LDAP user store. This is useful when you have a large number of users and you don&#39;t want to list them all. Setting this property to 0 displays all users. In some user stores, there are policies to limit the number of records that can be returned from the query. Setting the value to 0 will list the maximum results returned by the user store. To increase that value, you need to set it at the user store level. Active directory has the &#39;MaxPageSize&#39; property with the default value set to 1000.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1231,7 +1368,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Controls the number of roles listed in the user store. This is useful when you have a large number of roles and you don&#39;t want to list them all. Setting this property to 0 displays all roles. In some user stores, there are policies to limit the number of records that can be returned from the query. Setting the value to 0 will list the maximum results returned by the user store. To increase that value, you need to set it at the user store level. Active directory has the &#39;MaxPageSize&#39; property with the default value set to 1000.</p>
+                                        <p>Controls the number of roles listed in the LDAP user store. This is useful when you have a large number of roles and you don&#39;t want to list them all. Setting this property to 0 displays all roles. In some user stores, there are policies to limit the number of records that can be returned from the query. Setting the value to 0 will list the maximum results returned by the user store. To increase that value, you need to set it at the user store level. Active directory has the &#39;MaxPageSize&#39; property with the default value set to 1000.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1252,7 +1389,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This parameter indicates whether the list of roles for a user should be cached. Set this to &#39;false&#39; if the user roles are changed by external means and the changes should be instantly reflected in the product instance.</p>
+                                        <p>(Only applies to an LDAP user store) This parameter indicates whether the list of roles for a user should be cached. Set this to &#39;false&#39; if the user roles are changed by external means and the changes should be instantly reflected in the product instance.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1273,7 +1410,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Define whether LDAP connection pooling is enabled. The connection performance will improve when this parameter is enabled.</p>
+                                        <p>(Only applies to an LDAP user store) Define whether LDAP connection pooling is enabled. The connection performance will improve when this parameter is enabled.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1294,7 +1431,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This is the connection timeout period (in milliseconds) when the initial connection is created.</p>
+                                        <p>(Only applies to an LDAP user store) This is the connection timeout period (in milliseconds) when the initial connection is created.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1315,7 +1452,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The value for this parameter is the read timeout in milliseconds for LDAP operations. If the LDAP provider cannot get an LDAP response within that period, it aborts the read attempt. The integer should be greater than zero. An integer less than or equal to zero means no read timeout is specified, which is equivalent to waiting for the response infinitely until it is received.</p>
+                                        <p>(Only applies to an LDAP user store) The value for this parameter is the read timeout in milliseconds for LDAP operations. If the LDAP provider cannot get an LDAP response within that period, it aborts the read attempt. The integer should be greater than zero. An integer less than or equal to zero means no read timeout is specified, which is equivalent to waiting for the response infinitely until it is received.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1336,7 +1473,7 @@ connection_retry_delay = "120000"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Retry the authentication request if a timeout happened.</p>
+                                        <p>(Only applies to an LDAP user store) Retry the authentication request if a timeout happened.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1349,15 +1486,15 @@ connection_retry_delay = "120000"
 </div>
 
 
-## Database connection
+## Database Connection
 
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="8" type="checkbox" id="_tab_8">
-                <label class="tab-selector" for="_tab_8"><i class="icon fa fa-code"></i></label>
+            <input name="9" type="checkbox" id="_tab_9">
+                <label class="tab-selector" for="_tab_9"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[datasource]]
@@ -2028,8 +2165,8 @@ pool_options.testOnBorrow = true</code></pre>
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="9" type="checkbox" id="_tab_9">
-                <label class="tab-selector" for="_tab_9"><i class="icon fa fa-code"></i></label>
+            <input name="10" type="checkbox" id="_tab_10">
+                <label class="tab-selector" for="_tab_10"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[management_api_token_handler]
@@ -2042,7 +2179,7 @@ enable = true</code></pre>
                             <code>[management_api_token_handler]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for disabling JWT-based user authentication for the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for disabling JWT-based user authentication for the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2084,8 +2221,8 @@ enable = true</code></pre>
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="10" type="checkbox" id="_tab_10">
-                <label class="tab-selector" for="_tab_10"><i class="icon fa fa-code"></i></label>
+            <input name="11" type="checkbox" id="_tab_11">
+                <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[management_api.handler.token_store_config]
@@ -2100,7 +2237,7 @@ remove_oldest_token_on_overflow = true</code></pre>
                             <code>[management_api.handler.token_store_config]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for changing the default JWT token store configurations of the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for changing the default JWT token store configurations of the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2184,8 +2321,8 @@ remove_oldest_token_on_overflow = true</code></pre>
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="11" type="checkbox" id="_tab_11">
-                <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
+            <input name="12" type="checkbox" id="_tab_12">
+                <label class="tab-selector" for="_tab_12"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[management_api.handler.token_config]
@@ -2199,7 +2336,7 @@ size = "2048"</code></pre>
                             <code>[management_api.handler.token_config]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for changing configurations of the JWT token that is used by the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for changing configurations of the JWT token that is used by the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2255,63 +2392,7 @@ size = "2048"</code></pre>
 </div>
 
 
-## Management API - Default User Store
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="12" type="checkbox" id="_tab_12">
-                <label class="tab-selector" for="_tab_12"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[management_api.handler.file_user_store]
-enable = true</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[management_api.handler.file_user_store]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                This configuration header is required for disabling the default file-based user store of the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>enable</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Set this paramter to &#39;false&#39; if you want to disable the default file-based user store. This allows you to use an external user store for user authentication in the Management API.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## Management API - Users
+## Management API - Authorization Handler
 
 <div class="mb-config-catalog">
     <section>
@@ -2322,45 +2403,60 @@ enable = true</code></pre>
                 <label class="tab-selector" for="_tab_13"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[management_api.handler.user_store.users]]
-user.name = "admin"
-user.password = "admin"</code></pre>
+<pre><code class="toml">[management_api.authorization_handler]
+enable = false
+
+[[management_api.authorization_handler.resources]]
+path = "/users"
+
+[[management_api.authorization_handler.resources]]
+path = "/apis"
+</code></pre>
                     </div>
                 </div>
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[[management_api.handler.user_store.users]]</code>
+                            <code>[management_api.authorization_handler]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for defining the user name and password for the Management API. Reuse this header when you want to add more users. The user credentials are stored in the default file-based user store of the Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for disabling authorization for the Micro Integrator's Management API. Authorization only applies when an external user store is used. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>user.name</code> </span>
+                                  <span class="param-name-wrap"> <code>enable</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> string </span>
+                                            <span class="param-type string"> boolean </span>
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>admin</code></span>
+                                            <span class="param-default-value">Default: <code>true</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Enter a user name. Note that this will overwrite the default &#39;admin&#39; user that is stored in the user store.</p>
+                                        <p>Set this paramter to &#39;false&#39; if you want to disable authorization for the management API.</p>
                                     </div>
                                 </div>
-                            </div><div class="param">
+                            </div>
+                        </div><div class="config-wrap">
+                            <code>[[management_api.authorization_handler.resources]]</code>
+                            <span class="badge-required">Required</span>
+                            <p>
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for enabling authorization for additional resources (other than 'users') of the Micro Integrator's Management API. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                            </p>
+                        </div>
+                        <div class="params-wrap">
+                            <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>user.password</code> </span>
+                                  <span class="param-name-wrap"> <code>path</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -2369,14 +2465,14 @@ user.password = "admin"</code></pre>
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>admin</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>/resource_name</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Enter a password for the user specified by &#39;user.name&#39;. Note that this will overwrite the default &#39;admin&#39; password that is stored in the user store.</p>
+                                        <p>Use this parameter to specify the resources in the management API for which you want to enable authorization.</p>
                                     </div>
                                 </div>
                             </div>
@@ -2412,7 +2508,7 @@ allowed_headers = "Authorization"</code></pre>
                             <code>[[management_api.cors]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration header is required for configuring CORs for the Management API of the Micro Integrator. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
+                                This TOML configuration is released as a product update on the <b>26th March, 2020</b>. You can get the latest updates using <a href=”https://docs.wso2.com/display/updates/Getting+Started”>WSO2 Update Manager</a>.</br></br> This configuration header is required for configuring CORs for the Management API of the Micro Integrator. Read more about <a href='../../setup/security/securing_management_api'>securing the Management API</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -4182,7 +4278,7 @@ force_json_validation = false</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>If this property is enabled and the payload exceeds the size of the valid payload size, the Micro Integrator will discontinue reading the input stream. This will prevent out-of-memory issues.</p>
+                                        <p>If this property is enabled and the payload exceeds the size specified by the &#39;max_message_size_bytes&#39; property, the Micro Integrator will discontinue reading the input stream. This will prevent out-of-memory issues.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4245,7 +4341,7 @@ force_json_validation = false</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This property validates badly formed XML messages by building the whole XML document. This validation ensures that erroneous XML messages are rejected by the Micro Integrator.</p>
+                                        <p>This property validates badly formed XML messages by building the whole XML document. This validation ensures that erroneous XML messages will trigger the fault sequence in the Micro Integrator.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4266,7 +4362,7 @@ force_json_validation = false</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>This property validates JSON messages by parsing the input message. This validation ensures that erroneous JSON messages are rejected by the Micro Integrator.</p>
+                                        <p>This property validates JSON messages by parsing the input message. This validation ensures that erroneous JSON messages will trigger the fault sequence in the Micro Integrator.</p>
                                     </div>
                                 </div>
                             </div>
@@ -10295,7 +10391,7 @@ sender.parameter.customParameter = ""</code></pre>
 </div>
 
 
-## Message Mediation
+## Custom Transport Listener
 
 <div class="mb-config-catalog">
     <section>
@@ -10304,6 +10400,162 @@ sender.parameter.customParameter = ""</code></pre>
             
             <input name="53" type="checkbox" id="_tab_53">
                 <label class="tab-selector" for="_tab_53"><i class="icon fa fa-code"></i></label>
+                <div class="superfences-content">
+                    <div class="mb-config-example">
+<pre><code class="toml">[[custom_transport.listener]]
+class = "org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener"
+protocol = "hl7"</code></pre>
+                    </div>
+                </div>
+                <div class="doc-wrapper">
+                    <div class="mb-config">
+                        <div class="config-wrap">
+                            <code>[[custom_transport.listener]]</code>
+                            <span class="badge-required">Required</span>
+                            <p>
+                                This configuration header groups the parameters that configure the Micro Integrator to receive messages through a <a href='../../setup/transport_configurations/configuring-transports/#configuring-custom-transports'>custom transport</a>.
+                            </p>
+                        </div>
+                        <div class="params-wrap">
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>class</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>-</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The class implementing the custom transport. For example, if you are using an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportListener.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>protocol</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>-</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The transport protocol for the custom implementation. For example: hl7.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+## Custom Transport Sender
+
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="superfences-tabs">
+            
+            <input name="54" type="checkbox" id="_tab_54">
+                <label class="tab-selector" for="_tab_54"><i class="icon fa fa-code"></i></label>
+                <div class="superfences-content">
+                    <div class="mb-config-example">
+<pre><code class="toml">[[custom_transport.sender]]
+class = "org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender"
+protocol = "hl7"</code></pre>
+                    </div>
+                </div>
+                <div class="doc-wrapper">
+                    <div class="mb-config">
+                        <div class="config-wrap">
+                            <code>[transport.udp]</code>
+                            <span class="badge-required">Required</span>
+                            <p>
+                                This configuration header groups the parameters that configure the Micro Integrator to send messages through a <a href='../../setup/transport_configurations/configuring-transports/#configuring-custom-transports'>custom transport</a>.
+                            </p>
+                        </div>
+                        <div class="params-wrap">
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>class</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>-</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The class implementing the custom transport. For example, if you are using an HL7 transport listener, use the following class: org.wso2.micro.integrator.business.messaging.hl7.transport.HL7TransportSender.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>protocol</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>-</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>-</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The transport protocol for the custom implementation. For example: hl7.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+## Message Mediation
+
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="superfences-tabs">
+            
+            <input name="55" type="checkbox" id="_tab_55">
+                <label class="tab-selector" for="_tab_55"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[mediation]
@@ -10638,8 +10890,8 @@ inbound.max_threads = 100</code></pre>
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="54" type="checkbox" id="_tab_54">
-                <label class="tab-selector" for="_tab_54"><i class="icon fa fa-code"></i></label>
+            <input name="56" type="checkbox" id="_tab_56">
+                <label class="tab-selector" for="_tab_56"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[synapse_handlers]]
@@ -10708,4 +10960,5 @@ class = <handler_class>
         </div>
     </section>
 </div>
+
 

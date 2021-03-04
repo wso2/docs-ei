@@ -34,10 +34,17 @@ Note that the default address is **https://localhost** and the port is **9164**.
 -   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
 
 ## Securely invoking the API
-The management API is secured using JWT authentication by default. Therefore, when you directly access the management API, you must first acquire a JWT token with your valid username and password.
 
-!!! Tip
-    See [Securing the Management API](../../../setup/security/securing_management_api) for information on configuring **users**, **JWT authentication**, and other security options for the management API.
+The management API is secured using JWT authentication **by default**. When you directly access the management API, you must first acquire a JWT token with your valid username and password.
+
+### Before you begin
+
+Note the following:
+
+-	Your user name and password should already exist in the [user store of the management API](../../../../setup/security/securing_management_api/#user-store-of-management-api).
+-	By default, the file based user store is enabled in the `internal-apis.xml` file. However, if you have switched to TOML configurations (in the `deplyment.toml` file), you must manually enable the user store.
+
+See [Securing the Management API](../../../../setup/security/securing_management_api) for instructions.
 
 ### Getting a JWT token
 

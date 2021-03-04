@@ -159,11 +159,62 @@ When you use the [Micro Integrator Dashboard](../../../administer-and-observe/wo
 ## TOML configurations for the Management API
 
 !!! Note
-    This capability of configuring the management API using the `deployment.toml` file is released as a product update on the **26th March, 2020**.  You can get the latest updates using [WSO2 Update Manager](https://docs.wso2.com/display/updates/Getting+Started)
+    This capability of configuring the management API using the `deployment.toml` file is released as a product update on the **26th March, 2020**.  You can get the latest updates using [WSO2 Update Manager](https://docs.wso2.com/display/updates/Getting+Started).
 
 If your product instance has the latest updates, open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory) and configure the management API instead of using the `internal-apis.xml` file.
 
-- Updating token store configurations for JWT authentication:
+**Changing the default authentication handler**
+
+By default JWT authentication is enabled. If you want to switch to basic authentication, use the following TOML configuration:
+
+```toml
+# The following disables the default JWT authentication handler.
+[management_api_token_handler]
+enable=false
+
+# The following enables the basic authentication handler.
+[management_api_basic_security_handler]
+enable=true
+```
+
+**Configuring the file-based user store**
+
+Use the following TOML configurations to enable and configure a user store for your authentication handler.
+
+- Disabling the default file-based user store:
+
+    !!! Note
+        The following TOML configuration for disabling the file-based user store is released as a product update on **16th July, 2020**. 
+
+    ```toml
+    [internal_apis.file_user_store]
+    enable=false
+    ```
+
+- Adding new users:
+
+    !!! Tip
+        These users will replace the default `admin` user.
+
+    ```toml
+    [[management_api.handler.user_store.users]]
+    user.name = "user-1"
+    user.password = "pwd-1"
+
+    [[management_api.handler.user_store.users]]
+    user.name = "user-2"
+    user.password = "pwd-2"
+
+    [[management_api.handler.user_store.users]]
+    user.name = "user-3"
+    user.password = "pwd-3"
+    ```
+
+**Configuring JWT authentication**
+
+Use the following TOML configurations to change the default JWT authentication parameters.
+
+- Updating the token store:
 
     ```toml
     [management_api.handler.token_store_config]
@@ -193,7 +244,7 @@ If your product instance has the latest updates, open the `deployment.toml` file
         </tr>
     </table>
 
-- Updating token configurations for JWT authentication:
+- Updating token configurations:
 
     ```toml
     [management_api.handler.token_config]
@@ -216,27 +267,13 @@ If your product instance has the latest updates, open the `deployment.toml` file
         </tr>
     </table>
 
-- Adding users to the default file-based user store:
+**Configuring CORS for the management API**
 
-    ```toml
-    [[management_api.handler.user_store.users]]
-    user.name = "user-1"
-    user.password = "pwd-1"
+Use the following TOML configurations to enable and set up CORS for your authentication handler.
 
-    [[management_api.handler.user_store.users]]
-    user.name = "user-2"
-    user.password = "pwd-2"
-
-    [[management_api.handler.user_store.users]]
-    user.name = "user-3"
-    user.password = "pwd-3"
-    ```
-
-- Configuring CORS for the management API:
-
-    ```toml
-    [management_api.cors]
-    enabled = true
-    allowed_origins = "https://127.0.0.1:9743,https://wso2.com:9743"
-    allowed_headers = "Authorization"
-    ```
+```toml
+[management_api.cors]
+enabled = true
+allowed_origins = "https://127.0.0.1:9743,https://wso2.com:9743"
+allowed_headers = "Authorization"
+```
