@@ -18,7 +18,7 @@ The installation guide of the Micro Integrator explains how to set up the Micro 
 			<a href="../../setup/installation/install_in_vm_installer">Install via the Installer</a>
 		</td>
 		<td>
-			Follow the instructions on downloading the Micro Integrator and installing the server on a VM by using the installer.
+			Follow the instructions for downloading the Micro Integrator and installing the server on a VM by using the installer.
 		</td>
 	</tr>
 	<tr>
@@ -26,7 +26,7 @@ The installation guide of the Micro Integrator explains how to set up the Micro 
 			<a href="../../setup/installation/install_in_vm_binary">Install via the Binary</a>
 		</td>
 		<td>
-			Follow the instructions on downloading the Micro Integrator and installing the server on a VM by using the binary distribution.
+			Follow the instructions for downloading the Micro Integrator and installing the server on a VM by using the binary distribution.
 		</td>
 	</tr>
 	<tr>
