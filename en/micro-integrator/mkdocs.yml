@@ -351,7 +351,6 @@ nav:
             - 'Using HashiCorp Secrets' : 'setup/security/using-hashicorp-secrets.md'
             - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Securing the Management API' : 'setup/security/securing_management_api.md'
-          - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
         - Performance:
           - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
           - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
