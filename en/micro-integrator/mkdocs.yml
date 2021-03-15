@@ -254,7 +254,6 @@ nav:
         - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy_path.md'
         - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
         - 'Changing Default Ports': 'setup/changing_default_ports.md'
-        - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
