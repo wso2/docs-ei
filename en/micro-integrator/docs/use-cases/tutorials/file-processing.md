@@ -219,7 +219,7 @@ connect to the database to insert data.
 
 #### Create the Smooks configuration
 
-Create a smooks configuration as shown below. See the instructions on [creating a smooks configuration](../../../develop/creating-artifacts/creating-smooks-artifacts). 
+Create a smooks configuration file (for example, let's name it `smooks-config.xml`) as shown below and save it to a location on your computer.
 
 ```xml
 <smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.0.xsd">
@@ -234,7 +234,6 @@ Create a smooks configuration as shown below. See the instructions on [creating 
 #### Create a local registry entry
 
 Configure a local entry as shown below. This local entry will be used to refer to the [smooks configuration](#create-the-smooks-configuration).
-See the instructions on [creating a local registry configuration](../../../develop/creating-artifacts/registry/creating-local-registry-entries).
 
 ```xml
 <localEntry key="smooks" src="file:resources/smooks-config.xml"/>
