@@ -239,7 +239,6 @@ nav:
         - 'Creating a Reusable Sequence': 'develop/creating-artifacts/creating-reusable-sequences.md'
         - 'Creating a Registry Resource': 'develop/creating-artifacts/creating-registry-resources.md'
         - 'Creating Local Registry Entries': 'develop/creating-artifacts/registry/creating-local-registry-entries.md'
-        - 'Creating a Smooks Configuration': 'develop/creating-artifacts/creating-smooks-artifacts.md'
         - 'Creating a Data Service': 'develop/creating-artifacts/data-services/creating-data-services.md'
         - 'Creating a Datasource': 'develop/creating-artifacts/data-services/creating-datasources.md'
         - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
@@ -529,6 +528,10 @@ nav:
           - 'Email Connector Overview': 'references/connectors/email-connector/email-connector-overview.md'
           - 'Email Connector Example': 'references/connectors/email-connector/email-connector-example.md'
           - 'Email Connector Reference': 'references/connectors/email-connector/email-connector-config.md'
+        - Jira Connector:
+          - 'Jira Connector Overview': 'references/connectors/jira-connector/jira-connector-overview.md'
+          - 'Jira Connector Example': 'references/connectors/jira-connector/jira-connector-example.md'
+          - 'Jira Connector Reference': 'references/connectors/jira-connector/jira-connector-config.md'
         - FHIR Connector:
           - 'FHIR Overview': 'references/connectors/fhir-connector/fhir-connector-overview.md'
           - 'FHIR Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
@@ -585,6 +588,10 @@ nav:
           - 'Setting up Microsoft Azure Storage': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
           - 'Microsoft Azure Storage Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
           - 'Microsoft Azure Storage Reference': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
+        - MongoDB Connector:
+          - 'MongoDB Connector Overview': 'references/connectors/mongodb-connector/mongodb-connector-overview.md'
+          - 'MongoDB Connector Example': 'references/connectors/mongodb-connector/mongodb-connector-example.md'
+          - 'MongoDB Connector Reference': 'references/connectors/mongodb-connector/mongodb-connector-config.md'
         - Redis Connector:
           - 'Redis Overview': 'references/connectors/redis-connector/redis-connector-overview.md'
           - 'Setting up the Environment': 'references/connectors/redis-connector/redis-connector-configuration.md'

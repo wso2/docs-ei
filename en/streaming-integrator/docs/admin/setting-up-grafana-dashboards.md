@@ -1,4 +1,4 @@
-# Setting up Dashboards to WSO2 SI Statistics
+# Setting up Dashboards to Display WSO2 SI Statistics
 
 This section explains how WSO2 Streaming Integrator servers can be configured to publish data to Prometheus and display statistics in Grafana dashboards.
 
