@@ -877,6 +877,10 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+     
+    Important:
+
+    -   The file pattern for matcher is case sensitive in the file connector version 4.0.2 and above.
 
     **Response**
 
@@ -1621,6 +1625,10 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+       
+    Important:
+
+    -   The file pattern for matcher is case sensitive in the file connector version 4.0.2 and above.
 
     **Response** 
 
@@ -2019,6 +2027,10 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+    
+    Important:
+
+    -   The file pattern for matcher is case sensitive in the file connector version 4.0.2 and above.
 
     **Response** 
 
