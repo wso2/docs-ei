@@ -198,6 +198,17 @@ You can retrieve environment variables using the following syntax.
 Syntax:  
 `get-property('env', String propertyName)`
 
+
+#### file scope
+
+!!! Info
+    The support for file scope is released as a product update on <b>03/18/2021</b>. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+    
+You can retrieve properties defined in the file.properties configuration file using the following syntax.
+
+Syntax:  
+`get-property('file', String propertyName)`
+
 #### operation scope
 
 You can retrieve a property in the operation context level from the
