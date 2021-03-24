@@ -817,6 +817,8 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
             <td>
                 The file name pattern of the source file. Example: <i>[a-zA-Z][a-zA-Z]*.(txt|xml|jar)</i>
+                <br/>
+                **Important**: The file pattern is case sensitive in the file connector version 4.0.2 and in later versions.
             </td>
             <td>
                 -
@@ -1612,6 +1614,8 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
             <td>
                  The pattern that should be matched when listing files. This does not operate recursively on sub folders.
+                 <br/>
+                 **Important**: The file pattern is case sensitive in the file connector version 4.0.2 and in later versions.
             </td>
             <td>
                 All files.
@@ -1958,6 +1962,8 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
             <td>
                  The file pattern that should be used to select files for listing.
+                 <br/>
+                 **Important**: The file pattern is case sensitive in the file connector version 4.0.2 and in later versions.
             </td>
             <td>
                 -
