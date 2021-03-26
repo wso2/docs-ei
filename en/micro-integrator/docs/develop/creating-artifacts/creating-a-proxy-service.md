@@ -107,17 +107,17 @@ Click the **Source** tab to view the XML-based synapse configuration (source cod
 
 ### Creating a Proxy Service using a WSDL definition
 
-You can also create a Proxy Service by importing a WSDL.
+1. You can also create a Proxy Service by importing a WSDL.
 
-<img src="../../../assets/img/create_artifacts/new_proxy_service/create-new-proxy-option-wsdl.png" width="500">
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/create-new-proxy-option-wsdl.png" width="500">
 
-You can import a WSDL by providing a WSDL Url or a file location.
+2. You can import a WSDL by providing a WSDL Url or a file location.
 
-<img src="../../../assets/img/create_artifacts/new_proxy_service/create-proxy-from-wsdl.png" width="500">
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/create-proxy-from-wsdl.png" width="500">
 
-This will generate a mediation skeleton which you can improve upon.
+3. This will generate a mediation skeleton which you can improve upon.
 
-<img src="../../../assets/img/create_artifacts/new_proxy_service/skeleton-proxy-service-wsdl.png" width="500">
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/skeleton-proxy-service-wsdl.png" width="500">
 
 !!! Note
     Switch cases are added only if the SOAPActions are defined in the provided WSDL definition.
