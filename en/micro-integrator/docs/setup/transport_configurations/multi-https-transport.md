@@ -97,9 +97,9 @@ Dynamic SSL profiles for the Multi-HTTPS **transport sender**:
 
 Dynamic SSL profiles for the Multi-HTTPS **transport listener**:
 
-To dynamically load the SSL profiles at runtime for the Multi-HTTPS transport listener, you may configure the 
-`org.apache.synapse.transport.passthru.PassThroughHttpMultiSSLListener`, which is the existing implementation of the 
-Multi-HTTPS transport receiver as a custom transport receiver.
+To dynamically load the SSL profiles at runtime for the Multi-HTTPS transport listener, you can configure 
+`org.apache.synapse.transport.passthru.PassThroughHttpMultiSSLListener` (which is the existing implementation of the 
+Multi-HTTPS transport receiver) as a custom transport receiver.
 
 1.   Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory) and add the following parameter to disable 
      the default HTTPS transport receiver.
@@ -108,7 +108,7 @@ Multi-HTTPS transport receiver as a custom transport receiver.
     [transport.http]
     listener.secured_enable = false
     ```
-2.   Then, add the following parameters to configure the `org.apache.synapse.transport.passthru.PassThroughHttpMultiSSLListener` 
+2.   Add the following parameters to configure `org.apache.synapse.transport.passthru.PassThroughHttpMultiSSLListener` 
      as a custom transport receiver.
     
     ```toml
@@ -130,8 +130,8 @@ Multi-HTTPS transport receiver as a custom transport receiver.
      ssl_profile.read_interval = 600000
      ```
      
-3.   Create the `listenerprofiles.xml` file with the following configuration in the
-    `MI_HOME/conf/sslprofiles` directory:
+3.   Create the `listenerprofiles.xml` file in the `MI_HOME/conf/sslprofiles` directory and add the following 
+     configurations:
 
     !!! Info
         You can configure the file path for the `listenerprofiles.xml` file as required.
