@@ -79,9 +79,6 @@ You will now see the mediation logic generated from the WSDL as shown below. Not
 
 <img src="../../../assets/img/create_artifacts/new_proxy_service/skeleton-proxy-service-wsdl.png" width="500">
 
-!!! Note
-    Switch cases are added only if the SOAPActions are defined in the provided WSDL definition.
-
 ### Designing the integration
 
 When you open the proxy service from the **Config** project in the project explorer, you will see the default **Design** view as shown below.
