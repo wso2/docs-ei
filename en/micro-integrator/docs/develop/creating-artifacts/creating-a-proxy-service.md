@@ -72,7 +72,10 @@ Follow the steps given below after opening the **New Proxy Service** dialog box.
 
     <img src="../../../assets/img/create_artifacts/new_proxy_service/create-proxy-from-wsdl.png" width="500">
 
-You will now see the mediation logic generated from the WSDL as shown below.
+You will now see the mediation logic generated from the WSDL as shown below. Note that the [Switch mediator](../../../references/mediators/switch-Mediator) is added to the mediation logic and that the different operations given in the WSDL are represented as switch cases.
+
+!!! Tip
+     If your WSDL does not have `SOAPActions` specified for the operations, only the **default** switch case will be generated.
 
 <img src="../../../assets/img/create_artifacts/new_proxy_service/skeleton-proxy-service-wsdl.png" width="500">
 
