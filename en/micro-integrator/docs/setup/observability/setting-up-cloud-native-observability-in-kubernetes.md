@@ -83,7 +83,7 @@ This deployment installs Jaeger-Operator. To install the Jaeger deployment, foll
 
     1. There are some limitations in the Jaeger client, which by default uses a UDP sender as mentioned in [the Jaeger documentation](https://www.jaegertracing.io/docs/1.22/client-libraries/). If the payload size exceeds 65 KB, spans might get lost in the Jaeger console. 
     2. Jaeger [sampler types](https://www.jaegertracing.io/docs/1.22/sampling/) can also play a major role in tracing. Depending on the TPS, the sampler type should be carefully chosen.
-    3. In general, before including tracing in production deployments it is essential to look into performance tests and scaling requirements. Refer the [Jaeger performance tuning guide](https://www.jaegertracing.io/docs/1.22/performance-tuning/) for details on how to achieve better performance. 
+    3. Be sure to check the performance tests and scaling requirements before including tracing in production deployments . Refer the [Jaeger performance tuning guide](https://www.jaegertracing.io/docs/1.22/performance-tuning/) for details on how to achieve better performance. 
 
 ##### Configuring Grafana to visualize tracing information
 
