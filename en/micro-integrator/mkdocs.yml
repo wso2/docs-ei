@@ -576,6 +576,7 @@ nav:
           - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
           - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
           - 'Kafka Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
+          - 'Avro Message with Kafka Example': 'references/connectors/kafka-connector/kafka-connector-avro-producer-example.md'
           - 'Kafka Connector Reference': 'references/connectors/kafka-connector/kafka-connector-config.md'
           - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
         - LDAP Connector:

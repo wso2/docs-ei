@@ -12,6 +12,8 @@ To see the Kafka Connector, navigate to the [connector store](https://store.wso2
 
 | Connector Version | Supported WSO2 EI version |
 | ------------- |-------------|
+| 3.1.0    | EI 7.1.0, EI 7.0.x EI 6.6.0 |
+| 3.0.0    | EI 7.1.0, EI 7.0.x EI 6.6.0 |
 | 2.0.9    | EI 7.1.0, EI 7.0.x EI 6.6.0 EI 6.5.0 |
 
 For older versions, see the details in the connector store.
@@ -25,6 +27,11 @@ The Kafka connector allows you to access the Kafka Producer API through WSO2 EI 
 * **[Enabling Security for Kafka](enabling-security-for-kafka.md)**: This includes a variety of security-related details that will be used to secure Kafka.
 
 * **[Kafka Connector Example](kafka-connector-producer-example.md)**: This example demonstrates how to send messages to a Kafka broker via Kafka topics. 
+
+!!! Info
+    The support for Apache Avro Message type is available from connector version 3.1.0.
+    
+* **[Kafka Connector Avro Message Producer Example](kafka-connector-avro-producer-example.md)**: This example demonstrates how to send Apache Avro messages to a Kafka broker via Kafka topics.  
 
 * **[Kafka Connector Reference](kafka-connector-config.md)**: This documentation provides a reference guide for the Kafka Connector.
 
