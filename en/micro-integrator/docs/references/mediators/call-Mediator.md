@@ -47,7 +47,7 @@ When using the Call mediator in the **blocking mode** (blocking=true), enable th
 ```
 
 !!! Note
-    The call mediator in the **blocking mode** (blocking=true), builds the message from the response payload. If no response message is expected by the client, you can set the OUT_ONLY property before the call mediator to avoid building the response payload.
+    The call mediator in the **blocking mode** (blocking=true), builds the message from the response payload. If no response message is expected by the client, you can set the **OUT_ONLY** property before the call mediator to avoid building the response payload. You may set the System property **allowEmptyBodyForHttp2xx** to **true**, if you want to receive response without body for HTTP status codes 200, 201 and 202 in the blocking mode.
     ``` xml
     <property name="OUT_ONLY" value="true"/>
     ```
