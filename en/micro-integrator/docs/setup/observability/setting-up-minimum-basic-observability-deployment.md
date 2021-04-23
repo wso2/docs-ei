@@ -353,7 +353,14 @@ To configure the Micro Integrator to publish tracing information, follow steps g
     "opentracing.manager_host": "synapse_properties.'jaeger.sampler.manager.host'",
     "opentracing.agent_host": "synapse_properties.'jaeger.sender.agent.host'"
     ```
-   
+!!! note
+    The service name used to initialize the JaegerTracer can be configured using the environment variable `SERVICE_NAME`
+    as shown below.
+    ```
+    export SERVICE_NAME=customServiceName
+    ```
+    `SERVICE_NAME` is set to `WSO2-SYNAPSE` by default.
+
 ### Configuring Grafana to visualize tracing data
 
 In order to configure Grafana to display tracing information, follow the steps given below.
