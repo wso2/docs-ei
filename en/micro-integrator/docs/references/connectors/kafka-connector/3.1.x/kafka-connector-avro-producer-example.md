@@ -165,7 +165,7 @@ then the <b>schemaRegistryUrl</b> parameter should be configured as shown below,
 ````
 You may refer to the [confluent documentation](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html) for more details.
 
-This demonstrates how the Kafka connector publishes avro messages to the Kafka brokers.
+This demonstrates how the Kafka connector publishes Avro messages to Kafka brokers.
    
 ## What's next
 
