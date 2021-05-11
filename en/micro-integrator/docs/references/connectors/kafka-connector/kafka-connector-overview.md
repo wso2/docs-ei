@@ -39,7 +39,7 @@ The Kafka connector allows you to access the Kafka Producer API through WSO2 EI 
 
 WSO2 EI Kafka inbound endpoint acts as a message consumer. It creates a connection to ZooKeeper and requests messages for a topic. The inbound endpoint is bundled with the Kafka connector.
 
-* **[Kafka Inbound Endpoint Example](3.1.x/kafka-inbound-endpoint-example.md)**: This sample demonstrates how one way message bridging from Kafka to HTTP can be done using the inbound Kafka endpoint. 
+* **[Kafka Inbound Endpoint Example](3.1.x/kafka-inbound-endpoint-example.md)**: This sample demonstrates how one-way message bridging from Kafka to HTTP can be done using the inbound Kafka endpoint. 
 
 ## How to contribute
 
