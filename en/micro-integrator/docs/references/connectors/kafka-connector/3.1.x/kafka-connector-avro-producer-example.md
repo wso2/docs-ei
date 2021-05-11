@@ -6,7 +6,7 @@ Given below is a sample scenario that demonstrates how to send Apache Avro messa
 
 Given below is a sample API that illustrates how you can connect to a Kakfa broker with the `init` operation and then use the `publishMessages` operation to publish messages via the topic. It exposes Kakfa functionalities as a RESTful service. Users can invoke the API using HTTP/HTTPs with the required information.
 
-API has the context `/publishMessages`. It will publish messages via the topic to the Kafka server.
+API has the `/publishMessages` context. It publishes messages via the topic to the Kafka server.
 
 ## Set up Kafka
 
