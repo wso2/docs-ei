@@ -29,7 +29,7 @@ The Kafka connector allows you to access the Kafka Producer API through WSO2 EI 
 * **[Kafka Connector Example](3.1.x/kafka-connector-producer-example.md)**: This example demonstrates how to send messages to a Kafka broker via Kafka topics. 
 
 !!! Info
-    The support for Apache Avro Message type is available from connector version 3.1.0.
+    Apache Avro Message type is supported from connector version 3.1.0 onwards.
     
 * **[Kafka Connector Avro Message Producer Example](3.1.x/kafka-connector-avro-producer-example.md)**: This example demonstrates how to send Apache Avro messages to a Kafka broker via Kafka topics.  
 
