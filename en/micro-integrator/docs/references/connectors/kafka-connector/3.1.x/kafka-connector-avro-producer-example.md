@@ -152,7 +152,7 @@ Sample API configuration when the Confluent Schema Registry is secured with basi
     </resource>
 </api>
 ```
-In the above example the <b>basicAuthCredentialsSource</b> parameter is configured to <b>USER_INFO</b>. If <b>basicAuthCredentialsSource</b> parameter is set to URL as,
+In the above example, the <b>basicAuthCredentialsSource</b> parameter is configured as <b>USER_INFO</b>. For example, consider a scenario where the <b>basicAuthCredentialsSource</b> parameter is set to <b>URL</b> as follows:
 
 ````xml 
 <basicAuthCredentialsSource>URL</basicAuthCredentialsSource>
