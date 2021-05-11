@@ -72,7 +72,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 **Create a topic**:
 
 Let’s create a topic named “test” with a single partition and only one replica.
-Navigate to the <KAFKA_HOME> and run following command.
+Navigate to the <KAFKA_HOME> and run the following command:
    
 ```bash
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test     
