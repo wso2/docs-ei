@@ -24,7 +24,7 @@ The Kafka connector allows you to access the Kafka Producer API through WSO2 EI 
 
 * **[Setting up Kafka](3.1.x/setting-up-kafka.md)**: This includes instructions on setting up Kafka and Zookeeper.
 
-* **[Enabling Security for Kafka](enabling-security-for-kafka.md)**: This includes a variety of security-related details that will be used to secure Kafka.
+* **[Enabling Security for Kafka](enabling-security-for-kafka.md)**: This includes a variety of details related to securing Kafka.
 
 * **[Kafka Connector Example](3.1.x/kafka-connector-producer-example.md)**: This example demonstrates how to send messages to a Kafka broker via Kafka topics. 
 
