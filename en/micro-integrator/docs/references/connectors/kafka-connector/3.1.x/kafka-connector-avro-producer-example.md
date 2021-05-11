@@ -18,7 +18,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
-1. Right click on the created Integration Project and select **New** -> **Rest API** to create the REST API.
+1. Right-click the created Integration Project and select **New** -> **Rest API** to create the REST API.
 
 2. Specify the API name as `KafkaTransport` and API context as `/publishMessages`. You can go to the source view of the XML configuration file of the API and copy the following configuration (source view).
 
