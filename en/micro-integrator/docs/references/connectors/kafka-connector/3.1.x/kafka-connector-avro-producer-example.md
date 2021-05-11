@@ -1,6 +1,6 @@
 # Avro Message with Kafka Connector Example
 
-Given below is a sample scenario that demonstrates how to send Apache Avro messages to a Kafka broker via Kafka topics. The publishMessages operation allows you to publish messages to the Kafka brokers via Kafka topics.
+Given below is a sample scenario that demonstrates how to send Apache Avro messages to a Kafka broker via Kafka topics. The `publishMessages` operation allows you to publish messages to the Kafka brokers via Kafka topics.
 
 ## What you'll build
 
