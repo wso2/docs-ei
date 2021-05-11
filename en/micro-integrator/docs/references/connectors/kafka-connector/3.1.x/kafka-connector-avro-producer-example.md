@@ -158,7 +158,7 @@ In the above example the <b>basicAuthCredentialsSource</b> parameter is configur
 <basicAuthCredentialsSource>URL</basicAuthCredentialsSource>
 ````
 
-then the <b>schemaRegistryUrl</b> parameter should be configured as shown below,
+Then, the <b>schemaRegistryUrl</b> parameter should be configured as shown below.
 
 ````xml 
 <schemaRegistryUrl>http://admin:admin@localhost:8081</schemaRegistryUrl>
