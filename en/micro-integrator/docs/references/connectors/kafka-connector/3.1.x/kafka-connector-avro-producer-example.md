@@ -107,7 +107,7 @@ See the following message content:
 ````json
 {"f1":{"string":"sampleValue"}}
 ````  
-Sample API configuration when Confluent Schema Registry is secured with basic auth,
+Sample API configuration when the Confluent Schema Registry is secured with basic auth,
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
