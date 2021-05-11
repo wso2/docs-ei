@@ -163,7 +163,7 @@ then the <b>schemaRegistryUrl</b> parameter should be configured as shown below,
 ````xml 
 <schemaRegistryUrl>http://admin:admin@localhost:8081</schemaRegistryUrl>
 ````
-You may refer to the [confluent documentation](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html) for more details.
+Refer the [confluent documentation](https://docs.confluent.io/platform/current/schema-registry/serdes-develop/serdes-avro.html) for more details.
 
 This demonstrates how the Kafka connector publishes Avro messages to Kafka brokers.
    
