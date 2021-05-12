@@ -4,7 +4,7 @@ This guide explains the recommended strategy for migrating from the Micro Integr
 
 ### Set up the migration
 
--	Make a backup of the database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
+-	Make a backup of the database used by the current EI 7.0.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
 -	Download and install EI 7.1 in your environment:
 
 	-	Install the product [using the Installer](../../../setup/installation/install_in_vm_installer).
