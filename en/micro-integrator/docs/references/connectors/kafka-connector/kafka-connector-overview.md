@@ -12,6 +12,8 @@ To see the Kafka Connector, navigate to the [connector store](https://store.wso2
 
 | Connector Version | Supported WSO2 EI version |
 | ------------- |-------------|
+| 3.1.0    | EI 7.1.0, EI 7.0.x EI 6.6.0 |
+| 3.0.0    | EI 7.1.0, EI 7.0.x EI 6.6.0 |
 | 2.0.9    | EI 7.1.0, EI 7.0.x EI 6.6.0 EI 6.5.0 |
 
 For older versions, see the details in the connector store.
@@ -22,9 +24,14 @@ The Kafka connector allows you to access the Kafka Producer API through WSO2 EI 
 
 * **[Setting up Kafka](setting-up-kafka.md)**: This includes instructions on setting up Kafka and Zookeeper.
 
-* **[Enabling Security for Kafka](enabling-security-for-kafka.md)**: This includes a variety of security-related details that will be used to secure Kafka.
+* **[Enabling Security for Kafka](enabling-security-for-kafka.md)**: This includes a variety of details related to securing Kafka.
 
 * **[Kafka Connector Example](kafka-connector-producer-example.md)**: This example demonstrates how to send messages to a Kafka broker via Kafka topics. 
+
+!!! Info
+    Apache Avro Message type is supported from connector version 3.1.0 onwards.
+    
+* **[Kafka Connector Avro Message Producer Example](kafka-connector-avro-producer-example.md)**: This example demonstrates how to send Apache Avro messages to a Kafka broker via Kafka topics.  
 
 * **[Kafka Connector Reference](kafka-connector-config.md)**: This documentation provides a reference guide for the Kafka Connector.
 
@@ -32,7 +39,7 @@ The Kafka connector allows you to access the Kafka Producer API through WSO2 EI 
 
 WSO2 EI Kafka inbound endpoint acts as a message consumer. It creates a connection to ZooKeeper and requests messages for a topic. The inbound endpoint is bundled with the Kafka connector.
 
-* **[Kafka Inbound Endpoint Example](kafka-inbound-endpoint-example.md)**: This sample demonstrates how one way message bridging from Kafka to HTTP can be done using the inbound Kafka endpoint. 
+* **[Kafka Inbound Endpoint Example](3.1.x/kafka-inbound-endpoint-example.md)**: This sample demonstrates how one-way message bridging from Kafka to HTTP can be done using the inbound Kafka endpoint. 
 
 ## How to contribute
 
