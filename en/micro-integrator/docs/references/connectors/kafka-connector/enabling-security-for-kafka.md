@@ -128,7 +128,7 @@ Use the following configuration to create a producer that sends messages to the 
 ````
 The console producer is a convenient way to send a small amount of data to the broker.
 
-Follow the sample scenario in [Kafka configuration documentation](3.1.x/kafka-connector-config.md), and send the following 
+Follow the sample scenario in [Kafka configuration documentation](kafka-connector-config.md), and send the following 
 message to the Kafka broker:
 
 > **Note**: Be sure to include the following configuration in the proxy service when you are building the sample:
