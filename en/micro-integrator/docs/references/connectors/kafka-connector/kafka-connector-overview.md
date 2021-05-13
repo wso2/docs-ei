@@ -22,16 +22,24 @@ For older versions, see the details in the connector store.
 
 The Kafka connector allows you to access the Kafka Producer API through WSO2 EI and acts as a message producer that facilitates message publishing. The Kafka connector sends messages to the Kafka brokers. 
 
+Follow the topics given below to get started with the Kafka connector.
+
 * **[Setting up Kafka](setting-up-kafka.md)**: This includes instructions on setting up Kafka and Zookeeper.
 
 * **[Enabling Security for Kafka](enabling-security-for-kafka.md)**: This includes a variety of details related to securing Kafka.
 
 * **[Kafka Connector Example](kafka-connector-producer-example.md)**: This example demonstrates how to send messages to a Kafka broker via Kafka topics. 
 
-!!! Info
+The following topics are specific to connector version 3.1.0 and later version:
+
+!!! Tip
     Apache Avro Message type is supported from connector version 3.1.0 onwards.
-    
+
 * **[Kafka Connector Avro Message Producer Example](kafka-connector-avro-producer-example.md)**: This example demonstrates how to send Apache Avro messages to a Kafka broker via Kafka topics.  
+
+* **[Kafka Connector Reference](kafka-connector-config.md)**: This documentation provides a reference guide for the Kafka Connector.
+
+The following topic is specific to connector version 3.0.0 and earlier versions:
 
 * **[Kafka Connector Reference](kafka-connector-config.md)**: This documentation provides a reference guide for the Kafka Connector.
 
@@ -43,7 +51,7 @@ WSO2 EI Kafka inbound endpoint acts as a message consumer. It creates a connecti
 
 ## How to contribute
 
-As an open source project, WSO2 extensions welcome contributions from the community. 
+As an open-source project, WSO2 extensions welcome contributions from the community. 
 
 To contribute to the code for this connector, create a pull request in one of the following repositories. 
 
