@@ -2,6 +2,9 @@
 
 Given below is a sample scenario that demonstrates how to send messages to a Kafka broker via Kafka topics. The `publishMessages` operation allows you to publish messages to the Kafka brokers via Kafka topics.
 
+!!! Info
+    You can try out this example using both 3.0.0 and 3.1.0 versions of the Kafka connector. 
+
 ## What you'll build
 
 Given below is a sample API that illustrates how you can connect to a Kakfa broker with the `init` operation and then use the `publishMessages` operation to publish messages via the topic. It exposes Kakfa functionalities as a RESTful service. Users can invoke the API using HTTP/HTTPs with the required information.
