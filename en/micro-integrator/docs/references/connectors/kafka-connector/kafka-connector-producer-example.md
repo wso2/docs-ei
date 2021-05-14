@@ -1,12 +1,15 @@
 # Kafka Connector Example
 
-Given below is a sample scenario that demonstrates how to send messages to a Kafka broker via Kafka topics. The publishMessages operation allows you to publish messages to the Kafka brokers via Kafka topics.
+Given below is a sample scenario that demonstrates how to send messages to a Kafka broker via Kafka topics. The `publishMessages` operation allows you to publish messages to the Kafka brokers via Kafka topics.
+
+!!! Info
+    You can try out this example using both 3.0.0 and 3.1.0 versions of the Kafka connector. 
 
 ## What you'll build
 
 Given below is a sample API that illustrates how you can connect to a Kakfa broker with the `init` operation and then use the `publishMessages` operation to publish messages via the topic. It exposes Kakfa functionalities as a RESTful service. Users can invoke the API using HTTP/HTTPs with the required information.
 
-API has the context `/publishMessages`. It will publish messages via the topic to the Kafka server.
+API has the `/publishMessages` context. It publishes messages via the topic to the Kafka server.
 
 The following diagram illustrates all the required functionality of the Kafka service that you are going to build.
 
@@ -24,7 +27,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
-1. Right click on the created Integration Project and select **New** -> **Rest API** to create the REST API.
+1. Right-click the created Integration Project and select **New** -> **Rest API** to create the REST API.
 
 2. Specify the API name as `KafkaTransport` and API context as `/publishMessages`. You can go to the source view of the XML configuration file of the API and copy the following configuration (source view).
 
@@ -72,7 +75,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 **Create a topic**:
 
 Let’s create a topic named “test” with a single partition and only one replica.
-Navigate to the <KAFKA_HOME> and run following command.
+Navigate to the <KAFKA_HOME> and run the following command:
    
 ```bash
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test     
