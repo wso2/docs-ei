@@ -55,6 +55,16 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Sets the requirement to use host key checking. E.g., no.</td>
             <td>Optional</td>
         </tr>
+        <tr>
+            <td>sftpIdentities</td>
+            <td>Location of the private key.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sftpIdentityPassphrase</td>
+            <td>Passphrase of the private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -70,6 +80,8 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+        <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
+        <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
     </fileconnector.append>
     ```
     
@@ -142,6 +154,16 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Sets the requirement to use host key checking. E.g., no.</td>
             <td>Optional</td>
         </tr>
+	    <tr>
+            <td>sftpIdentities</td>
+            <td>Location of the private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>sftpIdentityPassphrase</td>
+            <td>Passphrase of the private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     > NOTE: To make an archive operation, you can provide either the source or inputContent. If inputContent is provided as the parameter, we need to specify fileName. Otherwise, it will use the default fileName (output.txt).
@@ -159,12 +181,14 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+        <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
+        <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase> 
     </fileconnector.archives>
     ```
     
     **Sample request**
     
-    Following is a sample REST/JSON request that can be handled by the append operation.
+    Following is a sample REST/JSON request that can be handled by the archive operation.
     ```json
     {
         "source":"/home/vive/Desktop/file",
@@ -231,14 +255,24 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Set to true if you want to include the parent directory.</td>
             <td>Optional</td>
         </tr>
-	<tr>
-            <td>sftpIdentities</td>
-            <td>Location of the private key.</td>
+	    <tr>
+            <td>sourceSftpIdentities</td>
+            <td>Location of the source's private key.</td>
             <td>Optional</td>
         </tr>
-	<tr>
-            <td>sftpIdentityPassphrase</td>
-            <td>Passphrase of the private key.</td>
+	    <tr>
+            <td>sourceSftpIdentityPassphrase</td>
+            <td>Passphrase of the source's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>targetSftpIdentities</td>
+            <td>Location of the target's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>targetSftpIdentityPassphrase</td>
+            <td>Passphrase of the target's private key.</td>
             <td>Optional</td>
         </tr>
     </table>
@@ -256,8 +290,10 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
 	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
-	<sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities> 
-	<sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
+	    <sourceSftpIdentities>{$ctx:sftpIdentities}</sourceSftpIdentities>
+        <sourceSftpIdentityPassphrase>{$ctx:sourceSftpIdentityPassphrase}</sourceSftpIdentityPassphrase>
+        <targetSftpIdentities>{$ctx:targetSftpIdentities}</targetSftpIdentities>
+        <targetSftpIdentityPassphrase>{$ctx:targetSftpIdentityPassphrase}</targetSftpIdentityPassphrase>
     </fileconnector.copy>
     ```
     
@@ -331,6 +367,16 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Sets the requirement to use host key checking. E.g., no.</td>
             <td>Optional</td>
         </tr>
+	    <tr>
+            <td>sftpIdentities</td>
+            <td>Location of the private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>sftpIdentityPassphrase</td>
+            <td>Passphrase of the private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -346,6 +392,8 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+        <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
+        <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
     </fileconnector.create>
     ```
     
@@ -408,6 +456,16 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Sets the requirement to use host key checking. E.g., no.</td>
             <td>Optional</td>
         </tr>
+	    <tr>
+            <td>sftpIdentities</td>
+            <td>Location of the private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>sftpIdentityPassphrase</td>
+            <td>Passphrase of the private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -421,6 +479,8 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+        <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
+        <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
     </fileconnector.delete>
     ```
     
@@ -623,6 +683,26 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Set to true if you want to include the parent directory.</td>
             <td>Optional</td>
         </tr>
+	    <tr>
+            <td>sourceSftpIdentities</td>
+            <td>Location of the source's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>sourceSftpIdentityPassphrase</td>
+            <td>Passphrase of the source's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>targetSftpIdentities</td>
+            <td>Location of the target's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>targetSftpIdentityPassphrase</td>
+            <td>Passphrase of the target's private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -638,6 +718,10 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
         <filePattern>{$ctx:filePattern}</filePattern>
 	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
+	    <sourceSftpIdentities>{$ctx:sftpIdentities}</sourceSftpIdentities>
+        <sourceSftpIdentityPassphrase>{$ctx:sourceSftpIdentityPassphrase}</sourceSftpIdentityPassphrase>
+        <targetSftpIdentities>{$ctx:targetSftpIdentities}</targetSftpIdentities>
+        <targetSftpIdentityPassphrase>{$ctx:targetSftpIdentityPassphrase}</targetSftpIdentityPassphrase>
     </fileconnector.move>
     ```
 
@@ -716,6 +800,16 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Set to true if you want to include the parent directory.</td>
             <td>Optional</td>
         </tr>
+	    <tr>
+            <td>sftpIdentities</td>
+            <td>Location of the private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>sftpIdentityPassphrase</td>
+            <td>Passphrase of the private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Info**: To enable streaming for large files, you have to add the following message builder and formatter in the <ESB_HOME>/repository/conf/axis2/axis2.xml file:
@@ -734,6 +828,8 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+        <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
+        <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
     </fileconnector.read>
     ```
     
@@ -883,6 +979,26 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Sets the requirement to use host key checking. E.g., no.</td>
             <td>Optional</td>
         </tr>
+	    <tr>
+            <td>sourceSftpIdentities</td>
+            <td>Location of the source's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>sourceSftpIdentityPassphrase</td>
+            <td>Passphrase of the source's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>targetSftpIdentities</td>
+            <td>Location of the target's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>targetSftpIdentityPassphrase</td>
+            <td>Passphrase of the target's private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -896,6 +1012,10 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+	    <sourceSftpIdentities>{$ctx:sftpIdentities}</sourceSftpIdentities>
+        <sourceSftpIdentityPassphrase>{$ctx:sourceSftpIdentityPassphrase}</sourceSftpIdentityPassphrase>
+        <targetSftpIdentities>{$ctx:targetSftpIdentities}</targetSftpIdentities>
+        <targetSftpIdentityPassphrase>{$ctx:targetSftpIdentityPassphrase}</targetSftpIdentityPassphrase>
     </fileconnector.unzip>
     ```
     
@@ -1218,6 +1338,26 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>The pattern of the file to be read.</td>
             <td>Yes</td>
         </tr>
+	    <tr>
+            <td>sourceSftpIdentities</td>
+            <td>Location of the source's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>sourceSftpIdentityPassphrase</td>
+            <td>Passphrase of the source's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>targetSftpIdentities</td>
+            <td>Location of the target's private key.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
+            <td>targetSftpIdentityPassphrase</td>
+            <td>Passphrase of the target's private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -1227,6 +1367,10 @@ The following operations allow you to work with the File Connector version 2. Cl
         <source>{$ctx:source}</source>
         <destination>{$ctx:destination}</destination>
         <filePattern>{$ctx:filePattern}</filePattern>
+	    <sourceSftpIdentities>{$ctx:sftpIdentities}</sourceSftpIdentities>
+        <sourceSftpIdentityPassphrase>{$ctx:sourceSftpIdentityPassphrase}</sourceSftpIdentityPassphrase>
+        <targetSftpIdentities>{$ctx:targetSftpIdentities}</targetSftpIdentities>
+        <targetSftpIdentityPassphrase>{$ctx:targetSftpIdentityPassphrase}</targetSftpIdentityPassphrase>
     </fileconnector.mergeFiles>
     ```
     
