@@ -253,39 +253,6 @@ The management API has multiple resources to provide information regarding the d
     {"message":"Enabled tracing for ('HelloWorld')"}
     ```	
 	
-### ADD CARBON APPLICATION
-
--	**Resource**: `/applications`
-
-	**Description**: Adds a carbon application to the deployment folder. Once added it will be hot deployed to the server.
-
-    **Example**:
-    
-    ```bash tab='Request'
-    curl -X POST "https://localhost:9164/management/applications" --form "file=@path_to_car_file" -H "Authorization: Bearer TOKEN" -k -i
-    ```
-    
-    ```bash tab='Response'
-    {"Message":"Successfully added Carbon Application myHttpServiceCompositeExporter_1.0.0-SNAPSHOT.car"}
-    ```
-
-### Remove CARBON APPLICATION
-
--	**Resource**: `/applications`
-
-	**Description**: Removes a carbon application from the deployment folder. Once removed it will be un deployed from the server.
-
-    **Example**:
-    
-    ```bash tab='Request'
-    curl -X DELETE "https://localhost:9164/management/applications/myHttpServiceCompositeExporter_1.0.0-SNAPSHOT"  -H "Authorization: Bearer TOKEN" -k -i
-    ```
-    
-    ```bash tab='Response'
-    {"Message":"Successfully removed Carbon Application(s) named myHttpServiceCompositeExporter_1.0.0-SNAPSHOT"}
-    ```
-
-
 ### GET CARBON APPLICATIONS
 
 -	**Resource**: `/applications`
@@ -318,6 +285,38 @@ The management API has multiple resources to provide information regarding the d
 	```
 	curl -X GET "https://localhost:9164/management/applications?carbonAppName=HelloCApp" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
+
+### ADD CARBON APPLICATION
+
+-	**Resource**: `/applications`
+
+	**Description**: Adds a carbon application to the deployment folder. Once added it will be hot deployed to the server.
+
+    **Example**:
+    
+    ```bash tab='Request'
+    curl -X POST "https://localhost:9164/management/applications" --form "file=@path_to_car_file" -H "Authorization: Bearer TOKEN" -k -i
+    ```
+    
+    ```bash tab='Response'
+    {"Message":"Successfully added Carbon Application myHttpServiceCompositeExporter_1.0.0-SNAPSHOT.car"}
+    ```
+
+### Remove CARBON APPLICATION
+
+-	**Resource**: `/applications`
+
+	**Description**: Removes a carbon application from the deployment folder. Once removed it will be un deployed from the server.
+
+    **Example**:
+    
+    ```bash tab='Request'
+    curl -X DELETE "https://localhost:9164/management/applications/myHttpServiceCompositeExporter_1.0.0-SNAPSHOT"  -H "Authorization: Bearer TOKEN" -k -i
+    ```
+    
+    ```bash tab='Response'
+    {"Message":"Successfully removed Carbon Application(s) named myHttpServiceCompositeExporter_1.0.0-SNAPSHOT"}
+    ```
 
 ### GET ENDPOINTS
 
