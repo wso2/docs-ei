@@ -107,15 +107,16 @@ as follows.
 
 Follow the steps below to create the configuration files required.
 
-1. Open the `<MI_HOME>/repository/conf/identity` folder and create a new file `jaas.conf`
-with the below code.
+1. Create the `<MI_HOME>/repository/conf/identity` folder. 
+
+2. Create a new file `jaas.conf` with the below code in the `<MI_HOME>/repository/conf/identity` folder.
     ```
     Client {    
     com.sun.security.auth.module.Krb5LoginModule required    
     useTicketCache=false;
     };
     ```
-2. Create a new file `krb5.conf` with the below code. The default location of the file 
+3. Create a new file `krb5.conf` with the below code. The default location of the file 
 varies according to your operating system.
 
 | Operating System | Default Location    |
