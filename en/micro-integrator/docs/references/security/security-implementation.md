@@ -115,7 +115,15 @@ with the below code.
     useTicketCache=false;
     };
     ```
-2. Go to the `/etc` folder and create a new file `krb5.conf` with the below code.
+2. Create a new file `krb5.conf` with the below code. The default location of the file 
+varies according to your operating system.
+
+| Operating System | Default Location    |
+|------------------|---------------------|
+| Windows          | c:\windows\krb5.ini |
+| Linux            | /etc/krb5.conf      |
+| UNIX-based OS    | /etc/krb5/krb5.conf |
+
     ```
     [libdefaults]
             default_realm = WSO2.ORG
@@ -133,6 +141,7 @@ with the below code.
             .wso2.org = WSO2.ORG
             wso2.org = WSO2.ORG
     ```
+
 
 After selecting scenario 16, fill in the information about the service
 principal to associate the Web service . You must specify the
