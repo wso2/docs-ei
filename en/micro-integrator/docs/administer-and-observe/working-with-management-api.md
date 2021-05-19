@@ -238,20 +238,20 @@ The management API has multiple resources to provide information regarding the d
 
 	**Example**:
     
-    	```bash tab='Request'
-    	curl -X GET "https://localhost:9164/management/applications" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
-    	```
-    
-    	```bash tab='Response'
-    	{
-    	  "count": 1,
-    	  "list": [
-    	    {
-    	      "name": "SampleServicesCompositeApplication",
-    	      "version": "1.0.0"
-    	    }
-    	  ]
-    	}
+    ```bash tab='Request'
+        curl -X POST \
+          https://localhost:9164/management/proxy-services \
+          -H 'authorization: Bearer TOKEN' \
+          -H 'content-type: application/json' \
+          -d '{
+            "name": "HelloWorld",
+            "trace": "enable"
+        }' -k -i
+    ```
+
+    ```bash tab='Response'
+    {"message":"Enabled tracing for ('HelloWorld')"}
+    ```	
 	
 ### ADD CARBON APPLICATION
 
