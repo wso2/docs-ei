@@ -68,23 +68,25 @@ Dynamic SSL profiles for the Multi-HTTPS **transport sender**:
         You can configure the file path for the `senderprofiles.xml` file as required.
 
     ```xml
-    <parameter name="customSSLProfiles">
-        <profile>
-            <servers>localhost:8244,hostname:8245</servers>
-            <KeyStore>
-                <Location>repository/resources/security/esb.jks</Location>
-                <Type>JKS</Type>
-                <Password>123456</Password>
-                <KeyPassword>123456</KeyPassword>
-            </KeyStore>
-            <TrustStore>          
-                <Location>repository/resources/security/esbtruststore.jks</Location>
-                <Type>JKS</Type>
-                <Password>123456</Password>
-            </TrustStore>
-        </profile>
+    <parameter xmlns:svns="http://org.wso2.securevault/configuration" name="customSSLProfiles">
+    <profile>
+        <servers>localhost:8244,hostname:8245</servers>
+        <KeyStore>
+            <Location>repository/resources/security/esb.jks</Location>
+            <Type>JKS</Type>
+            <Password>123456</Password>
+            <KeyPassword>123456</KeyPassword>
+        </KeyStore>
+        <TrustStore>          
+            <Location>repository/resources/security/esbtruststore.jks</Location>
+            <Type>JKS</Type>
+            <Password>123456</Password>
+        </TrustStore>
+    </profile>
     </parameter>
     ```
+    
+    Note that the `xmlns:svns="http://org.wso2.securevault/configuration` namespace has to be added before the parameter name. 
 
     The SSL profile will be applied to each request that is sent to the
     destination server specified within the
@@ -137,7 +139,7 @@ Multi-HTTPS transport receiver) as a custom transport receiver.
         You can configure the file path for the `listenerprofiles.xml` file as required.
 
     ```xml
-    <parameter name="SSLProfiles">
+    <parameter xmlns:svns="http://org.wso2.securevault/configuration"  name="SSLProfiles">
     <profile>
             <bindAddress>hostname</bindAddress>
             <KeyStore>
@@ -155,6 +157,8 @@ Multi-HTTPS transport receiver) as a custom transport receiver.
         </profile>
     </parameter>
     ```
+    
+    Note that the `xmlns:svns="http://org.wso2.securevault/configuration` namespace has to be added before the parameter name. 
 
     The SSL profile will be applied to each request that is received at
     the IP specified within the `           <bindAddress>          `
