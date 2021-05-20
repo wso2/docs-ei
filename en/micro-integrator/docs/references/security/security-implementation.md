@@ -105,7 +105,44 @@ as follows.
     algorithms etc.
 -   **jaas.conf** - Includes information relevant to authorization.
 
-The above files are located in the `MI_HOMErepository/conf/security` folder.  
+Follow the steps below to create the configuration files required.
+
+1. Create the `<MI_HOME>/repository/conf/identity` folder. 
+
+2. Create a new file `jaas.conf` with the below code in the `<MI_HOME>/repository/conf/identity` folder.
+    ```
+    Client {    
+    com.sun.security.auth.module.Krb5LoginModule required    
+    useTicketCache=false;
+    };
+    ```
+3. Create a new file `krb5.conf` with the below code. The default location of the file 
+varies according to your operating system.
+
+| Operating System | Default Location    |
+|------------------|---------------------|
+| Windows          | c:\windows\krb5.ini |
+| Linux            | /etc/krb5.conf      |
+| UNIX-based OS    | /etc/krb5/krb5.conf |
+
+    ```
+    [libdefaults]
+            default_realm = WSO2.ORG
+            default_tkt_enctypes = des-cbc-md5 des-cbc-crc des3-cbc-sha1
+            default_tgs_enctypes = des-cbc-md5 des-cbc-crc des3-cbc-sha1
+            permitted_enctypes = des-cbc-md5 des-cbc-crc des3-cbc-sha1
+            allow_weak_crypto = true
+
+    [realms]
+            WSO2.ORG = {
+                    kdc = 127.0.0.1:8000
+            }
+
+    [domain_realm]
+            .wso2.org = WSO2.ORG
+            wso2.org = WSO2.ORG
+    ```
+
 
 After selecting scenario 16, fill in the information about the service
 principal to associate the Web service . You must specify the
