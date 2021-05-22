@@ -18,7 +18,7 @@ Download and set up a Micro Integrator server in your VM and deploy the composit
 
 -	**Using maven car deployment plugin**
 
-    Using maven-car-deploy-plugin 5.2.36 or higher and with latest wum updated wso2mi 1.2.0 can be used to deploy/undeploy .car files. Navigate to Composite Application Project's pom.xml file and add below plugin config.
+    Using maven-car-deploy-plugin 5.2.36 or higher can be used to deploy/undeploy .car files. Navigate to Composite Application Project's pom.xml file and add below plugin config.
     
     ```
     <plugin>
