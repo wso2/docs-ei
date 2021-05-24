@@ -279,7 +279,7 @@ The management API has multiple resources to provide information regarding the d
 	
 ### ADD CARBON APPLICATION
 
-Note : "This capability is released as a product update on <date>. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+Note : "This capability is released as a product update on 24/05/2021. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
 
 -	**Resource**: `/applications`
 
@@ -297,7 +297,7 @@ Note : "This capability is released as a product update on <date>. If you don't 
 
 ### Remove CARBON APPLICATION
 
-Note : "This capability is released as a product update on <date>. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+Note : "This capability is released as a product update on 24/05/2021. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
 
 -	**Resource**: `/applications`
 
