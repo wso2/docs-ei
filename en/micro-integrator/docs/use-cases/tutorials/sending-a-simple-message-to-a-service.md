@@ -173,7 +173,7 @@ You can now start configuring the API resource.
       <tr>
         <td>URI-Template</td>
         <td>
-          Enter <code>/querydoctor/{category}</code>. This defines the request URL format. In this case, the full request URL format is <code>http://host:port/querydoctor/{category}</code> where <code>{category}</code> is a variable.
+          Enter <code>/querydoctor/{category}</code>. This defines the request URL format. In this case, the full request URL format is <code>http://host:port/healthcare/querydoctor/{category}</code> where <code>{category}</code> is a variable.
         </td>
       </tr>
       <tr>
