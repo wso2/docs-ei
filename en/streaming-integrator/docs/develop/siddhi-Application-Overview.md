@@ -147,12 +147,39 @@ Guide](https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4
     ```
     
     In order to use persisted aggregation, A datasource needs to configured through deployment.yaml file and it should be pointed out in @store annotation of the aggregation definition.
+    
     Furthermore when using persisted aggregation with MySQL, please provide the aggregation processing timezone in JDBC URL since by default MySQL database will use server timezone for some time-related conversions which are there in an aggregation query.
     
     ```
         jdbc:mysql://localhost:3306/TEST_DB?useSSL=false&tz=useLegacyDatetimeCode=false&serverTimezone=UTC
     ```
+
+    Also when using persisted aggregation with Oracle, add below configuration in the datasource configuration,
     
+    ```
+    connectionInitSql: alter session set NLS_DATE_FORMAT='YYYY-MM-DD HH24:MI:SS'
+       
+    eg:
+       
+     - name: APIM_ANALYTICS_DB
+       description: "The datasource used for APIM statistics aggregated data."
+       jndiConfig:
+         name: jdbc/APIM_ANALYTICS_DB
+         definition:
+           type: RDBMS
+           configuration:
+             jdbcUrl: 'jdbc:oracle:thin:@localhost:1521:XE'
+             username: 'root'
+             password: '123'
+             driverClassName: oracle.jdbc.OracleDriver
+             maxPoolSize: 50
+             idleTimeout: 60000
+             connectionTestQuery: SELECT 1 FROM DUAL
+             connectionInitSql: alter session set NLS_DATE_FORMAT='YYYY-MM-DD HH24:MI:SS'
+             validationTimeout: 30000
+             isAutoCommit: false
+               
+    ```
     For an example please refer to the following query which will be executed on the database to update the table for below sample Aggregation ,
     
     ```
