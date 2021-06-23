@@ -202,7 +202,11 @@ Syntax:
 #### file scope
 
 !!! Info
-    The support for file scope is released as a product update on <b>03/18/2021</b>. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+    - The support for file scope is released as a product update on <b>03/18/2021</b>. If you don't already have this
+     update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+    - Properties in file are reloaded periodically according to the time interval defined by the 
+    'file.properties.sync.interval' System property (in Seconds) which is released as a product update
+     on <b>06/22/2021</b>. If you don't already have this update, please [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
     
 You can retrieve properties defined in the `file.properties` configuration file using the following syntax.
 
