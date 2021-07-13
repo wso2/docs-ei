@@ -59,13 +59,17 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
     Following values can be provided to connect to Gmail. <br/>
     
+    General
     - Connection Name - smtpsconnection
     - Connection Type - SMTP Secured Connection
     - Host - smtp.gmail.com
     - Port - 465
     - Username - &lt;your_email_address&gt;
     - Password - &lt;your_email_password&gt; 
-    > **NOTE**: If you have enabled 2-factor authentication, an app password should be obtained as instructed [here](https://support.google.com/accounts/answer/185833?hl=en).
+    
+    Advanced
+    - Require TLS* - false
+    > **NOTE**:  If you have enabled 2-factor authentication, an app password should be obtained as instructed [here](https://support.google.com/accounts/answer/185833?hl=en).
 
     <img src="../../../../assets/img/connectors/email-conn-4.png" title="Connection parameters." width="400" alt="Connection parameters."/>
     
@@ -91,12 +95,16 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 12. Next, we will create a IMAP connection to list emails similar to step 6. Following are the values to be provided when creating the connection.
 
+    General
     - Connection Name - imapsconnection
     - Connection Type - IMAP Secured Connection
     - Host - imap.gmail.com
     - Port - 993
     - Username - &lt;your_email_address&gt;
     - Password - &lt;your_email_password&gt;
+    
+    Advanced
+    - Require TLS* - false
 
 13. In this operation we are going to receive following inputs from the user. 
     - subjectRegex - Subject Regex to filter the email from. <br/>
@@ -209,6 +217,13 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 {!references/connectors/deploy-capp.md!}
 
 ## Testing
+
+Before testing do the following two steps in your gmail account in order to send and receive emails to/from your gmail account.
+
+1. Go to the security tab in your account settings and turn on less secure app access.
+2. Go to the gmail settings -> Forwarding and POP/IMAP and enable IMAP under IMAP access.
+
+**NOTE**: Revert back these settings once testing is completed.
 
 ### Email Send Operation
 
