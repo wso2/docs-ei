@@ -2,8 +2,8 @@
 
 WSO2 Streaming Integrator can be deployed natively on Kubernetes via the Siddhi Kubernetes Operator.
 
-The Streaming Integrator can be configured in the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file and passed to the CRD(Custom Resource Definition)for deployment.
-Siddhi logic can be directly written in the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file or passed as `.siddhi` files via config maps.
+The Streaming Integrator can be configured in the `<SI-TOOLING_HOME>/wso2/server/resources/docker-export/siddhi-process.yaml` file and passed to the CRD(Custom Resource Definition)for deployment.
+Siddhi logic can be directly written in the `<SI-TOOLING_HOME>/wso2/server/resources/docker-export/siddhi-process.yaml` file or passed as `.siddhi` files via config maps.
 
 To install WSO2 Streaming Integrator via Kubernetes, follow the steps below:
 
@@ -47,7 +47,7 @@ siddhi-parser          1         1         1            1           1m
 
 The Siddhi application that contains the streaming integration logic can be deployed in Kubernetes via the Siddhi operator.
 
-To understand how this is done, let's create a very simple Siddhi stream processing application that consumes events via HTTP, filters the input events where the value for `deviceType` is `dryer` and the value for `power` is greater than `600`, and then logs the output in the console. This can be created by configuring the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file as given below.
+To understand how this is done, let's create a very simple Siddhi stream processing application that consumes events via HTTP, filters the input events where the value for `deviceType` is `dryer` and the value for `power` is greater than `600`, and then logs the output in the console. This can be created by configuring the `<SI-TOOLING_HOME>/wso2/server/resources/docker-export/siddhi-process.yaml` file as given below.
 
 ```yaml
     apiVersion: siddhi.io/v1alpha2
@@ -87,7 +87,7 @@ To understand how this is done, let's create a very simple Siddhi stream process
             value: "false"
 ```
 
-To change the default configurations in WSO2 Streaming Integrator that are defined in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file, you need to add he required configurations with the required over-riding values in the `SiddhiProcess.yaml` file under a section named `runner` as shown in the example below.
+To change the default configurations in WSO2 Streaming Integrator that are defined in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file, you need to add the required configurations with the required overriding values in the `SiddhiProcess.yaml` file under a section named `runner` as shown in the example below.
 
 ```yaml
     apiVersion: siddhi.io/v1alpha2
@@ -149,8 +149,13 @@ To change the default configurations in WSO2 Streaming Integrator that are defin
               - /stores/* 
 ```
 
-Here, you have included a configuration for `auth.configs` to over-ride the default values that are applicable to the Streaming Integrator (i.e., vlues configured under `auth.configs` in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file.
+Here, you have included a configuration for `auth.configs` to override the default values that are applicable to the Streaming Integrator (i.e., values configured under `auth.configs` in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file.
 
+To apply the configurations in the `siddhi-process.yaml` to your Kubernetes cluster, save the file in a preferred location and then issue the following command.
+
+```
+kubectl apply -f <PATH_to_siddhi-process.yaml>
+```
 
 ### Invoke Siddhi Applications
 

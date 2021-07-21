@@ -82,9 +82,6 @@ Now the Streaming Integrator has started in the Docker environment.
 Let's create a simple Siddhi application that receives an HTTP message, does a simple transformation to the message, and then logs it in the SI console.
 
 
-
-
-
 ### Trying-out the Siddhi application
 
 To try out the `MySimpleApp` Siddhi application you deployed in Docker, issue the following CURL command.
@@ -237,6 +234,7 @@ You can deploy multiple Siddhi applications in one or more selected containers v
     ```
 
     ???info "To view the complete file, click here."
+        ```
         apiVersion: siddhi.io/v1alpha2
         kind: SiddhiProcess
         metadata:
@@ -294,6 +292,7 @@ You can deploy multiple Siddhi applications in one or more selected containers v
                 exclude:
                   - /simulation/*
                   - /stores/*
+        ```
 
 5. Save the file as `siddhi-process.yaml` in a preferred location
 

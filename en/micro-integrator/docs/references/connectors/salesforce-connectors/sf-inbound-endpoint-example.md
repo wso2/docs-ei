@@ -82,7 +82,9 @@ Now that you have configured the Salesforce Inbound Endpoint, use the following 
 
 ## Deployment
 
-1. Navigate to the [connector store](https://store.wso2.com/store/assets/esbconnector/list) and search for `SalesforceRest`. Click on `Salesforce Inbound Endpoint` and download the .jar file by clicking on `Download Inbound Endpoint`. Copy this .jar file into  <PRODUCT-HOME>/lib folder. 
+1. Navigate to `Salesforce V2.1.0` in the [connector store](https://store.wso2.com/store/assets/esbconnector/details/fbb433b5-4d74-4064-84c2-e4b23c531aa2). Download the .jar file by clicking `Download Inbound Endpoint` as shown below. Copy this .jar file to the  <PRODUCT-HOME>/lib folder. 
+
+   <img src="../../../../assets/img/download-inbound-endpoint.png" title="Download inbound endpoint" width="800" alt="Download inbound endpoint" />
 
 2. Copy the exported carbon application to the <PRODUCT-HOME>/repository/deployment/server/carbonapps folder. 
 

@@ -277,7 +277,7 @@ The **Tools** menu provides access to the following tools that are shipped with 
     manipulate the store in which that Siddhi Application saves data.
     You can enter queries that can update record, insert/update records,
     retrieve records and delete records. For more information about
-    actions you can carry out for stores, see [Storage Integration - Performing CRUD operations via REST API](../guides/storage-Integration.md#performing-crud-operations-via-rest-api).
+    actions you can carry out for stores, see [Storage Integration - Performing CRUD operations via REST API](../examples/integrating-stores.md/#perform-crud-operations-via-rest-api).
       
 - **Tour Guide**
 

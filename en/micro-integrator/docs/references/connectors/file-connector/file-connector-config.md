@@ -817,6 +817,8 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
             <td>
                 The file name pattern of the source file. Example: <i>[a-zA-Z][a-zA-Z]*.(txt|xml|jar)</i>
+                <br/>
+                <b>Important</b>: The file pattern is case sensitive in the file connector version 4.0.2 and in later versions.
             </td>
             <td>
                 -
@@ -871,6 +873,25 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
             <td>
                 Original file name.
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                File Pattern
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The pattern (regex) of the files to be moved. </br>
+                <b>Example</b>: <code>[a-zA-Z][a-zA-Z]*.(txt|xml|jar)</code>.</br>
+                Available in file-connector <b>v4.0.5</b> and above
+            </td>
+            <td>
+                -
             </td>
             <td>
                 No
@@ -1612,6 +1633,8 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
             <td>
                  The pattern that should be matched when listing files. This does not operate recursively on sub folders.
+                 <br/>
+                 <b>Important</b>: The file pattern is case sensitive in the file connector version 4.0.2 and in later versions.
             </td>
             <td>
                 All files.
@@ -1958,6 +1981,8 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
             <td>
                  The file pattern that should be used to select files for listing.
+                 <br/>
+                 <b>Important</b>: The file pattern is case sensitive in the file connector version 4.0.2 and in later versions.
             </td>
             <td>
                 -
@@ -2013,6 +2038,24 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
             <td>
                 Ascending
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Response Format
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Format to list the files in response. 
+                <b>Possible Values</b>: Hierarchical, Flat.
+            </td>
+            <td>
+                Hierarchical
             </td>
             <td>
                 No

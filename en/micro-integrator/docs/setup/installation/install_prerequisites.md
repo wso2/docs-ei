@@ -102,7 +102,7 @@ Prior to installing WSO2 Micro Integrator, make sure that the appropriate prereq
          CentOS 7.5
                 </li>
                 <li>
-         RHEL-7.4
+         RHEL 7.4, 8.2
                 </li>
             </ul>
         </td>
@@ -118,7 +118,7 @@ Prior to installing WSO2 Micro Integrator, make sure that the appropriate prereq
            MariaDB 10.5
                 </li>
                 <li>
-           PostgreSQL 12.2
+           PostgreSQL 12.2, 13.2 
                 </li>
                 <li>
            DB2 11.5

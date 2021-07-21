@@ -12,7 +12,42 @@ See the instructions in [using the embedded Micro Integrator](../using-embedded-
 
 Download and set up a Micro Integrator server in your VM and deploy the composite exporter with your integration artifacts. 
 
-See the instructions in [using a remote Micro Integrator](../using-remote-micro-integrator).
+-	**Using Integration Studio**
+
+    See the instructions in [using a remote Micro Integrator](../using-remote-micro-integrator).
+
+-	**Using maven car deployment plugin**
+
+    Note : "This capability is released as a product update on 24/05/2021. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+
+    Using maven-car-deploy-plugin 5.2.36 or higher and with latest wum updated wso2mi 1.2.0 can be used to deploy/undeploy .car files. Navigate to Composite Application Project's pom.xml file and add below plugin config.
+    
+    ```
+    <plugin>
+       <groupId>org.wso2.maven</groupId>
+       <artifactId>maven-car-deploy-plugin</artifactId>
+       <version>5.2.36</version>
+       <extensions>true</extensions>
+       <configuration>
+          <carbonServers>
+              <CarbonServer>
+                  <trustStorePath>path_to_wso2carbon.jks</trustStorePath>
+                  <trustStorePassword>wso2carbon</trustStorePassword>
+                  <trustStoreType>JKS</trustStoreType>
+                  <serverUrl>https://{remote_server_host}:{port}</serverUrl>
+                  <userName>admin</userName>
+                  <password>admin</password>
+                  <operation>deploy</operation>
+              </CarbonServer>
+            </carbonServers>
+        </configuration>
+    </plugin>
+    
+    ```
+    
+    Note: operation can be deploy or undeploy and provide the config values accordingly
+    
+    Then run mvn clean deploy -Dmaven.deploy.skip=true -Dmaven.car.deploy.skip=false
 
 ## Deploy artifacts in Docker
 
