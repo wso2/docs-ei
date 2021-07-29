@@ -457,6 +457,11 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Optional</td>
         </tr>
 	    <tr>
+            <td>deleteContainerFolders</td>
+            <td>Set to true if you want to delete the container folders.</td>
+            <td>Optional</td>
+        </tr>
+	    <tr>
             <td>sftpIdentities</td>
             <td>Location of the private key.</td>
             <td>Optional</td>
@@ -479,6 +484,7 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+        <deleteContainerFolders>{$ctx:deleteContainerFolders}</deleteContainerFolders>
         <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
         <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
     </fileconnector.delete>
@@ -495,7 +501,7 @@ The following operations allow you to work with the File Connector version 2. Cl
 
 
 ??? note "isFileExist"
-    The isFileExist operation checks the existence of a file in a spacified location. This operation returns true if the file exists and returns false if the file does not exist in the specified location.
+    The isFileExist operation checks the existence of a file in a specified location. This operation returns true if the file exists and returns false if the file does not exist in the specified location.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -537,6 +543,16 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Sets the requirement to use host key checking. E.g., no.</td>
             <td>Optional</td>
         </tr>
+        <tr>
+            <td>sftpIdentities</td>
+            <td>The location of the private key.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>sftpIdentityPassphrase</td>
+            <td>The passphrase of the private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -549,6 +565,8 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+        <sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities>
+        <sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
     </fileconnector.isFileExist>
     ```
 
