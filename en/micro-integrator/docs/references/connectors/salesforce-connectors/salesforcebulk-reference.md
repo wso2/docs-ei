@@ -572,7 +572,7 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
             <td>Yes</td>
         </tr>
         <tr>
-            <td>resultsId</td>
+            <td>resultId</td>
             <td>The unique identifier of the results for which you want to retrieve.</td>
             <td>Yes</td>
         </tr>
@@ -586,7 +586,7 @@ To use the Salesforce Bulk connector, add the `<salesforcerest.init>` element in
     <salesforcebulk.getBulkQueryResults>
         <jobId>{$ctx:jobId}</jobId>
         <batchId>{$ctx:batchId}</batchId>
-        <resultsId>{$ctx:resultsId}</resultsId>
+        <resultId>{$ctx:resultId}</resultId>
     </salesforcebulk.getBulkQueryResults>
     ```
 
