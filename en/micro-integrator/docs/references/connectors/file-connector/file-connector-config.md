@@ -701,6 +701,11 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Set to true if you want to include the parent directory.</td>
             <td>Optional</td>
         </tr>
+        <tr>
+            <td>setAvoidPermission</td>
+            <td>Set to true if you want to skip the file permission check.</td>
+            <td>Optional</td>
+        </tr>
 	    <tr>
             <td>sourceSftpIdentities</td>
             <td>Location of the source's private key.</td>
@@ -736,6 +741,7 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
         <filePattern>{$ctx:filePattern}</filePattern>
 	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
+        <setAvoidPermission>{$ctx:setAvoidPermission}</setAvoidPermission>
 	    <sourceSftpIdentities>{$ctx:sftpIdentities}</sourceSftpIdentities>
         <sourceSftpIdentityPassphrase>{$ctx:sourceSftpIdentityPassphrase}</sourceSftpIdentityPassphrase>
         <targetSftpIdentities>{$ctx:targetSftpIdentities}</targetSftpIdentities>
