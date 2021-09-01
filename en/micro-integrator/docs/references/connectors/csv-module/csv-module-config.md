@@ -1,8 +1,13 @@
 # CSV Module Reference
 
-CSV Module module in WSO2 Enterprise Integrator helps working with CSV payloads. The following transformations can be performed with this module.
+CSV Module module in WSO2 Enterprise Integrator helps working with CSV payloads. This transforms a given payload into another type of payload according to your requirements. You can change the type of the output payload using these tranformation configurations as well. You can send the payload to be transformed in mulitiple ways (e.g., POST request ).
+
+The following transformations can be performed with this module.
+
 
 ## CSV to CSV transformation
+
+You can use the CSV to CSV transformation to convert a CSV payload into another CSV payload according to your requirements using the configurations given below.
 
 ### Operation details
 
@@ -86,7 +91,7 @@ Given below is a sample request.
   5,Robinette Udey,rudey4@nytimes.com,true  
   ```
 
-A sample configuration for the csvToCsv operation is shown below.
+A sample synapse configuration for the csvToCsv operation is shown below.
 
   ```xml
   <CSV.csvToCsv>  
@@ -111,6 +116,8 @@ The following is the sample response, for the request given  above.
   ```
 
 ## CSV to JSON transformation
+
+You can use the CSV to JSON transformation to convert a CSV payload into a JSON payload according to your requirements using the configurations given below.
 
 ### Operation details
 
@@ -188,7 +195,7 @@ Given below is a sample request.
   5,Robinette Udey,rudey4@nytimes.com,true 
   ```
 
-A sample configuration for the csvToJson operation is shown below.
+A sample synapse configuration for the csvToJson operation is shown below.
 
   ```xml
   <CSV.csvToJson>
@@ -233,6 +240,8 @@ The following is the sample response, for the request given  above.
   ``` 
 
 ## CSV to XML transformation
+
+You can use the CSV to XML transformation to convert a CSV payload into a XML payload according to your requirements using the configurations given below.
 
 ### Operation details
 
@@ -340,7 +349,7 @@ Given below is a sample request.
   5,Robinette Udey,rudey4@nytimes.com,true 
   ```
 
-A sample configuration for the csvToXml operation is shown below.
+A sample synapse configuration for the csvToXml operation is shown below.
 
   ```xml
   <CSV.csvToXml>
@@ -385,9 +394,9 @@ The following is the sample response, for the request given above.
   </results>
   ``` 
 
-
-
 ## JSON to CSV transformation
+
+You can use the JSON to XML transformation to convert a JSON payload into a CSV payload according to your requirements using the configurations given below.
 
 ### Operation details
 
@@ -448,7 +457,7 @@ Given below is a sample request.
       }
   ]
   ```
-A sample configuration for the jsonToCsv operation is shown below.
+A sample synapse configuration for the jsonToCsv operation is shown below.
 
   ``` xml
   <CSV.jsonToCsv>
@@ -467,6 +476,8 @@ The following is the sample response, for the request given above.
   ```
 
 ## XML to CSV transformation
+
+You can use the XML to CSV transformation to convert a XML payload into a CSV payload according to your requirements using the configurations given below.
 
 ### Operation details
 
@@ -528,7 +539,7 @@ Given below is a sample request.
   </root>
   ```
 
-A sample configuration for the xmlToCsv operation is shown below.
+A sample synapse configuration for the xmlToCsv operation is shown below.
 
   ``` xml
   <CSV.xmlToCsv>
