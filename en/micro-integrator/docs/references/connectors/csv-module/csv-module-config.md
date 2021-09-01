@@ -1,6 +1,6 @@
 # CSV Module Reference
 
-CSV Module module in WSO2 Enterprise Integrator helps working with CSV payloads. This transforms a given payload into another type of payload according to your requirements. You can change the type of the output payload using these transformation configurations as well. You can send the payload to be transformed in multiple ways (e.g., POST request ).
+CSV Module in WSO2 Enterprise Integrator helps working with CSV payloads. This transforms a given payload into another type of payload according to your requirements. You can change the type of the output payload using these transformation configurations as well. You can send the payload to be transformed in multiple ways (e.g., POST request ).
 
 The following transformations can be performed with this module.
 
@@ -61,7 +61,7 @@ You can use the CSV to CSV transformation to convert a CSV payload into another 
     <td>Skip Columns</td>
     <td>columnsToSkip</td>
     <td></td>
-    <td>Specify columns to skip from the CSV payload. You can specify the columns as comma-separated values. <br>This property supports more complex queries also, you can find full specifications <a href="https://github.com/wso2-extensions/mediation-csv-module/blob/master/docs/column_skipper_query.md" target="_blank" rel="noopener noreferrer">here</a>.</td>
+    <td>Specify columns to skip from the CSV payload. You can specify the columns as comma-separated values. <br>This property supports more complex queries also, you can find full specifications below in <b>CSV Columns Skipper Query</b>.
   </tr>
   <tr>
     <td>Custom Header</td>
@@ -283,7 +283,7 @@ You can use the CSV to XML transformation to convert a CSV payload into a XML pa
     <td>Skip Columns</td>
     <td>columnsToSkip</td>
     <td></td>
-    <td>Specify columns to skip from the CSV payload. You can specify the columns as comma-separated values. <br>This property supports more complex queries also, you can find full specifications <a href="https://github.com/wso2-extensions/mediation-csv-module/blob/master/docs/column_skipper_query.md" target="_blank" rel="noopener noreferrer">here</a>.</td>
+    <td>Specify columns to skip from the CSV payload. You can specify the columns as comma-separated values. <br>This property supports more complex queries also, you can find full specifications below in <b>CSV Columns Skipper Query</b>.
   </tr>
   <tr>
     <td><b>Root Element Group</b></td>
@@ -396,7 +396,7 @@ The following is the sample response, for the request given above.
 
 ## JSON to CSV transformation
 
-You can use the JSON to XML transformation to convert a JSON payload into a CSV payload according to your requirements using the configurations given below.
+You can use the JSON to CSV transformation to convert a JSON payload into a CSV payload according to your requirements using the configurations given below.
 
 ### Operation details
 
@@ -556,4 +556,80 @@ The following is the sample response, for the request given above.
   3,Catlin Drought,cdrought2@etsy.com,608-510-7991
   4,Kissiah Douglass,kdouglass3@squarespace.com,true
   5,Robinette Udey,rudey4@nytimes.com,true
+  ```
+
+## CSV Columns Skipper Query
+
+The `columnsToSkip` (Skip Columns) property in CSV to JSON, CSV to XML, CSV to CSV operations supports a simple query language to configure the skipping columns.
+
+### Queries
+
+#### Single Column
+
+The column selection query can be a single column representing one column in the CSV. You can represent a column with its index or using the header name for that column.
+
+* Column index : Column indexes are starting from 1. You can give a single column index as the column skipper query. E.g., `3`
+* Column name: You can specify a column using its name. Note that, this feature work only if the value of the  `headerPresent` property is `Present`. You can give the column name within double quotations in the columns skipper query. (E.g., `"email"`)
+ 
+#### Multiple Columns
+You can select multiple columns by combining them with a comma (,).
+
+  ```
+  1,2,3,
+  ```
+
+  ```
+  "name":"email"
+  ```
+
+  ```
+  3:"email"
+  ```
+ 
+#### Element Range
+You can specify a range of columns in the query. Use colon character (:) to define a range.
+
+  ```
+  1:5
+  ```
+
+  ```
+  "name":"email"
+  ```
+
+  ```
+  3:"email"
+  ```
+
+You can use asterisk symbol to represent the last column in case you don't know the number of columns. For example if you want to skip all the columns from  column `3`, then use the following query,
+
+  ```
+  3:*
+  ```
+  
+#### Group Elements
+You can use opening and closing brackets to define a group of elements. A few examples are shown below.
+
+  ```
+  (1:5)
+  ```
+
+  ```
+  (3,4,"name")
+  ```
+
+  ```
+  2,3,("name":*)
+  ```
+  
+#### Not Syntax
+You can use the exclamation mark (!) to exclude columns from columns skipper. For example, if you want to skip all the columns from 5 to 10 but want to include 7th column, can use the query given below
+  
+  ```
+  5:10,!7
+  ```
+The following is an additional example of how you can use this.
+
+  ```
+  3:*,!(10:"email")
   ```
