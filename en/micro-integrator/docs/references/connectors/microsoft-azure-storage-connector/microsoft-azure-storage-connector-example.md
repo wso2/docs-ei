@@ -175,6 +175,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 * As `accountKey` use the access key obtained from setting up the Microsoft Azure Storage account.
 * As `accountName` get the name of created **Storage Account** inside the Microsoft Azure Storage account.
+* As `defaultEndpointsProtocol` define the protocol that need to connect with the Azure storage. This is an optional field and the default protocol will be `http`. You can configure defaultEndpointsProtocol as `https` to create secured connection with the Azure Storage.
     
 Now we can export the imported connector and the API into a single CAR application. CAR application is the one we are going to deploy to server runtime. 
    
