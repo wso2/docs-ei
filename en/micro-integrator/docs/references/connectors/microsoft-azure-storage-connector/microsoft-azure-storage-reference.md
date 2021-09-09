@@ -41,7 +41,7 @@ To use the Microsoft Azure Storage connector, add the <msazurestorage.init> elem
     <msazurestorage.init>
         <accountName>{$ctx:accountName}</accountName>
         <accountKey>{$ctx:accountKey}</accountKey>
-        <accountKey>{$ctx:defaultEndpointsProtocol}</accountKey>
+        <defaultEndpointsProtocol>{$ctx:defaultEndpointsProtocol}</defaultEndpointsProtocol>
     </msazurestorage.init>
     ```
     
