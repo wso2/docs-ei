@@ -81,6 +81,12 @@ Navigate to the <KAFKA_HOME> and run the following command:
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test     
 ```
 
+!!! note 
+   If your Kafka version is older than 2.2, then the `--bootstrap-server` option will not be supported. Use the `--zookeeper` options as shown below.
+    ```bash
+    bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+    ```
+
 **Sample Request**:
    
 Send a message to the Kafka broker using a CURL command or sample client.
