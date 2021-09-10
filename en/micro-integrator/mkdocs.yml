@@ -598,6 +598,8 @@ nav:
           - 'Redis Overview': 'references/connectors/redis-connector/redis-connector-overview.md'
           - 'Setting up the Environment': 'references/connectors/redis-connector/redis-connector-configuration.md'
           - 'Redis Example': 'references/connectors/redis-connector/redis-connector-example.md'
+          - 2.3.x:
+              - Redis Connector Reference: reference/connectors/redis-connector/2.3.x/redis-connector-reference.md
           - 2.2.x:
               - Redis Connector Reference: reference/connectors/redis-connector/2.2.x/redis-connector-reference.md
           - 2.1.x:
