@@ -10883,7 +10883,7 @@ class = <handler_class>
 name = "hashicorp" # required
 address = "http://127.0.0.1:8200" # required
 rootToken = "ROOT_TOKEN" # required
-cachableDuration = "15000"
+cacheableDuration = "15000"
 engineVersion = "2"
 # If namespace is used, apply the namespace value:
 namespace = "NAMESPACE"
@@ -10899,7 +10899,7 @@ name = "hashicorp" # required
 address = "http://127.0.0.1:8200" # required
 roleId = "ROLE_ID" # required
 secretId = "SECRET_ID" # required
-cachableDuration = "15000"
+cacheableDuration = "15000"
 engineVersion = "2"
 # If namespace is used, apply the namespace value:
 namespace = "NAMESPACE"
@@ -10915,7 +10915,7 @@ name = "hashicorp" # required
 address = "http://127.0.0.1:8200" # required
 ldapUsername = "USERNAME" # required
 ldapPassword = "PASSWORD" # required
-cachableDuration = "15000"
+cacheableDuration = "15000"
 engineVersion = "2"
 # If HashiCorp vault server is hosted in HTTPS protocol, apply below fields
 trustStoreFile = "${carbon.home}/repository/resources/security/client-truststore.jks"
@@ -11042,7 +11042,7 @@ keyStorePassword = "KEY_STORE_PASSWORD"
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>cachableDuration</code> </span>
+                                  <span class="param-name-wrap"> <code>cacheableDuration</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
