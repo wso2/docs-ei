@@ -3913,7 +3913,7 @@
                             "description": "Specify the secret ID generated from HashiCorp. The secret ID and role ID you sepecify in the deployment.toml file will internally generate a token and authenticate the HashiCorp server connection. The secret ID you generate in HashiCorp may expire. If that happens, you can renew the security token. The secret ID is only applicable if AppRole Pull authentication is used when connecting the Micro Integrator to the HashiCorp server."
                         },
                         {
-                            "name": "cachableDuration",
+                            "name": "cacheableDuration",
                             "type": "string",
                             "required": false,
                             "default": "15000",
