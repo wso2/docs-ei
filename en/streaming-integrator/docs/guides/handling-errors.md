@@ -41,8 +41,7 @@ Once the error store is enabled, you need to add a configuration for the data so
         ALTER TABLE ERROR_STORE_TABLE ADD (CONSTRAINT err_store_pk PRIMARY KEY (id)); 
         CREATE SEQUENCE err_store_seq START WITH 1; CREATE OR REPLACE TRIGGER err_store_trigger BEFORE INSERT ON ERROR_STORE_TABLE 
         FOR EACH ROW BEGIN SELECT err_store_seq.NEXTVAL INTO   :new.id FROM   dual; END;
-        ```
-        
+        ```       
     You can run the queries given above separately.
     If the Oracle server version is 12 or more, run the query given below.
         ```
