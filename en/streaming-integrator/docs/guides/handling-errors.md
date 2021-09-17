@@ -35,10 +35,12 @@ Once the error store is enabled, you need to add a configuration for the data so
 !!! note
     If you are configuring an oracle datasource and if the oracle server version is lower that 12 ,
         then you need to create corresponding table (eg: ERROR_STORE_TABLE) with following syntax before starting the server.
-        CREATE TABLE ERROR_STORE_TABLE (id NUMBER(10) NOT NULL, timestamp LONG, siddhiAppName VARCHAR(100), streamName VARCHAR(100), 
-        event BLOB, cause VARCHAR(1000), stackTrace BLOB, originalPayload BLOB, errorOccurrence VARCHAR(50), eventType VARCHAR(50), errorType VARCHAR(50)); 
+        CREATE TABLE ERROR_STORE_TABLE (id NUMBER(10) NOT NULL, timestamp LONG, siddhiAppName VARCHAR(100), 
+        streamName VARCHAR(100), event BLOB, cause VARCHAR(1000), stackTrace BLOB, originalPayload BLOB, 
+        errorOccurrence VARCHAR(50), eventType VARCHAR(50), errorType VARCHAR(50)); 
         ALTER TABLE ERROR_STORE_TABLE ADD (CONSTRAINT err_store_pk PRIMARY KEY (id)); 
-        CREATE SEQUENCE err_store_seq START WITH 1; CREATE OR REPLACE TRIGGER err_store_trigger BEFORE INSERT ON ERROR_STORE_TABLE FOR EACH ROW BEGIN SELECT err_store_seq.NEXTVAL INTO   :new.id FROM   dual; END;
+        CREATE SEQUENCE err_store_seq START WITH 1; CREATE OR REPLACE TRIGGER err_store_trigger BEFORE INSERT ON ERROR_STORE_TABLE 
+        FOR EACH ROW BEGIN SELECT err_store_seq.NEXTVAL INTO   :new.id FROM   dual; END;
         You can run above queries separately.
     Or 12 or greater then you can run following query,
         CREATE TABLE ERROR_STORE_TABLE (id NUMBER(10) GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) NOT NULL, 
