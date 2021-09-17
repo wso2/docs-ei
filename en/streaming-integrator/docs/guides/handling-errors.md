@@ -46,8 +46,9 @@ Once the error store is enabled, you need to add a configuration for the data so
         CREATE TABLE ERROR_STORE_TABLE (id NUMBER(10) GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) NOT NULL, 
         timestamp LONG, siddhiAppName VARCHAR(100), streamName VARCHAR(100), event BLOB, cause VARCHAR(1000), stackTrace BLOB, 
         originalPayload BLOB, errorOccurrence VARCHAR(50), eventType VARCHAR(50), errorType VARCHAR(50))
-    Or if 12 or greater the fix for the query is available via WUM or Updates 2.0 and you do not need to run it manually. This capability is released as a 
-    product update on 01/10/2021. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.   
+    Or if 12 or greater the fix for the query is available via WUM or Updates 2.0 and you do not need to run it manually. 
+    This capability is released as a product update on 01/10/2021. If you don't already have this update, 
+    you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.   
 
 This can be used with the following:
 
