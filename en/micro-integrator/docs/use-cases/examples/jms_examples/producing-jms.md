@@ -53,6 +53,11 @@ The Synapse artifacts used are explained below.
         <td>Send Mediator</td>
         <td>
            To send a message to a JMS queue, you should define the JMS connection URL as the endpoint address (which should be invoked via the <b>Send</b> mediator). There are two ways to specify the endpoint URL: 
+           
+        <div class="admonition danger">
+            <p class="admonition-title"><code>QueueConnectionFactory</code> parameter</p>
+            <p>Note that you need to define the <code>QueueConnectionFactory</code> parameter with the same <code>name</code> you set for the <code>[[transport.jms.sender]]</code> configuration in the <code>deployment.toml</code> file. E.g., <code>myTopicSender</code>, <code>myQueueSender</code></p>
+        </div>       
            <ul>
                <li>
                     Specify the JNDI name of the JMS queue and the connection factory parameters in the JMS connection URL as shown in the exampe below. Values of connection factory parameters depend on the type of the JMS broker. </br></br>
