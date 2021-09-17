@@ -72,7 +72,7 @@ Windows allow you to retain a collection of streaming events based on a time dur
 
 Aggregation allows you to aggregate streaming events for different time granularities. The time granularities supported are seconds, minutes, hours, days, months and years. Aggregations such as sum, min, avg can be calculated for the desired duration(s) via Siddhi aggregation. For more information on Siddhi aggregations, see [Aggregations at Siddhi Streaming SQL Guide](https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#incremental-aggregation).
 
-* Persisted Aggregations.
+### Persisted Aggregations.
 
   Note : "This capability is released as a product update on 11/06/2021. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
 
