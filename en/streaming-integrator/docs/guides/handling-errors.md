@@ -13,7 +13,7 @@ This section explains the different types of errors that can occur and how they 
 
 ## Storing and replaying events with errors
 
-This involves storing the events with errors in the error store and then freplaying them. 
+This involves storing the events with errors in the error store and then replaying them. 
 
 To do this, you need to enable the error store in the `<SI_HOME>/conf/server/deployment.yaml` file by adding the following configuration.
 
@@ -31,6 +31,26 @@ error.store:
 - If the `dropWhenBufferFull` is set to `true`, the event is dropped when the capacity of the ring buffer is insufficient.
 
 Once the error store is enabled, you need to add a configuration for the data source you are connecting to the error store (in the above example `ERROR_STORE_DB`) in the `<SI_HOME>/conf/server/deployment.yaml` file. Then you can create the database in which you want to store the events with errors and link to it from the data source.
+
+!!! note
+    If you are configuring an Oracle datasource where the Oracle server version is less than 12 ,then you need to create corresponding table (e.g., `ERROR_STORE_TABLE`) with the following syntax before starting the server.
+        ```
+        CREATE TABLE ERROR_STORE_TABLE (id NUMBER(10) NOT NULL, timestamp LONG, siddhiAppName VARCHAR(100), 
+        streamName VARCHAR(100), event BLOB, cause VARCHAR(1000), stackTrace BLOB, originalPayload BLOB, 
+        errorOccurrence VARCHAR(50), eventType VARCHAR(50), errorType VARCHAR(50)); 
+        ALTER TABLE ERROR_STORE_TABLE ADD (CONSTRAINT err_store_pk PRIMARY KEY (id)); 
+        CREATE SEQUENCE err_store_seq START WITH 1; CREATE OR REPLACE TRIGGER err_store_trigger BEFORE INSERT ON ERROR_STORE_TABLE 
+        FOR EACH ROW BEGIN SELECT err_store_seq.NEXTVAL INTO   :new.id FROM   dual; END;
+        ```       
+    You can run the queries given above separately.
+    If the Oracle server version is 12 or more, run the query given below.
+        ```
+        CREATE TABLE ERROR_STORE_TABLE (id NUMBER(10) GENERATED ALWAYS as IDENTITY(START with 1 INCREMENT by 1) NOT NULL, 
+        timestamp LONG, siddhiAppName VARCHAR(100), streamName VARCHAR(100), event BLOB, cause VARCHAR(1000), stackTrace BLOB, 
+        originalPayload BLOB, errorOccurrence VARCHAR(50), eventType VARCHAR(50), errorType VARCHAR(50))
+        ```
+    Alternatively, for versions 12 or greater, the fix for the query is available via WUM or Updates 2.0. If you have an updated pack you do not need to run this manually. 
+    This capability is released as a product update on 01/10/2021. If you don't already have this update, you can get the latest updates [here](https://updates.docs.wso2.com/en/latest/updates/overview/#!).   
 
 This can be used with the following:
 
