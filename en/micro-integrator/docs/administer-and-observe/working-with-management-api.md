@@ -255,7 +255,7 @@ The management API has multiple resources to provide information regarding the d
 
 ### GET CARBON APPLICATIONS
 
-Note: "This capability to list down faulty applications is released as a product update on todo. If you do not have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+Note: This capability to list down faulty applications is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
 
 -	**Resource**: `/applications`
 
@@ -306,7 +306,7 @@ Note : "This capability is released as a product update on 24/05/2021. If you do
 
 ### DOWNLOAD CARBON APPLICATION
 
-Note: "This capability is released as a product update on todo. If you do not have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
 
 -	**Resource**: `/applications`
 
@@ -892,7 +892,7 @@ Note : "This capability is released as a product update on 24/05/2021. If you do
 
 ### SHUTDOWN SERVER
 
-Note: "This capability is released as a product update on todo. If you do not have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
 
 -	**Resource**: `/server`
 
@@ -918,7 +918,7 @@ Note: "This capability is released as a product update on todo. If you do not ha
 
 ### SHUTDOWN SERVER GRACEFULLY
 
-Note: "This capability is released as a product update on todo. If you do not have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
 
 -	**Resource**: `/server`
 
@@ -944,7 +944,7 @@ Note: "This capability is released as a product update on todo. If you do not ha
 
 ### RESTART SERVER
 
-Note: "This capability is released as a product update on todo. If you do not have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
 
 -	**Resource**: `/server`
 
@@ -970,7 +970,7 @@ Note: "This capability is released as a product update on todo. If you do not ha
 
 ### RESTART SERVER GRACEFULLY
 
-Note: "This capability is released as a product update on todo. If you do not have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/#!) now.
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
 
 -	**Resource**: `/server`
 
