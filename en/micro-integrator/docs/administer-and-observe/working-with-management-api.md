@@ -255,9 +255,11 @@ The management API has multiple resources to provide information regarding the d
 
 ### GET CARBON APPLICATIONS
 
+Note: This capability to list down faulty applications is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
+
 -	**Resource**: `/applications`
 
-	**Description**: This operation provides you a list of available Applications.
+	**Description**: This operation provides you a list of available active and faulty Applications.
 
 	**Example**:
 
@@ -268,9 +270,16 @@ The management API has multiple resources to provide information regarding the d
 	```bash tab='Response'
 	{
 	  "count": 1,
+	  "faultyCount": 1,
 	  "list": [
 	    {
 	      "name": "SampleServicesCompositeApplication",
+	      "version": "1.0.0"
+	    }
+	  ],
+	  "faultyList": [
+	    {
+	      "name": "FaultyCAppCompositeExporter",
 	      "version": "1.0.0"
 	    }
 	  ]
@@ -294,6 +303,25 @@ Note : "This capability is released as a product update on 24/05/2021. If you do
     ```bash tab='Response'
     {"Message":"Successfully added Carbon Application myHttpServiceCompositeExporter_1.0.0-SNAPSHOT.car"}
     ```
+
+### DOWNLOAD CARBON APPLICATION
+
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
+
+-	**Resource**: `/applications`
+
+	**Description**: Download a carbon application.
+
+    **Example**:
+    
+  	```bash
+		wget \
+    	  https://localhost:9164/management/applications?carbonAppName=myHttpServiceCompositeExporter_1.0.0.car \
+    	  -O myHttpServiceCompositeExporter_1.0.0.car \
+    	  --header 'Authorization: Bearer TOKEN' \
+    	  --header 'accept: application/octet-stream' \
+    	  --no-check-certificate -i
+	```
 
 ### Remove CARBON APPLICATION
 
@@ -861,6 +889,110 @@ Note : "This capability is released as a product update on 24/05/2021. If you do
 	    "javaHome": "/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/jre"
 	}
 	```
+
+### SHUTDOWN SERVER
+
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
+
+-	**Resource**: `/server`
+
+	**Description**: Shutdown the micro integrator server instance forcefully.
+
+	**Example**:
+
+	```bash tab='Request'
+		curl -X PATCH \
+    	  https://localhost:9164/management/server \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"status": "shutdown"
+    	}' -k -i
+	```
+
+  	```bash tab='Response'
+  	{
+	"Message":"The server will start to shutdown."
+	}
+  	```
+
+### SHUTDOWN SERVER GRACEFULLY
+
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
+
+-	**Resource**: `/server`
+
+	**Description**: Shutdown the micro integrator server instance gracefully.
+
+	**Example**:
+
+	```bash tab='Request'
+		curl -X PATCH \
+    	  https://localhost:9164/management/server \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"status": "shutdownGracefully"
+    	}' -k -i
+	```
+
+  	```bash tab='Response'
+  	{
+	"Message":"The server will start to shutdown gracefully."
+	}
+  	```
+
+### RESTART SERVER
+
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
+
+-	**Resource**: `/server`
+
+	**Description**: Restart the micro integrator server instance forcefully.
+
+	**Example**:
+
+	```bash tab='Request'
+		curl -X PATCH \
+    	  https://localhost:9164/management/server \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"status": "restart"
+    	}' -k -i
+	```
+
+  	```bash tab='Response'
+  	{
+	"Message":"The server will start to restart."
+	}
+  	```
+
+### RESTART SERVER GRACEFULLY
+
+Note: This capability is released as a WUM update on 16/09/2021 and Update 2.0 on 06/09/2021. If you do not have this update, you can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the wum update or use [Update 2.0 Tool](https://updates.docs.wso2.com/en/latest/updates/overview/#!) to get the Update 2.0 update now.
+
+-	**Resource**: `/server`
+
+	**Description**: Restart the micro integrator server instance gracefully.
+
+	**Example**:
+
+	```bash tab='Request'
+		curl -X PATCH \
+    	  https://localhost:9164/management/server \
+    	  -H 'authorization: Bearer TOKEN' \
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"status": "restartGracefully"
+    	}' -k -i
+	```
+
+  	```bash tab='Response'
+  	{
+	"Message":"The server will start to restart gracefully."
+	}
+  	```
 
 ### GET DATA SERVICES
 
