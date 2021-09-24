@@ -1,7 +1,7 @@
 # Accessing a Windows Share using VFS
-This example demonstrates how the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) in WSO2 Micro Integrator can be used to access a windows share.
+This example demonstrates how the [VFS transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-vfs-transport) in WSO2 Micro Integrator can be used to access a windows share.
 
-## Synapse configuration
+## Synapse configuration 
 
 Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
@@ -93,3 +93,54 @@ To test this sample, the following files and directories should be created:
     </soapenv:Envelope>
     ```
 When the sample is executed, the VFS transport listener picks the file from the **in** directory and sends it to the back service over HTTP. Then the request XML file is moved to the **original** directory and the response is saved to the **out** directory.
+
+## Using SMB2 for VFS transport
+
+!!! note "Before you begin"
+    Make sure you add the following 3rd party libraries to the `<MI_HOME>/dropins` directory.
+
+    1. [name]
+    2. [name]
+    3. [name]
+
+You can use the proxy given below to test the SMB2 functionality
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="smb2proxy"
+       transports="vfs"
+       startOnLoad="true">
+   <description/>
+   <target>
+      <inSequence>
+         <log level="custom">
+            <property name="im at" value="in sequence"/>
+         </log>
+         <log level="full"/>
+         <property name="transport.vfs.ReplyFileName"
+                   expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')"
+                   scope="transport"/>
+         <property name="OUT_ONLY" value="true"/>
+         <send>
+            <endpoint>
+               <address uri="vfs:smb2://wso2:wso2123@192.168.1.11/SMBFileShare/out"/>
+            </endpoint>
+         </send>
+      </inSequence>
+      <outSequence>
+         <log level="custom">
+            <property name="im at" value="out sequence"/>
+         </log>
+      </outSequence>
+   </target>
+   <parameter name="transport.PollInterval">15</parameter>
+   <parameter name="transport.vfs.FileURI">smb2://wso2:wso2123@192.168.1.11:445/SMBFileShare/in</parameter>
+   <parameter name="transport.vfs.ContentType">text/plain</parameter>
+   <parameter name="transport.vfs.ActionAfterProcess">MOVE</parameter>
+   <parameter name="transport.vfs.MoveAfterFailure">smb2://wso2:wso2123@192.168.11/SMBFileShare/fail</parameter>
+   <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
+   <parameter name="transport.vfs.FileNamePattern">.*\.txt</parameter>
+   <parameter name="transport.vfs.MoveAfterProcess">smb2://wso2:wso2123@192.168.1.11/SMBFileShare/original</parameter>
+</proxy>
+```

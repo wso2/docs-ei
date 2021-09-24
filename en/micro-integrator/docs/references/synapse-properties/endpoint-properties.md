@@ -583,7 +583,7 @@ The following is the configuration for the address endpoint. Note that you can a
         <enableAddressing [version="final|submission"] [separateListener="true|false"]/>?
 
         <timeout>
-                <duration>timeout duration in seconds</duration>
+                <duration>timeout duration in milliseconds</duration>
                 <responseAction>discard|fault|never</responseAction>
         </timeout>?
 
@@ -638,7 +638,7 @@ The `timeout` element contains the following parameters that are used to conside
                <li><b>Discard</b>:  If this is selected, the responses which arrive after the endpoint has timed out will be discarded.</li>
                <li><b>Fault</b>: If this is selected, a fault sequence is triggered when the endpoint is timed out.</li>
             </ul>
-            <b>Note</b>: You can specify a value that is 1 millisecond less than the time duration you specify for the endpoint time out for the <code>synapse.timeout_handler_interval</code> property in the <code>MI_Home/conf/ei.toml</code> file. This would minimise the number of late responses from the backend.
+            <b>Note</b>: You can specify a value that is 1 millisecond less than the time duration you specify for the endpoint time out for the <code>synapse.timeout_handler_interval</code> property in the <code>MI_Home/conf/deployment.toml</code> file. This would minimise the number of late responses from the backend.
             </ul>
          </td>
       </tr>
