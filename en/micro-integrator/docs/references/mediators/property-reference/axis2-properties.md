@@ -238,6 +238,9 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 | **Scope**            | axis2                                                                                                                                                                                      |
 | **Description**      | Specifies the encoding type used for the content of the files processed by the transport. Note that this property cannot be used if the 'setCharacterEncoding' property is set to 'false'. |
 | **Example**          | `             <property name="CHARACTER_SET_ENCODING" value="UTF-8" scope="axis2" type="STRING"/>            `                                                                             |
+
+
+
 ## DECODE_MULTIPART_DATA
 
 |     Parameter       |           Value               |
