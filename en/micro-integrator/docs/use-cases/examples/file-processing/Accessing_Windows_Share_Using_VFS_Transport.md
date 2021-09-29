@@ -1,7 +1,7 @@
 # Accessing a Windows Share using VFS
-This example demonstrates how the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) in WSO2 Micro Integrator can be used to access a windows share.
+This example demonstrates how the [VFS transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-vfs-transport) in WSO2 Micro Integrator can be used to access a windows share.
 
-## Synapse configuration
+## Synapse configuration 
 
 Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
