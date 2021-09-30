@@ -3,7 +3,7 @@ See the instructions on how to set up a cluster of WSO2 Micro Integrator nodes i
 
 ## The deployment pattern
 
-This deployment scenario is a two-node Micro Integrator deployment. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. The product nodes in the deployment are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
+This deployment scenario is a two-node Micro Integrator deployment. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. The product nodes in the deployment are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis. 
 
 <img src="../../../assets/img/clustered_deployment.png">
 
@@ -23,6 +23,18 @@ hostname = "localhost"
 ```
 
 Find more [parameters](../../../references/config-catalog/#deployment) for deployment settings.
+
+!!! info "Enable heartbeat messaging"
+    When a client is connected to the broker, both the broker and the client should be able to detect problem situations where the TCP connection is half open or where the connecting client/broker is unresponsive. This can be achieved by enabling heartbeat messaging between the broker and the client.
+    
+    The heartbeat messaging configuration allows both the broker and the client to verify whether the connection is inactive or whether the connecting system (broker or client) is inactive by periodically sending messages to each other.
+
+    | Parameter           | Description                                                                            | Default value |
+    |---------------------|----------------------------------------------------------------------------------------|---------------|
+    | `heartBeatInterval` | The time interval between heartbeat messages, specified in milliseconds.               | 5000          |
+    | `heartbeatMaxRetry` | The number of heartbeat messages sent to the client before terminating the connection. | 3             |
+
+    Note that this should only be used when your network latency **exceeds** `heartbeatMaxRetry * heartBeatInterval`.
 
 ## Cluster coordination
 
