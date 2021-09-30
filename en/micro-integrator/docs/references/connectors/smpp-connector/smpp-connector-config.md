@@ -165,7 +165,7 @@ To use the SMPP connector, add the `<SMPP.init>` element in your configuration b
        <td>Optional</td>
     </tr>
     <tr>
-       <td>destinationAddress</td>
+       <td>distinationAddress</td>
        <td>
           Destination address of the SMS message.
           Source address TON, Destination address TON
@@ -726,7 +726,7 @@ The following is a sample proxy service that illustrates how to connect to the S
         ]
       }
       </pre>
-      <li>Each number assigned different properties. Numbers without the properties will be assigned default values (You can set a custom type and numbering plan as default, as mentioned in the previous format). Properties can be set to numbers individually.</li>
+      <li>Each number is assigned different properties. Numbers without the properties will be assigned default values (You can set a custom type and numbering plan as default, as mentioned in the previous format). Properties can be set to numbers individually.</li>
       <pre>
       {
       "mobileNumbers": 
@@ -1023,8 +1023,8 @@ The following is a sample proxy service that illustrates how to connect to the S
       "sourceAddress": "16116",
       "destinationAddresses": {
             "type": "ALPHANUMERIC",
-               "numberingPlan": "LAND_MOBILE",
-            "mobileNumbers": ["+zad", "+189718674"]
+            "numberingPlan": "LAND_MOBILE",
+            "mobileNumbers": ["+189718785", "+189718674"]
          },
       "messageClass":"CLASS1",
       "alphabet": "ALPHA_DEFAULT",
