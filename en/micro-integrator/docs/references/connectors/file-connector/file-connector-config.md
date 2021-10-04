@@ -839,6 +839,8 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Optional</td>
         </tr>
     </table>
+    
+    > NOTE: The latest File connector (v4.0.7 onwards) supports the decompressing the .gz files.
 
     **Info**: To enable streaming for large files, you have to add the following message builder and formatter in the <ESB_HOME>/repository/conf/axis2/axis2.xml file:
     * Add <messageFormatter contentType="application/file" class="org.wso2.carbon.relay.ExpandingMessageFormatter"/> under message formatters.
