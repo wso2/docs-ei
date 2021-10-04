@@ -4,7 +4,7 @@ The Micro Integrator of WSO2 Enterprise Integrator 7.0 introduces TOML-based pro
 
 The complete list of configuration parameters that you can use in the `deployment.toml` file are listed below along with descriptions. You can also see the documentation on product [installation and setup](../../setup/install_and_setup_overview) for details on applying product configurations to your Micro Integrator deployment.
 
-## Instructions for use
+## Instructions for use 
 
 To update the product configurations:
 
@@ -10877,20 +10877,52 @@ class = <handler_class>
                 <label class="tab-selector" for="_tab_57"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[external_vault]]
-name = "hashicorp"
-address = "http://127.0.0.1:8200"
-# When static authentication is used, apply the rootToken:
-rootToken = "ROOT_TOKEN"
-# When AppRole-pull method is used for authentication, apply the roleId and secretId:
-roleId = "ROLE_ID"
-secretId = "SECRET_ID"
-cachableDuration = 15000
-engineVersion = 2
+<pre><code class="toml">#Static Token Authentication
+
+[[external_vault]]
+name = "hashicorp" # required
+address = "http://127.0.0.1:8200" # required
+rootToken = "ROOT_TOKEN" # required
+cacheableDuration = "15000"
+engineVersion = "2"
+# If namespace is used, apply the namespace value:
 namespace = "NAMESPACE"
+# If HashiCorp vault server is hosted in HTTPS protocol, apply below fields
 trustStoreFile = "${carbon.home}/repository/resources/security/client-truststore.jks"
 keyStoreFile = "${carbon.home}/repository/resources/security/wso2carbon.jks"
-keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
+keyStorePassword = "KEY_STORE_PASSWORD"
+
+#AppRole Authentication
+
+[[external_vault]]
+name = "hashicorp" # required
+address = "http://127.0.0.1:8200" # required
+roleId = "ROLE_ID" # required
+secretId = "SECRET_ID" # required
+cacheableDuration = "15000"
+engineVersion = "2"
+# If namespace is used, apply the namespace value:
+namespace = "NAMESPACE"
+# If HashiCorp vault server is hosted in HTTPS protocol, apply below fields
+trustStoreFile = "${carbon.home}/repository/resources/security/client-truststore.jks"
+keyStoreFile = "${carbon.home}/repository/resources/security/wso2carbon.jks"
+keyStorePassword = "KEY_STORE_PASSWORD"
+
+#LDAP Authentication
+
+[[external_vault]]
+name = "hashicorp" # required
+address = "http://127.0.0.1:8200" # required
+ldapUsername = "USERNAME" # required
+ldapPassword = "PASSWORD" # required
+cacheableDuration = "15000"
+engineVersion = "2"
+# If HashiCorp vault server is hosted in HTTPS protocol, apply below fields
+trustStoreFile = "${carbon.home}/repository/resources/security/client-truststore.jks"
+keyStoreFile = "${carbon.home}/repository/resources/security/wso2carbon.jks"
+keyStorePassword = "KEY_STORE_PASSWORD"
+
+</code></pre>
                     </div>
                 </div>
                 <div class="doc-wrapper">
@@ -11010,7 +11042,7 @@ keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>cachableDuration</code> </span>
+                                  <span class="param-name-wrap"> <code>cacheableDuration</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -11142,4 +11174,3 @@ keyStorePassword = "KEY_STORE_PASSWORD"</code></pre>
         </div>
     </section>
 </div>
-

@@ -1,7 +1,7 @@
 # Accessing a Windows Share using VFS
-This example demonstrates how the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) in WSO2 Micro Integrator can be used to access a windows share.
+This example demonstrates how the [VFS transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-vfs-transport) in WSO2 Micro Integrator can be used to access a windows share.
 
-## Synapse configuration
+## Synapse configuration 
 
 Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
@@ -93,3 +93,43 @@ To test this sample, the following files and directories should be created:
     </soapenv:Envelope>
     ```
 When the sample is executed, the VFS transport listener picks the file from the **in** directory and sends it to the back service over HTTP. Then the request XML file is moved to the **original** directory and the response is saved to the **out** directory.
+
+## Using SMB2 for VFS transport
+
+Windows share URI format for SMB v2/3 use cases is shown below.
+
+```
+smb2://[username]:[password]@[hostname]:[port]/[absolute-path
+```
+You can use the proxy given below to test the SMB2 functionality
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="smb2proxy"
+       transports="vfs"
+       startOnLoad="true">
+   <description/>
+   <target>
+      <inSequence>
+         <property name="transport.vfs.ReplyFileName"
+                   expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')"
+                   scope="transport"/>
+         <property name="OUT_ONLY" value="true"/>
+         <send>
+            <endpoint>
+               <address uri="smb2://username:password@/host/SMBFileShare/out"/>
+            </endpoint>
+         </send>
+      </inSequence>
+   </target>
+   <parameter name="transport.PollInterval">15</parameter>
+   <parameter name="transport.vfs.FileURI">smb2://username:password@/host/SMBFileShare/in</parameter>
+   <parameter name="transport.vfs.ContentType">text/plain</parameter>
+   <parameter name="transport.vfs.ActionAfterProcess">MOVE</parameter>
+   <parameter name="transport.vfs.MoveAfterFailure">smb2://username:password@/host/SMBFileShare/fail</parameter>
+   <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
+   <parameter name="transport.vfs.FileNamePattern">.*\.txt</parameter>
+   <parameter name="transport.vfs.MoveAfterProcess">smb2://username:password@/host/SMBFileShare/original</parameter>
+</proxy>
+```

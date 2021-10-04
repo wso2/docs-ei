@@ -151,7 +151,7 @@ nav:
           - Proxy Services:
             - 'Using a Simple Proxy Service': 'use-cases/examples/proxy_service_examples/Introduction-to-Proxy-Services.md'
             - 'Publishing a Custom WSDL': 'use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl.md'
-            #- 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
+            - 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
             - 'Exposing a Proxy Service via Inbound Endpoints': 'use-cases/examples/proxy_service_examples/exposing-proxy-via-inbound.md'
             - 'Securing a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
           - Inbound Endpoints:
@@ -239,7 +239,6 @@ nav:
         - 'Creating a Reusable Sequence': 'develop/creating-artifacts/creating-reusable-sequences.md'
         - 'Creating a Registry Resource': 'develop/creating-artifacts/creating-registry-resources.md'
         - 'Creating Local Registry Entries': 'develop/creating-artifacts/registry/creating-local-registry-entries.md'
-        - 'Creating a Smooks Configuration': 'develop/creating-artifacts/creating-smooks-artifacts.md'
         - 'Creating a Data Service': 'develop/creating-artifacts/data-services/creating-data-services.md'
         - 'Creating a Datasource': 'develop/creating-artifacts/data-services/creating-datasources.md'
         - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
@@ -351,7 +350,6 @@ nav:
             - 'Using HashiCorp Secrets' : 'setup/security/using-hashicorp-secrets.md'
             - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Securing the Management API' : 'setup/security/securing_management_api.md'
-          - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
         - Performance:
           - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
           - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
@@ -571,12 +569,17 @@ nav:
           - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
           - 'ISO8583 Inbound Endpoint Reference': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-config.md'
         - Kafka Connector:
-          - 'Kafka Overview': 'references/connectors/kafka-connector/kafka-connector-overview.md'
-          - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
-          - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
-          - 'Kafka Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
-          - 'Kafka Connector Reference': 'references/connectors/kafka-connector/kafka-connector-config.md'
-          - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
+            - 'Kafka Overview': 'references/connectors/kafka-connector/kafka-connector-overview.md'
+            - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
+            - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
+            - 3.1.x:
+                - 'Kafka Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
+                - 'Kafka Avro Message Example': 'references/connectors/kafka-connector/kafka-connector-avro-producer-example.md'
+                - 'Kafka Connector Reference': 'references/connectors/kafka-connector/kafka-connector-config.md'
+            - 3.0.x:
+                - 'Kafka Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
+                - 'Kafka Connector Reference': 'references/connectors/kafka-connector/3.0.x/kafka-connector-config.md'
+            - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
         - LDAP Connector:
           - 'LDAP Overview': 'references/connectors/ldap-connector/ldap-connector-overview.md'
           - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
@@ -595,7 +598,14 @@ nav:
           - 'Redis Overview': 'references/connectors/redis-connector/redis-connector-overview.md'
           - 'Setting up the Environment': 'references/connectors/redis-connector/redis-connector-configuration.md'
           - 'Redis Example': 'references/connectors/redis-connector/redis-connector-example.md'
-          - 'Redis Reference': 'references/connectors/redis-connector/redis-connector-reference.md'
+          - 2.3.x:
+              - Redis Connector Reference: reference/connectors/redis-connector/2.3.x/redis-connector-reference.md
+          - 2.2.x:
+              - Redis Connector Reference: reference/connectors/redis-connector/2.2.x/redis-connector-reference.md
+          - 2.1.x:
+              - Redis Connector Reference: reference/connectors/redis-connector/2.1.x/redis-connector-reference.md
+          - 1.0.1:
+              - Redis Connector Reference: reference/connectors/redis-connector/1.0.1/redis-connector-reference.md
         - Salesforce Connectors:
           - 'Salesforce Overview': 'references/connectors/salesforce-connectors/sf-overview.md'
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connectors/sf-access-token-generation.md'

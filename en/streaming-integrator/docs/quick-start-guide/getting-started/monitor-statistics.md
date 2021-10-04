@@ -1,4 +1,4 @@
-# Step 8: Monitor Statistics
+# Step 7: Monitor Statistics
 
 This step shows how you can monitor the CDC and file statistics of the WSO2 Streaming Integrator deployment you started and the `SweetFactoryApp` Siddhi application you created and deployed in the previous steps. For this purpose, you are using the some of the pre-configured dashboards provided by WSO2 Streaming Integrator. You can host these dashboards in Grafana and view statistices related to ETL activities carried out by the Streaming Integrator.For more information about these dashboards, see [Monitoring ETL Statistics with Grafana](../../admin/viewing-dashboards.md)
 
@@ -76,6 +76,45 @@ WSO2 Streaming Integrator uses Perometheus to expose its statistics to Grafana. 
     
 !!! info
     The above steps to configure and start Prometheus need to be performed before you start the Grafana server.
+
+!!! note "Control the growth of the WSO2_METRICS_DB"
+    After enabling `metrics.prometheus` you might notice the growth of the WSO2_METRICS_DB. Below are the 2 options
+    that can be followed to overcome this issue.
+    
+    **Option 1**
+
+    1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
+    2. Set the `Enable JDBC Reporter` parameter to false. Note that after you disable this, only the real-time metrics are displayed and information relating to metrics history is not displayed.
+    ```toml
+    # Enable JDBC Reporter
+        enabled: false
+    ```
+    3. Restart the SI component to apply the changes.
+
+    **Option 2**
+
+    1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
+    2. Enable scheduled cleanup of the database under the `wso2.metrics.jdbc` parameter.
+    ```
+    wso2.metrics.jdbc:
+    # Data Source Configurations for JDBC Reporters
+    dataSource:
+        - &JDBC01
+        dataSourceName: java:comp/env/jdbc/WSO2MetricsDB
+        # Schedule regular deletion of metrics data older than a set number of days.
+        # It is recommended that you enable this job to ensure your metrics tables do not get extremely large.
+        # Deleting data older than seven days should be sufficient.
+        scheduledCleanup:
+            # Enable scheduled cleanup to delete Metrics data in the database.
+            enabled: true
+
+            # The scheduled job will cleanup all data older than the specified days
+            daysToKeep: 3
+
+            # This is the period for each cleanup operation in seconds.
+            scheduledCleanupPeriod: 86400
+    ``` 
+
     
 ### Downloading and setting up Grafana
 

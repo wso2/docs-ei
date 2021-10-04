@@ -1,8 +1,5 @@
 # Jira Connector Overview
 
-!!! Warning
-	**This content is currently Work in progress!**
-
 The JIRA Connector allows you to connect to JIRA, which is an online issue-tracking database. The connector uses the JIRA REST API to connect to JIRA, view and update issues, work with filters, and more.
 
 ## Compatibility
@@ -15,7 +12,7 @@ For older versions, see the details in the connector store.
 
 ## Email Connector documentation
 
-* **[Jira Connector Example](jira-connector-example.md)**: This example explains how to use Jira Connector to send an email and retrieve the same. 
+* **[Jira Connector Example](jira-connector-example.md)**: This example explains how to use the Jira Connector to create new issues and to get existing issues from Jira.
 
 * **[Jira Connector Reference](jira-connector-config.md)**: This documentation provides a reference guide for the Jira Connector.
 
