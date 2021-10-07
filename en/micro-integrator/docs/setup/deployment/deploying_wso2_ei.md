@@ -25,7 +25,7 @@ hostname = "localhost"
 Find more [parameters](../../../references/config-catalog/#deployment) for deployment settings.
 
 !!! info "Enable heartbeat messaging"
-    When a client is connected to the broker, both the broker and the client should be able to detect problem situations where the TCP connection is half open or where the connecting client/broker is unresponsive. This can be achieved by enabling heartbeat messaging between the broker and the client.
+    When two micro integrator notes are connected together, either node should be able to detect problem situations where the TCP connection is half open or where the other connecting node is unresponsive. This can be achieved by enabling heartbeat messaging between both nodes.
     
     The heartbeat messaging configuration allows both the broker and the client to verify whether the connection is inactive or whether the connecting system (broker or client) is inactive by periodically sending messages to each other.
 
