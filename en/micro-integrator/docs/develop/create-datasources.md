@@ -1,6 +1,6 @@
 # Create Datasource Configs
 
-Create this project directory to start creating datasources that you can expose through a data service.
+Create this project directory to start creating datasources that you can expose through a data service. 
 
 1. Open **WSO2 Integration Studio** and click **DS Project → Create New Data Source** in the **Getting Started** view as shown below.
     <img src="../../assets/img/create_project/datasourrce-project.png">
