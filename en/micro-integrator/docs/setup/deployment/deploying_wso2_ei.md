@@ -34,7 +34,18 @@ Find more [parameters](../../../references/config-catalog/#deployment) for deplo
     | `heartBeatInterval` | The time interval between heartbeat messages, specified in milliseconds.               | 5000          |
     | `heartbeatMaxRetry` | The number of heartbeat messages sent to the client before terminating the connection. | 3             |
 
-    Note that this should only be used when your network latency **exceeds** `heartbeatMaxRetry * heartBeatInterval`.
+    Note that this should only be used when your network latency **exceeds** `heartbeatMaxRetry * heartBeatInterval`. 
+    
+    !!! note
+    To set a different heartbeatInterval you can use the following command.
+    ```
+    -DheartBeatInterval = <value>
+    ```
+    To set a different heartbeatMaxRetry you can use the following command.
+    ```
+    -DheartBeatMaxRetry = <value>
+    ```
+
 
 ## Cluster coordination
 
