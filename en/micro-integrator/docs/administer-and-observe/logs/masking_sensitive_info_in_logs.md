@@ -34,7 +34,13 @@ You can specify one or more masking patterns in the `<MI-HOME>/conf/deployment.t
 With this configuration, each log line is checked for all the configured patterns. If any match is found, it is masked with ‘*****’.
 
 !!! danger "Using single quotes in TOML configs to avoid parsing escape characters"
-    The TOML parser reads the `deployment.toml` file and parse its value before generating a relevant configuration file. If the strings defined in the TOML file are within double quotes, it parses the string with escape characters and writes the resulting value on the config file. Therefore, you can avoid parsing escape characters by using single quotes. This allows the parser to read the TOML value without parsing and write on the config file as it is.
+    If the strings defined in the `deployment.toml` file are within double quotes, it is parsed along with the escape characters. To avoid this, use single quotes when you need to add escape characters as shown in the example below.
+    ```
+    [masking_pattern.properties]
+    "ACCT_ID" = '(?<=accountId\':)(.*)(?=\')' 
+    "ACCT_ID.replace_pattern"='(.?).(?=.*)'
+    "ACCT_ID.replacer"="*"
+    ```
 
 !!! note
     The following feature is released as a product update on <b>08th of December, 2020</b>. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
