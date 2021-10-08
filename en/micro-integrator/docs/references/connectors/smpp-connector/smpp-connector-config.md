@@ -95,7 +95,7 @@ To use the SMPP connector, add the `<SMPP.init>` element in your configuration b
 ## Send SMS Message
 
 ??? note "sendSMS"
-    Use to send SMS Message to the SMSC (Short Message Service Center).
+    Used to send SMS Message to the SMSC (Short Message Service Center).
     <table>
     <tr>
        <th>Parameter Name</th>
