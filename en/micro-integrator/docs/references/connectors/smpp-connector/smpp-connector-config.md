@@ -657,7 +657,7 @@ The following is a sample proxy service that illustrates how to connect to the S
     <tr>
        <td>serviceType</td>
        <td>
-          Indicates SMS application service. The following generic service_types are defined:
+          Indicates the SMS application service used. The following generic service_types are defined:
           <table>
              <tr>
                 <td>"" (NULL)	</td>
