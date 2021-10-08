@@ -935,7 +935,7 @@ The following is a sample proxy service that illustrates how to connect to the S
                       </tr>
                       <tr>
                          <td>CLASS0</td>
-                         <td>Flash messages. Display only not store into the phone</td>
+                         <td>Flash messages. These are display only and not stored in the phone</td>
                       </tr>
                       <tr>
                          <td>CLASS1</td>
