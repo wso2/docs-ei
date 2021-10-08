@@ -745,7 +745,7 @@ The following is a sample proxy service that illustrates how to connect to the S
     <tr>
        <td>esmClass</td>
        <td>
-          The esmClass parameter is used to indicate special message attributes associated with the short Message(message mode and type).
+          The esmClass parameter is used to indicate special message attributes associated with the short Message (message mode and type).
           <table>
              <tr>
                 <th>Bits 7 6 5 4 3 2 1</th>
