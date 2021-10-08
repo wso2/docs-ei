@@ -957,7 +957,7 @@ The following is a sample proxy service that illustrates how to connect to the S
              <tr>
                 <td>submitDefaultMsgId</td>
                 <td>
-                   Indicates short message to send from a predefined list of messages stored on SMSC.<br>
+                   Indicates a short message to send from a predefined list of messages stored on SMSC.<br>
                    <table>
                       <tr>
                          <th>Value</th>
