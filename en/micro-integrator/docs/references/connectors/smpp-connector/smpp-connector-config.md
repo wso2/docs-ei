@@ -647,7 +647,7 @@ The following is a sample proxy service that illustrates how to connect to the S
 ## Send bulk SMS message
 
 ??? note "sendBulkSMS"
-    Use to send SMS Message to multiple destinations.
+    Used to send SMS messages to multiple destinations.
     <table>
     <tr>
        <th>Parameter Name</th>
