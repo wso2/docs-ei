@@ -40,8 +40,8 @@ The mediator project you selected is created in the location you specified.
     2. Deselect **.\resources**, and click **OK**.
 
 !!! Note
-    If the dependencies are not resolved properly, try out the following steps to manually resolve it. This is fixed in the latest version of the Integration Studio.
+    If the dependencies are not resolved properly, try out the following steps to manually resolve those. This is fixed in the latest version of the Integration Studio.
 
-    1. Right click on the Class Mediator Project.
-    2. Select Configure.
-    3. Click on Convert to Maven Project.
+    1. Right click on the **Class Mediator Project**.
+    2. Select **Configure**.
+    3. Click **Convert to Maven Project**.
