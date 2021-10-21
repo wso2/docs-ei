@@ -727,6 +727,8 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Optional</td>
         </tr>
     </table>
+    
+    > NOTE: The latest File connector (v4.0.7 onwards) supports the decompressing the .gz files.
 
     **Sample configuration**
     
