@@ -27,7 +27,9 @@ Find more [parameters](../../../references/config-catalog/#deployment) for deplo
 !!! info "Enable heartbeat messaging"
     When two micro integrator notes are connected together, either node should be able to detect problem situations where the TCP connection is half open or where the other connecting node is unresponsive. This can be achieved by enabling heartbeat messaging between both nodes.
     
-    The heartbeat messaging configuration allows both micro integrator nodes to verify whether the connection is inactive or whether the connecting system is inactive by periodically sending messages to each other.
+    The heartbeat messaging configuration allows heartbeats tobe sent to the database to verify whether the connection is inactive or whether the connecting system is inactive by periodically sending messages to each other. After the specified time, if the node has not  sent a heartbeat to the database it is assumed by other nodes that this node has left the cluster.
+
+    You can change this by passing these as the system properties to the server during startup or add it to the startup script as shown below.
 
     | Parameter           | Description                                                                            | Default value |
     |---------------------|----------------------------------------------------------------------------------------|---------------|
