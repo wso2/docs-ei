@@ -4,7 +4,7 @@ The Micro Integrator of WSO2 Enterprise Integrator 7.0 introduces TOML-based pro
 
 The complete list of configuration parameters that you can use in the `deployment.toml` file are listed below along with descriptions. You can also see the documentation on product [installation and setup](../../setup/install_and_setup_overview) for details on applying product configurations to your Micro Integrator deployment.
 
-## Instructions for use 
+## Instructions for use
 
 To update the product configurations:
 
@@ -10877,7 +10877,9 @@ class = <handler_class>
                 <label class="tab-selector" for="_tab_57"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">#Static Token Authentication
+<pre><code class="toml">#This is available as a WUM update or WSO2 Updates 2 and is effective from 05th October 2021 (2021-10-05).
+
+#Static Token Authentication
 
 [[external_vault]]
 name = "hashicorp" # required
@@ -11174,3 +11176,4 @@ keyStorePassword = "KEY_STORE_PASSWORD"
         </div>
     </section>
 </div>
+

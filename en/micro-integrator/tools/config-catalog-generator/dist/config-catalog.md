@@ -10877,7 +10877,9 @@ class = <handler_class>
                 <label class="tab-selector" for="_tab_57"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">#Static Token Authentication
+<pre><code class="toml">#This is available as a WUM update or WSO2 Updates 2 and is effective from 05th October 2021 (2021-10-05).
+
+#Static Token Authentication
 
 [[external_vault]]
 name = "hashicorp" # required
