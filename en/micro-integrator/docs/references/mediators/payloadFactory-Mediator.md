@@ -13,7 +13,7 @@ and map it to the arguments provided.
 ## Syntax
 
 !!! Info
-    The template-type attribute is released as a product update on <b>07/01/2021</b>. If you don't already have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
+    The template-type attribute is released as a product update on <b>07/01/2021</b>. If you do not have this update, you can [get the latest updates](https://updates.docs.wso2.com/en/latest/updates/overview/) now.
 
 ``` java
 <payloadFactory media-type="xml | json" template-type="default | freemarker">
