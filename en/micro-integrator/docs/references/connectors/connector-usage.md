@@ -81,7 +81,7 @@ You can refer to the documentation of the relevant connector and configure the `
 
 <img src="../../../assets/img/connectors/old-connection-config.png" title="Connection configuration with init" width="500" alt="Connection configuration with init"/>
 
-Instead of having the `init` operation before each connector operation, you can create an [inline XML local-entry](../../develop/creating-artifacts/registry/creating-local-registry-entries/) with the XML configuration of the `init` operation configuration and refer to it at the beginning of each connector operation.
+Instead of having the `init` operation before each connector operation, you can create an [inline XML local-entry](../../develop/creating-artifacts/registry/creating-local-registry-entries.md) with the XML configuration of the `init` operation configuration and refer to it at the beginning of each connector operation.
 
 ### Externalizing connector initialization parameters 
 
@@ -101,11 +101,11 @@ The following are some other ways to externalize connection initialization param
 
 There are no special requirements when deploying WSO2 EI with artifacts with WSO2 EI connectors. However, the following facts need to be considered. 
 
-To seamlessly refresh tokens, use a registry location that is visible to all [WSO2 EI cluster members](../../setup/deployment/deploying_wso2_ei/) (for example, config registry mounted). Here the refresh token value should be passed as a connector parameter. For detailed information on how this can be done for the relevant WSO2 ESB connectors, see the documentation for the relevant connector.
+To seamlessly refresh tokens, use a registry location that is visible to all [WSO2 EI cluster members](../../setup/deployment/deploying_wso2_ei.md) (for example, config registry mounted). Here the refresh token value should be passed as a connector parameter. For detailed information on how this can be done for the relevant WSO2 ESB connectors, see the documentation for the relevant connector.
 
 ## Performance tuning and monitoring
 
-SaaS connectors use HTTP/HTTPS protocol to communicate. They use WSO2 EI mediation engine itself. Hence [HTTP protocol related tunings](../../setup/performance_tuning/http_transport_tuning/) are applied. 
+SaaS connectors use HTTP/HTTPS protocol to communicate. They use WSO2 EI mediation engine itself. Hence [HTTP protocol related tunings](../../setup/performance_tuning/http_transport_tuning.md) are applied. 
 
 Technology connectors use protocols that are custom. Thus their tuning needs to be done at the connector itself. All connection related tunings are present in the form you get when you create a new connection for the connector. For the older connectors, configurations will be present in the `init` operation. 
 
@@ -117,7 +117,7 @@ Please refer to the reference documentation of the connector for details.
 
 Connector implementations will have DEBUG and TRACE level logs. You can enable them to see in detail what is going on with the connector. 
 
-* See [Configuring Log4j2 Properties section of the documentation](../../administer-and-observe/logs/configuring_log4j_properties/) on how to enable DEBUG logs specifically for a Java package and on how to view the logs.
+* See [Configuring Log4j2 Properties section of the documentation](../../administer-and-observe/logs/configuring_log4j_properties.md) on how to enable DEBUG logs specifically for a Java package and on how to view the logs.
 
 * To get the package name of the connector implementation, refer to the [How to contribute section of the overview page of connector documentation](connectors-overview/#contribute-to-the-connector-project). 
 
@@ -133,11 +133,11 @@ WSO2 Integration Studio provides debugging capabilities. You cannot use mediatio
 * Whether your input parameters for connector operations contain the expected values.
 * What is the response message after using connector cooperation.
 
-Please refer to [the Debugging Mediation documentation](../../develop/debugging-mediation/) for instructions on how to use mediation debugging. 
+Please refer to [the Debugging Mediation documentation](../../develop/debugging-mediation.md) for instructions on how to use mediation debugging. 
 
 ### Debugging connector code 
 
-You can get the source code of WSO2 EI connector and remotely debug it with your scenario to find out issues. Refer to the ["How to contribute” section of the connector overview page](connectors-overview/#contribute-to-the-connector-project), get the GitHub repository, clone it, checkout the relevant version, and debug. It is open source!
+You can get the source code of WSO2 EI connector and remotely debug it with your scenario to find out issues. Refer to the ["How to contribute” section of the connector overview page](../connectors-overview/#contribute-to-the-connector-project), get the GitHub repository, clone it, checkout the relevant version, and debug. It is open source!
 
 Start the server with `./integrator.sh -debug <port>` and connect to that port from your IDE (IntelliJ IDEA). 
 
