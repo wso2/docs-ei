@@ -673,10 +673,10 @@ To use the Redis connector, add the <redis.init> element in your configuration b
     **Sample configuration**
 
     ```xml
-    <redis.expire>
+    <redis.expireAt>
         <redisKey>{$ctx:redisKey}</redisKey>
         <redisUnixTime>{$ctx:redisUnixTime}</redisUnixTime>
-    </redis.expire>
+    </redis.expireAt>
     ```
     
     **Sample request**
