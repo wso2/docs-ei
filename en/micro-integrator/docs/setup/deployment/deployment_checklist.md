@@ -216,7 +216,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p>Micro Integrator security fixes can be taken from one of the following methods.</p>
             <ul>
                 <li>Using WUM ( WSO2 Update Manager ) to get the latest fixes. Users with a <a href="https://wso2.com/subscription">subscription</a> can take the latest security fixes via the WUM security channel.</li>
-                <li><a href="https://wso2.com/security-patch-releases-notice/">WSO2 Security Patch Release</a> page has all the security patches for the latest product versions. WSO2 does not issue patches publicly for older product versions. Community users are encouraged to use the latest product version to receive all the security fixes.
+                <li>The <a href="https://docs.wso2.com/display/Security/Security+Advisories">WSO2 Security Advisories page</a> and the <a href="https://wso2.com/updates/">U2 Portal</a> has all the security patches for the latest product versions. WSO2 does not issue patches publicly for older product versions. Community users are encouraged to use the latest product version to receive all the security fixes.
 </li>           <li><a href="https://docker.wso2.com/tags.php?repo=wso2mi">WSO2 Docker repository</a> releases docker images with security fixes. Users with a <a href="https://wso2.com/subscription">subscription</a> can fetch these docker images.</li>
             </ul>
          </td>
