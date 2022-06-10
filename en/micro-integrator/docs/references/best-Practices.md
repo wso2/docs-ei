@@ -141,7 +141,7 @@ Listed below are the best practices for working with the source code:
     example, `           BubbleSortMediator.java          ` . For more
     information on naming conventions, see the library article [WSO2
     Developer Studio - Development and Deployment Best
-    Practices](http://wso2.com/library/articles/2015/10/article-wso2-developer-studio-development-and-deployment-best-practices/).
+    Practices](https://wso2.com/library/articles/2015/10/article-wso2-developer-studio-development-and-deployment-best-practices/).
 
 ### Using mediators
 
@@ -870,7 +870,7 @@ troubleshooting with tooling, see [Troubleshooting WSO2 Integration Studio](../.
 -   Automate the process of change deployment. You can use puppet for
     this purpose. For more information, see the tutorial on [How To Use
     WSO2 Puppet Modules to Deploy WSO2
-    Products](http://wso2.com/library/tutorials/2016/03/tutorial-how-to-use-wso2-puppet-modules-to-deploy-wso2-products/)
+    Products](https://wso2.com/library/tutorials/2016/03/tutorial-how-to-use-wso2-puppet-modules-to-deploy-wso2-products/)
     .
 -   Make sure you follow the [production hardening guidelines](../../setup/deployment/deployment_checklist)
     before going into production or exposing instances to live traffic.
