@@ -51,11 +51,21 @@ The parameters available for configuring the Data Mapper mediator are as follows
 </tr>
 <tr class="even">
 <td><strong>Input Type</strong></td>
-<td>Expected input message type (XML/JSON/CSV)</td>
+<td>Expected input message type (XML/JSON/CSV)</br>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, the Input type for the Data Mapper is XML regardless of the Input Schema Type. Therefore, based on your requirement, you may need to change the Input Type manually.</p>
+</div>
+</td>
 </tr>
 <tr class="odd">
 <td><strong>Output Type</strong></td>
-<td>Target output message type (XML/JSON/CSV)</td>
+<td>Target output message type (XML/JSON/CSV)</br>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, the Output Type for the Data Mapper is XML regardless of the Output Schema Type. Therefore, based on your requirement, you may need to change the Output Type manually.</p>
+</div>
+</td>
 </tr>
 </tbody>
 </table>
