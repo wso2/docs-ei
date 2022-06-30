@@ -346,7 +346,7 @@ schema.
     <on-fail>
         <payloadFactory media-type="json">
             <format>{"Error":"$1",
-            "Error Details " : " $2"       }</format>
+            "Error Details" : "$2"       }</format>
             <args>
                 <arg evaluator="xml" expression="$ctx:ERROR_MESSAGE" />
                 <arg evaluator="xml" expression="$ctx:ERROR_DETAIL" />
