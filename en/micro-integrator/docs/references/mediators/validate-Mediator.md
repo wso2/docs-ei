@@ -377,6 +377,6 @@ When you send an invalid JSON, the following response will appear.
 ```
 {
     "Error": "object has missing required properties ([\"request\"])",
-    "Error Details ": " Error while validating Json message error: object has missing required properties ([\"request\"])\n    level: \"error\"\n    schema: {\"loadingURI\":\"#\",\"pointer\":\"/properties/getQuote\"}\n    instance: {\"pointer\":\"/getQuote\"}\n    domain: \"validation\"\n    keyword: \"required\"\n    required: [\"request\"]\n    missing: [\"request\"]\n"
+    "Error Details": "Error while validating Json message error: object has missing required properties ([\"request\"])\n    level: \"error\"\n    schema: {\"loadingURI\":\"#\",\"pointer\":\"/properties/getQuote\"}\n    instance: {\"pointer\":\"/getQuote\"}\n    domain: \"validation\"\n    keyword: \"required\"\n    required: [\"request\"]\n    missing: [\"request\"]\n"
 }
 ```
