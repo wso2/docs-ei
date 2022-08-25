@@ -42,7 +42,7 @@ rootToken = "ROOT_TOKEN"
 # If AppRole Pull authentication is used, apply the roleId and secretId:
 roleId = "ROLE_ID"
 secretId = "SECRET_ID"
-cachableDuration = 15000
+cacheableDuration = 15000
 engineVersion = 2
 namespace = "NAMESPACE"
 trustStoreFile = "${carbon.home}/repository/resources/security/client-truststore.jks"
@@ -102,7 +102,7 @@ keyStorePassword = "KEY_STORE_PASSWORD"
     </tr>
     <tr>
         <td>
-            cachableDuration
+            cacheableDuration
         </td>
         <td>
             All resources fetched from the HashiCorp vault are cached for this number of milliseconds.</br>
