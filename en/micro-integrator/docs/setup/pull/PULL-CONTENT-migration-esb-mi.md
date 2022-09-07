@@ -33,4 +33,5 @@ Note the following:
 	-	[Comparison: ESB vs the Micro Integrator](../../../overview/about-this-release-7.1.0/#feature-comparison)
 	-	[Features removed from the Micro Integrator](../../../overview/about-this-release-7.1.0/#features-removed)
 
--	Note that EI 7.x is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release..
+-	Note that EI 7.x is a **WUM-only release**, which means that manual patches are not allowed. You can use [WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/WSO2+Updates) to get the latest fixes or updates for this release.
+-	The BPS profile does not exist in the more recent versions of MI and we recommend that you use an alternate product for complex long running processes they are running on BPS. Alternately, you can continue to use BPS until it reaches end-of-life.
