@@ -136,6 +136,46 @@ To use the Microsoft Azure Storage connector, add the <msazurestorage.init> elem
     }
     ```
 
+??? note "dowloadBlob"
+    The downloadBlob operation downloads a Blob file from the storage. See the [related API documentation](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-java-how-to-use-blob-storage) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>containerName</td>
+            <td>The name of the container.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>fileName</td>
+            <td>The name of the file.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <msazurestorage.downloadBlob>
+        <containerName>{$ctx:containerName}</containerName>
+        <fileName>{$ctx:fileName}</fileName>
+    </msazurestorage.downloadBlob>
+    ```
+    
+    **Sample request**
+
+    ```json
+    {
+        "accountName": "test",
+        "accountKey": "=gCetnaQlvsXQG4PnlXxxxxXXXXsW37DsDKw5rnCg==",
+        "containerName": "sales",
+        "fileName": "report.pdf"
+    }
+    ```
+
 ??? note "listBlobs"
     The listBlobs operation retrieves information about all Blobs in a container. See the [related API documentation](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-java-how-to-use-blob-storage) for more information.
     <table>
