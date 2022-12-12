@@ -6,24 +6,9 @@ balancer prior to routing traffic to a particular server node.
 The health check API has two behaviors depending on whether the deployment is mutable or immutable. If the deployment 
 is mutable (which is mostly the configuration in centralized deployments), the probe will give a **ready** status when the 
 server starts successfully. If the deployment is immutable, the probe will give a **ready** status only if all the CApps 
-are deployed successfully during server startup. If there are faulty CApps, the probe will return the list of faulty CApps. 
-
-The health check API serves at:
+are deployed successfully during server startup. If there are faulty CApps, the probe will return the list of faulty CApps. The health check API serves at:
 
 `http://localhost:9201/healthz`
-
-The health check can be performed over HTTPS APIs by adding the below configuration to the `deployment.toml` file.
-
-```toml
-[readiness_probe]
-protocols = "http https"
-```
-
-Sample Request
-
-```curl
-curl GET 'https://localhost:9164/healthz' -k
-```
 
 !!! Note
     If you are running the server instance with a different port offset other than the default, which is 10, the heath
