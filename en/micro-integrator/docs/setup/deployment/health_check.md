@@ -10,6 +10,19 @@ are deployed successfully during server startup. If there are faulty CApps, the 
 
 `http://localhost:9201/healthz`
 
+The health check can be performed over HTTPS APIs by adding the below configuration to the `deployment.toml` file.
+
+```toml
+[readiness_probe]
+protocols = "http https"
+```
+
+Sample Request
+
+```curl
+curl GET 'https://localhost:9164/healthz' -k
+```
+
 !!! Note
     If you are running the server instance with a different port offset other than the default, which is 10, the heath
     check API will serve at 9191 + offset.  
