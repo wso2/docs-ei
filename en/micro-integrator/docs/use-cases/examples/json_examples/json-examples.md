@@ -172,17 +172,21 @@ For example, consider the following JSON message:
 The output converted to XML is as follows:
 
 ```xml
-<abc_jsonreader_32_def>this is a sample value</abc_jsonreader_32_def> 
+<abc_JsonReader_32_def>this is a sample value</abc_JsonReader_32_def> 
 ```
 
 !!! Tip
     The value 32 represents the standard char value of the space. This works other way around as well. When you need to convert XML to JSON, with a JSON element that needs to have a space within it. Then, you use " `         _JsonReader_32_        ` " in the XML element, to get the space in the JSON output. For example, if you consider the following XML payload;
 
-    `<abc_jsonreader_32_def>this is a sample value</abc_jsonreader_32_def>`
+```xml
+<abc_JsonReader_32_def>this is a sample value</abc_JsonReader_32_def>
+```
 
-    The JSON output will be as follows:
+The JSON output will be as follows:
 
-    `{ "abc def" : "this is a sample value"}`
+```json
+{ "abc def" : "this is a sample value"}
+```
 
 ## Handling XML to JSON conversion
 
