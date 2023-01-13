@@ -203,7 +203,8 @@ nav:
         - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
         - 'Setting up a File-Based Registry' : 'setup/deployment/file_based_registry.md'
-      - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
+      #- 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
+      - 'Upgrading WSO2 Enterprise Integrator': 'setup/deployment/upgrading-wso2-ei.md' 
       - 'Product Deployment Checklist': 'setup/deployment/deployment_checklist.md'
       - Security Hardening :
         - Setting up Keystores:
