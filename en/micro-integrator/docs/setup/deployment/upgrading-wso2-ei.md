@@ -14,7 +14,7 @@ There are multiple reasons why you would want to upgrade the WSO2 product to the
 
 Over the course of its lifetime, WSO2 Enterprise Integrator has changed significantly and some of the features you were using in an older version may not work the same way.
 
-To learn what’s new in the WSO2 Enterprise Integrator 7.1.0 release, see the [About this Release](../../overview/about-this-release-7.1.0.md) page.
+To learn what’s new in the WSO2 Enterprise Integrator 7.1.0 release, see the [About this Release](../../overview/about-this-release-7.1.0/) page.
 
 ## Get started
 
