@@ -289,9 +289,7 @@ nav:
           - 'Installing as a Windows Service': 'setup/installation/install_as_service.md'
         - 'Running the Micro Integrator on Containers': 'setup/installation/run_in_containers.md'
       - Migrate:
-        - 'Migrating from WSO2 ESB 5.x': 'setup/deployment/migrating-from-esb-5.x.x.md'
-        - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
-        - 'Migrating from WSO2 EI 7.0': 'setup/deployment/migrating-from-ei-7.0.x.md'
+        - 'Upgrading WSO2 Enterprise Integrator': 'setup/deployment/upgrading-wso2-ei.md'
       - Deploy:
         - Deploy on Kubernetes:
           - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
