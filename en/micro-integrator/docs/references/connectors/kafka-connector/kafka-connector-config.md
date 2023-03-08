@@ -324,6 +324,11 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
             <td>The partition number of the topic.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>key</td>
+            <td>The key of the message.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     If required, you can add [custom headers](https://cwiki.apache.org/confluence/display/KAFKA/A+Case+for+Kafka+Headers) to the records in publishMessage operation:
