@@ -8044,7 +8044,7 @@ parameter.truststore_password = "$ref{truststore.password}"</code></pre>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The queue name to send or consume messages. If you do not specify this parameter, you need to specify the rabbitmq.queue.routing.key parameter.</p>
+                                        <p>The message processor&#39;s acknowledgement behavior when consuming messages from RabbitMQ can be set to either automatically send acknowledgement upon receiving messages or to wait until receiving a response from the backend before sending acknowledgement.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -11176,4 +11176,3 @@ keyStorePassword = "KEY_STORE_PASSWORD"
         </div>
     </section>
 </div>
-
