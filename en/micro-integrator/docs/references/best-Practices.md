@@ -851,11 +851,11 @@ troubleshooting with tooling, see [Troubleshooting WSO2 Integration Studio](../.
 
 -   Ensure that you tune the deployment environment based on the
     [performance tuning guidelines](../../setup/performance_tuning/tuning_jvm_performance).
--   [Install all patches using WSO2 Update Manager(WUM)](https://docs.wso2.com/display/updates/Introduction)
+-   [Install all patches using Update Tool(U2)](https://updates.docs.wso2.com/en/latest/updates/update-tool)
     in all environments.
 
     !!! Info
-        If you are using WSO2 ESB 4.9.0 or above, ensure that you have all [WUM](https://docs.wso2.com/display/updates/Introduction) updates installed at any given time.
+        If you are using WSO2 ESB 4.9.0 or above, ensure that you have all updates installed at any given time.
 
 -   Pre-test patches in a test environment before going into the
     production environment. You should use an automated test suite to do
