@@ -458,3 +458,80 @@ In the following example, the parameters in the RabbitMQ message store are confi
     <parameter name="store.rabbitmq.password">$FILE:rabbitpass</parameter>
 </messageStore>
 ```
+
+### Enhancing Custom Register Extension Point
+
+This feature enables the creation of custom resolvers using the associated patch ticket. Below, we outline the comprehensive steps and provide code snippets that should be integrated into the documentation to cover this new feature.
+
+This feature allows the creation of custom resolvers using the associated patch ticket. Below, we outline comprehensive steps and provide code snippets that should be integrated into the documentation to cover this new feature.
+
+
+#### Step 1: Creating a Custom Resolver Class
+
+To create your own custom resolver class, follow these steps:
+
+1. Begin by creating a new Java class in your project, e.g., "TestResolver".
+2. Import the "org.apache.synapse.commons.resolvers.Resolver" package.
+3. Implement the Resolver interface in your "TestResolver" class.
+4. Override the `setVariable()` and `resolve()` methods.
+5. In the `resolve()` method, add your custom logic to resolve the variable format.
+
+```java
+package org.example.resolvers;
+
+import org.apache.synapse.commons.resolvers.Resolver;
+
+public class TestResolver implements Resolver {
+
+    private String input;
+
+    @Override
+    public void setVariable(String input) {
+        this.input = input;
+    }
+
+    @Override
+    public String resolve() {
+        if ("abc".equals(input)) {
+            return "pqr";
+        } else {
+            return input;
+        }
+    }
+}
+```
+
+6. Register the TestResolver class as the Fragment host in the `pom.xml` file:
+```xml
+<instructions>
+  <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+  <Fragment-host>synapse-commons</Fragment-host>
+</instructions>
+
+```
+7. Place the `CustomResolver` JAR file in the **"/dropins"** directory and restart the server. Note that this JAR is an OSGI bundle and must be added to the dropins directory.
+
+#### Step 2: Configuring Synapse Using Custom Resolver
+
+Note that the identifier used is **`"CUSTOM_"`**
+
+To configure Synapse using the custom resolver, follow these steps:
+
+1. Create a Synapse configuration that incorporates the use of the custom resolver.
+2. Employ the `$CUSTOM_TestResolver` identifier to reference the custom resolver in your configuration.
+3. Add the custom resolver parameter to your configuration.
+
+Given below is a sample configuration for the RabbitMQ store:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<messageStore class="org.apache.synapse.message.store.impl.rabbitmq.RabbitMQStore" name="InboundStore" xmlns="http://ws.apache.org/ns/synapse">
+  <!-- Other parameters -->
+  <parameter name="store.rabbitmq.username">$CUSTOM_TestResolver:guest</parameter>
+  <!-- Other parameters -->
+  <parameter name="store.rabbitmq.queue.name">$CUSTOM_TestResolver:tyz</parameter>
+  <parameter name="store.rabbitmq.password">$CUSTOM_TestResolver:guest</parameter>
+</messageStore>
+```
+
+The `$CUSTOM_TestResolver` parameters will dynamically resolve the variable format during deployment, facilitating the connection to RabbitMQ.
