@@ -459,12 +459,9 @@ In the following example, the parameters in the RabbitMQ message store are confi
 </messageStore>
 ```
 
-### Enhancing Custom Register Extension Point
+### Creating Custom Resolvers
 
-This feature enables the creation of custom resolvers using the associated patch ticket. Below, we outline the comprehensive steps and provide code snippets that should be integrated into the documentation to cover this new feature.
-
-This feature allows the creation of custom resolvers using the associated patch ticket. Below, we outline comprehensive steps and provide code snippets that should be integrated into the documentation to cover this new feature.
-
+This feature enables the creation of custom resolvers. Below, we outline the comprehensive steps and provide code snippets that should be integrated into the documentation to cover this new feature.
 
 #### Step 1: Creating a Custom Resolver Class
 
