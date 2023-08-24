@@ -268,7 +268,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="https://docs.wso2.com/display/IntegrationPatterns/">
+    <a style="color: #222222;" href="https://wso2docs.atlassian.net/wiki/spaces/EIP/overview">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
