@@ -57,6 +57,55 @@ You will be running three servers (EI Analytics server, EI Analytics portal, and
 
 -   Download and [install the Micro Integrator](../../../setup/installation/install_in_vm_installer) of EI 7.1.
 
+## Configuring the Integrator Analytics
+EI Analytics contains two runtimes, namely server and portal. The server is responsible for the summarization of the collected data and the portal is responsible to represent the summarised data in the dashboards. Therefore, two separate JVMs are required. As a best practice, the server and portal runtime can have the same analytics binary. This helps when managing the deployment and when applying updates. However, it is up to the dev-ops engineer to decide whether to use the same binary (pack) or two binaries for the two runtimes.
+
+### Configure the Analytics Server
+Open the <EI_ANALYTICS_HOME>/conf/server/deployment.yaml file.
+Edit the EI_ANALYTICS datasource under dataSources section.
+
+```toml
+- name: EI_ANALYTICS
+      description: "The datasource used for EI Analytics dashboard feature"
+      jndiConfig:
+        name: jdbc/EI_ANALYTICS
+      definition:
+        type: RDBMS
+        configuration:
+          jdbcUrl: 'jdbc:mysql://127.0.0.1:3306/EI_ANALYTICS'
+          username: root
+          password: root
+          driverClassName: com.mysql.cj.jdbc.Driver
+          maxPoolSize: 50
+          idleTimeout: 60000
+          validationTimeout: 30000
+          isAutoCommit: false
+```
+Copy the driver to the <EI_ANALYTICS_HOME>/lib folder
+
+### Configure the Analytics Portal
+Open the <EI_ANALYTICS_HOME>/conf/portal/deployment.yaml file.
+Edit the EI_ANALYTICS datasource under dataSources section.
+
+```toml
+- name: EI_ANALYTICS
+      description: "The datasource used for EI Analytics dashboard feature"
+      jndiConfig:
+        name: jdbc/EI_ANALYTICS
+      definition:
+        type: RDBMS
+        configuration:
+          jdbcUrl: 'jdbc:mysql://127.0.0.1:3306/EI_ANALYTICS'
+          username: root
+          password: root
+          driverClassName: com.mysql.cj.jdbc.Driver
+          maxPoolSize: 50
+          idleTimeout: 60000
+          validationTimeout: 30000
+          isAutoCommit: false
+```
+Copy the driver to the <EI_ANALYTICS_HOME>/lib folder
+
 ## Configuring the Micro Integrator
     
 ### Enabling statistics monitoring
