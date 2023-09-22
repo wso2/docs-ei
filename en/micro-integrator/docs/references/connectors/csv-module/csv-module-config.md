@@ -75,6 +75,12 @@ You can use the CSV to CSV transformation to convert a CSV payload into another 
     <td>Default : "," (comma)</td>
     <td>Values separator to use in the output CSV.</td>
   </tr>
+  <tr>
+    <td>Suppress Escaping</td>
+    <td>suppressEscaping</td>
+    <td>true, false</td>
+    <td>Specify whether to suppress all escaping in the output CSV payload. The default value is <code>false</code>.</td>
+  </tr>
 </tbody>
 </table>
 
@@ -416,6 +422,12 @@ You can use the JSON to CSV transformation to convert a JSON payload into a CSV 
     <td></td>
     <td>Set a custom header to the output CSV payload. If this property is not specified, the key values of the input would be used as the output CSV headers.</td>
   </tr>
+  <tr>
+    <td>Suppress Escaping</td>
+    <td>suppressEscaping</td>
+    <td>true, false</td>
+    <td>Specify whether to suppress all escaping in the output CSV payload. The default value is <code>false</code>.</td>
+  </tr>
 </tbody>
 </table>
 
@@ -496,6 +508,12 @@ You can use the XML to CSV transformation to convert a XML payload into a CSV pa
     <td>customHeader</td>
     <td></td>
     <td>Set a custom header to the output CSV payload. If this property is not specified, Key values of the input would be used as the output CSV headers.</td>
+  </tr>
+  <tr>
+    <td>Suppress Escaping</td>
+    <td>suppressEscaping</td>
+    <td>true, false</td>
+    <td>Specify whether to suppress all escaping in the output CSV payload. The default value is <code>false</code>.</td>
   </tr>
 </tbody>
 </table>
