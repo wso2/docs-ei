@@ -79,7 +79,7 @@ You can use the CSV to CSV transformation to convert a CSV payload into another 
     <td>Suppress Escaping</td>
     <td>suppressEscaping</td>
     <td>true, false</td>
-    <td>Specify whether to suppress all escaping in the output Csv payload. Default is false.</td>
+    <td>Specify whether to suppress all escaping in the output CSV payload. The default value is <code>false</code>.</td>
   </tr>
 </tbody>
 </table>
