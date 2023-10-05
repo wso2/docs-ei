@@ -6,7 +6,7 @@ This is a hybrid platform that enables API-centric integration and supports vari
 
 ## Centralized ESB
 
-The heart of WSO2 EI 7.1 is the Micro Integrato server, which is an event-driven, standards-based messaging engine (the **Bus**). This ESB supports message routing, message transformations, and other types of messaging use cases. If your organization uses an API-driven, centralized, integration architecture, the Micro Integrator can be used as the central integration layer that implements the message mediation logic connecting all the systems, data, events, APIs, etc. in your integration ecosystem.
+The heart of WSO2 EI 7.1 is the Micro Integrator server, which is an event-driven, standards-based messaging engine (the **Bus**). This ESB supports message routing, message transformations, and other types of messaging use cases. If your organization uses an API-driven, centralized, integration architecture, the Micro Integrator can be used as the central integration layer that implements the message mediation logic connecting all the systems, data, events, APIs, etc. in your integration ecosystem.
 
 <img src="../../assets/img/intro/mi-esb-architecture.png" alt="centralized ESB" name="centralized ESB" width="600">
 
