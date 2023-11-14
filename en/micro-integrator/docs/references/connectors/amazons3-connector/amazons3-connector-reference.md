@@ -3528,3 +3528,79 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     </headObject>
     ``` 
     
+??? note "generatePutObjectPresignedUrl"
+    The `generatePutObjectPresignedUrl` operation enables the creation of a pre-signed URL that allows the upload of an object to Amazon S3. This operation is useful when you want to grant temporary access to upload an object directly to a specific S3 bucket without needing AWS credentials.     
+    
+    **Sample Configuration**
+
+    ```xml
+    <amazons3.generatePutObjectPresignedUrl configKey="AMAZON_S3_CONNECTION_1">
+        <bucketName>my-bucket</bucketName>
+        <objectKey>my-obj-1</objectKey>
+        <contentType>application/json</contentType>
+        <metadata>m1:meta1,m2:meta2</metadata>
+        <signatureDurationInMins>100</signatureDurationInMins>
+    </amazons3.generatePutObjectPresignedUrl>
+    ```
+
+    <table>
+    <tr>
+        <th>Property</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>bucketName</td>
+        <td>Name of the target bucket.</td>
+    </tr>
+    <tr>
+        <td>objectKey</td>
+        <td>The object's name within the bucket.</td>
+    </tr>
+    <tr>
+        <td>contentType (Optional)</td>
+        <td>Standard MIME type indicating the object data format.</td>
+    </tr>
+    <tr>
+        <td>metadata (Optional)</td>
+        <td>Additional metadata provided as comma-separated key-value pairs (key:value).</td>
+    </tr>
+    <tr>
+        <td>signatureDurationInMins</td>
+        <td>Duration in minutes until the pre-signed URL expires.</td>
+    </tr>
+    </table>
+
+    This operation allows temporary, secure, and controlled access for uploading objects to your Amazon S3 bucket without requiring direct AWS credentials. The pre-signed URL can be shared with authorized users or systems to facilitate secure object uploads.
+
+??? note "generateGetObjectPresignedUrl"
+    The `generateGetObjectPresignedUrl` operation facilitates the creation of a pre-signed URL that enables the download of an object from Amazon S3. This operation is valuable when you need to provide temporary access for downloading an object directly from a specified S3 bucket without sharing your AWS credentials.
+
+    **Sample Configuration**
+
+    ```xml
+    <amazons3.generateGetObjectPresignedUrl configKey="AMAZON_S3_CONNECTION_1">
+        <bucketName>my-bucket</bucketName>
+        <objectKey>my-obj-1</objectKey>
+        <signatureDurationInMins>100</signatureDurationInMins>
+    </amazons3.generateGetObjectPresignedUrl>
+    ```
+
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>bucketName</td>
+            <td>Name of the target bucket.</td>
+        </tr>
+        <tr>
+            <td>objectKey</td>
+            <td>The name of the object.</td>
+        </tr>
+        <tr>
+            <td>signatureDurationInMins</td>
+            <td>Duration in minutes until the pre-signed URL expires.</td>
+        </tr>
+    </table>
+    This operation grants secure, temporary access for downloading objects from your Amazon S3 bucket without requiring direct AWS credentials. The pre-signed URL can be shared with authorized users or systems to facilitate secure object downloads.
