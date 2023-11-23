@@ -38,6 +38,7 @@ Download and set up a Micro Integrator server in your VM and deploy the composit
                   <userName>admin</userName>
                   <password>admin</password>
                   <operation>deploy</operation>
+                  <serverType>mi</serverType>
               </CarbonServer>
             </carbonServers>
         </configuration>
@@ -47,6 +48,9 @@ Download and set up a Micro Integrator server in your VM and deploy the composit
     
     Note: operation can be deploy or undeploy and provide the config values accordingly
     
+    !!! Note
+        The `<serverType>` property is used to explicitly mention the server that your integration artifacts are getting deployed to. The default value is `mi`.
+
     Then run mvn clean deploy -Dmaven.deploy.skip=true -Dmaven.car.deploy.skip=false
 
 ## Deploy artifacts in Docker
