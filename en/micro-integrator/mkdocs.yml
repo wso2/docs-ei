@@ -585,6 +585,7 @@ nav:
                 - 'Kafka Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
                 - 'Kafka Connector Reference': 'references/connectors/kafka-connector/3.0.x/kafka-connector-config.md'
             - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
+            - 'Kafka Inbound Endpoint Reference': 'references/connectors/kafka-connector/kafka-inbound-endpoint-config.md'
         - LDAP Connector:
           - 'LDAP Overview': 'references/connectors/ldap-connector/ldap-connector-overview.md'
           - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
