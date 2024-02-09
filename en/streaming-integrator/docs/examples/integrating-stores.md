@@ -863,7 +863,7 @@ You can execute SQL queries via WSO2 Streaming Integrator to manipulate data in 
 
 !!! tip "Before you begin:"
     To allow Streaming Integrator Tooling to perform CRUD operations, open `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file, and add an extract as shown below with the `perform.CRUD.operations` parameter set to `true` as shown below:<br/><br/>
-        ```
+        ```yaml
         siddhi:
           extensions:
             -
