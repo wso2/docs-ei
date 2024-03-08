@@ -88,7 +88,7 @@ public class BasicAuthHandler implements Handler {
 }
 ```
 
-You can build the project (mvn clean install) for this handler by accessing its source from here: https://github.com/wso2/product-esb/tree/v5.0.0/modules/samples/integration-scenarios/starbucks_sample/BasicAuth-handler
+You can build the project (mvn clean install) for this handler by accessing its source from [here](https://github.com/wso2/product-esb/tree/v5.0.0/modules/samples/integration-scenarios/starbucks_sample/BasicAuth-handler).
 
 !!! Note
     When building the sample using the source ensure you update `pom.xml` with the online repository. To do this, add the following section before `<dependencies>` tag in `pom.xml` :
