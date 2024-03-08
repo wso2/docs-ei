@@ -10,7 +10,7 @@ file.
 
 When correlation logs are enabled for the Micro Integrator server, a separate log
 file named `         correlation.log        ` is created in the
-`         MI_HOME/repository/logs/        ` directory. Every HTTP
+`         <MI_HOME>/repository/logs/        ` directory. Every HTTP
 message that flows through the ESB and between the Micro Integrator and external
 clients undergoes several state changes. A new log entry is created in
 the `         correlation.log        ` file corresponding to the state
@@ -26,7 +26,7 @@ You can enable correlation logging by passing a system property.
 
 -   If you want correlation logs to be enabled every time the server
     starts, add the following system property to the product start-up
-    script (stored in the `MI_HOME/bin/          `
+    script (stored in the `<MI_HOME>/bin/          `
     directory) and set it to `           true          ` .
 
     ```bash
@@ -42,7 +42,7 @@ You can enable correlation logging by passing a system property.
 
 Now when you start the Micro Integrator, the
 `         correlation.log        ` file is created in the
-`         MI_HOME/repository/logs/        ` directory.
+`         <MI_HOME>/repository/logs/        ` directory.
 
 ## Sending an HTTP request with a correlation ID
 
@@ -68,7 +68,7 @@ If you know the correlation ID of the HTTP request that you want to
 analyze, you can isolate the relevant logs as explained below.
 
 1.  Open a terminal and navigate to the
-    `          MI_HOME/repository/logs/         ` directory where the
+    `          <MI_HOME>/repository/logs/         ` directory where the
     `          correlation.log         ` file is saved.
 2.  Execute the following command with the required correlation ID.
     Replace `<correlation_ID>` with the required value.
