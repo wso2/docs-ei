@@ -5,6 +5,9 @@ each runtime are defined in the `<SI_HOME>|<SI_TOOLING_HOME>/conf/server/deploym
 
 e.g., To configure a data source in the server runtime, the relevant configurations need to be added in the `<SI_Home>/conf/server/deployment.yaml` file.
 
+!!! note
+The embedded H2 databases shipped with your product are suitable for development and testing environments. However, for production environments, it is recommended to use an industry-standard RDBMS such as Oracle, PostgreSQL, MySQL, MS SQL, etc.
+
 To view a sample data source configuration for each database type supported, expand the following sections:
 
 !!!info
