@@ -13,7 +13,7 @@ Follow the instructions given below to create a **WS-Policy** resource in your r
 1.  Once you have created a [registry resource project](../../creating-projects/#registry-resource-project), right-click the roject in the left navigation panel, click **New** , and then click **Registry Resource**. This will open the **New Registry Resource** window.  
     ![](../../assets/img/apply-security/119130870/119130887.png)
 2.  Select the **From existing template** option as shown below and
-    click **Next** .  
+    click **Next**.  
     ![](../../assets/img/apply-security/119130870/119130886.png)
 3.  Enter a resource name and select the **WS-Policy** template along
     with the preferred registry path.  
