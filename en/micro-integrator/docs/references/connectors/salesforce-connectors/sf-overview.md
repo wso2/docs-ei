@@ -50,7 +50,7 @@ The following table lists out compatibility information for the Salesforce Inbou
 
 | Inbound version  | Supported Salesforce API version | Supported WSO2 EI version |
 | ------------- | ------------- | ------------- |
-| 2.0.1| 22.0 | EI 7.1.0, EI 7.0.x, EI 6.6.0, EI 6.5.0 |
+| 2.0.1| 22.0 | EI 7.1.0, EI 7.0.x, EI 6.6.0, EI 6.5.0, EI 6.1.0, 6.2.0, 6.3.0, 6.4.0 |
 
 ### Salesforce Wave Analytics
 
