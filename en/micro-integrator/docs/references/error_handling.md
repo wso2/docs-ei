@@ -104,3 +104,9 @@ This section describes the error codes for endpoint failures. For more informati
 | **Error Code** |   **Detail**                                                                                    |
 |----------------|-------------------------------------------------------------------------------------------------|
 | 500000         | Endpoint Custom Error - This error is triggered when the endpoint is prefixed by `<property>name="FORCE_ERROR_ON_SOAP_FAULT" value="true"/>`, which enhances the failover logic by marking an endpoint as suspended when the response is a SOAP fault. |
+
+## XML / JSON parsing errors
+
+| **Error Code** | **Detail**                   |
+|----------------|------------------------------|
+| 601000         | Malform XML or JSON received |
