@@ -305,7 +305,7 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 			<div class="content-wrapper">
 			<div class="code panel pdl" style="border-width: 1px;">
 			<div class="codeContent panelContent pdl">
-			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_GENERATE_ACK&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;true&quot;</span><span class="kw">&lt;/property&gt;</span></span></code></pre></div>
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_GENERATE_ACK&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;true&quot;</span><span class="kw">/gt;</span></span></code></pre></div>
 			</div>
 			</div>
 			</div>
@@ -364,7 +364,7 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 			<div class="content-wrapper">
 			<div class="code panel pdl" style="border-width: 1px;">
 			<div class="codeContent panelContent pdl">
-			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_RESULT_MODE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;ACK|NACK&quot;</span><span class="kw">&lt;/property&gt;</span></span></code></pre></div>
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_RESULT_MODE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;ACK|NACK&quot;</span><span class="kw">/gt;</span></span></code></pre></div>
 			</div>
 			</div>
 			</div>
@@ -423,7 +423,7 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 			<div class="content-wrapper">
 			<div class="code panel pdl" style="border-width: 1px;">
 			<div class="codeContent panelContent pdl">
-			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_NACK_MESSAGE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;error message&quot;</span><span class="kw">&lt;/property&gt;</span></span></code></pre></div>
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_NACK_MESSAGE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;error message&quot;</span><span class="kw">/gt;</span></span></code></pre></div>
 			</div>
 			</div>
 			</div>
@@ -482,7 +482,7 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 			<div class="content-wrapper">
 			<div class="code panel pdl" style="border-width: 1px;">
 			<div class="codeContent panelContent pdl">
-			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_APPLICATION_ACK&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;true|false&quot;</span><span class="kw">&lt;/property&gt;</span></span></code></pre></div>
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_APPLICATION_ACK&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;true|false&quot;</span><span class="kw">/gt;</span></span></code></pre></div>
 			</div>
 			</div>
 			</div>
@@ -541,7 +541,7 @@ Axis2 properties allow you to configure the web services engine in WSO2 Micro In
 			<div class="content-wrapper">
 			<div class="code panel pdl" style="border-width: 1px;">
 			<div class="codeContent panelContent pdl">
-			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_RAW_MESSAGE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;$axis2:HL7_RAW_MESSAGE&quot;</span><span class="kw">&lt;/property&gt;</span></span></code></pre></div>
+			<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">&lt;property</span><span class="ot"> name=</span><span class="st">&quot;HL7_RAW_MESSAGE&quot;</span><span class="ot"> <span class="ot"> scope=</span><span class="st">&quot;axis2&quot;</span><span class="ot"> value=</span><span class="st">&quot;$axis2:HL7_RAW_MESSAGE&quot;</span><span class="kw">/gt;</span></span></code></pre></div>
 			</div>
 			</div>
 			</div>
