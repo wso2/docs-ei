@@ -92,6 +92,6 @@ To engage the deployed Synapse handler, you need to add the following configurat
 
 ```toml
 [[synapse_handlers]]
-name = "TestHandler"
-class = "package.TestHandler"
+name = "<handlerName>"
+class = "<packageName>.<handlerName>"
 ```
