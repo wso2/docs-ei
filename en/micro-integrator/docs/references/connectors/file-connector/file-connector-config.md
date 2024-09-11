@@ -201,7 +201,7 @@ The supported file systems and types are listed in [the Apache Commons VFS suppo
             String
         </td>
         <td>
-            User name used to connect with the file server.
+            The username used to connect with the file server. If the username contains special characters, you will need to use the URL encoded value.
         </td>
         <td>
             -
@@ -218,7 +218,7 @@ The supported file systems and types are listed in [the Apache Commons VFS suppo
             String
         </td>
         <td>
-            Password to connect with the file server.
+            The password to connect with the file server. If the password contains special characters, you will need to use the URL encoded value.
         </td>
         <td>
             -

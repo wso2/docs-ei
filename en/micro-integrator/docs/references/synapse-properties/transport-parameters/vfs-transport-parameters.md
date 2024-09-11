@@ -11,6 +11,9 @@ See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a
 
 ## Service-Level Parameters
 
+!!! Note
+    If the username or password contains special characters, you will need to use the URL encoded values when defining the File URIs in VFS transport.
+
 <table>
    <thead>
       <tr>
