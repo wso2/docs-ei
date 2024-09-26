@@ -27,7 +27,7 @@ You can refer to the following video to get a quick understanding of how this is
 
 Follow the steps given below.
 
-1.  Download the [distribution](https://wso2.com/integration/integration-studio/) for your operating system.
+1.  Download the [distribution](https://wso2.com/integration-studio/previous-releases/) for your operating system.
 2.  Extract the downloaded file to get the **IntegrationStudio**
     application. 
     !!! note
