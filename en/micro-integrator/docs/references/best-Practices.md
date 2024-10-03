@@ -8,7 +8,7 @@ and deploy WSO2 integration solutions:
 ### Implementing enterprise integration patterns (EIPs)
 
 See [Enterprise Integration Patterns with WSO2 Enterprise
-Integrator](https://docs.wso2.com/display/EIP/Enterprise+Integration+Patterns+with+WSO2+Enterprise+Integrator)
+Integrator](https://mi.docs.wso2.com/en/latest/learn/enterprise-integration-patterns/eip-overview/)
 on how to simulate the patterns in the [Enterprise Integration Patterns
 catalog](http://www.enterpriseintegrationpatterns.com/) using various
 constructs of WSO2 Micro Integrator.
@@ -425,7 +425,7 @@ added after one of the following mediators will not be applied.
     as the last mediator if you want the message to be sent to a
     specific endpoint. If you want to mediate the message after it is
     sent, you can use the [Clone mediator](../../references/mediators/clone-Mediator)
-    to [make two copies of the message and process them separately](https://docs.wso2.com/display/IntegrationPatterns/Scatter-Gather)
+    to [make two copies of the message and process them separately](https://mi.docs.wso2.com/en/latest/learn/enterprise-integration-patterns/message-routing/scatter-gather/)
     in order to avoid conflicts.
 
 -   Use the [Drop mediator](../../references/mediators/drop-Mediator)
