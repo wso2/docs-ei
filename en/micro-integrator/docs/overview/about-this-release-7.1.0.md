@@ -1,3 +1,5 @@
+<link rel=“canonical” href=“https://mi.docs.wso2.com/en/latest/get-started/about-this-release/” />
+
 # About this Release
 
 WSO2 Enterprise Integrator (EI) version 7.1.0 is the latest release of the WSO2 EI, which provides a powerful solution for integrating systems.

@@ -1,3 +1,5 @@
+<link rel=“canonical” href=“https://mi.docs.wso2.com/en/latest/get-started/quick-start-guide/” />
+
 # Quick Start Guide
 
 Let's get started with WSO2 Micro Integrator by running a simple use case in your local environment. This is a simple service orchestration scenario. The scenario is about a basic healthcare system where the Micro Integrator is used to integrate two back-end hospital services to provide information to the client.

@@ -1,3 +1,5 @@
+<link rel=“canonical” href=“https://mi.docs.wso2.com/en/latest/get-started/key-concepts/” />
+
 # Key Concepts
 
 Listed below are the key concepts of WSO2 Micro Integrator.

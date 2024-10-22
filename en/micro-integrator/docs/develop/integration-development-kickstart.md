@@ -1,3 +1,5 @@
+<link rel=“canonical” href=“https://mi.docs.wso2.com/en/latest/get-started/quick-start-guide/” />
+
 # Developing Your First Integration Solution
 
 Integration developers need efficient tools to build and test all the integration use cases required by the enterprise before pushing them into a production environment. 
