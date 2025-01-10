@@ -18,6 +18,13 @@
 
 {% extends "base.html" %}
 
+{% block extrahead %}
+  {{ super() }}
+  {% if page.canonical_url %}
+    <link rel="canonical" href="{{ page.canonical_url }}">
+  {% endif %}
+{% endblock %}
+
 {% block analytics %}
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0L7950XSLB"></script>
