@@ -677,3 +677,4 @@ extra:
     - type: linkedin
       link: https://www.linkedin.com/company/wso2
   site_version: 7.0.0
+  mi_site_url: https://mi.docs.wso2.com/en/latest/

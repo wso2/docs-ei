@@ -18,6 +18,12 @@
 
 {% extends "base.html" %}
 
+{% block extrahead %}
+  {{ super() }}
+  <link rel="canonical" href="{{ config.extra.mi_site_url }}">
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
 {% block analytics %}
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0L7950XSLB"></script>
