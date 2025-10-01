@@ -40,7 +40,7 @@ const writeFile = () => {
 };
 
 if (!fs.existsSync(outputPath)) {
-    fs.mkdirSync(outputPath);
+    fs.mkdirSync(outputPath, { recursive: true });
     writeFile();
 } else {
     rimraf(outputPath + '/*', () => {

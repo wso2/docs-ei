@@ -39,7 +39,10 @@
 var dropdowns = document.getElementsByClassName('md-tabs__dropdown-link');
 var dropdownItems = document.getElementsByClassName('mb-tabs__dropdown-item');
 
-window.onclick = function(evt) {
+
+window.onclick = function (evt) {
+
+
     var openedDropDowns = document.getElementsByClassName('open');
 
     if(evt.target.className === 'md-tabs__link md-tabs__dropdown-link localLink') {
@@ -205,8 +208,13 @@ request.send();
 
 var distributionDropdown =  document.getElementById('distribution-select-dropdown');
 
-const distributionURLList = [ 'micro-integrator','streaming-integrator' ];
-const introductionURL = ['/overview/introduction','/overview/overview'];
+
+
+const distributionMap = {
+    'micro-integrator': '/overview/introduction',
+    'streaming-integrator': '/overview/overview',
+};
+
 
 if (distributionDropdown){
     let count = 0;
@@ -236,8 +244,10 @@ var tocBtn = document.querySelector('.md-sidebar.md-sidebar--secondary #tocToggl
 var tocClass = document.getElementsByTagName('main')[0];
 
 if (tocBtn) {
-    tocBtn.onclick = function () {
-        event.preventDefault();
+
+    tocBtn.onclick = function (event) {
+    event.preventDefault();
+
         tocClass.classList.toggle('hide-toc');
         if (tocBtn.innerHTML === "keyboard_arrow_right") {
             tocBtn.innerHTML = "keyboard_arrow_left";
