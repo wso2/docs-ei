@@ -14,7 +14,7 @@ to systematically test the solution before deploying in production.
 Two types of base Docker images are available for the Micro Integrator:
 
 -   The Micro Integrator Docker image (with the latest updates) is
-    available in the [WSO2 Docker Registry](https://docker.wso2.com/).
+    available in the [WSO2 Docker Registry](https://registry.wso2.com/harbor/projects).
     
     **Note** that you need a valid WSO2 subscription to use the Docker
     image with updates. Therefore, you need to provide your log in
@@ -24,13 +24,13 @@ Two types of base Docker images are available for the Micro Integrator:
     **Micro Integrator Docker image (with updates)**
 
     ```bash
-    docker.wso2.com/wso2mi:latest
+    registry.wso2.com/micro-integrator/wso2mi:latest
     ```
 
     **Log in to WSO2 Docker Registry**
 
     ```bash
-    docker login docker.wso2.com
+    docker login registry.wso2.com
     ```
 
 -   The community version of WSO2 Micro Integrator's base Docker image is
@@ -124,7 +124,7 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
     <strong>Example 1: Docker image with updates</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>FROM docker.<span class="fu">wso2</span>.<span class="fu">com</span>/wso2mi:<span class="fl">1.2.</span><span class="dv">0</span></span></code></pre></div>
+    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>FROM registry.<span class="fu">wso2</span>.<span class="fu">com</span>/micro-integrator/wso2mi:<span class="fl">1.2.</span><span class="dv">0</span></span></code></pre></div>
     </div>
     </div>
     <div class="code panel pdl" style="border-width: 1px;">
