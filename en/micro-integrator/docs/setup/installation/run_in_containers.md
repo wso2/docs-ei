@@ -24,7 +24,7 @@ Two types of base Docker images are available for the Micro Integrator:
     **Micro Integrator Docker image (with updates)**
 
     ```bash
-    registry.wso2.com/micro-integrator/wso2mi:latest
+    registry.wso2.com/wso2-integrator/mi:latest
     ```
 
     **Log in to WSO2 Docker Registry**
