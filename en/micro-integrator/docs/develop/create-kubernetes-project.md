@@ -64,7 +64,7 @@ Follow the steps given below.
                         <b>wso2/wso2mi</b>: This is the community version of the Micro Integrator Docker image, which is stored in the <a href="https://hub.docker.com/r/wso2/wso2mi">public WSO2 Docker registry</a>. This is selected by default.
                     </li>
                     <li>
-                        <b>docker.wso2.com/wso2mi</b>: This is the Micro Integrator Docker image that includes <b>product updates</b>. This image is stored in the <a href="https://docker.wso2.com/tags.php?repo=wso2mi">private WSO2 Docker registry</a>.
+                        <b>registry.wso2.com/wso2mi</b>: This is the Micro Integrator Docker image that includes <b>product updates</b>. This image is stored in the <a href="https://registry.wso2.com/harbor/projects">private WSO2 Docker registry</a>.
                         Note that you need a valid <a href="https://wso2.com/subscription/free-trial">WSO2 subscription</a> to use the Docker image with updates.
                     </li>
                     <li>
